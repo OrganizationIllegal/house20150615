@@ -1,0 +1,886 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+	<head> 
+		<title>HouseSale</title> 
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="/css/list.css" />
+		<!-- <script type="text/javascript" src="/js/jquery.js"></script>  -->
+		<script type="text/javascript" src="/js/jquery-1.11.2.js"></script> 
+		<!-- <script type="text/javascript" src="/js/list.js"></script> -->
+		<!--  <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+  		 <link href="/css/pagination.css" rel="stylesheet">
+   	<!-- 	<script src="/bootstrap/js/bootstrap.min.js"></script> -->
+   	<!-- 	<script src="js/jquery.pagination.js"></script> -->
+   <script type="text/javascript" src="/ion.rangeSlider-2.0.10/js/ion-rangeSlider/ion.rangeSlider.min.js"></script> 
+    <link href="/ion.rangeSlider-2.0.10/css/normalize.css" rel="stylesheet">
+     <link href="/ion.rangeSlider-2.0.10/css/ion.rangeSlider.css" rel="stylesheet">
+      <link href="/ion.rangeSlider-2.0.10/css/ion.rangeSlider.css" rel="stylesheet">
+       <link href="/ion.rangeSlider-2.0.10/css/ion.rangeSlider.skinNice.css" rel="stylesheet">
+     
+   
+   		<style>
+   		.irs .js-irs-0{
+   			margin-top:20px;
+   		}
+   			a{
+   				color:black;
+   			}
+   			.pagination span {
+   				min-width:3em;
+   				max-width:3em;
+   				height:40px;
+   				padding:0 0;
+   				margin-right:0px;
+   			}
+   			.pagination a {
+   				min-width:3em;
+   				max-width:3em;
+   				height:40px;
+   				padding:0 0;
+   				margin-right:0px;
+   			}
+   			.pagination .current{
+   				background:rgb(67,67,67);
+   			}
+   			.pagination .prev{
+   				//font-size:20px;
+   			}
+   			.btn_star_sel{
+   				background-color:yellow;
+   			}
+   		</style>
+   	
+	</head>
+	<body>
+<%-- <jsp:include page="head4.jsp" /> --%>
+   <jsp:include page="head4index.jsp" />
+		<div class="c-fix  list_bkg">
+			<div class="c-fix f-l list_left">
+			<form role="form"  method="get" id="filter">
+				<a class="c-fix f-l f-yahei s-14 btn cp hover" style="padding:4px 6px;border:2px solid rgb(245,161,27)" href="/BingMap">地图找房</a>
+				<a class="f-l f-yahei s-14 btn cp btn_sel hover" style="margin-left:1px;padding:4px 6px;" href="#">列表找房</a>
+				<div class="c-fix f-l" style="color:#617c97;font-size:16px;font-weight:bold;margin-bottom:10px;margin-top:45px;font-family:微软雅黑;">进一步搜索</div>
+				<a class="c-fix f-l f-yahei s-14" style="color:#333;margin-top:10px;">类型</a>
+				<select style="width:100%;height:30px;line-height:30px;margin-top:3px;font-family:微软雅黑" id="projecttype" name="projecttype">
+					<option value="1">公寓</option>
+					<option value="2">别墅</option>
+					<option value="3">联排别墅</option>
+				</select>
+				<div class="c-fix f-l f-yahei s-14" style="display:block;width:100%;min-height:20px;margin-top:20px;">
+					<div style="margin-bottom:20px"><a style="display:block;color:#333;font-size:14px;float:left;">总价</a></div>
+					<!-- <a style="display:block;color:#ff6600;font-size:14px;float:right">100k-2M+</a> -->
+					<!-- <input type="range" name="zongjia" id="zongjia" class="c-fix f-l" style="display:block;width:100%;margin-top:5px;margin-left:0px;" min="100000" max="2000000"></input> -->
+					<input type="text" id="zongjia" name="zongjia" value="100000;2000000" style="margin-top:20px"/>
+				</div> 
+				<div class="c-fix f-l f-yahei s-14" style="display:block;width:100%;min-height:20px;margin-top:20px;">
+					<div style="margin-bottom:20px"><a style="display:block;color:#333;font-size:14px;float:left;">单价</a></div>
+					<!-- <a style="display:block;color:#ff6600;font-size:14px;float:right">0k-20,000+</a> -->
+					<!-- <input type="range" name="danjia" id="danjia" class="c-fix f-l" style="display:block;width:100%;margin-top:5px;margin-left:0px;" min="0" max="2000"></input> -->
+					<input type="text" id="danjia" name="danjia" value="0;200000" style="margin-top:20px"/>
+				</div> 
+				<div class="c-fix f-l f-yahei s-14" style="display:block;width:100%;min-height:20px;margin-top:20px;">
+					<!-- <a style="display:block;color:#333;font-size:14px;float:left;">卧室</a>
+					<a style="display:block;color:#ff6600;font-size:14px;float:right">0k-4+</a> -->
+					<div style="margin-bottom:20px"><a style="display:block;color:#333;font-size:14px;float:left;">卧室</a></div>
+					<!-- <input type="range" name="woshi" class="c-fix f-l" style="display:block;width:100%;margin-top:5px;margin-left:0px;" min="0" max="4"></input> -->
+					<input type="text" id="woshi" name="woshi" value="0;4" style="margin-top:20px"/>
+				</div> 
+				<div style="display:block;width:100%;min-height:20px;margin-top:10px;float:left;clear:both">
+					<a style="display:block;color:#333;font-size:14px;float:left;">用途</a>
+					<div style="display:block;width:100%;height:1px;background-color:#666;clear:both;float:left;margin-top:3px;margin-bottom:3px"></div>
+
+					<input style="display:block;clear:both;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="xinaipan"  />
+					<a style="display:block;width:60px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">新开盘</a>
+					<input style="display:block;float:left;height:30px" type="checkbox" name="key" id="remen" />
+					<a style="display:block;width:50px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">热门项目</a>
+
+					<input style="display:block;clear:both;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="youxiu"/>
+					<a style="display:block;width:60px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">优秀学区</a>
+					<input style="display:block;float:left;height:30px" type="checkbox" name="key" id="center" />
+					<a style="display:block;width:50px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;" >城市中心</a>
+
+					<input style="display:block;clear:both;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="baozu" />
+					<a style="display:block;width:60px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">包租项目</a>
+					<input style="display:block;float:left;height:30px" type="checkbox" name="key" id="huaren"/>
+					<a style="display:block;width:50px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">华人区</a>
+
+					<input style="display:block;clear:both;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="zuixin" />
+					<a style="display:block;width:60px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">最新项目</a>
+					<input style="display:block;float:left;height:30px" type="checkbox" name="key" id="daxue" />
+					<a style="display:block;width:50px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">大学附近</a>
+
+					<input style="display:block;clear:both;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="xianfang"  />
+					<a style="display:block;width:60px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">现房项目</a>
+					<input style="display:block;float:left;height:30px" type="checkbox" name="key" id="traffic" />
+					<a style="display:block;width:50px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">轨道交通</a>
+
+					<!--<a class="c-fix f-r btn_search f-yahei s-14 cp">搜索</a>-->
+					<input type="submit" class="c-fix f-r btn_search f-yahei s-14 cp" value="搜索"/>
+				</div> 
+			</div>
+			</form>
+			<div class="f-r list_right">
+				<div class="c-fix f-l nav_panel" id="page" style="margin-bottom:35px">
+				   <div id="Pagination" class="pagination"  style="margin:0 0;height:40px;"></div>
+					 <div style="float:right;margin-top:20px">
+					<select class="f-l sel_order" style="background-color:rgb(220,220,220);padding-left:5px;" onchange="paixu(this)">
+						<option value="0">排序</option>
+						<option value="1">推荐度</option>
+						<!-- <option value="2">热门度</option> -->
+					</select></div> 
+					
+				</div>
+				<div id="list">
+			 <c:forEach var="item" items="${searchList}"> 		 
+	<div class="c-fix f-r list_node" style="margin-top:15px;margin-bottom:15px">
+                		<div class="c-fix f-l list_node_header">
+                		<a class="c-fix f-l f-arial s-16 list_node_name fw">${item.project_name}</a>
+                		<a class="f-l f-arial s-12 list_node_address">${item.project_address}</a>
+                		<div class="f-r btn_star cp"  id="star" data-proNum=${item.project_num}></div>	
+                		</div>
+                		<div class="c-fix f-l list_node_body">
+                		<a href="/Index?proNum=${item.project_num}"><img class="c-fix f-l list_node_img" src="http://101.200.174.253:8080/all/${item.project_img}"></img></a>
+                		<div class="f-l list_node_middle">
+                		<a class="c-fix f-l list_node_inner_name f-yahei s-14"  style="font-weight:bolder">${item.project_name}</a>
+                		<a class="c-fix f-l list_node_desc f-yahei s-13">${item.project_lan_cn}</a>
+                		<div class="c-fix f-l list_node_tag_div" style="margin-bottom:10px;margin-top:10px;">
+						<div style="border:1px solid rgb(254,254,230); text-align:center;margin-left:5px;margin-right:5px;margin-bottom:10px;font-size:10px;width:54px;float:left;"  >热门项目</div>
+                		
+                		</div>
+                	
+                	
+   	       				<span style="margin-top:20px;font-family:微软雅黑;color:rgb(170,16,25);font-style:italic;font-size:20px">${item.developer_id_name}</span>
+   	       				
+                		</div>
+                		<div class="f-l list_node_right">
+                		<a class="c-fix f-l list_node_inner_lab f-yahei s-12"></a>
+                		<a class="f-l list_node_title fw f-yahei s-12 c-fix">最多：</a>
+                		<a class="f-r list_node_val f-yahei s-12">$${item.maxPrice}</a>
+                		<a class="f-l list_node_title fw f-yahei s-12 c-fix">最少：</a>
+                		<a class="f-r list_node_val f-yahei s-12">$${item.minPrice}</a>
+                		<a class="f-l list_node_title fw f-yahei s-12 c-fix">面积：</a>
+                		<a class="f-r list_node_val f-yahei s-12">${item.minArea}<span>-</span>${items.maxArea}</a>
+                		<a class="f-l list_node_title fw f-yahei s-12 c-fix">起价：</a>
+                		<a class="f-r list_node_val f-yahei s-12">$${items.project_price_int_qi}</a>
+                		<a class="f-l list_node_title fw f-yahei s-12 c-fix">返现：</a>
+						<a class="f-r list_node_val f-yahei s-12">${item.fanxian}</a>
+                		</div>
+                		</div>
+                		</div>
+                	</c:forEach> 
+				</div>
+				
+				
+		</div>
+		
+	</div>
+		<jsp:include page="foot4.jsp" />
+	<script src="/js/jquery.pagination.js"></script> 
+   <script type="text/javascript">
+
+     	$("#zongjia").ionRangeSlider({
+   			 type: "double",
+   			 min: 100000,
+    		 max: 2000000,
+   			 //grid: true
+		});
+			$("#danjia").ionRangeSlider({
+   			 type: "double",
+   			 min: 0,
+    		max: 20000,
+   			 //grid: true
+		});
+		$("#woshi").ionRangeSlider({
+   			 type: "double",
+   			 min: 0,
+    		 max: 4,
+   			 //grid: true
+		});
+        var pageIndex = 0;     //页面索引初始值   
+        var pageSize = 5;     //每页显示条数初始化，修改显示条数，修改这里即可  
+         $(function () {
+         		//alert("ttttttttttt");
+              	var total = InitTable(0);    //Load事件，初始化表格数据，页面索引为0（第一页）
+                //分页，PageCount是总条目数，这是必选参数，其它参数都是可选
+                $("#Pagination").pagination(total,{
+                    callback: PageCallback,  //PageCallback() 为翻页调用次函数。
+                    prev_text: "«",
+                    next_text: "»",
+                    items_per_page:pageSize,
+                    num_edge_entries: 1,       //两侧首尾分页条目数
+                    num_display_entries: 5,    //连续分页主体部分分页条目数
+                    current_page: pageIndex,   //当前页索引
+                });
+                //翻页调用   
+                function PageCallback(index, jq) {   
+                    InitTable(index);  
+                }  
+                //请求数据   
+                function InitTable(pageIndex) { 
+                	pageIndex = pageIndex+1;   
+                	var count = 0;            
+                    $.ajax({   
+                        type: "POST",  
+                        async: false,
+                        dataType: "json",  
+                        url: '/SearchListPage',      //提交到一般处理程序请求数据   
+                        data: { pageIndex : pageIndex, pageSize : 5},
+                        //data: "pageIndex=" + (pageIndex) + "&pageSize=" + pageSize,          //提交两个参数：pageIndex(页面索引)，pageSize(显示条数)                   
+                        success: function(data) {
+                        count = data.total;
+                        var html = getHtml(data.List);
+                        //alert(html)
+                       		//$("#Result tr:gt(0)").remove();        //移除Id为Result的表格里的行，从第二行开始（这里根据页面布局不同页变）   
+                            $("#list").html(html);             //将返回的数据追加到表格  
+                            
+                        }  
+                    }); 
+                    return count;
+                }
+           }); 
+       $("#filter").submit(function(e){
+ 						 //alert("Submitted");
+ 						 var projecttype=$("#projecttype").val();
+ 						//var zongjia=$("#zongjia").val();
+ 						//var zongjiamin=$("#zongjia").min;
+ 						var zongjia=$("#zongjia").val();
+ 						//alert("ooooo"+zongjiamin);
+ 						 var danjia=$("#danjia").val();
+ 						 var keylist=document.getElementsByName('key');
+ 						 for(var i=0;i<keylist.length;i++){
+ 						 	if(keylist[i].checked==true){
+ 						 		keylist[i].value=1;
+ 						 	}else{
+ 						 		keylist[i].value=0;
+ 						 	}
+ 						 }
+ 						 var xinaipan=$("#xinaipan").val();
+ 						 var remen=$("#remen").val();
+ 						 var youxiu=$("#youxiu").val();
+ 						 var center=$("#center").val();
+ 						 var baozu=$("#baozu").val();
+ 						 var huaren=$("#huaren").val();
+ 						 var zuixin=$("#zuixin").val();
+ 						 var daxue=$("#daxue").val();
+ 						 var xianfang=$("#xianfang").val();
+						 var traffic=$("#traffic").val();
+					
+ 		 							  var pageIndex2 = 0;     //页面索引初始值   
+							          var pageSize2 = 5;     //每页显示条数初始化，修改显示条数，修改这里即可  
+							         // var total2 = 100;
+							         var total2 = InitTable2(0); 
+							          //alert("total2"+total2);
+		   			 	$("#Pagination").pagination(total2,{
+                   						 callback: PageCallback2, 
+                   						 prev_text: "«",
+                   						 next_text: "»",
+                   						 items_per_page:pageSize2,
+                    					 num_edge_entries: 1,       //两侧首尾分页条目数
+                   						 num_display_entries: 5,    //连续分页主体部分分页条目数
+                    					 current_page: pageIndex2,   //当前页索引
+               				 }); 
+               				   function PageCallback2(index, jq) {    
+                   				    // alert("totalaaaa"+total2);
+                   					 InitTable2(index);  
+                				}   
+                				return false;
+		   						  function InitTable2(pageIndex2) { 
+						                	pageIndex2 = pageIndex2+1;   
+						                	var count = 0;   
+						                    $.ajax({   
+						                        type: "POST",  
+						                        async: false,
+						                        dataType: "json",  
+						                        url: '/FilterList?projecttype='+projecttype+'&zongjia='+zongjia+"&danjia="+danjia+'&xinaipan='+xinaipan+'&remen='+remen+'&youxiu='+youxiu+'&center='+center+'&baozu='+baozu+'&huaren='+huaren+'&zuixin='+zuixin+'&daxue='+daxue+'&xianfang='+xianfang+'&traffic='+traffic,      //提交到一般处理程序请求数据   
+						                        data: { pageIndex : pageIndex2, pageSize : 5},
+						                        success: function(data) {
+						                        count = data.total;
+						                        //alert("count2"+count);
+						                        var html = getHtml(data.List);
+						                       		//$("#Result tr:gt(0)").remove();        //移除Id为Result的表格里的行，从第二行开始（这里根据页面布局不同页变）   
+						                       		//$("#list").html(""); 
+						                            $("#list").html(html);             //将返回的数据追加到表格  
+						                            
+						                        }  
+						                    }); 
+						                    return count;
+						                }
+
+		  
+		});
+
+    function paixu(v){
+		   							  var pageIndex3 = 0;     //页面索引初始值   
+							          var pageSize = 5;     //每页显示条数初始化，修改显示条数，修改这里即可  
+							         var total3 = InitTable3(0); 
+		   					$("#Pagination").pagination(total3,{
+                   						 callback: PageCallback3,  //PageCallback() 为翻页调用次函数。
+                   						 prev_text: "«",
+                   						 next_text: "»",
+                   						 items_per_page:pageSize,
+                    					num_edge_entries: 1,       //两侧首尾分页条目数
+                   						 num_display_entries: 5,    //连续分页主体部分分页条目数
+                    					current_page: pageIndex3,   //当前页索引
+               				 });
+               				   function PageCallback3(index, jq) {    
+                   				   
+                   					 InitTable3(index);  
+                				}  
+		   						  function InitTable3(pageIndex) { 
+						                	pageIndex3 = pageIndex3+1;   
+						                	var count = 0; 
+						                	       
+						                    $.ajax({   
+						                        type: "POST",  
+						                        async: false,
+						                        dataType: "json",  
+						                        url: '/OrderPage',      //提交到一般处理程序请求数据   
+						                        data: { pageIndex : pageIndex3, pageSize : 5},
+						                        success: function(data) {
+						                        count = data.total;
+						                        var html = getHtml(data.List);
+						                       		//$("#Result tr:gt(0)").remove();        //移除Id为Result的表格里的行，从第二行开始（这里根据页面布局不同页变）   
+						                            $("#list").html(html);             //将返回的数据追加到表格  
+						                            
+						                        }  
+						                    }); 
+						                    return count;
+						                }
+			
+   		}
+
+    function getHtml(items){
+                var html="";
+                if(items!=null){
+                	for(var j=0;j<items.length;j++){
+                		html+="<div class='c-fix f-r list_node' style='margin-top:15px;margin-bottom:15px'>";
+                		html+="<div class='c-fix f-l list_node_header'>";
+                		html+="<a class='c-fix f-l f-arial s-16 list_node_name fw'>"+items[j].Project_name+"</a>";
+                		html+="<a class='f-l f-arial s-12 list_node_address'>"+items[j].project_address+"</a>";
+                		//html+="<div class='f-r btn_star cp' id='star' onclick=a(\""+items[j].project_num+"\")></div>";
+                		if(items[j].isCollected==0)//未收藏 星星显示白色
+                		{
+                		 	html+="<div class='f-r btn_star cp'  id='star"+j+"' data-proNum="+items[j].project_num+"></div>";	
+                		}
+                		else{
+                			 html+="<div class='f-r btn_star cp btn_star_sel'  id='star"+j+"' data-proNum="+items[j].project_num+"></div>";
+                		}
+                	   
+                		html+="</div>";
+                		html+="<div class='c-fix f-l list_node_body'>";
+                		html+="<a href='/Index?proNum="+items[j].project_num+"'><img class='c-fix f-l list_node_img' src='http://101.200.174.253:8080/all/"+items[j].Project_img+"'></img></a>";
+                		html+="<div class='f-l list_node_middle'>";
+                		html+="<a class='c-fix f-l list_node_inner_name f-yahei s-14'  style='font-weight:bolder'>"+items[j].Project_name+"</a>";
+                		html+="<a class='c-fix f-l list_node_desc f-yahei s-13' style='height:80px;overflow-y:hidden'>"+items[j].project_lan_cn+"</a>";
+                		html+="<div class='c-fix f-l list_node_tag_div' style='margin-bottom:10px;margin-top:10px;height:58px'>";
+                		if(items[j].remen==1){
+                			html+="<div style='border:1px solid rgb(254,254,230); text-align:center;margin-left:5px;margin-right:5px;margin-bottom:10px;font-size:10px;width:54px;float:left;'  >热门项目</div>";
+                		}
+                		if(items[j].xuequ==1){
+                			html+="<div style='border:1px solid rgb(228,253,224); text-align:center;margin-left:5px;margin-right:5px;margin-bottom:10px;font-size:10px;width:54px;float:left;'  >优秀学区</div>";
+                		}
+                		if(items[j].baozu==1){
+                			html+="<div style='border:1px solid rgb(248,235,255); text-align:center;margin-left:5px;margin-right:5px;margin-bottom:10px;font-size:10px;width:54px;float:left;'  >包租项目</div>";
+                		}
+                		if(items[j].huaren==1){
+                			html+="<div style='border:1px solid rgb(227,252,223);text-align:center;margin-left:5px;margin-right:5px;margin-bottom:10px;font-size:10px;width:54px;float:left;'  >华人区</div>";
+                		}
+                		if(items[j].maidi==1){
+                			html+="<div style='border:1px solid rgb(251,227,225); text-align:center;margin-left:5px;margin-right:5px;margin-bottom:10px;font-size:10px;width:54px;float:left;'  >最新项目</div>";
+                		}
+                		if(items[j].daxue==1){
+                			html+="<div style='border:1px solid rgb(229,254,225);text-align:center;margin-left:5px;margin-right:5px;margin-bottom:10px;font-size:10px;width:54px;float:left;'  >大学附近</div>";
+                		}
+                		if(items[j].center==1){
+                			html+="<div style='border:1px solid rgb(229,254,225); text-align:center;margin-left:5px;margin-right:5px;margin-bottom:10px;font-size:10px;width:54px;float:left;'  >城市中心</div>";
+                		}
+                		if(items[j].traffic==1){
+                			html+="<div style='border:1px solid rgb(229,254,225); text-align:center;margin-left:5px;margin-right:5px;margin-bottom:10px;font-size:10px;width:54px;float:left;'  >轨道交通</div>";
+                		}
+                		if(items[j].xianfang==1){
+                			html+="<div style='border:1px solid rgb(253,227,227); text-align:center;margin-left:5px;margin-right:5px;margin-bottom:10px;font-size:10px;width:54px;float:left;'  >现房项目</div>";
+                		}
+                		if(items[j].xinkaipan==1){
+                			html+="<div style='border:1px solid rgb(253,227,227); text-align:center;margin-left:5px;margin-right:5px;margin-bottom:10px;font-size:10px;width:54px;float:left;'  >新开盘</div>";
+                		}
+                		html+="</div>";
+                		//html+="<img class='c-fix f-l list_node_logo' src='res/images/node_img.jpg'></img>";
+                		if(items[j].developer_id_name!=null)
+   	       				{
+   	       					html+="<span style='margin-top:20px;font-family:微软雅黑;color:rgb(170,16,25);font-style:italic;font-size:20px;height:30px'>"+items[j].developer_id_name+"</span>";
+   	       				}
+                		html+="</div>";
+                		html+="<div class='f-l list_node_right'>";
+                		html+="<a class='c-fix f-l list_node_inner_lab f-yahei s-12'></a>";
+                		html+="<a class='f-l list_node_title fw f-yahei s-12 c-fix'>最多：</a>";
+                		html+="<a class='f-r list_node_val f-yahei s-12'>"+"<span>$</span>"+items[j].MaxPrice+"</a>";
+                		html+="<a class='f-l list_node_title fw f-yahei s-12 c-fix'>最少：</a>";
+                		html+="<a class='f-r list_node_val f-yahei s-12'>"+"<span>$</span>"+items[j].MinPrice+"</a>";
+                		html+="<a class='f-l list_node_title fw f-yahei s-12 c-fix'>面积(M<sup><span style='font-size:8px'>2</span></sup>)：</a>";
+                		html+="<a class='f-r list_node_val f-yahei s-12'>"+items[j].MinArea+"<span>-</span>"+items[j].MaxArea+"</a>";
+                		html+="<a class='f-l list_node_title fw f-yahei s-12 c-fix'>起价：</a>";
+                		html+="<a class='f-r list_node_val f-yahei s-12'>"+"<span>$</span>"+items[j].project_price_int_qi+"</a>";
+                		html+="<a class='f-l list_node_title fw f-yahei s-12 c-fix'>返现：</a>";
+                		html+="<a class='f-r list_node_val f-yahei s-12'>"+items[j].Fanxian+"</a>";
+                		html+="</div>";
+                		html+="</div>";
+                		html+="</div>";
+                		
+                	}
+                }
+                else{
+                	html="";
+                }
+                	return html;
+                }
+   </script>
+   <script>
+   $(function(){
+	$(".btn").click(function(){
+		$(".btn_sel").removeClass("btn_sel");
+		$(this).addClass("btn_sel");
+	});
+	
+	//$(".pagination").not(".current").not(".next").click(function(){
+	//	$(".list_page_sel").removeClass("list_page_sel");
+	//	$(this).addClass("list_page_sel");
+	//});
+	
+	$(".prev").click(function(){
+		//alert("前一页");
+	});
+
+	$(".next").click(function(){
+		//alert("后一页");
+	});
+	
+	
+
+					$("#star0").on('click',function(event){
+						//alert("currentstar"+currentstar);
+						var proNum=this.getAttribute('data-proNum');
+						//alert(proNum);
+						if($("#star0").attr("class").indexOf("btn_star_sel") != -1){//删除
+							$.ajax({
+				 				type: "POST",  
+                       			 dataType: "json",  
+                       			 url: '/DelCollect',      //提交到一般处理程序请求数据   
+                        		data: { proNum :proNum},           
+                        		success: function(data) {
+                        		if(data.user==0){
+                        			//alert("请登录");
+                        			$('#login').modal('show');
+                        			
+                        		}else if(data.flag==1){
+                        			alert("删除收藏夹成功");
+                        			$("#star0").removeClass("btn_star_sel");//黄星变白
+                        		}
+                        		}  //success
+							});//ajax
+							
+						}else{//添加
+							$.ajax({
+				 				type: "POST",  
+                       			 dataType: "json",  
+                       			 url: '/AddCollect',      //提交到一般处理程序请求数据   
+                        		data: { proNum :proNum},           
+                        		success: function(data) {
+                        		if(data.user==0){
+                        			//alert("请登录");
+                        			$('#login').modal('show');
+                        			
+                        		}else if(data.flag==1){
+                        			alert("收藏成功");
+                        			$("#star0").addClass("btn_star_sel");//白星变黄
+                        		}
+                        		}  //success
+							});//ajax
+						}//else
+					});//click
+					
+					$("#star1").on('click',function(event){
+						//alert("currentstar"+currentstar);
+						var proNum=this.getAttribute('data-proNum');
+						//alert(proNum);
+						if($("#star1").attr("class").indexOf("btn_star_sel") != -1){
+							$.ajax({
+				 				type: "POST",  
+                       			 dataType: "json",  
+                       			 url: '/DelCollect',      //提交到一般处理程序请求数据   
+                        		data: { proNum :proNum},           
+                        		success: function(data) {
+                        		if(data.user==0){
+                        			//alert("请登录");
+                        			$('#login').modal('show');
+                        			
+                        		}else if(data.flag==1){
+                        			alert("删除收藏夹成功");
+                        			$("#star1").removeClass("btn_star_sel");//黄星变白
+                        		}
+                        		}  //success
+							});//ajax
+						}else{
+							$.ajax({
+				 				type: "POST",  
+                       			 dataType: "json",  
+                       			 url: '/AddCollect',      //提交到一般处理程序请求数据   
+                        		data: { proNum :proNum},           
+                        		success: function(data) {
+                        		if(data.user==0){
+                        			//alert("请登录");
+                        			$('#login').modal('show');
+                        		}else if(data.flag==1){
+                        			alert("收藏成功");
+                        			$("#star1").addClass("btn_star_sel");//白星变黄
+                        		}
+                        		}  //success
+							});//ajax
+						}//else
+					});//click
+					$("#star2").on('click',function(event){
+						//alert("currentstar"+currentstar);
+						var proNum=this.getAttribute('data-proNum');
+						//alert(proNum);
+						if($("#star2").attr("class").indexOf("btn_star_sel") != -1){
+							$.ajax({
+				 				type: "POST",  
+                       			 dataType: "json",  
+                       			 url: '/DelCollect',      //提交到一般处理程序请求数据   
+                        		data: { proNum :proNum},           
+                        		success: function(data) {
+                        		if(data.user==0){
+                        			//alert("请登录");
+                        			$('#login').modal('show');
+                        			
+                        		}else if(data.flag==1){
+                        			alert("删除收藏夹成功");
+                        			$("#star2").removeClass("btn_star_sel");//黄星变白
+                        		}
+                        		}  //success
+							});//ajax
+						}else{
+							$.ajax({
+				 				type: "POST",  
+                       			 dataType: "json",  
+                       			 url: '/AddCollect',      //提交到一般处理程序请求数据   
+                        		data: { proNum :proNum},           
+                        		success: function(data) {
+                        		if(data.user==0){
+                        			//alert("请登录");
+                        				$('#login').modal('show');
+                        		}else if(data.flag==1){
+                        			alert("收藏成功");
+                        			$("#star2").addClass("btn_star_sel");//白星变黄
+                        		}
+                        		}  //success
+							});//ajax
+						}//else
+					});//click
+					$("#star3").on('click',function(event){
+						//alert("currentstar"+currentstar);
+						var proNum=this.getAttribute('data-proNum');
+						//alert(proNum);
+						if($("#star3").attr("class").indexOf("btn_star_sel") != -1){
+							$.ajax({
+				 				type: "POST",  
+                       			 dataType: "json",  
+                       			 url: '/DelCollect',      //提交到一般处理程序请求数据   
+                        		data: { proNum :proNum},           
+                        		success: function(data) {
+                        		if(data.user==0){
+                        			//alert("请登录");
+                        			$('#login').modal('show');
+                        			
+                        		}else if(data.flag==1){
+                        			alert("删除收藏夹成功");
+                        			$("#star3").removeClass("btn_star_sel");//黄星变白
+                        		}
+                        		}  //success
+							});//ajax
+						}else{
+							$.ajax({
+				 				type: "POST",  
+                       			 dataType: "json",  
+                       			 url: '/AddCollect',      //提交到一般处理程序请求数据   
+                        		data: { proNum :proNum},           
+                        		success: function(data) {
+                        		if(data.user==0){
+                        			//alert("请登录");
+                        			$('#login').modal('show');
+                        		}else if(data.flag==1){
+                        			alert("收藏成功");
+                        			$("#star3").addClass("btn_star_sel");//白星变黄
+                        		}
+                        		}  //success
+							});//ajax
+						}//else
+					});//click
+					$("#star4").on('click',function(event){
+						//alert("currentstar"+currentstar);
+						var proNum=this.getAttribute('data-proNum');
+						//alert(proNum);
+						if($("#star4").attr("class").indexOf("btn_star_sel") != -1){
+							$.ajax({
+				 				type: "POST",  
+                       			 dataType: "json",  
+                       			 url: '/DelCollect',      //提交到一般处理程序请求数据   
+                        		data: { proNum :proNum},           
+                        		success: function(data) {
+                        		if(data.user==0){
+                        			//alert("请登录");
+                        			$('#login').modal('show');
+                        			
+                        		}else if(data.flag==1){
+                        			alert("删除收藏夹成功");
+                        			$("#star4").removeClass("btn_star_sel");//黄星变白
+                        		}
+                        		}  //success
+							});//ajax
+						}else{
+							$.ajax({
+				 				type: "POST",  
+                       			 dataType: "json",  
+                       			 url: '/AddCollect',      //提交到一般处理程序请求数据   
+                        		data: { proNum :proNum},           
+                        		success: function(data) {
+                        		if(data.user==0){
+                        			//alert("请登录");
+                        			$('#login').modal('show');
+                        		}else if(data.flag==1){
+                        			alert("收藏成功");
+                        			$("#star4").addClass("btn_star_sel");//白星变黄
+                        		}
+                        		}  //success
+							});//ajax
+						}//else
+					});//click
+				
+				
+					
+					
+					
+				
+});
+
+    </script>
+    <!-- login start -->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content" style="margin-left:100px;height:270px;width:355px;">
+         <div class="modal-header" style="background-color:rgb(55,52,67);padding:0px 10px;height:10px;">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true" style="font-size:18px;color:white;">
+                  &times;
+            </button>
+         </div>
+         <div class="modal-body">
+  <div style="text-align:center;margin-top:5px;"><div style="font-size:20px;font-weight:bold;">欢迎登录海外房产优选</div>
+  <form method="post" name="fm2" action="/login">
+  <div  style="padding-top:25px;">
+         <input type="text"  id="username_mode"
+            name="username_mode" style="background-image:url(images/0.png);background-repeat:no-repeat;background-position:left;width:270px;padding-left:35px;height:32px;background-color:rgba(246, 245, 245, 1);" placeholder="手机号/邮箱" autocomplete="off">
+         <input type="hidden" id="username_mode1" 
+            name="username_mode1" style="background-image:url(images/0.png);background-repeat:no-repeat;background-position:left;width:270px;padding-left:35px;height:32px;background-color:rgba(246, 245, 245, 1);" placeholder="手机号/邮箱" autocomplete="off">
+        <input type="hidden" style="background-image:url(images/0.png);background-repeat:no-repeat;background-position:left;width:270px;padding-left:35px;height:32px;background-color:rgba(246, 245, 245, 1);" id="role" 
+            name="role_mode" placeholder="用户角色">
+       <div id="user2" style="margin-left:20px;"></div>
+      
+   </div>
+   <div>
+         <input  type="password" id="password_mode" 
+            name="password" style="background-image:url(images/2.png);background-repeat:no-repeat;background-position:left;padding-left:35px;width:270px;height:32px;background-color:rgba(246, 245, 245, 1);" placeholder="密码" autocomplete="off">
+         <input type="hidden" id="password_mode1" 
+            name="password_mode1" style="background-image:url(images/2.png);background-repeat:no-repeat;background-position:left;padding-left:35px;width:270px;height:32px;background-color:rgba(246, 245, 245, 1);" placeholder="密码" autocomplete="off">
+       <div id="pass" style="margin-left:20px;"></div>
+   </div>
+   
+   <div style="padding-top:20px;padding-left:20px;float:left;font-size:12px;">
+      <span><input type="checkbox">记住我 <a href="/changePass.jsp" style="padding-left:160px;color:black;">忘记密码？</a></span>  
+   </div>
+   <div style="padding-top:15px;padding-left:20px;float:left;">
+   <img src="images/3.png" id="login1" style="width:120px;height:30px;cursor:pointer;">   
+   </div>
+</form>
+         </div>
+   
+      </div>
+</div>
+</div>
+</div>
+<!-- login end -->
+<script>
+
+var role;
+ $(function() {
+                $("#login1").click(function() {
+                	var user = $("#username_mode").val();
+                	var pass = $("#password_mode").val();
+                	var temp;
+                	temp = judge(user,pass);
+                	
+                	if(temp==true){
+	                	var username = encode64($("#username_mode").val());
+	                	var password = encode64($("#password_mode").val());
+	                	//alert("用户名加密后的结果:"+username+"密码加密后的结果:"+password);
+	                	$("#username_mode1").val(username);
+	                    $("#password_mode1").val(password);
+	                    $("#role_mode").val(role);
+	                    document.fm2.submit();  //fm为form表单name
+                	}
+                	else{
+                		return false;
+                	}
+                })
+                
+                $("#reg").click(function() {
+                  	var user = $("#telemail").val();
+                  	var pass = $("#pwd").val();
+                  	var temp;
+                  	temp = judgeRe(user,pass);
+                  	alert(temp)             	
+                  	if(temp==true){	                	
+  	                    document.fm1.submit();  //fm为form表单name
+                  	}
+                  	else{               	
+                  		return false;
+                  	} 
+                  });
+
+                  $("#cancel").click(function() {
+                    	$("#telemail").val("").focus();
+                    	$("#pwd").val("");
+                    });   
+        })
+
+function judge(username, password){
+	 var result = false;
+	 if(username==""){
+	 alert("请输入用户名");
+		 //$("#user").html("请输入用户名");
+		 return false;
+	 }
+	 else if(username!=""&&password==""){
+	 alert("请输入密码");
+		 /* $("#pass").html("请输入密码");
+		 $("#user").html(""); */
+		 return false;
+	 }
+	 else{
+		$.ajax({
+			type:'GET',
+			url:'/loginPanduan?username='+username+'&password='+password,
+			dataType:'json',
+			async: false, 
+			success:function(data){
+				if(data.user==0){
+				alert("用户名不存在");
+					//$("#user").html("用户名不存在");
+				}
+				else if(data.user==2){
+				alert("用户名和密码不符");
+					/* $("#pass").html("用户名和密码不符");
+					$("#user").html(""); */
+				}
+				else if(data.user==1){
+					//alert(data.role)
+					if(data.role==0){
+						role = 0;
+					}
+					else{
+						role = 1;
+					}
+					result=true;
+				}
+			},
+			error:function(){
+				
+			}
+		})
+ 
+	 }
+	
+ if(result == true){
+	 return true;
+ }
+ }
+function judgeRe(username, password){
+  	 var result = false;
+  	 if(username==""){
+  	 alert("请输入用户名");
+  		 return false;
+  	 }
+  	 else if(username!=""&&password==""){
+  	 alert("请输入密码");
+  		 return false;
+  	 }
+  	 else{
+  		$.ajax({
+  			type:'GET',
+  			url:'/registerPanduan?username='+username+'&password='+password,
+  			dataType:'json',
+  			async: false, 
+  			success:function(data){
+  				if(data.user==0){
+  				  alert("用户名已存在，请直接登录！");
+  				}
+  				else if(data.user==1){
+  				result=true;
+  				}
+  			},
+  			error:function(){
+  			}
+  		});
+   
+  	 }
+  	
+   if(result == true){
+  	 return true;
+   }
+ }
+ 
+   
+  
+var keyStr = "ABCDEFGHIJKLMNOP" + "QRSTUVWXYZabcdef" + "ghijklmnopqrstuv"
++ "wxyz0123456789+/" + "=";
+
+function encode64(input) {
+
+var output = "";
+var chr1, chr2, chr3 = "";
+var enc1, enc2, enc3, enc4 = "";
+var i = 0;
+do {
+chr1 = input.charCodeAt(i++);
+chr2 = input.charCodeAt(i++);
+chr3 = input.charCodeAt(i++);
+enc1 = chr1 >> 2;
+enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+enc4 = chr3 & 63;
+if (isNaN(chr2)) {
+        enc3 = enc4 = 64;
+} else if (isNaN(chr3)) {
+        enc4 = 64;
+}
+output = output + keyStr.charAt(enc1) + keyStr.charAt(enc2)
+                + keyStr.charAt(enc3) + keyStr.charAt(enc4);
+chr1 = chr2 = chr3 = "";
+enc1 = enc2 = enc3 = enc4 = "";
+} while (i < input.length);
+
+return output;
+}
+</script>
+
+    
+	</body>
+</html>
