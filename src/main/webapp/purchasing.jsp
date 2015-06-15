@@ -129,7 +129,7 @@ function reLoad(){
                         	<c:if test="${status.index < 6}">
                         		<li class="media" >
                              <div class="media-left">
-                                <a href="/Detail?id=${item.id}&type=1">
+                                <a href="/Detail?id=${item.id}&type=0">
                                   <img class="media-object" src="http://101.200.174.253:8080/all/${item.image}" alt="" width="180px" height="134px">
                                 </a>
                               </div>
