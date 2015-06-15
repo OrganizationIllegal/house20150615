@@ -403,10 +403,10 @@ function popInfo(){
             </div>
         </div> -->
         
-        
+        <c:if test="${!empty ProjectPeitaoImage }">
 		 <div class="c-fix  bkg3"  name="loc_pt" id="loc_pt" style="margin:0 auto;height:560px;width:990px">
 			<div class="c-fix p_intro" style="margin-top:-20px">
-			<c:if test="${!empty ProjectPeitaoImage }">
+			
 				<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw">项目配套</a>
 				
 	<div style="margin-top:16px;background-color:white;">
@@ -448,10 +448,10 @@ function popInfo(){
 
     </div>
 </div> 
-</c:if> 
+
 			</div>
 		</div> 
-		
+		</c:if> 
 		<div class="c-fix  bkg3"  name="loc_wz" id="loc_wz" style="margin:0 auto;height:474px;width:990px">
 			<div class="c-fix p_panel_4">
 				<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:930px;">项目位置</a>
@@ -501,9 +501,10 @@ function popInfo(){
 				</div>
 			</div>
 		</div>
+		<c:if test="${!empty houseTaxStr || !empty housetaxdata || !empty holdingTaxStr || !empty holdingdata}">
 		<div class="c-fix bkg3"  name="loc_fy" id="loc_fy"  style="margin:0 auto;height:346px;width:990px">
 			<div class="c-fix p_panel_4">
-			<c:if test="${!empty houseTaxStr || !empty houseTaxSum || !empty holdingTaxStr || !empty holdingTaxSunm}">
+			
 			
 				<ul class="nav nav-tabs" id="costTabs">
       <li class="active"><a href="#home" data-toggle="tab" style="font-weight:bold;">购房税费</a></li>
@@ -512,7 +513,7 @@ function popInfo(){
       <p class="navbar-text navbar-right"><b>以总价50万澳币估算</b></p>
       
     </ul>
-    </c:if>
+    
     <div class="tab-content">
       <div class="tab-pane active" id="home">
       	<div style="padding-top:10px;padding-bottom:10px;">
@@ -545,9 +546,10 @@ function popInfo(){
       </div> 
       
   	</div>
+  	
 			</div>
 			</div>
-		
+		</c:if>
 		<div class="c-fix  bkg4" id="loc_tz"  style="margin:0 auto;height:317px;width:990px">
 			<div class="c-fix p_panel_4">
 				<a class="c-fix f-l fw que_title f-yahei">贷款每月</a>
@@ -816,13 +818,13 @@ function popInfo(){
 				<div class="c-fix bkg3" style="margin:0 auto;height:265px;width:990px">
 				<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:950px;margin-bottom:10px;">${area_name} 区域家庭情况构成</a>
 				<div class="c-fix f-l p_family" style="margin-left:72px;-margin-top:20px;height:184px">
-					<a class="c-fix f-l family_lab f-yahei s-14 fw">${dulirateVo}%</a>
+					<a class="c-fix f-l family_lab f-yahei s-14 fw">${100 * dulirateVo}%</a>
 				</div>
 				<div class=" f-l p_family2" style="margin-left:144px;-margin-top:20px;height:184px">
-					<a class="c-fix f-l family_lab f-yahei s-14 fw">${youngfamilyVo}%</a>
+					<a class="c-fix f-l family_lab f-yahei s-14 fw">${100 * youngfamilyVo}%</a>
 				</div>
 				<div class="f-l  p_family3" style="margin-left:144px;-margin-top:20px;height:184px">
-					<a class="c-fix f-l family_lab f-yahei s-14 fw">${oldfamilyVo}%</a>
+					<a class="c-fix f-l family_lab f-yahei s-14 fw">${100 * oldfamilyVo}%</a>
 				</div>
 				<div class="c-" style="margin-right:20px;float:rgiht;height:20px">
 					<span class="c-fix f-yahei s-12 fw f-r">数据来源：RPData&nbsp;&nbsp; 更新日期：2015.05.02</span>
