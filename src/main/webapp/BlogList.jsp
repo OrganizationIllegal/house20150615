@@ -265,6 +265,12 @@ function reLoad(){
                             	leaps: true    
 						    });
                         	scroll(0,0);
+                        	var li = $(".pagination").find("li");
+                			li.each(function(index, Element){
+                					if(index!=0 && index!=li.length-1){
+                						$(this).hide();
+                					}
+                				});
                         }  
                     }); 
 			
@@ -289,6 +295,12 @@ function reLoad(){
 	                        count = data.total;
 	                 		var html = getHtml(data.List);
 	                 		scroll(0,0);
+	                 		var li = $(".pagination").find("li");
+	            			li.each(function(index, Element){
+	            					if(index!=0 && index!=li.length-1){
+	            						$(this).hide();
+	            					}
+	            				});
                      }
                         
                   }); 
@@ -301,7 +313,7 @@ function reLoad(){
                 if(items!=null){
                 	for(var j=0;j<items.length;j++){
                 	    html+="<li class='media'><div class='media-left'><a href='/Detail?id="+items[j].id+"&type=1'>";
-                	    html+="<img class='media-object' src='http://101.200.174.253:8080/all/"+items[j].image+"' alt='' width='180px' height='165px'>";
+                	    html+="<img class='media-object' src='http://101.200.174.253:8080/all/"+items[j].image+"' alt='' width='180px' height='134px'>";
  						html+="</a></div><div class='media-body' style='padding-left:20px;'><div class='media-heading' style='font-size:20px;color:rgb(147,181,219);'>"+items[j].title;
  						html+="</div><p style='font-size:12px;'>"+items[j].news_fenlei;
  						html+="</p><p style='font-size:120x;'>"+items[j].news_abstract;

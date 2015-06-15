@@ -263,6 +263,12 @@ function reLoad(){
                             	leaps: true    
 						    });
                         	scroll(0,0);
+                        	var li = $(".pagination").find("li");
+                			li.each(function(index, Element){
+                					if(index!=0 && index!=li.length-1){
+                						$(this).hide();
+                					}
+                				});
                         }  
                     }); 
 			
@@ -287,6 +293,12 @@ function reLoad(){
 	                 		var html = getHtml(data.List);
 	                        $("#mainlist").html(html);
 	                        scroll(0,0);
+	                        var li = $(".pagination").find("li");
+	            			li.each(function(index, Element){
+	            					if(index!=0 && index!=li.length-1){
+	            						$(this).hide();
+	            					}
+	            				});
                      }
                         
                   }); 
