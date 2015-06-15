@@ -406,8 +406,9 @@ function popInfo(){
         
 		 <div class="c-fix  bkg3"  name="loc_pt" id="loc_pt" style="margin:0 auto;height:560px;width:990px">
 			<div class="c-fix p_intro" style="margin-top:-20px">
+			<c:if test="${!empty ProjectPeitaoImage }">
 				<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw">项目配套</a>
-				<c:if test="${!empty ProjectPeitaoImage }">
+				
 	<div style="margin-top:16px;background-color:white;">
 <div class="panel panel-default">
 
@@ -502,6 +503,8 @@ function popInfo(){
 		</div>
 		<div class="c-fix bkg3"  name="loc_fy" id="loc_fy"  style="margin:0 auto;height:346px;width:990px">
 			<div class="c-fix p_panel_4">
+			<c:if test="${!empty houseTaxStr || !empty houseTaxSum || !empty holdingTaxStr || !empty holdingTaxSunm}">
+			
 				<ul class="nav nav-tabs" id="costTabs">
       <li class="active"><a href="#home" data-toggle="tab" style="font-weight:bold;">购房税费</a></li>
       <li><a href="#profile" data-toggle="tab" style="font-weight:bold;">持有成本</a></li>
@@ -509,7 +512,7 @@ function popInfo(){
       <p class="navbar-text navbar-right"><b>以总价50万澳币估算</b></p>
       
     </ul>
-    
+    </c:if>
     <div class="tab-content">
       <div class="tab-pane active" id="home">
       	<div style="padding-top:10px;padding-bottom:10px;">
