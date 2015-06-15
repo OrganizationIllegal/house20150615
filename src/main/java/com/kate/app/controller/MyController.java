@@ -372,7 +372,7 @@ public class MyController {
 			 int price=houseTaxVo.getPrice();
 			 String desc=houseTaxVo.getDescription();
 			 houseTaxSum=houseTaxSum+price;
-			 String ahouseStr=type+" 约 "  + price + "澳元"+ "\n"+desc;
+			 String ahouseStr=type+"    "+"约"  + price + "澳元"+ "\n"+desc;
 			 System.out.println(ahouseStr);
 			 houseTaxStr.add(ahouseStr);
 		 }
@@ -384,7 +384,7 @@ public class MyController {
 			 int price=holdingTaxVo.getPrice();
 			 String desc=holdingTaxVo.getDescription();
 			 holdingTaxSunm=holdingTaxSunm+price;
-			 String aholdingStr=type+" 约"+price+"澳元"+"\n"+desc;
+			 String aholdingStr=type+"    "+"约"+price+"澳元"+"\n"+desc;
 			 holdingTaxStr.add(aholdingStr);
 		 }
 		 req.setAttribute("holdingTaxStr", JSONArray.toJSON(holdingTaxStr));
