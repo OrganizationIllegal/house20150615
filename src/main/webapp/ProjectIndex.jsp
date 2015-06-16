@@ -501,7 +501,8 @@ function popInfo(){
 				</div>
 			</div>
 		</div>
-		<c:if test="${!empty houseTaxStr || !empty housetaxdata || !empty holdingTaxStr || !empty holdingdata}">
+	
+		<c:if test="${!empty houseTaxStr && !empty housetaxdata && !empty holdingTaxStr && !empty holdingdata}">
 		<div class="c-fix bkg3"  name="loc_fy" id="loc_fy"  style="margin:0 auto;height:346px;width:990px">
 			<div class="c-fix p_panel_4">
 			
@@ -662,14 +663,18 @@ function popInfo(){
 				<a class="c-fix f-r p_inves_source f-yahei s-12">数据来源：RPData&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;更新日期2015.02.02</a>
 			</div>
 		</div>
+		
+		<c:if test="${!empty areaMiddleList && !empty areaZujinList && !empty areaZhikongList}">
 		<div class="c-fix  bkg3"  style="margin:0 auto;height:450px;width:990px">
 			<div class="c-fix p_panel_4">
+			
 <ul class="nav nav-tabs nav-justified" id="trendTabs">
       <li class="active"><a href="#price" data-toggle="tab"><b>${area_name}区域中位数房价走势</b></a></li>
       <li><a href="#rent" data-toggle="tab"><b>${area_name}区域租金走势</b></a></li>
       <li><a href="#emptypercent" data-toggle="tab"><b>${area_name}区域资金回报率走势</b></a></li>
      <!-- <p class="navbar-text navbar-right">Signed in as Mark Otto</p>-->
     </ul>
+    
     
     <div class="tab-content">
       <div class="tab-pane active" id="price">
@@ -695,7 +700,7 @@ function popInfo(){
   	</div>
 </div>
 			</div>
-	
+	</c:if>
 		<div class="c-fix  bkg3"  style="margin:0 auto;height:188px;width:990px">
 			<div class="c-fix p_panel_4" style="padding-top:0px;">
 				

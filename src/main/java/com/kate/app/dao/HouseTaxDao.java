@@ -77,7 +77,7 @@ public class HouseTaxDao extends BaseDao {
 				String description=null;
 				while(rs.next()){
 					price=rs.getInt("price");
-					type=rs.getString("type")+"    "+"约"+price+"澳元"+"\n"+rs.getString("description");
+					type=rs.getString("type")+"约"+price+"澳元"+"\n"+rs.getString("description");
 					HouseTaxData holdingTaxVo=new HouseTaxData(type,price);
 					holdingTaxVoList.add(holdingTaxVo);
 				}
@@ -99,7 +99,7 @@ public class HouseTaxDao extends BaseDao {
 				String description=null;
 				while(rs.next()){
 					price=rs.getInt("price");
-					type=rs.getString("type")+"    "+"约"+price+"澳元"+"\n"+rs.getString("description");
+					type=rs.getString("type")+"约"+price+"澳元"+"\n"+rs.getString("description");
 					HouseTaxData holdingTaxVo=new HouseTaxData(type,price);
 					holdingTaxVoList.add(holdingTaxVo);
 				}
@@ -111,9 +111,9 @@ public class HouseTaxDao extends BaseDao {
 	 }
 
  
-	 //����˰�� List
+	 //锟斤拷锟斤拷税锟斤拷 List
 
-	 //����˰�� List
+	 //锟斤拷锟斤拷税锟斤拷 List
 
 	 public JSONArray listHouseTax(){
 			JSONArray jsonArray=new JSONArray();
@@ -128,7 +128,7 @@ public class HouseTaxDao extends BaseDao {
 			}
 			return jsonArray;
 		} 
-	//����˰�� Add
+	//锟斤拷锟斤拷税锟斤拷 Add
 	 public int InsertHouseTax(String type,int price,String description,String project_num,int view_shunxu,String house_name){
 			int exeResult=0;
 			try {
@@ -147,7 +147,7 @@ public class HouseTaxDao extends BaseDao {
 			}
 			return exeResult;
 		}  
-	//����˰�� update
+	//锟斤拷锟斤拷税锟斤拷 update
 	 public int updateHouseTax(int id,String type,int price,String description,String project_num,int view_shunxu,String house_name){
 			int exeResult=0;
 			try {
@@ -166,7 +166,7 @@ public class HouseTaxDao extends BaseDao {
 			}
 			return exeResult;
 		}
-	//����˰�� delete
+	//锟斤拷锟斤拷税锟斤拷 delete
 	 public int delHouseTax(int id){
 			int exeResult=0;
 			try {
@@ -179,7 +179,7 @@ public class HouseTaxDao extends BaseDao {
 			}
 			return exeResult;
 		}
-	//���гɱ� List
+	//锟斤拷锟叫成憋拷 List
 	 public JSONArray listHoldingCost(){
 			JSONArray jsonArray=new JSONArray();
 			try {
@@ -193,7 +193,7 @@ public class HouseTaxDao extends BaseDao {
 			}
 			return jsonArray;
 		} 
-	//���гɱ� Add
+	//锟斤拷锟叫成憋拷 Add
 	 public int InsertHoldingCost(String type,int price,String description,String  project_num,int view_shunxu,String house_name){
 			int exeResult=0;
 			try {
@@ -212,7 +212,7 @@ public class HouseTaxDao extends BaseDao {
 			}
 			return exeResult;
 		}  
-	//���гɱ� update
+	//锟斤拷锟叫成憋拷 update
 	 public int updateHoldingCost(int id,String type,int price,String description,String project_num,int view_shunxu,String house_name){
 			int exeResult=0;
 			try {
@@ -232,7 +232,7 @@ public class HouseTaxDao extends BaseDao {
 			}
 			return exeResult;
 		}
-	//���гɱ� delete
+	//锟斤拷锟叫成憋拷 delete
 	 public int delHoldingCost(int id){
 			int exeResult=0;
 			try {

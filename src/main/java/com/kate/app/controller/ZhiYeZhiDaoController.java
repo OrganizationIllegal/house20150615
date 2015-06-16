@@ -27,7 +27,7 @@ public class ZhiYeZhiDaoController {
 	private static final int PAGE_SIZE = 6;
 	@RequestMapping({"/ZhiYeInfo"})
 	public String ZhiYeInfo(HttpServletRequest req, HttpServletResponse resp){
-		List<ZhiYeZhiDao> zhiYeList=zhiYeDao.selectZhiYe();   //得到所有的信息，按时间排序
+		List<ZhiYeZhiDao> zhiYeList=zhiYeDao.selectZhiYe();   //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
 		List<NewsBoke> newsList = zhiYeDao.selectNewsBoke();
 		int total = zhiYeDao.countZhiYe();
 		int pageCount = total%PAGE_SIZE == 0 ? total/PAGE_SIZE: total/PAGE_SIZE+1;
@@ -46,7 +46,7 @@ public class ZhiYeZhiDaoController {
 		}
 		List<String> fenleiList = zhiYeDao.zhiYeFenlei();
 		System.out.println(pageCount);
-		//Collections.shuffle(zhiYeList);   //随机排序
+		//Collections.shuffle(zhiYeList);   //闅忔満鎺掑簭
 		req.setAttribute("resultList",zhiYeList);
 		req.setAttribute("lastestList",lastestList);
 		req.setAttribute("newsList",newsList);
@@ -60,7 +60,7 @@ public class ZhiYeZhiDaoController {
 	
 	@RequestMapping({"/BlogList"})
 	public String BlogList(HttpServletRequest req, HttpServletResponse resp){
-		List<ZhiYeZhiDao> zhiYeList=zhiYeDao.selectZhiYe();   //得到所有的信息，按时间排序
+		List<ZhiYeZhiDao> zhiYeList=zhiYeDao.selectZhiYe();   //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
 		List<NewsBoke> newsList = zhiYeDao.selectNewsBoke();
 		int total = newsList.size();
 		int pageCount = total%PAGE_SIZE == 0 ? total/PAGE_SIZE: total/PAGE_SIZE+1;
@@ -80,11 +80,11 @@ public class ZhiYeZhiDaoController {
 		}
 		List<String> fenleiList = zhiYeDao.newsBokeFenlei();
 		System.out.println(pageCount);
-		//Collections.shuffle(zhiYeList);   //随机排序
-		req.setAttribute("resultList",zhiYeList);//置业指导  所有记录
-		req.setAttribute("lastestList",lastestList);//置业指导  最新
-		req.setAttribute("newsList",newsList);//新闻博客所有
-		req.setAttribute("newslastestList",newslastestList);//新闻博客  最新
+		//Collections.shuffle(zhiYeList);   //闅忔満鎺掑簭
+		req.setAttribute("resultList",zhiYeList);//缃笟鎸囧  鎵�湁璁板綍
+		req.setAttribute("lastestList",lastestList);//缃笟鎸囧  鏈�柊
+		req.setAttribute("newsList",newsList);//鏂伴椈鍗氬鎵�湁
+		req.setAttribute("newslastestList",newslastestList);//鏂伴椈鍗氬  鏈�柊
 		req.setAttribute("fenleiList",fenleiList);
 		req.setAttribute("total",total);
 		req.setAttribute("pageCount",pageCount);
@@ -94,12 +94,12 @@ public class ZhiYeZhiDaoController {
 	
 	@RequestMapping({"/NewsBokeFenYe"})
 	public void NewsBokeFenYe(HttpServletRequest req, HttpServletResponse resp){
-		String pageIndex = req.getParameter("pageIndex");   //锟斤拷前页锟斤拷
+		String pageIndex = req.getParameter("pageIndex");   //閿熸枻鎷峰墠椤甸敓鏂ゆ嫹
 		int pageNum  = pageIndex==null? 0 :Integer.parseInt(pageIndex);
 		List<NewsBoke> newsBokeList = new ArrayList(); 
 		String fenlei = req.getParameter("type");
-		if(fenlei==null||"".equals(fenlei)||fenlei.equals("请选择一个类别")){
-			newsBokeList = zhiYeDao.selectNewsBoke();  //得到所有的信息，按时间排序
+		if(fenlei==null||"".equals(fenlei)||fenlei.equals("璇烽�鎷╀竴涓被鍒�")){
+			newsBokeList = zhiYeDao.selectNewsBoke();  //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
 		}
 		else{
 			newsBokeList = zhiYeDao.selectNewsBokeByFenlei(fenlei);
@@ -154,15 +154,15 @@ public class ZhiYeZhiDaoController {
 	
 	
 	
-	//锟斤拷锟斤拷锟斤拷锟斤拷锟叫憋拷锟斤拷示
+	//閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熷彨鎲嬫嫹閿熸枻鎷风ず
 			@RequestMapping({"/ZhiYeFenYe"})
 			public void ZhiYeFenYe(HttpServletRequest req, HttpServletResponse resp){
-				String pageIndex = req.getParameter("pageIndex");   //锟斤拷前页锟斤拷
+				String pageIndex = req.getParameter("pageIndex");   //閿熸枻鎷峰墠椤甸敓鏂ゆ嫹
 				int pageNum  = pageIndex==null? 0 :Integer.parseInt(pageIndex);
 				List<ZhiYeZhiDao> zhiYeList = new ArrayList(); 
 				String fenlei = req.getParameter("type");
-				if(fenlei==null||"".equals(fenlei)||fenlei.equals("请选择一个类别")){
-					zhiYeList = zhiYeDao.selectZhiYe();   //得到所有的信息，按时间排序
+				if(fenlei==null||"".equals(fenlei)||fenlei.equals("璇烽�鎷╀竴涓被鍒�")){
+					zhiYeList = zhiYeDao.selectZhiYe();   //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
 				}
 				else{
 					zhiYeList = zhiYeDao.selectZhiYeByFenlei(fenlei);

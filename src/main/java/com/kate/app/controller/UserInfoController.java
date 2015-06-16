@@ -42,7 +42,7 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
         38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, -1, -1, -1,
         -1, -1 };
 	
-	/*寮�珛璐︽埛*/
+	/*瀵拷鐝涚拹锔藉煕*/
 	@RequestMapping({ "/UserInfo/AddAccount" })
 	public String addAccount(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		String nick_name = req.getParameter("nick_name");
@@ -53,14 +53,14 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		String msg = req.getParameter("msg");
 		int flag = userInfoDao.addAccount(nick_name, pwd, tel, email, account, msg);
 		if(flag==0){
-			System.out.println("娣诲姞澶辫触锛�");
+			System.out.println("濞ｈ濮炴径杈Е閿涳拷");
 		}else{
-			System.out.println("娣诲姞鎴愬姛锛�");
+			System.out.println("濞ｈ濮為幋鎰閿涳拷");
 		}
 		return "/overseas.jsp"; 
 	}
 	
-	/*绱㈠彇瀹屾暣浠锋牸鍗�/
+	/*缁便垹褰囩�灞炬殻娴犻攱鐗搁崡锟�
 	@RequestMapping({ "/UserInfo/AddAllPrice" })
 	public void addAllPrice(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		String nick_name = req.getParameter("nick_name");
@@ -71,13 +71,13 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		String msg = req.getParameter("msg");
 		int flag = userInfoDao.addAllPrice(nick_name, pwd, tel, email, allprice, msg);
 		if(flag==0){
-			System.out.println("娣诲姞澶辫触锛�);
+			System.out.println("濞ｈ濮炴径杈Е閿涳拷);
 		}else{
-			System.out.println("娣诲姞鎴愬姛锛�);
+			System.out.println("濞ｈ濮為幋鎰閿涳拷);
 		} 
 	}
 	
-	/*闇�眰*/
+	/*闂囷拷鐪�/
 	@RequestMapping({ "/UserInfo/AddNeed" })
 	public void addNeed(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		String nick_name = req.getParameter("nick_name");
@@ -87,13 +87,13 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		String msg = req.getParameter("msg");
 		int flag = userInfoDao.addNeed(nick_name,tel, email, need, msg);
 		if(flag==0){
-			System.out.println("娣诲姞澶辫触锛�");
+			System.out.println("濞ｈ濮炴径杈Е閿涳拷");
 		}else{
-			System.out.println("娣诲姞鎴愬姛锛�");
+			System.out.println("濞ｈ濮為幋鎰閿涳拷");
 		}
 	}
 	
-	/*璇︽儏鍜ㄨ*/
+	/*鐠囷附鍎忛崪銊嚄*/
 	@RequestMapping({ "/UserInfo/AddAsk" })
 	public void addAsk(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		String nick_name = req.getParameter("nick_name");
@@ -104,13 +104,13 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		String msg = req.getParameter("msg");
 		int flag = userInfoDao.addAsk(nick_name, pwd, tel, email, ask, msg);
 		if(flag==0){
-			System.out.println("娣诲姞澶辫触锛�");
+			System.out.println("濞ｈ濮炴径杈Е閿涳拷");
 		}else{
-			System.out.println("娣诲姞鎴愬姛锛�");
+			System.out.println("濞ｈ濮為幋鎰閿涳拷");
 		}
 	}
 	
-	/*鏈�柊浠锋牸*/
+	/*閺堬拷鏌婃禒閿嬬壐*/
 	@RequestMapping({ "/UserInfo/AddNewestPrice" })
 	public void addNewestPrice(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		String nick_name = req.getParameter("nick_name");
@@ -121,13 +121,13 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		String msg = req.getParameter("msg");
 		int flag = userInfoDao.addNewestPrice(nick_name, pwd, tel, email, newestprice, msg);
 		if(flag==0){
-			System.out.println("娣诲姞澶辫触锛�");
+			System.out.println("濞ｈ濮炴径杈Е閿涳拷");
 		}else{
-			System.out.println("娣诲姞鎴愬姛锛�");
+			System.out.println("濞ｈ濮為幋鎰閿涳拷");
 		}
 	}
 	
-	/*瀹屾暣鎴峰瀷*/
+	/*鐎瑰本鏆ｉ幋宄扮�*/
 	@RequestMapping({ "/UserInfo/AddHouseType" })
 	public void addHouseType(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		String nick_name = req.getParameter("nick_name");
@@ -138,13 +138,13 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		String msg = req.getParameter("msg");
 		int flag = userInfoDao.addHouseType(nick_name, pwd, tel, email, housetype, msg);
 		if(flag==0){
-			System.out.println("娣诲姞澶辫触锛�:");
+			System.out.println("濞ｈ濮炴径杈Е閿涳拷:");
 		}else{
-			System.out.println("娣诲姞鎴愬姛锛�");
+			System.out.println("濞ｈ濮為幋鎰閿涳拷");
 		}
 	}
 	
-	/*娉ㄥ唽璐︽埛*/
+	/*濞夈劌鍞界拹锔藉煕*/
 	@RequestMapping({ "/Register" })
 	public String register(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		int flag=0;
@@ -156,9 +156,9 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 			flag=userInfoDao.register1(telemail, pwd);
 		}
 		if(flag==0){
-			System.out.println("注册失败");
+			System.out.println("娉ㄥ唽澶辫触");
 		}else{
-			System.out.println("注册成功");
+			System.out.println("娉ㄥ唽鎴愬姛");
 		}
 		return "/index01";
 	}
@@ -257,19 +257,19 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		List<User> list = userInfoDao.judge(username);
 		JSONObject json = new JSONObject();
 		if(list.size()<=0){
-			json.put("user", "0");        //用户名不存在
+			json.put("user", "0");        //鐢ㄦ埛鍚嶄笉瀛樺湪
 		}
 		else if(list.size()>0 && password.equals(list.get(0).getPwd())){
-			json.put("user", "1");        //用户登录成功
+			json.put("user", "1");        //鐢ㄦ埛鐧诲綍鎴愬姛
 			if(list.get(0).getRole()==0){
-				json.put("role", "0");        //管理员
+				json.put("role", "0");        //绠＄悊鍛�
 			}
 			else{
-				json.put("role", "1");        //普通用户
+				json.put("role", "1");        //鏅�鐢ㄦ埛
 			}
 		}
 		else{
-			json.put("user", "2");        //用户名和密码不符
+			json.put("user", "2");        //鐢ㄦ埛鍚嶅拰瀵嗙爜涓嶇
 		}
 		try{
 			writeJson(json.toJSONString(),resp);
@@ -285,10 +285,10 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		List<User> list = userInfoDao.judge(username);
 		JSONObject json = new JSONObject();
 		if(list.size()>0){
-			json.put("user", "0");        //用户已存在
+			json.put("user", "0");        //鐢ㄦ埛宸插瓨鍦�
 		}
 		else{			
-			json.put("user", "1");        //用户可以进行注册			
+			json.put("user", "1");        //鐢ㄦ埛鍙互杩涜娉ㄥ唽			
 		}
 		try{
 			writeJson(json.toJSONString(),resp);
@@ -358,7 +358,7 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 	    out.close();
 	}
 	
-	/*判断是否为手机号*/
+	/*鍒ゆ柇鏄惁涓烘墜鏈哄彿*/
 	public boolean isPhoneNumberValid(String phoneNumber) {
 		boolean isValid = false;
 		String expression = "((^(13|15|18)[0-9]{9}$)|(^0[1,2]{1}\\d{1}-?\\d{8}$)|(^0[3-9] {1}\\d{2}-?\\d{7,8}$)|(^0[1,2]{1}\\d{1}-?\\d{8}-(\\d{1,4})$)|(^0[3-9]{1}\\d{2}-? \\d{7,8}-(\\d{1,4})$))";
@@ -373,7 +373,7 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 
 	}
 	
-	/*判断是否为邮箱*/
+	
 	public boolean isEmail(String email) {
 		String str = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";
 		Pattern p = Pattern.compile(str);

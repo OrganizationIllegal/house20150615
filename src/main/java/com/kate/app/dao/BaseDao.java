@@ -34,11 +34,11 @@ public class BaseDao {
 	}
 	static {
 		try{   
-		    //锟斤拷锟斤拷MySql锟斤拷锟斤拷锟斤拷   
+		    //閿熸枻鎷烽敓鏂ゆ嫹MySql閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷�  
 		    Class.forName("com.mysql.jdbc.Driver") ;   
 		}
 		catch(ClassNotFoundException e){   
-		    System.out.println("锟揭诧拷锟斤拷锟斤拷锟斤拷锟斤拷锟�锟斤拷锟斤拷锟斤拷锟斤拷失锟杰ｏ拷");   
+		    System.out.println("閿熸彮璇ф嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿燂拷閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹澶遍敓鏉帮綇鎷�");   
 		    e.printStackTrace() ;   
 		}   
 		try {

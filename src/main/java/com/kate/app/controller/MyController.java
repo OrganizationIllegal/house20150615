@@ -197,20 +197,20 @@ public class MyController {
 		 TheElement(req,resp,proId);
 		 getBuyInfo(req,resp,proId);
 		 ProjectInfo(req,resp,proId);
-		 getHouseInfo(req,resp,proNum);    //锟斤拷锟酵硷拷锟桔革拷
-		 getSchoolAndNear(req,resp,proNum);   //学校锟斤拷锟杰憋拷
+		 getHouseInfo(req,resp,proNum);    //閿熸枻鎷烽敓閰电》鎷烽敓妗旈潻鎷�
+		 getSchoolAndNear(req,resp,proNum);   //瀛︽牎閿熸枻鎷烽敓鏉版唻鎷�
 		 getHouseTax(req,resp,proNum);
 		 InvestData(req,resp,area_name);
 		 MiddlePriceInfo(req,resp,proId,area_num);
 		 getAreaTrend(req,resp,project_type,area_num);
-		 getAreaFeature(req,resp,area_num);    //锟斤拷锟斤拷锟截碉拷
+		 getAreaFeature(req,resp,area_num);    //閿熸枻鎷烽敓鏂ゆ嫹閿熸埅纰夋嫹
 		 getPeopleRegion(req,resp,area_num);
 		 getAreaFamily(req,resp,area_num);
 		 GetNewsInfo(req,resp,project);
 		 RecommendProject(req,resp,proId,proNum);
 		 listSuoJia(req,resp,username);
 		 messageSubmit(req,resp,username,proId);
-		 //锟狡硷拷锟斤拷锟斤拷锟斤拷
+		 //閿熺嫛纭锋嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷�
 		 getRecommendBroker(req,resp,area_num);
 		 req.setAttribute("area_name", area_name);
 		 req.setAttribute("areaInfo", areaInfo);
@@ -230,7 +230,7 @@ public class MyController {
 		List<ProjectImage> vedioList = new ArrayList<ProjectImage>();
 		System.out.println(list.size());
 		for(ProjectImage image : list){
-			if(image.getImage_type().equals("图片")){
+			if(image.getImage_type().equals("鍥剧墖")){
 				imageList.add(image);
 			}
 			else{
@@ -254,7 +254,7 @@ public class MyController {
 	}
 	
 	/*
-	 * 锟狡硷拷锟斤拷目锟斤拷细锟斤拷息
+	 * 閿熺嫛纭锋嫹閿熸枻鎷风洰閿熸枻鎷风粏閿熸枻鎷锋伅
 	 */
 	
 	@RequestMapping({"/Index/TheElement"})    
@@ -275,18 +275,18 @@ public class MyController {
 			stamp_tax = buyInfo.getStamp_tax();
 		}
 		req.setAttribute("project", project);
-		req.setAttribute("stamp_tax", stamp_tax);    //印锟斤拷税锟斤拷锟斤拷
+		req.setAttribute("stamp_tax", stamp_tax);    //鍗伴敓鏂ゆ嫹绋庨敓鏂ゆ嫹閿熸枻鎷�
 		req.setAttribute("timeResule", timeResule);
 		
 	}
 	
-	//锟桔革拷锟斤拷锟�
+	//閿熸闈╂嫹閿熸枻鎷烽敓锟�
 	@RequestMapping({"/Index/BuyInfo"})
 	public void getBuyInfo(HttpServletRequest req, HttpServletResponse resp,int proId){
 		String priceQuJian = "";
 		String returnPriceNew=buyInfoService.getReturnMoney(proId);
 		HouseProject pro = houseProjectService.getHouseProject(proId);
-		String returnPrice=pro.getReturn_money();   //锟铰碉拷buy_info
+		String returnPrice=pro.getReturn_money();   //閿熼摪纰夋嫹buy_info
 		if(pro!=null){
 			String minPrice = pro.getProject_min_price();
 			String highPrice = pro.getProject_high_price();
@@ -300,7 +300,7 @@ public class MyController {
 	}
 	
 	/*
-	 * 锟斤拷目锟斤拷锟斤拷息
+	 * 閿熸枻鎷风洰閿熸枻鎷烽敓鏂ゆ嫹鎭�
 	 */
 	
 	@RequestMapping({"/Index/ProjectInfo"})    
@@ -323,12 +323,14 @@ public class MyController {
 		req.setAttribute("DeveloperInfo", developerInfo);
 	}
 	
-	/*锟斤拷锟酵硷拷锟桔革拷*/
+	
 	@RequestMapping({"/Index/HouseInfo"})
 	public void getHouseInfo(HttpServletRequest req, HttpServletResponse resp,String proNum){
 		HouseProject pro = houseProjectService.getHouseProjectByNum(proNum);
 		String type = pro.getProject_type();
 		List<HouseInfo> houseInfoList=houseInfoService.getHouseInfoList(proNum);
+		req.setAttribute("HouseInfoList", houseInfoList);
+	}
 		/*String timeResule = null;
 		if(pro!=null){
 			Timestamp time = pro.getProject_finish_time();
@@ -336,12 +338,12 @@ public class MyController {
 			if(time!=null){
 				timeResule = df.format(time);
 			} 
-		}*/
-		req.setAttribute("HouseInfoList", houseInfoList);
+		}
+		
 	}
 	
 	/**
-	 * 学校锟斤拷锟斤拷锟斤拷
+	 * 瀛︽牎閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷�
 	 * @param req
 	 * @param resp
 	 */
@@ -354,7 +356,7 @@ public class MyController {
 	
 	
 	/**	
-	 * 锟斤拷锟斤拷税锟窖和筹拷锟叫成憋拷
+	 * 閿熸枻鎷烽敓鏂ゆ嫹绋庨敓绐栧拰绛规嫹閿熷彨鎴愭唻鎷�
 	 * @param req
 	 * @param resp
 	 */
@@ -372,7 +374,7 @@ public class MyController {
 			 int price=houseTaxVo.getPrice();
 			 String desc=houseTaxVo.getDescription();
 			 houseTaxSum=houseTaxSum+price;
-			 String ahouseStr=type+"    "+"约"  + price + "澳元"+ "\n"+desc;
+			 String ahouseStr=type+" 约  " + price + "澳元"+ "\n"+desc;
 			 System.out.println(ahouseStr);
 			 houseTaxStr.add(ahouseStr);
 		 }
@@ -384,7 +386,7 @@ public class MyController {
 			 int price=holdingTaxVo.getPrice();
 			 String desc=holdingTaxVo.getDescription();
 			 holdingTaxSunm=holdingTaxSunm+price;
-			 String aholdingStr=type+"    "+"约"+price+"澳元"+"\n"+desc;
+			 String aholdingStr=type+" 约  " + price + "澳元"+ "\n"+desc;
 			 holdingTaxStr.add(aholdingStr);
 		 }
 		 req.setAttribute("holdingTaxStr", JSONArray.toJSON(holdingTaxStr));
@@ -399,7 +401,7 @@ public class MyController {
 	
 	
 	/*
-	 * 投锟斤拷锟斤拷锟斤拷锟较�
+	 * 鎶曢敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熻緝锟�
 	 */
 	
 	@RequestMapping({"/Index/InvestData"})
@@ -421,7 +423,7 @@ public class MyController {
 	}
 	
 	/*
-	 * 锟斤拷位锟斤拷锟�
+	 * 閿熸枻鎷蜂綅閿熸枻鎷烽敓锟�
 	 */
 	
 	@RequestMapping({"/Index/MiddlePriceInfo"})    
@@ -442,7 +444,7 @@ public class MyController {
 	}
 	
 	/**
-	 * 锟斤拷锟斤拷锟斤拷位锟斤拷锟斤拷锟斤拷锟�
+	 * 閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷蜂綅閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓锟�
 	 * @author wenruijie
 	 * @param req
 	 * @param resp
@@ -450,7 +452,7 @@ public class MyController {
 	 */
 	@RequestMapping({"/Index/AreaTrend"})
 	public void getAreaTrend(HttpServletRequest req, HttpServletResponse resp,String project_type,String area_num){
-		//锟斤拷锟斤拷锟斤拷位锟斤拷锟斤拷锟斤拷锟�
+		//閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷蜂綅閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓锟�
 		List<AreaMiddle> areaMiddleList=new ArrayList<AreaMiddle>();
 		areaMiddleList=areaTrendService.getAreaMiddleTrend(project_type,area_num);
 		List<String> areaMiddleYeatList=new ArrayList<String>();
@@ -465,7 +467,7 @@ public class MyController {
 		}
 		req.setAttribute("areaMiddleYeatList", areaMiddleYeatList);
 		req.setAttribute("areaMiddleRateList", areaMiddleRateList);
-		//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
+		//閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓锟�
 		List<AreaZujin> areaZujinList=new ArrayList<AreaZujin>();
 		areaZujinList=areaTrendService.getAreaZujinTrend(project_type,area_num);
 		List<String> areaZujinYeatList=new ArrayList<String>();
@@ -480,7 +482,7 @@ public class MyController {
 		}
 		req.setAttribute("areaZujinYeatList", areaZujinYeatList);
 		req.setAttribute("areaZujinRateList", areaZujinRateList);
-		//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
+		//閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿燂拷
 		List<AreaZhikong> areaZhikongList=new ArrayList<AreaZhikong>();
 		areaZhikongList=areaTrendService.getAreaZhikongTrend(project_type,area_num);
 		List<String> areaZhikongYeatList=new ArrayList<String>();
@@ -496,13 +498,17 @@ public class MyController {
 		}
 		req.setAttribute("areaZhikongYeatList", areaZhikongYeatList);
 		req.setAttribute("areaZhikongRateList", areaZhikongRateList);
+		
+		req.setAttribute("areaMiddleList", areaMiddleList);
+		req.setAttribute("areaZujinList", areaZujinList);
+		req.setAttribute("areaZhikongList", areaZhikongList);
 	}
 	
 	
 	
 	
 	/**
-	 * 锟斤拷锟斤拷锟截碉拷
+	 * 閿熸枻鎷烽敓鏂ゆ嫹閿熸埅纰夋嫹
 	 * @author wenruijie 
 	 */
 	@RequestMapping({"/Index/AreaFeature"})
@@ -513,29 +519,29 @@ public class MyController {
 	}
 	
 	/**	
-	 * 锟斤拷锟斤拷锟剿口分诧拷
+	 * 閿熸枻鎷烽敓鏂ゆ嫹閿熷壙鍙ｅ垎璇ф嫹
 	 */
 	@RequestMapping({"/Index/PeopleRegion"})
 	public void getPeopleRegion(HttpServletRequest req, HttpServletResponse resp,String area_code){
 		List<AreaPeopleInfo> list=peopleInfoService.getAreaPeopleInfo(area_code);
 		req.setAttribute("list",list);
-		//锟剿匡拷锟斤拷锟斤拷
+		//閿熷壙鍖℃嫹閿熸枻鎷烽敓鏂ゆ嫹
 		List<PeopleInfo> peopleInfoList=peopleInfoService.getPeopleInfo();
 		req.setAttribute("peopleInfoList",peopleInfoList);
-		//锟斤拷锟斤拷锟斤拷
+		//閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷�
 		List<PeopleNation> peopleNationList=peopleInfoService.getPeopleNation();
 		req.setAttribute("peopleNationList",peopleNationList);
-		//锟斤拷锟斤拷锟斤拷锟�
+		//閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓锟�
 		List<PeopleForeign> peopleForeignList=peopleInfoService.getPeopleForeign();
 		req.setAttribute("peopleForeignList",peopleForeignList);
 		req.setAttribute("peopleForeignNum",peopleForeignList.size());
-		//平锟斤拷锟酵ワ拷锟斤拷锟�
+		//骞抽敓鏂ゆ嫹閿熼叺銉嫹閿熸枻鎷烽敓锟�
 		List<FamilyIncome> familyIncomeList=peopleInfoService.getFamilyIncome();
 		req.setAttribute("familyIncomeList",familyIncomeList);
 	}
 
 	/**
-	 * 锟斤拷取锟斤拷庭锟斤拷锟斤拷锟斤拷锟�
+	 * 閿熸枻鎷峰彇閿熸枻鎷峰涵閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓锟�
 	 * @author wenruijie 
 	 * @param req
 	 * @param resp
@@ -543,7 +549,7 @@ public class MyController {
 	 */
 	@RequestMapping({"/Index/AreaFamily"})
 	public void  getAreaFamily(HttpServletRequest req, HttpServletResponse resp,String area_code){
-		//锟斤拷锟斤拷锟斤拷锟疥处锟斤拷
+		//閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鐤ュ閿熸枻鎷�
 		AreaFamily data = areaFamilyService.getAreaFamily(area_code);
 		Integer dulirate = 0;
 		String dulirateStr = "";
@@ -575,7 +581,7 @@ public class MyController {
 	
 	
 	/*
-	 * 锟斤拷目锟斤拷细锟斤拷息
+	 * 閿熸枻鎷风洰閿熸枻鎷风粏閿熸枻鎷锋伅
 	 */
 	
 	@RequestMapping({"/Index/GetNewsInfo"})    
@@ -653,7 +659,7 @@ public class MyController {
 	
 	
 	/*
-	 * 锟狡硷拷锟斤拷目锟斤拷细锟斤拷息
+	 * 閿熺嫛纭锋嫹閿熸枻鎷风洰閿熸枻鎷风粏閿熸枻鎷锋伅
 	 */
 	
 	@RequestMapping({"/Index/RecommendProject"})    
@@ -722,7 +728,7 @@ public class MyController {
 	}
 	
 	
-	//锟斤拷锟斤拷峤伙拷锟斤拷峤伙拷锟斤拷锟�
+	//閿熸枻鎷烽敓鏂ゆ嫹宄や紮鎷烽敓鏂ゆ嫹宄や紮鎷烽敓鏂ゆ嫹閿燂拷
 		@RequestMapping({"/indexSuoJia/MessageSubmit"})
 		public void messageSubmit(HttpServletRequest req,HttpServletResponse resp, String username,int proId){
 			String message_content=req.getParameter("message_content");
@@ -742,7 +748,7 @@ public class MyController {
 			req.setAttribute("userList", userList);
 			//return "/index.jsp";
 		}
-	//锟狡硷拷锟斤拷锟斤拷锟斤拷
+	//閿熺嫛纭锋嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷�
 		@RequestMapping({"/recommendBroker"})
 		public void getRecommendBroker(HttpServletRequest req,HttpServletResponse resp, String area_num){
 			List<BrokerInfo> recommendBroker=new ArrayList<BrokerInfo>();
