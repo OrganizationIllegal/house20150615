@@ -229,16 +229,16 @@ public class MyController {
 		List<ProjectImage> imageList = new ArrayList<ProjectImage>();
 		List<ProjectImage> vedioList = new ArrayList<ProjectImage>();
 		System.out.println(list.size());
-		for(ProjectImage image : list){
-			if(image.getImage_type().equals("鍥剧墖")){
+		/*for(ProjectImage image : list){
+			if(image.getImage_type().equals("图片")){
 				imageList.add(image);
 			}
 			else{
 				vedioList.add(image);
 			}
-		}
+		}*/
 		//System.out.println(list.get(0).getImage_name());
-		req.setAttribute("imageList", imageList);
+		req.setAttribute("imageList", list);
 		req.setAttribute("vedioList", vedioList);
 	}
 	
@@ -590,17 +590,17 @@ public class MyController {
  		String newsblogNum2 = project.getTuijian_news_num_2();
  		String newsblogNum3 = project.getTuijian_news_num_3();
  		List<NewsBoke> newsList = new ArrayList<NewsBoke>();
- 		NewsBoke tuijianNews1 = new NewsBoke();
- 		NewsBoke tuijianNews2 = new NewsBoke();
- 		NewsBoke tuijianNews3 = new NewsBoke();
- 		if(newsblogNum1!=null && !"".equals(newsblogNum1)){
- 			tuijianNews1 = newsBokeDao.getNewsBokeByNum(newsblogNum1);
+ 		NewsBoke tuijianNews1 = null;
+ 		NewsBoke tuijianNews2 = null;
+ 		NewsBoke tuijianNews3 = null;
+ 		if(newsblogNum1.trim()!=null && !"".equals(newsblogNum1.trim())){
+ 			tuijianNews1 = newsBokeDao.getNewsBokeByNum(newsblogNum1.trim());
  		}
- 		if(newsblogNum2!=null && !"".equals(newsblogNum2)){
- 			tuijianNews2 = newsBokeDao.getNewsBokeByNum(newsblogNum2);
+ 		if(newsblogNum2.trim()!=null && !"".equals(newsblogNum2.trim())){
+ 			tuijianNews2 = newsBokeDao.getNewsBokeByNum(newsblogNum2.trim());
  		}
- 		if(newsblogNum3!=null && !"".equals(newsblogNum3)){
- 			tuijianNews3 = newsBokeDao.getNewsBokeByNum(newsblogNum3);
+ 		if(newsblogNum3.trim()!=null && !"".equals(newsblogNum3.trim())){
+ 			tuijianNews3 = newsBokeDao.getNewsBokeByNum(newsblogNum3.trim());
  		}
  		
  		if(tuijianNews1!=null || tuijianNews2!=null || tuijianNews3!=null){
