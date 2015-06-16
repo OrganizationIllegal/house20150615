@@ -51,22 +51,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         height: 360px;
         width: 100%;
         position: relative;
-        background-image: url(images/business/logo.jpg)
+       /*  background-image: url(images/business/logo.jpg) */
+        background:url(images/business/logo1.png);
+        filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
+        -moz-background-size:100% 100%;
+        background-size:100% 100%;
+        position: relative;
     }
     #header .loginf{
         width:275px;
-        position: relative;
         font-size: 12px;
-        top:20px;
-        left: 888px;
+        float:right;
+        margin-right:30px;
+        margin-top:-190px;
         text-align: center;
     }
 
     #header .word{
         text-align: center;
         vertical-align: middle; 
-        padding-top: 100px; 
-        font-size: 30px;
+        padding-top: 150px; 
+        font-size: 40px;
+        font-weight:bolder;
         color: #fff;   
 
     }
@@ -165,7 +171,7 @@ padding-left:40px; text-align:left;
 <div class="con">
     <div id="content">
         <div id="header">
-           <!--  <div class="word">我们的业务</div> -->
+            <div class="word">开启中国人海外置业服务</div>
             <div class="loginf">
 
 
@@ -289,7 +295,7 @@ padding-left:40px; text-align:left;
             <div class="row">
                 
                 <div class="col-md-6 item_left"  >
-                    <img src="images/business/4.png"/ style="margin-left:130px;">
+                    <img src="images/business/4.png"/ style="padding-left:130px;">
                 </div>
 
                 <div class="col-md-6 item_right" style="padding-right:135px; padding-top:110px;text-align:left;padding-left:20px;">
