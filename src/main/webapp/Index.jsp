@@ -377,7 +377,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<img class="c-fix f-l main_bkg5_line" src="images/line.png"></img>
 			<a class="c-fix f-l middle_lab2 f-yahei s-16">在海房优选购买澳洲新房</a>
 			<a class="c-fix f-l middle_lab2 f-yahei s-16" style="margin-top:5px;">最高可获得高达70%的佣金返还</a>
-			<a class="c-fix f-l middle_lab2 f-yahei s-12" style="margin-top:20px;">*以房价50万元房产计算</a>
+			<a class="c-fix f-l middle_lab2 f-yahei s-12" style="margin-top:20px;">*以房价50万元澳币房产计算</a>
 		</div>
 		
 		
