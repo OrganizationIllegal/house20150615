@@ -133,6 +133,7 @@ public class MyController {
 		if(proNum!=null && !"".equals(proNum)){
 			proId = utilDao.getHouseProId(proNum);
 			
+		}
 		HouseProject project = houseProjectService.getHouseProject(proId);
 		if(project!=null){
 			areaId = project.getArea_id();
@@ -155,7 +156,6 @@ public class MyController {
 			time1 = areaInfo.getArea_feature_date();
 		}
 		if(areaInfo.getFamily_date()!=null){
-		}
 			time2 = areaInfo.getFamily_date();
 		}
 		if(areaInfo.getMiddle_date()!=null){
@@ -768,4 +768,3 @@ public class MyController {
 	}
 	
 }
-
