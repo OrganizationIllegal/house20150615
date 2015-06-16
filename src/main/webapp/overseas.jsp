@@ -49,17 +49,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%-- <jsp:include page="head2_new.jsp" /> --%>
 <jsp:include page="head4index.jsp" /> 
 <div id="container" class="" style="width:100%;margin:0 auto; padding-top:10px; background:#fff;">
-<div class="os_contain" style="padding-top:10px;">
-		<div class="os_top os_topdiv" style="margin-top:-10px;width:100%;">
-		<div style="padding-top:15px;margin-bottom:80px; position:relative;">
-			<button type="button" class='openAcc' onclick="pop()" style="position:absolute;left:530px;">开立账户</button>
+<div>
+		<div class="os_top" style="margin-top:-10px;width:100%;height:386px;">
+		<div style="padding-top:90px;text-align:center;color:white;font-weight:bold;">
+		<div style="font-size:50px;font-weight:bolder;">让海外房产投资更简单</div>
+		<div style="font-size:18px;margin-top:5px;">购买海外房产，获得高达70%佣金返还</div>
 		</div>
-			<!-- <div class="col-md-3"></div>
-			<div class="col-md-6">
-				<div><img src="/images/overseas/overseas1.PNG"></div>
-				<div style="padding-top:15px;margin-bottom:80px;"><button type="button" class='btn btn-danger' onclick="pop()">开立账户</button></div>
-			</div>
-			<div class="col-md-3"></div> -->
+		<div style="position:relative;">
+			<button type="button"style="margin:40px auto; border:0; width:120px; height:65px; background:rgba(189, 38, 61, 1); font-size:20px; color:#fff;" onclick="pop()">开立账户</button>
+		</div>
 		</div>
 		<div class="ov_title" style="width:100%;">
 			
@@ -144,7 +142,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div style="font-size:30px;font-weight:500px;padding-top:20px;color:#000;">首先，雷德芬内置技术房屋买卖时使你</div>
 			<div style="padding-top:70px;padding-bottom:60px;"><img src="/images/overseas/overseas6.PNG" width="100%;"></div>
 		</div>
-	
+	</div></div>
 <!-- 开立账户模态框start-->
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" 
    aria-labelledby="myModalLabel" aria-hidden="true">
@@ -215,7 +213,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          </div>
    
       </div>
-</div>
 </div>
 </div>
 <!-- 开立账户模态框end -->

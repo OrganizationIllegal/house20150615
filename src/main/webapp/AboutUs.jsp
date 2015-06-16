@@ -345,10 +345,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div style="margin-top:10px;font-size:14px;font-family:微软雅黑;font-weight:bold"><span>房屋信息不完整</span></div>
 				<div style="margin-top:10px;font-size:12px;text-align:center;color:#858384;"><span>购房者只能看到最基础的房源信息无法有效做出明确选择</span></div>
 			</div>
+			<div style="width:45px;height:45px;float:left;margin-left:140px;margin-top:-118px;"><img  src="../images/oo.JPG"></div>
+			<div style="width:45px;height:45px;float:left;margin-left:470px;margin-top:-118px;"><img  src="../images/oo.JPG"></div>
+			<div style="width:45px;height:45px;float:left;margin-left:800px;margin-top:-118px;"><img  src="../images/oo.JPG"></div>
 		</div>
-		<div style="position:absolute;left:349px;top:-20px;"><img  src="../images/oo.JPG"></div>
-		<div style="position:absolute;left:676px; top:-20px;"><img  src="../images/oo.JPG"></div>
-		<div style="position:absolute;left:1012px; top:-20px;"><img  src="../images/oo.JPG"></div>
 		</div>
 		<!--end很少的可选房屋-->
 </div>
@@ -391,6 +391,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div style="margin-top:10px;font-size:14px;font-family:微软雅黑;font-weight:bold"><span>丰富完整的房产信息</span></div>
 				<div style="margin-top:10px;font-size:12px;text-align:center;color:#858384;"><span>互联网计求丰富完整的房屋信息及街区信息，区村人口构成真实租金收益，让购房者更简单的做出明智的购房选择</span></div>
 			</div>
+			<div style="width:45px;height:45px;float:left;margin-left:140px;margin-top:-135px;"><img  src="../images/cc.JPG"></div>
+			<div style="width:45px;height:45px;float:left;margin-left:470px;margin-top:-135px;"><img  src="../images/cc.JPG"></div>
+			<div style="width:45px;height:45px;float:left;margin-left:800px;margin-top:-135px;"><img  src="../images/cc.JPG"></div>
 		</div>
 		
 		<!-- <div id="show" style="margin:20px 80px 20px 80px;padding:20px;border:1px solid #C3C3C3;height:120px;background-color:white;position:absolute;" >
@@ -407,9 +410,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div style="margin-top:10px;text-align:left"><span>购房者只能看到最基础的房源信息无法有效做出明确选择</span></div>
 			</div>
 		</div> -->
-		<div style="position:absolute;left:343px;top:-20px;"><img  src="../images/cc.JPG"></div>
+		<!-- <div style="position:absolute;left:343px;top:-20px;"><img  src="../images/cc.JPG"></div>
 		<div style="position:absolute;left:691px; top:-20px;"><img  src="../images/cc.JPG"></div>
-		<div style="position:absolute;left:1036px; top:-20px;"><img  src="../images/cc.JPG"></div>
+		<div style="position:absolute;left:1036px; top:-20px;"><img  src="../images/cc.JPG"></div> -->
 		</div>
 		<!--end很少的可选房屋-->
 </div>

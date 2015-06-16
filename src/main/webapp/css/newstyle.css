@@ -24,7 +24,11 @@ li{list-style:none;}
 .w200{width:200px; padding:0 15px;}
 .w240{width:240px; padding:0 15px;}
 .w580{width:570px; padding:0 15px;}
-.os_top{background:#fff url(../images/overseas/OS_TOP1.png) top left}
+/* .os_top{background:#fff url(../images/overseas/OS_TOP1.png) no-repeat top left} */
+.os_top{background:url(../images/overseas/OS_TOP2.png);filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
+   -moz-background-size:100% 100%;
+   background-size:100% 100%;
+}
 .os_topdiv{width:1190px; height:386px; margin:0 auto; }
 .os_contain{padding-top:70px;}
 .p90{padding-top:70px;}
@@ -36,7 +40,7 @@ li{list-style:none;}
 .ov_color{width:1190px; height:544px; margin:0 auto;background:#fff;}
 #ov_item div{width:100px;}
 .ov_money{width:1190px; height:472px; margin:0 auto;background:#fff;}
-.openAcc{width:110px;height:52px; margin-top:212px; margin-left:15px; background:#be263d;border:none;font-size:20px; color:#fff;}
+.openAcc{width:110px;height:52px;margin:0 auto;background:#be263d;border:none;font-size:20px; color:#fff;}
 .pic3{width:686px; height:170px; margin:0 auto;margin-top:16px;}
 #can{margin-left:80px;}
 .line{width:930px; height:32px; margin:0 auto;}
