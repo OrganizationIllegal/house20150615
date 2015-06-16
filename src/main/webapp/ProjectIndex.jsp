@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%
@@ -100,6 +100,12 @@ function pop(type,img){
   $('#image').attr("src",img);
   $('#housestyle').modal('show');
    
+}
+function pop6(type,img){
+	$('#title').empty();	
+	  $('#title').append("<h4>户型"+type+"</h4>");
+	  $('#image').attr("src",img);
+	  $('#housestyle').modal('show');
 }
 function pop1(){
   $('#recentquotation').modal('show');
@@ -364,7 +370,7 @@ function popInfo(){
 						<a class="c-fix f-l attr3 f-yahei s-14 fw">${obj.house_price}</a>
 						<a class="c-fix f-l attr4 f-yahei s-12 fw">房价</a>
 					</div>
-					<img src="images/btn_get_struct.jpg" class="f-l btn_get_struct cp" onclick="pop('${obj.house_type}','http://101.200.174.253:8080/all/${obj.house_img}')"></img>
+					<img src="images/btn_get_struct.jpg" class="f-l btn_get_struct cp" onclick="pop6('${obj.house_type}','http://101.200.174.253:8080/all/${obj.house_img}')"></img>
 				</div>
 				</c:if>
 				</c:forEach>
@@ -1078,31 +1084,32 @@ function popInfo(){
          </div>
          <div class="modal-body" style="padding-top:30px;background-color:#EEEEE0;">
             <form class="form-horizontal" role="form" action="/UserInfo/AddNewestPrice" method="post">
+   <c:forEach items="${userList}"  var="item">
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
          <input type="text" class="form-control" name="nick_name" 
-            placeholder="姓名">
+            placeholder=${item.nick_name}>
       </div>
       <div class="col-sm-1"></div>
    </div>
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
          <input type="text" class="form-control" name="pwd" 
-            placeholder="登录密码">
+            placeholder=${item.pwd}>
       </div>
       <div class="col-sm-1"></div>
    </div>
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
          <input type="text" class="form-control" name="tel"  
-            placeholder="电话号码">
+            placeholder=${item.tel}>
       </div>
       <div class="col-sm-1"></div>
    </div>
    <div class="form-group">
       <div class="col-sm-10 col-sm-offset-1">
          <input type="text" class="form-control" name="email" 
-            placeholder="电子邮箱">
+            placeholder=${item.email}>
       </div>
       <div class="col-sm-1"></div>
    </div>
@@ -1127,6 +1134,7 @@ function popInfo(){
       </div>
       <div class="col-sm-1"></div>
    </div>
+   </c:forEach>
 </form>
 
          </div>
@@ -1135,6 +1143,8 @@ function popInfo(){
 </div>
 </div>
 <!-- 最新价格模态框end -->
+
+
 <!-- 完整户型模态框start-->
 <div class="modal fade" id="completehouse" tabindex="-1" role="dialog" 
    aria-labelledby="myModalLabel" aria-hidden="true">
@@ -1151,31 +1161,32 @@ function popInfo(){
          </div>
          <div class="modal-body" style="padding-top:30px;background-color:#EEEEE0;">
             <form class="form-horizontal" role="form" action="/UserInfo/AddHouseType" method="post">
+    <c:forEach items="${userList}"  var="item">
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
          <input type="text" class="form-control" name="nick_name" 
-            placeholder="姓名">
+            placeholder=${item.nick_name}>
       </div>
       <div class="col-sm-1"></div>
    </div>
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
          <input type="text" class="form-control" name="pwd" 
-            placeholder="登录密码">
+            placeholder=${item.pwd}>
       </div>
       <div class="col-sm-1"></div>
    </div>
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
          <input type="text" class="form-control" name="tel"  
-            placeholder="电话号码">
+            placeholder=${item.tel}>
       </div>
       <div class="col-sm-1"></div>
    </div>
    <div class="form-group">
       <div class="col-sm-10 col-sm-offset-1">
          <input type="text" class="form-control" name="email"
-            placeholder="电子邮箱">
+            placeholder=${item.email}>
       </div>
       <div class="col-sm-1"></div>
    </div>
@@ -1200,6 +1211,7 @@ function popInfo(){
       </div>
       <div class="col-sm-1"></div>
    </div>
+   </c:forEach>
 </form>
 
          </div>
@@ -1224,31 +1236,32 @@ function popInfo(){
          </div>
          <div class="modal-body" style="padding-top:30px;background-color:#EEEEE0;">
             <form class="form-horizontal" role="form" action="/UserInfo/AddAsk" method="post">
+            <c:forEach items="${userList}"  var="item">
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
          <input type="text" class="form-control" name="nick_name" 
-            placeholder="姓名">
+            placeholder=${item.nick_name}>
       </div>
       <div class="col-sm-1"></div>
    </div>
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
          <input type="text" class="form-control" name="pwd" 
-            placeholder="登录密码">
+            placeholder=${item.pwd}>
       </div>
       <div class="col-sm-1"></div>
    </div>
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
          <input type="text" class="form-control" name="tel" 
-            placeholder="电话号码">
+            placeholder=${item.tel}>
       </div>
       <div class="col-sm-1"></div>
    </div>
    <div class="form-group">
       <div class="col-sm-10 col-sm-offset-1">
          <input type="text" class="form-control" name="email" 
-            placeholder="电子邮箱">
+            placeholder=${item.email}>
       </div>
       <div class="col-sm-1"></div>
    </div>
@@ -1273,6 +1286,7 @@ function popInfo(){
       </div>
       <div class="col-sm-1"></div>
    </div>
+   </c:forEach>
 </form>
 
          </div>
