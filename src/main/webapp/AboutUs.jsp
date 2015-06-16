@@ -617,7 +617,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    </div>
 </form>
 <div style="float:left;margin-top:60px;margin-left:-165px;font-size:12px;"><span>已有账户？<a href="#">登录</a></span></div>
-<div style="float:left;margin-top:85px;margin-left:-165px;font-size:12px;font-weight:bold;"><span><input type="checkbox">我已阅读并接受<a href="/ServiceProtocol.jsp" style="color:black;">《用户服务协议》</a></span></div>
+<div style="float:left;margin-top:85px;margin-left:-165px;font-size:12px;font-weight:bold;"><span><input type="checkbox" checked="true">我已阅读并接受<a href="/ServiceProtocol.jsp" style="color:black;">《用户服务协议》</a></span></div>
 </div>
    
       </div>

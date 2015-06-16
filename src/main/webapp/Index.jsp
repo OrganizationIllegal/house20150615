@@ -165,7 +165,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- *************************************** main_bkg1 ************************************************** -->
 		 <div class="main_bkg" style="background:rgb(30,52,66) url(../pic/indexbg2.png) repeat-x 0 -666px;">
 			<div class="main_img">
-				
 				<div class="c-fix f-l main_div" id="city">
 				 <div id="divselect" onclick="test()" style="width:76px;" class="divselect">
       					<cite style="width:70px; font-family:微软雅黑; font-size:14px;">澳洲</cite>
@@ -291,7 +290,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 					</form>
 				</div>
-			</div>
+				</div>
 		</div>
 		
 		<!-- *************************************** main_bkg2 ************************************************** -->

@@ -194,7 +194,7 @@
    </div>
    
    <div style="padding-top:20px;padding-left:20px;float:left;font-size:12px;">
-      <span><input type="checkbox">记住我 <a href="/changePass.jsp" style="padding-left:160px;color:black;">忘记密码？</a></span>  
+      <span><input type="checkbox" checked="true">记住我 <a href="/changePass.jsp" style="padding-left:160px;color:black;">忘记密码？</a></span>  
    </div>
    <div style="padding-top:15px;padding-left:20px;float:left;">
    <img src="images/3.png" id="login1" style="width:120px;height:30px;cursor:pointer;">   
@@ -234,7 +234,7 @@
    </div>
 </form>
 <div style="float:left;margin-top:60px;margin-left:-165px;font-size:12px;"><span>已有账户？<a href="#">登录</a></span></div>
-<div style="float:left;margin-top:85px;margin-left:-165px;font-size:12px;font-weight:bold;"><span><input type="checkbox">我已阅读并接受<a href="/ServiceProtocol.jsp" style="color:black;">《用户服务协议》</a></span></div>
+<div style="float:left;margin-top:85px;margin-left:-165px;font-size:12px;font-weight:bold;"><span><input type="checkbox" checked="true">我已阅读并接受<a href="/ServiceProtocol.jsp" style="color:black;">《用户服务协议》</a></span></div>
 </div>
    
       </div>
