@@ -23,9 +23,9 @@ body{
 <body>
 <jsp:include page="head4index.jsp" />
 <!-- <div style="background-image:url('/images/PrivacyPolicy/yinying.png');margin:60px -35px 0px -35px;height:10px;"></div> -->
-<div style="background-color:white;height:1000px;width:1000px;margin:0 auto;padding-top:35px;padding-left:30px;margin-top:40px;">
+<div style="width:1000px;margin:0 auto;padding-top:35px;padding-left:30px;margin-top:40px;">
 <div style="font-size:30px;font-wight:bolder;">服务协议</div>
-<div style="font-size:15px;padding-top:30px;">为了充分利用“海房优选”，经纪的服务，包括项目查询和新的单位购买的，你必须完成登记表。</div>
+<div style="font-size:15px;margin-top:15px;padding-top:15px;padding-left:30px;background-color:white;height:800px;">为了充分利用“海房优选”，经纪的服务，包括项目查询和新的单位购买的，你必须完成登记表。</div>
 </div>
 <%-- <jsp:include page="foot1.jsp" />  --%>
 <jsp:include page="foot4index.jsp" /> 
