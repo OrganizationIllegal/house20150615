@@ -2,6 +2,7 @@ package com.kate.app.controller;
 
 import java.io.PrintWriter;
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,6 @@ import com.kate.app.model.MiddlePrice;
 import com.kate.app.model.NearPeiTao;
 import com.kate.app.model.NearSchool;
 import com.kate.app.model.NewsBoke;
-import com.kate.app.model.NewsInfo;
 import com.kate.app.model.PeopleForeign;
 import com.kate.app.model.PeopleInfo;
 import com.kate.app.model.PeopleNation;
@@ -409,6 +409,29 @@ public class MyController {
  		InvestmentData data = investDataDao.getInvestmentDate(areaName);
  		String zulin = data.getZu_xuqiu();
  		String [] items = new String[10];
+ 		String increment = null;
+ 		String zu_house_rate_info = null;
+ 		String temp = data.getYear_increment_rate();
+ 		String temp_zu = data.getZu_house_rate();
+ 		String middlePrice = data.getMiddle_price();
+ 		if(middlePrice!=null && !"".equals(middlePrice)){
+ 			if(middlePrice.length()>=3){
+ 				middlePrice = middlePrice.substring(0,middlePrice.length()-3)+"K";
+ 				data.setMiddle_price(middlePrice);
+ 			}
+ 		}
+ 		double result=0.00;
+ 		DecimalFormat df = new DecimalFormat("0.0%");
+ 		if(temp!=null && !"".equals(temp)){
+ 			result = Double.parseDouble(temp);
+ 	 		increment = df.format(result);
+ 		}
+ 		if(temp_zu!=null && !"".equals(temp_zu)){
+ 			result = Double.parseDouble(temp_zu);
+ 			zu_house_rate_info = df.format(result);
+ 		}
+ 		data.setYear_increment_rate(increment);
+ 		data.setZu_house_rate(zu_house_rate_info);
  		if(zulin!=null && !"".equals(zulin)){
  			 items = zulin.split("/");
  		}

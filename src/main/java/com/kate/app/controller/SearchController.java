@@ -3,6 +3,7 @@ package com.kate.app.controller;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kate.app.dao.AjaxDao;
 import com.kate.app.dao.AreaInfoDao;
+import com.kate.app.dao.BrokerInfoDao;
 import com.kate.app.dao.SearchListDao;
 import com.kate.app.dao.UserDao;
 import com.kate.app.model.AreaInfo;
@@ -34,8 +36,13 @@ public class SearchController {
 	private UserDao userDao;
 	@Autowired
 	private AreaInfoDao areaInfoDao;
+	@Autowired
+	private BrokerInfoDao brokerInfoDao;
 	
 	private static List<SearchList> seachListResult;
+	
+	private static List<BrokerInfo> seachBrokerListResult;
+	
 	//服务团队搜索
 	@RequestMapping({"/SearchService"})
 	public String SearchService(HttpServletRequest req, HttpServletResponse resp){
@@ -44,11 +51,34 @@ public class SearchController {
 		String type = req.getParameter("type");
 		String area = req.getParameter("area");
 		String lang = req.getParameter("lang");
-		
+		if(type!=null && !"".endsWith(type) && type.equals("类型")){
+			type = "";
+		}
+		if(lang!=null && !"".endsWith(lang) && lang.equals("语言")){
+			lang = "";
+		}
 		List<BrokerInfo> brokerInfoList = searchListDao.searchSericeList(brokerName, type, area, lang);
+		seachBrokerListResult = brokerInfoList;
+		int count = brokerInfoList.size();
+		List<BrokerInfo> resultList = new ArrayList<BrokerInfo>();
+		if(count>=4){
+			resultList = brokerInfoList.subList(0, 4);
+		}
+		else{
+			resultList = brokerInfoList;
+		}
+		
 		List<User> userList=userDao.listUser(username);
+		List<String> typeList=brokerInfoDao.getBrokerTypeList();
+		List<String> regionList=brokerInfoDao.getBrokerRegionList();
+		Set<String> languageList=brokerInfoDao.getBrokerLanguageList();
+		req.setAttribute("typeList", typeList);
+		req.setAttribute("regionList", regionList);
+		req.setAttribute("languageList", languageList);
+		req.setAttribute("resultList", resultList);
 		req.setAttribute("brokerInfoList",brokerInfoList);
 		req.setAttribute("userList", userList);
+		req.setAttribute("count", count);
 		return "/serviceTeam.jsp";
 		/*JSONObject json = new JSONObject();
 		JSONArray array = new JSONArray();
@@ -78,6 +108,65 @@ public class SearchController {
 				e.printStackTrace();
 			}*/
 	}
+	
+	@RequestMapping({"/brokerinfoPage"})
+	public void BrokerListPage(HttpServletRequest req, HttpServletResponse resp){
+		String pageIndex = req.getParameter("pageIndex");   //锟斤拷前页锟斤拷
+		int pageNum  = pageIndex==null? 0 :Integer.parseInt(pageIndex);
+		
+		String pageSize_str  = req.getParameter("pageSize");  //每页锟斤拷锟斤拷锟斤拷锟�
+		int pageSize  = pageSize_str==null? 4 :Integer.parseInt(pageSize_str);//默认每页4条记录
+		
+		
+		List<BrokerInfo> brokerList = seachBrokerListResult;
+		
+		int total = brokerList.size();
+		int pageEnd = pageNum * pageSize;
+		int end = pageEnd < total ? pageEnd : total;
+		
+		int start = (pageNum-1) * pageSize;
+		int pageStart = start == pageEnd ? 0 : start;
+		
+		JSONObject json = new JSONObject();
+		JSONArray array = new JSONArray();
+		if(pageStart <= end){
+			List<BrokerInfo> resultList=brokerList.subList(start, end);
+			for(BrokerInfo item : resultList){
+				JSONObject obj = new JSONObject();
+				obj.put("id", item.getId());
+				obj.put("broker_img", item.getBroker_img());
+				obj.put("broker_language", item.getBroker_language());
+				obj.put("broker_name", item.getBroker_name());
+				obj.put("broker_region", item.getBroker_region());
+				obj.put("office", item.getOffice());
+				obj.put("introduction", item.getIntroduction());
+				obj.put("broker_num", item.getBroker_num());
+				obj.put("broker_experience", item.getBroker_experience());
+				obj.put("broker_type", item.getBroker_type());
+				obj.put("broker_zizhi", item.getBroker_zizhi());
+				array.add(obj);
+			}
+			json.put("List", array);
+			json.put("total", pageEnd-1);
+			json.put("size", total);
+			
+		}
+		else{
+			json.put("List", array);
+			json.put("total", pageEnd-1);
+			json.put("size", total);
+		}
+		
+		
+		try{
+			writeJson(json.toJSONString(),resp);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
 	
 	
 	//首页搜索

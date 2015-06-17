@@ -621,7 +621,7 @@ function popInfo(){
 				</div>
 				<div class="f-l p_inves_div">
 					<a class="c-fix f-l p_inves_lab f-yahei s-14 fw">租金回报率</a>
-					<a class="c-fix f-l p_inves_lab f-yahei s-18" style="color:rgb(21,63,101);margin-top:10px;">${data.price_review}</a>
+					<a class="c-fix f-l p_inves_lab f-yahei s-18" style="color:rgb(21,63,101);margin-top:10px;">${data.zu_house_rate}</a>
 				</div>
 				<div class="f-l p_inves_div">
 					<a class="c-fix f-l p_inves_lab f-yahei s-14 fw">租赁需求</a>
@@ -632,7 +632,7 @@ function popInfo(){
 					<a class="c-fix f-l p_inves_lab f-yahei s-14 fw">现金回报</a>
 					<a class="c-fix f-l p_inves_lab f-yahei s-18" style="color:rgb(21,63,101);margin-top:10px;">${data.price_review}</a>
 				</div>
-				<a class="c-fix f-r p_inves_source f-yahei s-12">数据来源：${areaInfo.touzi_datasource }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;更新日期${fn:substring(areaInfo.touzi_date, 0, 10)}</a>
+				<a class="c-fix f-r p_inves_source f-yahei s-12">数据来源：RPData <%-- ${areaInfo.touzi_datasource } --%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;更新日期：2015.02.02<%-- ${fn:substring(areaInfo.touzi_date, 0, 10)} --%></a>
 			</div>
 		</div>
  		<div class="c-fix  bkg3"  style="margin:0 auto;height:426px;width:990px">

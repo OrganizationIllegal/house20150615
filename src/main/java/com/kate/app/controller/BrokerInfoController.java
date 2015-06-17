@@ -51,7 +51,7 @@ public class BrokerInfoController {
 		return "/serviceTeam.jsp";
 	}
 	//服务团队分页
-		@RequestMapping({"/brokerinfoPage"})
+		@RequestMapping({"/brokerinfoPage1"})
 		public void BrokerListPage(HttpServletRequest req, HttpServletResponse resp){
 			String pageIndex = req.getParameter("pageIndex");   //锟斤拷前页锟斤拷
 			int pageNum  = pageIndex==null? 0 :Integer.parseInt(pageIndex);
