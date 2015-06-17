@@ -167,20 +167,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="main_img">
 				<div class="c-fix f-l main_div" id="city">
 				 <div id="divselect" onclick="test()" style="width:76px;" class="divselect">
-      					<cite style="width:70px; font-family:微软雅黑; font-size:14px;">澳洲</cite>
+      					<cite style="width:70px; font-family:微软雅黑; -font-size:14px;font-size:16px">澳洲</cite>
 				      <ul id="test1" style="width:74px;">
-				         <li><a href="javascript:;" selectid="1">澳洲</a></li>
+				         <li><a href="javascript:;" selectid="1" style="font-size:16px">澳洲</a></li>
 				         <!--<li><a href="javascript:;" selectid="2">美洲</a></li>
 				         <li><a href="javascript:;" selectid="3">非洲</a></li>-->
 				      </ul>
 				  </div>
 								
 					
-                    <a id="city1" class="f-l main_lab f-yahei s-14 city" style="cursor:pointer">墨尔本</a>
-					<a class="f-l main_lab f-yahei s-14 city" style="cursor:pointer">悉尼</a>
-					<a class="f-l main_lab f-yahei s-14 city" style="cursor:pointer">布里斯班</a>
-					<a class="f-l main_lab f-yahei s-14 city" style="cursor:pointer">阿德莱德</a>
-					<a class="f-l main_lab f-yahei s-14 city" style="cursor:pointer">珀斯</a>
+                    <a id="city1" class="f-l main_lab f-yahei s-14 city" style="cursor:pointer;font-size:16px;">墨尔本</a>
+					<a class="f-l main_lab f-yahei s-14 city" style="cursor:pointer;font-size:16px;">悉尼</a>
+					<a class="f-l main_lab f-yahei s-14 city" style="cursor:pointer;font-size:16px;">布里斯班</a>
+					<a class="f-l main_lab f-yahei s-14 city" style="cursor:pointer;font-size:16px;">阿德莱德</a>
+					<a class="f-l main_lab f-yahei s-14 city" style="cursor:pointer;font-size:16px;">珀斯</a>
                     
 					
 			<form role="form" action="/IndexSearch" method="get"  target="_blank">
@@ -195,9 +195,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						
 					</div>
 					<div id="territory" onclick="city1()" style="width:110px; clear:left; margin-top:5px;" class="divselect">
-	      				<cite id="city1" style="width:100px; font-family:微软雅黑; font-size:14px; background:url(/pic/jiaoy.png) no-repeat right center; color:#efef39;">房屋类型</cite>
-					      <ul id="typeInfo" style="width:94px;">
-					         <li><a href="javascript:;" selectid="1">公寓</a></li>
+	      				<cite id="city1" style="width:100px; font-family:微软雅黑; -font-size:14px;font-size:16px; background:url(/pic/jiaoy.png) no-repeat right center; color:#efef39;">房屋类型</cite>
+					      <ul id="typeInfo" style="width:94px;font-size:16px;">
+					         <li><a href="javascript:;" selectid="1" >公寓</a></li>
 					         <li><a href="javascript:;" selectid="2">别墅</a></li>
 					         <li><a href="javascript:;" selectid="3">联排别墅</a></li>
 					      </ul>
@@ -205,8 +205,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					 </div>
 					 
 					 <div id="terry" onclick="city2()" style="width:110px;  margin-top:5px;margin-left:8px;" class="divselect">
-	      				<cite id="city2" style="width:100px; font-family:微软雅黑; font-size:14px; background:url(/pic/jiaoy.png) no-repeat right center; color:#efef39;">最小价格</cite>
-					      <ul id="minimumpriceInfo" style="width:94px; display:none;">
+	      				<cite id="city2" style="width:100px; font-family:微软雅黑; -font-size:14px;font-size:16px; background:url(/pic/jiaoy.png) no-repeat right center; color:#efef39;">最小价格</cite>
+					      <ul id="minimumpriceInfo" style="width:94px; display:none;font-size:16px;">
 					         <li><a href="javascript:;" selectid="1">$10,000</a></li>
 					         <li><a href="javascript:;" selectid="2">$20,000</a></li>
 					         <li><a href="javascript:;" selectid="3">$30,000</a></li>
@@ -215,8 +215,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					 </div>
 					 
 					 <div id="territ" onclick="city3()" style="width:110px; margin-top:5px; margin-left:8px;" class="divselect">
-	      				<cite id="city3" style="width:100px; font-family:微软雅黑; font-size:14px; background:url(/pic/jiaoy.png) no-repeat right center; color:#efef39;">最大价格</cite>
-					      <ul id="maxNum" style="width:94px; display:none;">
+	      				<cite id="city3" style="width:100px; font-family:微软雅黑; -font-size:14px;font-size:16px; background:url(/pic/jiaoy.png) no-repeat right center; color:#efef39;">最大价格</cite>
+					      <ul id="maxNum" style="width:94px; display:none;font-size:16px;">
 					         <li><a href="javascript:;" selectid="1">$70,000</a></li>
 					         <li><a href="javascript:;" selectid="2">$80,000</a></li>
 					         <li><a href="javascript:;" selectid="3">$90,000</a></li>
@@ -351,13 +351,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <!-- *************************************** main_bkg4 ************************************************** -->
 	 <div class="main_bkg4" style="background:#ECEAEB url(../pic/indexbg6.png) repeat-x 0 -666px;">
 			<div class="main_bkg4_div" style="background:#ECEAEB url(../pic/indexbg6.png) repeat-x 0 -666px;">
-				<a class="c-fix f-l f-yahei s-20 main_title fw">为您提供最好的海外购房服务</a>
+				<a class="c-fix f-l f-yahei s-20 main_title fw" style="width:1190px">为您提供最好的海外购房服务</a>
 				<div class="c-fix f-l large_icon"></div>
 				<div class="f-l large_icon2"></div>
 				<div class="f-r large_icon3"></div>
-				<span class="c-fix f-l large_icon_lab f-yahei s-14"><a class="fw">互联网科技：</a>我们通过互联网科技提供完整、详细、及时的房源及细节信息，使你更聪明，更方便的购买你所需的房产。</span>
-				<span class="f-l large_icon_lab2 f-yahei s-14"><a class="fw">完整的购房服务：</a>7*24小时全天候在线，全方位服务的专业代理服务。我们提供了基于您的满意付费房地产经纪人。</span>
-				<span class="f-r large_icon_lab3 f-yahei s-14"><a class="fw">难以置信的收益：</a>在海房优选购买房产，我们提供高达70%现金返还。</span>
+				<span class="c-fix f-l large_icon_lab f-yahei s-14"><a class="fw" style="color:black">互联网科技：</a>我们通过互联网科技提供完整、详细、及时的房源及细节信息，使你更聪明，更方便的购买你所需的房产。</span>
+				<span class="f-l large_icon_lab2 f-yahei s-14"><a class="fw" style="color:black">完整的购房服务：</a>7*24小时全天候在线，全方位服务的专业代理服务。我们提供了基于您的满意付费房地产经纪人。</span>
+				<span class="f-r large_icon_lab3 f-yahei s-14"><a class="fw" style="color:black">难以置信的收益：</a>在海房优选购买房产，我们提供高达70%现金返还。</span>
 			</div>
 	</div>
 		
@@ -366,12 +366,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="main_bkg5">
 			<div class=" main_bkg5_div">
 				<a class="c-fix f-l f-yahei s-20 main_title2 fw">购房返利</a>
-				<img class="c-fix f-l main_round" src="images/round1.jpg"></img>
+				<!-- <img class="c-fix f-l main_round" src="images/round1.jpg"></img> -->
+				<img class="c-fix f-l main_round" src="images/round4.jpg"></img>
 				<div class="f-l main_round_middle">
 					<a class="c-fix f-l lab_money f-arial fw">$17,500</a>
 					<a class="c-fix f-l f-yahei s-16 middle_lab fw">佣金返还</a>
 				</div>
-				<img class="f-r main_round" src="images/round2.jpg"></img>
+				<!-- <img class="f-r main_round" src="images/round2.jpg"></img> -->
+				<img class="f-r main_round" src="images/round3.jpg"></img>
+				
 			</div>
 			<img class="c-fix f-l main_bkg5_line" src="images/line.png"></img>
 			<a class="c-fix f-l middle_lab2 f-yahei s-16">在海房优选购买澳洲新房</a>

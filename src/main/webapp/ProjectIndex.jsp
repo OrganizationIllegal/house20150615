@@ -639,7 +639,7 @@ function popInfo(){
 			<div class="c-fix p_panel_4">
 				<a class="c-fix f-l p_inves_name f-yahei s-18 fw">${HouseProject.project_area} ${HouseProject.project_type}中位数房价</a>
 				<div class="c-fix f-l middle_bkg">
-					<a class="c-fix f-l f-yahei fw middle_lab1">${middlePrice.buy_price}</a>
+					<a class="c-fix f-l f-yahei fw middle_lab1">$${middlePrice.buy_price}</a>
 					<a class="f-l f-yahei fw middle_lab2">$${middlePrice.zu_price}/周</a>
 				</div>
 				<div class="c-fix f-l middle_inner" style="margin-left:80px;">
