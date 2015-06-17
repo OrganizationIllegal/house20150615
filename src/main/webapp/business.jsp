@@ -50,19 +50,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     #header{
         height: 360px;
         width: 100%;
-        position: relative;
+       /*  position: relative; */
        /*  background-image: url(images/business/logo.jpg) */
         background:url(images/business/logo1.png);
         filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
         -moz-background-size:100% 100%;
         background-size:100% 100%;
-        position: relative;
     }
     #header .loginf{
         width:275px;
         font-size: 12px;
         float:right;
-        margin-right:30px;
+        margin-right:-10px;
         margin-top:-190px;
         text-align: center;
     }
@@ -171,6 +170,7 @@ padding-left:40px; text-align:left;
 <div class="con">
     <div id="content">
         <div id="header">
+        <div style="width:1160px;margin:0 auto;position: relative;">
             <div class="word">开启中国人海外置业服务</div>
             <div class="loginf">
 
@@ -238,15 +238,17 @@ padding-left:40px; text-align:left;
 
            
             </div>
+            </div>
         </div>
 
 
         <section id="feature">
+        <div style="width:930px;margin:0 auto;">
            <div class="" style="text-align:center;">
                 <div style="font-size:35px;padding-top:20px;">互联网海外置业</div>
 </div>
             <div class="row">
-                <div class="features" style="width:80%; margin:0 auto;">
+                <div class="features" style="-width:80%; -margin:0 auto;">
                     <div class="col-md-4 wow fadeInDown animated" >
                         <div class="text-center">
                             <img src="images/business/1-1.png" alt="">
@@ -270,54 +272,58 @@ padding-left:40px; text-align:left;
 
                                    
                 </div><!--/.services-->
-            </div><!--/.row-->    
+            </div><!--/.row-->  
+            </div>  
        </section>
 
        <section id="feature">
            <div class="center tender" style="background:#fff; padding-top:60px">
                
-
+            <div style="width:930px;margin:0 auto;">
             <div class="row">
-                <div class="col-md-6 item_left" style="padding-left:150px; padding-top:50px;text-align:left;padding-right:10px;">
+                <div class="col-md-6 item_left" style="-padding-left:150px; padding-top:50px;text-align:left;padding-right:10px;">
                      <h2 class="divf1">经纪人</h2>
                      <div class="divf3" style="font-size:16px;">您将可获得海外优选合作海外新盘代理权，进行新盘销售，获取销售佣金提成；并通过海房优选电子化佣金结算系统，更智能、更快捷、更高效地进行佣金结算；海房优选聚集了大批普通购房者，与海房优选合作，您将获得更为丰富的客户资源！</div>
                 </div>
                 <div class="col-md-6 item_right" style="padding-left:40px; text-align:left;">
                     <img src="images/business/2.png"/>
                 </div>
-            </div><!--/.row-->    
+            </div><!--/.row-->  
+            </div> </div> 
        </section>
 
         <section id="feature">
            <div class="center tender">
                
-
+            <div style="width:930px;margin:0 auto;">
             <div class="row">
                 
                 <div class="col-md-6 item_left"  >
-                    <img src="images/business/4.png"/ style="padding-left:130px;">
+                    <img src="images/business/4.png"/ style="-padding-left:130px;">
                 </div>
 
-                <div class="col-md-6 item_right" style="padding-right:135px; padding-top:110px;text-align:left;padding-left:20px;">
+                <div class="col-md-6 item_right" style="-padding-right:135px; padding-top:110px;text-align:left;padding-left:20px;">
                      <h2 style="text-align:right" class="divf1">开发商</h2>
                      <div style="text-align:left;font-size:16px;">成为海房优选签约开发商，您将获得全新的线上推广平台，拓展推广渠道；同时您将可以利用海房优选优质的信息展示平台，全方位提升品牌形象；</div>
                 </div>
-            </div><!--/.row-->    
+            </div><!--/.row--> 
+            </div></div>   
        </section>
 
        <section id="feature">
            <div class="center tender" style="background:#fff; padding-top:50px">
                
-
+           <div style="width:930px;margin:0 auto;">
             <div class="row">
-                <div class="col-md-6 item_left" style="padding-left:150px; padding-top:50px;text-align:left;padding-right:12px;">
+                <div class="col-md-6 item_left" style="-padding-left:150px; padding-top:50px;text-align:left;padding-right:12px;">
                      <h2 class="divf1">服务商</h2>
                      <div style="font-size:16px;">海房优选聚集了大批有海外生活服务需求的会员用户，成为海外优选签约服务商，您将获得更多优质的潜在用户；成为海房优选签约服务商，您将可获得海房优选客户直接的需求派单；并在抢单后通过海房优选电子化佣金结算系统，更智能、更便捷、更高效地进行佣金结算；</div>
                 </div>
                 <div class="col-md-6 item_right" style="padding-left:40px; text-align:left;">
                     <img src="images/business/5.png"/>
                 </div>
-            </div><!--/.row-->    
+            </div><!--/.row-->  
+            </div> </div> 
        </section>
 
 
