@@ -211,7 +211,7 @@
 <!-- register start -->
 <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
    <div class="modal-dialog" style="margin-top:100px;">
-      <div class="modal-content" style="margin-left:100px;height:270px;width:355px;">
+      <div class="modal-content" style="margin-left:100px;height:290px;width:355px;">
          <div class="modal-header" style="background-color:rgb(55,52,67);padding:0px 10px;height:10px;">
             <button type="button" class="close" 
                data-dismiss="modal" aria-hidden="true" style="font-size:18px;color:white;">
@@ -273,7 +273,7 @@ var role;
                   	var pass = $("#pwd").val();
                   	var temp;
                   	temp = judgeRe(user,pass);
-                       	
+                   
                   	if(temp==true){	                	
   	                    document.fm1.submit();  //fm为form表单name
                   	}
@@ -342,7 +342,7 @@ function judge(username, password){
 function judgeRe(username, password){
   	 var result = false;
   	 if(username==""){
-  	 alert("请输入用户名");
+  	     alert("请输入用户名");
   		 return false;
   	 }
   	 else if(username!=""&&password==""){
@@ -356,6 +356,7 @@ function judgeRe(username, password){
   			dataType:'json',
   			async: false, 
   			success:function(data){
+  	  			//alert("ffff")
   	  		  	if(data.user==0){
   				  alert("用户名已存在，请直接登录！");
   				}

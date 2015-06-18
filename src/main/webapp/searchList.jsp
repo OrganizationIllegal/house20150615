@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ page language="java" pageEncoding="UTF-8" contentType="text/html;charset=UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
@@ -131,7 +131,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="c-fix f-l nav_panel" id="page" style="-margin-bottom:35px;height:80px;">
 				   <div id="Pagination" class="pagination"  style="margin:0 0;height:0px;"></div>
 					 <div style="float:right;margin-top:22px">
-					<select class="f-l sel_order" style="background-color:rgb(220,220,220);padding-left:5px;-margin-top:-40px;" onchange="paixu(this)">
+					<select class="f-l sel_order" style="background-color:#eae8e8;padding-left:5px;-margin-top:-40px;" onchange="paixu(this)">
 						<option value="0">排序</option>
 						<option value="1">推荐度</option>
 						<!-- <option value="2">热门度</option> -->
@@ -182,7 +182,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		
 	</div>
-		<jsp:include page="foot4.jsp" />
+		<jsp:include page="foot4index.jsp" />
 	<script src="/js/jquery.pagination.js"></script> 
    <script type="text/javascript">
 
@@ -277,7 +277,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							          var pageSize2 = 5;     //每页显示条数初始化，修改显示条数，修改这里即可  
 							         // var total2 = 100;
 							         var total2 = InitTable2(0); 
-							          //alert("total2"+total2);
+							        
 		   			 	$("#Pagination").pagination(total2,{
                    						 callback: PageCallback2, 
                    						 prev_text: "«",
@@ -288,7 +288,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     					 current_page: pageIndex2,   //当前页索引
                				 }); 
                				   function PageCallback2(index, jq) {    
-                   				    // alert("totalaaaa"+total2);
+                   				   
                    					 InitTable2(index);  
                 				}   
                 				return false;
@@ -303,7 +303,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						                        data: { pageIndex : pageIndex2, pageSize : 5},
 						                        success: function(data) {
 						                        count = data.total;
-						                        //alert("count2"+count);
+						                       
 						                        var html = getHtml(data.List);
 						                       		//$("#Result tr:gt(0)").remove();        //移除Id为Result的表格里的行，从第二行开始（这里根据页面布局不同页变）   
 						                       		//$("#list").html(""); 
@@ -671,215 +671,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 });
 
     </script>
-    <!-- login start -->
-<div class="modal fade" id="login" tabindex="-1" role="dialog" 
-   aria-labelledby="myModalLabel" aria-hidden="true">
-   <div class="modal-dialog">
-      <div class="modal-content" style="margin-left:100px;height:270px;width:355px;">
-         <div class="modal-header" style="background-color:rgb(55,52,67);padding:0px 10px;height:10px;">
-            <button type="button" class="close" 
-               data-dismiss="modal" aria-hidden="true" style="font-size:18px;color:white;">
-                  &times;
-            </button>
-         </div>
-         <div class="modal-body">
-  <div style="text-align:center;margin-top:5px;"><div style="font-size:20px;font-weight:bold;">欢迎登录海外房产优选</div>
-  <form method="post" name="fm2" action="/login">
-  <div  style="padding-top:25px;">
-         <input type="text"  id="username_mode"
-            name="username_mode" style="background-image:url(images/0.png);background-repeat:no-repeat;background-position:left;width:270px;padding-left:35px;height:32px;background-color:rgba(246, 245, 245, 1);" placeholder="手机号/邮箱" autocomplete="off">
-         <input type="hidden" id="username_mode1" 
-            name="username_mode1" style="background-image:url(images/0.png);background-repeat:no-repeat;background-position:left;width:270px;padding-left:35px;height:32px;background-color:rgba(246, 245, 245, 1);" placeholder="手机号/邮箱" autocomplete="off">
-        <input type="hidden" style="background-image:url(images/0.png);background-repeat:no-repeat;background-position:left;width:270px;padding-left:35px;height:32px;background-color:rgba(246, 245, 245, 1);" id="role" 
-            name="role_mode" placeholder="用户角色">
-       <div id="user2" style="margin-left:20px;"></div>
-      
-   </div>
-   <div>
-         <input  type="password" id="password_mode" 
-            name="password" style="background-image:url(images/2.png);background-repeat:no-repeat;background-position:left;padding-left:35px;width:270px;height:32px;background-color:rgba(246, 245, 245, 1);" placeholder="密码" autocomplete="off">
-         <input type="hidden" id="password_mode1" 
-            name="password_mode1" style="background-image:url(images/2.png);background-repeat:no-repeat;background-position:left;padding-left:35px;width:270px;height:32px;background-color:rgba(246, 245, 245, 1);" placeholder="密码" autocomplete="off">
-       <div id="pass" style="margin-left:20px;"></div>
-   </div>
-   
-   <div style="padding-top:20px;padding-left:20px;float:left;font-size:12px;">
-      <span><input type="checkbox">记住我 <a href="/changePass.jsp" style="padding-left:160px;color:black;">忘记密码？</a></span>  
-   </div>
-   <div style="padding-top:15px;padding-left:20px;float:left;">
-   <img src="images/3.png" id="login1" style="width:120px;height:30px;cursor:pointer;">   
-   </div>
-</form>
-         </div>
-   
-      </div>
-</div>
-</div>
-</div>
-<!-- login end -->
-<script>
 
-var role;
- $(function() {
-                $("#login1").click(function() {
-                	var user = $("#username_mode").val();
-                	var pass = $("#password_mode").val();
-                	var temp;
-                	temp = judge(user,pass);
-                	
-                	if(temp==true){
-	                	var username = encode64($("#username_mode").val());
-	                	var password = encode64($("#password_mode").val());
-	                	//alert("用户名加密后的结果:"+username+"密码加密后的结果:"+password);
-	                	$("#username_mode1").val(username);
-	                    $("#password_mode1").val(password);
-	                    $("#role_mode").val(role);
-	                    document.fm2.submit();  //fm为form表单name
-                	}
-                	else{
-                		return false;
-                	}
-                })
-                
-                $("#reg").click(function() {
-                  	var user = $("#telemail").val();
-                  	var pass = $("#pwd").val();
-                  	var temp;
-                  	temp = judgeRe(user,pass);
-                  	alert(temp)             	
-                  	if(temp==true){	                	
-  	                    document.fm1.submit();  //fm为form表单name
-                  	}
-                  	else{               	
-                  		return false;
-                  	} 
-                  });
 
-                  $("#cancel").click(function() {
-                    	$("#telemail").val("").focus();
-                    	$("#pwd").val("");
-                    });   
-        })
-
-function judge(username, password){
-	 var result = false;
-	 if(username==""){
-	 alert("请输入用户名");
-		 //$("#user").html("请输入用户名");
-		 return false;
-	 }
-	 else if(username!=""&&password==""){
-	 alert("请输入密码");
-		 /* $("#pass").html("请输入密码");
-		 $("#user").html(""); */
-		 return false;
-	 }
-	 else{
-		$.ajax({
-			type:'GET',
-			url:'/loginPanduan?username='+username+'&password='+password,
-			dataType:'json',
-			async: false, 
-			success:function(data){
-				if(data.user==0){
-				alert("用户名不存在");
-					//$("#user").html("用户名不存在");
-				}
-				else if(data.user==2){
-				alert("用户名和密码不符");
-					/* $("#pass").html("用户名和密码不符");
-					$("#user").html(""); */
-				}
-				else if(data.user==1){
-					//alert(data.role)
-					if(data.role==0){
-						role = 0;
-					}
-					else{
-						role = 1;
-					}
-					result=true;
-				}
-			},
-			error:function(){
-				
-			}
-		})
- 
-	 }
-	
- if(result == true){
-	 return true;
- }
- }
-function judgeRe(username, password){
-  	 var result = false;
-  	 if(username==""){
-  	 alert("请输入用户名");
-  		 return false;
-  	 }
-  	 else if(username!=""&&password==""){
-  	 alert("请输入密码");
-  		 return false;
-  	 }
-  	 else{
-  		$.ajax({
-  			type:'GET',
-  			url:'/registerPanduan?username='+username+'&password='+password,
-  			dataType:'json',
-  			async: false, 
-  			success:function(data){
-  				if(data.user==0){
-  				  alert("用户名已存在，请直接登录！");
-  				}
-  				else if(data.user==1){
-  				result=true;
-  				}
-  			},
-  			error:function(){
-  			}
-  		});
-   
-  	 }
-  	
-   if(result == true){
-  	 return true;
-   }
- }
- 
-   
-  
-var keyStr = "ABCDEFGHIJKLMNOP" + "QRSTUVWXYZabcdef" + "ghijklmnopqrstuv"
-+ "wxyz0123456789+/" + "=";
-
-function encode64(input) {
-
-var output = "";
-var chr1, chr2, chr3 = "";
-var enc1, enc2, enc3, enc4 = "";
-var i = 0;
-do {
-chr1 = input.charCodeAt(i++);
-chr2 = input.charCodeAt(i++);
-chr3 = input.charCodeAt(i++);
-enc1 = chr1 >> 2;
-enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
-enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
-enc4 = chr3 & 63;
-if (isNaN(chr2)) {
-        enc3 = enc4 = 64;
-} else if (isNaN(chr3)) {
-        enc4 = 64;
-}
-output = output + keyStr.charAt(enc1) + keyStr.charAt(enc2)
-                + keyStr.charAt(enc3) + keyStr.charAt(enc4);
-chr1 = chr2 = chr3 = "";
-enc1 = enc2 = enc3 = enc4 = "";
-} while (i < input.length);
-
-return output;
-}
-</script>
 
     
 	</body>
