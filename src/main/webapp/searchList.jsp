@@ -125,13 +125,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<!--<a class="c-fix f-r btn_search f-yahei s-14 cp">搜索</a>-->
 					<input type="submit" class="c-fix f-r btn_search f-yahei s-14 cp" value="搜索"/>
 				</div> 
-			</div>
 			</form>
+			</div>
 			<div class="f-r list_right">
-				<div class="c-fix f-l nav_panel" id="page" style="margin-bottom:35px">
-				   <div id="Pagination" class="pagination"  style="margin:0 0;height:40px;"></div>
-					 <div style="float:right;margin-top:20px">
-					<select class="f-l sel_order" style="background-color:rgb(220,220,220);padding-left:5px;" onchange="paixu(this)">
+				<div class="c-fix f-l nav_panel" id="page" style="-margin-bottom:35px;height:80px;">
+				   <div id="Pagination" class="pagination"  style="margin:0 0;height:0px;"></div>
+					 <div style="float:right;margin-top:22px">
+					<select class="f-l sel_order" style="background-color:rgb(220,220,220);padding-left:5px;-margin-top:-40px;" onchange="paixu(this)">
 						<option value="0">排序</option>
 						<option value="1">推荐度</option>
 						<!-- <option value="2">热门度</option> -->

@@ -256,6 +256,13 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		String password = req.getParameter("password");
 		List<User> list = userInfoDao.judge(username);
 		JSONObject json = new JSONObject();
+		if(isEmail(username) || isPhoneNumberValid(username)){
+			json.put("flag", "1");        //鐢ㄦ埛鍚嶅拰瀵嗙爜涓嶇
+		}else{
+			json.put("flag", "-1");        //鐢ㄦ埛鍚嶅拰瀵嗙爜涓嶇
+		}
+		
+		
 		if(list.size()<=0){
 			json.put("user", "0");        //鐢ㄦ埛鍚嶄笉瀛樺湪
 		}
@@ -284,7 +291,10 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		String password = req.getParameter("password");
 		List<User> list = userInfoDao.judge(username);
 		JSONObject json = new JSONObject();
-		if(list.size()>0){
+		if(!isEmail(username) && !isPhoneNumberValid(username)){
+			json.put("user", "-1");        //鐢ㄦ埛鍚嶅拰瀵嗙爜涓嶇
+		}
+		else if(list.size()>0){
 			json.put("user", "0");        //鐢ㄦ埛宸插瓨鍦�
 		}
 		else{			

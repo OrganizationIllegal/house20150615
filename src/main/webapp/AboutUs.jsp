@@ -661,26 +661,30 @@ $("#register_aboutus").click(function(){
      	 alert("请输入密码");
      		 return false;
      	 }
-     	 else{
-     		$.ajax({
-     			type:'GET',
-     			url:'/registerPanduan?username='+username+'&password='+password,
-     			dataType:'json',
-     			async: false, 
-     			success:function(data){
-     				if(data.user==0){
-     				  alert("用户名已存在，请直接登录！");
-     				}
-     				else if(data.user==1){
-     				result=true;
-     				}
-     			},
-     			error:function(){
-     			}
-     		});
-      
-     	 }
-     	
+     	else{
+      		$.ajax({
+      			type:'GET',
+      			url:'/registerPanduan?username='+username+'&password='+password,
+      			dataType:'json',
+      			async: false, 
+      			success:function(data){
+      	  		  	if(data.user==0){
+      				  alert("用户名已存在，请直接登录！");
+      				}
+      				
+      				else if(data.user==-1){
+      				   alert("请输入正确格式！");
+      	  			}
+      	  			else{
+      					result=true;
+      				}
+      	  				
+      			},
+      			error:function(){
+      			}
+      		});
+       
+      	 }
       if(result == true){
      	 return true;
       }

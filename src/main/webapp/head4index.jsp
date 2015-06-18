@@ -273,7 +273,7 @@ var role;
                   	var pass = $("#pwd").val();
                   	var temp;
                   	temp = judgeRe(user,pass);
-                  	//alert(temp)             	
+                       	
                   	if(temp==true){	                	
   	                    document.fm1.submit();  //fm为form表单name
                   	}
@@ -356,12 +356,17 @@ function judgeRe(username, password){
   			dataType:'json',
   			async: false, 
   			success:function(data){
-  				if(data.user==0){
+  	  		  	if(data.user==0){
   				  alert("用户名已存在，请直接登录！");
   				}
-  				else if(data.user==1){
-  				result=true;
+  				
+  				else if(data.user==-1){
+  				   alert("请输入正确格式！");
+  	  			}
+  	  			else{
+  					result=true;
   				}
+  	  				
   			},
   			error:function(){
   			}
