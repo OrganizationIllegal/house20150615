@@ -64,47 +64,58 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            ]
 	          },
 	          {
-	            text: '区域录入',	
-	            color: "#ffffff", 
-	            backColor:"rgb(59,94,132)",
-	            //href:"/areaLuru.jsp",            
-	            nodes: [
-	              {
-	                text: '区域信息'	                
-	              },
-	              {
-	                text: '投资数据'	                
-	              },
-	              {
-	                text: '区域中位数房价'	                
-	              },
-	              {
-	                text: '区域房价中位数走势'	                
-	              },
-	              {
-	                text: '区域租金走势'	                
-	              },
-	              {
-	                text: '区域资金回报率走势'	                
-	              },
-	              {
-	                text: '区域特点'	                
-	              },
-	              {
-	                text: '区域人口分布'	                
-	              },
-	              {
-	                text: '区域家庭构成'	                
-	              },
-	              {
-	                text: '经纪人信息'	               
-	              },
-	              {
-	                text: '推荐项目'
-	              }
-	              
-	            ]
-	          },
+		            text: '区域录入',	
+		            color: '#ffffff', 
+		            backColor:'rgb(59,94,132)',
+		            //href:'/areaLuru.jsp',            
+		            nodes: [
+		              {
+		                text: '区域信息',
+			            href:'#areainfo'	                
+		              },
+		              {
+		                text: '投资数据',
+		                href:'#invest'	                
+		              },
+		              {
+			            text: '区域家庭构成'	,
+			            href:'#family'                
+			          },
+		              {
+		                text: '区域中位数房价',
+		                href:'#midprice' 	                
+		              },
+		              {
+		                text: '区域房价中位数走势',
+		                href:'#pricetrend' 	                
+		              },
+		              {
+		                text: '区域租金走势'	,
+		                href:'#zujintrend'                 
+		              },
+		              {
+		                text: '区域资金回报率走势',
+		                href:'#huibaotrend' 	                
+		              },
+		              {
+		                text: '区域特点',
+		                href:'#tedian' 	                
+		              },
+		              {
+		                text: '区域人口分布',
+		                href:'#people'                 
+		              },
+		              {
+		                text: '经纪人信息',
+		                href:'#broker'	               
+		              },
+		              {
+		                text: '推荐项目',
+		                href:'#project'
+		              }
+		              
+		            ]
+		          },
 	         /*  {
 	           text: '管理员',	
 	           color: "#ffffff", 
@@ -121,10 +132,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	          //color: "#428bca",
 	          color: "#000000",
 	          data: defaultData,
+	          enableLinks:true,
 	         onNodeSelected: function(event, node) {
 	           if(node.text=="项目信息"){
 	           $("#showlist").load("ProjectInput.jsp");
 	           }
+	           if(node.text=="区域录入"){
+		           $("#showlist").load("areaLuru.jsp");
+		           }
 	           /* if(node.text=="The Elements"){
 	           $("#showlist").load("Elements.jsp");
 	           }
