@@ -66,7 +66,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	          {
 	            text: '区域录入',	
 	            color: "#ffffff", 
-	            backColor:"rgb(59,94,132)",            
+	            backColor:"rgb(59,94,132)",
+	            //href:"/areaLuru.jsp",            
 	            nodes: [
 	              {
 	                text: '区域信息'	                
@@ -115,7 +116,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	             ]
 	          } */
 	        ];
-	        //$("#showlist").load("zy_HouseProject.jsp");
+	        $("#showlist").load("areaLuru.jsp");
 	        $('#treeview').treeview({
 	          //color: "#428bca",
 	          color: "#000000",
