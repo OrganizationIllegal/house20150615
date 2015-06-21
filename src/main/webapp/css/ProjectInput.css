@@ -1,0 +1,55 @@
+html,body{height:100%;background-color:#fff;margin:0px;overflow-x:auto;overflow-y:auto;font-family:微软雅黑}
+.current{
+	float:left;
+	background-color:rgb(59,94,132);
+	height:60px;
+	width:900px;
+}
+.current span{
+	margin-left:30px;
+	color:white;
+	line-height:60px;
+	font-size:18px;
+}
+.title{
+	float:left;
+	background-color:rgb(193,217,241);
+	height:60px;
+	width:1190px;
+}
+.title span{
+	margin-left:30px;
+	line-height:60px;
+	font-size:18px;
+}
+.xiangmu{
+	float:left;
+	-background-color:rgb(193,217,241);
+	-height:60px;
+	width:900px;
+	padding-left:30px;
+	padding-right:30px;
+}
+.xiangmu .zuo{
+	float:left;
+	height:50px;
+	width:50%;
+	line-height:50px;
+}
+.xiangmu .you{
+	float:left;
+	height:50px;
+	width:50%;
+	line-height:50px;
+}
+.name{
+	float:left;
+	width:110px;
+}
+.shurukuang{
+	height:30px;
+	width:260px;
+	vertical-align:middle;
+	line-height:50px;
+	margin-top:10px;
+}

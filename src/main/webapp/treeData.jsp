@@ -120,11 +120,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	          //color: "#428bca",
 	          color: "#000000",
 	          data: defaultData,
-	         /*  onNodeSelected: function(event, node) {
-	           if(node.text=="项目"){
-	           $("#showlist").load("zy_HouseProject.jsp");
+	         onNodeSelected: function(event, node) {
+	           if(node.text=="项目信息"){
+	           $("#showlist").load("ProjectInput.jsp");
 	           }
-	           if(node.text=="The Elements"){
+	           /* if(node.text=="The Elements"){
 	           $("#showlist").load("Elements.jsp");
 	           }
 	           if(node.text=="价格区间"){
@@ -199,8 +199,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	           }
 	             if(node.text=="管理员查看留言"){
 	           $("#showlist").load("Message.jsp");
-	           }
-	          } */
+	           }*/
+	          } 
 	        });
  });
  </script>

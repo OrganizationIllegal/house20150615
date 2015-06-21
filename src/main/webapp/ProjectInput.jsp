@@ -15,27 +15,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      <link href="/bootstrap/css/bootstrap-table.css" rel="stylesheet">
      <link href="/bootstrap/css/bootstrap-editable.css" rel="stylesheet">
      <link href="/bootstrap/css/examples.css" rel="stylesheet">
+     <link href="/css/ProjectInput.css" rel="stylesheet">
      <script src="/js/jquery.min.js"></script>
-     <script src="/bootstrap/js/bootstrap.min.js"></script>
+   <!--   <script src="/bootstrap/js/bootstrap.min.js"></script>
      <script src="/bootstrap/js/bootstrap-table.js"></script>
      <script src="/bootstrap/js/bootstrap-editable.js"></script>
      <script src="/bootstrap/js/bootstrap-table-export.js"></script>
      <script src="/bootstrap/js/bootstrap-table-editable.js"></script>
      <script src="/bootstrap/js/tableExport.js"></script>
-     <script src="/bootstrap/js/jquery.base64.js"></script>
-     <style>
-       span {
-       font-family:微软雅黑;
-       
-       }
-     </style>
+     <script src="/bootstrap/js/jquery.base64.js"></script> -->
 </head>
   
- <body style="width:1190px;margin:0 auto">
- 	<div id="left"  style="float:left;background-color:red;width:240px;height:300px;">
- 	</div>
- 	<div id="right"  style="float:left;-background-color:black;width:950px;height:300px">
- 		<div id="current" style="background-color:rgb(59,94,132);height:60px"><span style="color:white;line-height:60px">当前位置：项目录入 </span>
+ <body style="width:900px;margin:0 auto">
+ 	<div  style="float:left;-background-color:black;width:900px">
+ 		<div id="current" class="current"><span >当前位置：项目录入 </span>
+ 		</div>
+ 		<div id="title" class="title" ><span >项目信息 </span>
+ 		</div>
+ 		<div id="xiangmu" class="xiangmu">
+ 			<div id="zuo" class="zuo" ><span class="name">项目编号</span><input type="text" class="shurukuang"/></div>
+ 			<div id="you" class="you"><span class="name">项目名称</span><input type="text" class="shurukuang"/></div>
+ 			<div id="zuo1" class="zuo" ><span class="name">项目编号</span><input type="text" class="shurukuang"/></div>
+ 			<div id="you1" class="you"><span class="name">项目名称</span><input type="text" class="shurukuang"/></div>
  		</div>
  	</div>
 		
