@@ -12,6 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="css/base.css" />
 <link rel="stylesheet" type="text/css" href="css/main.css" />
 <link rel="stylesheet" type="text/css" href="css/areaLuru.css" />
+<script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script>
 <script src="/js/jquery.min.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <style type="text/css">
@@ -405,8 +406,61 @@ body{
 <div class="area_right3">
 <span class="area_span4"><a href="#">编辑</a></span><span class="area_span5"><a href="#">删除</a></span>
 </div>
+<div class="area_bkg2 c-fix" id="news">新闻报道</div>
+<div class="area_left">
+<span class="area_span">新闻类型</span>
+<span>
+<select class="area_select" id="project_type" name="project_type">
+  <option value ="gongyu">新闻博客</option>
+  <option value ="bieshu">置业指导</option>
+</select>
+</span>
+</div>
+<div class="area_right">
+<span class="area_span">编号</span><span><input type="text" id="num" name="num" class="area_input"></span>
+</div>
+<div class="area_left">
+<span class="area_span">标题</span><span><input type="text" id="num" name="num" class="area_input"></span>
+</div>
+<div class="area_right">
+<span class="area_span">发布人</span><span><input type="text" id="zu_price" name="zu_price" class="area_input"></span>
+</div>
+<div class="area_left">
+<span class="area_span">发布时间</span><span><input type="text" id="buy_one_name" name="buy_one_name" class="area_input"></span>
+</div>
+<div class="area_right">
+<span class="area_span">分类</span><span><input type="text" id="buy_one_price" name="buy_one_price" class="area_input"></span>
+</div>
+<div class="area_left">
+<span class="area_span">摘要</span><span><input type="text" id="buy_two_name" name="buy_two_name" class="area_input"></span>
+</div>
+<div class="area_right">
+<span class="area_span">图片</span><span><input type="text" id="buy_two_price" name="buy_two_price" class="area_input"></span>
+</div>
+<div class="area_left">
+<span class="area_span">详情</span>
+</div>
+<div class="c-fix" style="margin-bottom:15px;"><textarea id="detail" placeholder="详情" name="detail"></textarea></div>
+<div class="area_left3"></div>
+<div class="area_right3"><span class="area_span5"><a href="#">添加</a></span></div>
+<div class="area_left3">
+<span class="area_span">澳洲购房指南...</span><span class="area_span">海房优选</span>
+</div>
+<div class="area_right3">
+<span class="area_span4"><a href="#">编辑</a></span><span class="area_span5"><a href="#">删除</a></span>
+</div>
+<div class="area_left3">
+<span class="area_span">澳各大银行...</span><span class="area_span">亿忆网</span>
+</div>
+<div class="area_right3">
+<span class="area_span4"><a href="#">编辑</a></span><span class="area_span5"><a href="#">删除</a></span>
+</div>
 <div class="area_left4"><button type="submit" class="btn">提交</button></div>
 <div class="area_right4"><button type="reset" class="btn">重置</button></div>
 </div>
+
+<script type="text/javascript">
+CKEDITOR.replace( 'detail' );
+</script>
 </body>
 </html>
