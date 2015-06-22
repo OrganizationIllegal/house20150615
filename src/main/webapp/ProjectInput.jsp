@@ -22,7 +22,7 @@ body{
 </style>
 </head>
 <body>
-<div style="width:900px;margin:25px auto;height:800px;">
+<div style="width:900px;margin:25px auto;">
 <div class="area_bkg1">当前位置:项目录入</div>
 <!-- ****************************************************项目信息start***************************************************** -->
 <div class="area_bkg2">项目信息</div>
@@ -54,7 +54,14 @@ body{
 <span class="duoarea_span" >项目所在地址</span><span><textarea id="project_address" name="project_address" class="duoarea_input"></textarea></span>
 </div>
 <div class="area_right">
-<span class="area_span">项目类型</span><span><input type="text" id="project_type" name="project_type" class="area_input"></span>
+<span class="area_span">项目类型</span>
+<span>
+<select class="area_select" id="project_type" name="project_type">
+  <option >公寓</option>
+  <option >别墅</option>
+  <option>联合别墅</option>
+</select>
+</span>
 </div>
 <div class="area_right">
 <span class="area_span">户型</span><span><input type="text" id="house_type" name="house_type" class="area_input"></span>
@@ -116,15 +123,22 @@ body{
 <div class="area_right">
 <span class="area_span">持有成本说明</span><span><input type="text" id="holdCostInfo" name="holdCostInfo" class="area_input"></span>
 </div>
-</div>
+
 <!-- ****************************************************项目信息end***************************************************** -->
 
 <!-- ****************************************************开发商信息start***************************************************** -->
-<div style="width:900px;height:200px;margin:25px auto;"> 
 
-<div class="area_bkg2">开发商信息</div>
+
+<div class="area_bkg2" style="clear:both;">开发商信息</div>
 <div class="area_left">
-<span class="area_span">开发商编号</span><span><input type="text" id="developer_code" name="developer_code" class="area_input"></span>
+<span class="area_span">开发商编号</span>
+<span>
+<select class="area_select" id=developer_code name="developer_code">
+  <option >au0001</option>
+  <option >au0002</option>
+</select>
+</span>
+<!-- <span><input type="text" id="developer_code" name="developer_code" class="area_input"></span> -->
 </div>
 <div class="area_right">
 <span class="area_span">开发商名称</span><span><input type="text" id="developer_name" name="developer_name" class="area_input"></span>
@@ -136,12 +150,12 @@ body{
 <span class="area_span">开发商介绍</span><span><textarea id="developer_desc" name="developer_desc" class="duoarea_input2"></textarea></span>
 </div>
 
-</div>
+
 <!-- ****************************************************开发商信息end***************************************************** -->
 
 <!-- ****************************************************户型及价格start***************************************************** -->
-<div style="width:900px;margin:25px auto;height:240px;"> 
-<div class="area_bkg2">户型及价格</div>
+
+<div class="area_bkg2" style="clear:both;">户型及价格</div>
 <div class="area_left">
 <span class="area_span">户型名称</span><span><input type="text" id="housename" name="housename" class="area_input"></span>
 </div>
@@ -169,21 +183,21 @@ body{
 <div class="area_right">
 <span class="area_span">卫生间数量</span><span><input type="text" id="wc_num" name="wc_num" class="area_input"></span>
 </div>
-</div>
+
 <!-- ****************************************************开发商信息end***************************************************** -->
 
 <!-- ****************************************************项目配套start***************************************************** -->
-<div style="width:900px;margin:25px auto;height:80px"> 
-<div class="area_bkg2">项目配套</div>
+
+<div class="area_bkg2" style="clear:both;">项目配套</div>
 <div class="area_left">
 <span><input type="text" id="shiwai_mianji" name="shiwai_mianji" class="chang_input2"></span>
 </div>
-</div>
+
 <!-- ****************************************************项目配套end***************************************************** -->
 
 <!-- ****************************************************附近配套start***************************************************** -->
-<div style="width:900px;margin:25px auto;height:110px"> 
-<div class="area_bkg2">附近配套</div>
+
+<div class="area_bkg2" style="clear:both;">附近配套</div>
 <div class="area_left">
 <span class="area_span">配套类型</span><span><input type="text" id="peitao_type" name="peitao_type" class="area_input"></span>
 </div>
@@ -193,25 +207,33 @@ body{
 <div class="area_left">
 <span class="area_span">配套距离</span><span><input type="text" id="peitao_distance" name="peitao_distance" class="area_input"></span>
 </div>
-</div>
+
 <!-- ****************************************************附近配套end***************************************************** -->
 
 <!-- ****************************************************附近学校start***************************************************** -->
-<div style="width:900px;margin:25px auto;height:60px;"> 
-<div class="area_bkg2">附近学校</div>
+
+<div class="area_bkg2" style="clear:both;">附近学校</div>
 <div class="area_left">
-<span class="area_span">学校名称</span><span><input type="text" id="school_name" name="school_name" class="area_input"></span>
+<span class="area_span">学校名称</span>
+<span>
+<select class="area_select" id="school_name" name="school_name">
+  <option >学校1</option>
+  <option >学校2</option>
+  <option>学校3</option>
+</select>
+</span>
+<!-- <span><input type="text" id="school_name" name="school_name" class="area_input"></span> -->
 </div>
 <div class="area_right">
 <span class="area_span">学校距离</span><span><input type="text" id="school_distance" name="school_distance" class="area_input"></span>
 </div>
 
-</div>
+
 <!-- ****************************************************附近学校end***************************************************** -->
 
 <!-- ****************************************************持有成本start***************************************************** -->
-<div style="width:900px;margin:25px auto;height:145px;"> 
-<div class="area_bkg2">持有成本</div>
+
+<div class="area_bkg2" style="clear:both;">持有成本</div>
 <div class="area_left">
 <span class="area_span">类型</span><span><input type="text" id="holdcosttype" name="holdcosttype" class="area_input"></span>
 </div>
@@ -224,13 +246,11 @@ body{
 <div class="area_left">
 <span class="area_span">户型名称</span><span><input type="text" id="holdcost_housename" name="holdcost_housename" class="area_input"></span>
 </div>
-</div>
 
 <!-- ****************************************************持有成本end***************************************************** -->
 
 <!-- ****************************************************购房税费start***************************************************** -->
-<div style="width:900px;margin:25px auto;height:145px;"> 
-<div class="area_bkg2">购房税费</div>
+<div class="area_bkg2" style="clear:both;">购房税费</div>
 <div class="area_left">
 <span class="area_span">类型</span><span><input type="text" id="houseTaxtype" name="houseTaxtype" class="area_input"></span>
 </div>
@@ -243,9 +263,12 @@ body{
 <div class="area_left">
 <span class="area_span">户型名称</span><span><input type="text" id="houseTax_housename" name="houseTax_housename" class="area_input"></span>
 </div>
+<!-- ****************************************************购房税费end***************************************************** -->
+<div style="width:900px;clear:both;margin:20px auto;text-align:center;">
+<button type="submit" >提交</button>
+<button type="reset" >重置</button>
 </div>
 
-<!-- ****************************************************购房税费end***************************************************** -->
-
+</div>
 </body>
 </html>
