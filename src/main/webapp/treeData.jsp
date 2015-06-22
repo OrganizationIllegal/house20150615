@@ -14,6 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <link rel="stylesheet" type="text/css" href="css/main.css" />
    <script src="/js/jquery.min.js"></script>
    <script src="/bootstrap/js/bootstrap.min.js"></script>
+   <script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script>
 </head>
 <body>
 <jsp:include page="head4index.jsp" />
@@ -116,6 +117,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		              
 		            ]
 		          },
+		          {
+			            text: '经纪人录入',	
+			            color: '#ffffff', 
+			            backColor:'rgb(59,94,132)',           
+			            nodes: [
+			              {
+			                text: '经纪人信息',
+				            href:'#brokerinfo'	                
+			              },
+			              {
+			                text: '擅长类型',
+			                href:'#shanchang'	                
+			              },
+			              {
+				            text: '经纪人服务区域'	,
+				            href:'#fuwu'                
+				          },
+			              {
+			                text: '经纪人擅长类型',
+			                href:'#shanchangtype' 	                
+			              }
+			              
+			            ]
+			          }
 	         /*  {
 	           text: '管理员',	
 	           color: "#ffffff", 
@@ -140,82 +165,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	           if(node.text=="区域录入"){
 		           $("#showlist").load("areaLuru.jsp");
 		           }
-	           /* if(node.text=="The Elements"){
-	           $("#showlist").load("Elements.jsp");
-	           }
-	           if(node.text=="价格区间"){
-	           $("#showlist").load("Price1.jsp");
-	           }
-	           if(node.text=="户型及价格"){
-	           $("#showlist").load("houseTypeList.jsp");
-	           }
-	           if(node.text=="投资数据"){
-	           $("#showlist").load("investDataList.jsp");
-	           }
-	           if(node.text=="地区特点"){
-	           $("#showlist").load("AreaFeature.jsp");
-	           }
-	           if(node.text=="新闻报道"){
-	           $("#showlist").load("NewsInfo.jsp");
-	           }
-	           if(node.text=="推荐项目"){
-	           $("#showlist").load("recommend_item.jsp");
-	           }
-	           if(node.text=="服务团队"){
-	           $("#showlist").load("BrokerInfoList.jsp");
-	           }
-	           //区域
-	           if(node.text=="区域家庭情况构成"){
-	           $("#showlist").load("AreaFamily.jsp");
-	           }
-	           if(node.text=="区域中位数房价走势"){
-	           $("#showlist").load("AreaMiddle.jsp");
-	           }
-	           if(node.text=="区域空置率走势"){
-	           $("#showlist").load("AreaZhikong.jsp");
-	           }
-	           if(node.text=="区域租金走势"){
-	           $("#showlist").load("AreaZujin.jsp");
-	           }
-	           if(node.text=="地区特点"){
-	           $("#showlist").load("AreaFeature.jsp");
-	           }
-	           if(node.text=="人口总数"){
-	           $("#showlist").load("PeopleInfo.jsp");
-	           }
-	            if(node.text=="出生国家"){
-	           $("#showlist").load("PeopleNation.jsp");
-	           }
-	            if(node.text=="海外出生"){
-	           $("#showlist").load("PeopleForeign.jsp");
-	           }
-	            if(node.text=="平均家庭收入"){
-	           $("#showlist").load("FamilyIncome.jsp");
-	           }
-	            if(node.text=="近期区域成交情况"){
-	           $("#showlist").load("SuccessInfo.jsp");
-	           }
-	            if(node.text=="购房税费"){
-	           $("#showlist").load("HouseTax.jsp");
-	           }
-	            if(node.text=="持有成本"){
-	           $("#showlist").load("HoldCost.jsp");
-	           }
-	            if(node.text=="附近学校"){
-	           $("#showlist").load("NearSchool.jsp");
-	           }
-	            if(node.text=="附近配套"){
-	           $("#showlist").load("NearFacility.jsp");
-	           }
-	            if(node.text=="新闻博客"){
-	           $("#showlist").load("NewsBoke.jsp");
-	           }
-	            if(node.text=="置业指导"){
-	           $("#showlist").load("ZhiYeZhiDao.jsp");
-	           }
-	             if(node.text=="管理员查看留言"){
-	           $("#showlist").load("Message.jsp");
-	           }*/
+	           if(node.text=="经纪人录入"){
+		           $("#showlist").load("brokerLuru.jsp");
+		           }
 	          } 
 	        });
  });

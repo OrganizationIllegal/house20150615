@@ -52,7 +52,7 @@ body{
 <span class="area_span">经纪人描述</span>
 </div>
 <div class="c-fix" style="margin-bottom:15px;"><textarea id="introduction" placeholder="经纪人描述" name="introduction"></textarea></div>
-<div class="area_bkg2 c-fix" id="invest">擅长类型</div>
+<div class="area_bkg2 c-fix" id="shanchang">擅长类型</div>
 <div class="area_left">
 <span class="area_span">类型编号</span><span><input type="text" id="type_num" name="type_num" class="area_input"></span>
 </div>
@@ -63,7 +63,7 @@ body{
 <span class="area_span">类型图标</span><span><input type="text" id="type_image" name="type_image" class="area_input"></span>
 </div>
 <div class="area_right"></div>
-<div class="area_bkg2 c-fix" id="invest">经纪人服务区域</div>
+<div class="area_bkg2 c-fix" id="fuwu">经纪人服务区域</div>
 <div class="area_left">
 <span class="area_span">区域编号</span><span><input type="text" id="area_code" name="area_code" class="area_input"></span>
 </div>
@@ -84,7 +84,7 @@ body{
 <div class="area_right3">
 <span class="area_span4"><a href="#">编辑</a></span><span class="area_span5"><a href="#">删除</a></span>
 </div>
-<div class="area_bkg2 c-fix" id="invest">经纪人擅长类型</div>
+<div class="area_bkg2 c-fix" id="shanchangtype">经纪人擅长类型</div>
 <div class="area_left">
 <span class="area_span">擅长类型编号</span><span><input type="text" id="interested_num" name="interested_num" class="area_input"></span>
 </div>
