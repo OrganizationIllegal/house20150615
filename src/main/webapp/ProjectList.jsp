@@ -137,11 +137,11 @@ body{
 <div class="area_left" style="width:900px">
 <span class="area_span">开发商编号及名称</span>
 <span>
+ <c:forEach var="codeAndName"  items="${codeAndNameSet}" >
 <select class="area_select" id=developer_code name="developer_code" style="width:670px">
-         <c:forEach items="${codeAndNameSet}" var="item">
-        		 <option>${item}</option>
-       	</c:forEach>
+  <option >${codeAndName}</option>
 </select>
+</c:forEach>
 </span>
 </div>
 <!-- <div class="area_right">
@@ -281,21 +281,6 @@ body{
 <script type="text/javascript">
 window.onload=function(){
 	alert("pppppppppppppp");
-	  $.ajax({
-	 	    type: "POST",
-	 		//data: { ids : ids},
-	 		dateType: "json",
-	 		url: "/ProjectInput",
-	 		
-	 		success:function(data){
-	 			alert("成功")
-	 			//window.location.reload();
-	 		},
-	 		error:function(){
-	 			alert("error")
-	 		}
-	 	});
-	 	
 }
 </script>
 </body>

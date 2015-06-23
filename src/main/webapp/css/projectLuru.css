@@ -24,3 +24,10 @@
 
 
 .area_select{width:220px;height:28px;background-color:rgb(237,238,243);border:0px;margin-left:-4px;}
+
+.shangchuan{width:700px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;}
+
+
+.area_left4{height:40px;width:450px;margin:50px auto;float:left;text-align:center;}
+.area_right4{height:40px;width:450px;margin:50px auto;float:right;text-align:center;}
+.btn{width:115px;height:40px;background-color:rgb(195,217,241);font-size:20px;}

@@ -39,28 +39,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            backColor:"rgb(59,94,132)",          
 	            nodes: [
 	              {
-	                text: '项目信息'	               
+	                text: '项目信息',
+	                href:'#projectinfo'
 	              },
 	              {
-	                text: '开发商信息'	               
+	                text: '开发商信息',	
+	                href:'#developerinfo'
 	              },
 	              {
-	                text: '户型及价格'	               
+	                text: '户型及价格',
+	                href:'#housetypeinfo'
 	              },
 	              {
-	                text: '项目配套'	               
+	                text: '项目配套',
+	                href:'#projectpeitao'
 	              },
 	              {
-	                text: '附件配套'	               
+	                text: '附件配套',
+	                href:'#nearpeitao'
 	              },
 	              {
-	                text: '附件学校'	               
+	                text: '附件学校',
+	                href:'#nearschool'
 	              },
 	              {
-	                text: '持有成本'	               
+	                text: '持有成本',
+	                href:'#holdcost'
 	              },
 	              {
-	                text: '购房税费'	               
+	                text: '购房税费',
+	                href:'#housetax'
 	              }
 	            ]
 	          },
@@ -140,7 +148,56 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			              }
 			              
 			            ]
-			          }
+			          },
+			          {
+				            text: '学校信息录入',	
+				            color: '#ffffff', 
+				            backColor:'rgb(59,94,132)',           
+				            nodes: [
+				              {
+				                text: '学校信息录入',
+					            href:'#brokerinfo'	                
+				              },
+				              
+				            ]
+				          },
+				          {
+					            text: '开发商信息录入',	
+					            color: '#ffffff', 
+					            backColor:'rgb(59,94,132)',           
+					            nodes: [
+					              {
+					                text: '开发商信息录入',
+						            href:'#brokerinfo'	                
+					              },
+					              
+					            ]
+					          },
+				          {
+					            text: '项目列表',	
+					            color: '#ffffff', 
+					            backColor:'rgb(59,94,132)',           
+					            nodes: [
+					              {
+					                text: '项目列表',
+						            href:'#brokerinfo'	                
+					              },
+					              
+					            ]
+					          },
+					          {
+						            text: '区域列表',	
+						            color: '#ffffff', 
+						            backColor:'rgb(59,94,132)',           
+						            nodes: [
+						              {
+						                text: '区域列表',
+							            href:'#brokerinfo'	                
+						              },
+						              
+						            ]
+						          },
+		          
 	         /*  {
 	           text: '管理员',	
 	           color: "#ffffff", 
@@ -152,14 +209,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	             ]
 	          } */
 	        ];
-	        $("#showlist").load("areaLuru.jsp");
+	      /*   $("#showlist").load("areaLuru.jsp"); */
+	        $("#showlist").load("ProjectInput.jsp");
 	        $('#treeview').treeview({
 	          //color: "#428bca",
 	          color: "#000000",
 	          data: defaultData,
 	          enableLinks:true,
 	         onNodeSelected: function(event, node) {
-	           if(node.text=="项目信息"){
+	           if(node.text=="项目录入"){
 	           $("#showlist").load("ProjectInput.jsp");
 	           }
 	           if(node.text=="区域录入"){
@@ -167,6 +225,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		           }
 	           if(node.text=="经纪人录入"){
 		           $("#showlist").load("brokerLuru.jsp");
+		           }
+	           if(node.text=="学校信息录入"){
+		           $("#showlist").load("SchoolInfoInput.jsp");
+		           }
+	           if(node.text=="开发商信息录入"){
+		           $("#showlist").load("SchoolInfoInput.jsp");
+		           }
+	           if(node.text=="项目列表"){
+		           $("#showlist").load("ProjectList.jsp");
+		           }
+	           if(node.text=="区域列表"){
+		           $("#showlist").load("ProjectList.jsp");
 		           }
 	          } 
 	        });
