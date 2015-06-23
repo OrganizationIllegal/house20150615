@@ -77,7 +77,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            text: '区域录入',	
 		            color: '#ffffff', 
 		            backColor:'rgb(59,94,132)',
-		            //href:'/areaLuru.jsp',            
+		            href:'#title',            
 		            nodes: [
 		              {
 		                text: '区域信息',
@@ -129,7 +129,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		          {
 			            text: '经纪人录入',	
 			            color: '#ffffff', 
-			            backColor:'rgb(59,94,132)',           
+			            backColor:'rgb(59,94,132)',   
+			            href:'#title',          
 			            nodes: [
 			              {
 			                text: '经纪人信息',
@@ -153,7 +154,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			          {
 				            text: '学校信息录入',	
 				            color: '#ffffff', 
-				            backColor:'rgb(59,94,132)',           
+				            backColor:'rgb(59,94,132)', 
+				            href:'#title',            
 				            nodes: [
 				              {
 				                text: '学校信息录入',
@@ -165,7 +167,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				          {
 					            text: '开发商信息录入',	
 					            color: '#ffffff', 
-					            backColor:'rgb(59,94,132)',           
+					            backColor:'rgb(59,94,132)',  
+					            href:'#title',           
 					            nodes: [
 					              {
 					                text: '开发商信息录入',
@@ -177,7 +180,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				          {
 					            text: '项目列表',	
 					            color: '#ffffff', 
-					            backColor:'rgb(59,94,132)',           
+					            backColor:'rgb(59,94,132)',      
+					            href:'#title',       
 					            nodes: [
 					              {
 					                text: '项目列表',
@@ -189,7 +193,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					          {
 						            text: '区域列表',	
 						            color: '#ffffff', 
-						            backColor:'rgb(59,94,132)',           
+						            backColor:'rgb(59,94,132)',   
+						            href:'#title',          
 						            nodes: [
 						              {
 						                text: '区域列表',
