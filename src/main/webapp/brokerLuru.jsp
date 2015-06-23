@@ -45,10 +45,13 @@ body{
 <span class="area_span">经纪人资质</span><span><input type="text" id="broker_zizhi" name="broker_zizhi" class="area_input"></span>
 </div>
 <div class="area_left">
-<span class="area_span">经纪人经验</span><span><input type="text" id="broker_experience" name="broker_experience" class="area_input"></span>
+<span class="area_span ">经纪人经验</span><span><input type="text" id="broker_experience" name="broker_experience" class="area_input"></span>
 </div>
-<div class="area_right"><span class="area_span">经纪人图片</span><span ><input type="text" class="area_input"></span></div>
-<div class="area_left">
+<div class="c-fix" style="padding-left:35px;">
+<span class="area_span">经纪人图片</span>
+<span style="float:right;"> <input type="file" name="projectimage" id="projectimage" style="width:677px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"/><a href="#">上传</a></span>
+</div>
+<div class="area_left c-fix">
 <span class="area_span">经纪人描述</span>
 </div>
 <div class="c-fix" style="margin-bottom:15px;"><textarea id="introduction" placeholder="经纪人描述" name="introduction"></textarea></div>
