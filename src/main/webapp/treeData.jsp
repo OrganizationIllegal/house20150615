@@ -17,6 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script>
 </head>
 <body>
+<input type="hidden" id="top"/>
 <jsp:include page="head4index.jsp" />
  <div class="container">
  <div class="row">
@@ -156,7 +157,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				            nodes: [
 				              {
 				                text: '学校信息录入',
-					            href:'#brokerinfo'	                
+					            href:'#title'	                
 				              },
 				              
 				            ]
@@ -168,7 +169,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					            nodes: [
 					              {
 					                text: '开发商信息录入',
-						            href:'#brokerinfo'	                
+						            href:'#title'	                
 					              },
 					              
 					            ]
@@ -180,7 +181,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					            nodes: [
 					              {
 					                text: '项目列表',
-						            href:'#brokerinfo'	                
+						            href:'#title'	                
 					              },
 					              
 					            ]
@@ -192,7 +193,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						            nodes: [
 						              {
 						                text: '区域列表',
-							            href:'#brokerinfo'	                
+							            href:'#title'	                
 						              },
 						              
 						            ]
