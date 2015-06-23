@@ -30,7 +30,22 @@ public class ProjectInfoController {
 		req.setAttribute("codeAndNameSet", codeAndNameSet);
 		return "/ProjectInput.jsp";
 	}
-	
+	//项目列表
+	@RequestMapping({ "/ProjectInfoList" })    
+	public void selectProjectList(HttpServletRequest req, HttpServletResponse resp){
+		JSONObject json = new JSONObject();
+		JSONArray array = new JSONArray();
+		array = projectInputDao.selectProjectList();
+		int count = array.size();
+		json.put("total", count);
+		json.put("rows", array);
+		
+		try{
+			writeJson(json.toJSONString(),resp);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	
 	public void writeJson(String json, HttpServletResponse response)throws Exception{
 	    response.setContentType("text/html");

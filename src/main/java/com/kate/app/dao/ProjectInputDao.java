@@ -2,10 +2,16 @@ package com.kate.app.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 
 @Repository 
 public class ProjectInputDao extends BaseDao {
@@ -26,6 +32,25 @@ public class ProjectInputDao extends BaseDao {
 		}
 		return codeAndNameSet;
 	}
-	
+	//项目列表
+	public JSONArray selectProjectList(){
+		JSONArray jsonArray=new JSONArray();
+		try {
+			String sql = " select t.id,t.project_num,t.project_name from house_project t";
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				JSONObject obj = new JSONObject();
+				obj.put("id", rs.getInt("id"));
+				obj.put("project_num", rs.getString("project_num"));
+				obj.put("project_name", rs.getString("project_name"));
+				jsonArray.add(obj);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jsonArray;
+	} 
 	
 }

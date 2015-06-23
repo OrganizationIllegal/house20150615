@@ -27,15 +27,17 @@ body{
 <!-- ****************************************************学校信息start***************************************************** -->
 <div class="area_bkg2">开发商信息录入</div>
 <div class="area_left">
-<span class="area_span">学校名称</span><span><input type="text" id="school_name" name="school_name" class="area_input"></span>
+<span class="area_span">开发商名称</span><span><input type="text" id="developer_name" name="developer_name" class="area_input"></span>
 </div>
 <div class="area_right">
-<span class="area_span">学校排名</span><span><input type="text" id="school_rank" name="school_rank" class="area_input"></span>
+<span class="area_span">开发商logo</span><span><input type="text" id="developer_logo" name="developer_logo" class="area_input"></span>
 </div>
 <div class="area_left">
-<span class="area_span">学校类型</span><span><input type="text" id="school_type" name="school_type" class="area_input"></span>
+<span class="area_span">开发商编号</span><span><input type="text" id="developer_num" name="developer_num" class="area_input"></span>
 </div>
-
+<div class="duoarea_left2">
+<span class="area_span">开发商介绍</span><span><textarea id="developer_desc" name="developer_desc" class="duoarea_input2"></textarea></span>
+</div>
 <!-- ****************************************************学校信息end***************************************************** -->
 
 

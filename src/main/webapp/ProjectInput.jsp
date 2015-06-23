@@ -140,7 +140,7 @@ body{
 <select class="area_select" id=developer_code name="developer_code" style="width:670px">
          <c:forEach items="${codeAndNameSet}" var="item">
         		 <option>${item}</option>
-       	</c:forEach>
+       	 </c:forEach>
 </select>
 </span>
 </div>

@@ -218,7 +218,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	          enableLinks:true,
 	         onNodeSelected: function(event, node) {
 	           if(node.text=="项目录入"){
-	           $("#showlist").load("ProjectInput.jsp");
+	           		$("#showlist").load("ProjectInput.jsp");
 	           }
 	           if(node.text=="区域录入"){
 		           $("#showlist").load("areaLuru.jsp");
@@ -230,7 +230,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		           $("#showlist").load("SchoolInfoInput.jsp");
 		           }
 	           if(node.text=="开发商信息录入"){
-		           $("#showlist").load("SchoolInfoInput.jsp");
+		           $("#showlist").load("DeveloperInfoInput.jsp");
 		           }
 	           if(node.text=="项目列表"){
 		           $("#showlist").load("ProjectList.jsp");
