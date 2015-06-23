@@ -434,10 +434,11 @@ body{
 <div class="area_left">
 <span class="area_span">摘要</span><span><input type="text" id="buy_two_name" name="buy_two_name" class="area_input"></span>
 </div>
-<div class="area_right">
-<span class="area_span">图片</span><span><input type="text" id="buy_two_price" name="buy_two_price" class="area_input"></span>
+<div class="c-fix" style="padding-left:35px;">
+<span class="area_span">图片</span>
+<span style="float:right;"> <input type="file" name="projectimage" id="projectimage" style="width:677px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"/><a href="#">上传</a></span>
 </div>
-<div class="area_left">
+<div class="area_left c-fix">
 <span class="area_span">详情</span>
 </div>
 <div class="c-fix" style="margin-bottom:15px;"><textarea id="detail" placeholder="详情" name="detail"></textarea></div>
