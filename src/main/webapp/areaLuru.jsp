@@ -349,12 +349,15 @@ body{
 <span class="area_span">经纪人姓名</span>
 <span>
 <select class="area_select" id="broker_name" name="broker_name">
-  <option value ="broker1">韩嵩</option>
+ <!--  <option value ="broker1">韩嵩</option>
   <option value ="broker2">李海涛</option>
   <option value ="broker3">阎松</option>
   <option value ="broker4">王舒</option>
   <option value ="broker5">张淑媛</option>
-  <option value ="broker6">王菲</option>
+  <option value ="broker6">王菲</option> -->
+   <c:forEach items="${brolerNameSet}" var="item">
+        		 <option>${item}</option>
+   </c:forEach>
 </select>
 </span>
 </div>
@@ -378,7 +381,7 @@ body{
 <span class="area_span">项目名称</span>
 <span>
 <select class="area_select" id="project_name" name="project_name">
-  <option value ="pro1">The Atrium</option>
+ <!--  <option value ="pro1">The Atrium</option>
   <option value ="pro2">Thrive Parkside</option>
   <option value ="pro3">The Moreland</option>
   <option value ="pro4">Regent Residences</option>
@@ -387,7 +390,10 @@ body{
   <option value ="pro7">Forest Ridge</option>
   <option value ="pro8">Claremont Manor</option>
   <option value ="pro9">Kornhill Gardens</option>
-  <option value ="pro10">Evergreen</option>
+  <option value ="pro10">Evergreen</option> -->
+  <c:forEach items="${projectNameSet}" var="item">
+        		 <option>${item}</option>
+   </c:forEach>
 </select>
 </span>
 </div>

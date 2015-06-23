@@ -227,7 +227,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	           		$("#showlist").load("ProjectInput.jsp");
 	           }
 	           if(node.text=="区域录入"){
-		           $("#showlist").load("areaLuru.jsp");
+		           /* $("#showlist").load("areaLuru.jsp"); */
+		           $("#showlist").load("/AreaInput");
 		           }
 	           if(node.text=="经纪人录入"){
 		           $("#showlist").load("brokerLuru.jsp");
@@ -242,7 +243,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		           $("#showlist").load("ProjectList.jsp");
 		           }
 	           if(node.text=="区域列表"){
-		           $("#showlist").load("ProjectList.jsp");
+		           $("#showlist").load("areaList.jsp");
 		           }
 	          } 
 	        });
