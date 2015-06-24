@@ -17,6 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script>
 </head>
 <body>
+<input type="hidden" id="top"/>
 <jsp:include page="head4index.jsp" />
  <div class="container">
  <div class="row">
@@ -76,7 +77,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            text: '区域录入',	
 		            color: '#ffffff', 
 		            backColor:'rgb(59,94,132)',
-		            //href:'/areaLuru.jsp',            
+		            href:'#title',            
 		            nodes: [
 		              {
 		                text: '区域信息',
@@ -128,7 +129,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		          {
 			            text: '经纪人录入',	
 			            color: '#ffffff', 
-			            backColor:'rgb(59,94,132)',           
+			            backColor:'rgb(59,94,132)',   
+			            href:'#title',          
 			            nodes: [
 			              {
 			                text: '经纪人信息',
@@ -150,13 +152,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			            ]
 			          },
 			          {
+				            text: '新闻博客录入',	
+				            color: '#ffffff', 
+				            backColor:'rgb(59,94,132)', 
+				            href:'#title',            
+				            nodes: [
+				              {
+				                text: '新闻博客',
+					            href:'#title'	                
+				              },
+				              
+				            ]
+				          },
+				          {
+					            text: '置业指导录入',	
+					            color: '#ffffff', 
+					            backColor:'rgb(59,94,132)', 
+					            href:'#title',            
+					            nodes: [
+					              {
+					                text: '置业指导',
+						            href:'#title'	                
+					              },
+					              
+					            ]
+					          },
+			          {
 				            text: '学校信息录入',	
 				            color: '#ffffff', 
-				            backColor:'rgb(59,94,132)',           
+				            backColor:'rgb(59,94,132)', 
+				            href:'#title',            
 				            nodes: [
 				              {
 				                text: '学校信息录入',
-					            href:'#brokerinfo'	                
+					            href:'#title'	                
 				              },
 				              
 				            ]
@@ -164,11 +193,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				          {
 					            text: '开发商信息录入',	
 					            color: '#ffffff', 
-					            backColor:'rgb(59,94,132)',           
+					            backColor:'rgb(59,94,132)',  
+					            href:'#title',           
 					            nodes: [
 					              {
 					                text: '开发商信息录入',
-						            href:'#brokerinfo'	                
+						            href:'#title'	                
 					              },
 					              
 					            ]
@@ -176,11 +206,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				          {
 					            text: '项目列表',	
 					            color: '#ffffff', 
-					            backColor:'rgb(59,94,132)',           
+					            backColor:'rgb(59,94,132)',      
+					            href:'#title',       
 					            nodes: [
 					              {
 					                text: '项目列表',
-						            href:'#brokerinfo'	                
+						            href:'#title'	                
 					              },
 					              
 					            ]
@@ -188,11 +219,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					          {
 						            text: '区域列表',	
 						            color: '#ffffff', 
-						            backColor:'rgb(59,94,132)',           
+						            backColor:'rgb(59,94,132)',   
+						            href:'#title',          
 						            nodes: [
 						              {
 						                text: '区域列表',
-							            href:'#brokerinfo'	                
+							            href:'#title'	                
 						              },
 						              
 						            ]
@@ -221,10 +253,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	           		$("#showlist").load("ProjectInput.jsp");
 	           }
 	           if(node.text=="区域录入"){
-		           $("#showlist").load("areaLuru.jsp");
+		           /* $("#showlist").load("areaLuru.jsp"); */
+		           $("#showlist").load("/AreaInput");
 		           }
 	           if(node.text=="经纪人录入"){
 		           $("#showlist").load("brokerLuru.jsp");
+		           }
+	           if(node.text=="新闻博客录入"){
+		           $("#showlist").load("newsLuru.jsp");
+		           }
+	           if(node.text=="置业指导录入"){
+		           $("#showlist").load("zhiyeLuru.jsp");
 		           }
 	           if(node.text=="学校信息录入"){
 		           $("#showlist").load("SchoolInfoInput.jsp");
@@ -236,7 +275,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		           $("#showlist").load("ProjectList.jsp");
 		           }
 	           if(node.text=="区域列表"){
-		           $("#showlist").load("ProjectList.jsp");
+		           $("#showlist").load("areaList.jsp");
 		           }
 	          } 
 	        });

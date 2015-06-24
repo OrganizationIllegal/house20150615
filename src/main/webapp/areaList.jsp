@@ -7,7 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Service Protocol</title>
+<title>区域录入</title>
 <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/base.css" />
 <link rel="stylesheet" type="text/css" href="css/main.css" />
@@ -40,20 +40,19 @@ body{
 </head>
 <body>
 <div style="width:900px;margin:25px auto;">
-<div class="area_bkg1">当前位置:项目录入</div>
- <table id="table"
-           
+<div class="area_bkg1">当前位置:区域列表</div>
+ <table id="table"          
            data-pagination="true"
            data-side-pagination="server"
-           data-url="/ProjectInfoList"
+           data-url="/AreaInfoList"
            data-response-handler="responseHandler"
            >
         <thead>
         <tr>
             <th data-field="state" data-checkbox="true"></th>
-            <th data-field="id" data-sortable="true"data-editable="true">ID</th>
-            <th data-field="project_num" data-sortable="true" data-editable="true">项目编号</th>
-            <th data-field="project_name" data-sortable="true" data-editable="true">项目名称</th>
+            <th data-field="id" data-sortable="true" data-editable="true">ID</th>
+            <th data-field="area_num" data-sortable="true" data-editable="true">区域编号</th>
+            <th data-field="area_name" data-sortable="true" data-editable="true">区域名称</th>
             <th data-field="operate"
                 data-formatter="operateFormatter"
                 data-events="operateEvents">Item Operate</th>
