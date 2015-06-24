@@ -147,32 +147,52 @@ public class ProjectInfoController {
 		String school_image=req.getParameter("schoolimg");
 		String school_desc=req.getParameter("school_intro");
 	    flag=projectInputDao.InsertSchoolInfo(school_name, school_ranking, school_type, school_total, teacher_total, school_position, gps, net_info, not_en_stu_bili, school_image, school_desc);
-		json.put("flag", flag);
-		try{
+		
+	    if(flag==false){
+	    	json.put("flag", "0");
+	    }
+	    else{
+	    	json.put("flag", "1");
+	    }
+	/*	try{
 			 PrintWriter out = resp.getWriter();
 			 out.print(json);
 			}catch(Exception e){
 				e.printStackTrace();
+		}*/
+	    try{
+			writeJson(json.toJSONString(),resp);
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 	}
 	@RequestMapping({ "/AddDeveloperInfo" })
 	public void InsertDeveloperInfo(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
-		boolean flag = false;
 		String developer_name=req.getParameter("developer_name");
 		String developer_logo=req.getParameter("developer_logo");
 		String  developer_desc=req.getParameter("developer_desc");
 		
 		String developer_num=req.getParameter("developer_num");
 		
-	    flag=projectInputDao.InsertDeveloperInfo(developer_name, developer_logo, developer_desc, developer_num);
-		json.put("flag", flag);
+	   boolean flagbol=projectInputDao.InsertDeveloperInfo(developer_name, developer_logo, developer_desc, developer_num);
+	    if(flagbol==false){
+	    	json.put("flag", "0");
+		}
+	    else{
+	    	json.put("flag", "1");
+	    }
 		try{
 			 PrintWriter out = resp.getWriter();
 			 out.print(json);
 			}catch(Exception e){
 				e.printStackTrace();
 		}
+	  /*  try{
+			writeJson(json.toJSONString(),resp);
+		}catch(Exception e){
+			e.printStackTrace();
+		}*/
 	}
 	
 	public void writeJson(String json, HttpServletResponse response)throws Exception{

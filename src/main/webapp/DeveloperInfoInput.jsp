@@ -42,10 +42,40 @@ body{
 
 
 <div style="width:900px;clear:both;margin:20px auto;text-align:center;">
-<button type="submit" >提交</button>
+<!-- <button type="submit" >提交</button>
+<button type="reset" >重置</button> -->
+<button  type="button" onclick="save()">提交</button>
 <button type="reset" >重置</button>
 </div>
 
 </div>
+
 </body>
 </html>
+
+<script type="text/javascript">
+   function save(){
+     var developer_name=$("#developer_name").val();
+     var developer_logo=$("#developer_logo").val();
+     var developer_num=$("#developer_num").val();
+     var developer_desc=$("#developer_desc").val();
+     $.ajax({
+	 	   type: "GET",
+	 		data: { developer_name : developer_name,developer_logo:developer_logo,developer_num:developer_num,developer_desc:developer_desc},
+	 		async: false, 
+	 		dataType: "json",
+	 		url: "/AddDeveloperInfo",
+	 		success:function(data){
+	 			alert("okokokoko");
+	 			alert(data);
+	 			alert(data.flag);
+	 			if(data.flag == 1){
+	 				alert("添加成功");
+	 			}
+	 		},
+	 		error:function(){
+	 			alert("error")
+	 		}
+	 	});
+    }
+</script>

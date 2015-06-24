@@ -25,7 +25,6 @@ body{
 <div style="width:900px;margin:25px auto;">
 <div class="area_bkg1">当前位置:学校信息录入</div>
 <!-- ****************************************************学校信息start***************************************************** -->
-<form>
 <div class="area_bkg2">学校信息</div>
 <div class="area_left">
 <span class="area_span">学校名称</span><span><input type="text" id="school_name" name="school_name" class="area_input"></span>
@@ -66,10 +65,45 @@ body{
 
 
 <div style="width:900px;clear:both;margin:20px auto;text-align:center;">
-<button type="submit" >提交</button>
+<button type="submit" onclick="save()" >提交</button>
 <button type="reset" >重置</button>
 </div>
-</form>
 </div>
+<script type="text/javascript">
+   function save(){
+     var school_name=$("#school_name").val();
+     var school_rank=$("#school_rank").val();
+     var school_type=$("#school_type").val();
+     var school_total=$("#school_total").val();
+     var teacher_num=$("#teacher_num").val();
+     var school_position=$("#school_position").val();
+     var school_gps=$("#school_gps").val();
+     var school_url=$("#school_url").val();
+     var non_en_studen_trate=$("#non_en_studen_trate").val();
+    var  schoolimg=$("#schoolimg").val();
+    var school_intro=$("#school_intro").val();
+     $.ajax({
+     		async : false,
+	 	    type: "POST",
+	 		data: { school_name : school_name,school_rank:school_rank,school_type:school_type,school_total:school_total,teacher_num:teacher_num,school_position:school_position,school_gps:school_gps,school_url:school_url,non_en_studen_trate:non_en_studen_trate,schoolimg:schoolimg,school_intro:school_intro},
+	 		dataType: "json",
+	 		url: "/AddschoolInfo",
+	 		success:function(data){
+	 			//window.location.reload();
+	 			alert(data);
+	 			alert(data.flag);
+	 			if(data.flag==1){
+	 				alert("添加成功");
+	 			}
+	 			if(data.flag==0){
+	 				alert("添加失败");
+	 			}
+	 		},
+	 		error:function(){
+	 			alert("error")
+	 		}
+	 	});
+    }
+</script>
 </body>
 </html>
