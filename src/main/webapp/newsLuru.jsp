@@ -26,6 +26,7 @@ body{
 <div style="width:900px;margin:25px auto;">
 <div class="area_bkg1">当前位置:新闻录入</div>
 <div class="area_bkg2" id="brokerinfo">新闻博客</div>
+<form action="/inputNewsBoke" method="post">
 <div class="area_left">
 <span class="area_span">新闻编号</span><span><input type="text" id="news_num" name="news_num" class="area_input"></span>
 </div>
@@ -52,10 +53,10 @@ body{
 <span class="area_span">新闻详情</span>
 </div>
 <div class="c-fix" style="margin-bottom:15px;"><textarea id="news_detail" placeholder="新闻详情" name="news_detail"></textarea></div>
-<div class="area_left4"><button type="submit" class="btn">提交</button></div>
+<div class="area_left4"><button type="submit" class="btn" id="tijiao">提交</button></div>
 <div class="area_right4"><button type="reset" class="btn">重置</button></div>
 </div>
-
+</form>
 <script type="text/javascript">
 CKEDITOR.replace( 'news_detail' );
 </script>
