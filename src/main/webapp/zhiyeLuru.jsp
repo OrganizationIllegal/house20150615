@@ -52,12 +52,40 @@ body{
 <span class="area_span">详情</span>
 </div>
 <div class="c-fix" style="margin-bottom:15px;"><textarea id="detail" placeholder="详情" name="detail"></textarea></div>
-<div class="area_left4"><button type="submit" class="btn">提交</button></div>
+<div class="area_left4"><button type="button" class="btn" onclick="add()">提交</button></div>
 <div class="area_right4"><button type="reset" class="btn">重置</button></div>
 </div>
 
 <script type="text/javascript">
 CKEDITOR.replace( 'detail' );
+</script>
+<script type="text/javascript">
+  function add(){
+	  var zhiye_num=$("#zhiye_num").val();
+	  var title=$("#title").val();
+	  var fabu_people=$("#fabu_people").val();
+	  var fabu_time=$("#fabu_time").val();
+	  var fenlei=$("#fenlei").val();
+	  var zhiye_abstract=$("#zhiye_abstract").val();
+	  var image=$("#image").val();
+	  var detail=$("#detail").val();
+	  $.ajax({
+	 	    type: "POST",
+	 		data: { zhiye_num : zhiye_num,title : title,fabu_people : fabu_people,fabu_time : fabu_time,fenlei : fenlei,zhiye_abstract : zhiye_abstract,image : image,detail : detail},
+	 		dataType: "json",
+	 		url: "/inputZhiYe",
+	 		success:function(data){
+	 			if(data.flag == 1){
+	 				alert("添加成功！");
+	 			}else if(data.flag == 0){
+	 				alert("添加失败！");
+	 			}
+	 		},
+	 		error:function(){
+	 			alert("error")
+	 		}
+	 	});
+	  }
 </script>
 </body>
 </html>

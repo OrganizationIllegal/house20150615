@@ -2,6 +2,7 @@ package com.kate.app.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -74,5 +75,76 @@ public class AreaInputDao extends BaseDao {
 		}
 		return jsonArray;
 	} 
+	//添加经纪人服务区域
+	public int InsertServiceArea(String  broker_num,String area_code,int view_shunxu){
+		int exeResult=0;
+		try {
+			String sql = "insert into broker_service_area(broker_num,area_code,view_shunxu) values(?,?,?)";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, broker_num);
+			pstmt.setString(2, area_code);
+			pstmt.setInt(3, view_shunxu);
+			exeResult = pstmt.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return exeResult;
+	}  
 	
+	//添加经纪人擅长类型
+		public int InsertInteType(String  broker_num,String interested_num,int view_shunxu){
+			int exeResult=0;
+			try {
+				String sql = "insert into broker_interested_type(broker_num,interested_num,view_shunxu) values(?,?,?)";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, broker_num);
+				pstmt.setString(2, interested_num);
+				pstmt.setInt(3, view_shunxu);
+				exeResult = pstmt.executeUpdate();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return exeResult;
+		}  
+		//添加擅长类型
+				public int InsertInteType2(String  type_num,String type_name,String type_image){
+					int exeResult=0;
+					try {
+						String sql = "insert into interest_type(type_num,type_name,type_image) values(?,?,?)";
+						PreparedStatement pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, type_num);
+						pstmt.setString(2, type_name);
+						pstmt.setString(3, type_image);
+						exeResult = pstmt.executeUpdate();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return exeResult;
+				}  
+		 //添加经纪人信息	
+				public int insertBrokerInfo(String broker_name, String broker_language, String broker_region, String broker_img,int broker_experience, String broker_num, String broker_type, String broker_zizhi, String introduction) throws SQLException{
+					int exeResult=0;
+					try{
+						String sql = " insert into broker_info(broker_name, broker_language, broker_region, broker_img, broker_experience, broker_num, broker_type, broker_zizhi, introduction) values(?,?,?,?,?,?,?,?,?)";
+						PreparedStatement pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, broker_name);
+						pstmt.setString(2, broker_language);
+						pstmt.setString(3, broker_region);
+						pstmt.setString(4, broker_img);
+						pstmt.setInt(5, broker_experience);
+						pstmt.setString(6, broker_num);
+						pstmt.setString(7, broker_type);
+						pstmt.setString(8, broker_zizhi);
+						pstmt.setString(9, introduction);
+						exeResult = pstmt.executeUpdate();
+					}catch (Exception e) {
+			            e.printStackTrace();
+			        }
+					return exeResult;
+			        
+				}
+				
 }
