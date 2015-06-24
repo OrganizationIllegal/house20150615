@@ -147,4 +147,92 @@ public class AreaInputDao extends BaseDao {
 			        
 				}
 				
+				//添加区域中位数房价	
+				public int insertMiddlePrice(int buy_price,int zu_price,String buy_one_name,int buy_one_price,String buy_two_name,int buy_two_price,String buy_three_name,int buy_three_price,String zu_one_name,int zu_one_price,String zu_two_name,int zu_two_price,String zu_three_name,int zu_three_price,String project_type,String area_quyu) throws SQLException{
+					int exeResult=0;
+					try{
+						String sql = " insert into area_middle_price(buy_price, zu_price, buy_one_name, buy_one_price, buy_two_name, buy_two_price, buy_three_name, buy_three_price, zu_one_name,zu_one_price,zu_two_name,zu_two_price,zu_three_name,zu_three_price,project_type,area_quyu) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+						PreparedStatement pstmt = con.prepareStatement(sql);
+						pstmt.setInt(1, buy_price);
+						pstmt.setInt(2, zu_price);
+						pstmt.setString(3, buy_one_name);
+						pstmt.setInt(4, buy_one_price);
+						pstmt.setString(5, buy_two_name);
+						pstmt.setInt(6, buy_two_price);
+						pstmt.setString(7, buy_three_name);
+						pstmt.setInt(8, buy_three_price);
+						pstmt.setString(9, zu_one_name);
+						pstmt.setInt(10, zu_one_price);
+						pstmt.setString(11, zu_two_name);
+						pstmt.setInt(12, zu_two_price);
+						pstmt.setString(13, zu_three_name);
+						pstmt.setInt(14, zu_three_price);
+						pstmt.setString(15, project_type);
+						pstmt.setString(16, area_quyu);
+						exeResult = pstmt.executeUpdate();
+					}catch (Exception e) {
+			            e.printStackTrace();
+			        }
+					return exeResult;
+			        
+				}
+				
+				//添加房价中位数走势
+				public int insertMidTrend(String  heng,int zong,int view_shunxu,String project_type,String area_code){
+					int exeResult=0;
+					try {
+						String sql = "insert into area_middle(heng,zong,view_shunxu,project_type,area_code) values(?,?,?,?,?)";
+						PreparedStatement pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, heng);
+						pstmt.setInt(2, zong);
+						pstmt.setInt(3, view_shunxu);
+						pstmt.setString(4, project_type);
+						pstmt.setString(5, area_code);
+						exeResult = pstmt.executeUpdate();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return exeResult;
+				}  
+				
+				//添加区域租金走势
+				public int insertZuJinTrend(String  heng,int zong,int view_shunxu,String project_type,String area_code){
+					int exeResult=0;
+					try {
+						String sql = "insert into area_zujin(heng,zong,view_shunxu,project_type,area_code) values(?,?,?,?,?)";
+						PreparedStatement pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, heng);
+						pstmt.setInt(2, zong);
+						pstmt.setInt(3, view_shunxu);
+						pstmt.setString(4, project_type);
+						pstmt.setString(5, area_code);
+						exeResult = pstmt.executeUpdate();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return exeResult;
+				}  
+				
+				//添加区域租金回报走势
+				public int insertHuibaoTrend(String  heng,int zong,int view_shunxu,String project_type,String area_code){
+					int exeResult=0;
+					try {
+						String sql = "insert into area_kongzhi(heng,zong,view_shunxu,project_type,area_code) values(?,?,?,?,?)";
+						PreparedStatement pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, heng);
+						pstmt.setInt(2, zong);
+						pstmt.setInt(3, view_shunxu);
+						pstmt.setString(4, project_type);
+						pstmt.setString(5, area_code);
+						exeResult = pstmt.executeUpdate();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return exeResult;
+				}  
+				
+				
 }

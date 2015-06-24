@@ -99,8 +99,8 @@ body{
 <span class="area_span">项目类型</span>
 <span>
 <select class="area_select" id="project_type" name="project_type">
-  <option value ="gongyu">公寓</option>
-  <option value ="bieshu">别墅</option>
+  <option value ="公寓">公寓</option>
+  <option value ="别墅">别墅</option>
 </select>
 </span>
 </div>
@@ -154,7 +154,7 @@ body{
 <span class="area_span">更新日期</span><span><input type="text" id="middle_date" name="middle_date" class="area_input"></span>
 </div>
 <div class="area_left3"></div>
-<div class="area_right3"><span class="area_span5"><a href="#">添加</a></span></div>
+<div class="area_right3"><span class="area_span5"><a href="#" onclick="addMiddlePrice()">添加</a></span></div>
 <div class="area_left3">
 <span class="area_span">aur0001</span><span class="area_span">公寓</span><span class="area_span">$585250</span><span class="area_span">$350</span>
 </div>
@@ -171,20 +171,20 @@ body{
 <div class="area_left">
 <span class="area_span">项目类型</span>
 <span>
-<select class="area_select" id="project_type" name="project_type">
-  <option value ="gongyu">公寓</option>
-  <option value ="bieshu">别墅</option>
+<select class="area_select" id="project_type2" name="project_type2">
+  <option value ="公寓">公寓</option>
+  <option value ="别墅">别墅</option>
 </select>
 </span>
 </div>
 <div class="area_right">
-<span class="area_span">显示顺序</span><span><input type="text" id="view_shunxu" name="view_shunxu" class="area_input"></span>
+<span class="area_span">显示顺序</span><span><input type="text" id="view_shunxu2" name="view_shunxu2" class="area_input"></span>
 </div>
 <div class="area_left">
-<span class="area_span">横坐标</span><span><input type="text" id="heng" name="heng" class="area_input"></span>
+<span class="area_span">横坐标</span><span><input type="text" id="heng2" name="heng2" class="area_input"></span>
 </div>
 <div class="area_right">
-<span class="area_span">纵坐标</span><span><input type="text" id="zong" name="zong" class="area_input"></span>
+<span class="area_span">纵坐标</span><span><input type="text" id="zong2" name="zong2" class="area_input"></span>
 </div>
 <div class="area_left">
 <span class="area_span">数据来源</span><span><input type="text" id="middle_zoushi_datasource" name="middle_zoushi_datasource" class="area_input"></span>
@@ -193,7 +193,7 @@ body{
 <span class="area_span">更新日期</span><span><input type="text" id="middle_zoushi_date" name="middle_zoushi_date" class="area_input"></span>
 </div>
 <div class="area_left3"></div>
-<div class="area_right3"><span class="area_span5"><a href="#">添加</a></span></div>
+<div class="area_right3"><span class="area_span5"><a href="#" onclick="addMidTrend()">添加</a></span></div>
 <div class="area_left3">
 <span class="area_span">aur0001</span><span class="area_span">公寓</span><span class="area_span">1</span><span class="area_span">2006</span><span class="area_span6">285</span>
 </div>
@@ -210,20 +210,20 @@ body{
 <div class="area_left">
 <span class="area_span">项目类型</span>
 <span>
-<select class="area_select" id="project_type" name="project_type">
-  <option value ="gongyu">公寓</option>
-  <option value ="bieshu">别墅</option>
+<select class="area_select" id="project_type3" name="project_type3">
+  <option value ="公寓">公寓</option>
+  <option value ="别墅">别墅</option>
 </select>
 </span>
 </div>
 <div class="area_right">
-<span class="area_span">显示顺序</span><span><input type="text" id="view_shunxu" name="view_shunxu" class="area_input"></span>
+<span class="area_span">显示顺序</span><span><input type="text" id="view_shunxu3" name="view_shunxu3" class="area_input"></span>
 </div>
 <div class="area_left">
-<span class="area_span">横坐标</span><span><input type="text" id="heng" name="heng" class="area_input"></span>
+<span class="area_span">横坐标</span><span><input type="text" id="heng3" name="heng3" class="area_input"></span>
 </div>
 <div class="area_right">
-<span class="area_span">纵坐标</span><span><input type="text" id="zong" name="zong" class="area_input"></span>
+<span class="area_span">纵坐标</span><span><input type="text" id="zong3" name="zong3" class="area_input"></span>
 </div>
 <div class="area_left">
 <span class="area_span">数据来源</span><span><input type="text" id="zujin_datasource" name="zujin_datasource" class="area_input"></span>
@@ -232,7 +232,7 @@ body{
 <span class="area_span">更新日期</span><span><input type="text" id="zujin_date" name="zujin_date" class="area_input"></span>
 </div>
 <div class="area_left3"></div>
-<div class="area_right3"><span class="area_span5"><a href="#">添加</a></span></div>
+<div class="area_right3"><span class="area_span5"><a href="#" onclick="addZujinTrend()">添加</a></span></div>
 <div class="area_left3">
 <span class="area_span">aur0001</span><span class="area_span">公寓</span><span class="area_span">1</span><span class="area_span">2006</span><span class="area_span6">200</span>
 </div>
@@ -249,20 +249,20 @@ body{
 <div class="area_left">
 <span class="area_span">项目类型</span>
 <span>
-<select class="area_select" id="project_type" name="project_type">
-  <option value ="gongyu">公寓</option>
-  <option value ="bieshu">别墅</option>
+<select class="area_select" id="project_type4" name="project_type4">
+  <option value ="公寓">公寓</option>
+  <option value ="别墅">别墅</option>
 </select>
 </span>
 </div>
 <div class="area_right">
-<span class="area_span">显示顺序</span><span><input type="text" id="view_shunxu" name="view_shunxu" class="area_input"></span>
+<span class="area_span">显示顺序</span><span><input type="text" id="view_shunxu4" name="view_shunxu4" class="area_input"></span>
 </div>
 <div class="area_left">
-<span class="area_span">横坐标</span><span><input type="text" id="heng" name="heng" class="area_input"></span>
+<span class="area_span">横坐标</span><span><input type="text" id="heng4" name="heng4" class="area_input"></span>
 </div>
 <div class="area_right">
-<span class="area_span">纵坐标</span><span><input type="text" id="zong" name="zong" class="area_input"></span>
+<span class="area_span">纵坐标</span><span><input type="text" id="zong4" name="zong4" class="area_input"></span>
 </div>
 <div class="area_left">
 <span class="area_span">数据来源</span><span><input type="text" id="zujin_huibao_datasource" name="zujin_huibao_datasource" class="area_input"></span>
@@ -271,7 +271,7 @@ body{
 <span class="area_span">更新日期</span><span><input type="text" id="zujin_huibao_date" name="zujin_huibao_date" class="area_input"></span>
 </div>
 <div class="area_left3"></div>
-<div class="area_right3"><span class="area_span5"><a href="#">添加</a></span></div>
+<div class="area_right3"><span class="area_span5"><a href="#" onclick="addHuibaoTrend()">添加</a></span></div>
 <div class="area_left3">
 <span class="area_span">aur0001</span><span class="area_span">公寓</span><span class="area_span">1</span><span class="area_span">2006</span><span class="area_span6">3.6</span>
 </div>
@@ -442,6 +442,112 @@ body{
 
 <script type="text/javascript">
 CKEDITOR.replace( 'detail' );
+</script>
+<script type="text/javascript">
+function addMiddlePrice(){
+	  var buy_price=$("#buy_price").val();
+	  var zu_price=$("#zu_price").val();
+	  var buy_one_name=$("#buy_one_name").val();
+	  var buy_one_price=$("#buy_one_price").val();
+	  var buy_two_name=$("#buy_two_name").val();
+	  var buy_two_price=$("#buy_two_price").val();
+	  var buy_three_name=$("#buy_three_name").val();
+	  var buy_three_price=$("#buy_three_price").val();
+	  var zu_one_name=$("#zu_one_name").val();
+	  var zu_one_price=$("#zu_one_price").val();
+	  var zu_two_name=$("#zu_two_name").val();
+	  var zu_two_price=$("#zu_two_price").val();
+	  var zu_three_name=$("#zu_three_name").val();
+	  var zu_three_price=$("#zu_three_price").val();
+	  var project_type=$("#project_type").val();
+	  var area_quyu=$("#area_quyu").val();
+	  $.ajax({
+	 	    type: "POST",
+	 		data: { buy_price : buy_price,zu_price : zu_price,buy_one_name : buy_one_name,buy_one_price : buy_one_price,buy_two_name : buy_two_name,buy_two_price : buy_two_price,buy_three_name : buy_three_name,buy_three_price : buy_three_price,zu_one_name : zu_one_name,zu_one_price : zu_one_price,zu_two_name : zu_two_name,zu_two_price : zu_two_price,zu_three_name : zu_three_name,zu_three_price : zu_three_price,project_type : project_type,area_quyu : area_quyu}, 
+	 		dataType: "json",
+	 		url: "/addMiddlePrice",
+	 		success:function(data){
+	 			if(data.flag == 1){
+	 				alert("添加成功！");
+	 			}else if(data.flag ==0){
+	 				alert("添加失败！");
+	 			}
+	 		},
+	 		error:function(){
+	 			alert("error")
+	 		}
+	 	});
+	  }
+
+function addMidTrend(){
+	  var heng=$("#heng2").val();
+	  var zong=$("#zong2").val();
+	  var view_shunxu=$("#view_shunxu2").val();
+	  var project_type=$("#project_type2").val();
+	  var area_code=$("#area_code").val();
+	  $.ajax({
+	 	    type: "POST",
+	 		data: { heng : heng,zong : zong,view_shunxu : view_shunxu,project_type : project_type,area_code : area_code}, 
+	 		dataType: "json",
+	 		url: "/addMidTrend",
+	 		success:function(data){
+	 			if(data.flag == 1){
+	 				alert("添加成功！");
+	 			}else if(data.flag == 0){
+	 				alert("添加失败！");
+	 			}
+	 		},
+	 		error:function(){
+	 			alert("error")
+	 		}
+	 	});
+	  }
+function addZujinTrend(){
+	  var heng=$("#heng3").val();
+	  var zong=$("#zong3").val();
+	  var view_shunxu=$("#view_shunxu3").val();
+	  var project_type=$("#project_type3").val();
+	  var area_code=$("#area_code").val();
+	  $.ajax({
+	 	    type: "POST",
+	 		data: { heng : heng,zong : zong,view_shunxu : view_shunxu,project_type : project_type,area_code : area_code}, 
+	 		dataType: "json",
+	 		url: "/addZujinTrend",
+	 		success:function(data){
+	 			if(data.flag == 1){
+	 				alert("添加成功！");
+	 			}else if(data.flag == 0){
+	 				alert("添加失败！");
+	 			}
+	 		},
+	 		error:function(){
+	 			alert("error")
+	 		}
+	 	});
+	  }
+function addHuibaoTrend(){
+	  var heng=$("#heng4").val();
+	  var zong=$("#zong4").val();
+	  var view_shunxu=$("#view_shunxu4").val();
+	  var project_type=$("#project_type4").val();
+	  var area_code=$("#area_code").val();
+	  $.ajax({
+	 	    type: "POST",
+	 		data: { heng : heng,zong : zong,view_shunxu : view_shunxu,project_type : project_type,area_code : area_code}, 
+	 		dataType: "json",
+	 		url: "/addHuibaoTrend",
+	 		success:function(data){
+	 			if(data.flag == 1){
+	 				alert("添加成功！");
+	 			}else if(data.flag == 0){
+	 				alert("添加失败！");
+	 			}
+	 		},
+	 		error:function(){
+	 			alert("error")
+	 		}
+	 	});
+	  }
 </script>
 </body>
 </html>

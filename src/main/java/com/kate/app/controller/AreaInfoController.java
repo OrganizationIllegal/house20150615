@@ -186,6 +186,151 @@ public class AreaInfoController {
 					
 				}
 				
+				//添加区域中位数房价
+				@RequestMapping({ "/addMiddlePrice" })
+				public void addMiddlePrice(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+					int buyprice=0;
+					int zuprice=0;
+					int buyoneprice=0;
+					int buytwoprice=0;
+					int buythreeprice=0;
+					int zuoneprice=0;
+					int zutwoprice=0;
+					int zuthreeprice=0;
+					String buy_price = req.getParameter("buy_price");
+					String zu_price  = req.getParameter("zu_price");
+					String buy_one_name  = req.getParameter("buy_one_name");
+					String buy_one_price = req.getParameter("buy_one_price");
+					String buy_two_name  = req.getParameter("buy_two_name");
+					String buy_two_price  = req.getParameter("buy_two_price");
+					String buy_three_name = req.getParameter("buy_three_name");
+					String buy_three_price  = req.getParameter("buy_three_price");
+					String zu_one_name  = req.getParameter("zu_one_name");
+					String zu_one_price = req.getParameter("zu_one_price");
+					String zu_two_name  = req.getParameter("zu_two_name");
+					String zu_two_price  = req.getParameter("zu_two_price");
+					String zu_three_name  = req.getParameter("zu_three_name");
+					String zu_three_price = req.getParameter("zu_three_price");
+					String project_type  = req.getParameter("project_type");
+					String area_quyu  = req.getParameter("area_quyu");
+					if(buy_price!=null && !"".equals(buy_price)){
+						buyprice=Integer.parseInt(buy_price);
+					}
+					if(zu_price!=null && !"".equals(zu_price)){
+						zuprice=Integer.parseInt(zu_price);
+					}
+					if(buy_one_price!=null && !"".equals(buy_one_price)){
+						buyoneprice=Integer.parseInt(buy_one_price);
+					}
+					if(buy_two_price!=null && !"".equals(buy_two_price)){
+						buytwoprice=Integer.parseInt(buy_two_price);
+					}
+					if(buy_three_price!=null && !"".equals(buy_three_price)){
+						buythreeprice=Integer.parseInt(buy_three_price);
+					}
+					if(zu_one_price!=null && !"".equals(zu_one_price)){
+						zuoneprice=Integer.parseInt(zu_one_price);
+					}
+					if(zu_two_price!=null && !"".equals(zu_two_price)){
+						zutwoprice=Integer.parseInt(zu_two_price);
+					}
+					if(zu_three_price!=null && !"".equals(zu_three_price)){
+						zuthreeprice=Integer.parseInt(zu_three_price);
+					}
+					int flag = 0;
+					JSONObject json = new JSONObject();
+					flag =areaInputDao.insertMiddlePrice(buyprice, zuprice, buy_one_name, buyoneprice, buy_two_name, buytwoprice, buy_three_name, buythreeprice, zu_one_name, zuoneprice, zu_two_name, zutwoprice, zu_three_name, zuthreeprice, project_type, area_quyu);
+					json.put("flag", flag);
+					try{
+						writeJson(json.toJSONString(),resp);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+					
+				}
+				
+				//添加房价中位数走势
+				@RequestMapping({ "/addMidTrend" })
+				public void addMidTrend(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+					int shunxu=0;
+					int z=0;
+					String heng = req.getParameter("heng");
+					String zong  = req.getParameter("zong");
+					String view_shunxu  = req.getParameter("view_shunxu");
+					String project_type  = req.getParameter("project_type");
+					String area_code  = req.getParameter("area_code");
+					if(view_shunxu!=null && !"".equals(view_shunxu)){
+					shunxu=Integer.parseInt(view_shunxu);
+					}
+					if(zong!=null && !"".equals(zong)){
+						z=Integer.parseInt(zong);
+						}
+					int flag = 0;
+					JSONObject json = new JSONObject();
+					flag =areaInputDao.insertMidTrend(heng, z, shunxu, project_type, area_code);
+					json.put("flag", flag);
+					try{
+						writeJson(json.toJSONString(),resp);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+					
+				}
+				//添加房价中位数走势
+				@RequestMapping({ "/addZujinTrend" })
+				public void addZujinTrend(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+					int shunxu=0;
+					int z=0;
+					String heng = req.getParameter("heng");
+					String zong  = req.getParameter("zong");
+					String view_shunxu  = req.getParameter("view_shunxu");
+					String project_type  = req.getParameter("project_type");
+					String area_code  = req.getParameter("area_code");
+					if(view_shunxu!=null && !"".equals(view_shunxu)){
+					shunxu=Integer.parseInt(view_shunxu);
+					}
+					if(zong!=null && !"".equals(zong)){
+						z=Integer.parseInt(zong);
+						}
+					int flag = 0;
+					JSONObject json = new JSONObject();
+					flag =areaInputDao.insertZuJinTrend(heng, z, shunxu, project_type, area_code);
+					json.put("flag", flag);
+					try{
+						writeJson(json.toJSONString(),resp);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+					
+				}
+				//添加房价中位数走势
+				@RequestMapping({ "/addHuibaoTrend" })
+				public void addHuibaoTrend(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+					int shunxu=0;
+					int z=0;
+					String heng = req.getParameter("heng");
+					String zong  = req.getParameter("zong");
+					String view_shunxu  = req.getParameter("view_shunxu");
+					String project_type  = req.getParameter("project_type");
+					String area_code  = req.getParameter("area_code");
+					if(view_shunxu!=null && !"".equals(view_shunxu)){
+					shunxu=Integer.parseInt(view_shunxu);
+					}
+					if(zong!=null && !"".equals(zong)){
+						z=Integer.parseInt(zong);
+						}
+					int flag = 0;
+					JSONObject json = new JSONObject();
+					flag =areaInputDao.insertHuibaoTrend(heng, z, shunxu, project_type, area_code);
+					json.put("flag", flag);
+					try{
+						writeJson(json.toJSONString(),resp);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+					
+				}
+				
 	public void writeJson(String json, HttpServletResponse response)throws Exception{
 	    response.setContentType("text/html");
 	    response.setCharacterEncoding("UTF-8");
