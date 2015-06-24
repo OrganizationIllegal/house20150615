@@ -152,6 +152,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			            ]
 			          },
 			          {
+				            text: '新闻博客录入',	
+				            color: '#ffffff', 
+				            backColor:'rgb(59,94,132)', 
+				            href:'#title',            
+				            nodes: [
+				              {
+				                text: '新闻博客',
+					            href:'#title'	                
+				              },
+				              
+				            ]
+				          },
+				          {
+					            text: '置业指导录入',	
+					            color: '#ffffff', 
+					            backColor:'rgb(59,94,132)', 
+					            href:'#title',            
+					            nodes: [
+					              {
+					                text: '置业指导',
+						            href:'#title'	                
+					              },
+					              
+					            ]
+					          },
+			          {
 				            text: '学校信息录入',	
 				            color: '#ffffff', 
 				            backColor:'rgb(59,94,132)', 
@@ -232,6 +258,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		           }
 	           if(node.text=="经纪人录入"){
 		           $("#showlist").load("brokerLuru.jsp");
+		           }
+	           if(node.text=="新闻博客录入"){
+		           $("#showlist").load("newsLuru.jsp");
+		           }
+	           if(node.text=="置业指导录入"){
+		           $("#showlist").load("zhiyeLuru.jsp");
 		           }
 	           if(node.text=="学校信息录入"){
 		           $("#showlist").load("SchoolInfoInput.jsp");
