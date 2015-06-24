@@ -29,6 +29,7 @@ body{
 <div style="width:900px;margin:25px auto;">
 <div class="area_bkg1">当前位置:项目录入</div>
 <!-- ****************************************************项目信息start***************************************************** -->
+<form action="/AddprojectInfo">
 <div class="area_bkg2" id="projectinfo">项目信息</div>
 <div class="area_left">
 <span class="area_span">项目编号</span><span><input type="text" id="project_code" name="project_code" class="area_input"></span>
@@ -166,8 +167,11 @@ body{
 <div class="area_right">
 <span class="area_span">户型价格</span><span><input type="text" id="houseprice" name="houseprice" class="area_input"></span>
 </div>
-<div class="chang_left2">
+<!-- <div class="chang_left2">
 <span class="area_span">户型图片</span><span><input type="text" id="houseimg" name="houseimg" class="chang_input2"></span>
+</div> -->
+<div class="area_left"  style="width:900px">
+ <input type="file" name="houseimg" id="houseimg" style="width:700px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"/><a href="#">上传</a>
 </div>
 <div class="area_left">
 <span class="area_span">卧室数量</span><span><input type="text" id="room_num" name="room_num" class="area_input"></span>
@@ -273,30 +277,12 @@ body{
 <button type="reset" >重置</button>
 </div> -->
 <div style="float:left;">
-<div class="area_left4"><button type="submit" class="btn">提交</button></div>
+<div class="area_left4"><button type="submit" class="btn" >提交</button></div>
 <div class="area_right4"><button type="reset" class="btn">重置</button></div>
 </div>
-
+</form>
 </div>
-<script type="text/javascript">
-window.onload=function(){
-	alert("pppppppppppppp");
-	  $.ajax({
-	 	    type: "POST",
-	 		//data: { ids : ids},
-	 		dateType: "json",
-	 		url: "/ProjectInput",
-	 		
-	 		success:function(data){
-	 			alert("成功")
-	 			//window.location.reload();
-	 		},
-	 		error:function(){
-	 			alert("error")
-	 		}
-	 	});
-	 	
-}
-</script>
+
+
 </body>
 </html>
