@@ -57,7 +57,7 @@ public class ProjectInputDao extends BaseDao {
 	public boolean InsertSchoolInfo(String school_name,String school_ranking,String school_type,int school_total,int teacher_total,String school_position,String gps,String net_info,int not_en_stu_bili,String school_image,String school_desc){
 		boolean flag=true;
 		try {
-			String sql = "insert into school_info(school_name,school_ranking,school_type,school_total,teacher_total, school_position,gps,net_info,not_en_stu_bili,school_image,school_desc) values(?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into school_info(school_name,school_ranking,school_type,student_total,teacher_total, school_position,gps,net_info,not_en_stu_bili,school_image,school_desc) values(?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, school_name);
 			pstmt.setString(2, school_ranking);
