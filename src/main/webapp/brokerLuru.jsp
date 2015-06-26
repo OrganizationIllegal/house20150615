@@ -49,7 +49,7 @@ body{
 </div>
 <div class="c-fix" style="padding-left:35px;">
 <span class="area_span">经纪人图片</span>
-<span style="float:right;"> <input type="file" name="projectimage" id="projectimage" style="width:677px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"/><a href="#">上传</a></span>
+<span style="float:right;"> <input type="file" name="broker_img" id="broker_img" style="width:677px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"/><a href="#">上传</a></span>
 </div>
 <div class="area_left c-fix">
 <span class="area_span">经纪人描述</span>
@@ -74,7 +74,7 @@ body{
 <span class="area_span">显示顺序</span><span><input type="text" id="view_shunxu" name="view_shunxu" class="area_input"></span>
 </div>
 <div class="area_left3"></div>
-<div class="area_right3"><span class="area_span5"><a href="#">添加</a></span></div>
+<div class="area_right3"><span class="area_span5"><a href="#" onclick="add1()">添加</a></span></div>
 <div class="area_left3">
 <span class="area_span">aur0001</span><span class="area_span">1</span>
 </div>
@@ -92,10 +92,10 @@ body{
 <span class="area_span">擅长类型编号</span><span><input type="text" id="interested_num" name="interested_num" class="area_input"></span>
 </div>
 <div class="area_right">
-<span class="area_span">显示顺序</span><span><input type="text" id="view_shunxu" name="view_shunxu" class="area_input"></span>
+<span class="area_span">显示顺序</span><span><input type="text" id="view_shunxu2" name="view_shunxu2" class="area_input"></span>
 </div>
 <div class="area_left3"></div>
-<div class="area_right3"><span class="area_span5"><a href="#">添加</a></span></div>
+<div class="area_right3"><span class="area_span5"><a href="#" onclick="add2()">添加</a></span></div>
 <div class="area_left3">
 <span class="area_span">aupr0001</span><span class="area_span">1</span>
 </div>
@@ -108,12 +108,88 @@ body{
 <div class="area_right3">
 <span class="area_span4"><a href="#">编辑</a></span><span class="area_span5"><a href="#">删除</a></span>
 </div>
-<div class="area_left4"><button type="submit" class="btn">提交</button></div>
+<div class="area_left4"><button type="button" class="btn" onclick="add()">提交</button></div>
 <div class="area_right4"><button type="reset" class="btn">重置</button></div>
 </div>
 
 <script type="text/javascript">
 CKEDITOR.replace( 'introduction' );
+</script>
+<script type="text/javascript">
+function add(){
+	  var broker_num=$("#broker_num").val();
+	  var broker_name=$("#broker_name").val();
+	  var broker_language=$("#broker_language").val();
+	  var broker_region=$("#broker_region").val();
+	  var broker_type=$("#broker_type").val();
+	  var broker_zizhi=$("#broker_zizhi").val();
+	  var broker_experience=$("#broker_experience").val();
+	  var broker_img=$("#broker_img").val();
+	  var introduction=$("#introduction").val();
+	  var type_num=$("#type_num").val();
+	  var type_name=$("#type_name").val();
+	  var type_image=$("#type_image").val();
+	  $.ajax({
+	 	    type: "POST",
+	 		data: { broker_num : broker_num,broker_name : broker_name,broker_language : broker_language,broker_region : broker_region,broker_type : broker_type,broker_zizhi : broker_zizhi,broker_experience : broker_experience,broker_img : broker_img,introduction : introduction,type_num : type_num,type_name : type_name,type_image : type_image}, 
+	 		dataType: "json",
+	 		url: "/inputBroker",
+	 		success:function(data){
+	 			if(data.flag == 2){
+	 				alert("添加成功！");
+	 			}else if(data.flag <2){
+	 				alert("添加失败！");
+	 			}
+	 		},
+	 		error:function(){
+	 			alert("error")
+	 		}
+	 	});
+	  }
+  function add1(){
+	  var broker_num=$("#broker_num").val();
+	  var area_code=$("#area_code").val();
+	  var view_shunxu=$("#view_shunxu").val();
+	  $.ajax({
+	 	    type: "POST",
+	 		data: { broker_num : broker_num,area_code : area_code,view_shunxu : view_shunxu}, 
+	 		dataType: "json",
+	 		url: "/addServiceArea",
+	 		success:function(data){
+	 			if(data.flag == 1){
+	 				alert("添加成功！");
+	 			}else if(data.flag == 0){
+	 				alert("添加失败！");
+	 			}
+	 		},
+	 		error:function(){
+	 			alert("error")
+	 		}
+	 	});
+	  }
+
+  function add2(){
+	  alert("ehhe")
+	  var broker_num=$("#broker_num").val();
+	  var interested_num=$("#interested_num").val();
+	  var view_shunxu2=$("#view_shunxu2").val();
+	  $.ajax({
+	 	    type: "POST",
+	 		data: { broker_num : broker_num,interested_num : interested_num,view_shunxu : view_shunxu2}, 
+	 		dataType: "json",
+	 		url: "/addInteType",
+	 		success:function(data){
+	 			if(data.flag == 1){
+	 				alert("添加成功！");
+	 			}else if(data.flag == 0){
+	 				alert("添加失败！");
+	 			}
+	 		},
+	 		error:function(){
+	 			alert("error")
+	 		}
+	 	});
+	  }
 </script>
 </body>
 </html>

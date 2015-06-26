@@ -52,12 +52,39 @@ body{
 <span class="area_span">新闻详情</span>
 </div>
 <div class="c-fix" style="margin-bottom:15px;"><textarea id="news_detail" placeholder="新闻详情" name="news_detail"></textarea></div>
-<div class="area_left4"><button type="submit" class="btn">提交</button></div>
+<div class="area_left4"><button type="button" class="btn" onclick="add()">提交</button></div>
 <div class="area_right4"><button type="reset" class="btn">重置</button></div>
 </div>
-
 <script type="text/javascript">
 CKEDITOR.replace( 'news_detail' );
+</script>
+<script type="text/javascript">
+  function add(){
+	  var news_num=$("#news_num").val();
+	  var news_title=$("#news_title").val();
+	  var news_people=$("#news_people").val();
+	  var news_time=$("#news_time").val();
+	  var news_fenlei=$("#news_fenlei").val();
+	  var news_abstract=$("#news_abstract").val();
+	  var news_image=$("#news_image").val();
+	  var news_detail=$("#news_detail").val();
+	  $.ajax({
+	 	    type: "POST",
+	 		data: { news_num : news_num,news_title : news_title,news_people : news_people,news_time : news_time,news_fenlei : news_fenlei,news_abstract : news_abstract,news_image : news_image,news_detail : news_detail}, 
+	 		dataType: "json",
+	 		url: "/inputNewsBoke",
+	 		success:function(data){
+	 			if(data.flag == 1){
+	 				alert("添加成功！");
+	 			}else if(data.flag == 0){
+	 				alert("添加失败！");
+	 			}
+	 		},
+	 		error:function(){
+	 			alert("error")
+	 		}
+	 	});
+	  }
 </script>
 </body>
 </html>

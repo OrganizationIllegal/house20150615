@@ -391,7 +391,7 @@ public class ProjectInfoController {
 				e.printStackTrace();
 		}
 	}
-	@RequestMapping(value = "/projectinput")
+	@RequestMapping(value = "/imageupload")
     public void handleFormUpload(
             @RequestParam("file") MultipartFile file, HttpServletResponse resp) {
 		JSONObject json = new JSONObject();

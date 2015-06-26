@@ -176,7 +176,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                		html+="<hr style='margin-top:6px;margin-bottom:8px'/>"
 	                    	html+="<div class='media' style='padding-left:4px'> ";
 	                    	html+="<a class='pull-left' href='/Index?proNum="+items[j].project_num+"'"+" target='_parent'>";
-	                    	html+="<img alt='image' class='img-responsive' src='http://101.200.174.253:8080/all/"+items[j].project_img+"' style='width:160px;height:100px' ></a>";
+	                    	html+="<img alt='image' class='img-responsive' src='http://101.200.174.253:9090/all/"+items[j].project_img+"' style='width:160px;height:100px' ></a>";
 	                    	html+="<div class='clearfix visible-sm'></div>";
 	                    	html+="<div class='media-body fnt-smaller' style='padding-left:4px'>";
 	                    	html+="<div style='font-family:微软雅黑;font-weight:bolder;font-size:15px' class='media-heading'>"+items[j].project_name+"</div>";
@@ -240,7 +240,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       
        <div class="media">
             <a class="pull-left" href="/Index?proNum=${item.project_num}" target="_parent">
-              <img alt="image" class="img-responsive" src="http://101.200.174.253:8080/all/${item.project_img}" style="width:100px;height:110px" > 
+              <img alt="image" class="img-responsive" src="http://101.200.174.253:9090/all/${item.project_img}" style="width:100px;height:110px" > 
             </a>
             <div class="clearfix visible-sm"></div>
             <div class="media-body fnt-smaller">

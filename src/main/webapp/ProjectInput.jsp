@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false" contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
@@ -8,28 +8,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <title>Service Protocol</title>
-<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  -->
+<!-- <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
 <link rel="stylesheet" type="text/css" href="css/base.css" />
 <link rel="stylesheet" type="text/css" href="css/main.css" />
 <link rel="stylesheet" type="text/css" href="css/projectLuru.css" />
-<link rel="stylesheet" type="text/css" href="uploadify/uploadify.css" />
+<!-- <link rel="stylesheet" type="text/css" href="uploadify/uploadify.css" /> -->
+<link rel="stylesheet" type="text/css" href="/webuploader-0.1.5/webuploader.css"/> 
 <script src="/js/jquery.min.js"></script>
-<script src="/bootstrap/js/bootstrap.min.js"></script>
-<script src="uploadify/jquery.uploadify.js"></script>
+<!-- <script src="/bootstrap/js/bootstrap.min.js"></script> -->
+<!-- <script src="uploadify/jquery.uploadify.js"></script> -->
+<script src="/webuploader-0.1.5/webuploader.min.js"></script>
+
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <link href="/css/default.css" rel="stylesheet">
+   <link rel="stylesheet" type="text/css" href="css/base.css" />
+   <link rel="stylesheet" type="text/css" href="css/main.css" />
+   <link rel="stylesheet" type="text/css" href="/webuploader-0.1.5/webuploader.css"/> 
+   <!-- <script src="/js/jquery.min.js"></script> -->
+   <script src="/bootstrap/js/bootstrap.min.js"></script>
+   <script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script>
+
 
 <style type="text/css">
 body{
 	/* background-color:rgb(232, 233, 234)!important; */
 	font-family:"Microsoft YaHei"!important;
 }
+.imageselect{
+	width:700px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;
+}
 </style>
 
 </head>
 <body>
+<!-- action="/projectinput" method="post"  enctype="multipart/form-data" -->
+<div>
 <div style="width:900px;margin:25px auto;">
 <div class="area_bkg1">当前位置:项目录入</div>
 <!-- ****************************************************项目信息start***************************************************** -->
+
 <form id="project">
+
 <div class="area_bkg2" id="projectinfo">项目信息</div>
 <div class="area_left">
 <span class="area_span">项目编号</span><span><input type="text" id="project_code" name="project_code" class="area_input"></span>
@@ -37,7 +57,6 @@ body{
 <div class="area_right">
 <span class="area_span">项目名称</span><span><input type="text" id="project_name" name="project_name" class="area_input"></span>
 </div>
-</form>
 <div class="area_left">
 <span class="area_span">项目视频链接</span><span><input type="text" id="project_video" name="project_video" class="area_input"></span>
 </div>
@@ -129,7 +148,7 @@ body{
 <div class="area_left">
 <span class="area_span">持有成本说明</span><span><input type="text" id="holdCostInfo" name="holdCostInfo" class="area_input"></span>
 </div>
-<!-- </form> -->
+ </form> 
 <!-- ****************************************************项目信息end***************************************************** -->
 
 <!-- ****************************************************开发商信息start***************************************************** -->
@@ -175,7 +194,7 @@ body{
 <span class="area_span">户型图片</span><span><input type="text" id="houseimg" name="houseimg" class="chang_input2"></span>
 </div> -->
 <div class="area_left"  style="width:900px">
- <input type="file" name="houseimg" id="houseimg" style="width:700px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"/><a href="#">上传</a>
+ <input type="file" name="houseimg" id="houseimg" style="width:700px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"/><!-- <a href="#">上传</a> -->
 </div>
 <div class="area_left">
 <span class="area_span">卧室数量</span><span><input type="text" id="room_num" name="room_num" class="area_input"></span>
@@ -199,16 +218,36 @@ body{
 </form>
 <div id="huxingjiagelist">
 </div>
-<!-- ****************************************************户型及价格end***************************************************** -->
+
 
 <!-- ****************************************************项目配套start***************************************************** -->
 
 <div class="area_bkg2" style="clear:both;" id="projectpeitao">项目配套</div>
-<div class="area_left"  style="width:900px">
- <input type="file" name="projectimage" id="projectimage" style="width:700px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"/><a href="#" class="addpeitao">添加</a>
+
+<div class="area_left"  style="width:900px;height:auto;">
+<div id="some_queue" style="width:700px;height:auto;"></div>
+ <input type="file" name="projectimage" id="projectimage"  multiple  style="width:700px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"/><a href="#" class="addpeitao">添加</a>
+<!--  <div id="uploader" class="wu-example">
+    <div id="thelist" class="uploader-list"></div>
+    <div class="btns">
+        <div id="picker">选择文件</div>
+        <button id="ctlBtn" class="btn btn-default">开始上传</button>
+    </div>
 </div>
+ <div style="float:right:padding-right:40px;"><a href="#" class="addpeitao">添加</a></div> -->
+ </div>
+ 
+<!--   -->
+ 
 <div id="peitaolist">
+<!-- <div style="float:left;padding-left:40px;">
+<span style="padding-right:10px;">1</span>
+<span class="">圣大非省说法是否圣大非省是撒旦发生。jpg</span><span style="padding-left: 30px;padding-right: 40px;"><a href="#" style="padding-right:10px;" class="editpeitao">编辑</a><a href="#" class="deletepeitao">删除</a></span>
+</div> -->
 </div>
+
+
+
 <!-- ****************************************************项目配套end***************************************************** -->
 
 <!-- ****************************************************附近配套start***************************************************** -->
@@ -305,12 +344,14 @@ body{
 <button type="reset" >重置</button>
 </div> -->
 <div style="float:left;">
-<div class="area_left4"><button class="btn"  onclick="savepro()">提交</button></div>
+
+<div class="area_left4"><button  class="btn" onClick="savepro()">提交</button></div>
 <div class="area_right4"><button type="reset" class="btn">重置</button></div>
+</div>
+
 </div>
 </div>
 <script type="text/javascript">
-
 
 $(function(){
 	$.ajaxSetup({  
@@ -321,7 +362,7 @@ $(function(){
         function UpladFile(imageid) {
             var fileObj = document.getElementById(imageid).files[0]; // 获取文件对象
 
-            var FileController = "/projectinput";                    // 接收上传文件的后台地址 
+            var FileController = "/imageupload";                    // 接收上传文件的后台地址 
 
             // FormData 对象
 
@@ -477,7 +518,9 @@ $(function(){
 	$("#huxingjiagelist").on("click",".deletepeitao",function(){
 		huxinglist.splice($(this).parent().parent().children().eq(0).text()-1,1);
 		$(this).parent().parent().empty();
+
 		huxingcount--;
+
 		});
 	$("#huxingjiagelist").on("click",".editpeitao",function(){
 		
@@ -549,7 +592,9 @@ $(function(){
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			fujinedititem=DataDeal.formToJson(data= decodeURIComponent($("#fujin").serialize(),true));
+
 			fujinedititem=eval("("+fujinedititem+")");
+
 			/* fujinedititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -557,6 +602,7 @@ $(function(){
 			$("#fujin input").each(function(){
 				$(this).val("");
 				});
+
 			fujinlist[fujinedit]=fujinedititem;
 			alert($("#fujinlist").children().eq(fujinedit));
 			$("#fujinlist").children().eq(fujinedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(fujinedit+1)+"</span><span style='padding-right:10px;'>"+fujinlist[fujinedit].peitao_type+"</span><span style='padding-right:10px;'>"+fujinlist[fujinedit].peitao_name+"</span><span style='padding-right:10px;'>"+fujinlist[fujinedit].peitao_distance+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show();
@@ -739,6 +785,7 @@ $(function(){
 			
 			}
 		});
+
 	$("#holdingcostlist").on("click",".deletepeitao",function(){
 		holdingcostlist.splice($(this).parent().parent().children().eq(0).text()-1,1);
 		$(this).parent().parent().empty();
@@ -749,18 +796,22 @@ $(function(){
 		var index=$(this).parent().parent().children().eq(0).text()-1;
 		alert(index);
 		holdingcostedititem=holdingcostlist[index];
+
 		$(this).parent().parent().hide();
 		/* alert(huxingedititem.name); */
 		//$("#projectimage").val(edititem.name+"");
 		alert(index+"index");
+
 		holdingcostedit=index;
 		$("#holdcosttype").val(holdingcostedititem.holdcosttype);
 		$("#holdcostprice").val(holdingcostedititem.holdcostprice);
 		$("#holdcostdesc").val(holdingcostedititem.holdcostdesc);
 		$("#holdcost_housename").val(holdingcostedititem.holdcost_housename);
+
 		}); 
 	
 });
+
 
 
 var housetaxformlist=[];
@@ -851,6 +902,7 @@ $(function(){
 	
 });
 
+
 window.onload=function(){
 }
 $.ajaxSetup({  
@@ -865,6 +917,7 @@ var DataDeal = {
 		               return data;  
 		            },  
 		};  
+
 
 	
 
@@ -938,5 +991,7 @@ function savepro(){
 
 </script>
 
+
+</script>
 </body>
 </html>

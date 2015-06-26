@@ -391,7 +391,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a class="c-fix f-l f-yahei s-16 main_lab2">墨尔本</a>
 				<c:forEach var="item" items="${projectList}" varStatus="stat">
 				<div class="f-l main_node" <c:if test="${stat.index != 0}">style="margin-left:30px;"</c:if>>
-					<a href="/Index?proNum=${item.project_num}"><img src="http://101.200.174.253:8080/all/${item.project_img }" class="c-fix f-l main_node_img"></img></a>
+					<a href="/Index?proNum=${item.project_num}"><img src="http://101.200.174.253:9090/all/${item.project_img }" class="c-fix f-l main_node_img"></img></a>
 						<div class="c-fix f-l main_node_bkg">
 							<a class="c-fix f-l main_node_lab f-yahei s-14" style="margin-top:5px;">${item.project_name}</a>
 							<a class="c-fix f-l main_node_lab f-yahei s-14" style="font-style:italic;color:red">$${item.project_min_price}-$${item.project_high_price}</a>
@@ -405,7 +405,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a class="c-fix f-l f-yahei s-16 main_lab2" style="margin-top:-60px;">悉尼</a>
 					<c:forEach var="item" items="${projectList2}" varStatus="stat">
 						<div class="f-l main_node" style="margin-top:-20px;<c:if test="${stat.index != 0}">margin-left:30px;</c:if>">
-						  <a href="/Index?proNum=${item.project_num}"><img src="http://101.200.174.253:8080/all/${item.project_img }" class="c-fix f-l main_node_img"></img></a>
+						  <a href="/Index?proNum=${item.project_num}"><img src="http://101.200.174.253:9090/all/${item.project_img }" class="c-fix f-l main_node_img"></img></a>
 							<div class="c-fix f-l main_node_bkg">
 								<a class="c-fix f-l main_node_lab f-yahei s-14" style="margin-top:5px;">${item.project_name}</a>
 								<a class="c-fix f-l main_node_lab f-yahei s-14" style="font-style:italic;color:red">$${item.project_min_price}-$${item.project_high_price}</a>
@@ -425,7 +425,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a class="c-fix f-l f-yahei s-20 main_title fw" style="margin:0 auto">最新博客</a>
 						<c:forEach var="item" items="${newsList}" varStatus="stat">
 						<div class="f-l main_node" <c:if test="${stat.index != 0}">style="margin-left:30px;"</c:if>>
-							<img src="http://101.200.174.253:8080/all/${item.news_image}" class="c-fix f-l main_node_img"></img>
+							<img src="http://101.200.174.253:9090/all/${item.news_image}" class="c-fix f-l main_node_img"></img>
 							<a href="/Detail?id=${item.id}&type=1" style="text-decoration:none" class="c-fix f-l main_node_article f-yahei s-14">
 							<c:if test="${fn:length(item.news_abstract) > 30}">
 								${fn:substring(item.news_abstract, 0, 30)}...</a>

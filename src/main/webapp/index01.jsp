@@ -561,7 +561,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div>
 <c:forEach var="item" items="${projectList}">
   	 	<div class="col-md-4" style="padding-left:0px;">
-  	     		<div><a href="/Index?proNum=${item.project_num}" target="_blank"><img alt="image" class="img-responsive"  style="width:300px;height:216px" src="http://101.200.174.253:8080/all/${item.project_img }"></a></div>
+  	     		<div><a href="/Index?proNum=${item.project_num}" target="_blank"><img alt="image" class="img-responsive"  style="width:300px;height:216px" src="http://101.200.174.253:9090/all/${item.project_img }"></a></div>
   	     		<div style="background-color:black;padding-left:30px;filter:alpha(opacity=60);opacity:0.6;position:absolute;top:150px;width:298px;">
   	     		<div style="color:white;font-size:16px;font-weight:bold;"><span>${item.project_name}</span></div>
   	     		<div style="color:rgb(226,0,17);font-size:16px;font-weight:bold;"><span>${item.project_min_price}</span><span>-</span><span>${item.project_high_price}</span></div>
@@ -583,7 +583,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div>
 <c:forEach var="item" items="${projectList2}">
   	 	<div class="col-md-4" style="padding-left:0px;">
-  	     		<div><a href="/Index?proNum=${item.project_num}"  target="_blank"><img alt="image"  class="img-responsive" style="width:300px;height:216px" src="http://101.200.174.253:8080/all/${item.project_img }"></a></div>
+  	     		<div><a href="/Index?proNum=${item.project_num}"  target="_blank"><img alt="image"  class="img-responsive" style="width:300px;height:216px" src="http://101.200.174.253:9090/all/${item.project_img }"></a></div>
   	     		<div style="background-color:black;padding-left:30px;filter:alpha(opacity=60);opacity:0.6;position:absolute;top:150px;width:298px;">
   	     		<div style="color:white;font-size:16px;font-weight:bold;"><span>${item.project_name}</span></div>
   	     			<div style="color:rgb(226,0,17);font-size:16px;font-weight:bold;"><span>${item.project_min_price}</span><span>-</span><span>${item.project_high_price}</span></div>
@@ -620,7 +620,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="col-md-10" style="padding-left:55px;text-align:left;">
 			<c:forEach var="item" items="${newsList}">
 		  	 	    <div class="col-md-4" style="padding-left:0px;">
-						<div ><a href="/Detail?id=${item.id}&type=1"  target="_blank"><img src="http://101.200.174.253:8080/all/${item.news_image}" style="border:1px solid gray;width:290px;height:216px"></a></div>
+						<div ><a href="/Detail?id=${item.id}&type=1"  target="_blank"><img src="http://101.200.174.253:9090/all/${item.news_image}" style="border:1px solid gray;width:290px;height:216px"></a></div>
 						<div style="height:80px;overflow:hidden"><div style="margin-top:15px;font-family:微软雅黑;font-size:15px;height:20px">${item.news_abstract}</div></div>
 					</div>
   	 		</c:forEach>
