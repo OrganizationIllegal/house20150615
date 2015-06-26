@@ -160,7 +160,7 @@ function popreg(){
                     </tr>
                     <c:forEach var="item"  items="${imageList}"   varStatus="status">
                     <c:if test="${status.index<2 }">
-                    	<tr><td><img src="http://101.200.174.253:8080/all/${item.image_name}" width="750" height="487" /></a></td></tr>
+                    	<tr><td><img src="http://101.200.174.253:9090/all/${item.image_name}" width="750" height="487" /></a></td></tr>
                     </c:if>
                     </c:forEach>
                    <%-- <c:forEach var="item"  items="${vedioList}"   varStatus="status">
@@ -176,16 +176,16 @@ function popreg(){
                 <div class="top_button off"></div>
                 <div class="small_right_limit">
                     <ul style="margin-top: 10px;">
-                    <li><img src="http://101.200.174.253:8080/all/The Atrium_Project_01.jpg" width="224" height="140"/></li>
+                    <li><img src="http://101.200.174.253:9090/all/The Atrium_Project_01.jpg" width="224" height="140"/></li>
 			            <c:forEach var="item"  items="${imageList}"   varStatus="status">
 			            <c:if test="${status.index<2}">
-			            	<li style="padding-top:15px"><img src="http://101.200.174.253:8080/all/${item.image_name}" width="224" height="140"/></li>
+			            	<li style="padding-top:15px"><img src="http://101.200.174.253:9090/all/${item.image_name}" width="224" height="140"/></li>
 			            </c:if>
                     		
                     	</c:forEach>
                         <%-- <c:forEach var="item"  items="${vedioList}"   varStatus="status">
                         <c:if test="${status.index<3}">
-                    		<li><img src="http://101.200.174.253:8080/all/${item.image_name}" width="224" height="140"/></li>
+                    		<li><img src="http://101.200.174.253:9090/all/${item.image_name}" width="224" height="140"/></li>
                     	</c:if>
                     	</c:forEach> --%>
                        
@@ -402,7 +402,7 @@ function popreg(){
                 <table class="ad_left_big_p" width="720" border="0" cellpadding="0" cellspacing="0" style="margin-top: 0px;">
                     <c:forEach items="${ProjectPeitaoImage}" var="item" varStatus="status">
                     <c:if test="${status.index<3 }">
-                    	<tr><td><img src="http://101.200.174.253:8080/all/${item.image_name}" width="720" height="487" /></a></td></tr>
+                    	<tr><td><img src="http://101.200.174.253:9090/all/${item.image_name}" width="720" height="487" /></a></td></tr>
                    </c:if>
                     </c:forEach>
                     
@@ -415,7 +415,7 @@ function popreg(){
                     <ul style="margin-top: 10px;">
                     	<c:forEach items="${ProjectPeitaoImage}" var="item" varStatus="status">
                     	<c:if test="${status.index<3 }">
-                    		<li><img src="http://101.200.174.253:8080/all/${item.image_name}" width="224" height="140"/></li>
+                    		<li><img src="http://101.200.174.253:9090/all/${item.image_name}" width="224" height="140"/></li>
                     	</c:if>
                     </c:forEach>
                     	
@@ -945,7 +945,7 @@ function popreg(){
           <div class="news_position" style="margin-left:0px">
           		<div >
                 <div class="scroll" id="left"> 
-                     <a href=""><img src="http://101.200.174.253:8080/all/${newsInfo_one.news_img}" alt="" style="width:305px;height:210px"></a>
+                     <a href=""><img src="http://101.200.174.253:9090/all/${newsInfo_one.news_img}" alt="" style="width:305px;height:210px"></a>
                     <!-- <div class="news_action_left" style="display:none;">
 	                     <ul class="list_l" id="list_scroll_left">
 							  <li >Cras justo odio</li>
@@ -966,7 +966,7 @@ function popreg(){
 		   <div class="news_position" id="MyNews" style="margin-left:0px">
 		      	<div>
                 <div class="scroll" id="left"> 
-                     <a href=""><img src="http://101.200.174.253:8080/all/${newsInfo_two.news_img}" alt="" style="width:305px;height:210px"></a>
+                     <a href=""><img src="http://101.200.174.253:9090/all/${newsInfo_two.news_img}" alt="" style="width:305px;height:210px"></a>
                     <!--   <div class="news_action_left" style="display:none;">
 	                     <ul class="list_l" id="list_scroll_left">
 							  <li >Cras justo odio</li>
@@ -987,7 +987,7 @@ function popreg(){
 		   <div class="news_position" style="margin-left:0px" >
 		   		<div >
                 <div class="scroll" id="left"> 
-                     <a href=""><img src="http://101.200.174.253:8080/all/${newsInfo_three.news_img}" alt="" style="width:305px;height:210px"></a>
+                     <a href=""><img src="http://101.200.174.253:9090/all/${newsInfo_three.news_img}" alt="" style="width:305px;height:210px"></a>
                        <!--   <div class="news_action_left" style="display:none;">
 	                     <ul class="list_l" id="list_scroll_left">
 							  <li >Cras justo odio</li>
@@ -1021,7 +1021,7 @@ function popreg(){
           <div class="news_position">
                 <div class="scroll" id="left">
                      <a href="Index?proNum=${RecommendProject1.project_num}">
-                    	 <img src="http://101.200.174.253:8080/all/${RecommendProject1.project_img}" alt="" style="width:278px;height:166px">
+                    	 <img src="http://101.200.174.253:9090/all/${RecommendProject1.project_img}" alt="" style="width:278px;height:166px">
                      </a>
                 </div>
                 <div class="caption_my" style="height:98px;width=350px">
@@ -1032,7 +1032,7 @@ function popreg(){
 		   <div class="news_position">
                 <div class="scroll" id="left">
                   <a href="Index?proNum=${RecommendProject2.project_num}">
-                     <img src="http://101.200.174.253:8080/all/${RecommendProject2.project_img}" alt="" style="width:278px;height:166px">
+                     <img src="http://101.200.174.253:9090/all/${RecommendProject2.project_img}" alt="" style="width:278px;height:166px">
                   </a>
                 </div>
                 <div class="caption_my" style="height:98px;width=350px">
@@ -1044,7 +1044,7 @@ function popreg(){
 		   <div class="news_position">
 		      <div class="scroll" id="right">
 		        <a href="Index?proNum=${RecommendProject2.project_num}">
-                     <img src="http://101.200.174.253:8080/all/${RecommendProject3.project_img}" alt="" style="width:278px;height:166px">
+                     <img src="http://101.200.174.253:9090/all/${RecommendProject3.project_img}" alt="" style="width:278px;height:166px">
                  </a>
                 </div>
                 <div class="caption_my" style="height:98px;width=350px">
@@ -1094,7 +1094,7 @@ function popreg(){
  		 	 <div id="firstitem" style="border:1px solid #E6E6FA;padding:20 20;background-color:white;margin:10 10;margin-right:20px;margin-bottom:13px;margin-top:29px">
            		  <div class="media">
           			  <a class="pull-left" href="#" target="_parent">
-              				<img alt="image" class="img-responsive" src="http://101.200.174.253:8080/all/${item.broker_img}" style="width:100px;height:140px" >
+              				<img alt="image" class="img-responsive" src="http://101.200.174.253:9090/all/${item.broker_img}" style="width:100px;height:140px" >
            			  </a>
            		 	  <div class="clearfix visible-sm"></div>
            		 	  <div class="media-body fnt-smaller" style="padding:0 0 0 15px;padding-top:10px">
@@ -1133,7 +1133,7 @@ function popreg(){
 <hr style="border-top:1px solid gray;margin-top:2px;margin-bottom:7px;width:920px;margin-left:0px;"/>
 <div>
   	 	<div class="col-md-4" style="padding-left:0px;">
-  	     		<div> <a href="Index?proNum=${RecommendProject1.project_num}"><img src="http://101.200.174.253:8080/all/${RecommendProject1.project_img}" alt="" style="width:278px;height:166px"/></a></div>
+  	     		<div> <a href="Index?proNum=${RecommendProject1.project_num}"><img src="http://101.200.174.253:9090/all/${RecommendProject1.project_img}" alt="" style="width:278px;height:166px"/></a></div>
   	     		<div style="background-color:black;padding-left:30px;filter:alpha(opacity=60);opacity:0.6;position:absolute;top:112px;width:278px;height:53px">
   	     			<div style="color:white;font-size:12px;font-weight:bold;"><span>${RecommendProject1.project_name}</span></div>
   	     			<div style="color:white;font-size:12px;font-weight:bold;">${RecommendProject1.project_desc}</div>
@@ -1144,7 +1144,7 @@ function popreg(){
   	     		</div>
   	    </div>
   	    	<div class="col-md-4" style="padding-left:0px;">
-  	     		<div> <a href="Index?proNum=${RecommendProject1.project_num}"><img src="http://101.200.174.253:8080/all/${RecommendProject2.project_img}" alt="" style="width:278px;height:166px"/></a></div>
+  	     		<div> <a href="Index?proNum=${RecommendProject1.project_num}"><img src="http://101.200.174.253:9090/all/${RecommendProject2.project_img}" alt="" style="width:278px;height:166px"/></a></div>
   	     		<div style="background-color:black;padding-left:30px;filter:alpha(opacity=60);opacity:0.6;position:absolute;top:112px;width:278px;height:53px">
   	     			<div style="color:white;font-size:12px;font-weight:bold;"><span>${RecommendProject2.project_name}</span></div>
   	     			<div style="color:white;font-size:12px;font-weight:bold;">${RecommendProject2.project_desc}</div>
@@ -1155,7 +1155,7 @@ function popreg(){
   	     		</div>
   	    </div>
   	    	<div class="col-md-4" style="padding-left:0px;">
-  	     		<div> <a href="Index?proNum=${RecommendProject3.project_num}"><img src="http://101.200.174.253:8080/all/${RecommendProject3.project_img}" alt="" style="width:278px;height:166px"/></a></div>
+  	     		<div> <a href="Index?proNum=${RecommendProject3.project_num}"><img src="http://101.200.174.253:9090/all/${RecommendProject3.project_img}" alt="" style="width:278px;height:166px"/></a></div>
   	     		<div style="background-color:black;padding-left:30px;filter:alpha(opacity=60);opacity:0.6;position:absolute;top:112px;width:278px;height:53px">
   	     			<div style="color:white;font-size:12px;font-weight:bold;"><span>${RecommendProject3.project_name}</span></div>
   	     			<div style="color:white;font-size:12px;font-weight:bold;">${RecommendProject3.project_desc}</div>
