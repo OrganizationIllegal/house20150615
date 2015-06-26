@@ -40,7 +40,7 @@ body{
 </head>
 <body>
 <div style="width:900px;margin:25px auto;">
-<div class="area_bkg1">当前位置:项目录入</div>
+<div class="area_bkg1">当前位置:项目列表</div>
  <table id="table"
            
            data-pagination="true"
@@ -70,9 +70,6 @@ body{
         selections = [];
 	var i=0;
     $(function () {
-        $('#add').click(function () {
-            $table.bootstrapTable('insertRow', {index: 0, row:{id:'x'+(i++)} });
-        });
         $table.bootstrapTable({
             height: getHeight()
         });
@@ -149,6 +146,7 @@ body{
     window.operateEvents = {
             'click .like': function (e, value, row, index) {
                 var id=row.id;
+                alert("id"+id);
                 window.open ('/Area/editNewsInfo?id='+id)
                 
             }},
@@ -157,38 +155,10 @@ body{
         'click .like': function (e, value, row, index) {
             alert('You click like action, row: ' + JSON.stringify(row));
             var id=row.id;
-            if(isNaN(id)){
-           
-            	$.ajax({
-	 	    type: "POST",
-	 		data: {project_num: row.project_num,recommend_project_num1: row.recommend_project_num1, recommend_project_num2: row.recommend_project_num2,recommend_project_num3: row.recommend_project_num3},
-	 		dateType: "json",
-	 		url: "/addRecoProject",
-	 		
-	 		success:function(data){
-	 			data=$.parseJSON(data);
-	 			if(data.result==0){
-	 				alert("项目编号不能为空！")
-	 			}
-	 			else if(data.result==-1){
-	 				alert("项目编号不存在！")
-	 			}else if(data.result==-2){
-	 				alert("增加失败")
-	 			}
-	 			else{
-	 				alert("增加成功")
-	 			}
-	 		},
-	 		error:function(){
-	 			alert("error")
-	 		}
-	 	});
-          }
-          else{
-        
-	           $.ajax({
+            window.open ('/selectProject?id='+id);
+	        /*  $.ajax({
 		 	    type: "POST",
-		 		data: {id:row.id,project_num: row.project_num,recommend_project_num1: row.recommend_project_num1, recommend_project_num2: row.recommend_project_num2,recommend_project_num3: row.recommend_project_num3},
+		 		//data: {id:row.id,project_num: row.project_num,recommend_project_num1: row.recommend_project_num1, recommend_project_num2: row.recommend_project_num2,recommend_project_num3: row.recommend_project_num3},
 		 		dateType: "json",
 		 		url: "/editRecoProject",
 		 		
@@ -210,8 +180,7 @@ body{
 		 			alert("error")
 		 		}
 	 		});
-          }
-          
+      */
             
             
         },
@@ -228,7 +197,7 @@ body{
 		 		success:function(data){
 		 			alert("删除成功")
 		 		},
-		 		error:function(){s
+		 		error:function(){
 		 			alert("error")
 		 		}
 	 	});

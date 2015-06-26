@@ -248,7 +248,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	          color: "#000000",
 	          data: defaultData,
 	          enableLinks:true,
-	         onNodeSelected: function(event, node) {
+	          onNodeSelected: function(event, node) {
 	           if(node.text=="项目录入"){
 	           		$("#showlist").load("ProjectInput.jsp");
 	           }

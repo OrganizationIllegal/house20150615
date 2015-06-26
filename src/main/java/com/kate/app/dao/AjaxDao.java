@@ -1133,9 +1133,7 @@ import com.kate.app.model.RecoProject;
 		}
 		
 		
-		
-		
-		
+		//添加项目
 		public boolean addPro(String project_name, String project_img, String project_nation, String project_address, String project_area, String project_price_qi, String project_type, int project_sales_remain, String project_finish_time, String project_desc, String project_city, String project_house_type, String project_high, String project_price, String project_lan_cn, String project_lan_en, String project_num, String project_vedio, String project_zhou, String area_qujian, String gps, String return_money, int walk_num, String mianji, String project_min_price, String project_high_price, int tuijiandu, String housePrice_update_time, String buytaxInfo, String holdInfo, int min_area, int max_area, String area_num, String developer_num) throws SQLException{
 			boolean flag = true;
 			String time = "";
@@ -1203,7 +1201,7 @@ import com.kate.app.model.RecoProject;
 				pstmt.setInt(32, max_area);
 				pstmt.setString(33, area_num);
 				pstmt.setString(34, developer_num);
-				
+				System.out.println("sql:"+sql);
 				int result = pstmt.executeUpdate();
 				if(result == 0){
 					flag = false;
@@ -1244,7 +1242,7 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();   
 	        } 
 			try{
-				String sql = " update house_project set project_img=?, project_nation=?, project_address=?, project_area=?, project_price_qi=?, project_type=?, project_sales_remain=?, project_finish_time=?, project_desc=?, project_city=?, project_house_type=?, project_high=?, project_price=?, project_lan_cn=?, project_lan_en=?, project_num=?, project_vedio=?, project_zhou=?, area_qujian=?, gps=?, return_money=?, walk_num=?, mianji=?, project_min_price=?, project_high_price=?, tuijiandu=?, housePrice_update_time=?, buytaxInfo=?, holdInfo=?, min_area=?, max_area=?, area_num=?, developer_id_num=? where id=?";
+				String sql = " update house_project set project_name=?,  project_img=?, project_nation=?, project_address=?, project_area=?, project_price_qi=?, project_type=?, project_sales_remain=?, project_finish_time=?, project_desc=?, project_city=?, project_house_type=?, project_high=?, project_price=?, project_lan_cn=?, project_lan_en=?, project_num=?, project_vedio=?, project_zhou=?, area_qujian=?, gps=?, return_money=?, walk_num=?, mianji=?, project_min_price=?, project_high_price=?, tuijiandu=?, housePrice_update_time=?, buytaxInfo=?, holdInfo=?, min_area=?, max_area=?, area_num=?, developer_id_name=? where id=?";
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, project_name);
 				pstmt.setString(2, project_img);
