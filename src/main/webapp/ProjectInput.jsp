@@ -978,7 +978,7 @@ function savepro(){
 	    type: "POST",
  		async:false, 
 		dateType: "json",
-		data:{"project":JSON.stringify(projectlist),"huxinglist":JSON.stringify(huxinglist)},
+		data:{"project":JSON.stringify(projectlist),"huxinglist":JSON.stringify(huxinglist),"peitaolist":JSON.stringify(peitaolist),"fujinlist":JSON.stringify(fujinlist),"schoollist":JSON.stringify(schoollist),"holdingcostlist":JSON.stringify(holdingcostlist),"housetaxformlist":JSON.stringify(housetaxformlist)},
 		url: "/AddprojectInfo",
 		success:function(data){
 			alert("添加成功")
