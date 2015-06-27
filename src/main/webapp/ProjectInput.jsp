@@ -334,9 +334,9 @@ body{
 <div class="area_left">
 <span class="area_span">户型名称</span><span><input type="text" id="houseTax_housename" name="houseTax_housename" class="area_input"></span>
 </div>
-<div style="clear: both;float: right;padding-right: 55px;"><a href="#" class="addhousetax">添加</a></div>
+<div style="clear: both;float: right;padding-right: 55px;"><a href="#" class="addhousetaxform">添加</a></div>
 </form>
-<div id="housetaxlist">
+<div id="housetaxformlist">
 </div>
 <!-- ****************************************************购房税费end***************************************************** -->
 <!-- <div style="width:900px;clear:both;margin:20px auto;text-align:center;">
@@ -844,7 +844,7 @@ $(function(){
 			huxing.jianzhu_mianji=$("#jianzhu_mianji").val();
 			huxing.shinei_mianji=$("#") */
 			housetaxformlist.push(housetaxform);
-			$("#housetaxformlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++housetaxformcount)+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].housetaxformtype+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].housetaxformprice+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].housetaxformdesc+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].housetaxform_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
+			$("#housetaxformlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++housetaxformcount)+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxtype+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxprice+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxdesc+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
 			
 			/* UpladFile("houseimg"); */
 			$("#housetaxform input").each(function(){
@@ -872,7 +872,7 @@ $(function(){
 				});
 			housetaxformlist[housetaxformedit]=housetaxformedititem;
 			alert($("#housetaxformlist").children().eq(housetaxformedit));
-			$("#housetaxformlist").children().eq(housetaxformedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(housetaxformedit+1)+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].housetaxformtype+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].housetaxformprice+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].housetaxformdesc+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].housetaxform_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show();
+			$("#housetaxformlist").children().eq(housetaxformedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(housetaxformedit+1)+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show();
 			housetaxformedit=100;
 			//$("#peitaolist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++peitaocount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
 			/*peitao.view= */
@@ -894,10 +894,10 @@ $(function(){
 		//$("#projectimage").val(edititem.name+"");
 		alert(index+"index");
 		housetaxformedit=index;
-		$("#housetaxtype").val(housetaxformedititem.housetaxtype);
-		$("#housetaxprice").val(housetaxformedititem.housetaxprice);
-		$("#housetaxdesc").val(housetaxformedititem.housetaxdesc);
-		$("#housetax_housename").val(housetaxformedititem.housetax_housename);
+		$("#houseTaxtype").val(housetaxformedititem.houseTaxtype);
+		$("#houseTaxprice").val(housetaxformedititem.houseTaxprice);
+		$("#houseTaxdesc").val(housetaxformedititem.houseTaxdesc);
+		$("#houseTax_housename").val(housetaxformedititem.houseTax_housename);
 		}); 
 	
 });
