@@ -1,7 +1,7 @@
 package com.kate.app.model;
 
 public class HouseInfo1 {
-	
+	private int id;
 	private String housename;
 	private String houseprice;
 	private String houseimg;
@@ -11,6 +11,13 @@ public class HouseInfo1 {
 	private String shinei_mianji;
 	private String shiwai_mianji;
 	private int wc_num;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getHousename() {
 		return housename;
 	}
