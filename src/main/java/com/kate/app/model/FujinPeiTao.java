@@ -1,9 +1,17 @@
 package com.kate.app.model;
 
 public class FujinPeiTao {
+	private  int  id;
 	private String peitao_type;
 	private String peitao_name;
 	private String peitao_distance;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getPeitao_type() {
 		return peitao_type;
 	}
