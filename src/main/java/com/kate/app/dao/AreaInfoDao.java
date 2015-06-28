@@ -9,14 +9,13 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.kate.app.model.AreaInfo;
-import com.kate.app.model.AreaMiddle;
-import com.kate.app.model.AreaPeopleInfo;
-import com.kate.app.model.AreaTeDian;
-import com.kate.app.model.AreaZhikong;
-import com.kate.app.model.AreaZujin;
+import com.kate.app.model.AreaMiddle2;
+import com.kate.app.model.AreaPeopleInfo2;
+import com.kate.app.model.AreaTeDian2;
+import com.kate.app.model.AreaZhikong2;
+import com.kate.app.model.AreaZujin2;
 import com.kate.app.model.BrokerInfo;
-import com.kate.app.model.HouseProject;
-import com.kate.app.model.MiddlePrice;
+import com.kate.app.model.MiddlePrice2;
 @Repository 
 public class AreaInfoDao extends BaseDao {
 	
@@ -196,7 +195,7 @@ public class AreaInfoDao extends BaseDao {
 		return flag;
 	}
 	
-	public boolean addMiddlePrice(MiddlePrice obj, String area_quyu){
+	public boolean addMiddlePrice(MiddlePrice2 obj, String area_quyu){
 		boolean flag = true;
 		int buy_price = obj.getBuy_price();
 		int zu_price = obj.getZu_price();
@@ -258,12 +257,12 @@ public class AreaInfoDao extends BaseDao {
 	}
 	
 	
-	public boolean addMiddleTrend(AreaMiddle obj, String area_code){
+	public boolean addMiddleTrend(AreaMiddle2 obj, String area_code){
 		boolean flag = true;
-		String heng = obj.getHeng();
-		int zong = obj.getZong();
-		int view_shunxu =obj.getView_shunxu();
-		String project_type = obj.getProject_type();
+		int heng = obj.getHeng2();
+		int zong = obj.getZong2();
+		int view_shunxu =obj.getView_shunxu2();
+		String project_type = obj.getProject_type2();
 		
 		String middle_zoushi_datasource = obj.getMiddle_zoushi_datasource();
 		Timestamp middle_zoushi_date = obj.getMiddle_zoushi_date();
@@ -278,7 +277,7 @@ public class AreaInfoDao extends BaseDao {
 					"view_shunxu, project_type, area_code, middle_zoushi_datasource, " +
 					"middle_zoushi_date) values(?,?,?,?,?,?,?)";
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, heng);
+			pstmt.setInt(1, heng);
 			pstmt.setInt(2, zong);
 			pstmt.setInt(3, view_shunxu);
 			pstmt.setString(4, project_type);
@@ -298,12 +297,12 @@ public class AreaInfoDao extends BaseDao {
 		return flag;
 	}
 	
-	public boolean addMiddleZujin(AreaZujin obj, String area_code){
+	public boolean addMiddleZujin(AreaZujin2 obj, String area_code){
 		boolean flag = true;
-		String heng = obj.getHeng();
-		int zong = obj.getZong();
-		int view_shunxu =obj.getView_shunxu();
-		String project_type = obj.getProject_type();
+		int heng = obj.getHeng3();
+		int zong = obj.getZong3();
+		int view_shunxu =obj.getView_shunxu3();
+		String project_type = obj.getProject_type3();
 		
 		String zujin_datasource = obj.getZujin_datasource();
 		Timestamp zujin_dates = obj.getZujin_date();
@@ -318,7 +317,7 @@ public class AreaInfoDao extends BaseDao {
 					"view_shunxu, project_type, area_code, zujin_datasource, " +
 					"zujin_date) values(?,?,?,?,?,?,?)";
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, heng);
+			pstmt.setInt(1, heng);
 			pstmt.setInt(2, zong);
 			pstmt.setInt(3, view_shunxu);
 			pstmt.setString(4, project_type);
@@ -338,12 +337,12 @@ public class AreaInfoDao extends BaseDao {
 		return flag;
 	}
 	
-	public boolean addAreaZhikong(AreaZhikong obj, String area_code){
+	public boolean addAreaZhikong(AreaZhikong2 obj, String area_code){
 		boolean flag = true;
-		String heng = obj.getHeng();
-		int zong = obj.getZong();
-		int view_shunxu =obj.getView_shunxu();
-		String project_type = obj.getProject_type();
+		int heng = obj.getHeng4();
+		int zong = obj.getZong4();
+		int view_shunxu =obj.getView_shunxu4();
+		String project_type = obj.getProject_type4();
 		
 		String zujin_huibao_datasource = obj.getZujin_huibao_datasource();
 		Timestamp zujin_huibao_date = obj.getZujin_huibao_date();
@@ -355,10 +354,10 @@ public class AreaInfoDao extends BaseDao {
         
 		try{
 			String sql = " insert into area_kongzhi(heng, zong, " +
-					"view_shunxu, project_type, area_code, zujin_datasource, " +
-					"zujin_date) values(?,?,?,?,?,?,?)";
+					"view_shunxu, project_type, area_code, zujin_huibao_datasource, " +
+					"zujin_huibao_date) values(?,?,?,?,?,?,?)";
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, heng);
+			pstmt.setInt(1, heng);
 			pstmt.setInt(2, zong);
 			pstmt.setInt(3, view_shunxu);
 			pstmt.setString(4, project_type);
@@ -379,13 +378,13 @@ public class AreaInfoDao extends BaseDao {
 	}
 	
 	
-	public boolean addAreaTeDian(AreaTeDian obj, String area_code){
+	public boolean addAreaTeDian(AreaTeDian2 obj, String area_code){
 		boolean flag = true;
 		String area_character = obj.getArea_character();
 		int view_shunxu = obj.getView_shunxu();
 		
 		
-		String data_source = obj.getData_souce();
+		String data_source = obj.getData_source();
 		Timestamp update_time = obj.getUpdate_time();
 		String time_str = "";
 		if(update_time != null){
@@ -418,12 +417,12 @@ public class AreaInfoDao extends BaseDao {
 	}
 	
 	
-	public boolean addAreaPeople(AreaPeopleInfo obj, String area_code){
+	public boolean addAreaPeople(AreaPeopleInfo2 obj, String area_code){
 		boolean flag = true;
 		String column1 = obj.getColumn1();
 		String column2 = obj.getColumn2();
 		String column3 = obj.getColumn3();
-		int view_shunxu = obj.getView_shunxu();
+		int view_shunxu = obj.getView_shunxu_people();
 		String people_datasource = obj.getPeople_datasource();
 		Timestamp people_date = obj.getPeople_date();
 		String time_str = "";

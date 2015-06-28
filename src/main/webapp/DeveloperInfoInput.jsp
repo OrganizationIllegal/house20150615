@@ -66,9 +66,9 @@ body{
 	 		dataType: "json",
 	 		url: "/AddDeveloperInfo",
 	 		success:function(data){
-	 			alert("okokokoko");
-	 			alert(data);
-	 			alert(data.flag);
+	 			//alert("okokokoko");
+	 			//alert(data);
+	 			//alert(data.flag);
 	 			if(data.flag == 1){
 	 				alert("添加成功");
 	 			}

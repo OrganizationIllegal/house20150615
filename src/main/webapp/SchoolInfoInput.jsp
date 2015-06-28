@@ -90,8 +90,8 @@ body{
 	 		url: "/AddschoolInfo",
 	 		success:function(data){
 	 			//window.location.reload();
-	 			alert(data);
-	 			alert(data.flag);
+	 			//alert(data);
+	 			//alert(data.flag);
 	 			if(data.flag==1){
 	 				alert("添加成功");
 	 			}

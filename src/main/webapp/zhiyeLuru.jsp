@@ -99,7 +99,7 @@ $(".uploadimg").click(function(){
 	  var filenames=$('#image').val().split("\\");
 	  var image=filenames[filenames.length-1];
 	  var detail=CKEDITOR.instances.detail.getData();
-	  alert(detail);
+	  //alert(detail);
 	  $.ajax({
 	 	    type: "POST",
 	 		data: { zhiye_num : zhiye_num,title : title,fabu_people : fabu_people,fabu_time : fabu_time,fenlei : fenlei,zhiye_abstract : zhiye_abstract,image : image,detail : detail},

@@ -249,7 +249,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	          } */
 	        ];
 	      /*   $("#showlist").load("areaLuru.jsp"); */
-	        $("#showlist").load("ProjectInput.jsp");
+	        $("#showlist").load("/ProjectInput");
 	        $('#treeview').treeview({
 	          //color: "#428bca",
 	          color: "#000000",
@@ -257,7 +257,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	          enableLinks:true,
 	          onNodeSelected: function(event, node) {
 	           if(node.text=="项目录入"){
-	           		$("#showlist").load("ProjectInput.jsp");
+	           		$("#showlist").load("/ProjectInput");
 	           }
 	           if(node.text=="区域录入"){
 		           /* $("#showlist").load("areaLuru.jsp"); */

@@ -18,22 +18,24 @@ import com.alibaba.fastjson.JSONObject;
 import com.kate.app.dao.AjaxDao;
 import com.kate.app.dao.AreaInfoDao;
 import com.kate.app.dao.AreaInputDao;
+import com.kate.app.dao.BaseDao;
 import com.kate.app.dao.NewsBokeDao;
 import com.kate.app.dao.ZhiYeDao;
-import com.kate.app.model.AreaMiddle;
-import com.kate.app.model.AreaPeopleInfo;
-import com.kate.app.model.AreaTeDian;
-import com.kate.app.model.AreaZhikong;
-import com.kate.app.model.AreaZujin;
+import com.kate.app.model.AreaMiddle2;
+import com.kate.app.model.AreaPeopleInfo2;
+import com.kate.app.model.AreaTeDian2;
+import com.kate.app.model.AreaZhikong2;
+import com.kate.app.model.AreaZujin2;
 import com.kate.app.model.BrokerInfo;
 import com.kate.app.model.HouseProject;
 import com.kate.app.model.MiddlePrice;
+import com.kate.app.model.MiddlePrice2;
 import com.kate.app.model.NewsBoke;
 import com.kate.app.model.ZhiYeZhiDao;
 import com.kate.app.service.ConvertJson;
 
 @Controller
-public class AreaInfoController {
+public class AreaInfoController extends BaseDao {
 	@Autowired
 	private AreaInputDao areaInputDao;
 	@Autowired
@@ -460,81 +462,81 @@ public class AreaInfoController {
 					
 					
 					JSONArray middlepriceArray = JSONArray.parseArray(middleprice);
-					List<MiddlePrice> middlepriceList=new ArrayList<MiddlePrice>();
+					List<MiddlePrice2> middlepriceList=new ArrayList<MiddlePrice2>();
 					for (int i=0; i<middlepriceArray.size(); i++){
 						 JSONObject object = (JSONObject)middlepriceArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
-						 MiddlePrice e = (MiddlePrice) JSONToObj(object.toString(), MiddlePrice.class);
+						 MiddlePrice2 e = (MiddlePrice2) JSONToObj(object.toString(), MiddlePrice2.class);
 						 middlepriceList.add(e);
 					}
 					System.out.println("brokersList.length():"+middlepriceList.size());
-					for(MiddlePrice item : middlepriceList){
+					for(MiddlePrice2 item : middlepriceList){
 						boolean resultMiddle = areaInfoDao.addMiddlePrice(item, area_num);
 					}
 					
 					
 					JSONArray middletrendArray = JSONArray.parseArray(middletrend);
-					List<AreaMiddle> middletrendList=new ArrayList<AreaMiddle>();
+					List<AreaMiddle2> middletrendList=new ArrayList<AreaMiddle2>();
 					for (int i=0; i<middletrendArray.size(); i++){
 						 JSONObject object = (JSONObject)middletrendArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
-						 AreaMiddle e = (AreaMiddle) JSONToObj(object.toString(), AreaMiddle.class);
+						 AreaMiddle2 e = (AreaMiddle2) JSONToObj(object.toString(), AreaMiddle2.class);
 						 middletrendList.add(e);
 					}
 					System.out.println("brokersList.length():"+middletrendList.size());
-					for(MiddlePrice item : middlepriceList){
-						boolean resultMiddle = areaInfoDao.addMiddlePrice(item, area_num);
+					for(AreaMiddle2 item : middletrendList){
+						boolean resultMiddle = areaInfoDao.addMiddleTrend(item, area_num);
 					}
 					
 					
 					JSONArray zujintrendlistArray = JSONArray.parseArray(zujintrendlist);
-					List<AreaZujin> zujintrendlistList=new ArrayList<AreaZujin>();
+					List<AreaZujin2> zujintrendlistList=new ArrayList<AreaZujin2>();
 					for (int i=0; i<zujintrendlistArray.size(); i++){
 						 JSONObject object = (JSONObject)zujintrendlistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
-						 AreaZujin e = (AreaZujin) JSONToObj(object.toString(), AreaZujin.class);
+						 AreaZujin2 e = (AreaZujin2) JSONToObj(object.toString(), AreaZujin2.class);
 						 zujintrendlistList.add(e);
 					}
 					
-					for(AreaZujin item : zujintrendlistList){
+					for(AreaZujin2 item : zujintrendlistList){
 						boolean resultZujin = areaInfoDao.addMiddleZujin(item, area_num);
 					}
-					
+					//区域租金回报
 					JSONArray huibaotrendlistArray = JSONArray.parseArray(huibaotrendlist);
-					List<AreaZhikong> huibaotrendlistList=new ArrayList<AreaZhikong>();
+					List<AreaZhikong2> huibaotrendlistList=new ArrayList<AreaZhikong2>();
 					for (int i=0; i<huibaotrendlistArray.size(); i++){
 						 JSONObject object = (JSONObject)huibaotrendlistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
-						 AreaZhikong e = (AreaZhikong) JSONToObj(object.toString(), AreaZhikong.class);
+						 AreaZhikong2 e = (AreaZhikong2) JSONToObj(object.toString(), AreaZhikong2.class);
 						 huibaotrendlistList.add(e);
 					}
 					
-					for(AreaZhikong item : huibaotrendlistList){
+					for(AreaZhikong2 item : huibaotrendlistList){
 						boolean resultZujin = areaInfoDao.addAreaZhikong(item, area_num);
 					}
-					
+					//区域地点
 					JSONArray tedianlistArray = JSONArray.parseArray(tedianlist);
-					List<AreaTeDian> tedianlistList=new ArrayList<AreaTeDian>();
+					List<AreaTeDian2> tedianlistList=new ArrayList<AreaTeDian2>();
 					for (int i=0; i<tedianlistArray.size(); i++){
 						 JSONObject object = (JSONObject)tedianlistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
-						 AreaTeDian e = (AreaTeDian) JSONToObj(object.toString(), AreaTeDian.class);
+						 AreaTeDian2 e = (AreaTeDian2) JSONToObj(object.toString(), AreaTeDian2.class);
 						 tedianlistList.add(e);
 					}
 					
-					for(AreaTeDian item : tedianlistList){
+					for(AreaTeDian2 item : tedianlistList){
 						boolean resultZujin = areaInfoDao.addAreaTeDian(item, area_num);
 					}
 					
-					
+					//区域人口分布
 					
 					JSONArray peoplelistArray = JSONArray.parseArray(peoplelist);
-					List<AreaPeopleInfo> peoplelistList=new ArrayList<AreaPeopleInfo>();
+					List<AreaPeopleInfo2> peoplelistList=new ArrayList<AreaPeopleInfo2>();
 					for (int i=0; i<peoplelistArray.size(); i++){
 						 JSONObject object = (JSONObject)peoplelistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
-						 AreaPeopleInfo e = (AreaPeopleInfo) JSONToObj(object.toString(), AreaPeopleInfo.class);
+						 AreaPeopleInfo2 e = (AreaPeopleInfo2) JSONToObj(object.toString(), AreaPeopleInfo2.class);
 						 peoplelistList.add(e);
 					}
 					
-					for(AreaPeopleInfo item : peoplelistList){
+					for(AreaPeopleInfo2 item : peoplelistList){
 						boolean resultZujin = areaInfoDao.addAreaPeople(item, area_num);
 					}
-					
+					//推荐经纪人
 					JSONArray brokerlistArray = JSONArray.parseArray(brokerlist);
 					int length = brokerlistArray.size() >= 3 ? 3: brokerlistArray.size();
 					

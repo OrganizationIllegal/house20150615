@@ -88,7 +88,7 @@ $(".uploadimg").click(function(){
 });
 
   function add(){
-	  alert("add");
+	  //alert("add");
 	  var news_num=$("#news_num").val();
 	  var news_title=$("#news_title").val();
 	  var news_people=$("#news_people").val();
@@ -98,7 +98,7 @@ $(".uploadimg").click(function(){
 	  var filenames=$('#news_image').val().split("\\");
 	  var news_image=filenames[filenames.length-1];
 	  var news_detail=CKEDITOR.instances.news_detail.getData();
-	  alert(news_detail);
+	  //alert(news_detail);
 	  $.ajax({
 	 	    type: "POST",
 	 		data: { news_num : news_num,news_title : news_title,news_people : news_people,news_time : news_time,news_fenlei : news_fenlei,news_abstract : news_abstract,news_image : news_image,news_detail : news_detail}, 

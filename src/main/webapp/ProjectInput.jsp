@@ -400,7 +400,7 @@ $(function(){
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
 	});  
 	$(".addpeitao").click(function(){
-		alert(isedit);
+		//alert(isedit);
 		if(isedit==100){
 			if($('#projectimage').val()==""){
 				alert("请选择文件！");
@@ -418,13 +418,13 @@ $(function(){
 			/* <a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a> */
 			}
 		else{
-			alert("edit");
+			//alert("edit");
 			/* var filenames=$('#projectimage').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			edititem.name=$('#projectimage').val();
 			UpladFile("projectimage");
 			$("#projectimage").val("");
-			alert($("#peitaolist").children().eq(isedit));
+			//alert($("#peitaolist").children().eq(isedit));
 			$("#peitaolist").children().eq(++isedit).show();
 			isedit=100;
 			//$("#peitaolist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++peitaocount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
@@ -440,12 +440,12 @@ $(function(){
 	$("#peitaolist").on("click",".editpeitao",function(){
 		
 		var index=$(this).parent().parent().children().eq(0).text()-1;
-		alert(index);
+		//alert(index);
 		edititem=peitaolist[index];
 		$(this).parent().parent().hide();
-		alert(edititem.name);
+		//alert(edititem.name);
 		//$("#projectimage").val(edititem.name+"");
-		alert(index+"index");
+		//alert(index+"index");
 		isedit=index;
 		}); 
 	
@@ -459,7 +459,7 @@ $(function(){
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
 	});  
 	$(".addhuxing").click(function(){
-		alert(ishuxingedit);
+		//alert(ishuxingedit);
 		if(ishuxingedit==100){
 			if($('#houseimg').val()==""){
 				alert("请选择文件！");
@@ -493,7 +493,7 @@ $(function(){
 			if($('#houseimg').val()==""){
 				alert("请选择文件！");
 				return false;}
-			alert("edit");
+			//alert("edit");
 			/* var huxing={}; */
 			var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1];
@@ -507,7 +507,7 @@ $(function(){
 				$(this).val("");
 				});
 			huxinglist[ishuxingedit]=huxingedititem;
-			alert($("#huxingjiagelist").children().eq(isedit));
+			//alert($("#huxingjiagelist").children().eq(isedit));
 			$("#huxingjiagelist").children().eq(ishuxingedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(ishuxingedit+1)+"</span><span style='padding-right:10px;'>"+huxinglist[ishuxingedit].houseimg+"</span><span style='padding-right:10px;'>"+huxinglist[ishuxingedit].housename+"</span><span style='padding-right:10px;'>"+huxinglist[ishuxingedit].houseprice+"</span><span >"+huxinglist[ishuxingedit].room_num+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show();
 			ishuxingedit=100;
 			//$("#peitaolist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++peitaocount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
@@ -525,12 +525,12 @@ $(function(){
 	$("#huxingjiagelist").on("click",".editpeitao",function(){
 		
 		var index=$(this).parent().parent().children().eq(0).text()-1;
-		alert(index);
+		//alert(index);
 		huxingedititem=huxinglist[index];
 		$(this).parent().parent().hide();
 		/* alert(huxingedititem.name); */
 		//$("#projectimage").val(edititem.name+"");
-		alert(index+"index");
+		//alert(index+"index");
 		ishuxingedit=index;
 		$("#housename").val(huxingedititem.housename);
 		$("#houseprice").val(huxingedititem.houseprice);
@@ -553,7 +553,7 @@ $(function(){
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
 	});  
 	$(".addfujin").click(function(){
-		alert(fujinedit);
+		//alert(fujinedit);
 		if(fujinedit==100){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
@@ -587,7 +587,7 @@ $(function(){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
 				return false;} */
-			alert("edit");
+			//alert("edit");
 			/* var huxing={}; */
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -604,7 +604,7 @@ $(function(){
 				});
 
 			fujinlist[fujinedit]=fujinedititem;
-			alert($("#fujinlist").children().eq(fujinedit));
+			//alert($("#fujinlist").children().eq(fujinedit));
 			$("#fujinlist").children().eq(fujinedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(fujinedit+1)+"</span><span style='padding-right:10px;'>"+fujinlist[fujinedit].peitao_type+"</span><span style='padding-right:10px;'>"+fujinlist[fujinedit].peitao_name+"</span><span style='padding-right:10px;'>"+fujinlist[fujinedit].peitao_distance+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show();
 			fujinedit=100;
 			//$("#peitaolist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++peitaocount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
@@ -620,12 +620,12 @@ $(function(){
 	$("#fujinlist").on("click",".editpeitao",function(){
 		
 		var index=$(this).parent().parent().children().eq(0).text()-1;
-		alert(index);
+		//alert(index);
 		fujinedititem=fujinlist[index];
 		$(this).parent().parent().hide();
 		/* alert(huxingedititem.name); */
 		//$("#projectimage").val(edititem.name+"");
-		alert(index+"index");
+		//alert(index+"index");
 		fujinedit=index;
 		$("#peitao_type").val(fujinedititem.peitao_type);
 		$("#peitao_name").val(fujinedititem.peitao_name);
@@ -643,7 +643,7 @@ $(function(){
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
 	});  
 	$(".addschool").click(function(){
-		alert(schooledit);
+		//alert(schooledit);
 		if(schooledit==100){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
@@ -677,7 +677,7 @@ $(function(){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
 				return false;} */
-			alert("edit");
+			//alert("edit");
 			/* var huxing={}; */
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -691,7 +691,7 @@ $(function(){
 				$(this).val("");
 				});
 			schoollist[schooledit]=schooledititem;
-			alert($("#schoollist").children().eq(schooledit));
+			//alert($("#schoollist").children().eq(schooledit));
 			$("#schoollist").children().eq(schooledit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(schooledit+1)+"</span><span style='padding-right:10px;'>"+schoollist[schooledit].school_name+"</span><span style='padding-right:10px;'>"+schoollist[schooledit].school_distance+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show();
 			schooledit=100;
 			//$("#peitaolist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++peitaocount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
@@ -707,12 +707,12 @@ $(function(){
 	$("#schoollist").on("click",".editpeitao",function(){
 		
 		var index=$(this).parent().parent().children().eq(0).text()-1;
-		alert(index);
+		//alert(index);
 		schooledititem=schoollist[index];
 		$(this).parent().parent().hide();
 		/* alert(huxingedititem.name); */
 		//$("#projectimage").val(edititem.name+"");
-		alert(index+"index");
+		//alert(index+"index");
 		schooledit=index;
 		$("#school_name").val(schooledititem.school_name);
 		$("#school_distance").val(schooledititem.school_distance);
@@ -729,7 +729,7 @@ $(function(){
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
 	});  
 	$(".addholdingcost").click(function(){
-		alert(holdingcostedit);
+		//alert(holdingcostedit);
 		if(holdingcostedit==100){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
@@ -763,7 +763,7 @@ $(function(){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
 				return false;} */
-			alert("edit");
+			//alert("edit");
 			/* var huxing={}; */
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -777,7 +777,7 @@ $(function(){
 				$(this).val("");
 				});
 			holdingcostlist[holdingcostedit]=holdingcostedititem;
-			alert($("#holdingcostlist").children().eq(holdingcostedit));
+			//alert($("#holdingcostlist").children().eq(holdingcostedit));
 			$("#holdingcostlist").children().eq(holdingcostedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(holdingcostedit+1)+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcosttype+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcostprice+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcostdesc+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcost_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show();
 			holdingcostedit=100;
 			//$("#peitaolist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++peitaocount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
@@ -794,13 +794,13 @@ $(function(){
 	$("#holdingcostlist").on("click",".editpeitao",function(){
 		
 		var index=$(this).parent().parent().children().eq(0).text()-1;
-		alert(index);
+		//alert(index);
 		holdingcostedititem=holdingcostlist[index];
 
 		$(this).parent().parent().hide();
 		/* alert(huxingedititem.name); */
 		//$("#projectimage").val(edititem.name+"");
-		alert(index+"index");
+		//alert(index+"index");
 
 		holdingcostedit=index;
 		$("#holdcosttype").val(holdingcostedititem.holdcosttype);
@@ -823,7 +823,7 @@ $(function(){
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
 	});  
 	$(".addhousetaxform").click(function(){
-		alert(housetaxformedit);
+		//alert(housetaxformedit);
 		if(housetaxformedit==100){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
@@ -857,7 +857,7 @@ $(function(){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
 				return false;} */
-			alert("edit");
+			//alert("edit");
 			/* var huxing={}; */
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -871,7 +871,7 @@ $(function(){
 				$(this).val("");
 				});
 			housetaxformlist[housetaxformedit]=housetaxformedititem;
-			alert($("#housetaxformlist").children().eq(housetaxformedit));
+			//alert($("#housetaxformlist").children().eq(housetaxformedit));
 			$("#housetaxformlist").children().eq(housetaxformedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(housetaxformedit+1)+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show();
 			housetaxformedit=100;
 			//$("#peitaolist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++peitaocount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
@@ -887,12 +887,12 @@ $(function(){
 	$("#housetaxformlist").on("click",".editpeitao",function(){
 		
 		var index=$(this).parent().parent().children().eq(0).text()-1;
-		alert(index);
+		//alert(index);
 		housetaxformedititem=housetaxformlist[index];
 		$(this).parent().parent().hide();
 		/* alert(huxingedititem.name); */
 		//$("#projectimage").val(edititem.name+"");
-		alert(index+"index");
+		//alert(index+"index");
 		housetaxformedit=index;
 		$("#houseTaxtype").val(housetaxformedititem.houseTaxtype);
 		$("#houseTaxprice").val(housetaxformedititem.houseTaxprice);

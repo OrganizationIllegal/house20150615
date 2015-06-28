@@ -195,7 +195,7 @@ $(function(){
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
 	});  
 	$(".addarea").click(function(){
-		alert(areaedit);
+		//alert(areaedit);
 		if(areaedit==100){
 			var area={};
 			area=DataDeal.formToJson(data= decodeURIComponent($("#area").serialize(),true));
@@ -207,14 +207,14 @@ $(function(){
 				});
 			}
 		else{
-			alert("edit");
+			//alert("edit");
 			areaedititem=DataDeal.formToJson(data= decodeURIComponent($("#area").serialize(),true));
 			areaedititem=eval("("+areaedititem+")");
 			$("#area input").each(function(){
 				$(this).val("");
 				});
 			arealist[areaedit]=areaedititem;
-			alert($("#arealist").children().eq(areaedit));
+			//alert($("#arealist").children().eq(areaedit));
 			$("#arealist").children().eq(areaedit).html("<div class='area_left3'><span style='display:none;'>"+(areaedit+1)+"</span><span class='area_span'>"+arealist[areaedit].area_code+"</span><span class='area_span'>"+arealist[areaedit].view_shunxu+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editarea'>编辑</a></span><span class='area_span5'><a href='#' class='deletearea'>删除</a></span></div>").show();
 			areaedit=100;
 			}
@@ -227,10 +227,10 @@ $(function(){
 		});
 	$("#arealist").on("click",".editarea",function(){
 		var index=$(this).parent().parent().parent().children().eq(0).children().eq(0).text()-1;
-		alert(index);
+		//alert(index);
 		areaedititem=arealist[index];
 		$(this).parent().parent().parent().hide();
-		alert(index+"index");
+		//alert(index+"index");
 		areaedit=index;
 		$("#area_code").val(areaedititem.area_code);
 		$("#view_shunxu").val(areaedititem.view_shunxu);
@@ -248,7 +248,7 @@ $(function(){
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
 	});  
 	$(".addtype").click(function(){
-		alert(typeedit);
+		//alert(typeedit);
 		if(typeedit==100){
 			var type={};
 			type=DataDeal.formToJson(data= decodeURIComponent($("#type").serialize(),true));
@@ -260,14 +260,14 @@ $(function(){
 				});
 			}
 		else{
-			alert("edit");
+			//alert("edit");
 			typeedititem=DataDeal.formToJson(data= decodeURIComponent($("#type").serialize(),true));
 			typeedititem=eval("("+typeedititem+")");
 			$("#type input").each(function(){
 				$(this).val("");
 				});
 			typelist[typeedit]=typeedititem;
-			alert($("#typelist").children().eq(typeedit));
+			//alert($("#typelist").children().eq(typeedit));
 			$("#typelist").children().eq(typeedit).html("<div class='area_left3'><span style='display:none;'>"+(typeedit+1)+"</span><span class='area_span'>"+typelist[typeedit].interested_num+"</span><span class='area_span'>"+typelist[typeedit].view_shunxu2+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edittype'>编辑</a></span><span class='area_span5'><a href='#' class='deletetype'>删除</a></span></div>").show();
 			typeedit=100;
 			}
@@ -280,10 +280,10 @@ $(function(){
 		});
 	$("#typelist").on("click",".edittype",function(){
 		var index=$(this).parent().parent().parent().children().eq(0).children().eq(0).text()-1;
-		alert(index);
+		//alert(index);
 		typeedititem=typelist[index];
 		$(this).parent().parent().parent().hide();
-		alert(index+"index");
+		//alert(index+"index");
 		typeedit=index;
 		$("#interested_num").val(typeedititem.interested_num);
 		$("#view_shunxu2").val(typeedititem.view_shunxu2);
@@ -321,7 +321,7 @@ function saveBroker(){
 	var filenames=$('#broker_img').val().split("\\");
 	var filename=filenames[filenames.length-1];
 	broker.broker_img=filename;
-	alert(CKEDITOR.instances.introduction.getData());
+	//alert(CKEDITOR.instances.introduction.getData());
 	broker.introduction=CKEDITOR.instances.introduction.getData();
     $.ajax({
 	    type: "POST",
@@ -396,7 +396,7 @@ function add(){
 	  }
 
   function add2(){
-	  alert("ehhe")
+	  //alert("ehhe")
 	  var broker_num=$("#broker_num").val();
 	  var interested_num=$("#interested_num").val();
 	  var view_shunxu2=$("#view_shunxu2").val();

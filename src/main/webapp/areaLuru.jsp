@@ -124,6 +124,7 @@ body{
 <div class="area_right"></div>
 <div class="area_left">
 <span class="area_span">购买价格</span><span><input type="text" id="buy_price" name="buy_price" class="area_input"></span>
+<input type="hidden" id="id" name="id" class="area_input">
 </div>
 <div class="area_right">
 <span class="area_span">租赁价格</span><span><input type="text" id="zu_price" name="zu_price" class="area_input"></span>
@@ -205,6 +206,7 @@ body{
 </div>
 <div class="area_right">
 <span class="area_span">显示顺序</span><span><input type="text" id="view_shunxu2" name="view_shunxu2" class="area_input"></span>
+<input type="hidden" id="id" name="id" class="area_input">
 </div>
 <div class="area_left">
 <span class="area_span">横坐标</span><span><input type="text" id="heng2" name="heng2" class="area_input"></span>
@@ -254,6 +256,7 @@ body{
 </div>
 <div class="area_right">
 <span class="area_span">显示顺序</span><span><input type="text" id="view_shunxu3" name="view_shunxu3" class="area_input"></span>
+<input type="hidden" id="id" name="id" class="area_input">
 </div>
 <div class="area_left">
 <span class="area_span">横坐标</span><span><input type="text" id="heng3" name="heng3" class="area_input"></span>
@@ -262,7 +265,7 @@ body{
 <span class="area_span">纵坐标</span><span><input type="text" id="zong3" name="zong3" class="area_input"></span>
 </div>
 <div class="area_left">
-<span class="area_span">数据来源</span><span><input type="text" id="zujin_datasource" name="c" class="area_input"></span>
+<span class="area_span">数据来源</span><span><input type="text" id="zujin_datasource" name="zujin_datasource" class="area_input"></span>
 </div>
 <div class="area_right">
 <span class="area_span">更新日期</span><span><input type="text" id="zujin_date" name="zujin_date" class="area_input"></span>
@@ -307,6 +310,7 @@ body{
 </div>
 <div class="area_right">
 <span class="area_span">显示顺序</span><span><input type="text" id="view_shunxu4" name="view_shunxu4" class="area_input"></span>
+<input type="hidden" id="id" name="id" class="area_input">
 </div>
 <div class="area_left">
 <span class="area_span">横坐标</span><span><input type="text" id="heng4" name="heng4" class="area_input"></span>
@@ -350,6 +354,7 @@ body{
 <form id="tedian">
 <div class="area_left">
 <span class="area_span">数据来源</span><span><input type="text" id="data_source" name="data_source" class="area_input"></span>
+<input type="hidden" id="id" name="id" class="area_input">
 </div>
 <div class="area_right">
 <span class="area_span">更新日期</span><span><input type="text" id="update_time" name="update_time" class="area_input"></span>
@@ -391,6 +396,7 @@ body{
 <form id="people">
 <div class="area_left">
 <span class="area_span">列1</span><span><input type="text" id="column1" name="column1" class="area_input"></span>
+<input type="hidden" id="id" name="id" class="area_input">
 </div>
 <div class="area_right">
 <span class="area_span">列2</span><span><input type="text" id="column2" name="column2" class="area_input"></span>
@@ -649,7 +655,7 @@ $(function(){
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
 	});  
 	$(".addmiddleprice").click(function(){
-		alert(middlepriceedit);
+		//alert(middlepriceedit);
 		if(middlepriceedit==100){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
@@ -683,7 +689,7 @@ $(function(){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
 				return false;} */
-			alert("edit");
+			//alert("edit");
 			/* var huxing={}; */
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -698,7 +704,7 @@ $(function(){
 				});
 			middlepriceedititem.id=middlepricelist[middlepriceedit].id;
 			middlepricelist[middlepriceedit]=middlepriceedititem;
-			alert($("#middlepricelist").children().eq(middlepriceedit));
+			//alert($("#middlepricelist").children().eq(middlepriceedit));
 			/* $("#middlepricelist").children().eq(middlepriceedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(middlepriceedit+1)+"</span><span style='padding-right:10px;'>"+middlepricelist[middlepriceedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+middlepricelist[middlepriceedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+middlepricelist[middlepriceedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+middlepricelist[middlepriceedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
 			$("#middlepricelist").children().eq(middlepriceedit).html("<div><div class='area_left3'><span style='display:none;'>"+(middlepriceedit+1)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+middlepricelist[middlepriceedit].project_type+"</span><span class='area_span'>"+middlepricelist[middlepriceedit].buy_price+"</span><span class='area_span'>"+middlepricelist[middlepriceedit].zu_price+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='eidtmiddleprice'>编辑</a></span><span class='area_span5'><a href='#' class='deletemiddleprice'>删除</a></span></div></div>").show();
 
@@ -716,12 +722,12 @@ $(function(){
 	$("#middlepricelist").on("click",".editmiddleprice",function(){
 		
 		var index=$(this).parent().parent().parent().children().eq(0).children().eq(0).text()-1;
-		alert(index);
+		//alert(index);
 		middlepriceedititem=middlepricelist[index];
 		$(this).parent().parent().parent().hide();
 		/* alert(huxingedititem.name); */
 		//$("#projectimage").val(edititem.name+"");
-		alert(index+"index");
+		//alert(index+"index");
 		middlepriceedit=index;
 		$("#project_type").val(middlepriceedititem.project_type);
 		$("#buy_price").val(middlepriceedititem.buy_price);
@@ -753,7 +759,7 @@ $(function(){
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
 	});  
 	$(".addmiddletrend").click(function(){
-		alert(middletrendedit);
+		//alert(middletrendedit);
 		if(middletrendedit==100){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
@@ -787,7 +793,7 @@ $(function(){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
 				return false;} */
-			alert("edit");
+			//alert("edit");
 			/* var huxing={}; */
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -801,7 +807,7 @@ $(function(){
 				$(this).val("");
 				});
 			middletrendlist[middletrendedit]=middletrendedititem;
-			alert($("#middletrendlist").children().eq(middletrendedit));
+			//alert($("#middletrendlist").children().eq(middletrendedit));
 			/* $("#middletrendlist").children().eq(middletrendedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(middletrendedit+1)+"</span><span style='padding-right:10px;'>"+middletrendlist[middletrendedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+middletrendlist[middletrendedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+middletrendlist[middletrendedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+middletrendlist[middletrendedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
 			$("#middletrendlist").children().eq(middletrendedit).html("<div><div class='area_left3'><span style='display:none;'>"+(middletrendedit+1)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+middletrendlist[middletrendedit].project_type2+"</span><span class='area_span'>"+middletrendlist[middletrendedit].view_shunxu2+"</span><span class='area_span'>"+middletrendlist[middletrendedit].heng2+"</span><span class='area_span6'>"+middletrendlist[middletrendedit].zong2+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='eidtmiddletrend'>编辑</a></span><span class='area_span5'><a href='#' class='deletemiddletrend'>删除</a></span></div></div>").show();
 
@@ -819,12 +825,12 @@ $(function(){
 	$("#middletrendlist").on("click",".editmiddletrend",function(){
 		
 		var index=$(this).parent().parent().parent().children().eq(0).children().eq(0).text()-1;
-		alert(index);
+		//alert(index);
 		middletrendedititem=middletrendlist[index];
 		$(this).parent().parent().parent().hide();
 		/* alert(huxingedititem.name); */
 		//$("#projectimage").val(edititem.name+"");
-		alert(index+"index");
+		//alert(index+"index");
 		middletrendedit=index;
 		$("#project_type2").val(middletrendedititem.project_type2);
 		$("#view_shunxu2").val(middletrendedititem.view_shunxu2);
@@ -846,7 +852,7 @@ $(function(){
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
 	});  
 	$(".addzujintrend").click(function(){
-		alert(zujintrendedit);
+		//alert(zujintrendedit);
 		if(zujintrendedit==100){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
@@ -880,7 +886,7 @@ $(function(){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
 				return false;} */
-			alert("edit");
+			//alert("edit");
 			/* var huxing={}; */
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -894,7 +900,7 @@ $(function(){
 				$(this).val("");
 				});
 			zujintrendlist[zujintrendedit]=zujintrendedititem;
-			alert($("#zujintrendlist").children().eq(zujintrendedit));
+			//alert($("#zujintrendlist").children().eq(zujintrendedit));
 			/* $("#zujintrendlist").children().eq(zujintrendedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(zujintrendedit+1)+"</span><span style='padding-right:10px;'>"+zujintrendlist[zujintrendedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+zujintrendlist[zujintrendedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+zujintrendlist[zujintrendedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+zujintrendlist[zujintrendedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
 			$("#zujintrendlist").children().eq(zujintrendedit).html("<div><div class='area_left3'><span style='display:none;'>"+(zujintrendedit+1)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+zujintrendlist[zujintrendedit].project_type3+"</span><span class='area_span'>"+zujintrendlist[zujintrendedit].view_shunxu3+"</span><span class='area_span'>"+zujintrendlist[zujintrendedit].heng3+"</span><span class='area_span6'>"+zujintrendlist[zujintrendedit].zong3+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='eidtzujintrend'>编辑</a></span><span class='area_span5'><a href='#' class='deletezujintrend'>删除</a></span></div></div>").show();
 
@@ -912,12 +918,12 @@ $(function(){
 	$("#zujintrendlist").on("click",".editzujintrend",function(){
 		
 		var index=$(this).parent().parent().parent().children().eq(0).children().eq(0).text()-1;
-		alert(index);
+		//alert(index);
 		zujintrendedititem=zujintrendlist[index];
 		$(this).parent().parent().parent().hide();
-		/* alert(huxingedititem.name); */
+		/* //alert(huxingedititem.name); */
 		//$("#projectimage").val(edititem.name+"");
-		alert(index+"index");
+		//alert(index+"index");
 		zujintrendedit=index;
 		$("#project_type3").val(zujintrendedititem.project_type3);
 		$("#view_shunxu3").val(zujintrendedititem.view_shunxu3);
@@ -940,7 +946,7 @@ $(function(){
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
 	});  
 	$(".addhuibaotrend").click(function(){
-		alert(huibaotrendedit);
+		//alert(huibaotrendedit);
 		if(huibaotrendedit==100){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
@@ -974,7 +980,7 @@ $(function(){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
 				return false;} */
-			alert("edit");
+			//alert("edit");
 			/* var huxing={}; */
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -988,7 +994,7 @@ $(function(){
 				$(this).val("");
 				});
 			huibaotrendlist[huibaotrendedit]=huibaotrendedititem;
-			alert($("#huibaotrendlist").children().eq(huibaotrendedit));
+			//alert($("#huibaotrendlist").children().eq(huibaotrendedit));
 			/* $("#huibaotrendlist").children().eq(huibaotrendedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(huibaotrendedit+1)+"</span><span style='padding-right:10px;'>"+huibaotrendlist[huibaotrendedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+huibaotrendlist[huibaotrendedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+huibaotrendlist[huibaotrendedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+huibaotrendlist[huibaotrendedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
 			$("#huibaotrendlist").children().eq(huibaotrendedit).html("<div><div class='area_left3'><span style='display:none;'>"+(huibaotrendedit+1)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+huibaotrendlist[huibaotrendedit].project_type4+"</span><span class='area_span'>"+huibaotrendlist[huibaotrendedit].view_shunxu4+"</span><span class='area_span'>"+huibaotrendlist[huibaotrendedit].heng4+"</span><span class='area_span6'>"+huibaotrendlist[huibaotrendedit].zong4+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='eidthuibaotrend'>编辑</a></span><span class='area_span5'><a href='#' class='deletehuibaotrend'>删除</a></span></div></div>").show();
 
@@ -1006,12 +1012,12 @@ $(function(){
 	$("#huibaotrendlist").on("click",".edithuibaotrend",function(){
 		
 		var index=$(this).parent().parent().parent().children().eq(0).children().eq(0).text()-1;
-		alert(index);
+		//alert(index);
 		huibaotrendedititem=huibaotrendlist[index];
 		$(this).parent().parent().parent().hide();
 		/* alert(huxingedititem.name); */
 		//$("#projectimage").val(edititem.name+"");
-		alert(index+"index");
+		//alert(index+"index");
 		huibaotrendedit=index;
 		$("#project_type4").val(huibaotrendedititem.project_type4);
 		$("#view_shunxu4").val(huibaotrendedititem.view_shunxu4);
@@ -1035,7 +1041,7 @@ $(function(){
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
 	});  
 	$(".addtedian").click(function(){
-		alert(tedianedit);
+		//alert(tedianedit);
 		if(tedianedit==100){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
@@ -1069,7 +1075,7 @@ $(function(){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
 				return false;} */
-			alert("edit");
+			//alert("edit");
 			/* var huxing={}; */
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -1101,12 +1107,12 @@ $(function(){
 	$("#tedianlist").on("click",".edittedian",function(){
 		
 		var index=$(this).parent().parent().parent().children().eq(0).children().eq(0).text()-1;
-		alert(index);
+		//alert(index);
 		tedianedititem=tedianlist[index];
 		$(this).parent().parent().parent().hide();
 		/* alert(huxingedititem.name); */
 		//$("#projectimage").val(edititem.name+"");
-		alert(index+"index");
+		//alert(index+"index");
 		tedianedit=index;
 		$("#data_source").val(tedianedititem.data_source);
 		$("#update_time").val(tedianedititem.update_time);
@@ -1127,7 +1133,7 @@ $(function(){
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
 	});  
 	$(".addpeople").click(function(){
-		alert(peopleedit);
+		//alert(peopleedit);
 		if(peopleedit==100){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
@@ -1161,7 +1167,7 @@ $(function(){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
 				return false;} */
-			alert("edit");
+			//alert("edit");
 			/* var huxing={}; */
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -1193,12 +1199,12 @@ $(function(){
 	$("#peoplelist").on("click",".editpeople",function(){
 		
 		var index=$(this).parent().parent().parent().children().eq(0).children().eq(0).text()-1;
-		alert(index);
+		//alert(index);
 		peopleedititem=peoplelist[index];
 		$(this).parent().parent().parent().hide();
 		/* alert(huxingedititem.name); */
 		//$("#projectimage").val(edititem.name+"");
-		alert(index+"index");
+		//alert(index+"index");
 		peopleedit=index;
 		$("#column1").val(peopleedititem.column1);
 		$("#column2").val(peopleedititem.column2);
@@ -1220,7 +1226,7 @@ $(function(){
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
 	});  
 	$(".addbroker").click(function(){
-		alert(brokeredit);
+		//alert(brokeredit);
 		if(brokeredit==100){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
@@ -1264,7 +1270,7 @@ $(function(){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
 				return false;} */
-			alert("edit");
+			//alert("edit");
 			/* var huxing={}; */
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -1306,7 +1312,7 @@ $(function(){
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
 	});  
 	$(".addproject").click(function(){
-		alert(projectedit);
+		//alert(projectedit);
 		if(projectedit==100){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
@@ -1350,7 +1356,7 @@ $(function(){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
 				return false;} */
-			alert("edit");
+			//alert("edit");
 			/* var huxing={}; */
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -1364,7 +1370,7 @@ $(function(){
 				$(this).val("");
 				});
 			projectlist[projectedit]=projectedititem;
-			alert($("#projectlist").children().eq(projectedit));
+			//alert($("#projectlist").children().eq(projectedit));
 			/* $("#projectlist").children().eq(projectedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(projectedit+1)+"</span><span style='padding-right:10px;'>"+projectlist[projectedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+projectlist[projectedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+projectlist[projectedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+projectlist[projectedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
 			$("#projectlist").children().eq(projectedit).html("<div class='area_left3'><span style='display:none;'>"+(projectedit+1)+"</span><span class='area_span'>"+projectlist[projectedit].column1+"</span><span class='area_span'>"+projectlist[projectedit].column2+"</span><span class='area_span'>"+projectlist[projectedit].column3+"</span><span class='area_span'>"+projectlist[projectedit].view_shunxu_project+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editproject'>编辑</a></span><span class='area_span5'><a href='#' class='deleteproject'>删除</a></span></div>").show();
 
@@ -1391,7 +1397,7 @@ $(function(){
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
 	});  
 	$(".addnews").click(function(){
-		alert(newsedit);
+		//alert(newsedit);
 		if(newsedit==100){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
@@ -1440,7 +1446,7 @@ $(function(){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
 				return false;} */
-			alert("edit");
+			//alert("edit");
 			/* var huxing={}; */
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -1454,7 +1460,7 @@ $(function(){
 				$(this).val("");
 				});
 			newslist[newsedit]=newsedititem;
-			alert($("#newslist").children().eq(newsedit));
+			//alert($("#newslist").children().eq(newsedit));
 			/* $("#newslist").children().eq(newsedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(newsedit+1)+"</span><span style='padding-right:10px;'>"+newslist[newsedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+newslist[newsedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+newslist[newsedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+newslist[newsedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
 			$("#newslist").children().eq(newsedit).html("<div class='area_left3'><span style='display:none;'>"+(newsedit+1)+"</span><span class='area_span'>"+newslist[newsedit].column1+"</span><span class='area_span'>"+newslist[newsedit].column2+"</span><span class='area_span'>"+newslist[newsedit].column3+"</span><span class='area_span'>"+newslist[newsedit].view_shunxu_news+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editnews'>编辑</a></span><span class='area_span5'><a href='#' class='deletenews'>删除</a></span></div>").show();
 
@@ -1491,7 +1497,7 @@ function savepro(){
 	var area;
 	area=DataDeal.formToJson(data= decodeURIComponent($("#area").serialize(),true));
 	area=eval("("+area+")");
-	alert("ff1")
+	//alert("ff1")
     $.ajax({
 	    type: "POST",
  		async:false, 

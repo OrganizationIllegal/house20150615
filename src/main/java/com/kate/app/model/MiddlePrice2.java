@@ -2,10 +2,10 @@ package com.kate.app.model;
 
 import java.sql.Timestamp;
 
-public class MiddlePrice {
+public class MiddlePrice2 {
 	private int id;
 	private int buy_price;//购买价格
-	private int house_pro_id;
+	//private int house_pro_id;
 	private int zu_price;//
 	private String buy_one_name;//
 	private int buy_one_price;//
@@ -19,11 +19,18 @@ public class MiddlePrice {
 	private int zu_two_price;//
 	private String zu_three_name;//
 	private int zu_three_price;//
-	private int area_id;
+	//private int area_id;
 	private String project_type;
-	private String area_quyu;
+	//private String area_quyu;
 	private String middle_datasource;//
 	private Timestamp middle_date;//
+	
+	public String getProject_type() {
+		return project_type;
+	}
+	public void setProject_type(String project_type) {
+		this.project_type = project_type;
+	}
 	public int getId() {
 		return id;
 	}
@@ -35,12 +42,6 @@ public class MiddlePrice {
 	}
 	public void setBuy_price(int buy_price) {
 		this.buy_price = buy_price;
-	}
-	public int getHouse_pro_id() {
-		return house_pro_id;
-	}
-	public void setHouse_pro_id(int house_pro_id) {
-		this.house_pro_id = house_pro_id;
 	}
 	public int getZu_price() {
 		return zu_price;
@@ -120,24 +121,6 @@ public class MiddlePrice {
 	public void setZu_three_price(int zu_three_price) {
 		this.zu_three_price = zu_three_price;
 	}
-	public int getArea_id() {
-		return area_id;
-	}
-	public void setArea_id(int area_id) {
-		this.area_id = area_id;
-	}
-	public String getProject_type() {
-		return project_type;
-	}
-	public void setProject_type(String project_type) {
-		this.project_type = project_type;
-	}
-	public String getArea_quyu() {
-		return area_quyu;
-	}
-	public void setArea_quyu(String area_quyu) {
-		this.area_quyu = area_quyu;
-	}
 	public String getMiddle_datasource() {
 		return middle_datasource;
 	}
@@ -151,5 +134,5 @@ public class MiddlePrice {
 		this.middle_date = middle_date;
 	}
 	
-	
+
 }
