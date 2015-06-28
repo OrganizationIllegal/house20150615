@@ -13,10 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.kate.app.dao.AjaxDao;
 import com.kate.app.dao.AreaInputDao;
 import com.kate.app.dao.NewsBokeDao;
 import com.kate.app.dao.ZhiYeDao;
+import com.kate.app.model.BrokerInfo;
+import com.kate.app.model.HouseProject;
+import com.kate.app.model.NewsBoke;
+import com.kate.app.model.ZhiYeZhiDao;
+import com.kate.app.service.ConvertJson;
 
 @Controller
 public class AreaInfoController {
@@ -26,26 +30,81 @@ public class AreaInfoController {
 	private NewsBokeDao newsBokeDao;
 	@Autowired
 	private ZhiYeDao zhiYeDao;
-	
+	//ajax 获取指定id值和type类型的置业指导或者新闻博客的信息
+	@RequestMapping({ "/getnewsinfo" })    
+	public void getnewsinfo(HttpServletRequest req, HttpServletResponse resp){
+		String id=req.getParameter("id");
+		String type=req.getParameter("type");
+		String hpstr;
+		
+		if(type.equals("newsboke")){
+			NewsBoke nb=new NewsBoke();
+			nb=areaInputDao.getNewsBokeInfo(id);
+			hpstr=ConvertJson.object2json(nb);
+		}
+		else{
+			ZhiYeZhiDao zy=new ZhiYeZhiDao();
+			zy=areaInputDao.getZhiYeInfo(id);
+			hpstr=ConvertJson.object2json(zy);
+		}
+		try{
+			writeJson(hpstr,resp);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	//ajax 获取指定id值的经济人信息
+	@RequestMapping({ "/getjingjireninfo" })    
+	public void getjingjireninfo(HttpServletRequest req, HttpServletResponse resp){
+		String id=req.getParameter("id");
+		BrokerInfo bf=areaInputDao.getBrokerInfo(id);
+		String bfstr=ConvertJson.object2json(bf);
+		try{
+			writeJson(bfstr,resp);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	//ajax 获取指定id值的项目信息
+		@RequestMapping({ "/getprojectinfo" })    
+		public void getprojectinfo(HttpServletRequest req, HttpServletResponse resp){
+			String id=req.getParameter("id");
+			HouseProject hp=areaInputDao.getProjectInfo(id);
+			String hpstr=ConvertJson.object2json(hp);
+			try{
+				writeJson(hpstr,resp);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
 	//区域录入
 	@RequestMapping({"/AreaInput"})
 	public String areaInput(HttpServletRequest req,HttpServletResponse resp){
 		getBrokerName(req,resp);
 		getProjectName(req,resp);
+		getNewsList(req,resp);
 		return "/areaLuru.jsp";
 	}
 	
 	//得到经纪人的姓名
 	@RequestMapping({"/AreaInput/Broker"})
 	public void getBrokerName(HttpServletRequest req,HttpServletResponse resp){
-		List<String> brolerNameSet=areaInputDao.getBrokerName();
-		req.setAttribute("brolerNameSet", brolerNameSet);
+		List<BrokerInfo> brokerSet=areaInputDao.getBrokers();
+		req.setAttribute("brokerSet", brokerSet);
 	}
 	//得到项目的名称
 		@RequestMapping({"/AreaInput/Project"})
 		public void getProjectName(HttpServletRequest req,HttpServletResponse resp){
-			List<String> projectNameSet=areaInputDao.getProjectName();
-			req.setAttribute("projectNameSet", projectNameSet);
+			List<HouseProject> projectSet=areaInputDao.getProjectInfos();
+			req.setAttribute("projectSet", projectSet);
+		}
+	//获得新闻博客和职业指导的新闻信息
+		@RequestMapping({"/AreaInput/newslist"})
+		public void getNewsList(HttpServletRequest req,HttpServletResponse resp){
+			List<ZhiYeZhiDao> projectSet=areaInputDao.getZhiyezhidaos();
+			List<NewsBoke> bokelist=areaInputDao.getNewsbokes();
+			req.setAttribute("newsbokelist", ConvertJson.list2json(bokelist));
+			req.setAttribute("zhiyelist", ConvertJson.list2json(projectSet));
 		}
 	//区域列表
 	@RequestMapping({ "/AreaInfoList" })    

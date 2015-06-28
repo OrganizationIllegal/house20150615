@@ -129,7 +129,7 @@ function reLoad(){
                         		<li class="media" >
                              <div class="media-left">
                                 <a href="/Detail?id=${item.id}&type=1">
-                                  <img class="media-object" src="http://101.200.174.253:8080/all/${item.news_image}" alt="" width="180px" height="134px">
+                                  <img class="media-object" src="http://101.200.174.253:9090/all/${item.news_image}" alt="" width="180px" height="134px">
                                 </a>
                               </div>
                               <div class="media-body" style="padding-left:20px;">
@@ -191,7 +191,7 @@ function reLoad(){
                 		 <li class="media">
                              <div class="media-left" style="float:left;">
                                 <a href="/Detail?id=${item.id}&type=1">
-                                  <img class="media-object" src="http://101.200.174.253:8080/all/${item.news_image}" alt="" width="62px" height="46px">
+                                  <img class="media-object" src="http://101.200.174.253:9090/all/${item.news_image}" alt="" width="62px" height="46px">
                                 </a>
                               </div>
                               <div class="media-body" style="padding-left:10px;padding-top:5px;">
@@ -218,7 +218,7 @@ function reLoad(){
                 	 	 <li class="media">
                              <div class="media-left" style="float:left;">
                                <a href="/Detail?id=${item.id}&type=0">
-                                  <img class="media-object" src="http://101.200.174.253:8080/all/${item.image}" alt=""  width="62px" height="46px">
+                                  <img class="media-object" src="http://101.200.174.253:9090/all/${item.image}" alt=""  width="62px" height="46px">
                                 </a>
                               </div>
                               <div class="media-body" style="padding-left:10px;padding-top:5px;">
@@ -311,7 +311,7 @@ function reLoad(){
                 if(items!=null){
                 	for(var j=0;j<items.length;j++){
                 	    html+="<li class='media'><div class='media-left'><a href='/Detail?id="+items[j].id+"&type=1'>";
-                	    html+="<img class='media-object' src='http://101.200.174.253:8080/all/"+items[j].image+"' alt='' width='180px' height='134px'>";
+                	    html+="<img class='media-object' src='http://101.200.174.253:9090/all/"+items[j].image+"' alt='' width='180px' height='134px'>";
  						html+="</a></div><div class='media-body' style='padding-left:20px;'><div class='media-heading' style='font-size:20px;color:rgb(147,181,219);'>"+items[j].title;
  						html+="</div><p style='font-size:12px;'>"+items[j].news_fenlei;
  						html+="</p><p style='font-size:120x;'>"+items[j].news_abstract;
