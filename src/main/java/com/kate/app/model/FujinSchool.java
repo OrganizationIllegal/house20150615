@@ -1,8 +1,16 @@
 package com.kate.app.model;
 
 public class FujinSchool {
+	private int id;
 	private String school_name;
 	private String school_distance;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getSchool_name() {
 		return school_name;
 	}

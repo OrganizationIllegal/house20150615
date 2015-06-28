@@ -677,7 +677,7 @@ $(function(){
 			$("#fujin input").each(function(){
 				$(this).val("");
 				});
-
+			fujinedititem.id=fujinlist[fujinedit].id;
 			fujinlist[fujinedit]=fujinedititem;
 			alert($("#fujinlist").children().eq(fujinedit));
 			$("#fujinlist").children().eq(fujinedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(fujinedit+1)+"</span><span style='padding-right:10px;'>"+fujinlist[fujinedit].peitao_type+"</span><span style='padding-right:10px;'>"+fujinlist[fujinedit].peitao_name+"</span><span style='padding-right:10px;'>"+fujinlist[fujinedit].peitao_distance+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show();
@@ -765,6 +765,7 @@ $(function(){
 			$("#school input").each(function(){
 				$(this).val("");
 				});
+			schooledititem.id=schoollist[schooledit].id;
 			schoollist[schooledit]=schooledititem;
 			alert($("#schoollist").children().eq(schooledit));
 			$("#schoollist").children().eq(schooledit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(schooledit+1)+"</span><span style='padding-right:10px;'>"+schoollist[schooledit].school_name+"</span><span style='padding-right:10px;'>"+schoollist[schooledit].school_distance+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show();
@@ -851,6 +852,7 @@ $(function(){
 			$("#holdingcost input").each(function(){
 				$(this).val("");
 				});
+			holdingcostedititem.id=holdingcostlist[holdingcostedit].id;
 			holdingcostlist[holdingcostedit]=holdingcostedititem;
 			alert($("#holdingcostlist").children().eq(holdingcostedit));
 			$("#holdingcostlist").children().eq(holdingcostedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(holdingcostedit+1)+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcosttype+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcostprice+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcostdesc+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcost_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show();
@@ -945,6 +947,7 @@ $(function(){
 			$("#housetaxform input").each(function(){
 				$(this).val("");
 				});
+			housetaxformedititem.id=housetaxformlist[housetaxformedit].id;
 			housetaxformlist[housetaxformedit]=housetaxformedititem;
 			alert($("#housetaxformlist").children().eq(housetaxformedit));
 			$("#housetaxformlist").children().eq(housetaxformedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(housetaxformedit+1)+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show();
@@ -1055,7 +1058,7 @@ function savepro(){
 	    type: "POST",
  		async:false, 
 		dateType: "json",
-		data:{id:id,"project":JSON.stringify(projectlist),"huxinglist":JSON.stringify(huxinglist)},
+		data:{id:id,"project":JSON.stringify(projectlist),"huxinglist":JSON.stringify(huxinglist),"peitaolist":JSON.stringify(peitaolist),"fujinlist":JSON.stringify(fujinlist),"schoollist":JSON.stringify(schoollist),"holdingcostlist":JSON.stringify(holdingcostlist),"housetaxformlist":JSON.stringify(housetaxformlist)},
 		url: "/EditProject",
 		success:function(data){
 			alert("添加成功")

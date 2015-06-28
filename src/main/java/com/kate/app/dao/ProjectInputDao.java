@@ -570,7 +570,7 @@ public class ProjectInputDao extends BaseDao {
 	        }
 			
 		}
-		public int EditProject(int id,List<Project> projectList,List<HouseInfo1> houseInfolist,List<HouseInfo1>houseInfolist2) throws SQLException{
+		public int EditProject(int id,List<Project> projectList,List<HouseInfo1> houseInfolist,List<HouseInfo1>houseInfolist2,List<FujinPeiTao>fujinpeitaoList,List<FujinPeiTao>fujinpeitaoList2,List<FujinSchool>fujinSchoolList,List<FujinSchool>fujinSchoolList2,List<HoldCost> holdCostList,List<HoldCost>holdCostList2,List<HouseTax>houseTaxList,List<HouseTax>houseTaxList2) throws SQLException{
 			//项目信息参数接收
 			Project project=projectList.get(0);
 			String project_name=project.getProject_name();
@@ -670,12 +670,44 @@ public class ProjectInputDao extends BaseDao {
 				pstmt.setString(29, developer_num);
 				int result1 = pstmt.executeUpdate();
 				System.out.println("result1:"+result1);
-				//户型及价格
-
-				String sql2="update house_info set house_name=?,house_img=?,house_price=?,house_room_num=?,tudi_area=?,jianzhu_area=?,house_size_in=?,house_size_out=?,house_toilet_size=? where project_num=?";
+				//户型及价格更新
+				String sql2="update house_info set house_name=?,house_img=?,house_price=?,house_room_num=?,tudi_area=?,jianzhu_area=?,house_size_in=?,house_size_out=?,house_toilet_size=? ,project_num=? where id=?";
 		        pstmt = con.prepareStatement(sql2);
 		        for(int i=0;i<houseInfolist.size();i++){
 		        	HouseInfo1 houseinfo=houseInfolist.get(i);
+		        	String housename=houseinfo.getHousename();
+		        	String houseprice=houseinfo.getHouseprice();
+		        	String houseimg=houseinfo.getHouseimg();
+		        	int room_num=houseinfo.getRoom_num();
+		        	String tudi_mianji=houseinfo.getTudi_mianji();
+		        	String jianzhu_mianji=houseinfo.getJianzhu_mianji();
+		        	String shinei_mianji=houseinfo.getShinei_mianji();
+		        	String shiwai_mianji=houseinfo.getShiwai_mianji();
+		        	int Id=houseinfo.getId();
+		            int wc_num=houseinfo.getWc_num();
+		            pstmt.setString(1, housename);
+		            pstmt.setString(2, houseimg);
+		            pstmt.setString(3, houseprice);
+		            pstmt.setInt(4, room_num);
+		            pstmt.setString(5, tudi_mianji);
+		            pstmt.setString(6, jianzhu_mianji);
+		            pstmt.setString(7, shinei_mianji);
+		            pstmt.setString(8, shiwai_mianji);
+		            pstmt.setInt(9, wc_num);
+		            pstmt.setString(10, project_num);
+		            pstmt.setInt(11, Id);
+		            pstmt.addBatch();
+		        }
+				int[] result2list=pstmt.executeBatch();
+				System.out.println("result2list.length:"+result2list.length);
+				for(int i=0;i<result2list.length;i++){
+					System.out.println("result2list"+i+":"+result2list[i]);
+				}
+				//户型及价格添加
+				String sql22="insert into house_info(house_name,house_img,house_price,house_room_num,tudi_area,jianzhu_area,house_size_in,house_size_out,house_toilet_size,project_num) values(?,?,?,?,?,?,?,?,?,?) ";
+		        pstmt = con.prepareStatement(sql22);
+		        for(int i=0;i<houseInfolist2.size();i++){
+		        	HouseInfo1 houseinfo=houseInfolist2.get(i);
 		        	String housename=houseinfo.getHousename();
 		        	String houseprice=houseinfo.getHouseprice();
 		        	String houseimg=houseinfo.getHouseimg();
@@ -697,10 +729,175 @@ public class ProjectInputDao extends BaseDao {
 		            pstmt.setString(10, project_num);
 		            pstmt.addBatch();
 		        }
-				int[] result2list=pstmt.executeBatch();
-				System.out.println("result2list.length:"+result2list.length);
-				for(int i=0;i<result2list.length;i++){
-					System.out.println("result2list"+i+":"+result2list[i]);
+				int[] result22list=pstmt.executeBatch();
+				System.out.println("result22list.length:"+result22list.length);
+				for(int i=0;i<result22list.length;i++){
+					System.out.println("result22list"+i+":"+result22list[i]);
+				}
+				//附近配套编辑
+				 String sql4="update near_peitao set market_type=?,market_name=?,market_distance=?,project_num=? where id=? ";
+		         pstmt = con.prepareStatement(sql4);
+		        for(int i=0;i<fujinpeitaoList.size();i++){
+		        	FujinPeiTao fujinPeiTao=fujinpeitaoList.get(i);
+		            String market_type=fujinPeiTao.getPeitao_type();
+		            String market_name=fujinPeiTao.getPeitao_name();
+		            String market_distance=fujinPeiTao.getPeitao_distance();
+		            int Id=fujinPeiTao.getId();
+		            pstmt.setString(1, market_type);
+		            pstmt.setString(2, market_name);
+		            pstmt.setString(3, market_distance);
+		            pstmt.setString(4,project_num);
+		            pstmt.setInt(5, Id);
+		            pstmt.addBatch();
+		        }
+				int[] result4list=pstmt.executeBatch();
+				System.out.println("result4list.length:"+result4list.length);
+				for(int i=0;i<result4list.length;i++){
+					System.out.println("result4list"+i+":"+result4list[i]);
+				}
+				//附近配套添加
+				 String sql44="insert into near_peitao(market_type,market_name,market_distance,project_num) values(?,?,?,?) ";
+		         pstmt = con.prepareStatement(sql44);
+		        for(int i=0;i<fujinpeitaoList2.size();i++){
+		        	FujinPeiTao fujinPeiTao=fujinpeitaoList2.get(i);
+		            String market_type=fujinPeiTao.getPeitao_type();
+		            String market_name=fujinPeiTao.getPeitao_name();
+		            String market_distance=fujinPeiTao.getPeitao_distance();
+		            pstmt.setString(1, market_type);
+		            pstmt.setString(2, market_name);
+		            pstmt.setString(3, market_distance);
+		            pstmt.setString(4,project_num);
+		            pstmt.addBatch();
+		        }
+				int[] result44list=pstmt.executeBatch();
+				System.out.println("result44list.length:"+result44list.length);
+				for(int i=0;i<result44list.length;i++){
+					System.out.println("result44list"+i+":"+result44list[i]);
+				}
+				//附近学校编辑
+				 String sql5="update near_school set school_name=?,school_distance=?,project_num=? where id=?";
+		         pstmt = con.prepareStatement(sql5);
+		        for(int i=0;i<fujinSchoolList.size();i++){
+		        	FujinSchool fujinSchool=fujinSchoolList.get(i);
+		            String school_name=fujinSchool.getSchool_name();
+		            String school_distance=fujinSchool.getSchool_distance();
+		            int Id=fujinSchool.getId();
+		            pstmt.setString(1, school_name);
+		            pstmt.setString(2, school_distance);
+		            pstmt.setString(3,project_num);
+		            pstmt.setInt(4,Id );
+		            pstmt.addBatch();
+		        }
+				int[] result5list=pstmt.executeBatch();
+				System.out.println("result5list.length:"+result5list.length);
+				for(int i=0;i<result5list.length;i++){
+					System.out.println("result5list"+i+":"+result5list[i]);
+				}
+				//附近学校添加
+				 String sql55="insert into near_school(school_name,school_distance,project_num) values(?,?,?) ";
+		         pstmt = con.prepareStatement(sql55);
+		        for(int i=0;i<fujinSchoolList2.size();i++){
+		        	FujinSchool fujinSchool=fujinSchoolList2.get(i);
+		            String school_name=fujinSchool.getSchool_name();
+		            String school_distance=fujinSchool.getSchool_distance();
+		            pstmt.setString(1, school_name);
+		            pstmt.setString(2, school_distance);
+		            pstmt.setString(3,project_num);
+		            pstmt.addBatch();
+		        }
+				int[] result55list=pstmt.executeBatch();
+				System.out.println("result55list.length:"+result55list.length);
+				for(int i=0;i<result55list.length;i++){
+					System.out.println("result55list"+i+":"+result55list[i]);
+				}
+				//持有成本编辑
+				 String sql6="update holding_finace set type=?,price=?,description=?,project_num=?,house_name=? where id=? ";
+		         pstmt = con.prepareStatement(sql6);
+		        for(int i=0;i<holdCostList.size();i++){
+		        	HoldCost holdcost=holdCostList.get(i);
+		            String type=holdcost.getHoldcosttype();
+		            String price=holdcost.getHoldcostprice();
+		            String description=holdcost.getHoldcostdesc();
+		            String housename=holdcost.getHoldcost_housename();
+		            int Id=holdcost.getId();
+		            pstmt.setString(1, type);
+		            pstmt.setString(2, price);
+		            pstmt.setString(3,description);
+		            pstmt.setString(4,project_num);
+		            pstmt.setString(5,housename);
+		            pstmt.setInt(6, Id);
+		            pstmt.addBatch();
+		        }
+				int[] result6list=pstmt.executeBatch();
+				System.out.println("result6list.length:"+result6list.length);
+				for(int i=0;i<result6list.length;i++){
+					System.out.println("result6list"+i+":"+result6list[i]);
+				}
+				
+				//持有成本添加
+				 String sql66="insert into holding_finace(type,price,description,project_num,house_name) values(?,?,?,?,?) ";
+		         pstmt = con.prepareStatement(sql66);
+		        for(int i=0;i<holdCostList.size();i++){
+		        	HoldCost holdcost=holdCostList.get(i);
+		            String type=holdcost.getHoldcosttype();
+		            String price=holdcost.getHoldcostprice();
+		            String description=holdcost.getHoldcostdesc();
+		            String housename=holdcost.getHoldcost_housename();
+		            pstmt.setString(1, type);
+		            pstmt.setString(2, price);
+		            pstmt.setString(3,description);
+		            pstmt.setString(4,project_num);
+		            pstmt.setString(5,housename);
+		            pstmt.addBatch();
+		        }
+				int[] result66list=pstmt.executeBatch();
+				System.out.println("result66list.length:"+result66list.length);
+				for(int i=0;i<result66list.length;i++){
+					System.out.println("result66list"+i+":"+result66list[i]);
+				}
+				//购房税费编辑
+				 String sql7="update  house_tax set type=?,price=?,description=?,project_num=?,house_name=?  where id=?";
+		         pstmt = con.prepareStatement(sql7);
+		        for(int i=0;i<houseTaxList.size();i++){
+		        	HouseTax housetax=houseTaxList.get(i);
+		            String type=housetax.getHouseTaxtype();
+		            String price=housetax.getHouseTaxprice();
+		            String description=housetax.getHouseTaxdesc();
+		            String housename=housetax.getHouseTax_housename();
+		            int Id=housetax.getId();
+		            pstmt.setString(1, type);
+		            pstmt.setString(2, price);
+		            pstmt.setString(3,description);
+		            pstmt.setString(4,project_num);
+		            pstmt.setString(5,housename);
+		            pstmt.setInt(6, Id);
+		            pstmt.addBatch();
+		        }
+				int[] result7list=pstmt.executeBatch();
+				System.out.println("result7list.length:"+result7list.length);
+				for(int i=0;i<result7list.length;i++){
+					System.out.println("result7list"+i+":"+result7list[i]);
+				}
+				//购房税费添加
+				 String sql77="insert into house_tax(type,price,description,project_num,house_name) values(?,?,?,?,?) ";
+		         pstmt = con.prepareStatement(sql77);
+		        for(int i=0;i<houseTaxList2.size();i++){
+		        	HouseTax housetax=houseTaxList2.get(i);
+		            String type=housetax.getHouseTaxtype();
+		            String price=housetax.getHouseTaxprice();
+		            String description=housetax.getHouseTaxdesc();
+		            String housename=housetax.getHouseTax_housename();
+		            pstmt.setString(1, type);
+		            pstmt.setString(2, price);
+		            pstmt.setString(3,description);
+		            pstmt.setString(4,project_num);
+		            pstmt.setString(5,housename);
+		            pstmt.addBatch();
+		        }
+				int[] result77list=pstmt.executeBatch();
+				System.out.println("result77list.length:"+result77list.length);
+				for(int i=0;i<result7list.length;i++){
+					System.out.println("result77list"+i+":"+result77list[i]);
 				}
 				//提交事物
 				con.commit();

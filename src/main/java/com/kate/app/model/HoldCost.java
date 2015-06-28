@@ -1,10 +1,18 @@
 package com.kate.app.model;
 
 public class HoldCost {
+	private int id;
 	private String holdcosttype;
 	private String  holdcostprice;
 	private String  holdcostdesc;
 	private String  holdcost_housename;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getHoldcosttype() {
 		return holdcosttype;
 	}

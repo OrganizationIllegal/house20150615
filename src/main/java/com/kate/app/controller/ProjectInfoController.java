@@ -195,10 +195,77 @@ public class ProjectInfoController {
 			}
 		System.out.println("houseInfolist.length():"+houseInfolist.size());
 		System.out.println("houseInfolist2.length():"+houseInfolist2.size());
-		
+		//附近配套
+		String fujinpeitao=req.getParameter("fujinlist");
+		JSONArray fujinArray = JSONArray.parseArray(fujinpeitao);
+	    List<FujinPeiTao> fujinpeitaoList=new ArrayList<FujinPeiTao>();//用于编辑的项
+	    List<FujinPeiTao> fujinpeitaoList2=new ArrayList<FujinPeiTao>();//用于添加的项
+		for (int i=0;i<fujinArray.size();i++){
+				 JSONObject object = (JSONObject)fujinArray.get(i); //对于每个json对象
+				 FujinPeiTao e = (FujinPeiTao) JSONToObj(object.toString(), FujinPeiTao.class);
+				 if(e.getId()==0){
+					 fujinpeitaoList2.add(e);//id为0，添加
+				 }
+				 else{
+					 fujinpeitaoList.add(e);//否则，编辑
+				 }
+		}
+		System.out.println("fujinpeitaoList.length():"+fujinpeitaoList.size());
+		System.out.println("fujinpeitaoList2.length():"+fujinpeitaoList2.size());
+		//附近学校
+		String schoolInfo=req.getParameter("schoollist");
+		JSONArray schoolArray = JSONArray.parseArray(schoolInfo);
+		List<FujinSchool> fujinSchoolList=new ArrayList<FujinSchool>();//用于编辑的项
+		List<FujinSchool> fujinSchoolList2=new ArrayList<FujinSchool>();//用于添加的项
+		for (int i=0;i<schoolArray.size();i++){
+						 JSONObject object = (JSONObject)schoolArray.get(i); //对于每个json对象
+						 FujinSchool e = (FujinSchool) JSONToObj(object.toString(), FujinSchool.class);
+						 if(e.getId()==0){
+							 fujinSchoolList2.add(e);
+						 }
+						 else{
+							 fujinSchoolList.add(e);
+						 }
+		   }
+		System.out.println("fujinSchoolList.length():"+fujinSchoolList.size());
+		System.out.println("fujinSchoolList2.length():"+fujinSchoolList2.size());
+		//持有成本
+		String holdingcost=req.getParameter("holdingcostlist");
+		JSONArray holdCostArray = JSONArray.parseArray(holdingcost);
+		List<HoldCost> holdCostList=new ArrayList<HoldCost>();//用于编辑的项
+		List<HoldCost> holdCostList2=new ArrayList<HoldCost>();//用于添加的项
+		for (int i=0;i<holdCostArray.size();i++){
+				JSONObject object = (JSONObject)holdCostArray.get(i); //对于每个json对象
+			    HoldCost e = (HoldCost) JSONToObj(object.toString(), HoldCost.class);
+			    if(e.getId()==0){
+			    	holdCostList2.add(e);//编辑的项
+			    }
+			    else{
+			    	holdCostList.add(e);//添加的项
+			    }
+			}
+		System.out.println("holdCostList.length():"+holdCostList.size());
+		System.out.println("holdCostList2.length():"+holdCostList2.size());
+		//购房税费
+		String houseTax=req.getParameter("housetaxformlist");
+		JSONArray houseTaxArray = JSONArray.parseArray(houseTax);
+		List<HouseTax> houseTaxList=new ArrayList<HouseTax>();//用于编辑
+		List<HouseTax> houseTaxList2=new ArrayList<HouseTax>();//用于添加
+		for (int i=0;i<houseTaxArray.size();i++){
+					JSONObject object = (JSONObject)houseTaxArray.get(i); //对于每个json对象
+					HouseTax e = (HouseTax) JSONToObj(object.toString(), HouseTax.class);
+					if(e.getId()==0){
+						 houseTaxList2.add(e);//用于添加
+					}
+					else{
+						 houseTaxList.add(e);//用于编辑
+					}
+		}
+		System.out.println("houseTaxList.length():"+houseTaxList.size());
+		System.out.println("houseTaxList2.length():"+houseTaxList2.size());
 		//更新
 	    try {
-			int result=projectInputDao.EditProject(id, projectlist,houseInfolist,houseInfolist2);
+			int result=projectInputDao.EditProject(id, projectlist,houseInfolist,houseInfolist2,fujinpeitaoList,fujinpeitaoList2,fujinSchoolList,fujinSchoolList2,holdCostList,holdCostList2,houseTaxList,houseTaxList2);
 			System.out.println("result::"+result);
 	    } catch (SQLException e1) {
 			// TODO Auto-generated catch block
