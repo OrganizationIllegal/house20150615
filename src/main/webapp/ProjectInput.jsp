@@ -433,8 +433,8 @@ $(function(){
 			}
 		});
 	$("#peitaolist").on("click",".deletepeitao",function(){
-		peitaolist.splice($(this).parent().parent().children().eq(0).text()-1,1);
-		$(this).parent().parent().empty();
+		peitaolist.splice($(this).parent().parent().prevAll().length,1);
+		$(this).parent().parent().remove();
 		peitaocount--;
 		});
 	$("#peitaolist").on("click",".editpeitao",function(){

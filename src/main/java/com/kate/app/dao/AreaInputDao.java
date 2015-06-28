@@ -4,8 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +11,10 @@ import org.springframework.stereotype.Repository;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.kate.app.model.BrokerInfo;
+import com.kate.app.model.HouseProject;
+import com.kate.app.model.NewsBoke;
+import com.kate.app.model.ZhiYeZhiDao;
 
 @Repository 
 public class AreaInputDao extends BaseDao {
@@ -33,7 +35,167 @@ public class AreaInputDao extends BaseDao {
 		}
 		return brokerNameSet;
 	}
-	
+	//获取所有经纪人的信息列表
+	public List<BrokerInfo> getBrokers(){
+		List<BrokerInfo> brokerSet=new ArrayList<BrokerInfo>();
+		try {
+			String sql ="select * from broker_info";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()){
+				BrokerInfo bf=new BrokerInfo();
+				bf.setId(rs.getInt("id"));
+				bf.setBroker_name(rs.getString("broker_name"));
+				brokerSet.add(bf);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return brokerSet;
+	}
+	//获取全部经纪人的信息
+	public BrokerInfo getBrokerInfo(String id){
+		BrokerInfo broker=new BrokerInfo();
+		try {
+			String sql ="select * from broker_info where id=?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()){
+				broker.setId(rs.getInt("id"));
+				broker.setBroker_name(rs.getString("broker_name"));
+				broker.setBroker_type(rs.getString("broker_type"));
+				broker.setBroker_language(rs.getString("broker_language"));
+				broker.setBroker_region(rs.getString("broker_region"));
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return broker;
+	}
+	//获取项目的编号和名字列表
+	public List<HouseProject> getProjectInfos(){
+		List<HouseProject> projectSet=new ArrayList<HouseProject>();
+		try {
+			String sql ="select * from house_project";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()){
+				HouseProject hp=new HouseProject();
+				hp.setId(rs.getInt("id"));
+				hp.setProject_name(rs.getString("project_name"));
+				hp.setProject_area(rs.getString("project_area"));
+				hp.setProject_price_qi(rs.getString("project_price_qi"));
+				hp.setProject_type(rs.getString("project_type"));
+				projectSet.add(hp);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return projectSet;
+	}
+	//获取职业指导所有的信息list
+	public List<ZhiYeZhiDao> getZhiyezhidaos(){
+		List<ZhiYeZhiDao> projectSet=new ArrayList<ZhiYeZhiDao>();
+		try {
+			String sql ="select * from zhiye_zhidao";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()){
+				ZhiYeZhiDao hp=new ZhiYeZhiDao();
+				hp.setId(rs.getInt("id"));
+				hp.setTitle(rs.getString("title"));
+				hp.setFabu_people(rs.getString("fabu_people"));
+				projectSet.add(hp);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return projectSet;
+	}
+	//获取指定id的NewsBoke的信息
+	public NewsBoke getNewsBokeInfo(String id){
+		NewsBoke hp=new NewsBoke();
+		try {
+			String sql ="select * from news_boke where id=?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()){
+				hp.setId(rs.getInt("id"));
+				hp.setNews_title(rs.getString("news_title"));
+				hp.setNews_people(rs.getString("news_people"));
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return hp;
+	}
+	//获取指定id的置业指导的信息
+	public ZhiYeZhiDao getZhiYeInfo(String id){
+		ZhiYeZhiDao hp=new ZhiYeZhiDao();
+		try {
+			String sql ="select * from zhiye_zhidao where id=?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()){
+				hp.setId(rs.getInt("id"));
+				hp.setTitle(rs.getString("title"));
+				hp.setFabu_people(rs.getString("fabu_people"));
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return hp;
+	}
+	//获取新闻博客所有的信息list
+		public List<NewsBoke> getNewsbokes(){
+			List<NewsBoke> projectSet=new ArrayList<NewsBoke>();
+			try {
+				String sql ="select * from news_boke";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery();
+				while(rs.next()){
+					NewsBoke hp=new NewsBoke();
+					hp.setId(rs.getInt("id"));
+					hp.setNews_title(rs.getString("news_title"));
+					hp.setNews_people(rs.getString("news_people"));
+					projectSet.add(hp);
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return projectSet;
+		}
+	//获取指定id项目的的信息
+	public HouseProject getProjectInfo(String id){
+		HouseProject hp=new HouseProject();
+		try {
+			String sql ="select * from house_project where id=?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()){
+				hp.setId(rs.getInt("id"));
+				hp.setProject_name(rs.getString("project_name"));
+				hp.setProject_area(rs.getString("project_area"));
+				hp.setProject_price_qi(rs.getString("project_price_qi"));
+				hp.setProject_type(rs.getString("project_type"));
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return hp;
+	}
 	//得到项目的编号及名称
 		public List<String> getProjectName(){
 			List<String> projectNameSet=new ArrayList<String>();
