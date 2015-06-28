@@ -58,7 +58,7 @@ public class BrokerInfoDao extends BaseDao {
 		}
 		return brokerInfoList;
 	} 
-	//鍙戦�鐣欒█
+	//閸欐垿锟介悾娆掆枅
 	public int InsertMessage(String message_content,String time,int project_id,int viewed,int type,int userid){
 		int exeResult=0;
 		
@@ -147,7 +147,7 @@ public class BrokerInfoDao extends BaseDao {
 		}
 		return data;
 	} 
-	//推荐经纪人
+	//鎺ㄨ崘缁忕邯浜�
 	public List<BrokerInfo> getRecommendBroker(String area_code){
 		List<BrokerInfo> recommendbrokerList=new ArrayList<BrokerInfo>();
 		try {
@@ -211,8 +211,27 @@ public class BrokerInfoDao extends BaseDao {
 		return brokerInfo;
 		
 	}
-	
-	//得到经纪人类型
+	public String findBrokerbyName(String broker_name){
+		String brokerNum=null;
+		try {
+			String sql = "select * from broker_info where broker_name = ?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, broker_name);
+			ResultSet rs = pstmt.executeQuery();
+			
+		    while(rs.next()){
+		    	brokerNum = rs.getString("broker_num");
+		    }
+		    
+		  
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return brokerNum;
+		
+	}
+	//寰楀埌缁忕邯浜虹被鍨�
 	public List<String> getBrokerTypeList(){
 		List<String> typeList=new ArrayList<String>();
 		try{
@@ -228,7 +247,7 @@ public class BrokerInfoDao extends BaseDao {
 		}
 		return typeList;
 	}
-	//得到经纪人区域
+	//寰楀埌缁忕邯浜哄尯鍩�
 	public List<String> getBrokerRegionList(){
 		List<String> regionList=new ArrayList<String>();
 		try{
@@ -244,7 +263,7 @@ public class BrokerInfoDao extends BaseDao {
 		}
 		return regionList;
 	}
-	//得到经纪人语言
+	//寰楀埌缁忕邯浜鸿瑷�
 	public Set<String> getBrokerLanguageList(){
 		Set<String> languageList=new HashSet<String>();
 		try{

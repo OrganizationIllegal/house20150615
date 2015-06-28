@@ -23,6 +23,13 @@ body{
 </style>
 </head>
 <body>
+<%
+            String username = null;
+       		if(request.getSession().getAttribute("username")==null){
+       			out.print("<script>alert('用户请登录。');window.location.href='/index01'</script>");
+}
+       		
+%>
 <div style="width:900px;margin:25px auto;">
 <div class="area_bkg1">当前位置:经纪人录入</div>
 <div class="area_bkg2" >经纪人信息</div>

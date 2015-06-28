@@ -17,6 +17,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script>
 </head>
 <body>
+<%
+            String username = null;
+       		if(request.getSession().getAttribute("username")==null){
+       			out.print("<script>alert('用户请登录。');window.location.href='/index01'</script>");
+}
+       		
+%>
 <input type="hidden" id="top"/>
 <jsp:include page="head4index.jsp" />
  <div class="container">

@@ -156,6 +156,29 @@ public class NewsBokeDao extends BaseDao{
 			return data;
 		}
 	 
-	 
+	 public List<String> getRecoByAreaNum(String areaNum){
+			List<String> list = new ArrayList<String>();
+			String reco1 = null;
+			String reco2 = null;
+			String reco3 = null;
+			try {
+				String sql = " select * from news_boke where area_code = ?";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, areaNum);
+				ResultSet rs = pstmt.executeQuery();
+				while(rs.next()){
+					reco1 = rs.getString("reco_news_num_1");
+					reco2 = rs.getString("reco_news_num_2");
+					reco3 = rs.getString("reco_news_num_3");
+				}
+				list.add(reco1);
+				list.add(reco2);
+				list.add(reco3);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return list;
+		}
 	 
 }
