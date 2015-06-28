@@ -1,7 +1,6 @@
 package com.kate.app.controller;
 
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -18,10 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kate.app.dao.BrokerInfoDao;
+import com.kate.app.dao.ProjectInputDao;
 import com.kate.app.dao.UserDao;
+import com.kate.app.model.Broker;
 import com.kate.app.model.BrokerInfo;
 import com.kate.app.model.BrokerIntegerType;
-import com.kate.app.model.BrokerServiceArea;
+import com.kate.app.model.BrokerType;
+import com.kate.app.model.ServiceArea;
 import com.kate.app.model.User;
 
 @Controller
@@ -30,6 +32,8 @@ public class BrokerInfoController {
 	private BrokerInfoDao brokerInfoDao;
 	@Autowired
 	private UserDao userDao;
+	@Autowired
+	private ProjectInputDao projectInputDao;
 	
 	@RequestMapping({"/ServiceTeam"})
 	public String listBingMap(HttpServletRequest req,HttpServletResponse resp){
@@ -136,52 +140,38 @@ public class BrokerInfoController {
 	}
 	
 
-	//娣诲姞椤圭洰
+//经纪人录入
 		@RequestMapping({ "/AddBrokerInfo" })
 		public void AddBrokerInfo(HttpServletRequest req, HttpServletResponse resp){
 			String brokerlist=req.getParameter("brokerinfo");
 			String arealist=req.getParameter("arealist");
 			String intelist=req.getParameter("typelist");
-			
-			BrokerInfo brokerinfo = (BrokerInfo) JSONToObj(brokerlist, BrokerInfo.class);
-			
-			/*JSONArray brokerArray = JSONArray.parseArray(brokerlist);
-			List<BrokerInfo> brokersList=new ArrayList<BrokerInfo>();
-			for (int i=0;i<brokerArray.size();i++){
-				 JSONObject object = (JSONObject)brokerArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
-				 BrokerInfo e = (BrokerInfo) JSONToObj(object.toString(), BrokerInfo.class);
-				 brokersList.add(e);
-			}
-			System.out.println("brokersList.length():"+brokersList.size());*/
-			
-			
+			//经纪人信息
+			JSONObject jsonobject = JSONObject.parseObject(brokerlist);
+			Broker broker = (Broker) JSONToObj(jsonobject.toString(), Broker.class);
+			//接收服务区域参数
 			JSONArray areaArray = JSONArray.parseArray(arealist);
-			List<BrokerServiceArea> BrokerServicelist=new ArrayList<BrokerServiceArea>();
+			List<ServiceArea> BrokerServicelist=new ArrayList<ServiceArea>();
 			for (int i=0;i<areaArray.size();i++){
 				 JSONObject object = (JSONObject)areaArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
-				 BrokerServiceArea e = (BrokerServiceArea) JSONToObj(object.toString(), BrokerServiceArea.class);
+				 ServiceArea e = (ServiceArea) JSONToObj(object.toString(), ServiceArea.class);
 				 BrokerServicelist.add(e);
 			}
-			System.out.println("BrokerServicelist.length():"+BrokerServicelist.size());
-			
+			//接收擅长类型参数
 			JSONArray inteArray = JSONArray.parseArray(intelist);
-			List<BrokerIntegerType> BrokerTypelist=new ArrayList<BrokerIntegerType>();
+			List<BrokerType> BrokerTypelist=new ArrayList<BrokerType>();
 			for (int i=0;i<inteArray.size();i++){
 				 JSONObject object = (JSONObject)inteArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
-				 BrokerIntegerType e = (BrokerIntegerType) JSONToObj(object.toString(), BrokerIntegerType.class);
+				 BrokerType e = (BrokerType) JSONToObj(object.toString(), BrokerType.class);
 				 BrokerTypelist.add(e);
 			}
-			System.out.println("BrokerTypelist.length():"+BrokerTypelist.size());
-			
-			
-		    /*try {
-				//int result=projectInputDao.AddProject(projectlist);
-				//System.out.println("result::"+result);
-		    } catch (SQLException e1) {
+		    try {
+				int result=projectInputDao.InsertBroker(broker,BrokerServicelist,BrokerTypelist);
+				System.out.println("result::"+result);
+		    } catch (Exception e1) {
 				// TODO Auto-generated catch block
-				//e1.printStackTrace();
-			}*/
-		    
+				e1.printStackTrace();
+			}
 	}
 	public void writeJson(String json, HttpServletResponse response)throws Exception{
 	    response.setContentType("text/html");

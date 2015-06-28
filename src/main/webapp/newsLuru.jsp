@@ -86,8 +86,9 @@ $('#news_time').datepicker({
 $(".uploadimg").click(function(){
 	UpladFile("news_image");
 });
-<script type="text/javascript">
+
   function add(){
+	  alert("add");
 	  var news_num=$("#news_num").val();
 	  var news_title=$("#news_title").val();
 	  var news_people=$("#news_people").val();

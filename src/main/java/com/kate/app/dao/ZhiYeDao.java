@@ -292,7 +292,7 @@ import com.kate.app.model.ZhiYeZhiDao;
 					pstmt.setString(5, fenlei);
 					pstmt.setString(6, zhiye_abstract);
 					pstmt.setString(7, detail);
-					pstmt.setString(8, image);
+					pstmt.setString(8, 	image);
 					exeResult = pstmt.executeUpdate();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block

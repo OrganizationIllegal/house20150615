@@ -12,6 +12,8 @@ import org.springframework.stereotype.Repository;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.kate.app.model.Broker;
+import com.kate.app.model.BrokerType;
 import com.kate.app.model.FujinPeiTao;
 import com.kate.app.model.FujinSchool;
 import com.kate.app.model.HoldCost;
@@ -20,6 +22,7 @@ import com.kate.app.model.HouseProject;
 import com.kate.app.model.HouseTax;
 import com.kate.app.model.Project;
 import com.kate.app.model.ProjectPeiTao;
+import com.kate.app.model.ServiceArea;
 
 @Repository 
 public class ProjectInputDao extends BaseDao {
@@ -328,6 +331,78 @@ public class ProjectInputDao extends BaseDao {
 			}
 			return flag;
 		}
+		//经纪人Add
+		public int InsertBroker(Broker broker,List<ServiceArea> serviceAreaList,List<BrokerType> brokerTypeList){
+			String broker_num=broker.getBroker_num();
+			String broker_name=broker.getBroker_name();
+			String broker_language=broker.getBroker_language();
+			String broker_region=broker.getBroker_region();
+			String broker_type=broker.getBroker_type();
+			String broker_zizhi=broker.getBroker_zizhi();
+			int broker_experience=broker.getBroker_experience();
+			String broker_img=broker.getBroker_img();
+			String introduction=broker.getIntroduction();
+			PreparedStatement pstmt=null;
+			boolean flag=true;
+			
+			try {
+				con.setAutoCommit(false);
+				String sql1 = "insert into broker_info(broker_num,broker_name,broker_language,broker_region,broker_img,introduction,broker_experience,broker_type,broker_zizhi) values(?,?,?,?,?,?,?,?,?)";
+				pstmt = con.prepareStatement(sql1);
+				pstmt.setString(1, broker_num);
+				pstmt.setString(2, broker_name);
+				pstmt.setString(3, broker_language);
+				pstmt.setString(4, broker_region);
+				pstmt.setString(5, broker_img);
+				pstmt.setString(6, introduction);
+				pstmt.setInt(7, broker_experience);
+				pstmt.setString(8, broker_type);
+				pstmt.setString(9, broker_zizhi);
+				int exeResult = pstmt.executeUpdate();
+				//服务区域
+				String sql2 = "insert into broker_service_area(broker_num,area_code,view_shunxu) values(?,?,?)";
+		        pstmt = con.prepareStatement(sql2);
+		        for(int i=0;i<serviceAreaList.size();i++){
+		        	ServiceArea serviceArea=serviceAreaList.get(i);
+		        	String area_code=serviceArea.getArea_code();
+		        	int  view_shunxu=serviceArea.getView_shunxu();
+		            pstmt.setString(1, broker_num);
+		            pstmt.setString(2, area_code);
+		            pstmt.setInt(3, view_shunxu);
+		            pstmt.addBatch();
+		        }
+				int[] result2list=pstmt.executeBatch();
+				//擅长类型
+				String sql3 = "insert into broker_interested_type(broker_num,interested_num,view_shunxu) values(?,?,?)";
+		        pstmt = con.prepareStatement(sql3);
+		        for(int i=0;i<brokerTypeList.size();i++){
+		        	BrokerType brokertype=brokerTypeList.get(i);
+		        	String interested_num=brokertype.getInterested_num();
+		        	int  view_shunxu=brokertype.getView_shunxu2();
+		            pstmt.setString(1, broker_num);
+		            pstmt.setString(2, interested_num);
+		            pstmt.setInt(3, view_shunxu);
+		            pstmt.addBatch();
+		        }
+				int[] result3list=pstmt.executeBatch();
+				//提交事物
+				con.commit();
+				//恢复JDBC事务
+				con.setAutoCommit(true);
+				return 1;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				try {
+					con.rollback();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				e.printStackTrace();
+				return -1;
+			}
+		}
+		
 		public int AddProject(List<Project> projectList,List<HouseInfo1>houseInfolist,List<ProjectPeiTao>projectPeitaolist,List<FujinPeiTao> fujinList,List<FujinSchool>fujinSchoolList,List<HoldCost>holdCostList,List<HouseTax>houseTaxList) throws SQLException{
 			//项目信息参数接收
 			Project project=projectList.get(0);
