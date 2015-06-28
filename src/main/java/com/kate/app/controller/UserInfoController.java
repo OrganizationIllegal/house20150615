@@ -223,7 +223,13 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		}
 		
 		session.setAttribute("role", role);
-		return "/index01";
+		if(role == 0){
+			return "/treeData.jsp";
+		}
+		else{
+			return "/index01";
+		}
+		
 	}
 	
 	@RequestMapping({ "/loginPassChange" })
