@@ -35,7 +35,7 @@ public class AjaxController {
 	private AjaxService ajaxService;
 	
 	/*
-	 * ²éÕÒÆäËûÏàÓ¦ÐÅÏ¢The ElementsÄ£¿é
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Ï¢The ElementsÄ£ï¿½ï¿½
 	 */
 	
 	@RequestMapping({ "/selectInfomation" })    
@@ -55,7 +55,7 @@ public class AjaxController {
 	}
 	
 	/*
-	 * ²éÕÒ¼Û¸ñÐÅÏ¢Ä£¿é
+	 * ï¿½ï¿½ï¿½Ò¼Û¸ï¿½ï¿½ï¿½Ï¢Ä£ï¿½ï¿½
 	 */
 	@RequestMapping({ "/selectPriceInfo" })    
 	public void selectPriceInfo(HttpServletRequest req, HttpServletResponse resp){
@@ -74,7 +74,7 @@ public class AjaxController {
 	}
 	
 	/*
-	 * ²éÕÒ¾­¼ÍÈËÐÅÏ¢Ä£¿é
+	 * ï¿½ï¿½ï¿½Ò¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢Ä£ï¿½ï¿½
 	 */
 	@RequestMapping({ "/selectBrokerInfo" })    
 	public void selectBrokerInfo(HttpServletRequest req, HttpServletResponse resp){
@@ -95,10 +95,10 @@ public class AjaxController {
 	
 	
 	/*
-	 * ÓÐ¹ØÏîÄ¿µÄÔöÉ¾¸Ä²é
+	 * ï¿½Ð¹ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½É¾ï¿½Ä²ï¿½
 	 */
 	
-	@RequestMapping({ "/find/houseProject" })    //²éÕÒÏîÄ¿ÐÅÏ¢
+	@RequestMapping({ "/find/houseProject" })    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½Ï¢
 	public void findHouseProject(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();
 		JSONArray array = new JSONArray();
@@ -116,7 +116,7 @@ public class AjaxController {
 	
 	
 	
-	@RequestMapping({ "/touzi/findData" })    //²éÕÒÍ¶×ÊÊý¾Ý
+	@RequestMapping({ "/touzi/findData" })    //ï¿½ï¿½ï¿½ï¿½Í¶ï¿½ï¿½ï¿½ï¿½ï¿½
 	public void selectData(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();
 		JSONArray array = new JSONArray();
@@ -132,7 +132,7 @@ public class AjaxController {
 		}
 	}
 	
-	@RequestMapping({ "/find/houseInfo" })    //²éÕÒÊý¾Ý·¿ÎÝ¼°¼Û¸ñ
+	@RequestMapping({ "/find/houseInfo" })    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý·ï¿½ï¿½Ý¼ï¿½ï¿½Û¸ï¿½
 	public void findHouseInfo(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();
 		JSONArray array = new JSONArray();
@@ -150,7 +150,7 @@ public class AjaxController {
 	
 	
 	
-	@RequestMapping({ "/findBuyInfo" })    //²éÕÒÍ¶×ÊÊý¾Ý
+	@RequestMapping({ "/findBuyInfo" })    //ï¿½ï¿½ï¿½ï¿½Í¶ï¿½ï¿½ï¿½ï¿½ï¿½
 	public void findByInfo(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();
 		JSONArray array = new JSONArray();
@@ -158,6 +158,7 @@ public class AjaxController {
 		int count = ajaxService.count();
 		json.put("total", count);
 		json.put("rows", array);
+
 		
 		try{
 			writeJson(json.toJSONString(),resp);
@@ -173,7 +174,7 @@ public class AjaxController {
 	
 	
 	/*
-	 * ²éÕÒÍÆ¼öÏîÄ¿ÐÅÏ¢
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½Ï¢
 	 */
 	
 		@RequestMapping({ "/selectRecomProject" })    
@@ -195,7 +196,7 @@ public class AjaxController {
 		
 		/*-------------------*/
 		/*
-		 * ²éÕÒÐÂÎÅÐÅÏ¢
+		 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 		 */
 		@RequestMapping({ "/selectNewsInfo" })   
 		public void selectNewsInfo(HttpServletRequest req, HttpServletResponse resp){
@@ -214,7 +215,7 @@ public class AjaxController {
 		}
 	
 	/*
-	 * Ôö¼ÓÐÂÎÅÐÅÏ¢
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	 */
 	@RequestMapping({ "/addNewsInfo" })
 	public void addNewsInfo(HttpServletRequest req, HttpServletResponse resp) throws Exception{
@@ -228,7 +229,7 @@ public class AjaxController {
 		int flag = 0;
 		JSONObject json = new JSONObject();
 		if(project_num==null || "".equals(project_num)){
-			json.put("result", 0);    //ÏîÄ¿±àºÅÎª¿Õ
+			json.put("result", 0);    //ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½Îªï¿½ï¿½
 		}
 		else{
 			flag = ajaxService.addNewsInfo(project_num, title, source, time, detail, news_img, news_abstract);
@@ -242,7 +243,7 @@ public class AjaxController {
 	}
 	
 	/*
-	 * ÐÞ¸ÄÐÂÎÅÐÅÏ¢
+	 * ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	 */
 	@RequestMapping({ "/editNewsInfo" })
 	public void editNewsInfo(HttpServletRequest req, HttpServletResponse resp) throws Exception{
@@ -257,7 +258,7 @@ public class AjaxController {
 		int flag = 0;
 		JSONObject json = new JSONObject();
 		if(project_num==null || "".equals(project_num)){
-			json.put("result", 0);    //ÏîÄ¿±àºÅÎª¿Õ
+			json.put("result", 0);    //ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½Îªï¿½ï¿½
 		}
 		else{
 			flag = ajaxService.editNewsInfo(id, project_num, title, source, time, detail, news_img, news_abstract);
@@ -272,7 +273,7 @@ public class AjaxController {
 	
 	/*------------------------*/
 	/*
-	 * ²é¿´ÇøÓòÌØµãÐÅÏ¢
+	 * ï¿½é¿´ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½Ï¢
 	 */
 	@RequestMapping({ "/selectArea" })    
 	public void selectArea(HttpServletRequest req, HttpServletResponse resp){
@@ -290,7 +291,7 @@ public class AjaxController {
 	}
 	
 	/*
-	 * Ôö¼ÓÇøÓòÌØµãÐÅÏ¢
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½Ï¢
 	 */
 	@RequestMapping({ "/addArea" })
 	public void addArea(HttpServletRequest req, HttpServletResponse resp) throws Exception{
@@ -308,7 +309,7 @@ public class AjaxController {
 		JSONObject json = new JSONObject();
 		
 		if(area_code==null || "".equals(area_code)){
-			json.put("result", 0);    //ÇøÓòÃû³ÆÎª¿Õ
+			json.put("result", 0);    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½
 		}
 		else{
 			flag = ajaxService.addArea(area_code,area_character, view_shunxu,data_source,update_time);
@@ -322,7 +323,7 @@ public class AjaxController {
 	}
 	
 	/*
-	 * ÐÞ¸ÄÇøÓòÌØµãÐÅÏ¢
+	 * ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½Ï¢
 	 */
 	@RequestMapping({ "/editArea" })
 	public void editArea(HttpServletRequest req, HttpServletResponse resp) throws Exception{
@@ -340,7 +341,7 @@ public class AjaxController {
 		int flag = 0;
 		JSONObject json = new JSONObject();
 		if(area_code==null || "".equals(area_code)){
-			json.put("result", 0);    //ÇøÓòÃû³ÆÎª¿Õ
+			json.put("result", 0);    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½
 		}
 		else{
 			flag = ajaxService.editArea(id, area_code,area_character, view_shunxu,data_source,update_time);
@@ -356,7 +357,7 @@ public class AjaxController {
 	
 	
 /*
- * É¾³ýÇøÓòÌØµã
+ * É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½
  */
 	@RequestMapping({ "/deleteArea" })
 	public void deleteArea(HttpServletRequest req, HttpServletResponse resp) throws Exception{
@@ -375,7 +376,7 @@ public class AjaxController {
 	
 	
 	/*
-	 * É¾³ý¾­¼ÍÈËÐÅÏ¢
+	 * É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	 */
 		@RequestMapping({ "/deleteBrokerInfo" })
 		public void deleteBrokerInfo(HttpServletRequest req, HttpServletResponse resp) throws Exception{
@@ -418,7 +419,7 @@ public class AjaxController {
 		int flag = 0;
 		JSONObject json = new JSONObject();
 		if(area_num==null || "".equals(area_num)){
-			json.put("result", 0);    //ÏîÄ¿±àºÅÎª¿Õ
+			json.put("result", 0);    //ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½Îªï¿½ï¿½
 		}
 		else{
 			flag = ajaxService.addTouziData(area_num, area_name, middle_price, middle_zu_price, price_review, year_increment_rate, zu_house_rate, zu_xuqiu, data_exam);	
@@ -431,7 +432,7 @@ public class AjaxController {
 		}
 	}
 	/*
-	 * Ôö¼ÓÍÆ¼öÏîÄ¿
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½Ä¿
 	 */
 	@RequestMapping({ "/addRecoProject" })
 	public void addRecoProject(HttpServletRequest req, HttpServletResponse resp) throws Exception{
@@ -442,7 +443,7 @@ public class AjaxController {
 		int flag = 0;
 		JSONObject json = new JSONObject();
 		if(project_num==null || "".equals(project_num)){
-			json.put("result", 0);    //ÏîÄ¿Ãû³ÆÎª¿Õ
+			json.put("result", 0);    //ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½Îªï¿½ï¿½
 		}
 		else{
 			json.put("result", flag);
@@ -456,7 +457,7 @@ public class AjaxController {
 	
 	
 	/*
-	 * Ôö¼ÓÍÆ¼öÏîÄ¿
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½Ä¿
 	 */
 	@RequestMapping({ "/addBrokerInfo" })
 	public void addBrokerInfo(HttpServletRequest req, HttpServletResponse resp) throws Exception{
@@ -474,7 +475,7 @@ public class AjaxController {
 		int flag = 0;
 		JSONObject json = new JSONObject();
 		if(broker_num==null || "".equals(broker_num)){
-			json.put("result", 0);    //¾­¼ÍÈË±àºÅÎª¿Õ
+			json.put("result", 0);    //ï¿½ï¿½ï¿½ï¿½ï¿½Ë±ï¿½ï¿½Îªï¿½ï¿½
 		}
 		else{
 			flag = ajaxService.addBrokerInfo(broker_name, broker_language, broker_region, broker_img,broker_experience,broker_num,broker_type,broker_zizhi,introduction,office);
@@ -490,7 +491,7 @@ public class AjaxController {
 	
 	
 	/*
-	 * ÐÞ¸Ä¾­¼ÍÈËÐÅÏ¢
+	 * ï¿½Þ¸Ä¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	 */
 	@RequestMapping({ "/editBrokerInfo" })
 	public void editBrokerInfo(HttpServletRequest req, HttpServletResponse resp) throws Exception{
@@ -508,7 +509,7 @@ public class AjaxController {
 		int flag = 0;
 		JSONObject json = new JSONObject();
 		if(broker_num==null || "".equals(broker_num)){
-			json.put("result", 0);    //¾­¼ÍÈË±àºÅÎª¿Õ
+			json.put("result", 0);    //ï¿½ï¿½ï¿½ï¿½ï¿½Ë±ï¿½ï¿½Îªï¿½ï¿½
 		}
 		else{
 			flag = ajaxService.editBrokerInfo(id, broker_name, broker_language, broker_region, broker_img,broker_experience,broker_num,broker_type,broker_zizhi,introduction,office);
@@ -524,7 +525,7 @@ public class AjaxController {
 	
 	
 	/*
-	 * ÐÞ¸ÄÍÆ¼öÏîÄ¿
+	 * ï¿½Þ¸ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½Ä¿
 	 */
 	@RequestMapping({ "/editRecoProject" })
 	public void editRecoProject(HttpServletRequest req, HttpServletResponse resp) throws Exception{
@@ -537,7 +538,7 @@ public class AjaxController {
 		int flag = 0;
 		JSONObject json = new JSONObject();
 		if(project_num==null || "".equals(project_num)){
-			json.put("result", 0);    //ÏîÄ¿±àºÅÎª¿Õ
+			json.put("result", 0);    //ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½Îªï¿½ï¿½
 		}
 		else{
 			flag = ajaxService.editRecoProject(id, project_num, recommend_project_num1, recommend_project_num2, recommend_project_num3);
@@ -556,9 +557,9 @@ public class AjaxController {
 		boolean flag = ajaxService.deleteRecomProject(id);
 		JSONObject json = new JSONObject();
 		if(flag==true){
-			json.put("data", 1);   //É¾³ý³É¹¦
+			json.put("data", 1);   //É¾ï¿½ï¿½É¹ï¿½
 		}else{
-			json.put("data", 0);   //É¾³ýÊ§°Ü
+			json.put("data", 0);   //É¾ï¿½ï¿½Ê§ï¿½ï¿½
 		}
 		
 		try{
@@ -585,7 +586,7 @@ public class AjaxController {
 		int flag = 0;
 		JSONObject json = new JSONObject();
 		if(project_num==null || "".equals(project_num)){
-			json.put("result", 0);    //ÏîÄ¿Ãû³ÆÎª¿Õ
+			json.put("result", 0);    //ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½Îªï¿½ï¿½
 		}
 		else{
 			flag = ajaxService.addHouseInfo(project_num, house_type, house_room_num, house_toilet_num, house_size, house_price, house_img);			json.put("result", flag);
@@ -626,7 +627,7 @@ public class AjaxController {
 		int flag = 0;
 		JSONObject json = new JSONObject();
 		if(area_num==null || "".equals(area_num)){
-			json.put("result", 0);    //ÏîÄ¿±àºÅÎª¿Õ
+			json.put("result", 0);    //ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½Îªï¿½ï¿½
 		}
 		else{
 			flag = ajaxService.editTouziData(id,area_num, area_name, middle_price, middle_zu_price, price_review, year_increment_rate, zu_house_rate, zu_xuqiu, data_exam);	
@@ -660,7 +661,7 @@ public class AjaxController {
 		int flag = 0;
 		JSONObject json = new JSONObject();
 		if(project_num==null || "".equals(project_num)){
-			json.put("result", 0);    //ÏîÄ¿Ãû³ÆÎª¿Õ
+			json.put("result", 0);    //ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½Îªï¿½ï¿½
 		}
 		else{
 			flag = ajaxService.editHouseInfo(id, project_num, house_type, house_room_num, house_toilet_num, house_size, house_price, house_img);
@@ -782,13 +783,13 @@ public class AjaxController {
 		
 		JSONObject json = new JSONObject();
 		if(project_num == null ||"".equals(project_num)){
-			json.put("result", -1);    //ÏîÄ¿Ãû³ÆÎª¿Õ
+			json.put("result", -1);    //ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½Îªï¿½ï¿½
 		}
 		else if(ajaxService.findProByNum(project_num)==true){
-			json.put("result", -3);    //ÏîÄ¿Ãû³ÆÒÑ¾­´æÔÚ
+			json.put("result", -3);    //ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
 		else if(developer_num==null || "".equals(developer_num)){
-			json.put("result", -2);    //¿ª·¢ÉÌÃû³ÆÎª¿Õ
+			json.put("result", -2);    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½
 		}
 		else{
 			boolean flag = ajaxService.addPro(project_name, project_img, project_nation, project_address, project_area, project_price_qi, project_type, project_sales_remain, project_finish_time, project_desc, project_city, project_house_type, project_high, project_price, project_lan_cn, project_lan_en, project_num, project_vedio, project_zhou, area_qujian, gps, return_money, walk_num, mianji, project_min_price, project_high_price, tuijiandu, housePrice_update_time, buytaxInfo, holdInfo, min_area, max_area, area_num, developer_num);
@@ -854,11 +855,11 @@ public class AjaxController {
 		
 		
 		if(project_num == null ||"".equals(project_num)){
-			json.put("result", -1);    //ÏîÄ¿Ãû³ÆÎª¿Õ
+			json.put("result", -1);    //ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½Îªï¿½ï¿½
 		}
 		
 		else if(developer_num==null || "".equals(developer_num)){
-			json.put("result", -2);    //¿ª·¢ÉÌÃû³ÆÎª¿Õ
+			json.put("result", -2);    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½
 		}
 		else{
 			flag = ajaxService.editPro(proid, project_name, project_img, project_nation, project_address, project_area, project_price_qi, project_type, project_sales_remain, project_finish_time, project_desc, project_city, project_house_type, project_high, project_price, project_lan_cn, project_lan_en, project_num, project_vedio, project_zhou, area_qujian, gps, return_money, walk_num, mianji, project_min_price, project_high_price, tuijiandu, housePrice_update_time, buytaxInfo, holdInfo, min_area, max_area, area_num, developer_num);

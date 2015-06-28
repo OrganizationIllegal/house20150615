@@ -433,8 +433,8 @@ $(function(){
 			}
 		});
 	$("#peitaolist").on("click",".deletepeitao",function(){
-		peitaolist.splice($(this).parent().parent().children().eq(0).text()-1,1);
-		$(this).parent().parent().empty();
+		peitaolist.splice($(this).parent().parent().prevAll().length,1);
+		$(this).parent().parent().remove();
 		peitaocount--;
 		});
 	$("#peitaolist").on("click",".editpeitao",function(){
@@ -978,7 +978,7 @@ function savepro(){
 	    type: "POST",
  		async:false, 
 		dateType: "json",
-		data:{"project":JSON.stringify(projectlist),"huxinglist":JSON.stringify(huxinglist)},
+		data:{"project":JSON.stringify(projectlist),"huxinglist":JSON.stringify(huxinglist),"peitaolist":JSON.stringify(peitaolist),"fujinlist":JSON.stringify(fujinlist),"schoollist":JSON.stringify(schoollist),"holdingcostlist":JSON.stringify(holdingcostlist),"housetaxformlist":JSON.stringify(housetaxformlist)},
 		url: "/AddprojectInfo",
 		success:function(data){
 			alert("添加成功")
