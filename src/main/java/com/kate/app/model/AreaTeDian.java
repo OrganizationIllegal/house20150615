@@ -11,6 +11,10 @@ public class AreaTeDian {
 	private String data_souce;
 	private String area_code;
 	private Timestamp update_time;
+	
+	
+	
+	
 	public int getId() {
 		return id;
 	}

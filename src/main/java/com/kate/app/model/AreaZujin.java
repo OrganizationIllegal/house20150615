@@ -1,5 +1,7 @@
 package com.kate.app.model;
 
+import java.sql.Timestamp;
+
 public class AreaZujin {
 	private int id;
 	private String heng;
@@ -7,6 +9,23 @@ public class AreaZujin {
 	private String project_type;
 	private String area_code;
 	private int house_project_id;
+	private String zujin_datasource;
+	private Timestamp zujin_date;
+	
+	
+	
+	public String getZujin_datasource() {
+		return zujin_datasource;
+	}
+	public void setZujin_datasource(String zujin_datasource) {
+		this.zujin_datasource = zujin_datasource;
+	}
+	public Timestamp getZujin_date() {
+		return zujin_date;
+	}
+	public void setZujin_date(Timestamp zujin_date) {
+		this.zujin_date = zujin_date;
+	}
 	public int getHouse_project_id() {
 		return house_project_id;
 	}

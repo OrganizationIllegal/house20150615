@@ -1,5 +1,7 @@
 package com.kate.app.model;
 
+import java.sql.Timestamp;
+
 public class MiddlePrice {
 	private int id;
 	private int buy_price;
@@ -20,6 +22,21 @@ public class MiddlePrice {
 	private int area_id;
 	private String project_type;
 	private String area_quyu;
+	private String middle_datasource;
+	private Timestamp middle_date;
+	
+	public String getMiddle_datasource() {
+		return middle_datasource;
+	}
+	public void setMiddle_datasource(String middle_datasource) {
+		this.middle_datasource = middle_datasource;
+	}
+	public Timestamp getMiddle_date() {
+		return middle_date;
+	}
+	public void setMiddle_date(Timestamp middle_date) {
+		this.middle_date = middle_date;
+	}
 	public int getId() {
 		return id;
 	}

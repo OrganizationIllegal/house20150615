@@ -1,5 +1,7 @@
 package com.kate.app.model;
 
+import java.sql.Timestamp;
+
 public class AreaMiddle {
 	private int id;
 	private String heng;
@@ -9,6 +11,22 @@ public class AreaMiddle {
 	private int house_pro_id;
 	private int area_id;
 	private int view_shunxu;
+	private String middle_zoushi_datasource;
+	private Timestamp middle_zoushi_date;
+	
+	
+	public String getMiddle_zoushi_datasource() {
+		return middle_zoushi_datasource;
+	}
+	public void setMiddle_zoushi_datasource(String middle_zoushi_datasource) {
+		this.middle_zoushi_datasource = middle_zoushi_datasource;
+	}
+	public Timestamp getMiddle_zoushi_date() {
+		return middle_zoushi_date;
+	}
+	public void setMiddle_zoushi_date(Timestamp middle_zoushi_date) {
+		this.middle_zoushi_date = middle_zoushi_date;
+	}
 	public int getId() {
 		return id;
 	}

@@ -680,6 +680,92 @@ public class MyController {
 		req.setAttribute("timeResuleThree", timeResuleThree);
 	}
 	
+	@RequestMapping({"/Index/GetNewsInfo1"})    
+	public void  GetNewsInfo1(HttpServletRequest req, HttpServletResponse resp,String area_code){
+ 		List<String> list = newsBokeDao.getRecoByAreaNum(area_code);
+ 		String newsblogNum1 = "";
+ 		String newsblogNum2 = "";
+ 		String newsblogNum3 = "";
+ 		if(list.size()==1){
+ 			newsblogNum1 = list.get(0);
+ 		}
+ 		else if(list.size()==2){
+ 			newsblogNum1 = list.get(0);
+ 			newsblogNum2 = list.get(1);
+ 		}else if(list.size()==3){
+ 			newsblogNum1 = list.get(0);
+ 			newsblogNum2 = list.get(1);
+ 			newsblogNum3 = list.get(2);
+ 		}
+ 		
+ 		List<NewsBoke> newsList = new ArrayList<NewsBoke>();
+ 		NewsBoke tuijianNews1 = null;
+ 		NewsBoke tuijianNews2 = null;
+ 		NewsBoke tuijianNews3 = null;
+ 		if(newsblogNum1.trim()!=null && !"".equals(newsblogNum1.trim())){
+ 			tuijianNews1 = newsBokeDao.getNewsBokeByNum(newsblogNum1.trim());
+ 		}
+ 		if(newsblogNum2.trim()!=null && !"".equals(newsblogNum2.trim())){
+ 			tuijianNews2 = newsBokeDao.getNewsBokeByNum(newsblogNum2.trim());
+ 		}
+ 		if(newsblogNum3.trim()!=null && !"".equals(newsblogNum3.trim())){
+ 			tuijianNews3 = newsBokeDao.getNewsBokeByNum(newsblogNum3.trim());
+ 		}
+ 		
+ 		if(tuijianNews1!=null || tuijianNews2!=null || tuijianNews3!=null){
+	 		newsList.add(tuijianNews1);
+	 		newsList.add(tuijianNews2);
+	 		newsList.add(tuijianNews3);
+	    }
+		//List<NewsInfo> newsList = newsInfoService.getNewsInfoDaoList(project_num);
+ 		
+		/*NewsInfo newsInfo_one = new NewsInfo();
+		NewsInfo newsInfo_two = new NewsInfo();
+		NewsInfo newsInfo_three = new NewsInfo();*/
+		String timeResult = null;
+		String timeResuleOne = null;
+		String timeResuletwo = null;
+		String timeResuleThree = null;
+		/*for(NewsInfo item : newsList){
+			Timestamp time = item.getTime();
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			if(time!=null){
+				timeResult = df.format(time);
+			}
+			item.setTimeResult(timeResult);
+		}*/
+		if(tuijianNews1!=null){
+			
+			
+			Timestamp time = tuijianNews1.getNews_time();
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			if(time!=null){
+				timeResuleOne = df.format(time);
+			}
+		}
+		if(tuijianNews2!=null){
+			Timestamp time = tuijianNews2.getNews_time();
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			if(time!=null){
+				timeResuleThree = df.format(time);
+			}
+		}
+		if(tuijianNews3!=null){
+			Timestamp time = tuijianNews3.getNews_time();
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			if(time!=null){
+				timeResuleOne = df.format(time);
+			}
+		}
+		req.setAttribute("newsList", newsList);
+		req.setAttribute("newsInfo_one", tuijianNews1);
+		req.setAttribute("timeResuleOne", timeResuleOne);
+		req.setAttribute("newsInfo_two", tuijianNews2);
+		req.setAttribute("timeResuletwo", timeResuletwo);
+		req.setAttribute("newsInfo_three", tuijianNews3);
+		req.setAttribute("timeResuleThree", timeResuleThree);
+	}
+	
 	
 	/*
 	 * 閿熺嫛纭锋嫹閿熸枻鎷风洰閿熸枻鎷风粏閿熸枻鎷锋伅

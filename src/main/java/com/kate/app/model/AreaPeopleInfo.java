@@ -1,5 +1,7 @@
 package com.kate.app.model;
 
+import java.sql.Timestamp;
+
 public class AreaPeopleInfo {
 	private int id;
 	private String column1;
@@ -9,6 +11,24 @@ public class AreaPeopleInfo {
 	private int area_id;
 	private int house_pro_id;
 	private String area_code;
+	private String people_datasource;
+	private Timestamp people_date;
+	
+	
+	
+
+	public String getPeople_datasource() {
+		return people_datasource;
+	}
+	public void setPeople_datasource(String people_datasource) {
+		this.people_datasource = people_datasource;
+	}
+	public Timestamp getPeople_date() {
+		return people_date;
+	}
+	public void setPeople_date(Timestamp people_date) {
+		this.people_date = people_date;
+	}
 	public int getId() {
 		return id;
 	}
