@@ -143,14 +143,16 @@ public class BrokerInfoController {
 			String arealist=req.getParameter("arealist");
 			String intelist=req.getParameter("typelist");
 			
-			JSONArray brokerArray = JSONArray.parseArray(brokerlist);
+			BrokerInfo brokerinfo = (BrokerInfo) JSONToObj(brokerlist, BrokerInfo.class);
+			
+			/*JSONArray brokerArray = JSONArray.parseArray(brokerlist);
 			List<BrokerInfo> brokersList=new ArrayList<BrokerInfo>();
 			for (int i=0;i<brokerArray.size();i++){
 				 JSONObject object = (JSONObject)brokerArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
 				 BrokerInfo e = (BrokerInfo) JSONToObj(object.toString(), BrokerInfo.class);
 				 brokersList.add(e);
 			}
-			System.out.println("brokersList.length():"+brokersList.size());
+			System.out.println("brokersList.length():"+brokersList.size());*/
 			
 			
 			JSONArray areaArray = JSONArray.parseArray(arealist);
