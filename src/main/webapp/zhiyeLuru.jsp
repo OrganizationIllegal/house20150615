@@ -12,9 +12,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="css/base.css" />
 <link rel="stylesheet" type="text/css" href="css/main.css" />
 <link rel="stylesheet" type="text/css" href="css/areaLuru.css" />
+<link rel="stylesheet" type="text/css" href="/bootstrap-datepicker-1.4.0-dist/css/bootstrap-datepicker.min.css" />
 <script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script>
 <script src="/js/jquery.min.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
+<script src="/bootstrap-datepicker-1.4.0-dist/js/bootstrap-datepicker.min.js"></script>
+<script src="/bootstrap-datepicker-1.4.0-dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
 <style type="text/css">
 body{
 	/* background-color:rgb(232, 233, 234)!important; */
@@ -46,7 +49,7 @@ body{
 </div>
 <div class="c-fix" style="padding-left:35px;">
 <span class="area_span">图片</span>
-<span style="float:right;"> <input type="file" name="image" id="image" style="width:677px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"/><a href="#">上传</a></span>
+<span style="float:right;"> <input type="file" name="image" id="image" style="width:677px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"/><a href="#" class="uploadimg">上传</a></span>
 </div>
 <div class="area_left c-fix">
 <span class="area_span">详情</span>
@@ -58,6 +61,32 @@ body{
 
 <script type="text/javascript">
 CKEDITOR.replace( 'detail' );
+$('#fabu_time').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+</script>
+<script type="text/javascript">
+        function UpladFile(imageid) {
+            var fileObj = document.getElementById(imageid).files[0]; // 获取文件对象
+            var FileController = "/imageupload";                    // 接收上传文件的后台地址 
+            // FormData 对象
+            var form = new FormData();
+            /* form.append("author", "hooyes");    */                     // 可以增加表单数据
+            form.append("file", fileObj);                           // 文件对象
+            // XMLHttpRequest 对象
+            var xhr = new XMLHttpRequest();
+            xhr.open("post", FileController, true);
+            xhr.onload = function () {
+                alert("上传完成!");
+            };
+            xhr.send(form);
+        }
+</script>
+<script type="text/javascript">
+$(".uploadimg").click(function(){
+	UpladFile("image");
+});
 </script>
 <script type="text/javascript">
   function add(){
@@ -67,8 +96,10 @@ CKEDITOR.replace( 'detail' );
 	  var fabu_time=$("#fabu_time").val();
 	  var fenlei=$("#fenlei").val();
 	  var zhiye_abstract=$("#zhiye_abstract").val();
-	  var image=$("#image").val();
-	  var detail=$("#detail").val();
+	  var filenames=$('#image').val().split("\\");
+	  var image=filenames[filenames.length-1];
+	  var detail=CKEDITOR.instances.detail.getData();
+	  alert(detail);
 	  $.ajax({
 	 	    type: "POST",
 	 		data: { zhiye_num : zhiye_num,title : title,fabu_people : fabu_people,fabu_time : fabu_time,fenlei : fenlei,zhiye_abstract : zhiye_abstract,image : image,detail : detail},
