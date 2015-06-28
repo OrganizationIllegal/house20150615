@@ -30,6 +30,7 @@ import com.kate.app.model.HouseProject;
 import com.kate.app.model.HouseTax;
 import com.kate.app.model.Project;
 import com.kate.app.model.ProjectPeiTao;
+import com.kate.app.service.ConvertJson;
 
 @Controller
 public class ProjectInfoController {
@@ -162,91 +163,51 @@ public class ProjectInfoController {
 		}
 		
 	}
-	//修改项目
-	@RequestMapping({ "/EditprojectInfo" })
-	public String  EditProjectInfo(HttpServletRequest req,HttpServletResponse resp){
-		JSONObject json = new JSONObject();
-		boolean flag = false;
-		int id=Integer.parseInt(req.getParameter("project_code"));
-		String project_name=req.getParameter("project_name");
-		String project_img=req.getParameter("project_img");//？？？？
-		String project_nation=req.getParameter("project_nation");
-		String project_address=req.getParameter("project_address");
-		String project_area=req.getParameter("project_area");
-		//String project_price_qi=req.getParameter("project_price_qi");
-		String project_price_qi=null;
-		String project_type=req.getParameter("project_type");
+	//编辑项目
+	@RequestMapping({ "/EditProject" })
+	public void  EditProject(HttpServletRequest req,HttpServletResponse resp){
+		//接收项目id
+		int id=Integer.parseInt(req.getParameter("id"));
+		//项目信息
+		String project=req.getParameter("project");
+		JSONArray projectArray = JSONArray.parseArray(project);
+		List<Project> projectlist=new ArrayList<Project>();
+		for (int i=0;i<projectArray.size();i++){
+				JSONObject object = (JSONObject)projectArray.get(i); //对于每个json对象
+				Project e = (Project) JSONToObj(object.toString(), Project.class);
+			    projectlist.add(e);
+		  }
+		System.out.println("projectlist.length():"+projectlist.size());
+		//户型及价格
+	    String huxing=req.getParameter("huxinglist");
+		JSONArray huxingArray = JSONArray.parseArray(huxing);
+		List<HouseInfo1> houseInfolist=new ArrayList<HouseInfo1>();//存放要编辑的项
+		List<HouseInfo1> houseInfolist2=new ArrayList<HouseInfo1>();//存放新添加的项
+		for (int i=0;i<huxingArray.size();i++){
+				JSONObject object = (JSONObject)huxingArray.get(i); //对于每个json对象
+			    HouseInfo1 e = (HouseInfo1) JSONToObj(object.toString(), HouseInfo1.class);
+			    if(e.getId()==0){
+			    	houseInfolist2.add(e);
+			    }
+			    else{
+			    	houseInfolist.add(e);
+			    }
+			}
+		System.out.println("houseInfolist.length():"+houseInfolist.size());
+		System.out.println("houseInfolist2.length():"+houseInfolist2.size());
 		
-		String project_sales_remain_str=req.getParameter("keshou");
-		int project_sales_remain = project_sales_remain_str == "" ? 0 : Integer.parseInt(project_sales_remain_str);
-		
-		String project_finish_time=req.getParameter("finish_time");
-		String project_desc=req.getParameter("project_desc");
-		String project_city=req.getParameter("project_city");
-		String project_house_type=req.getParameter("house_type");
-		String project_high=req.getParameter("ceng");
-		String project_price=req.getParameter("danjia");
-		String project_lan_cn=req.getParameter("project_lan_an");
-		String  project_lan_en=req.getParameter("project_lan_en");
-		String project_num=req.getParameter("project_code");
-		String  project_vedio=req.getParameter("project_video");
-		String  project_zhou=req.getParameter("project_zhou");
-		String area_qujian=null;//新表中没有此字段
-		String gps=req.getParameter("GPS");
-		String  return_money=req.getParameter("return_money");
-		
-		String walk_num_str = req.getParameter("walk_num");
-		int walk_num = walk_num_str==""? 0 :Integer.parseInt(walk_num_str);
-		
-
-		String mianji=req.getParameter("mianji");
-		String project_min_price=req.getParameter("minprice");
-		String project_high_price=req.getParameter("maxprice");
-		
-		String tuijiandu_str = req.getParameter("tuijian");
-		int tuijiandu = tuijiandu_str==""? 0 :Integer.parseInt(tuijiandu_str);
-		
-		String housePrice_update_time=req.getParameter("update_time");
-		String buytaxInfo=req.getParameter("buyTaxInfo");
-		String holdInfo=req.getParameter("holdCostInfo");
-		
-		String min_area_str=req.getParameter("minarea");
-		int min_area = min_area_str=="" ? 0 : Integer.parseInt(min_area_str);
-		
-		String max_area_str=req.getParameter("maxarea");
-		int max_area = max_area_str == "" ? 0 : Integer.parseInt(max_area_str);
-		
-		
-		String area_num=null;//excel中没有这个字段
-		
-		//String developer_num_str=req.getParameter("develop_id");
-		//int developer_num = developer_num_str == "" ? 0 : Integer.parseInt(developer_num_str);
-		String developer_num=req.getParameter("develop_id");//开发商编号
-		
-		
-		
-		//接收附近配套的参数
-		String peitao_type=req.getParameter("peitao_type");
-		String peitao_name=req.getParameter("peitao_name");
-		String  peitao_distance=req.getParameter("peitao_distance");
-		
-		
+		//更新
 	    try {
-			flag=ajaxDao.editPro(id, project_name, project_img, project_nation, project_address, project_area, project_price_qi, project_type, project_sales_remain, project_finish_time, project_desc, project_city, project_house_type, project_high, project_price, project_lan_cn, project_lan_en, project_num, project_vedio, project_zhou, area_qujian, gps, return_money, walk_num, mianji, project_min_price, project_high_price, tuijiandu, housePrice_update_time, buytaxInfo, holdInfo, min_area, max_area, area_num, developer_num);
-					
-		} catch (SQLException e1) {
+			int result=projectInputDao.EditProject(id, projectlist,houseInfolist,houseInfolist2);
+			System.out.println("result::"+result);
+	    } catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		json.put("flag", flag);
-		try{
-			 PrintWriter out = resp.getWriter();
-			 out.print(json);
-			}catch(Exception e){
-				e.printStackTrace();
-		}
-		return "/ProjectList.jsp";
+		
 	}
+	
+	
 	//添加学校信息
 	@RequestMapping({ "/AddschoolInfo" })
 	public void InsertSchoolInfo(HttpServletRequest req,HttpServletResponse resp){
@@ -390,8 +351,30 @@ public class ProjectInfoController {
 	public String selectProject(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
 		int id =Integer.parseInt(req.getParameter("id"));
+		//根据项目id取项目信息
 		HouseProject houseProject=projectInputDao.selectProjectInfo(id);
 		req.setAttribute("houseProject", houseProject);
+		//根据项目id获取项目编号
+		String pronum=projectInputDao.getProNumById(id);
+		//根据项目编号获取户型及价格
+		List<HouseInfo1> houseInfoList=projectInputDao.getHouseInfoByProNum(pronum);
+		req.setAttribute("houseInfoList", houseInfoList);
+		req.setAttribute("houseInfoListJson", ConvertJson.list2json(houseInfoList));
+		//根据项目编号获取项目配套
+		List <ProjectPeiTao> projectPeiTaoList =projectInputDao.getProjectpeiTaoByProNum(pronum);
+		req.setAttribute("projectPeitaoList", projectPeiTaoList);
+		//根据项目编号获取附近配套
+		List<FujinPeiTao> fujinPeitaoList=projectInputDao.getFujinPeiTaoByProNum(pronum);
+		req.setAttribute("fujinPeitaoList",fujinPeitaoList );
+		//根据项目编号获取附近学校
+		List<FujinSchool> fujinSchoolList=projectInputDao.getFujinSchoolByProNum(pronum);
+		req.setAttribute("fujinSchoolList",fujinSchoolList );
+		//根据项目编号获取持有成本
+		List<HoldCost> holdCostList=projectInputDao.getHoldCostByProNum(pronum);
+		req.setAttribute("holdCostList",holdCostList );
+		//根据项目编号获取购房税费
+		List<HouseTax> houseTaxList=projectInputDao.getHouseTaxByProNum(pronum);
+		req.setAttribute("houseTaxList",houseTaxList );
 		return "/ProjectInfo.jsp";
 	}
 	

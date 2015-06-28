@@ -15,6 +15,4 @@ public class FujinSchool {
 	public void setSchool_distance(String school_distance) {
 		this.school_distance = school_distance;
 	}
-	
-	
 }

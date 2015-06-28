@@ -29,7 +29,5 @@ public class HoldCost {
 	public void setHoldcost_housename(String holdcost_housename) {
 		this.holdcost_housename = holdcost_housename;
 	}
-	
-	
-	
+	   
 }
