@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  <nav  role="navigation" style="width:100%;margin:0 auto;background-color:white;z-index: 0;" class="navbar navbar-default navbar-fixed-top">
    <div class="row" style="padding-top:25px; height:60px;width:990px;margin-left:125px;">
 		<div class="col-md-2">
-		  <!--  <img src="http://101.200.174.253:8080/images/logo.PNG" style="margin-top:-20px;"/>-->
+		  <!--  <img src="http://101.200.174.253:9090/images/logo.PNG" style="margin-top:-20px;"/>-->
 		  <img src="pic/newlogo.jpg" style="margin-top:-20px;width:165px;height:50px"/>
 		</div>
         <div class="col-md-7" >

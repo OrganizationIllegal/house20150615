@@ -1482,7 +1482,7 @@ function savepro(){
 	    type: "POST",
  		async:false, 
 		dateType: "json",
-		data:{"area":JSON.stringify(area),"middleprice":JSON.stringify(middlepricelist),"middletrend":JSON.stringify(middletrendlist),"zujintrendlist":JSON.stringify(zujintrendlist),"huibaotrendlist":JSON.stringify(huibaotrendlist),"tedianlist":JSON.stringify(tedianlist),"peoplelist":JSON.stringify(peoplelist),brokerlist:JSON.stringify(brokerlis),projectlist:JSON.stringify(projectlist),newslist:JSON.stringify(newslist)},
+		data:{"area":JSON.stringify(area),"middleprice":JSON.stringify(middlepricelist),"middletrend":JSON.stringify(middletrendlist),"zujintrendlist":JSON.stringify(zujintrendlist),"huibaotrendlist":JSON.stringify(huibaotrendlist),"tedianlist":JSON.stringify(tedianlist),"peoplelist":JSON.stringify(peoplelist),brokerlist:JSON.stringify(brokerlist),projectlist:JSON.stringify(projectlist),newslist:JSON.stringify(newslist)},
 		url: "/AddAreaInfo",
 		success:function(data){
 			alert("添加成功")
