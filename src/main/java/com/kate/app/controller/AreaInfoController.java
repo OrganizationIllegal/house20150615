@@ -1,6 +1,7 @@
 package com.kate.app.controller;
 
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -437,7 +438,7 @@ public class AreaInfoController extends BaseDao {
 					String area_postcode = json.getString("area_postcode");
 					
 					
-					boolean flag = areaInfoDao.addAreaInfo(area_num, area_name, area_city, area_zhou, area_nation, area_postcode);
+					/*boolean flag = areaInfoDao.addAreaInfo(area_num, area_name, area_city, area_zhou, area_nation, area_postcode);*/
 					String touzi_datasource = json.getString("touzi_datasource");
 					String touzi_date = json.getString("touzi_date");
 					String year_increment_rate = json.getString("year_increment_rate");
@@ -448,7 +449,7 @@ public class AreaInfoController extends BaseDao {
 					String zu_xuqiu = json.getString("zu_xuqiu");
 					String data_exam = null;
 					
-					boolean result = areaInfoDao.addTouziData(touzi_datasource, touzi_date, middle_price, middle_zu_price, price_review, year_increment_rate, zu_house_rate, zu_xuqiu, data_exam, area_num, area_name);
+					/*boolean result1 = areaInfoDao.addTouziData(touzi_datasource, touzi_date, middle_price, middle_zu_price, price_review, year_increment_rate, zu_house_rate, zu_xuqiu, data_exam, area_num, area_name);*/
 					
 					String family_datasource = json.getString("family_datasource");
 					String family_date = json.getString("family_date");
@@ -458,7 +459,7 @@ public class AreaInfoController extends BaseDao {
 					String family_two_rate = json.getString("family_two_rate");
 					String family_three = json.getString("family_three");
 					String family_three_rate = json.getString("family_three_rate");
-					boolean resultFamily = areaInfoDao.addAreaFamily(area_num, family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, family_datasource, family_date);
+					/*boolean resultFamily = areaInfoDao.addAreaFamily(area_num, family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, family_datasource, family_date);*/
 					
 					
 					JSONArray middlepriceArray = JSONArray.parseArray(middleprice);
@@ -469,9 +470,9 @@ public class AreaInfoController extends BaseDao {
 						 middlepriceList.add(e);
 					}
 					System.out.println("brokersList.length():"+middlepriceList.size());
-					for(MiddlePrice2 item : middlepriceList){
+					/*for(MiddlePrice2 item : middlepriceList){
 						boolean resultMiddle = areaInfoDao.addMiddlePrice(item, area_num);
-					}
+					}*/
 					
 					
 					JSONArray middletrendArray = JSONArray.parseArray(middletrend);
@@ -482,9 +483,9 @@ public class AreaInfoController extends BaseDao {
 						 middletrendList.add(e);
 					}
 					System.out.println("brokersList.length():"+middletrendList.size());
-					for(AreaMiddle2 item : middletrendList){
+					/*for(AreaMiddle2 item : middletrendList){
 						boolean resultMiddle = areaInfoDao.addMiddleTrend(item, area_num);
-					}
+					}*/
 					
 					
 					JSONArray zujintrendlistArray = JSONArray.parseArray(zujintrendlist);
@@ -495,9 +496,9 @@ public class AreaInfoController extends BaseDao {
 						 zujintrendlistList.add(e);
 					}
 					
-					for(AreaZujin2 item : zujintrendlistList){
+					/*for(AreaZujin2 item : zujintrendlistList){
 						boolean resultZujin = areaInfoDao.addMiddleZujin(item, area_num);
-					}
+					}*/
 					//区域租金回报
 					JSONArray huibaotrendlistArray = JSONArray.parseArray(huibaotrendlist);
 					List<AreaZhikong2> huibaotrendlistList=new ArrayList<AreaZhikong2>();
@@ -507,9 +508,9 @@ public class AreaInfoController extends BaseDao {
 						 huibaotrendlistList.add(e);
 					}
 					
-					for(AreaZhikong2 item : huibaotrendlistList){
+					/*for(AreaZhikong2 item : huibaotrendlistList){
 						boolean resultZujin = areaInfoDao.addAreaZhikong(item, area_num);
-					}
+					}*/
 					//区域地点
 					JSONArray tedianlistArray = JSONArray.parseArray(tedianlist);
 					List<AreaTeDian2> tedianlistList=new ArrayList<AreaTeDian2>();
@@ -519,9 +520,9 @@ public class AreaInfoController extends BaseDao {
 						 tedianlistList.add(e);
 					}
 					
-					for(AreaTeDian2 item : tedianlistList){
+					/*for(AreaTeDian2 item : tedianlistList){
 						boolean resultZujin = areaInfoDao.addAreaTeDian(item, area_num);
-					}
+					}*/
 					
 					//区域人口分布
 					
@@ -533,9 +534,9 @@ public class AreaInfoController extends BaseDao {
 						 peoplelistList.add(e);
 					}
 					
-					for(AreaPeopleInfo2 item : peoplelistList){
+					/*for(AreaPeopleInfo2 item : peoplelistList){
 						boolean resultZujin = areaInfoDao.addAreaPeople(item, area_num);
-					}
+					}*/
 					//推荐经纪人
 					JSONArray brokerlistArray = JSONArray.parseArray(brokerlist);
 					int length = brokerlistArray.size() >= 3 ? 3: brokerlistArray.size();
@@ -546,7 +547,7 @@ public class AreaInfoController extends BaseDao {
 						 BrokerInfo e = (BrokerInfo) JSONToObj(object.toString(), BrokerInfo.class);
 						 brokerlistList.add(e);
 					}
-					boolean resultTuijianBroker = areaInfoDao.addAreaTuijianBroker(brokerlistList, area_num);
+					/*boolean resultTuijianBroker = areaInfoDao.addAreaTuijianBroker(brokerlistList, area_num);*/
 
 					JSONArray projectlistArray = JSONArray.parseArray(projectlist);
 					int length1 = projectlistArray.size() >= 3 ? 3: projectlistArray.size();
@@ -558,7 +559,7 @@ public class AreaInfoController extends BaseDao {
 						 //HouseProject e = (HouseProject) JSONToObj(object.toString(), HouseProject.class);
 						 projectlistList.add(project_name);
 					}
-					boolean resultTuijianPro = areaInfoDao.addAreaTuijianPro(projectlistList, area_num);
+					/*boolean resultTuijianPro = areaInfoDao.addAreaTuijianPro(projectlistList, area_num);*/
 
 					
 					JSONArray newslistArray = JSONArray.parseArray(newslist);
@@ -579,7 +580,16 @@ public class AreaInfoController extends BaseDao {
 							 newslistList.add(news_title);
 						 }
 					}
-					boolean resultTuijianBoke = areaInfoDao.addAreaTuijianBoke(newslistList, list, area_num);
+					/*boolean resultTuijianBoke = areaInfoDao.addAreaTuijianBoke(newslistList, list, area_num);*/
+					
+					//添加
+				    try {
+						int result=areaInfoDao.AddArea(area_num, area_name, area_city, area_zhou, area_nation, area_postcode,touzi_datasource, touzi_date, middle_price, middle_zu_price, price_review, year_increment_rate, zu_house_rate, zu_xuqiu, data_exam, family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, family_datasource, family_date,middlepriceList,middletrendList,zujintrendlistList,huibaotrendlistList,tedianlistList,peoplelistList,brokerlistList,projectlistList,newslistList,list);
+						System.out.println("result::"+result);
+				    } catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 			}
 			public void writeJson(String json, HttpServletResponse response)throws Exception{
 			    response.setContentType("text/html");
