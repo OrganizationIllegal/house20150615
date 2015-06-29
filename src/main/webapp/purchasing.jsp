@@ -136,7 +136,7 @@ function reLoad(){
                                 </a>
                               </div>
                               <div class="media-body" style="padding-left:20px;">
-                                <div class="media-heading" style="font-size:20px;color:rgb(147,181,219);">${item.title}</div>
+                                <div class="media-heading" style="font-size:20px;color:rgb(147,181,219);"><a  href="/Detail?id=${item.id}&type=0">${item.title}</a></div>
                                 <p style="font-size:12px;">${item.fenlei}&nbsp;&nbsp;&nbsp;&nbsp;${fn:substring(item.fabu_time,0,10)}</p>
                                 <p style="font-size:12px;">
                                 	<c:choose> 

@@ -257,7 +257,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<option value="4">四居室</option>
 				</select>
 			</div>
-			<div class="c-fix f-l div3" style="height:850px;overflow-y:auto;">
+			<div class="c-fix f-l div3" style="height:840px;overflow-y:auto;overflow-x:hidden;">
 			 <c:forEach var="item" items="${bingMapList}"> 
 				<div class="c-fix f-l div_node">
 					<a class="c-fix f-l f-yahei s-12 node_address">${item.project_address}</a>
@@ -366,7 +366,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div> -->
 			</div>
 			<div class="f-l div4">
-				<div  id="myMap" style="position:relative;width:840px;height:852px;"></div>
+				<div  id="myMap" style="position:relative;width:840px;height:840px;"></div>
 			</div>
 		</div>
 		<!-- <div style="display:block;width:100%;min-height:40px;background-color:rgb(228,229,231);float:left;clear:both">

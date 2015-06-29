@@ -272,7 +272,7 @@ function popInfo(){
 			<div class="c-fix p_panel">
 				<div class="c-fix f-l p_panel_left">
 					<a class="c-fix f-l p_lab f-arial s-14">${project.developer_id_name}</a>
-					<a class="c-fix f-l p_lab f-arial s-16 fw">${project.project_name}</a>
+					<a class="c-fix f-l p_lab f-arial s-16 fw" style="font-size:20px;">${project.project_name}</a>
 					<a class="c-fix f-l p_lab f-yahei s-14">价格区间：$${project.project_min_price}-$${project.project_high_price}</a>
 					<div class="f-l p_btn_get cp" onclick="pop3()"></div>
 				</div>
@@ -283,7 +283,7 @@ function popInfo(){
 			<div class="c-fix p_panel">
 				<div class="c-fix f-l p_panel_1">
 					<a class="c-fix f-l f-yahei s-14 p_panel_title fw">基本信息</a>
-					<a class="c-fix f-l f-yahei s-14 p_panel_con" style="margin-top:20px;">位置：${HouseProject.gps}</a>
+					<a class="c-fix f-l f-yahei s-14 p_panel_con" style="margin-top:20px;">位置：<span style="font-size:12px;">${HouseProject.project_address}</span></a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_con">类型：${HouseProject.project_type}</a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_con">国家：${HouseProject.project_nation}</a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_con">州/省：${HouseProject.project_zhou}</a>
@@ -293,7 +293,7 @@ function popInfo(){
 					<a class="c-fix f-l f-yahei s-14 p_panel_con">起价：${HouseProject.project_price_qi}</a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_con">户型：${HouseProject.project_house_type}</a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_con">层数：${HouseProject.project_high}</a>
-					<a class="c-fix f-l f-yahei s-14 p_panel_con">预计交房期：${HouseProject.project_finish_time}</a>
+					<a class="c-fix f-l f-yahei s-14 p_panel_con">预计交房期：${timeResule}</a>
 				</div>
 				<div class="f-l p_panel_1">
 					<a class="c-fix f-l f-yahei s-14 p_panel_title2 fw">开发商信息：${HouseProject.developer_id_name}</a>
