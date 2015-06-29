@@ -31,9 +31,9 @@ public class HouseProject {
 	private int walk_num;
 	private int area_id;
 	private String mianji;
-	private int recommend_id_1;
-	private int recommend_id_2;
-	private int recommend_id_3;
+	private String recommend_id_1;
+	private String recommend_id_2;
+	private String recommend_id_3;
 	private String wuyefei;
 	private String project_min_price;
 	private String project_high_price;
@@ -230,22 +230,22 @@ public class HouseProject {
 	public void setMianji(String mianji) {
 		this.mianji = mianji;
 	}
-	public int getRecommend_id_1() {
+	public String getRecommend_id_1() {
 		return recommend_id_1;
 	}
-	public void setRecommend_id_1(int recommend_id_1) {
+	public void setRecommend_id_1(String recommend_id_1) {
 		this.recommend_id_1 = recommend_id_1;
 	}
-	public int getRecommend_id_2() {
+	public String getRecommend_id_2() {
 		return recommend_id_2;
 	}
-	public void setRecommend_id_2(int recommend_id_2) {
+	public void setRecommend_id_2(String recommend_id_2) {
 		this.recommend_id_2 = recommend_id_2;
 	}
-	public int getRecommend_id_3() {
+	public String getRecommend_id_3() {
 		return recommend_id_3;
 	}
-	public void setRecommend_id_3(int recommend_id_3) {
+	public void setRecommend_id_3(String recommend_id_3) {
 		this.recommend_id_3 = recommend_id_3;
 	}
 	public String getWuyefei() {

@@ -1,12 +1,15 @@
-#Sun Jun 28 16:33:03 CST 2015
 eclipse.preferences.version=1
 encoding//src/main/java/com/kate/app/controller/AreaInfoController.java=UTF-8
 encoding//src/main/java/com/kate/app/controller/BrokerInfoController.java=UTF-8
 encoding//src/main/java/com/kate/app/controller/MyController.java=UTF-8
 encoding//src/main/java/com/kate/app/controller/UserInfoController.java=UTF-8
 encoding//src/main/java/com/kate/app/controller/ZhiYeZhiDaoController.java=UTF-8
+encoding//src/main/java/com/kate/app/dao/AjaxDao.java=UTF-8
 encoding//src/main/java/com/kate/app/dao/BaseDao.java=UTF-8
 encoding//src/main/java/com/kate/app/dao/BrokerInfoDao.java=UTF-8
+encoding//src/main/java/com/kate/app/dao/HouseProjectDao.java=UTF-8
 encoding//src/main/java/com/kate/app/dao/HouseTaxDao.java=UTF-8
+encoding//src/main/java/com/kate/app/dao/SearchListDao.java=UTF-8
 encoding//src/main/java/com/kate/app/service/AjaxService.java=UTF-8
+encoding//src/main/java/com/kate/app/service/SuggestionService.java=UTF-8
 encoding//src/main/webapp/foot4.jsp=UTF-8

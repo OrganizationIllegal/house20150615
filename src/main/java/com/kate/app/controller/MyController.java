@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSONArray;
 import com.kate.app.dao.AjaxDao;
+import com.kate.app.dao.AreaInfoDao;
 import com.kate.app.dao.BrokerInfoDao;
 import com.kate.app.dao.InvestDataDao;
 import com.kate.app.dao.MiddlePriceDao;
@@ -112,7 +113,8 @@ public class MyController {
 	private RecoProjectSerivice recoprojectserivice;
 	@Autowired
 	private NewsBokeDao newsBokeDao;
-	
+	@Autowired
+	private AreaInfoDao areaInfoDao;
 	
 	
 	@RequestMapping({ "/Index" })
@@ -136,12 +138,11 @@ public class MyController {
 		}
 		HouseProject project = houseProjectService.getHouseProject(proId);
 		if(project!=null){
-			areaId = project.getArea_id();
+			area_num = project.getArea_num();
 			project_type = project.getProject_type();
-			areaInfo = areaInfoService.getAreaInfo(areaId);
+			areaInfo = areaInfoDao.getAreaInfoByNum(area_num);
 			if(areaInfo!=null){
 				area_name = areaInfo.getArea_name();
-				area_num = areaInfo.getArea_num();
 			}
 		}
 		Timestamp time1 = new Timestamp(System.currentTimeMillis()); 
@@ -200,13 +201,13 @@ public class MyController {
 		 getHouseInfo(req,resp,proNum);    //閿熸枻鎷烽敓閰电》鎷烽敓妗旈潻鎷�
 		 getSchoolAndNear(req,resp,proNum);   //瀛︽牎閿熸枻鎷烽敓鏉版唻鎷�
 		 getHouseTax(req,resp,proNum);
-		 InvestData(req,resp,area_name);
+		 InvestData(req,resp,area_num);
 		 MiddlePriceInfo(req,resp,proId,area_num);
 		 getAreaTrend(req,resp,project_type,area_num);
 		 getAreaFeature(req,resp,area_num);    //閿熸枻鎷烽敓鏂ゆ嫹閿熸埅纰夋嫹
 		 getPeopleRegion(req,resp,area_num);
 		 getAreaFamily(req,resp,area_num);
-		 GetNewsInfo(req,resp,project);
+		 GetNewsInfo(req,resp,area_num);
 		 RecommendProject(req,resp,proId,proNum);
 		 listSuoJia(req,resp,username);
 		 messageSubmit(req,resp,username,proId);
@@ -405,8 +406,9 @@ public class MyController {
 	 */
 	
 	@RequestMapping({"/Index/InvestData"})
-	public void  InvestData(HttpServletRequest req, HttpServletResponse resp,String areaName){
- 		InvestmentData data = investDataDao.getInvestmentDate(areaName);
+	public void  InvestData(HttpServletRequest req, HttpServletResponse resp,String area_num){
+ 		InvestmentData data = investDataDao.getInvestmentDateNum(area_num);
+ 		String areaName = data.getArea_name();
  		String zulin = data.getZu_xuqiu();
  		String [] items = new String[10];
  		String increment = null;
@@ -441,6 +443,7 @@ public class MyController {
  		}
  		
 		req.setAttribute("areaName", areaName);
+		
 		req.setAttribute("data", data);
 		
 	}
@@ -607,7 +610,7 @@ public class MyController {
 	 * 閿熸枻鎷风洰閿熸枻鎷风粏閿熸枻鎷锋伅
 	 */
 	
-	@RequestMapping({"/Index/GetNewsInfo"})    
+	/*@RequestMapping({"/Index/GetNewsInfo"})    
 	public void  GetNewsInfo(HttpServletRequest req, HttpServletResponse resp,HouseProject project){
  		String newsblogNum1 = project.getTuijian_news_num_1();
  		String newsblogNum2 = project.getTuijian_news_num_2();
@@ -633,21 +636,21 @@ public class MyController {
 	    }
 		//List<NewsInfo> newsList = newsInfoService.getNewsInfoDaoList(project_num);
  		
-		/*NewsInfo newsInfo_one = new NewsInfo();
+		NewsInfo newsInfo_one = new NewsInfo();
 		NewsInfo newsInfo_two = new NewsInfo();
-		NewsInfo newsInfo_three = new NewsInfo();*/
+		NewsInfo newsInfo_three = new NewsInfo();
 		String timeResult = null;
 		String timeResuleOne = null;
 		String timeResuletwo = null;
 		String timeResuleThree = null;
-		/*for(NewsInfo item : newsList){
+		for(NewsInfo item : newsList){
 			Timestamp time = item.getTime();
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 			if(time!=null){
 				timeResult = df.format(time);
 			}
 			item.setTimeResult(timeResult);
-		}*/
+		}
 		if(tuijianNews1!=null){
 			
 			
@@ -678,10 +681,10 @@ public class MyController {
 		req.setAttribute("timeResuletwo", timeResuletwo);
 		req.setAttribute("newsInfo_three", tuijianNews3);
 		req.setAttribute("timeResuleThree", timeResuleThree);
-	}
+	}*/
 	
-	@RequestMapping({"/Index/GetNewsInfo1"})    
-	public void  GetNewsInfo1(HttpServletRequest req, HttpServletResponse resp,String area_code){
+	@RequestMapping({"/Index/GetNewsInfo"})    
+	public void  GetNewsInfo(HttpServletRequest req, HttpServletResponse resp,String area_code){
  		List<String> list = newsBokeDao.getRecoByAreaNum(area_code);
  		String newsblogNum1 = "";
  		String newsblogNum2 = "";
@@ -702,13 +705,13 @@ public class MyController {
  		NewsBoke tuijianNews1 = null;
  		NewsBoke tuijianNews2 = null;
  		NewsBoke tuijianNews3 = null;
- 		if(newsblogNum1.trim()!=null && !"".equals(newsblogNum1.trim())){
+ 		if(null!=newsblogNum1 && !"".equals(newsblogNum1)){
  			tuijianNews1 = newsBokeDao.getNewsBokeByNum(newsblogNum1.trim());
  		}
- 		if(newsblogNum2.trim()!=null && !"".equals(newsblogNum2.trim())){
+ 		if(newsblogNum2!=null && !"".equals(newsblogNum2)){
  			tuijianNews2 = newsBokeDao.getNewsBokeByNum(newsblogNum2.trim());
  		}
- 		if(newsblogNum3.trim()!=null && !"".equals(newsblogNum3.trim())){
+ 		if(newsblogNum3!=null && !"".equals(newsblogNum3)){
  			tuijianNews3 = newsBokeDao.getNewsBokeByNum(newsblogNum3.trim());
  		}
  		
@@ -800,17 +803,17 @@ public class MyController {
 			
 		}
 		else if(project!=null){
-			hp1 = houseProjectService.getHouseProject(project.getRecommend_id_1());
+			hp1 = houseProjectService.getHouseProjectByNum(project.getRecommend_id_1());
 		    String desc1 = hp1.getProject_desc();
 		    if(desc1!=null&&!"".equals(desc1)){
 				hp1.setProject_desc(desc1.substring(0, 10)+"...");
 			}
-			hp2 = houseProjectService.getHouseProject(project.getRecommend_id_2());
+			hp2 = houseProjectService.getHouseProjectByNum(project.getRecommend_id_2());
 			String desc2 = hp2.getProject_desc();
 			if(desc2!=null&&!"".equals(desc2)){
 				hp2.setProject_desc(desc2.substring(0, 10)+"...");
 			}
-			hp3 = houseProjectService.getHouseProject(project.getRecommend_id_3());
+			hp3 = houseProjectService.getHouseProjectByNum(project.getRecommend_id_3());
 			String desc3 = hp3.getProject_desc();
 			if(desc3!=null&&!"".equals(desc3)){
 				hp3.setProject_desc(desc3.substring(0, 10)+"...");
