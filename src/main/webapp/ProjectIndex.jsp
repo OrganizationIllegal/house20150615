@@ -251,7 +251,7 @@ function popInfo(){
                     	</c:forEach> --%>
                        
                     </ul>
-                    <div class="this_ad" style="top:0px;"><img style="border:red 2px solid;width:211px;height:140px;margin-left:9px;"/></div>
+                    <div class="this_ad" style="top:0px;"><img style="border:blue 2px solid;width:211px;height:140px;margin-left:9px;"/></div>
                 </div>
                 <div class="bottom_button off"></div>
             </div>
@@ -443,7 +443,7 @@ function popInfo(){
                     </c:forEach>
                     	
                     </ul>
-                    <div class="this_ad_p" style="top:0px;"><img style="border:red 2px solid;width:211px;height:140px;margin-left:9px;"/></div>
+                    <div class="this_ad_p" style="top:0px;"><img style="border:blue 2px solid;width:211px;height:140px;margin-left:9px;"/></div>
                 </div>
                 <div class="bottom_button off"></div>
             </div>
