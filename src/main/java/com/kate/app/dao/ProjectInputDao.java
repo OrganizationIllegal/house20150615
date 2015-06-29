@@ -13,16 +13,22 @@ import org.springframework.stereotype.Repository;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kate.app.model.Broker;
+import com.kate.app.model.BrokerIntegerType;
+import com.kate.app.model.BrokerServiceArea;
 import com.kate.app.model.BrokerType;
+import com.kate.app.model.DeveloperInfo;
 import com.kate.app.model.FujinPeiTao;
 import com.kate.app.model.FujinSchool;
 import com.kate.app.model.HoldCost;
 import com.kate.app.model.HouseInfo1;
 import com.kate.app.model.HouseProject;
 import com.kate.app.model.HouseTax;
+import com.kate.app.model.NewsBoke;
 import com.kate.app.model.Project;
 import com.kate.app.model.ProjectPeiTao;
+import com.kate.app.model.SchoolInfo;
 import com.kate.app.model.ServiceArea;
+import com.kate.app.model.ZhiYeZhiDao;
 
 @Repository 
 public class ProjectInputDao extends BaseDao {
@@ -229,6 +235,105 @@ public class ProjectInputDao extends BaseDao {
 		}
 		return jsonArray;
 	} 
+	//学校列表
+		public JSONArray selectSchoolList(){
+			JSONArray jsonArray=new JSONArray();
+			try {
+				String sql = " select * from school_info";
+				Statement stmt = con.createStatement();
+				ResultSet rs = stmt.executeQuery(sql);
+				while(rs.next()){
+					JSONObject obj = new JSONObject();
+					obj.put("id", rs.getInt("id"));
+					obj.put("school_name", rs.getString("school_name"));
+					jsonArray.add(obj);
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return jsonArray;
+		} 
+		//开发商列表
+				public JSONArray selectDeveloperList(){
+					JSONArray jsonArray=new JSONArray();
+					try {
+						String sql = " select * from developer_info";
+						Statement stmt = con.createStatement();
+						ResultSet rs = stmt.executeQuery(sql);
+						while(rs.next()){
+							JSONObject obj = new JSONObject();
+							obj.put("id", rs.getInt("id"));
+							obj.put("developer_num", rs.getString("developer_num"));
+							obj.put("developer_name", rs.getString("developer_name"));
+							jsonArray.add(obj);
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return jsonArray;
+				} 
+				//新闻博客列表
+				public JSONArray selectnewsList(){
+					JSONArray jsonArray=new JSONArray();
+					try {
+						String sql = " select * from news_boke";
+						Statement stmt = con.createStatement();
+						ResultSet rs = stmt.executeQuery(sql);
+						while(rs.next()){
+							JSONObject obj = new JSONObject();
+							obj.put("id", rs.getInt("id"));
+							obj.put("news_num", rs.getString("news_num"));
+							obj.put("news_title", rs.getString("news_title"));
+							jsonArray.add(obj);
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return jsonArray;
+				} 
+				//置业指导列表
+				public JSONArray selectzhiyeList(){
+					JSONArray jsonArray=new JSONArray();
+					try {
+						String sql = " select * from zhiye_zhidao";
+						Statement stmt = con.createStatement();
+						ResultSet rs = stmt.executeQuery(sql);
+						while(rs.next()){
+							JSONObject obj = new JSONObject();
+							obj.put("id", rs.getInt("id"));
+							obj.put("zhiye_num", rs.getString("zhiye_num"));
+							obj.put("title", rs.getString("title"));
+							jsonArray.add(obj);
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return jsonArray;
+				} 
+				//经纪人列表
+				public JSONArray selectBrokerList(){
+					JSONArray jsonArray=new JSONArray();
+					try {
+						String sql = " select * from broker_info";
+						Statement stmt = con.createStatement();
+						ResultSet rs = stmt.executeQuery(sql);
+						while(rs.next()){
+							JSONObject obj = new JSONObject();
+							obj.put("id", rs.getInt("id"));
+							obj.put("broker_num", rs.getString("broker_num"));
+							obj.put("broker_name", rs.getString("broker_name"));
+							jsonArray.add(obj);
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return jsonArray;
+				} 
 	//根据id找项目信息
 	public HouseProject selectProjectInfo(int id){
 		JSONArray jsonArray=new JSONArray();
@@ -282,6 +387,193 @@ public class ProjectInputDao extends BaseDao {
 		}
 		return houseProject;
 	} 
+	//根据id找学校信息
+		public SchoolInfo selectSchoolInfo(int id){
+			JSONArray jsonArray=new JSONArray();
+			SchoolInfo schoolInfo=new SchoolInfo();
+			try {
+				String sql = " select * from school_info  where id="+id;
+				Statement stmt = con.createStatement();
+				ResultSet rs = stmt.executeQuery(sql);
+				while(rs.next()){
+					schoolInfo.setId(rs.getInt("id"));
+					schoolInfo.setSchool_name(rs.getString("school_name"));
+					schoolInfo.setSchool_ranking(rs.getString("school_ranking"));
+					schoolInfo.setSchool_type(rs.getString("school_type"));
+					schoolInfo.setStudent_total(rs.getInt("student_total"));
+					schoolInfo.setTeacher_total(rs.getInt("teacher_total"));
+					schoolInfo.setSchool_position(rs.getString("school_position"));
+					schoolInfo.setGps(rs.getString("gps"));
+					schoolInfo.setNet_info(rs.getString("net_info"));
+					schoolInfo.setNot_en_stu_bili(rs.getInt("not_en_stu_bili"));
+					schoolInfo.setSchool_image(rs.getString("school_image"));
+					schoolInfo.setSchool_desc(rs.getString("school_desc"));
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return schoolInfo;
+		} 
+		//根据id找开发商
+				public DeveloperInfo selectDeveloperInfo(int id){
+					JSONArray jsonArray=new JSONArray();
+					DeveloperInfo developerInfo=new DeveloperInfo();
+					try {
+						String sql = " select * from developer_info  where id="+id;
+						Statement stmt = con.createStatement();
+						ResultSet rs = stmt.executeQuery(sql);
+						while(rs.next()){
+							developerInfo.setId(rs.getInt("id"));
+							developerInfo.setDeveloper_num(rs.getString("developer_num"));
+							developerInfo.setDeveloper_name(rs.getString("developer_name"));
+							developerInfo.setDeveloper_logo(rs.getString("developer_logo"));
+							developerInfo.setDeveloper_desc(rs.getString("developer_desc"));
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return developerInfo;
+				} 
+				//根据id找新闻博客
+				public NewsBoke selectNewsBokeInfo(int id){
+					JSONArray jsonArray=new JSONArray();
+					NewsBoke newsBoke=new NewsBoke();
+					try {
+						String sql = " select * from news_boke  where id="+id;
+						Statement stmt = con.createStatement();
+						ResultSet rs = stmt.executeQuery(sql);
+						while(rs.next()){
+							newsBoke.setId(rs.getInt("id"));
+							newsBoke.setNews_num(rs.getString("news_num"));
+							newsBoke.setNews_title(rs.getString("news_title"));
+							newsBoke.setNews_people(rs.getString("news_people"));
+							newsBoke.setNews_time(rs.getTimestamp("news_time"));
+							newsBoke.setNews_fenlei(rs.getString("news_fenlei"));
+							newsBoke.setNews_abstract(rs.getString("news_abstract"));
+							newsBoke.setNews_detail(rs.getString("news_detail"));
+							newsBoke.setNews_image(rs.getString("news_image"));
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return newsBoke;
+				} 	
+				//根据id找置业指导
+				public ZhiYeZhiDao selectZhiyeInfo(int id){
+					JSONArray jsonArray=new JSONArray();
+					ZhiYeZhiDao zhiYeZhiDao=new ZhiYeZhiDao();
+					try {
+						String sql = " select * from zhiye_zhidao  where id="+id;
+						Statement stmt = con.createStatement();
+						ResultSet rs = stmt.executeQuery(sql);
+						while(rs.next()){
+							zhiYeZhiDao.setZhiye_num(rs.getString("zhiye_num"));
+							zhiYeZhiDao.setFabu_people(rs.getString("fabu_people"));
+							zhiYeZhiDao.setFabu_time(rs.getTimestamp("fabu_time"));
+							zhiYeZhiDao.setFenlei(rs.getString("fenlei"));
+							zhiYeZhiDao.setZhiye_abstract(rs.getString("zhiye_abstract"));
+							zhiYeZhiDao.setDetail(rs.getString("detail"));
+							zhiYeZhiDao.setImage(rs.getString("image"));
+							zhiYeZhiDao.setTitle(rs.getString("title"));
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return zhiYeZhiDao;
+				} 	
+				//根据id找经纪人信息
+				public Broker selectBroker(int id){
+					JSONArray jsonArray=new JSONArray();
+					Broker broker=new Broker();
+					try {
+						String sql = " select * from broker_info  where id="+id;
+						Statement stmt = con.createStatement();
+						ResultSet rs = stmt.executeQuery(sql);
+						while(rs.next()){
+							broker.setId(rs.getInt("id"));
+							broker.setBroker_num(rs.getString("broker_num"));
+							broker.setBroker_name(rs.getString("broker_name"));
+							broker.setBroker_language(rs.getString("broker_language"));
+							broker.setBroker_region(rs.getString("broker_region"));
+							broker.setBroker_type(rs.getString("broker_type"));
+							broker.setBroker_zizhi(rs.getString("broker_zizhi"));
+							broker.setBroker_experience(rs.getInt("broker_experience"));
+							broker.setBroker_img(rs.getString("broker_img"));
+							broker.setIntroduction(rs.getString("introduction"));
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return broker;
+				} 	
+				//根据id查找经纪人编号
+				public String findBrokerNumById(int id){
+					JSONArray jsonArray=new JSONArray();
+					String broker_num=null;
+					try {
+						String sql = " select * from broker_info  where id="+id;
+						Statement stmt = con.createStatement();
+						ResultSet rs = stmt.executeQuery(sql);
+						while(rs.next()){
+							broker_num=rs.getString("broker_num");
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return broker_num;
+				} 	
+				//根据经纪人编号查找经纪人服务区域列表
+				public List<BrokerServiceArea> findBrokerAreaList(String broker_num){
+					List<BrokerServiceArea> brokerServiceAreaList=new ArrayList<BrokerServiceArea>();
+					try {
+						String sql ="select * from broker_service_area  where broker_num =?";
+						PreparedStatement pstmt = con.prepareStatement(sql);
+						pstmt.setString(1,broker_num);
+						ResultSet rs = pstmt.executeQuery();
+						while(rs.next()){
+							BrokerServiceArea brokerServiceArea=new BrokerServiceArea();
+							brokerServiceArea.setArea_code(rs.getString("area_code"));
+							brokerServiceArea.setBroker_num(rs.getString("broker_num"));
+							brokerServiceArea.setView_shunxu(rs.getInt("view_shunxu"));
+							brokerServiceArea.setId(rs.getInt("id"));
+							brokerServiceAreaList.add(brokerServiceArea);
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return brokerServiceAreaList;
+				} 
+				//根据经纪人编号查找经纪人擅长类型
+				public List<BrokerIntegerType> findBrokerTypeList(String broker_num){
+					List<BrokerIntegerType> brokerIntegerTypeList=new ArrayList<BrokerIntegerType>();
+					try {
+						String sql ="select * from broker_interested_type  where broker_num =?";
+						PreparedStatement pstmt = con.prepareStatement(sql);
+						pstmt.setString(1,broker_num);
+						ResultSet rs = pstmt.executeQuery();
+						while(rs.next()){
+							BrokerIntegerType brokerIntegerType=new BrokerIntegerType();
+							brokerIntegerType.setBroker_num(rs.getString("broker_num"));
+							brokerIntegerType.setInterested_num(rs.getString("interested_num"));
+							brokerIntegerType.setView_shunxu(rs.getInt("view_shunxu"));
+							brokerIntegerType.setId(rs.getInt("id"));
+							brokerIntegerTypeList.add(brokerIntegerType);
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return brokerIntegerTypeList;
+				} 	
+		
+		
 	
 	//学校信息Add
 	public boolean InsertSchoolInfo(String school_name,String school_ranking,String school_type,int school_total,int teacher_total,String school_position,String gps,String net_info,int not_en_stu_bili,String school_image,String school_desc){
@@ -311,6 +603,35 @@ public class ProjectInputDao extends BaseDao {
 		return flag;
 		
 	}
+	//学校信息Update
+		public boolean UpdateSchoolInfo(int id,String school_name,String school_ranking,String school_type,int school_total,int teacher_total,String school_position,String gps,String net_info,int not_en_stu_bili,String school_image,String school_desc){
+			boolean flag=true;
+			try {
+				String sql = "update school_info set school_name=?,school_ranking=?,school_type=?,student_total=?,teacher_total=?, school_position=?,gps=?,net_info=?,not_en_stu_bili=?,school_image=?,school_desc=? where id=?";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, school_name);
+				pstmt.setString(2, school_ranking);
+				pstmt.setString(3, school_type);
+				pstmt.setInt(4, school_total);
+				pstmt.setInt(5, teacher_total);
+				pstmt.setString(6, school_position);
+				pstmt.setString(7, gps);
+				pstmt.setString(8, net_info);
+				pstmt.setInt(9, not_en_stu_bili);
+				pstmt.setString(10, school_image);
+				pstmt.setString(11, school_desc);
+				pstmt.setInt(12, id);
+				int exeResult = pstmt.executeUpdate();
+				if(exeResult == 0){
+					flag = false;
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return flag;
+			
+		}
 	//开发商信息Add
 		public boolean InsertDeveloperInfo(String developer_name,String developer_logo,String developer_desc,String developer_num){
 			boolean flag=true;
@@ -331,6 +652,27 @@ public class ProjectInputDao extends BaseDao {
 			}
 			return flag;
 		}
+		//开发商信息update
+				public boolean UpdateDeveloperInfo(int id,String developer_name,String developer_logo,String developer_desc,String developer_num){
+					boolean flag=true;
+					try {
+						String sql = "update  developer_info  set developer_name=?,developer_logo=?,developer_desc=?,developer_num=? where id=?";
+						PreparedStatement pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, developer_name);
+						pstmt.setString(2, developer_logo);
+						pstmt.setString(3, developer_desc);
+						pstmt.setString(4, developer_num);
+						pstmt.setInt(5, id);
+						int exeResult = pstmt.executeUpdate();
+						if(exeResult == 0){
+							flag = false;
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return flag;
+				}
 		//经纪人Add
 		public int InsertBroker(Broker broker,List<ServiceArea> serviceAreaList,List<BrokerType> brokerTypeList){
 			String broker_num=broker.getBroker_num();

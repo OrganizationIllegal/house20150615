@@ -22,14 +22,23 @@ import com.kate.app.dao.AjaxDao;
 import com.kate.app.dao.ImageDao;
 import com.kate.app.dao.ProjectInputDao;
 import com.kate.app.dao.SchoolNearDao;
+import com.kate.app.model.Broker;
+import com.kate.app.model.BrokerIntegerType;
+import com.kate.app.model.BrokerServiceArea;
+import com.kate.app.model.BrokerType;
+import com.kate.app.model.DeveloperInfo;
 import com.kate.app.model.FujinPeiTao;
 import com.kate.app.model.FujinSchool;
 import com.kate.app.model.HoldCost;
 import com.kate.app.model.HouseInfo1;
 import com.kate.app.model.HouseProject;
 import com.kate.app.model.HouseTax;
+import com.kate.app.model.NewsBoke;
 import com.kate.app.model.Project;
 import com.kate.app.model.ProjectPeiTao;
+import com.kate.app.model.SchoolInfo;
+import com.kate.app.model.ServiceArea;
+import com.kate.app.model.ZhiYeZhiDao;
 import com.kate.app.service.ConvertJson;
 
 @Controller
@@ -52,12 +61,12 @@ public class ProjectInfoController {
 		req.setAttribute("schoolList", schoolList);
 		return "/ProjectInput.jsp";
 	}
-	//项目列表
-	@RequestMapping({ "/ProjectInfoList" })    
-	public void selectProjectList(HttpServletRequest req, HttpServletResponse resp){
+	//学校列表
+	@RequestMapping({ "/SchoolInfoList" })    
+	public void selectSchoolList(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();
 		JSONArray array = new JSONArray();
-		array = projectInputDao.selectProjectList();
+		array = projectInputDao.selectSchoolList();
 		int count = array.size();
 		json.put("total", count);
 		json.put("rows", array);
@@ -68,6 +77,86 @@ public class ProjectInfoController {
 			e.printStackTrace();
 		}
 	}
+	//开发商列表
+	@RequestMapping({ "/DeveloperInfoList" })    
+	public void selectDeveloperList(HttpServletRequest req, HttpServletResponse resp){
+		JSONObject json = new JSONObject();
+		JSONArray array = new JSONArray();
+		array = projectInputDao.selectDeveloperList();
+		int count = array.size();
+		json.put("total", count);
+		json.put("rows", array);
+		
+		try{
+			writeJson(json.toJSONString(),resp);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	//新闻博客列表
+		@RequestMapping({ "/newsList" })    
+		public void selectnewsList(HttpServletRequest req, HttpServletResponse resp){
+			JSONObject json = new JSONObject();
+			JSONArray array = new JSONArray();
+			array = projectInputDao.selectnewsList();
+			int count = array.size();
+			json.put("total", count);
+			json.put("rows", array);
+			
+			try{
+				writeJson(json.toJSONString(),resp);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		//置业指导列表
+				@RequestMapping({ "/zhiyeList" })    
+				public void selectzhiyeList(HttpServletRequest req, HttpServletResponse resp){
+					JSONObject json = new JSONObject();
+					JSONArray array = new JSONArray();
+					array = projectInputDao.selectzhiyeList();
+					int count = array.size();
+					json.put("total", count);
+					json.put("rows", array);
+					
+					try{
+						writeJson(json.toJSONString(),resp);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				}
+				//经纪人列表
+				@RequestMapping({ "/brokerList" })    
+				public void selectBrokerList(HttpServletRequest req, HttpServletResponse resp){
+					JSONObject json = new JSONObject();
+					JSONArray array = new JSONArray();
+					array = projectInputDao.selectBrokerList();
+					int count = array.size();
+					json.put("total", count);
+					json.put("rows", array);
+					
+					try{
+						writeJson(json.toJSONString(),resp);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				}
+	//项目列表
+		@RequestMapping({ "/ProjectInfoList" })    
+		public void selectProjectList(HttpServletRequest req, HttpServletResponse resp){
+			JSONObject json = new JSONObject();
+			JSONArray array = new JSONArray();
+			array = projectInputDao.selectProjectList();
+			int count = array.size();
+			json.put("total", count);
+			json.put("rows", array);
+			
+			try{
+				writeJson(json.toJSONString(),resp);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
 	//将jsons
 	 public static<T> Object JSONToObj(String jsonStr,Class<T> obj) {
 	        T t = null;
@@ -274,6 +363,59 @@ public class ProjectInfoController {
 		
 	}
 	
+	//编辑经纪人
+		@RequestMapping({ "/EditBrokerInfo" })
+		public void  EditBroker(HttpServletRequest req,HttpServletResponse resp){
+			//接收经纪人id
+			String idstr=req.getParameter("id");
+			int id=Integer.parseInt(req.getParameter("id"));
+			
+			//经纪人信息
+			String brokerinfo=req.getParameter("broker");
+			JSONObject brokerInfo = JSONObject.parseObject(brokerinfo);
+			Broker broker= (Broker) JSONToObj(brokerInfo.toString(), Broker.class);
+		
+			//经纪人服务区域
+		    String arealist=req.getParameter("arealist");
+			JSONArray areaArray = JSONArray.parseArray(arealist);
+			List<ServiceArea> serviceArealist=new ArrayList<ServiceArea>();//存放要编辑的项
+			List<ServiceArea> serviceArealist2=new ArrayList<ServiceArea>();//存放新添加的项
+			for (int i=0;i<areaArray.size();i++){
+					JSONObject object = (JSONObject)areaArray.get(i); //对于每个json对象
+					ServiceArea e = (ServiceArea) JSONToObj(object.toString(), ServiceArea.class);
+				    if(e.getId()==0){
+				    	serviceArealist2.add(e);//用于编辑
+				    }
+				    else{
+				    	serviceArealist.add(e);//用于添加
+				    }
+				}
+			//经纪人擅长类型
+			String typelist=req.getParameter("typelist");
+			JSONArray typeArray = JSONArray.parseArray(typelist);
+			List<BrokerType> brokerTypelist=new ArrayList<BrokerType>();//存放要编辑的项
+			List<BrokerType> brokerTypelist2=new ArrayList<BrokerType>();//存放新添加的项
+			for (int i=0;i<typeArray.size();i++){
+					JSONObject object = (JSONObject)typeArray.get(i); //对于每个json对象
+					BrokerType e = (BrokerType) JSONToObj(object.toString(), BrokerType.class);
+				    if(e.getId()==0){
+				    	brokerTypelist2.add(e);//用于编辑
+				    }
+				    else{
+				    	brokerTypelist.add(e);//用于添加
+				    }
+				}
+			//更新
+		 /*   try {
+				int result=projectInputDao.EditProject(id, projectlist,houseInfolist,houseInfolist2,fujinpeitaoList,fujinpeitaoList2,fujinSchoolList,fujinSchoolList2,holdCostList,holdCostList2,houseTaxList,houseTaxList2);
+				System.out.println("result::"+result);
+		    } catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			*/
+		}
+		
 	
 	//添加学校信息
 	@RequestMapping({ "/AddschoolInfo" })
@@ -313,6 +455,44 @@ public class ProjectInfoController {
 			e.printStackTrace();
 		}
 	}
+	//编辑学校信息
+	@RequestMapping({ "/EditSchoolInfo" })
+	public void updateSchoolInfo(HttpServletRequest req,HttpServletResponse resp){
+		JSONObject json = new JSONObject();
+		boolean flag = false;
+	    int id=Integer.parseInt(req.getParameter("id"));
+		String school_name=req.getParameter("school_name");
+		String school_ranking=req.getParameter("school_rank");
+		String  school_type=req.getParameter("school_type");
+		
+		String school_total_str=req.getParameter("school_total");
+		int school_total = school_total_str == "" ? -1 :Integer.parseInt(school_total_str);
+		
+		String teacher_total_str=req.getParameter("teacher_num");
+		int teacher_total = teacher_total_str == "" ? -1 :Integer.parseInt(teacher_total_str);
+		
+		String school_position=req.getParameter("school_position");
+		String gps=req.getParameter("school_gps");
+		String net_info=req.getParameter("school_url");
+		
+		String  not_en_stu_bili_str=req.getParameter("non_en_studen_trate");
+		int not_en_stu_bili = not_en_stu_bili_str == "" ? -1 :Integer.parseInt(not_en_stu_bili_str);
+		
+		String school_image=req.getParameter("schoolimg");
+		String school_desc=req.getParameter("school_intro");
+	    flag=projectInputDao.UpdateSchoolInfo(id, school_name, school_ranking, school_type, school_total, teacher_total, school_position, gps, net_info, not_en_stu_bili, school_image, school_desc);
+	    if(flag==false){
+	    	json.put("flag", "0");
+	    }
+	    else{
+	    	json.put("flag", "1");
+	    }
+	    try{
+			writeJson(json.toJSONString(),resp);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	@RequestMapping({ "/AddDeveloperInfo" })
 	public void InsertDeveloperInfo(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -336,6 +516,32 @@ public class ProjectInfoController {
 				e.printStackTrace();
 		}
 	}
+	//编辑开发商信息
+	@RequestMapping({ "/EditDeveloperInfo" })
+	public void UpdateDeveloperInfo(HttpServletRequest req,HttpServletResponse resp){
+		JSONObject json = new JSONObject();
+		int id=Integer.parseInt(req.getParameter("id"));
+		String developer_name=req.getParameter("developer_name");
+		String developer_logo=req.getParameter("developer_logo");
+		String  developer_desc=req.getParameter("developer_desc");
+		
+		String developer_num=req.getParameter("developer_num");
+		
+	   boolean flagbol=projectInputDao.UpdateDeveloperInfo(id, developer_name, developer_logo, developer_desc, developer_num);
+	    if(flagbol==false){
+	    	json.put("flag", "0");
+		}
+	    else{
+	    	json.put("flag", "1");
+	    }
+		try{
+			 PrintWriter out = resp.getWriter();
+			 out.print(json);
+			}catch(Exception e){
+				e.printStackTrace();
+		}
+	}
+
 	@RequestMapping(value = "/imageupload")
     public void handleFormUpload(
             @RequestParam("file") MultipartFile file, HttpServletResponse resp) {
@@ -444,8 +650,67 @@ public class ProjectInfoController {
 		req.setAttribute("houseTaxList",houseTaxList );
 		return "/ProjectInfo.jsp";
 	}
+	//根据id取学校信息
+	@RequestMapping({ "/selectSchoolInfo" })
+	public String selectSchoolInfo(HttpServletRequest req,HttpServletResponse resp){
+		JSONObject json = new JSONObject();
+		int id =Integer.parseInt(req.getParameter("id"));
+		//根据项目id取项目信息
+		SchoolInfo schoolInfo=projectInputDao.selectSchoolInfo(id);
+		req.setAttribute("schoolInfo", schoolInfo);
+		return "/SchoolInfoEdit.jsp";
+	}
+	//根据id取开发商信息
+		@RequestMapping({ "/selectDeveloperInfo" })
+		public String selectDeveloperInfo(HttpServletRequest req,HttpServletResponse resp){
+			JSONObject json = new JSONObject();
+			int id =Integer.parseInt(req.getParameter("id"));
+			//根据项目id取项目信息
+			DeveloperInfo developerInfo=projectInputDao.selectDeveloperInfo(id);
+			req.setAttribute("developerInfo", developerInfo);
+			return "/DeveloperInfo.jsp";
+		}
+		//根据id取新闻博客信息
+				@RequestMapping({ "/selectNewsBokeInfo" })
+				public String selectNewsbokeInfo(HttpServletRequest req,HttpServletResponse resp){
+					JSONObject json = new JSONObject();
+					int id =Integer.parseInt(req.getParameter("id"));
+					//根据项目id取项目信息
+					NewsBoke newsBoke=projectInputDao.selectNewsBokeInfo(id);
+					req.setAttribute("newsBoke", newsBoke);
+					return "/newsInfoEdit.jsp";
+				}
+				//根据id取置业指导信息
+				@RequestMapping({ "/selectZhiyeInfo" })
+				public String selectZhiyeInfo(HttpServletRequest req,HttpServletResponse resp){
+					JSONObject json = new JSONObject();
+					int id =Integer.parseInt(req.getParameter("id"));
+					//根据项目id取项目信息
+					ZhiYeZhiDao zhiYeZhiDao=projectInputDao.selectZhiyeInfo(id);
+					req.setAttribute("zhiYeZhiDao", zhiYeZhiDao);
+					return "/zhiyeInfo.jsp";
+				}
+				//根据id取经纪人信息
+				@RequestMapping({ "/selectBroker" })
+				public String selectBroker(HttpServletRequest req,HttpServletResponse resp){
+					JSONObject json = new JSONObject();
+					int id =Integer.parseInt(req.getParameter("id"));
+					//根据项目id取项目信息
+					Broker broker=projectInputDao.selectBroker(id);
+					req.setAttribute("broker", broker);
+					//获取经纪人编号
+					String broker_num=projectInputDao.findBrokerNumById(id);
+					//获取经纪人服务区域
+					List<BrokerServiceArea> brokerServiceAreaList=projectInputDao.findBrokerAreaList(broker_num);
+					req.setAttribute("brokerServiceAreaList", brokerServiceAreaList);
+					//获取经纪人擅长类型
+					List<BrokerIntegerType> brokerIntegertypeList=projectInputDao.findBrokerTypeList(broker_num);
+					req.setAttribute("brokerIntegertypeList", brokerIntegertypeList);
+					return "/brokerInfo.jsp";
+				}
 	
-	public void writeJson(String json, HttpServletResponse response)throws Exception{
+	
+public void writeJson(String json, HttpServletResponse response)throws Exception{
 	    response.setContentType("text/html");
 	    response.setCharacterEncoding("UTF-8");
 	    PrintWriter out = response.getWriter();

@@ -140,7 +140,7 @@ public class AreaInfoController extends BaseDao {
 		}
 	}
 	
-	//鏂伴椈鍗氬褰曞叆
+	//新闻博客输入
 	@RequestMapping({ "/inputNewsBoke" })
 	public void inputNewsBoke(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		String news_num = req.getParameter("news_num");
@@ -162,8 +162,30 @@ public class AreaInfoController extends BaseDao {
 		}
 		
 	}
+	//新闻博客更新
+	@RequestMapping({ "/EditNewsBoke" })
+	public void UpdateNewsBoke(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+		int id=Integer.parseInt(req.getParameter("id"));
+		String news_num = req.getParameter("news_num");
+		String news_title  = req.getParameter("news_title");
+		String news_people  = req.getParameter("news_people");
+		String news_time = req.getParameter("news_time");
+		String news_fenlei = req.getParameter("news_fenlei");
+		String news_detail  = req.getParameter("news_detail");
+		String news_image  = req.getParameter("news_image");
+		String news_abstract  = req.getParameter("news_abstract");
+		int flag = 0;
+		JSONObject json = new JSONObject();
+		flag =newsBokeDao.updateNewsBoke(id, news_num, news_title, news_people, news_time, news_fenlei, news_abstract, news_detail, news_image);
+		json.put("flag", flag);
+		try{
+			writeJson(json.toJSONString(),resp);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	
-	//缃笟鎸囧褰曞叆
+	//置业指导Add
 		@RequestMapping({ "/inputZhiYe" })
 		public void inputZhiYe(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 			String zhiye_num = req.getParameter("zhiye_num");
@@ -177,6 +199,28 @@ public class AreaInfoController extends BaseDao {
 			int flag = 0;
 			JSONObject json = new JSONObject();
 			flag =zhiYeDao.InsertZhiye(zhiye_num, title, fabu_people, fabu_time, fenlei, zhiye_abstract, detail, image);
+			json.put("flag", flag);
+			try{
+				writeJson(json.toJSONString(),resp);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		//置业指导编辑
+		@RequestMapping({ "/EditZhiYe" })
+		public void UpdateZhiYe(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+			int id=Integer.parseInt(req.getParameter("id"));
+			String zhiye_num = req.getParameter("zhiye_num");
+			String title  = req.getParameter("title");
+			String fabu_people  = req.getParameter("fabu_people");
+			String fabu_time = req.getParameter("fabu_time");
+			String fenlei = req.getParameter("fenlei");
+			String zhiye_abstract  = req.getParameter("zhiye_abstract");
+			String image  = req.getParameter("image");
+			String detail  = req.getParameter("detail");
+			int flag = 0;
+			JSONObject json = new JSONObject();
+			flag =zhiYeDao.updateZhiye(id, zhiye_num, title, fabu_people, fabu_time, fenlei, zhiye_abstract, detail, image);
 			json.put("flag", flag);
 			try{
 				writeJson(json.toJSONString(),resp);

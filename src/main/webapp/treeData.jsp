@@ -159,6 +159,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			            ]
 			          },
 			          {
+				            text: '经纪人列表',	
+				            color: '#ffffff', 
+				            backColor:'rgb(59,94,132)', 
+				            href:'#title',            
+				            nodes: [
+				              {
+				                text: '经纪人列表',
+					            href:'#title'	                
+				              },
+				              
+				            ]
+				          },
+			          {
 				            text: '新闻博客录入',	
 				            color: '#ffffff', 
 				            backColor:'rgb(59,94,132)', 
@@ -172,6 +185,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				            ]
 				          },
 				          {
+					            text: '新闻博客列表',	
+					            color: '#ffffff', 
+					            backColor:'rgb(59,94,132)', 
+					            href:'#title',            
+					            nodes: [
+					              {
+					                text: '新闻博客列表',
+						            href:'#title'	                
+					              },
+					              
+					            ]
+					          },
+				          {
 					            text: '置业指导录入',	
 					            color: '#ffffff', 
 					            backColor:'rgb(59,94,132)', 
@@ -184,6 +210,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					              
 					            ]
 					          },
+					          {
+						            text: '置业指导列表',	
+						            color: '#ffffff', 
+						            backColor:'rgb(59,94,132)', 
+						            href:'#title',            
+						            nodes: [
+						              {
+						                text: '置业指导列表',
+							            href:'#title'	                
+						              },
+						              
+						            ]
+						          },
 			          {
 				            text: '学校信息录入',	
 				            color: '#ffffff', 
@@ -198,6 +237,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				            ]
 				          },
 				          {
+					            text: '学校信息列表',	
+					            color: '#ffffff', 
+					            backColor:'rgb(59,94,132)', 
+					            href:'#title',            
+					            nodes: [
+					              {
+					                text: '学校信息列表',
+						            href:'#title'	                
+					              },
+					              
+					            ]
+					          },
+				          {
 					            text: '开发商信息录入',	
 					            color: '#ffffff', 
 					            backColor:'rgb(59,94,132)',  
@@ -210,6 +262,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					              
 					            ]
 					          },
+					          {
+						            text: '开发商信息列表',	
+						            color: '#ffffff', 
+						            backColor:'rgb(59,94,132)',  
+						            href:'#title',           
+						            nodes: [
+						              {
+						                text: '开发商信息列表',
+							            href:'#title'	                
+						              },
+						              
+						            ]
+						          },
 				          {
 					            text: '项目列表',	
 					            color: '#ffffff', 
@@ -266,17 +331,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	           if(node.text=="经纪人录入"){
 		           $("#showlist").load("brokerLuru.jsp");
 		           }
+	           if(node.text=="经纪人列表"){
+		           $("#showlist").load("brokerList.jsp");
+		           }
 	           if(node.text=="新闻博客录入"){
 		           $("#showlist").load("newsLuru.jsp");
+		           }
+	           if(node.text=="新闻博客列表"){
+		           $("#showlist").load("newsList.jsp");
 		           }
 	           if(node.text=="置业指导录入"){
 		           $("#showlist").load("zhiyeLuru.jsp");
 		           }
+	           if(node.text=="置业指导列表"){
+		           $("#showlist").load("zhiyeList.jsp");
+		           }
 	           if(node.text=="学校信息录入"){
 		           $("#showlist").load("SchoolInfoInput.jsp");
 		           }
+	           if(node.text=="学校信息列表"){
+		           $("#showlist").load("SchoolList.jsp");
+		           }
 	           if(node.text=="开发商信息录入"){
 		           $("#showlist").load("DeveloperInfoInput.jsp");
+		           }
+	           if(node.text=="开发商信息列表"){
+		           $("#showlist").load("DeveloperList.jsp");
 		           }
 	           if(node.text=="项目列表"){
 		           $("#showlist").load("ProjectList.jsp");
