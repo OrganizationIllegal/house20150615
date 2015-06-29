@@ -1,3 +1,4 @@
+
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" 
@@ -33,7 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		.media{
   			/* width:140px!important; */
   		}
-  		#page-selection .next{position:absolute;-right:40px;margin-left:500px;}
+  		#page-selection .next{position:absolute;right:40px;}
   		#page-selection .prev{position:absolute;left:40px;}
   		#page-selection{background-color: rgb(241,241,241);height: 48px;}
   		#mainlist .media-body,#mainlist  .media-left,#mainlist  .media-right {
@@ -104,36 +105,37 @@ function reLoad(){
    </script>
   
 </head>
-<body  onresize="reLoad()">
+<body style="/* padding-top: 105px; */margin:0 auto;background-color:rgb(232, 233, 234);" onresize="reLoad()">
 <jsp:include page="head4index.jsp" />
 <div id="container" class="" style="width:100%;margin:0 auto; padding-top:10px; background:#fff;">
- <!-- <a name="wintop"></a> -->
+ <a name="wintop"></a>
+	<div class="" style="-margin-top:61px;">
        <!-- <div class="row" style="height:36px;background-color:rgb(20,51,82);width:1190px;  margin: 0 auto;">
             <div class="col-md-1"  style="width:142px;float:left;"></div>
             <div class="col-md-3" style="width:340px;height:100%;line-height:37px;color:white;"><a href="/index01" style="color: #FFE4B5;padding-right: 10px;">首页</a><a href="/BlogList" style="color: white;padding-right: 10px;">新闻博客 </a><a href="/ZhiYeInfo" style="color: #FFE4B5;padding-right: 10px;">置业指导</a></div>
         </div> -->
         <div  style="height:82px;border:1px solid #FFE4E1;width:100%; margin: 0 auto;background-color: white;margin-top:-10px;position:relative;">
-            <div class="" style="width:980px;font-size:24px;line-height:70px;height:100%;font-weight:bold;margin:0 auto;">新闻博客</div>
+            <div class="" style="width:980px;font-size:24px;line-height:70px;height:100%;font-weight:bold;margin:0 auto;">置业指导</div>
         </div>
-        <div style="padding-top: 35px;width:100%; margin: 0 auto;background-color:rgb(247,248,250);position:relative;">
-        <div class="" style="width:980px;margin: 0 auto;position:relative;">
-           <!--  <div class="col-md-1" style="width:142px;float:left;"></div> -->
-            <div class=""  style="width:600px;">
+        <div style="padding-top: 35px;width:100%; margin: 0 auto;background-color:rgb(247,248,250);">
+        <div class="row" style="width:980px; margin: 0 auto;position:relative;">
+            <!-- <div class="col-md-1" style="width:142px;float:left;"></div> -->
+            <div class="col-md-7"  style="width:600px;float:left;">
                 <div class="row">
                     <div class="panel panel-default" id="panel-left">
                       <div class="panel-heading" id="leftpanel" style="font-weight:bold;">1-${pageCount}的${total}篇文章</div>
-                      <div class="panel-body" >
+                      <div class="panel-body">
                         <ul class="media-list" id="mainlist">
                         <c:forEach items="${newsList}" var="item" varStatus="status">
                         	<c:if test="${status.index < 6}">
                         		<li class="media" >
                              <div class="media-left">
-                                <a href="/Detail?id=${item.id}&type=1">
+                                <a href="/Detail?id=${item.id}&type=0">
                                   <img class="media-object" src="http://101.200.174.253:9090/all/${item.news_image}" alt="" width="180px" height="134px">
                                 </a>
                               </div>
                               <div class="media-body" style="padding-left:20px;">
-                                <div class="media-heading" style="font-size:20px;color:rgb(147,181,219);"><a href="/Detail?id=${item.id}&type=1">${item.news_title}</a></div>
+                                <div class="media-heading" style="font-size:20px;color:rgb(147,181,219);"><a  href="/Detail?id=${item.id}&type=1">${item.news_title}</a></div>
                                 <p style="font-size:12px;">${item.news_fenlei}&nbsp;&nbsp;&nbsp;&nbsp;${fn:substring(item.news_time,0,10)}</p>
                                 <p style="font-size:12px;">
                                 	<c:choose> 
@@ -159,10 +161,10 @@ function reLoad(){
                 </div>
             </div>
         </div>
-        <div class=""  style="width:350px;float:right;  border-left: 1px solid #D0DADB;margin-left: 15;font-family:'微软雅黑';margin-top:-965px;">
+        <div class="col-md-3"  style="width:350px;float:right;  border-left: 1px solid #D0DADB;margin-left: 15;font-family:'微软雅黑'">
             <div class="" style="padding-left: 10px;font-size:13px;font-family:'微软雅黑';">
               
-             <div class=""> 
+               <div class=""> 
               	<div style="padding-bottom: 5px;font-size:13px;font-family:'微软雅黑';">置业<span style="width: 230px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;margin-left:30px;"></span></div>
 	               	<div style="padding-bottom: 5px;font-size:13px;font-family:'微软雅黑';padding-top:5px;"><a href="/ZhiYeInfo" style="display:block;">置业指导</a></div>
 	                <div style="font-size:13px;font-family:'微软雅黑';"><a href="/BlogList">新闻博客</a></div>
@@ -184,7 +186,7 @@ function reLoad(){
             <div class="" style="padding-top: 58px;padding-left: 9px;font-size:13px;font-family:'微软雅黑';">
               
               <div class=""> 
-              		<div style="padding-bottom: 11px;">最新博客文章&nbsp;<span style="width: 205px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
+              	<div style="padding-bottom: 11px;">最新博客文章&nbsp;<span style="width: 205px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
                 <ul class="media-list">
 
                 <c:forEach items="${newslastestList}" var="item" varStatus="status">
@@ -205,6 +207,31 @@ function reLoad(){
                          
                          
 
+                        </ul>
+              </div>
+            </div>
+        	<div class="" style="  padding-top: 41px;padding-left: 9px;font-size:13px;font-family:'微软雅黑';">
+              
+              <div class=""> 
+              	<div style="padding-bottom: 11px;">置业指导&nbsp;<span style="width: 259px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
+                <ul class="media-list">
+
+                	 <c:forEach items="${lastestList}" var="item" varStatus="status">
+                	 	 <li class="media">
+                             <div class="media-left" style="float:left;">
+                               <a href="/Detail?id=${item.id}&type=0">
+                                  <img class="media-object" src="http://101.200.174.253:9090/all/${item.image}" alt=""  width="62px" height="46px">
+                                </a>
+                              </div>
+                              <div class="media-body" style="padding-left:10px;padding-top:5px;">
+                                <a href="/Detail?id=${item.id}&type=0"> <div class="media-heading" style="font-size:13px;">${item.title}</div></a>
+                                <div style="font-size:11px;">${item.fenlei}</div>
+                                
+                              </div>
+                          </li>
+                	 </c:forEach>
+                         
+                        
                         </ul>
               </div>
             </div>
@@ -314,7 +341,8 @@ function reLoad(){
                 	    html+="<img class='media-object' src='http://101.200.174.253:9090/all/"+items[j].image+"' alt='' width='180px' height='134px'>";
  						html+="</a></div><div class='media-body' style='padding-left:20px;'><div class='media-heading' style='font-size:20px;color:rgb(147,181,219);'>"+items[j].title;
  						html+="</div><p style='font-size:12px;'>"+items[j].news_fenlei;
- 						html+="</p><p style='font-size:120x;'>"+items[j].news_abstract;
+ 						html+="&nbsp;&nbsp;&nbsp;&nbsp;"+items[j].newstime;
+ 						html+="</p><p style='font-size:12px;'>"+items[j].news_abstract;
  						html+="</p><a href='/Detail?id="+items[j].id+"&type=1'>全文></a></div></li>";
                 	}
                 }
