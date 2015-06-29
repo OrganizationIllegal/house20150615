@@ -25,7 +25,7 @@ import com.kate.app.model.RecoProject;
 
 	@Repository 
 	public class AjaxDao extends BaseDao{
-		public List<InvestmentData> select(){  //搜索投资数据信息
+		public List<InvestmentData> select(){  //鎼滅储鎶曡祫鏁版嵁淇℃伅
 			List<InvestmentData> list = new ArrayList<InvestmentData>();
 			try{
 				String sql = " select * from investment_data";
@@ -54,7 +54,7 @@ import com.kate.app.model.RecoProject;
 		}
 		
 		
-		public List<BrokerInfo> selectBrokerInfo(){  //搜索经纪人信息
+		public List<BrokerInfo> selectBrokerInfo(){  //鎼滅储缁忕邯浜轰俊鎭�
 			List<BrokerInfo> list = new ArrayList<BrokerInfo>();
 			try{
 				String sql = " select * from broker_info";
@@ -84,7 +84,7 @@ import com.kate.app.model.RecoProject;
 		
 		
 		
-		public List<HouseInfo> selectHouseInfo(){    //搜索房屋信息
+		public List<HouseInfo> selectHouseInfo(){    //鎼滅储鎴垮眿淇℃伅
 			List<HouseInfo> list = new ArrayList<HouseInfo>();
 			try{
 				String sql = " select * from house_info";
@@ -117,7 +117,7 @@ import com.kate.app.model.RecoProject;
 	        }
 			return list;
 		}
-		public List<BuyInfo> selectBuyInfo(int proId){    //一锟斤拷锟斤拷目锟斤拷应一锟斤拷
+		public List<BuyInfo> selectBuyInfo(int proId){    //涓�敓鏂ゆ嫹閿熸枻鎷风洰閿熸枻鎷峰簲涓�敓鏂ゆ嫹
 			List<BuyInfo> list = new ArrayList<BuyInfo>();
 			try{
 				String sql = " select * from buy_info where house_pro_id=?";
@@ -140,7 +140,7 @@ import com.kate.app.model.RecoProject;
 		}
 		
 		
-		public BuyInfo getBuyInfo(int proId){    //一锟斤拷锟斤拷目锟斤拷应一锟斤拷
+		public BuyInfo getBuyInfo(int proId){    //涓�敓鏂ゆ嫹閿熸枻鎷风洰閿熸枻鎷峰簲涓�敓鏂ゆ嫹
 			BuyInfo data = new BuyInfo();
 			try{
 				String sql = " select * from buy_info where house_pro_id=?";
@@ -161,7 +161,7 @@ import com.kate.app.model.RecoProject;
 			return data;
 		}
 
-		public List<HouseProject> selectHouseProject(){    //获取项目信息（包括物业费）
+		public List<HouseProject> selectHouseProject(){    //鑾峰彇椤圭洰淇℃伅锛堝寘鎷墿涓氳垂锛�
 			List<HouseProject> list = new ArrayList<HouseProject>();
 			try{
 				String sql = " select * from house_project";
@@ -197,9 +197,9 @@ import com.kate.app.model.RecoProject;
 					projectInfo.setWalk_num(rs.getInt("walk_num"));
 					projectInfo.setArea_id(rs.getInt("area_id"));
 					projectInfo.setMianji(rs.getString("mianji"));
-					projectInfo.setRecommend_id_1(rs.getInt("recommend_id_1"));
-					projectInfo.setRecommend_id_2(rs.getInt("recommend_id_2"));
-					projectInfo.setRecommend_id_3(rs.getInt("recommend_id_3"));
+					projectInfo.setRecommend_id_1(rs.getString("recommend_id_1"));
+					projectInfo.setRecommend_id_2(rs.getString("recommend_id_2"));
+					projectInfo.setRecommend_id_3(rs.getString("recommend_id_3"));
 					projectInfo.setWuyefei(rs.getString("wuyefei"));
 					projectInfo.setProject_min_price(rs.getString("project_min_price"));
 					projectInfo.setProject_high_price(rs.getString("project_high_price"));
@@ -220,9 +220,9 @@ import com.kate.app.model.RecoProject;
 		}
 		
 		/*
-		 * 持有成本信息
+		 * 鎸佹湁鎴愭湰淇℃伅
 		 */
-		public List<HoldingTaxVo> selectHoldFinance(String project_num){    //获取项目信息（包括物业费）
+		public List<HoldingTaxVo> selectHoldFinance(String project_num){    //鑾峰彇椤圭洰淇℃伅锛堝寘鎷墿涓氳垂锛�
 			List<HoldingTaxVo> list = new ArrayList<HoldingTaxVo>();
 			try{
 				String sql = " select * from holding_finace where project_num=?";
@@ -245,9 +245,9 @@ import com.kate.app.model.RecoProject;
 		}
 		
 		/*
-		 * 购房税费信息
+		 * 璐埧绋庤垂淇℃伅
 		 */
-		public List<HouseTaxVo> selectHouseTax(String project_num){    //获取项目信息（包括物业费）
+		public List<HouseTaxVo> selectHouseTax(String project_num){    //鑾峰彇椤圭洰淇℃伅锛堝寘鎷墿涓氳垂锛�
 			List<HouseTaxVo> list = new ArrayList<HouseTaxVo>();
 			try{
 				String sql = " select * from house_tax where project_num=?";
@@ -271,7 +271,7 @@ import com.kate.app.model.RecoProject;
 		
 		
 		/*
-		 * 推荐项目信息
+		 * 鎺ㄨ崘椤圭洰淇℃伅
 		 */
 		
 		public List<RecoProject> selectRecomProject(){    
@@ -297,7 +297,7 @@ import com.kate.app.model.RecoProject;
 		}
 		
 		/*
-		 * 区域特点信息
+		 * 鍖哄煙鐗圭偣淇℃伅
 		 */
 		public List<AreaTeDian> selectArea(){    
 			List<AreaTeDian> list = new ArrayList<AreaTeDian>();
@@ -325,7 +325,7 @@ import com.kate.app.model.RecoProject;
 		
 		
 		
-		public DeveloperInfo selectDevInfo(int id){    //通过开发商id查找开发商信息
+		public DeveloperInfo selectDevInfo(int id){    //閫氳繃寮�彂鍟唅d鏌ユ壘寮�彂鍟嗕俊鎭�
 			DeveloperInfo deve = new DeveloperInfo();
 			try{
 				String sql = " select * from developer_info where id =?";
@@ -343,7 +343,7 @@ import com.kate.app.model.RecoProject;
 			return deve;
 		}
 		
-		public DeveloperInfo selectDevInfo(String developer_num){    //通过开发商num查找开发商信息
+		public DeveloperInfo selectDevInfo(String developer_num){    //閫氳繃寮�彂鍟唍um鏌ユ壘寮�彂鍟嗕俊鎭�
 			DeveloperInfo deve = new DeveloperInfo();
 			try{
 				String sql = " select * from developer_info where developer_num =?";
@@ -363,10 +363,10 @@ import com.kate.app.model.RecoProject;
 		
 		
 		/*
-		 * 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷息
+		 * 閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷锋伅
 		 */
 		
-		public List<NewsInfo> selectNewsInfo(){    //查找新闻信息
+		public List<NewsInfo> selectNewsInfo(){    //鏌ユ壘鏂伴椈淇℃伅
 			List<NewsInfo> list = new ArrayList<NewsInfo>();
 			try{
 				String sql = " select * from news_info";
@@ -470,7 +470,7 @@ import com.kate.app.model.RecoProject;
 			
 			
 			/*
-			 * 锟斤拷锟斤拷锟狡硷拷锟斤拷目锟斤拷锟斤拷
+			 * 閿熸枻鎷烽敓鏂ゆ嫹閿熺嫛纭锋嫹閿熸枻鎷风洰閿熸枻鎷烽敓鏂ゆ嫹
 			 */
 			public int countRecomendProject(){
 				int count = 0;
@@ -504,7 +504,7 @@ import com.kate.app.model.RecoProject;
 			}
 			
 			
-		/*public HouseProject findProByName(String proName){    //通锟斤拷锟斤拷撇锟斤拷锟斤拷锟侥匡拷锟较�
+		/*public HouseProject findProByName(String proName){    //閫氶敓鏂ゆ嫹閿熸枻鎷锋拠閿熸枻鎷烽敓鏂ゆ嫹閿熶茎鍖℃嫹閿熻緝锟�
 			HouseProject projectInfo = new HouseProject();
 			try{
 				String sql = " select * from house_project where project_name= ?";
@@ -539,7 +539,7 @@ import com.kate.app.model.RecoProject;
 			return projectInfo;
 		}*/
 		
-		public HouseProject findProById(int id){    //通过项目id查找项目信息
+		public HouseProject findProById(int id){    //閫氳繃椤圭洰id鏌ユ壘椤圭洰淇℃伅
 			HouseProject projectInfo = new HouseProject();
 			try{
 				String sql = " select * from house_project where id= ?";
@@ -580,7 +580,7 @@ import com.kate.app.model.RecoProject;
 			return projectInfo;
 		}
 		
-		public HouseProject findProByNum(String proNum){    //通过项目编号查找项目信息
+		public HouseProject findProByNum(String proNum){    //閫氳繃椤圭洰缂栧彿鏌ユ壘椤圭洰淇℃伅
 			HouseProject projectInfo = new HouseProject();
 			try{
 				String sql = " select * from house_project where project_num= ?";
@@ -682,7 +682,7 @@ import com.kate.app.model.RecoProject;
 		}
 		
 		/*
-		 * 增加区域信息
+		 * 澧炲姞鍖哄煙淇℃伅
 		 */
 		public boolean addArea(String area_code, String area_character, int view_shunxu, String data_source, String update_time) throws SQLException{
 			boolean flag = true;
@@ -718,7 +718,7 @@ import com.kate.app.model.RecoProject;
 			return flag;
 		}
 		/*
-		 * 修改区域信息
+		 * 淇敼鍖哄煙淇℃伅
 		 */
 		public boolean editArea(int id, String area_code, String area_character, int view_shunxu, String data_source, String update_time) throws SQLException{
 			boolean flag = true;
@@ -754,7 +754,7 @@ import com.kate.app.model.RecoProject;
 		}
 		
 		/*
-		 * 删除区域信息
+		 * 鍒犻櫎鍖哄煙淇℃伅
 		 */
 		public boolean deleteArea(int id) throws SQLException{
 			boolean flag = true;
@@ -777,7 +777,7 @@ import com.kate.app.model.RecoProject;
 		
 		
 		/*
-		 * 锟斤拷锟斤拷锟狡硷拷锟斤拷目
+		 * 閿熸枻鎷烽敓鏂ゆ嫹閿熺嫛纭锋嫹閿熸枻鎷风洰
 		 */
 		public boolean addRecoProject(String project_num, String recommend_project_num1,String recommend_project_num2,String recommend_project_num3) throws SQLException{
 			boolean flag = true;
@@ -801,7 +801,7 @@ import com.kate.app.model.RecoProject;
 	        
 		}
 		/*
-		 * 锟睫革拷锟狡硷拷锟斤拷目
+		 * 閿熺潾闈╂嫹閿熺嫛纭锋嫹閿熸枻鎷风洰
 		 */
 		public boolean editRecoProject(int id, String project_num, String recommend_project_num1,String recommend_project_num2,String recommend_project_num3) throws SQLException{
 			boolean flag = true;
@@ -924,7 +924,7 @@ import com.kate.app.model.RecoProject;
 	        
 		}
 		/*
-		 * 锟斤拷锟接匡拷锟斤拷锟斤拷锟斤拷息
+		 * 閿熸枻鎷烽敓鎺ュ尅鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎭�
 		 */
 		public boolean addDeveInfo(String developer_name, String developer_logo, String developer_desc) throws SQLException{
 			boolean flag = true;
@@ -949,7 +949,7 @@ import com.kate.app.model.RecoProject;
 		
 		
 		/*
-		 * 锟斤拷锟接匡拷锟斤拷锟斤拷锟斤拷息
+		 * 閿熸枻鎷烽敓鎺ュ尅鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎭�
 		 */
 		public boolean addBrokerInfo(String broker_name, String broker_language, String broker_region, String broker_img,String broker_experience, String broker_num, String broker_type, String broker_zizhi, String introduction, String office) throws SQLException{
 			boolean flag = true;
@@ -1012,7 +1012,7 @@ import com.kate.app.model.RecoProject;
 		
 		
 		
-		public boolean deleteTouziData(int id){     //删锟斤拷投锟斤拷锟斤拷锟�
+		public boolean deleteTouziData(int id){     //鍒犻敓鏂ゆ嫹鎶曢敓鏂ゆ嫹閿熸枻鎷烽敓锟�
 			boolean flag = true;
 			try{
 				String sql = " delete from investment_data where id= ?";
@@ -1031,7 +1031,7 @@ import com.kate.app.model.RecoProject;
 	        
 		}
 		
-		public boolean deleteBrokerInfo(int id){     //删锟斤拷投锟斤拷锟斤拷锟�
+		public boolean deleteBrokerInfo(int id){     //鍒犻敓鏂ゆ嫹鎶曢敓鏂ゆ嫹閿熸枻鎷烽敓锟�
 			boolean flag = true;
 			try{
 				String sql = " delete from broker_info where id= ?";
@@ -1051,7 +1051,7 @@ import com.kate.app.model.RecoProject;
 		
 		
 		
-		public boolean deleteHouseInfo(int id){    //删锟斤拷锟斤拷锟斤拷息
+		public boolean deleteHouseInfo(int id){    //鍒犻敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎭�
 			boolean flag = true;
 			try{
 				String sql = " delete from house_info where id= ?";
@@ -1070,7 +1070,7 @@ import com.kate.app.model.RecoProject;
 	        
 		}
 		
-		public boolean deleteHouseProject(int id){    //删锟斤拷锟斤拷目锟斤拷息
+		public boolean deleteHouseProject(int id){    //鍒犻敓鏂ゆ嫹閿熸枻鎷风洰閿熸枻鎷锋伅
 			boolean flag = true;
 			try{
 				String sql = " delete  from house_project where id= ?";
@@ -1090,7 +1090,7 @@ import com.kate.app.model.RecoProject;
 		}
 		
 		/*
-		 * 锟狡硷拷锟斤拷目删锟斤拷
+		 * 閿熺嫛纭锋嫹閿熸枻鎷风洰鍒犻敓鏂ゆ嫹
 		 */
 		public boolean deleteRecomHouseProject(int id){    
 			boolean flag = true;
@@ -1133,7 +1133,7 @@ import com.kate.app.model.RecoProject;
 		}
 		
 		
-		//添加项目
+		//娣诲姞椤圭洰
 		public boolean addPro(String project_name, String project_img, String project_nation, String project_address, String project_area, String project_price_qi, String project_type, int project_sales_remain, String project_finish_time, String project_desc, String project_city, String project_house_type, String project_high, String project_price, String project_lan_cn, String project_lan_en, String project_num, String project_vedio, String project_zhou, String area_qujian, String gps, String return_money, int walk_num, String mianji, String project_min_price, String project_high_price, int tuijiandu, String housePrice_update_time, String buytaxInfo, String holdInfo, int min_area, int max_area, String area_num, String developer_num) throws SQLException{
 			boolean flag = true;
 			String time = "";
@@ -1290,7 +1290,7 @@ import com.kate.app.model.RecoProject;
 	        
 		}
 		/*
-		 * 锟睫改匡拷锟斤拷锟斤拷锟斤拷息
+		 * 閿熺潾鏀瑰尅鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎭�
 		 */
 		public boolean editDeveloperInfo(int deveId, String developer_name, String developer_logo, String developer_desc) throws SQLException{
 			boolean flag = true;
@@ -1315,7 +1315,7 @@ import com.kate.app.model.RecoProject;
 		
 		
 		/*
-		 * 锟睫改匡拷锟斤拷锟斤拷锟斤拷息
+		 * 閿熺潾鏀瑰尅鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎭�
 		 */
 		public boolean editBrokerInfo(int id, String broker_name, String broker_language, String broker_region, String broker_img,String broker_experience, String broker_num, String broker_type, String broker_zizhi, String introduction, String office) throws SQLException{
 			boolean flag = true;
@@ -1381,7 +1381,7 @@ import com.kate.app.model.RecoProject;
 		}
 		
 		
-		public int findProByName(String name) throws SQLException{   //通锟斤拷锟斤拷撇锟斤拷锟絠d
+		public int findProByName(String name) throws SQLException{   //閫氶敓鏂ゆ嫹閿熸枻鎷锋拠閿熸枻鎷烽敓绲燿
 			HouseProject projectInfo = new HouseProject();
 			try{
 				String sql = " select id from house_project where project_name= ?";
@@ -1418,9 +1418,9 @@ import com.kate.app.model.RecoProject;
 			return count;
 		}
 		/*
-		 * 通锟斤拷锟斤拷锟斤拷撇锟斤拷锟絠d
+		 * 閫氶敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎾囬敓鏂ゆ嫹閿熺禒d
 		 */
-		public int findDeveByName(String name) throws SQLException{   //通锟斤拷锟斤拷撇锟斤拷锟絠d
+		public int findDeveByName(String name) throws SQLException{   //閫氶敓鏂ゆ嫹閿熸枻鎷锋拠閿熸枻鎷烽敓绲燿
 			DeveloperInfo developerInfo = new DeveloperInfo();
 			try{
 				String sql = " select id from developer_info where developer_name= ?";
@@ -1440,7 +1440,7 @@ import com.kate.app.model.RecoProject;
 	        
 		}
 		
-		public int findDeveByNum(String num) throws SQLException{   //通锟斤拷锟斤拷撇锟斤拷锟絠d
+		public int findDeveByNum(String num) throws SQLException{   //閫氶敓鏂ゆ嫹閿熸枻鎷锋拠閿熸枻鎷烽敓绲燿
 			DeveloperInfo developerInfo = new DeveloperInfo();
 			try{
 				String sql = " select id from developer_info where developer_num= ?";

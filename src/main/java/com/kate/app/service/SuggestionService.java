@@ -161,7 +161,11 @@ public class SuggestionService {
 					code = item.getArea_zhou()+","+item.getArea_postcode();
 				}
 				String result = item.getArea_name()+";"+item.getArea_city()+";"+code;
-				if(!item.getProNum().equals("")||item.getProNum()!=null){
+				String proNumber = item.getProNum();
+				if(proNumber==null || proNumber.equals("")){
+					result = result+";"+"";
+				}
+				else{
 					result = result+";"+item.getProNum();
 				}
 				p.append(result+"\r\n");

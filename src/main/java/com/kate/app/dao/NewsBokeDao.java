@@ -162,7 +162,7 @@ public class NewsBokeDao extends BaseDao{
 			String reco2 = null;
 			String reco3 = null;
 			try {
-				String sql = " select * from news_boke where area_code = ?";
+				String sql = " select * from recommend_news where area_code = ?";
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, areaNum);
 				ResultSet rs = pstmt.executeQuery();

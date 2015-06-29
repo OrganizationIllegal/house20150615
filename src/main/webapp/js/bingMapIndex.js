@@ -23,7 +23,7 @@
   	 		       map.setView({ zoom: 14, center: LA });
   	 	    	   map2.setView({ zoom: 18, center: LA });
   	 	    	var name=items[i].project_name;
- 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:5px;background-color:white;padding:1px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"}; 
+ 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:12px;background-color:white;padding:1px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"}; 
  		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
  		        var pushpin2= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
   	 		        Microsoft.Maps.Events.addHandler(pushpin, 'click', popModal); 
@@ -61,7 +61,7 @@
   	 		        var maxprice=items[i].project_high_price;
   	 		        var price="$"+minprice+"-$"+maxprice;
   	 		     var name=items[i].project_name;
-	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:5px;background-color:white;padding:1px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"}; 
+	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:12px;background-color:white;padding:1px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"}; 
 	 		        var pushpin= new Microsoft.Maps.Pushpin(LA2, pushpinOptions);
   				    add(name,img,price,num,pushpin,LA2);
   				    map.entities.push(pushpin);	  		        	        

@@ -125,12 +125,19 @@ public class ZhiYeZhiDaoController {
 				obj.put("news_fenlei", item.getNews_fenlei());
 				String abstractInfo = item.getNews_abstract();
 				if(abstractInfo!=null && !"".equals(abstractInfo)){
+					if(abstractInfo.length()>60){
 					abstractInfo = abstractInfo.substring(0,60)+"...";
+					}
 				}
 				obj.put("news_abstract", abstractInfo);
 				obj.put("detail", item.getNews_detail());
 				obj.put("image", item.getNews_image());
 				obj.put("title", item.getNews_title());
+				String newstime=item.getNews_time().toString();
+				if(newstime!=null && !"".equals(newstime)){
+					newstime = newstime.substring(0,10);
+				}
+				obj.put("newstime", newstime);
 				array.add(obj);
 			}
 			json.put("List", array);
@@ -188,12 +195,19 @@ public class ZhiYeZhiDaoController {
 						obj.put("fenlei", item.getFenlei());
 						String abstractInfo = item.getZhiye_abstract();
 						if(abstractInfo!=null && !"".equals(abstractInfo)){
+							if(abstractInfo.length()>60){
 							abstractInfo = abstractInfo.substring(0,60)+"...";
+							}
 						}
 						obj.put("zhiye_abstract", abstractInfo);
 						obj.put("detail", item.getDetail());
 						obj.put("image", item.getImage());
 						obj.put("title", item.getTitle());
+						String fabutime=item.getFabu_time().toString();
+						if(fabutime!=null && !"".equals(fabutime)){
+							fabutime = fabutime.substring(0,10);
+						}
+						obj.put("fabu_time", fabutime);
 					
 						array.add(obj);
 					}
