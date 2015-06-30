@@ -1066,13 +1066,13 @@ public class AreaInfoDao extends BaseDao {
         }
 	}
 	//区域编辑
-		public int EditArea(String area_num,String area_name,String area_city,String area_zhou,String area_nation,String area_postcode,String touzi_datasource,String touzi_date,String middle_price,String middle_zu_price,String price_review,String year_increment_rate,String zu_house_rate,String zu_xuqiu,String data_exam,String family_one,String family_one_rate,String family_two,String family_two_rate,String family_three,String family_three_rate,String family_datasource,String family_date,List<MiddlePrice2> middlepriceList,List<MiddlePrice2> middlepriceList2,List<AreaMiddle2> middletrendList,List<AreaMiddle2> middletrendList2,List<AreaZujin2> zujintrendlistList,List<AreaZujin2> zujintrendlistList2,List<AreaZhikong2> huibaotrendlistList,List<AreaZhikong2> huibaotrendlistList2,List<AreaTeDian2> tedianlistList,List<AreaTeDian2> tedianlistList2,List<AreaPeopleInfo2> peoplelistList,List<AreaPeopleInfo2> peoplelistList2,List<BrokerInfo> brokerlistList,List<String> projectlistList,List<String> newslistList,List<String> list) throws SQLException{
+		public int EditArea(int Id,int Id2,int Id3,String area_num,String area_name,String area_city,String area_zhou,String area_nation,String area_postcode,String touzi_datasource,String touzi_date,String middle_price,String middle_zu_price,String price_review,String year_increment_rate,String zu_house_rate,String zu_xuqiu,String data_exam,String family_one,String family_one_rate,String family_two,String family_two_rate,String family_three,String family_three_rate,String family_datasource,String family_date,List<MiddlePrice2> middlepriceList,List<MiddlePrice2> middlepriceList2,List<AreaMiddle2> middletrendList,List<AreaMiddle2> middletrendList2,List<AreaZujin2> zujintrendlistList,List<AreaZujin2> zujintrendlistList2,List<AreaZhikong2> huibaotrendlistList,List<AreaZhikong2> huibaotrendlistList2,List<AreaTeDian2> tedianlistList,List<AreaTeDian2> tedianlistList2,List<AreaPeopleInfo2> peoplelistList,List<AreaPeopleInfo2> peoplelistList2,List<BrokerInfo> brokerlistList,List<String> projectlistList,List<String> newslistList,List<String> list) throws SQLException{
 			PreparedStatement pstmt=null;
 			try {
 				con.setAutoCommit(false);
 				//区域信息
 				boolean flagquyu;
-				String sql = " insert into area_info(area_num, area_name, area_city, area_zhou, area_nation, area_postcode) values(?,?,?,?,?,?)";
+				String sql = " update  area_info set area_num=?, area_name=?, area_city=?, area_zhou=?, area_nation=?, area_postcode=? where id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, area_num);
 				pstmt.setString(2, area_name);
@@ -1080,6 +1080,7 @@ public class AreaInfoDao extends BaseDao {
 				pstmt.setString(4, area_zhou);
 				pstmt.setString(5, area_nation);
 				pstmt.setString(6, area_postcode);
+				pstmt.setInt(7, Id);
 				
 				int resultquyu = pstmt.executeUpdate();
 				if(resultquyu == 0){
@@ -1101,7 +1102,7 @@ public class AreaInfoDao extends BaseDao {
 		        } catch (Exception e) {   
 		            e.printStackTrace();   
 		        }
-		        String sqltouzi = " insert into investment_data(year_increment_rate, middle_price, middle_zu_price, zu_house_rate, zu_xuqiu, price_review, data_exam, area_num, area_name, touzi_datasource, touzi_date) values(?,?,?,?,?,?,?,?,?,?,?)";
+		        String sqltouzi = " update investment_data set year_increment_rate=?, middle_price=?, middle_zu_price=?, zu_house_rate=?, zu_xuqiu=?, price_review=?, data_exam=?, area_num=?, area_name=?, touzi_datasource=?, touzi_date=? where id=?";
 				pstmt = con.prepareStatement(sqltouzi);
 				pstmt.setString(1, year_increment_rate);
 				pstmt.setString(2, middle_price);
@@ -1114,6 +1115,7 @@ public class AreaInfoDao extends BaseDao {
 				pstmt.setString(9, area_name);
 				pstmt.setString(10, touzi_datasource);
 				pstmt.setString(11, time_strtouzi);
+				pstmt.setInt(12, Id2);
 				int resulttouzi = pstmt.executeUpdate();
 				if(resulttouzi == 0){
 					flagtouzi = false;
@@ -1132,7 +1134,7 @@ public class AreaInfoDao extends BaseDao {
 		        } catch (Exception e) {   
 		            e.printStackTrace();   
 		        }  
-		        String sqlfamily = " insert into area_family(family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, area_code, family_datasource, family_date) values(?,?,?,?,?,?,?,?,?)";
+		        String sqlfamily = " update area_family set family_one=?, family_one_rate=?, family_two=?, family_two_rate=?, family_three=?, family_three_rate=?, area_code=?, family_datasource=?, family_date=? where id=?";
 				pstmt = con.prepareStatement(sqlfamily);
 				pstmt.setString(1, family_one);
 				pstmt.setString(2, family_one_rate);
@@ -1143,6 +1145,7 @@ public class AreaInfoDao extends BaseDao {
 				pstmt.setString(7, area_num);
 				pstmt.setString(8, family_datasource);
 				pstmt.setString(9, family_date);
+				pstmt.setInt(10, Id3);
 				
 				
 				int result = pstmt.executeUpdate();

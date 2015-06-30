@@ -40,6 +40,7 @@ body{
 
 <div class="area_bkg2" id="areainfo">区域信息</div>
 <div class="area_left">
+<input type="text" id="id1" name="id1" style="display:none;" value="${AreaInfo.id}">
 <span class="area_span">区域编号</span><span><input type="text" id="area_num" name="area_num" class="area_input" value="${AreaInfo.area_num}"></span>
 </div>
 <div class="area_right">
@@ -59,6 +60,7 @@ body{
 </div>
 <div class="area_bkg2 c-fix" id="invest">投资数据</div>
 <div class="area_left">
+<input type="text" id="id2" name="id2" style="display:none;" value="${Invest.id}">
 <span class="area_span">数据来源</span><span><input type="text" id="touzi_datasource" name="touzi_datasource" class="area_input" value="${Invest.touzi_datasource}"></span>
 </div>
 <div class="area_right">
@@ -84,6 +86,7 @@ body{
 </div>
 <div class="area_bkg2 c-fix" id="family">区域家庭构成</div>
 <div class="area_left">
+<input type="text" id="id3" name="id3" style="display:none;" value="${Family.id}">
 <span class="area_span">数据来源</span><span><input type="text" id="family_datasource" name="family_datasource" class="area_input" value="${Family.family_datasource}"></span>
 </div>
 <div class="area_right">
@@ -1626,19 +1629,29 @@ function savepro(){
 
 	var area;
 	area=DataDeal.formToJson(data= decodeURIComponent($("#area").serialize(),true));
+	area=area.replace(/\+\"\,\"\+/, " & ")
+	/* alert(area); */
 	area=eval("("+area+")");
 	//alert("ff1")
+	/* area.family_datasource=$("#family_datasource").val(); */
+	/* alert(JSON.stringify(area)); */
+	var id1=$("#id1").val();
+	var id2=$("#id2").val();
+	var id3=$("#id3").val();
     $.ajax({
 	    type: "POST",
  		async:false, 
 		dateType: "json",
-		data:{"area":JSON.stringify(area),"middleprice":JSON.stringify(middlepricelist),"middletrend":JSON.stringify(middletrendlist),"zujintrendlist":JSON.stringify(zujintrendlist),"huibaotrendlist":JSON.stringify(huibaotrendlist),"tedianlist":JSON.stringify(tedianlist),"peoplelist":JSON.stringify(peoplelist),"brokerlist":JSON.stringify(brokerlist),"projectlist":JSON.stringify(projectlist),"newslist":JSON.stringify(newslist)},
-		url: "/AddAreaInfo",
+		data:{"id":id1.toString(),"id2":id2.toString(),"id3":id3.toString(),"area":JSON.stringify(area),"middleprice":JSON.stringify(middlepricelist),"middletrend":JSON.stringify(middletrendlist),"zujintrendlist":JSON.stringify(zujintrendlist),"huibaotrendlist":JSON.stringify(huibaotrendlist),"tedianlist":JSON.stringify(tedianlist),"peoplelist":JSON.stringify(peoplelist),"brokerlist":JSON.stringify(brokerlist),"projectlist":JSON.stringify(projectlist),"newslist":JSON.stringify(newslist)},
+		url: "/EditAreaInfo",
 		success:function(data){
-			alert("添加成功")
+			alert("更新成功");
 		},
-		error:function(){
-			alert("error")
+		error:function(a,b,c){
+			/* alert(a);
+			alert(b);
+			alert(c); */
+			alert("error");
 		}
     });
 }

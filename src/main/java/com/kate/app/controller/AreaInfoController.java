@@ -727,7 +727,9 @@ public class AreaInfoController extends BaseDao {
 				//区域信息编辑
 				@RequestMapping({ "/EditAreaInfo" })
 				public void UpdateBrokerInfo(HttpServletRequest req, HttpServletResponse resp){
-					
+					int id=Integer.parseInt(req.getParameter("id"));
+					int id2=Integer.parseInt(req.getParameter("id2"));
+					int id3=Integer.parseInt(req.getParameter("id3"));
 					String area = req.getParameter("area");//区域信息
 					String middleprice = req.getParameter("middleprice");
 					String middletrend = req.getParameter("middletrend");
@@ -930,7 +932,7 @@ public class AreaInfoController extends BaseDao {
 					
 					//添加
 				    try {
-						int result=areaInfoDao.EditArea(area_num, area_name, area_city, area_zhou, area_nation, area_postcode,touzi_datasource, touzi_date, middle_price, middle_zu_price, price_review, year_increment_rate, zu_house_rate, zu_xuqiu, data_exam, family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, family_datasource, family_date,middlepriceList,middlepriceList2,middletrendList,middletrendList2,zujintrendlistList,zujintrendlistList2,huibaotrendlistList,huibaotrendlistList2,tedianlistList,tedianlistList2,peoplelistList,peoplelistList2,brokerlistList,projectlistList,newslistList,list);
+						int result=areaInfoDao.EditArea(id,id2,id3,area_num, area_name, area_city, area_zhou, area_nation, area_postcode,touzi_datasource, touzi_date, middle_price, middle_zu_price, price_review, year_increment_rate, zu_house_rate, zu_xuqiu, data_exam, family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, family_datasource, family_date,middlepriceList,middlepriceList2,middletrendList,middletrendList2,zujintrendlistList,zujintrendlistList2,huibaotrendlistList,huibaotrendlistList2,tedianlistList,tedianlistList2,peoplelistList,peoplelistList2,brokerlistList,projectlistList,newslistList,list);
 						System.out.println("result::"+result);
 				    } catch (SQLException e1) {
 						// TODO Auto-generated catch block

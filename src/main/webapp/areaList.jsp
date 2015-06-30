@@ -90,7 +90,7 @@ body{
         $remove.click(function () {
         	var ids = getIdSelections();
             ids = '"'+ids+'"';
-            alert(ids);
+            /* alert(ids); */
             $.ajax({
 	 	    type: "POST",
 	 		data: { ids : ids},
@@ -154,7 +154,7 @@ body{
 
     window.operateEvents = {
         'click .like': function (e, value, row, index) {
-            alert('You click like action, row: ' + JSON.stringify(row));
+            /* alert('You click like action, row: ' + JSON.stringify(row)); */
             var id=row.id;
             window.open ('/AreaEdit?id='+id);
             /* var id=row.id;
