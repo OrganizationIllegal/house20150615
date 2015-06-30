@@ -56,7 +56,32 @@ public class AreaInfoController extends BaseDao {
 	private ZhiYeDao zhiYeDao;
 	@Autowired
 	private AjaxDao ajaxDao;
-	//
+	
+			@RequestMapping({ "/AreaDelete" })
+			public void deleteArea(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+				int id = Integer.parseInt(req.getParameter("id"));
+				String area_num=req.getParameter("area_num");
+				int flag =0;
+				flag+=areaInfoDao.deleteAreaInfo(id);
+				flag+=areaInfoDao.deleteInvest(area_num);
+				flag+=areaInfoDao.deleteFamily(area_num);
+				flag+=areaInfoDao.deleteMiddlePrice(area_num);
+				flag+=areaInfoDao.deleteMiddleTrend(area_num);
+				flag+=areaInfoDao.deleteZujin(area_num);
+				flag+=areaInfoDao.deleteHuibao(area_num);
+				flag+=areaInfoDao.deleteTedian(area_num);
+				flag+=areaInfoDao.deletePeople(area_num);
+				flag+=areaInfoDao.deleteBroker(area_num);
+				flag+=areaInfoDao.deleteProject(area_num);
+				flag+=areaInfoDao.deleteNewsBoke(area_num);
+				JSONObject json = new JSONObject();
+				json.put("data", flag);
+				try{
+					writeJson(json.toJSONString(),resp);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			}
 	@RequestMapping({"/AreaEdit"})
 	public String areaEidt(HttpServletRequest req,HttpServletResponse resp){
 		String id=req.getParameter("id");

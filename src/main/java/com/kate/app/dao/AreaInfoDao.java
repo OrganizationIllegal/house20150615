@@ -34,6 +34,162 @@ import com.kate.app.model.NewsZhiye;
 import com.kate.app.model.ZhiYeZhiDao;
 @Repository 
 public class AreaInfoDao extends BaseDao {
+	//通过id删除区域推荐新闻
+			public int deleteNewsBoke(String area_num){
+				int exeResult=0;
+				try{
+						String sql = " delete from recommend_news where area_code= ?";
+						PreparedStatement pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, area_num);
+						exeResult = pstmt.executeUpdate();
+					}catch (Exception e) {
+			            e.printStackTrace();
+			        }
+				    return exeResult;
+			}
+	//通过id删除区域推荐项目
+		public int deleteProject(String area_num){
+			int exeResult=0;
+			try{
+					String sql = " delete from recommend_project where area_code= ?";
+					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, area_num);
+					exeResult = pstmt.executeUpdate();
+				}catch (Exception e) {
+		            e.printStackTrace();
+		        }
+			    return exeResult;
+		}	
+	//通过id删除区域经纪人
+	public int deleteBroker(String area_num){
+		int exeResult=0;
+		try{
+				String sql = " delete from area_recommend_broker where area_code= ?";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, area_num);
+				exeResult = pstmt.executeUpdate();
+			}catch (Exception e) {
+	            e.printStackTrace();
+	        }
+		    return exeResult;
+	}	
+	//通过id删除区域人口分布走势
+			public int deletePeople(String area_num){
+				int exeResult=0;
+				try{
+						String sql = " delete from area_people where area_code= ?";
+						PreparedStatement pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, area_num);
+						exeResult = pstmt.executeUpdate();
+					}catch (Exception e) {
+			            e.printStackTrace();
+			        }
+				    return exeResult;
+			}	
+	//通过id删除区域特点走势
+		public int deleteTedian(String area_num){
+			int exeResult=0;
+			try{
+					String sql = " delete from area_features where area_code= ?";
+					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, area_num);
+					exeResult = pstmt.executeUpdate();
+				}catch (Exception e) {
+		            e.printStackTrace();
+		        }
+			    return exeResult;
+		}	
+	//通过id删除区域租回报走势
+	public int deleteHuibao(String area_num){
+		int exeResult=0;
+		try{
+				String sql = " delete from area_kongzhi where area_code= ?";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, area_num);
+				exeResult = pstmt.executeUpdate();
+			}catch (Exception e) {
+	            e.printStackTrace();
+	        }
+		    return exeResult;
+	}	
+	//通过id删除区域租金走势
+			public int deleteZujin(String area_num){
+				int exeResult=0;
+				try{
+						String sql = " delete from area_zujin where area_code= ?";
+						PreparedStatement pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, area_num);
+						exeResult = pstmt.executeUpdate();
+					}catch (Exception e) {
+			            e.printStackTrace();
+			        }
+				    return exeResult;
+			}	
+	//通过id删除区域房价中位数走势
+		public int deleteMiddleTrend(String area_num){
+			int exeResult=0;
+			try{
+					String sql = " delete from area_middle where area_code= ?";
+					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, area_num);
+					exeResult = pstmt.executeUpdate();
+				}catch (Exception e) {
+		            e.printStackTrace();
+		        }
+			    return exeResult;
+		}	
+	//通过id删除区域中位数房价
+	public int deleteMiddlePrice(String area_num){
+		int exeResult=0;
+		try{
+				String sql = " delete from area_middle_price where area_quyu= ?";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, area_num);
+				exeResult = pstmt.executeUpdate();
+			}catch (Exception e) {
+	            e.printStackTrace();
+	        }
+		    return exeResult;
+	}	
+	//通过id删除区域家庭构成
+			public int deleteFamily(String area_num){
+				int exeResult=0;
+				try{
+						String sql = " delete from area_family where area_code= ?";
+						PreparedStatement pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, area_num);
+						exeResult = pstmt.executeUpdate();
+					}catch (Exception e) {
+			            e.printStackTrace();
+			        }
+				    return exeResult;
+			}
+	//通过id删除投资数据
+		public int deleteInvest(String area_num){
+			int exeResult=0;
+			try{
+					String sql = " delete from investment_data where area_num= ?";
+					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, area_num);
+					exeResult = pstmt.executeUpdate();
+				}catch (Exception e) {
+		            e.printStackTrace();
+		        }
+			    return exeResult;
+		}
+	//通过id删除区域信息
+	public int deleteAreaInfo(int id){
+		int exeResult=0;
+		try{
+				String sql = " delete from area_info where id= ?";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, id);
+				exeResult = pstmt.executeUpdate();
+			}catch (Exception e) {
+	            e.printStackTrace();
+	        }
+		    return exeResult;
+	}
 	//通过区域id获取新闻报道信息
 		public List<NewsZhiye> getAreaNewsBokeList(String area_num){
 			List<NewsZhiye> areaInfolist = new ArrayList<NewsZhiye>();

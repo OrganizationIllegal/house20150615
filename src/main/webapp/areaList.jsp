@@ -217,17 +217,22 @@ body{
              */
         },
         'click .remove': function (e, value, row, index) {
-            alert(row.id);
+            //alert(row.id);
+            //alert(row.area_num);
             var id = row.id;
-            
+            var area_num=row.area_num;
              $.ajax({
 		 	    type: "POST",
-		 		data: {id: id},
+		 		data: {id: id,area_num: area_num},
 		 		dateType: "json",
-		 		url: "/deleteRecomProject",
+		 		url: "/AreaDelete",
 		 		
 		 		success:function(data){
-		 			alert("删除成功")
+		 			if(data.flag == 11){
+		 				alert("删除成功！");
+		 			}else if(data.flag ==0){
+		 				alert("删除失败！");
+		 			}
 		 		},
 		 		error:function(){s
 		 			alert("error")
