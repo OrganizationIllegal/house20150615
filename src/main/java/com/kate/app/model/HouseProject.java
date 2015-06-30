@@ -6,10 +6,24 @@ public class HouseProject {
 	private int id;
 	private String project_name;
 	private String project_img;
+	private String project_logo;
+	public String getProject_logo() {
+		return project_logo;
+	}
+	public void setProject_logo(String project_logo) {
+		this.project_logo = project_logo;
+	}
 	private String project_nation;
 	private String project_address;
 	private String project_area;    
 	private String project_price_qi;
+	private int project_price_int_qi;
+	public int getProject_price_int_qi() {
+		return project_price_int_qi;
+	}
+	public void setProject_price_int_qi(int project_price_int_qi) {
+		this.project_price_int_qi = project_price_int_qi;
+	}
 	private String project_type;
 	private int project_sales_remain;
 	private Timestamp project_finish_time;
