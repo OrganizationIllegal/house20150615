@@ -44,7 +44,7 @@ public class AjaxService {
 			obj.put("area_character", item.getArea_character()==null?"":item.getArea_character());
 			obj.put("area_code", item.getArea_code()==null?"":item.getArea_code());
 			obj.put("view_shunxu", item.getView_shunxu());
-			obj.put("data_source", item.getData_souce()==null?"":item.getData_souce());
+			obj.put("data_source", item.getData_source()==null?"":item.getData_source());
 			String timeResult = null;
 			Timestamp time = item.getUpdate_time();    //寰楀埌鏇存柊鏃堕棿
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");

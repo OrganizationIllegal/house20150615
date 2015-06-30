@@ -311,7 +311,7 @@ import com.kate.app.model.RecoProject;
 					data.setArea_character(rs.getString("area_character"));
 					data.setArea_code(rs.getString("area_code"));
 					data.setArea_id(rs.getInt("area_id"));
-					data.setData_souce(rs.getString("data_source"));
+					data.setData_source(rs.getString("data_source"));
 					data.setHouse_project_id(rs.getInt("house_project_id"));
 					data.setUpdate_time(rs.getTimestamp("update_time"));
 					data.setView_shunxu(rs.getInt("view_shunxu"));

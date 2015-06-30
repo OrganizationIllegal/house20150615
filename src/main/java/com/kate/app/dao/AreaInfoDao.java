@@ -268,7 +268,7 @@ public class AreaInfoDao extends BaseDao {
 				areaInfo.setArea_character(rs.getString("area_character"));
 				areaInfo.setView_shunxu(rs.getInt("view_shunxu"));
 				areaInfo.setArea_code(rs.getString("area_code"));
-				areaInfo.setData_souce(rs.getString("data_source"));
+				areaInfo.setData_source(rs.getString("data_source"));
 				areaInfo.setUpdate_time(rs.getTimestamp("update_time"));
 				areaInfolist.add(areaInfo);
 			}

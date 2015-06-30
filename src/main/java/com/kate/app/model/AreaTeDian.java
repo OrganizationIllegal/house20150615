@@ -8,7 +8,7 @@ public class AreaTeDian {
 	private int house_project_id;
 	private int view_shunxu;
 	private int area_id;
-	private String data_souce;
+	private String data_source;
 	private String area_code;
 	private Timestamp update_time;
 	
@@ -45,11 +45,11 @@ public class AreaTeDian {
 	public void setArea_id(int area_id) {
 		this.area_id = area_id;
 	}
-	public String getData_souce() {
-		return data_souce;
+	public String getData_source() {
+		return data_source;
 	}
-	public void setData_souce(String data_souce) {
-		this.data_souce = data_souce;
+	public void setData_source(String data_souce) {
+		this.data_source = data_souce;
 	}
 	public String getArea_code() {
 		return area_code;
