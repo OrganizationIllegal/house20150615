@@ -26,11 +26,14 @@ public class HouseProjectDao extends BaseDao{
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()){
 				projectInfo.setProject_name(rs.getString("project_name"));
+				projectInfo.setArea_num(rs.getString("area_num"));
 				projectInfo.setProject_img(rs.getString("project_img"));
+				projectInfo.setProject_logo(rs.getString("project_logo"));
 				projectInfo.setProject_nation(rs.getString("project_nation"));
 				projectInfo.setProject_address(rs.getString("project_address"));
 				projectInfo.setProject_area(rs.getString("project_area"));
 				projectInfo.setProject_price_qi(rs.getString("project_price_qi"));
+				projectInfo.setProject_price_int_qi(rs.getInt("project_price_int_qi"));
 				projectInfo.setProject_type(rs.getString("project_type"));
 				projectInfo.setProject_sales_remain(rs.getInt("project_sales_remain"));
 				//projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));
@@ -51,16 +54,14 @@ public class HouseProjectDao extends BaseDao{
 				projectInfo.setDeveloper_id_name(rs.getString("developer_id_name"));
 				projectInfo.setProject_high_price(rs.getString("project_high_price"));
 				projectInfo.setProject_min_price(rs.getString("project_min_price"));
+				projectInfo.setMax_area(rs.getInt("max_area"));
+				projectInfo.setMin_area(rs.getInt("min_area"));
 				projectInfo.setArea_id(rs.getInt("area_id"));
 				projectInfo.setMianji(rs.getString("mianji"));
 				projectInfo.setRecommend_id_1(rs.getString("recommend_id_1"));
 				projectInfo.setRecommend_id_2(rs.getString("recommend_id_2"));
 				projectInfo.setRecommend_id_3(rs.getString("recommend_id_3"));
 				projectInfo.setWuyefei(rs.getString("wuyefei"));
-				projectInfo.setArea_num(rs.getString("area_num"));
-				projectInfo.setTuijian_news_num_1(rs.getString("tuijian_news_num_1"));
-				projectInfo.setTuijian_news_num_2(rs.getString("tuijian_news_num_2"));
-				projectInfo.setTuijian_news_num_3(rs.getString("tuijian_news_num_3"));
 				
 
 			}
@@ -81,12 +82,14 @@ public class HouseProjectDao extends BaseDao{
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()){
 				projectInfo.setProject_name(rs.getString("project_name"));
+				projectInfo.setArea_num(rs.getString("area_num"));
 				projectInfo.setProject_img(rs.getString("project_img"));
+				projectInfo.setProject_logo(rs.getString("project_logo"));
 				projectInfo.setProject_nation(rs.getString("project_nation"));
 				projectInfo.setProject_address(rs.getString("project_address"));
 				projectInfo.setProject_area(rs.getString("project_area"));
-				projectInfo.setProject_num(rs.getString("project_num"));
 				projectInfo.setProject_price_qi(rs.getString("project_price_qi"));
+				projectInfo.setProject_price_int_qi(rs.getInt("project_price_int_qi"));
 				projectInfo.setProject_type(rs.getString("project_type"));
 				projectInfo.setProject_sales_remain(rs.getInt("project_sales_remain"));
 				//projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));
@@ -97,7 +100,7 @@ public class HouseProjectDao extends BaseDao{
 				projectInfo.setProject_price(rs.getString("project_price"));
 				projectInfo.setProject_lan_cn(rs.getString("project_lan_cn"));
 				projectInfo.setProject_lan_en(rs.getString("project_lan_en"));
-				projectInfo.setId(rs.getInt("id"));
+				projectInfo.setProject_num(rs.getString("project_num"));
 				projectInfo.setProject_vedio(rs.getString("project_vedio"));
 				projectInfo.setProject_zhou(rs.getString("project_zhou"));
 				projectInfo.setArea_qujian(rs.getString("area_qujian"));
@@ -107,15 +110,14 @@ public class HouseProjectDao extends BaseDao{
 				projectInfo.setDeveloper_id_name(rs.getString("developer_id_name"));
 				projectInfo.setProject_high_price(rs.getString("project_high_price"));
 				projectInfo.setProject_min_price(rs.getString("project_min_price"));
+				projectInfo.setMax_area(rs.getInt("max_area"));
+				projectInfo.setMin_area(rs.getInt("min_area"));
 				projectInfo.setArea_id(rs.getInt("area_id"));
 				projectInfo.setMianji(rs.getString("mianji"));
 				projectInfo.setRecommend_id_1(rs.getString("recommend_id_1"));
 				projectInfo.setRecommend_id_2(rs.getString("recommend_id_2"));
 				projectInfo.setRecommend_id_3(rs.getString("recommend_id_3"));
 				projectInfo.setWuyefei(rs.getString("wuyefei"));
-				projectInfo.setTuijian_news_num_1(rs.getString("tuijian_news_num_1"));
-				projectInfo.setTuijian_news_num_2(rs.getString("tuijian_news_num_2"));
-				projectInfo.setTuijian_news_num_3(rs.getString("tuijian_news_num_3"));
 
 			}
 			
@@ -246,11 +248,12 @@ public class HouseProjectDao extends BaseDao{
 			while(rs.next()){
 				projectInfo.setProject_name(rs.getString("project_name"));
 				projectInfo.setProject_img(rs.getString("project_img"));
+				projectInfo.setProject_logo(rs.getString("project_logo"));
 				projectInfo.setProject_nation(rs.getString("project_nation"));
 				projectInfo.setProject_address(rs.getString("project_address"));
 				projectInfo.setProject_area(rs.getString("project_area"));
-				projectInfo.setProject_num(rs.getString("project_num"));
 				projectInfo.setProject_price_qi(rs.getString("project_price_qi"));
+				projectInfo.setProject_price_int_qi(rs.getInt("project_price_int_qi"));
 				projectInfo.setProject_type(rs.getString("project_type"));
 				projectInfo.setProject_sales_remain(rs.getInt("project_sales_remain"));
 				//projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));
@@ -261,7 +264,7 @@ public class HouseProjectDao extends BaseDao{
 				projectInfo.setProject_price(rs.getString("project_price"));
 				projectInfo.setProject_lan_cn(rs.getString("project_lan_cn"));
 				projectInfo.setProject_lan_en(rs.getString("project_lan_en"));
-				projectInfo.setId(rs.getInt("id"));
+				projectInfo.setProject_num(rs.getString("project_num"));
 				projectInfo.setProject_vedio(rs.getString("project_vedio"));
 				projectInfo.setProject_zhou(rs.getString("project_zhou"));
 				projectInfo.setArea_qujian(rs.getString("area_qujian"));
@@ -271,15 +274,14 @@ public class HouseProjectDao extends BaseDao{
 				projectInfo.setDeveloper_id_name(rs.getString("developer_id_name"));
 				projectInfo.setProject_high_price(rs.getString("project_high_price"));
 				projectInfo.setProject_min_price(rs.getString("project_min_price"));
+				projectInfo.setMax_area(rs.getInt("max_area"));
+				projectInfo.setMin_area(rs.getInt("min_area"));
 				projectInfo.setArea_id(rs.getInt("area_id"));
 				projectInfo.setMianji(rs.getString("mianji"));
 				projectInfo.setRecommend_id_1(rs.getString("recommend_id_1"));
 				projectInfo.setRecommend_id_2(rs.getString("recommend_id_2"));
 				projectInfo.setRecommend_id_3(rs.getString("recommend_id_3"));
 				projectInfo.setWuyefei(rs.getString("wuyefei"));
-				projectInfo.setTuijian_news_num_1(rs.getString("tuijian_news_num_1"));
-				projectInfo.setTuijian_news_num_2(rs.getString("tuijian_news_num_2"));
-				projectInfo.setTuijian_news_num_3(rs.getString("tuijian_news_num_3"));
 
 			}
 			

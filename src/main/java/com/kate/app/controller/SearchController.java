@@ -23,6 +23,7 @@ import com.kate.app.dao.UserDao;
 import com.kate.app.model.AreaInfo;
 import com.kate.app.model.BrokerInfo;
 import com.kate.app.model.HouseProject;
+import com.kate.app.model.ProjectKey;
 import com.kate.app.model.SearchList;
 import com.kate.app.model.User;
 
@@ -43,7 +44,7 @@ public class SearchController {
 	
 	private static List<BrokerInfo> seachBrokerListResult;
 	
-	//服务团队搜索
+	//鏈嶅姟鍥㈤槦鎼滅储
 	@RequestMapping({"/SearchService"})
 	public String SearchService(HttpServletRequest req, HttpServletResponse resp){
 		String username = (String)req.getSession().getAttribute("username");
@@ -51,10 +52,10 @@ public class SearchController {
 		String type = req.getParameter("type");
 		String area = req.getParameter("area");
 		String lang = req.getParameter("lang");
-		if(type!=null && !"".endsWith(type) && type.equals("类型")){
+		if(type!=null && !"".endsWith(type) && type.equals("绫诲瀷")){
 			type = "";
 		}
-		if(lang!=null && !"".endsWith(lang) && lang.equals("语言")){
+		if(lang!=null && !"".endsWith(lang) && lang.equals("璇█")){
 			lang = "";
 		}
 		List<BrokerInfo> brokerInfoList = searchListDao.searchSericeList(brokerName, type, area, lang);
@@ -111,11 +112,11 @@ public class SearchController {
 	
 	@RequestMapping({"/brokerinfoPage"})
 	public void BrokerListPage(HttpServletRequest req, HttpServletResponse resp){
-		String pageIndex = req.getParameter("pageIndex");   //锟斤拷前页锟斤拷
+		String pageIndex = req.getParameter("pageIndex");   //閿熸枻鎷峰墠椤甸敓鏂ゆ嫹
 		int pageNum  = pageIndex==null? 0 :Integer.parseInt(pageIndex);
 		
-		String pageSize_str  = req.getParameter("pageSize");  //每页锟斤拷锟斤拷锟斤拷锟�
-		int pageSize  = pageSize_str==null? 4 :Integer.parseInt(pageSize_str);//默认每页4条记录
+		String pageSize_str  = req.getParameter("pageSize");  //姣忛〉閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓锟�
+		int pageSize  = pageSize_str==null? 4 :Integer.parseInt(pageSize_str);//榛樿姣忛〉4鏉¤褰�
 		
 		
 		List<BrokerInfo> brokerList = seachBrokerListResult;
@@ -169,7 +170,7 @@ public class SearchController {
 	
 	
 	
-	//首页搜索
+	//棣栭〉鎼滅储
 		@RequestMapping({"/IndexSearch"})
 		public String IndexSearch(HttpServletRequest req, HttpServletResponse resp){
 			String searchcity = req.getParameter("searchcity");
@@ -258,25 +259,51 @@ public class SearchController {
 		    	String return_money=item.getReturn_money();
 		    	String project_num =item.getProject_num();
 		    	String project_lan_cn=item.getProject_lan_cn();
+		    	String project_lan_en=item.getProject_lan_en();
 		    	String mianji=item.getMianji();
 		    	String project_address=item.getProject_address();
-		    	
-		    	
-		    	SearchList data=new SearchList(id,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,mianji,project_address);
+		    	String project_logo = item.getProject_logo();
+		    	String developer_id_name = item.getDeveloper_id_name();
+		    	int project_price_int_qi = item.getProject_price_int_qi();
+		    	String project_desc = item.getProject_desc();
+		    	String xinkaipan1=null;
+			    String huaren1=null;
+			    String remen1=null;
+			    String xuequ1=null;
+			    String baozu1=null;
+			    String daxue1=null;
+			    String center1=null;
+			    String traffic1=null;
+			    String xianfang1=null;
+			    String maidi1=null;
+		    	ProjectKey p = searchListDao.searchProjectKey(project_num);
+		    	if(p!=null){
+		    		xinkaipan1 = p.getXinkaipan();
+		    		huaren1 = p.getHuaren();
+		    		remen1 = p.getRemen();
+		    		xuequ1 = p.getXuequ();
+		    		baozu1 = p.getBaozu();
+		    		daxue1 = p.getDaxue();
+		    		center1 = p.getCenter();
+		    		traffic1 = p.getTraffic();
+		    		xianfang1 = p.getXianfang();
+		    		maidi1 = p.getMaidi();
+		    	}
+		    	SearchList data=new SearchList(id,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,project_lan_en,mianji,project_address,project_logo,developer_id_name,xinkaipan1,huaren1,remen1,xuequ1,baozu1,daxue1,center1,traffic1,xianfang1,maidi1,project_price_int_qi,project_desc);
 		    	searchList.add(data);
 			}
 			seachListResult = searchList;
 			//req.setAttribute("searchList",searchList);
-			return "searchList.jsp";
+			return "searchList01.jsp";
 		}
 	
 		
 		@RequestMapping({"/IndexSearchPage"})
 		public void SearchListPage(HttpServletRequest req, HttpServletResponse resp){
-			String pageIndex = req.getParameter("pageIndex");   //锟斤拷前页锟斤拷
+			String pageIndex = req.getParameter("pageIndex");   //閿熸枻鎷峰墠椤甸敓鏂ゆ嫹
 			int pageNum  = pageIndex==null? 0 :Integer.parseInt(pageIndex);
 			
-			String pageSize_str  = req.getParameter("pageSize");  //每页锟斤拷锟斤拷锟斤拷锟�
+			String pageSize_str  = req.getParameter("pageSize");  //姣忛〉閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓锟�
 			int pageSize  = pageSize_str==null? 0 :Integer.parseInt(pageSize_str);
 			List<SearchList> searchList = seachListResult;
 			
@@ -298,12 +325,32 @@ public class SearchController {
 					obj.put("Fanxian", item.getFanxian());
 					obj.put("Keshou", item.getKeshou());
 					obj.put("MaxArea", item.getMaxArea());
-					obj.put("MaxPrice", item.getMaxPrice());
+					obj.put("MaxPrice", item.getMaxPrice()==null?"":item.getMaxPrice());
 					obj.put("MinArea", item.getMinArea());
-					obj.put("MinPrice", item.getMinPrice());
+					obj.put("MinPrice", item.getMinPrice()==null?"":item.getMinPrice());
 					obj.put("Project_img", item.getProject_img());
 					obj.put("Project_name", item.getProject_name());
 					obj.put("project_num", item.getProject_num());
+					obj.put("project_address", item.getProject_address());
+					obj.put("project_logo", item.getProject_logo());
+					obj.put("developer_id_name", item.getDeveloper_id_name());
+					obj.put("xinkaipan", item.getXinkaipan());
+					obj.put("huaren", item.getHuaren());
+					obj.put("remen", item.getRemen());
+					obj.put("xuequ", item.getXuequ());
+					obj.put("baozu", item.getBaozu());
+					obj.put("daxue", item.getDaxue());
+					obj.put("center", item.getCenter());
+					obj.put("traffic", item.getTraffic());
+					obj.put("xianfang", item.getXianfang());
+					obj.put("maidi", item.getMaidi());
+					obj.put("project_price_int_qi", item.getProject_price_int_qi());
+					String lan = item.getProject_lan_cn();
+					String lan_en = item.getProject_lan_en();
+					if(null == lan || "".equals(lan)){
+						lan = lan_en;
+					}
+					obj.put("project_lan_cn", lan);
 					array.add(obj);
 				}
 				json.put("List", array);
