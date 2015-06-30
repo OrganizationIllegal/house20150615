@@ -21,10 +21,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="/webuploader-0.1.5/webuploader.min.js"></script>
 
 <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-   <link href="/css/default.css" rel="stylesheet">
+   <!-- <link href="/css/default.css" rel="stylesheet"> -->
    <link rel="stylesheet" type="text/css" href="css/base.css" />
    <link rel="stylesheet" type="text/css" href="css/main.css" />
-   <link rel="stylesheet" type="text/css" href="/webuploader-0.1.5/webuploader.css"/> 
+  <!--  <link rel="stylesheet" type="text/css" href="/webuploader-0.1.5/webuploader.css"/>  -->
    <!-- <script src="/js/jquery.min.js"></script> -->
    <script src="/bootstrap/js/bootstrap.min.js"></script>
    <script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script>

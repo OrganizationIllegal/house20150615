@@ -35,31 +35,31 @@ body{
 <div class="area_bkg2" >经纪人信息</div>
 <form id="brokerinfo">
 <div class="area_left">
-<span class="area_span">经纪人编号</span><span><input type="text" id="broker_num" name="broker_num" class="area_input" value="${broker.broker_num} "></span>
-<input type="hidden" id="id" name="id" class="area_input" value="${broker.id} ">
+<span class="area_span">经纪人编号</span><span><input type="text" id="broker_num" name="broker_num" class="area_input" value="${broker.broker_num}"></span>
+<input type="hidden" id="id" name="id" class="area_input" value="${broker.id}">
 </div>
 <div class="area_right">
-<span class="area_span">经纪人姓名</span><span><input type="text" id="broker_name" name="broker_name" class="area_input" value="${broker.broker_name} "></span>
+<span class="area_span">经纪人姓名</span><span><input type="text" id="broker_name" name="broker_name" class="area_input" value="${broker.broker_name}"></span>
 </div>
 <div class="area_left">
-<span class="area_span">掌握语言</span><span><input type="text" id="broker_language" name="broker_language" class="area_input" value="${broker.broker_language} "></span>
+<span class="area_span">掌握语言</span><span><input type="text" id="broker_language" name="broker_language" class="area_input" value="${broker.broker_language}"></span>
 </div>
 <div class="area_right">
-<span class="area_span">所在地区</span><span><input type="text" id="broker_region" name="broker_region" class="area_input" value="${broker.broker_region} "></span>
+<span class="area_span">所在地区</span><span><input type="text" id="broker_region" name="broker_region" class="area_input" value="${broker.broker_region}"></span>
 </div>
 <div class="area_left">
-<span class="area_span">经纪人类型</span><span><input type="text" id="broker_type" name="broker_type" class="area_input" value="${broker.broker_type} "></span>
+<span class="area_span">经纪人类型</span><span><input type="text" id="broker_type" name="broker_type" class="area_input" value="${broker.broker_type}"></span>
 </div>
 <div class="area_right">
-<span class="area_span">经纪人资质</span><span><input type="text" id="broker_zizhi" name="broker_zizhi" class="area_input" value="${broker.broker_zizhi} "></span>
+<span class="area_span">经纪人资质</span><span><input type="text" id="broker_zizhi" name="broker_zizhi" class="area_input" value="${broker.broker_zizhi}"></span>
 </div>
 <div class="area_left">
-<span class="area_span ">经纪人经验</span><span><input type="text" id="broker_experience" name="broker_experience" class="area_input" value="${broker.broker_experience} "></span>
+<span class="area_span ">经纪人经验</span><span><input type="text" id="broker_experience" name="broker_experience" class="area_input" value="${broker.broker_experience}"></span>
 </div>
 </form>
 <div class="c-fix" style="padding-left:35px;">
 <span class="area_span">经纪人图片</span>
-<span style="float:right;"> <input type="file" name="broker_img" id="broker_img" value="${broker.broker_img} " style="width:677px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"/><a class="addBrokerImage" href="#">上传</a></span>
+<span style="float:right;"> <input type="file" name="broker_img" id="broker_img" value="${broker.broker_img}" style="width:677px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"/><a class="addBrokerImage" href="#">上传</a></span>
 </div>
 <!-- <div id="brokerImglist">
 
@@ -67,7 +67,7 @@ body{
 <div class="area_left c-fix">
 <span class="area_span">经纪人描述</span>
 </div>
-<div class="c-fix" style="margin-bottom:15px;"><textarea id="introduction"  value="${broker.introduction} " placeholder="经纪人描述" name="introduction"></textarea></div>
+<div class="c-fix" style="margin-bottom:15px;"><textarea id="introduction"  value="${broker.introduction}" placeholder="经纪人描述" name="introduction"></textarea></div>
 
 <!-- 
 <div class="area_bkg2 c-fix" id="shanchang">擅长类型</div>
@@ -111,16 +111,33 @@ body{
 <span class="area_span4"><a href="#">编辑</a></span><span class="area_span5"><a href="#">删除</a></span>
 </div> -->
 <div id="arealist">
-<div style="float:left;padding-left:40px;">
+<%-- <div style="float:left;padding-left:40px;">
  <c:forEach items="${brokerServiceAreaList}" var="brokerServiceArea" varStatus="status">
  <table>
  <tr>
 <td><span style="padding-right:10px">${status.index + 1}</span></td>
-<td><span style="padding-right:10px">${brokerServiceArea.broker_num}</span></td>
 <td><span style="padding-right:10px">${brokerServiceArea.area_code}</span></td>
+<td><span style="padding-right:10px">${brokerServiceArea.view_shunxu}</span></td>
 </tr>
 </table>
 </c:forEach>
+</div> --%>
+<div>
+<c:forEach items="${brokerServiceAreaList}" var="brokerServiceArea" varStatus="status">
+<div class="area_left3">
+<span class="area_span">${status.index + 1}</span>
+<span class="area_span">${brokerServiceArea.area_code}</span>
+<span class="area_span">${brokerServiceArea.view_shunxu}</span>
+</div>
+</c:forEach>
+<div class="area_right3">
+<span class="area_span4">
+<a href='#' class="edittype">编辑</a>
+</span>
+<span class="area_span5">
+<a href='#' class="deletetype">删除</a>
+</span>
+</div>
 </div>
 </div>
 
@@ -136,16 +153,33 @@ body{
 <div class="area_right3"><span class="area_span5"><a href="#" class="addtype">添加</a></span></div>
 </form>
 <div id="typelist">
-<div style="float:left;padding-left:40px;">
- <c:forEach items="${brokerIntegerTypeList}" var="brokerType" varStatus="status">
+<%-- <div style="float:left;padding-left:40px;">
+ <c:forEach items="${brokerIntegertypeList}" var="brokerType" varStatus="status">
  <table>
  <tr>
 <td><span style="padding-right:10px">${status.index + 1}</span></td>
-<td><span style="padding-right:10px">${brokerType.broker_num}</span></td>
 <td><span style="padding-right:10px">${brokerType.interested_num}</span></td>
+<td><span style="padding-right:10px">${brokerType.view_shunxu2}</span></td>
 </tr>
 </table>
 </c:forEach>
+</div> --%>
+<div>
+<c:forEach items="${brokerIntegertypeList}" var="brokerType" varStatus="status">
+<div class="area_left3">
+<span class="area_span">${status.index + 1}</span>
+<span class="area_span">${brokerType.interested_num}</span>
+<span class="area_span">${brokerType.view_shunxu2}</span>
+</div>
+</c:forEach>
+<div class="area_right3">
+<span class="area_span4">
+<a href='#' class="edittype">编辑</a>
+</span>
+<span class="area_span5">
+<a href='#' class="deletetype">删除</a>
+</span>
+</div>
 </div>
 </div>
 
@@ -207,10 +241,13 @@ $(function(){
 		});
 });
 
-var arealist=[];
+var arealist='${brokerServiceAreaListJson}';
+alert(arealist);
+arealist=eval("("+arealist+")");
+alert("arealist"+arealist);
 var areaedit=100;
 var areaedititem;
-var areacount=0;
+var areacount=arealist.length;
 $(function(){
 	$.ajaxSetup({  
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
@@ -222,7 +259,7 @@ $(function(){
 			area=DataDeal.formToJson(data= decodeURIComponent($("#area").serialize(),true));
 			area=eval("("+area+")");
 			arealist.push(area);
-			$('#arealist').append("<div><div class='area_left3'><span style='display:none;'>"+(++areacount)+"</span><span class='area_span'>"+arealist[areacount-1].area_code+"</span><span class='area_span'>"+arealist[areacount-1].view_shunxu+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editarea'>编辑</a></span><span class='area_span5'><a href='#' class='deletearea'>删除</a></span></div></div>");
+			$('#arealist').append("<div><div class='area_left3'><span class='area_span'>"+(++areacount)+"</span><span class='area_span'>"+arealist[areacount-1].area_code+"</span><span class='area_span'>"+arealist[areacount-1].view_shunxu+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editarea'>编辑</a></span><span class='area_span5'><a href='#' class='deletearea'>删除</a></span></div></div>");
 			$("#area input").each(function(){
 				$(this).val("");
 				});
@@ -230,14 +267,15 @@ $(function(){
 		else{
 			//alert("edit");
 			areaedititem=DataDeal.formToJson(data= decodeURIComponent($("#area").serialize(),true));
+			//alert("aaa"+areaedititem);
 			areaedititem=eval("("+areaedititem+")");
 			$("#area input").each(function(){
 				$(this).val("");
-				});
+			});
 			areaedititem.id=arealist[areaedit].id;
 			arealist[areaedit]=areaedititem;
 			//alert($("#arealist").children().eq(areaedit));
-			$("#arealist").children().eq(areaedit).html("<div class='area_left3'><span style='display:none;'>"+(areaedit+1)+"</span><span class='area_span'>"+arealist[areaedit].area_code+"</span><span class='area_span'>"+arealist[areaedit].view_shunxu+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editarea'>编辑</a></span><span class='area_span5'><a href='#' class='deletearea'>删除</a></span></div>").show();
+			$("#arealist").children().eq(areaedit).html("<div class='area_left3'><span class='area_span'>"+(areaedit+1)+"</span><span class='area_span'>"+arealist[areaedit].area_code+"</span><span class='area_span'>"+arealist[areaedit].view_shunxu+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editarea'>编辑</a></span><span class='area_span5'><a href='#' class='deletearea'>删除</a></span></div>").show();
 			areaedit=100;
 			}
 		});
@@ -261,10 +299,11 @@ $(function(){
 });
 
 
-var typelist=[];
+var typelist='${brokerIntegertypeListJson}';
+typelist=eval("("+typelist+")");
 var typeedit=100;
 var typeedititem;
-var typecount=0;
+var typecount=typelist.length;
 $(function(){
 	$.ajaxSetup({  
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
@@ -276,7 +315,7 @@ $(function(){
 			type=DataDeal.formToJson(data= decodeURIComponent($("#type").serialize(),true));
 			type=eval("("+type+")");
 			typelist.push(type);
-			$('#typelist').append("<div><div class='area_left3'><span style='display:none;'>"+(++typecount)+"</span><span class='area_span'>"+typelist[typecount-1].interested_num+"</span><span class='area_span'>"+typelist[typecount-1].view_shunxu2+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edittype'>编辑</a></span><span class='area_span5'><a href='#' class='deletetype'>删除</a></span></div></div>");
+			$('#typelist').append("<div><div class='area_left3'><span class='area_span'>"+(++typecount)+"</span><span class='area_span'>"+typelist[typecount-1].interested_num+"</span><span class='area_span'>"+typelist[typecount-1].view_shunxu2+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edittype'>编辑</a></span><span class='area_span5'><a href='#' class='deletetype'>删除</a></span></div></div>");
 			$("#type input").each(function(){
 				$(this).val("");
 				});
@@ -291,7 +330,7 @@ $(function(){
 			typeedititem.id=typelist[typeedit].id;
 			typelist[typeedit]=typeedititem;
 			//alert($("#typelist").children().eq(typeedit));
-			$("#typelist").children().eq(typeedit).html("<div class='area_left3'><span style='display:none;'>"+(typeedit+1)+"</span><span class='area_span'>"+typelist[typeedit].interested_num+"</span><span class='area_span'>"+typelist[typeedit].view_shunxu2+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edittype'>编辑</a></span><span class='area_span5'><a href='#' class='deletetype'>删除</a></span></div>").show();
+			$("#typelist").children().eq(typeedit).html("<div class='area_left3'><span class='area_span'>"+(typeedit+1)+"</span><span class='area_span'>"+typelist[typeedit].interested_num+"</span><span class='area_span'>"+typelist[typeedit].view_shunxu2+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edittype'>编辑</a></span><span class='area_span5'><a href='#' class='deletetype'>删除</a></span></div>").show();
 			typeedit=100;
 			}
 		});
@@ -348,12 +387,15 @@ function saveBroker(){
 	broker.broker_img=filename;
 	//alert(CKEDITOR.instances.introduction.getData());
 	broker.introduction=CKEDITOR.instances.introduction.getData();
+	alert(JSON.stringify(broker));
+	alert(JSON.stringify(arealist));
+	alert(JSON.stringify(typelist));
     $.ajax({
 	    type: "POST",
  		async:false, 
 		dateType: "json",
-		data:{id:id,"broker":broker,"arealist":JSON.stringify(arealist),"typelist":JSON.stringify(typelist)},
-		url: "/EditBrokerInfo",
+		data:{"broker":JSON.stringify(broker),"arealist":JSON.stringify(arealist),"typelist":JSON.stringify(typelist)},
+		url: "/EditBrokerInfo?id="+id,
 		success:function(data){
 			alert("更新成功")
 		},

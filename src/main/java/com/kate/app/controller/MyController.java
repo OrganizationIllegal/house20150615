@@ -197,7 +197,7 @@ public class MyController {
 		 ProjectPeitaoImage(req,resp,proNum);
 		 TheElement(req,resp,proId);
 		 getBuyInfo(req,resp,proId);
-		 ProjectInfo(req,resp,proId);
+		 ProjectInfo(req,resp,proNum);
 		 getHouseInfo(req,resp,proNum);    //閿熸枻鎷烽敓閰电》鎷烽敓妗旈潻鎷�
 		 getSchoolAndNear(req,resp,proNum);   //瀛︽牎閿熸枻鎷烽敓鏉版唻鎷�
 		 getHouseTax(req,resp,proNum);
@@ -305,9 +305,9 @@ public class MyController {
 	 */
 	
 	@RequestMapping({"/Index/ProjectInfo"})    
-	public void  ProjectInfo(HttpServletRequest req, HttpServletResponse resp,int proId){
+	public void  ProjectInfo(HttpServletRequest req, HttpServletResponse resp,String proNum){
 		String developer_num = null;
-		HouseProject pro = houseProjectService.getHouseProject(proId);
+		HouseProject pro = houseProjectService.getHouseProjectByNum(proNum);
 		String timeResule = null;
 		
 		if(pro!=null){

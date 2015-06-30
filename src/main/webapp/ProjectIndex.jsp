@@ -823,9 +823,11 @@ function popInfo(){
 			  	  </table>
 						</div>
 					</div>
-				</c:if>
-				<img class="f-r p_adv" src="images/ad1.png"></img>
+					<img class="f-r p_adv" src="images/ad1.png"></img>
 				<img class="f-r p_adv2" src="images/adv.jpg"></img>
+				</c:if>
+				
+				
 				<div class="c-fix bkg3" style="margin:0 auto;height:265px;width:990px">
 				<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:950px;margin-bottom:10px;">${area_name} 区域家庭情况构成</a>
 				<div class="c-fix f-l p_family" style="margin-left:72px;-margin-top:20px;height:184px">

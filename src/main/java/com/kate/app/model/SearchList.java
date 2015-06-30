@@ -12,7 +12,9 @@ public class SearchList {
 	private String fanxian;
 	private String project_num;
     private String project_lan_cn;
-    private String mianji;
+    private String project_lan_en;
+   
+	private String mianji;
     private String project_address;
     private String project_logo;
     private String xinkaipan;
@@ -28,7 +30,7 @@ public class SearchList {
     private String  developer_id_name;
     private int project_price_int_qi;
     private String project_desc;
-    private int isCollected;//是否被当前用户收藏，0表示未收藏，1表示被当前用户收藏
+    private int isCollected;//鏄惁琚綋鍓嶇敤鎴锋敹钘忥紝0琛ㄧず鏈敹钘忥紝1琛ㄧず琚綋鍓嶇敤鎴锋敹钘�
     
     
 	public int getIsCollected() {
@@ -146,7 +148,13 @@ public class SearchList {
 	public void setProject_lan_cn(String project_lan_cn) {
 		this.project_lan_cn = project_lan_cn;
 	}
-	public SearchList(int id,String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String mianji,String project_address,String project_logo,String developer_id_name ,String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue, String center,String traffic,String xianfang,String maidi,int project_price_int_qi,String project_desc){
+	 public String getProject_lan_en() {
+			return project_lan_en;
+		}
+		public void setProject_lan_en(String project_lan_en) {
+			this.project_lan_en = project_lan_en;
+		}
+	public SearchList(int id,String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String project_lan_en,String mianji,String project_address,String project_logo,String developer_id_name ,String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue, String center,String traffic,String xianfang,String maidi,int project_price_int_qi,String project_desc){
 		this.id=id;
 		this.project_num = project_num;
 		this.project_img=project_img;
@@ -158,6 +166,8 @@ public class SearchList {
 		this.keshou=keshou;
 		this.fanxian=fanxian;
 		this.project_lan_cn=project_lan_cn;
+		this.project_lan_en=project_lan_en;
+		
 		this.mianji=mianji;
 		this.project_address=project_address;
 		this.project_logo=project_logo;
@@ -174,7 +184,7 @@ public class SearchList {
 		this.project_price_int_qi=project_price_int_qi;
 		this.project_desc=project_desc;
 	}
-	public SearchList(int id,String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String mianji,String project_address ){
+	public SearchList(int id,String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String project_lan_en,String mianji,String project_address ){
 		this.id=id;
 		this.project_num = project_num;
 		this.project_img=project_img;
@@ -186,6 +196,7 @@ public class SearchList {
 		this.keshou=keshou;
 		this.fanxian=fanxian;
 		this.project_lan_cn=project_lan_cn;
+		this.project_lan_en=project_lan_en;
 		this.mianji=mianji;
 		this.project_address=project_address;
 		
