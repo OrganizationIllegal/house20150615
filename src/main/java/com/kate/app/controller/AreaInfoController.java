@@ -481,7 +481,7 @@ public class AreaInfoController extends BaseDao {
 			
 				
 				
-				//娣诲姞椤圭洰
+				//区域信息添加
 				@RequestMapping({ "/AddAreaInfo" })
 				public void AddBrokerInfo(HttpServletRequest req, HttpServletResponse resp){
 					String area = req.getParameter("area");
@@ -656,6 +656,219 @@ public class AreaInfoController extends BaseDao {
 					//添加
 				    try {
 						int result=areaInfoDao.AddArea(area_num, area_name, area_city, area_zhou, area_nation, area_postcode,touzi_datasource, touzi_date, middle_price, middle_zu_price, price_review, year_increment_rate, zu_house_rate, zu_xuqiu, data_exam, family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, family_datasource, family_date,middlepriceList,middletrendList,zujintrendlistList,huibaotrendlistList,tedianlistList,peoplelistList,brokerlistList,projectlistList,newslistList,list);
+						System.out.println("result::"+result);
+				    } catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+			}
+				//区域信息编辑
+				@RequestMapping({ "/EditAreaInfo" })
+				public void UpdateBrokerInfo(HttpServletRequest req, HttpServletResponse resp){
+					
+					String area = req.getParameter("area");//区域信息
+					String middleprice = req.getParameter("middleprice");
+					String middletrend = req.getParameter("middletrend");
+					String zujintrendlist = req.getParameter("zujintrendlist");
+					
+					String huibaotrendlist = req.getParameter("huibaotrendlist");
+					
+					String tedianlist = req.getParameter("tedianlist");
+					
+					String peoplelist = req.getParameter("peoplelist");
+					
+					String brokerlist = req.getParameter("brokerlist");
+					String projectlist = req.getParameter("projectlist");
+					String newslist = req.getParameter("newslist");
+					
+					//区域信息
+					JSONObject json = JSONObject.parseObject(area);
+					String area_num = json.getString("area_num");
+					String area_name = json.getString("area_name");
+					String area_city = json.getString("area_city");
+					String area_zhou = json.getString("area_zhou");
+					String area_nation = json.getString("area_nation");
+					String area_postcode = json.getString("area_postcode");
+					
+					//投资数据
+					/*boolean flag = areaInfoDao.addAreaInfo(area_num, area_name, area_city, area_zhou, area_nation, area_postcode);*/
+					String touzi_datasource = json.getString("touzi_datasource");
+					String touzi_date = json.getString("touzi_date");
+					String year_increment_rate = json.getString("year_increment_rate");
+					String middle_price = json.getString("middle_price");
+					String middle_zu_price = json.getString("middle_zu_price");
+					String zu_house_rate = json.getString("zu_house_rate");
+					String price_review = json.getString("price_review");
+					String zu_xuqiu = json.getString("zu_xuqiu");
+					String data_exam = null;
+					
+					/*boolean result1 = areaInfoDao.addTouziData(touzi_datasource, touzi_date, middle_price, middle_zu_price, price_review, year_increment_rate, zu_house_rate, zu_xuqiu, data_exam, area_num, area_name);*/
+					//区域家庭构成
+					String family_datasource = json.getString("family_datasource");
+					String family_date = json.getString("family_date");
+					String family_one = json.getString("family_one");
+					String family_one_rate = json.getString("family_one_rate");
+					String family_two = json.getString("family_two");
+					String family_two_rate = json.getString("family_two_rate");
+					String family_three = json.getString("family_three");
+					String family_three_rate = json.getString("family_three_rate");
+					/*boolean resultFamily = areaInfoDao.addAreaFamily(area_num, family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, family_datasource, family_date);*/
+					
+					//区域中位数房价
+					JSONArray middlepriceArray = JSONArray.parseArray(middleprice);
+					List<MiddlePrice2> middlepriceList=new ArrayList<MiddlePrice2>();//用于编辑
+					List<MiddlePrice2> middlepriceList2=new ArrayList<MiddlePrice2>();//用于添加
+					for (int i=0; i<middlepriceArray.size(); i++){
+						 JSONObject object = (JSONObject)middlepriceArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+						 MiddlePrice2 e = (MiddlePrice2) JSONToObj(object.toString(), MiddlePrice2.class);
+						 if(e.getId()==0){
+							 middlepriceList2.add(e);
+						 }else{
+							 middlepriceList.add(e);
+						 }
+					}
+					System.out.println("brokersList.length():"+middlepriceList.size());
+					/*for(MiddlePrice2 item : middlepriceList){
+						boolean resultMiddle = areaInfoDao.addMiddlePrice(item, area_num);
+					}*/
+					
+					//区域房价中位数走势
+					JSONArray middletrendArray = JSONArray.parseArray(middletrend);
+					List<AreaMiddle2> middletrendList=new ArrayList<AreaMiddle2>();//用于编辑
+					List<AreaMiddle2> middletrendList2=new ArrayList<AreaMiddle2>();//用于添加
+					for (int i=0; i<middletrendArray.size(); i++){
+						 JSONObject object = (JSONObject)middletrendArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+						 AreaMiddle2 e = (AreaMiddle2) JSONToObj(object.toString(), AreaMiddle2.class);
+						 if(e.getId()==0){
+							 middletrendList2.add(e);
+						 }else{
+							 middletrendList.add(e);
+						 }
+					}
+					System.out.println("brokersList.length():"+middletrendList.size());
+					/*for(AreaMiddle2 item : middletrendList){
+						boolean resultMiddle = areaInfoDao.addMiddleTrend(item, area_num);
+					}*/
+					
+					//区域租金走势
+					JSONArray zujintrendlistArray = JSONArray.parseArray(zujintrendlist);
+					List<AreaZujin2> zujintrendlistList=new ArrayList<AreaZujin2>();
+					List<AreaZujin2> zujintrendlistList2=new ArrayList<AreaZujin2>();
+					for (int i=0; i<zujintrendlistArray.size(); i++){
+						 JSONObject object = (JSONObject)zujintrendlistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
+						 AreaZujin2 e = (AreaZujin2) JSONToObj(object.toString(), AreaZujin2.class);
+						 if(e.getId()==0){
+							 zujintrendlistList2.add(e);
+						 }else{
+							 zujintrendlistList.add(e);
+						 }
+					}
+					
+					/*for(AreaZujin2 item : zujintrendlistList){
+						boolean resultZujin = areaInfoDao.addMiddleZujin(item, area_num);
+					}*/
+					//区域租金回报走势
+					JSONArray huibaotrendlistArray = JSONArray.parseArray(huibaotrendlist);
+					List<AreaZhikong2> huibaotrendlistList=new ArrayList<AreaZhikong2>();
+					List<AreaZhikong2> huibaotrendlistList2=new ArrayList<AreaZhikong2>();
+					for (int i=0; i<huibaotrendlistArray.size(); i++){
+						 JSONObject object = (JSONObject)huibaotrendlistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
+						 AreaZhikong2 e = (AreaZhikong2) JSONToObj(object.toString(), AreaZhikong2.class);
+						 if(e.getId()==0){
+							 huibaotrendlistList2.add(e);
+						 }else{
+							 huibaotrendlistList.add(e);
+						 }
+					}
+					
+					/*for(AreaZhikong2 item : huibaotrendlistList){
+						boolean resultZujin = areaInfoDao.addAreaZhikong(item, area_num);
+					}*/
+					//区域地点
+					JSONArray tedianlistArray = JSONArray.parseArray(tedianlist);
+					List<AreaTeDian2> tedianlistList=new ArrayList<AreaTeDian2>();
+					List<AreaTeDian2> tedianlistList2=new ArrayList<AreaTeDian2>();
+					for (int i=0; i<tedianlistArray.size(); i++){
+						 JSONObject object = (JSONObject)tedianlistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
+						 AreaTeDian2 e = (AreaTeDian2) JSONToObj(object.toString(), AreaTeDian2.class);
+						 if(e.getId()==0){
+							 tedianlistList2.add(e);
+						 }else{
+							 tedianlistList.add(e);
+						 }
+					}
+					
+					/*for(AreaTeDian2 item : tedianlistList){
+						boolean resultZujin = areaInfoDao.addAreaTeDian(item, area_num);
+					}*/
+					
+					//区域人口分布
+					
+					JSONArray peoplelistArray = JSONArray.parseArray(peoplelist);
+					List<AreaPeopleInfo2> peoplelistList=new ArrayList<AreaPeopleInfo2>();
+					List<AreaPeopleInfo2> peoplelistList2=new ArrayList<AreaPeopleInfo2>();
+					for (int i=0; i<peoplelistArray.size(); i++){
+						 JSONObject object = (JSONObject)peoplelistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
+						 AreaPeopleInfo2 e = (AreaPeopleInfo2) JSONToObj(object.toString(), AreaPeopleInfo2.class);
+						 if(e.getId()==0){
+							 peoplelistList2.add(e);
+						 }else{
+							 peoplelistList.add(e);
+						 }
+						
+					}
+					
+					/*for(AreaPeopleInfo2 item : peoplelistList){
+						boolean resultZujin = areaInfoDao.addAreaPeople(item, area_num);
+					}*/
+					//推荐经纪人
+					JSONArray brokerlistArray = JSONArray.parseArray(brokerlist);
+					int length = brokerlistArray.size() >= 3 ? 3: brokerlistArray.size();
+					
+					List<BrokerInfo> brokerlistList=new ArrayList<BrokerInfo>();
+					for (int i = 0; i < length; i++){
+						 JSONObject object = (JSONObject)brokerlistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
+						 BrokerInfo e = (BrokerInfo) JSONToObj(object.toString(), BrokerInfo.class);
+						 brokerlistList.add(e);
+					}
+					/*boolean resultTuijianBroker = areaInfoDao.addAreaTuijianBroker(brokerlistList, area_num);*/
+					//推荐项目
+					JSONArray projectlistArray = JSONArray.parseArray(projectlist);
+					int length1 = projectlistArray.size() >= 3 ? 3: projectlistArray.size();
+					
+					List<String> projectlistList=new ArrayList<String>();
+					for (int i = 0; i < length1; i++){
+						 JSONObject object = (JSONObject)projectlistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
+						 String project_name = object.getString("project_name");
+						 //HouseProject e = (HouseProject) JSONToObj(object.toString(), HouseProject.class);
+						 projectlistList.add(project_name);
+					}
+					/*boolean resultTuijianPro = areaInfoDao.addAreaTuijianPro(projectlistList, area_num);*/
+
+					//新闻报道
+					JSONArray newslistArray = JSONArray.parseArray(newslist);
+					//int length2 = newslistArray.size() >= 3 ? 3: newslistArray.size();
+					
+					List<String> newslistList=new ArrayList<String>();
+					List<String> list = new ArrayList<String>();
+					for (int i = 0; i < newslistArray.size(); i++){
+						 JSONObject object = (JSONObject)newslistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
+						 if(object.containsKey("title")){
+							 String title = object.getString("title");
+							 //ZhiYeZhiDao e = (ZhiYeZhiDao) JSONToObj(object.toString(), ZhiYeZhiDao.class);
+							 list.add(title);
+						 }
+						 else{
+							 String news_title = object.getString("news_title");
+							 //NewsBoke e = (NewsBoke) JSONToObj(object.toString(), NewsBoke.class);
+							 newslistList.add(news_title);
+						 }
+					}
+					/*boolean resultTuijianBoke = areaInfoDao.addAreaTuijianBoke(newslistList, list, area_num);*/
+					
+					//添加
+				    try {
+						int result=areaInfoDao.EditArea(area_num, area_name, area_city, area_zhou, area_nation, area_postcode,touzi_datasource, touzi_date, middle_price, middle_zu_price, price_review, year_increment_rate, zu_house_rate, zu_xuqiu, data_exam, family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, family_datasource, family_date,middlepriceList,middlepriceList2,middletrendList,middletrendList2,zujintrendlistList,zujintrendlistList2,huibaotrendlistList,huibaotrendlistList2,tedianlistList,tedianlistList2,peoplelistList,peoplelistList2,brokerlistList,projectlistList,newslistList,list);
 						System.out.println("result::"+result);
 				    } catch (SQLException e1) {
 						// TODO Auto-generated catch block
