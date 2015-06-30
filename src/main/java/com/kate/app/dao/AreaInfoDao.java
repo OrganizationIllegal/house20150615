@@ -9,24 +9,136 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.kate.app.model.AreaFamilyBackEnd;
 import com.kate.app.model.AreaInfo;
+import com.kate.app.model.AreaMiddle;
 import com.kate.app.model.AreaMiddle2;
 import com.kate.app.model.AreaPeopleInfo2;
 import com.kate.app.model.AreaTeDian2;
 import com.kate.app.model.AreaZhikong2;
 import com.kate.app.model.AreaZujin2;
 import com.kate.app.model.BrokerInfo;
-import com.kate.app.model.FujinPeiTao;
-import com.kate.app.model.FujinSchool;
-import com.kate.app.model.HoldCost;
-import com.kate.app.model.HouseInfo1;
-import com.kate.app.model.HouseTax;
+import com.kate.app.model.InvestmentDataBackEnd;
 import com.kate.app.model.MiddlePrice2;
-import com.kate.app.model.Project;
-import com.kate.app.model.ProjectPeiTao;
+import com.kate.app.model.MiddlePriceBackEnd;
 @Repository 
 public class AreaInfoDao extends BaseDao {
-	//
+	//通过区域id获取区域房价中位数走势信息
+	public List<AreaMiddle> getAreaMiddleList(String area_num){
+		List<AreaMiddle> areaInfolist = new ArrayList<AreaMiddle>();
+		try {
+			String sql = " SELECT * from area_middle where area_num=?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,area_num);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()){
+				AreaMiddle areaInfo = new AreaMiddle();
+				areaInfo.setId(rs.getInt("id"));
+				areaInfo.setHeng(rs.getString("heng"));
+				areaInfo.setZong(rs.getInt("zong"));
+				areaInfo.setView_shunxu(rs.getInt("view_shunxu"));
+				areaInfo.setProject_type(rs.getString("project_type"));
+				areaInfo.setArea_code(rs.getString("area_code"));
+				areaInfo.setMiddle_zoushi_datasource(rs.getString("middle_zoushi_datasource"));
+				areaInfo.setMiddle_zoushi_date(rs.getTimestamp("middle_zoushi_date"));
+				areaInfolist.add(areaInfo);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return areaInfolist;
+	}
+	//通过区域id获取区域中位数房价信息
+			public List<MiddlePriceBackEnd> getMiddlePrice(String area_num){
+				List<MiddlePriceBackEnd> areaInfolist = new ArrayList<MiddlePriceBackEnd>();
+				try {
+					String sql = " SELECT * from middleprice where area_num=?";
+					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt.setString(1,area_num);
+					ResultSet rs = pstmt.executeQuery();
+					while(rs.next()){
+						MiddlePriceBackEnd areaInfo = new MiddlePriceBackEnd();
+						areaInfo.setId(rs.getInt("id"));
+						areaInfo.setBuy_price(rs.getInt("buy_price"));
+						areaInfo.setZu_price(rs.getInt("zu_price"));
+						areaInfo.setBuy_one_name(rs.getString("buy_one_name"));
+						areaInfo.setBuy_one_price(rs.getInt("buy_one_price"));
+						areaInfo.setBuy_two_name(rs.getString("buy_two_name"));
+						areaInfo.setBuy_two_price(rs.getInt("buy_two_price"));
+						areaInfo.setBuy_three_name(rs.getString("buy_three_name"));
+						areaInfo.setBuy_three_price(rs.getInt("buy_three_price"));
+						areaInfo.setZu_one_name(rs.getString("zu_one_name"));
+						areaInfo.setZu_one_price(rs.getInt("zu_one_price"));
+						areaInfo.setZu_two_name(rs.getString("zu_two_name"));
+						areaInfo.setZu_two_price(rs.getInt("zu_two_price"));
+						areaInfo.setZu_three_name(rs.getString("zu_three_name"));
+						areaInfo.setZu_three_price(rs.getInt("zu_three_price"));
+						areaInfo.setArea_quyu(rs.getString("area_quyu"));
+						areaInfo.setProject_type(rs.getString("project_type"));
+						areaInfo.setMiddle_datasource(rs.getString("middle_datasource"));
+						areaInfo.setUpdate_time(rs.getTimestamp("update_time"));
+						areaInfolist.add(areaInfo);
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return areaInfolist;
+			}
+
+	//通过区域id获取投资家庭信息
+		public AreaFamilyBackEnd getFamilyBackEnd(String area_num){
+			AreaFamilyBackEnd areaInfo = new AreaFamilyBackEnd();
+			try {
+				String sql = " SELECT * from areafamily where area_num=?";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.setString(1,area_num);
+				ResultSet rs = pstmt.executeQuery();
+				while(rs.next()){
+					areaInfo.setId(rs.getInt("id"));
+					areaInfo.setFamily_one(rs.getString("family_one"));
+					areaInfo.setFamily_one_rate(rs.getString("family_one_rate"));
+					areaInfo.setFamily_two(rs.getString("family_two"));
+					areaInfo.setFamily_three(rs.getString("family_three"));
+					areaInfo.setFamily_two_rate(rs.getString("family_two_rate"));
+					areaInfo.setFamily_three_rate(rs.getString("family_three_rate"));
+					areaInfo.setFamily_datasource(rs.getString("family_datasource"));
+					areaInfo.setFamily_date(rs.getTimestamp("family_date"));
+					areaInfo.setArea_code(rs.getString("area_code"));
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return areaInfo;
+		}
+	//通过区域id获取投资数据信息
+	public InvestmentDataBackEnd getInvestInfo(String area_num){
+		InvestmentDataBackEnd areaInfo = new InvestmentDataBackEnd();
+		try {
+			String sql = " SELECT * from investment_data where area_num=?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,area_num);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()){
+				areaInfo.setId(rs.getInt("id"));
+				areaInfo.setYear_increment_rate(rs.getString("year_increment_rate"));
+				areaInfo.setMiddle_price(rs.getString("middle_price"));
+				areaInfo.setMiddle_zu_price(rs.getString("middle_zu_price"));
+				areaInfo.setZu_house_rate(rs.getString("zu_house_rate"));
+				areaInfo.setZu_xuqiu(rs.getString("zu_xuqiu"));
+				areaInfo.setPrice_review(rs.getString("price_review"));
+				areaInfo.setArea_name(rs.getString("area_name"));
+				areaInfo.setArea_num(rs.getString("area_num"));
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return areaInfo;
+	}
+	//区域录入
 	public int AddArea(String area_num,String area_name,String area_city,String area_zhou,String area_nation,String area_postcode,String touzi_datasource,String touzi_date,String middle_price,String middle_zu_price,String price_review,String year_increment_rate,String zu_house_rate,String zu_xuqiu,String data_exam,String family_one,String family_one_rate,String family_two,String family_two_rate,String family_three,String family_three_rate,String family_datasource,String family_date,List<MiddlePrice2> middlepriceList,List<AreaMiddle2> middletrendList,List<AreaZujin2> zujintrendlistList,List<AreaZhikong2> huibaotrendlistList,List<AreaTeDian2> tedianlistList,List<AreaPeopleInfo2> peoplelistList,List<BrokerInfo> brokerlistList,List<String> projectlistList,List<String> newslistList,List<String> list) throws SQLException{
 		PreparedStatement pstmt=null;
 		try {
