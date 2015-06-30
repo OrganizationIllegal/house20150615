@@ -109,9 +109,9 @@ public class AreaInfoController extends BaseDao {
 		projectlist=areaInfoDao.getAreaProjectList(ai.getArea_num());
 		List<NewsZhiye> newszhiyelist=new ArrayList<NewsZhiye>();
 		newszhiyelist=areaInfoDao.getAreaNewsBokeList(ai.getArea_num());
-		req.setAttribute("ai", ai);
-		req.setAttribute("invest", invest);
-		req.setAttribute("family", family);
+		req.setAttribute("AreaInfo", ai);
+		req.setAttribute("Invest", invest);
+		req.setAttribute("Family", family);
 		req.setAttribute("middlepricebackendlist", middlepricebackendlist);
 		req.setAttribute("middlepricebackendlistjson", ConvertJson.list2json(middlepricebackendlist));
 		req.setAttribute("areamiddlelist", areamiddlelist);
@@ -124,15 +124,15 @@ public class AreaInfoController extends BaseDao {
 		req.setAttribute("tedianlistjson", ConvertJson.list2json(tedianlist));
 		req.setAttribute("peoplelist", peoplelist);
 		req.setAttribute("peoplelistjson", ConvertJson.list2json(peoplelist));
-		req.setAttribute("brokerlist", brokerlist);
+		req.setAttribute("broker", brokerlist);
 		req.setAttribute("brokerlistjson", ConvertJson.list2json(brokerlist));
-		req.setAttribute("projectlist", projectlist);
+		req.setAttribute("project", projectlist);
 		req.setAttribute("projectlistjson", ConvertJson.list2json(projectlist));
-		req.setAttribute("newszhiyelist", newszhiyelist);
+		req.setAttribute("news", newszhiyelist);
 		req.setAttribute("newszhiyelistjson", ConvertJson.list2json(newszhiyelist));		
-		/*getBrokerName(req,resp);
+		getBrokerName(req,resp);
 		getProjectName(req,resp);
-		getNewsList(req,resp);*/
+		getNewsList(req,resp);
 		return "/areaEdit.jsp";
 	}
 	
