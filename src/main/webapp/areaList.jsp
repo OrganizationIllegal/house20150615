@@ -156,7 +156,7 @@ body{
         'click .like': function (e, value, row, index) {
             alert('You click like action, row: ' + JSON.stringify(row));
             var id=row.id;
-            window.open ('/selectArea?id='+id);
+            window.open ('/AreaEdit?id='+id);
             /* var id=row.id;
             if(isNaN(id)){
            

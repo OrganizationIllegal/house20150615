@@ -26,8 +26,11 @@ import com.kate.app.model.AreaFamilyBackEnd;
 import com.kate.app.model.AreaInfo;
 import com.kate.app.model.AreaMiddle;
 import com.kate.app.model.AreaMiddle2;
+import com.kate.app.model.AreaPeopleInfo;
 import com.kate.app.model.AreaPeopleInfo2;
+import com.kate.app.model.AreaTeDian;
 import com.kate.app.model.AreaTeDian2;
+import com.kate.app.model.AreaZhikong;
 import com.kate.app.model.AreaZhikong2;
 import com.kate.app.model.AreaZujin;
 import com.kate.app.model.AreaZujin2;
@@ -37,6 +40,7 @@ import com.kate.app.model.InvestmentDataBackEnd;
 import com.kate.app.model.MiddlePrice2;
 import com.kate.app.model.MiddlePriceBackEnd;
 import com.kate.app.model.NewsBoke;
+import com.kate.app.model.NewsZhiye;
 import com.kate.app.model.ZhiYeZhiDao;
 import com.kate.app.service.ConvertJson;
 
@@ -67,10 +71,43 @@ public class AreaInfoController extends BaseDao {
 		List<AreaMiddle> areamiddlelist=new  ArrayList<AreaMiddle>();
 		areamiddlelist=areaInfoDao.getAreaMiddleList(ai.getArea_num());
 		List<AreaZujin> zujinlist=new ArrayList<AreaZujin>();
-		/*zujinlist=areaInfoDao*/
-		getBrokerName(req,resp);
+		zujinlist=areaInfoDao.getAreaZujinList(ai.getArea_num());
+		List<AreaZhikong> huibaolist=new ArrayList<AreaZhikong>();
+		huibaolist=areaInfoDao.getAreaKongzhiList(ai.getArea_num());
+		List<AreaTeDian> tedianlist=new ArrayList<AreaTeDian>();
+		tedianlist=areaInfoDao.getAreaTedianList(ai.getArea_num());
+		List<AreaPeopleInfo> peoplelist=new ArrayList<AreaPeopleInfo>();
+		peoplelist=areaInfoDao.getAreaPeopleList(ai.getArea_num());
+		List<BrokerInfo> brokerlist=new ArrayList<BrokerInfo>();
+		brokerlist=areaInfoDao.getAreaBrokerList(ai.getArea_num());
+		List<HouseProject> projectlist=new ArrayList<HouseProject>();
+		projectlist=areaInfoDao.getAreaProjectList(ai.getArea_num());
+		List<NewsZhiye> newszhiyelist=new ArrayList<NewsZhiye>();
+		newszhiyelist=areaInfoDao.getAreaNewsBokeList(ai.getArea_num());
+		req.setAttribute("ai", ai);
+		req.setAttribute("invest", invest);
+		req.setAttribute("family", family);
+		req.setAttribute("middlepricebackendlist", middlepricebackendlist);
+		req.setAttribute("middlepricebackendlistjson", ConvertJson.list2json(middlepricebackendlist));
+		req.setAttribute("areamiddlelist", areamiddlelist);
+		req.setAttribute("areamiddlelistjson", ConvertJson.list2json(areamiddlelist));
+		req.setAttribute("zujinlist", zujinlist);
+		req.setAttribute("zujinlistjson", ConvertJson.list2json(zujinlist));
+		req.setAttribute("huibaolist", huibaolist);
+		req.setAttribute("huibaolistjson", ConvertJson.list2json(huibaolist));
+		req.setAttribute("tedianlist", tedianlist);
+		req.setAttribute("tedianlistjson", ConvertJson.list2json(tedianlist));
+		req.setAttribute("peoplelist", peoplelist);
+		req.setAttribute("peoplelistjson", ConvertJson.list2json(peoplelist));
+		req.setAttribute("brokerlist", brokerlist);
+		req.setAttribute("brokerlistjson", ConvertJson.list2json(brokerlist));
+		req.setAttribute("projectlist", projectlist);
+		req.setAttribute("projectlistjson", ConvertJson.list2json(projectlist));
+		req.setAttribute("newszhiyelist", newszhiyelist);
+		req.setAttribute("newszhiyelistjson", ConvertJson.list2json(newszhiyelist));		
+		/*getBrokerName(req,resp);
 		getProjectName(req,resp);
-		getNewsList(req,resp);
+		getNewsList(req,resp);*/
 		return "/areaEdit.jsp";
 	}
 	
