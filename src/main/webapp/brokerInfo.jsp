@@ -111,7 +111,7 @@ body{
 <span class="area_span4"><a href="#">编辑</a></span><span class="area_span5"><a href="#">删除</a></span>
 </div> -->
 <div id="arealist">
-<div style="float:left;padding-left:40px;">
+<%-- <div style="float:left;padding-left:40px;">
  <c:forEach items="${brokerServiceAreaList}" var="brokerServiceArea" varStatus="status">
  <table>
  <tr>
@@ -121,6 +121,23 @@ body{
 </tr>
 </table>
 </c:forEach>
+</div> --%>
+<div>
+<c:forEach items="${brokerServiceAreaList}" var="brokerServiceArea" varStatus="status">
+<div class="area_left3">
+<span class="area_span">${status.index + 1}</span>
+<span class="area_span">${brokerServiceArea.area_code}</span>
+<span class="area_span">${brokerServiceArea.view_shunxu}</span>
+</div>
+</c:forEach>
+<div class="area_right3">
+<span class="area_span4">
+<a href='#' class="edittype">编辑</a>
+</span>
+<span class="area_span5">
+<a href='#' class="deletetype">删除</a>
+</span>
+</div>
 </div>
 </div>
 
@@ -136,8 +153,8 @@ body{
 <div class="area_right3"><span class="area_span5"><a href="#" class="addtype">添加</a></span></div>
 </form>
 <div id="typelist">
-<div style="float:left;padding-left:40px;">
- <c:forEach items="${brokerIntegerTypeList}" var="brokerType" varStatus="status">
+<%-- <div style="float:left;padding-left:40px;">
+ <c:forEach items="${brokerIntegertypeList}" var="brokerType" varStatus="status">
  <table>
  <tr>
 <td><span style="padding-right:10px">${status.index + 1}</span></td>
@@ -146,6 +163,23 @@ body{
 </tr>
 </table>
 </c:forEach>
+</div> --%>
+<div>
+<c:forEach items="${brokerIntegertypeList}" var="brokerType" varStatus="status">
+<div class="area_left3">
+<span class="area_span">${status.index + 1}</span>
+<span class="area_span">${brokerType.interested_num}</span>
+<span class="area_span">${brokerType.view_shunxu2}</span>
+</div>
+</c:forEach>
+<div class="area_right3">
+<span class="area_span4">
+<a href='#' class="edittype">编辑</a>
+</span>
+<span class="area_span5">
+<a href='#' class="deletetype">删除</a>
+</span>
+</div>
 </div>
 </div>
 
@@ -208,10 +242,12 @@ $(function(){
 });
 
 var arealist='${brokerServiceAreaListJson}';
+alert(arealist);
 arealist=eval("("+arealist+")");
+alert("arealist"+arealist);
 var areaedit=100;
 var areaedititem;
-var areacount=0;
+var areacount=arealist.length;
 $(function(){
 	$.ajaxSetup({  
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
@@ -223,7 +259,7 @@ $(function(){
 			area=DataDeal.formToJson(data= decodeURIComponent($("#area").serialize(),true));
 			area=eval("("+area+")");
 			arealist.push(area);
-			$('#arealist').append("<div><div class='area_left3'><span style='display:none;'>"+(++areacount)+"</span><span class='area_span'>"+arealist[areacount-1].area_code+"</span><span class='area_span'>"+arealist[areacount-1].view_shunxu+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editarea'>编辑</a></span><span class='area_span5'><a href='#' class='deletearea'>删除</a></span></div></div>");
+			$('#arealist').append("<div><div class='area_left3'><span class='area_span'>"+(++areacount)+"</span><span class='area_span'>"+arealist[areacount-1].area_code+"</span><span class='area_span'>"+arealist[areacount-1].view_shunxu+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editarea'>编辑</a></span><span class='area_span5'><a href='#' class='deletearea'>删除</a></span></div></div>");
 			$("#area input").each(function(){
 				$(this).val("");
 				});
@@ -239,7 +275,7 @@ $(function(){
 			areaedititem.id=arealist[areaedit].id;
 			arealist[areaedit]=areaedititem;
 			//alert($("#arealist").children().eq(areaedit));
-			$("#arealist").children().eq(areaedit).html("<div class='area_left3'><span style='display:none;'>"+(areaedit+1)+"</span><span class='area_span'>"+arealist[areaedit].area_code+"</span><span class='area_span'>"+arealist[areaedit].view_shunxu+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editarea'>编辑</a></span><span class='area_span5'><a href='#' class='deletearea'>删除</a></span></div>").show();
+			$("#arealist").children().eq(areaedit).html("<div class='area_left3'><span class='area_span'>"+(areaedit+1)+"</span><span class='area_span'>"+arealist[areaedit].area_code+"</span><span class='area_span'>"+arealist[areaedit].view_shunxu+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editarea'>编辑</a></span><span class='area_span5'><a href='#' class='deletearea'>删除</a></span></div>").show();
 			areaedit=100;
 			}
 		});
@@ -267,7 +303,7 @@ var typelist='${brokerIntegertypeListJson}';
 typelist=eval("("+typelist+")");
 var typeedit=100;
 var typeedititem;
-var typecount=0;
+var typecount=typelist.length;
 $(function(){
 	$.ajaxSetup({  
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
@@ -279,7 +315,7 @@ $(function(){
 			type=DataDeal.formToJson(data= decodeURIComponent($("#type").serialize(),true));
 			type=eval("("+type+")");
 			typelist.push(type);
-			$('#typelist').append("<div><div class='area_left3'><span style='display:none;'>"+(++typecount)+"</span><span class='area_span'>"+typelist[typecount-1].interested_num+"</span><span class='area_span'>"+typelist[typecount-1].view_shunxu2+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edittype'>编辑</a></span><span class='area_span5'><a href='#' class='deletetype'>删除</a></span></div></div>");
+			$('#typelist').append("<div><div class='area_left3'><span class='area_span'>"+(++typecount)+"</span><span class='area_span'>"+typelist[typecount-1].interested_num+"</span><span class='area_span'>"+typelist[typecount-1].view_shunxu2+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edittype'>编辑</a></span><span class='area_span5'><a href='#' class='deletetype'>删除</a></span></div></div>");
 			$("#type input").each(function(){
 				$(this).val("");
 				});
@@ -294,7 +330,7 @@ $(function(){
 			typeedititem.id=typelist[typeedit].id;
 			typelist[typeedit]=typeedititem;
 			//alert($("#typelist").children().eq(typeedit));
-			$("#typelist").children().eq(typeedit).html("<div class='area_left3'><span style='display:none;'>"+(typeedit+1)+"</span><span class='area_span'>"+typelist[typeedit].interested_num+"</span><span class='area_span'>"+typelist[typeedit].view_shunxu2+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edittype'>编辑</a></span><span class='area_span5'><a href='#' class='deletetype'>删除</a></span></div>").show();
+			$("#typelist").children().eq(typeedit).html("<div class='area_left3'><span class='area_span'>"+(typeedit+1)+"</span><span class='area_span'>"+typelist[typeedit].interested_num+"</span><span class='area_span'>"+typelist[typeedit].view_shunxu2+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edittype'>编辑</a></span><span class='area_span5'><a href='#' class='deletetype'>删除</a></span></div>").show();
 			typeedit=100;
 			}
 		});

@@ -384,10 +384,10 @@ public class ProjectInfoController {
 					JSONObject object = (JSONObject)areaArray.get(i); //对于每个json对象
 					ServiceArea e = (ServiceArea) JSONToObj(object.toString(), ServiceArea.class);
 				    if(e.getId()==0){
-				    	serviceArealist2.add(e);//用于编辑
+				    	serviceArealist2.add(e);//用于添加
 				    }
 				    else{
-				    	serviceArealist.add(e);//用于添加
+				    	serviceArealist.add(e);//用于编辑
 				    }
 				}
 			//经纪人擅长类型
@@ -399,21 +399,21 @@ public class ProjectInfoController {
 					JSONObject object = (JSONObject)typeArray.get(i); //对于每个json对象
 					BrokerType e = (BrokerType) JSONToObj(object.toString(), BrokerType.class);
 				    if(e.getId()==0){
-				    	brokerTypelist2.add(e);//用于编辑
+				    	brokerTypelist2.add(e);//用于添加
 				    }
 				    else{
-				    	brokerTypelist.add(e);//用于添加
+				    	brokerTypelist.add(e);//用于编辑
 				    }
 				}
 			//更新
-		 /*   try {
-				int result=projectInputDao.EditProject(id, projectlist,houseInfolist,houseInfolist2,fujinpeitaoList,fujinpeitaoList2,fujinSchoolList,fujinSchoolList2,holdCostList,holdCostList2,houseTaxList,houseTaxList2);
+		  try {
+				int result=projectInputDao.UpdateBroker(id, broker, serviceArealist,serviceArealist2, brokerTypelist,brokerTypelist2);
 				System.out.println("result::"+result);
-		    } catch (SQLException e1) {
+		    } catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			*/
+			
 		}
 		
 	

@@ -742,6 +742,106 @@ public class ProjectInputDao extends BaseDao {
 				return -1;
 			}
 		}
+		//经纪人update
+				public int UpdateBroker(int id,Broker broker,List<ServiceArea> serviceAreaList,List<ServiceArea> serviceAreaList2,List<BrokerType> brokerTypeList,List<BrokerType> brokerTypeList2){
+					String broker_num=broker.getBroker_num();
+					String broker_name=broker.getBroker_name();
+					String broker_language=broker.getBroker_language();
+					String broker_region=broker.getBroker_region();
+					String broker_type=broker.getBroker_type();
+					String broker_zizhi=broker.getBroker_zizhi();
+					int broker_experience=broker.getBroker_experience();
+					String broker_img=broker.getBroker_img();
+					String introduction=broker.getIntroduction();
+					PreparedStatement pstmt=null;
+					boolean flag=true;
+					
+					try {
+						con.setAutoCommit(false);
+						//经纪人信息更新
+						String sql1 = "update broker_info set broker_num=?,broker_name=?,broker_language=?,broker_region=?,broker_img=?,introduction=?,broker_experience=?,broker_type=?,broker_zizhi=? where id=?";
+						pstmt = con.prepareStatement(sql1);
+						pstmt.setString(1, broker_num);
+						pstmt.setString(2, broker_name);
+						pstmt.setString(3, broker_language);
+						pstmt.setString(4, broker_region);
+						pstmt.setString(5, broker_img);
+						pstmt.setString(6, introduction);
+						pstmt.setInt(7, broker_experience);
+						pstmt.setString(8, broker_type);
+						pstmt.setString(9, broker_zizhi);
+						pstmt.setInt(10, id);
+						int exeResult = pstmt.executeUpdate();
+						
+						//服务区域更新
+						String sql2 = "update  broker_service_area set area_code=?,view_shunxu=? where broker_num=? ";
+				        pstmt = con.prepareStatement(sql2);
+				        for(int i=0;i<serviceAreaList.size();i++){
+				        	ServiceArea serviceArea=serviceAreaList.get(i);
+				        	String area_code=serviceArea.getArea_code();
+				        	int  view_shunxu=serviceArea.getView_shunxu(); 
+				            pstmt.setString(1, area_code);
+				            pstmt.setInt(2, view_shunxu);
+				            pstmt.setString(3, broker_num);
+				            pstmt.addBatch();
+				        }
+						int[] result2list=pstmt.executeBatch();
+						//服务区域添加
+						String sql22 = "insert into broker_service_area(broker_num,area_code,view_shunxu) values(?,?,?)";
+				        pstmt = con.prepareStatement(sql22);
+				        for(int i=0;i<serviceAreaList2.size();i++){
+				        	ServiceArea serviceArea=serviceAreaList2.get(i);
+				        	String area_code=serviceArea.getArea_code();
+				        	int  view_shunxu=serviceArea.getView_shunxu();
+				            pstmt.setString(1, broker_num);
+				            pstmt.setString(2, area_code);
+				            pstmt.setInt(3, view_shunxu);
+				            pstmt.addBatch();
+				        }
+						int[] result22list=pstmt.executeBatch();
+						//擅长类型更新
+						String sql3 = "update broker_interested_type set interested_num=?,view_shunxu=? where broker_num=?";
+				        pstmt = con.prepareStatement(sql3);
+				        for(int i=0;i<brokerTypeList.size();i++){
+				        	BrokerType brokertype=brokerTypeList.get(i);
+				        	String interested_num=brokertype.getInterested_num();
+				        	int  view_shunxu=brokertype.getView_shunxu2();
+				            pstmt.setString(1, interested_num);
+				            pstmt.setInt(2, view_shunxu);
+				            pstmt.setString(3, broker_num);
+				            pstmt.addBatch();
+				        }
+						int[] result3list=pstmt.executeBatch();
+						//擅长类型添加
+						String sql33 = "insert into broker_interested_type(broker_num,interested_num,view_shunxu) values(?,?,?)";
+				        pstmt = con.prepareStatement(sql33);
+				        for(int i=0;i<brokerTypeList2.size();i++){
+				        	BrokerType brokertype=brokerTypeList2.get(i);
+				        	String interested_num=brokertype.getInterested_num();
+				        	int  view_shunxu=brokertype.getView_shunxu2();
+				            pstmt.setString(1, broker_num);
+				            pstmt.setString(2, interested_num);
+				            pstmt.setInt(3, view_shunxu);
+				            pstmt.addBatch();
+				        }
+						int[] result33list=pstmt.executeBatch();
+						//提交事物
+						con.commit();
+						//恢复JDBC事务
+						con.setAutoCommit(true);
+						return 1;
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						try {
+							con.rollback();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						e.printStackTrace();
+						return -1;
+					}
+				}
 		
 		public int AddProject(List<Project> projectList,List<HouseInfo1>houseInfolist,List<ProjectPeiTao>projectPeitaolist,List<FujinPeiTao> fujinList,List<FujinSchool>fujinSchoolList,List<HoldCost>holdCostList,List<HouseTax>houseTaxList) throws SQLException{
 			//项目信息参数接收
@@ -1327,6 +1427,7 @@ public class ProjectInputDao extends BaseDao {
 	        }
 			
 		}
+		
 		//添加项目
 		public int addPro(String project_name, String project_img, String project_nation, String project_address, String project_area, String project_price_qi, String project_type, int project_sales_remain, String project_finish_time, String project_desc, String project_city, String project_house_type, String project_high, String project_price, String project_lan_cn, String project_lan_en, String project_num, String project_vedio, String project_zhou, String area_qujian, String gps, String return_money, int walk_num, String mianji, String project_min_price, String project_high_price, int tuijiandu, String housePrice_update_time, String buytaxInfo, String holdInfo, int min_area, int max_area, String area_num, String developer_num,
 				 String peitao_type,String peitao_name,String peitao_distance,
