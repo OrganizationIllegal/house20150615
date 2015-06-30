@@ -13,21 +13,486 @@ import com.kate.app.model.AreaFamilyBackEnd;
 import com.kate.app.model.AreaInfo;
 import com.kate.app.model.AreaMiddle;
 import com.kate.app.model.AreaMiddle2;
+import com.kate.app.model.AreaPeopleInfo;
 import com.kate.app.model.AreaPeopleInfo2;
+import com.kate.app.model.AreaTeDian;
 import com.kate.app.model.AreaTeDian2;
+import com.kate.app.model.AreaTuijianBroker;
+import com.kate.app.model.AreaTuijianNews;
+import com.kate.app.model.AreaTuijianProject;
+import com.kate.app.model.AreaZhikong;
 import com.kate.app.model.AreaZhikong2;
+import com.kate.app.model.AreaZujin;
 import com.kate.app.model.AreaZujin2;
 import com.kate.app.model.BrokerInfo;
+import com.kate.app.model.HouseProject;
 import com.kate.app.model.InvestmentDataBackEnd;
 import com.kate.app.model.MiddlePrice2;
 import com.kate.app.model.MiddlePriceBackEnd;
+import com.kate.app.model.NewsBoke;
+import com.kate.app.model.NewsZhiye;
+import com.kate.app.model.ZhiYeZhiDao;
 @Repository 
 public class AreaInfoDao extends BaseDao {
+	//通过id删除区域推荐新闻
+			public int deleteNewsBoke(String area_num){
+				int exeResult=0;
+				try{
+						String sql = " delete from recommend_news where area_code= ?";
+						PreparedStatement pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, area_num);
+						exeResult = pstmt.executeUpdate();
+					}catch (Exception e) {
+			            e.printStackTrace();
+			        }
+				    return exeResult;
+			}
+	//通过id删除区域推荐项目
+		public int deleteProject(String area_num){
+			int exeResult=0;
+			try{
+					String sql = " delete from recommend_project where area_code= ?";
+					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, area_num);
+					exeResult = pstmt.executeUpdate();
+				}catch (Exception e) {
+		            e.printStackTrace();
+		        }
+			    return exeResult;
+		}	
+	//通过id删除区域经纪人
+	public int deleteBroker(String area_num){
+		int exeResult=0;
+		try{
+				String sql = " delete from area_recommend_broker where area_code= ?";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, area_num);
+				exeResult = pstmt.executeUpdate();
+			}catch (Exception e) {
+	            e.printStackTrace();
+	        }
+		    return exeResult;
+	}	
+	//通过id删除区域人口分布走势
+			public int deletePeople(String area_num){
+				int exeResult=0;
+				try{
+						String sql = " delete from area_people where area_code= ?";
+						PreparedStatement pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, area_num);
+						exeResult = pstmt.executeUpdate();
+					}catch (Exception e) {
+			            e.printStackTrace();
+			        }
+				    return exeResult;
+			}	
+	//通过id删除区域特点走势
+		public int deleteTedian(String area_num){
+			int exeResult=0;
+			try{
+					String sql = " delete from area_features where area_code= ?";
+					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, area_num);
+					exeResult = pstmt.executeUpdate();
+				}catch (Exception e) {
+		            e.printStackTrace();
+		        }
+			    return exeResult;
+		}	
+	//通过id删除区域租回报走势
+	public int deleteHuibao(String area_num){
+		int exeResult=0;
+		try{
+				String sql = " delete from area_kongzhi where area_code= ?";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, area_num);
+				exeResult = pstmt.executeUpdate();
+			}catch (Exception e) {
+	            e.printStackTrace();
+	        }
+		    return exeResult;
+	}	
+	//通过id删除区域租金走势
+			public int deleteZujin(String area_num){
+				int exeResult=0;
+				try{
+						String sql = " delete from area_zujin where area_code= ?";
+						PreparedStatement pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, area_num);
+						exeResult = pstmt.executeUpdate();
+					}catch (Exception e) {
+			            e.printStackTrace();
+			        }
+				    return exeResult;
+			}	
+	//通过id删除区域房价中位数走势
+		public int deleteMiddleTrend(String area_num){
+			int exeResult=0;
+			try{
+					String sql = " delete from area_middle where area_code= ?";
+					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, area_num);
+					exeResult = pstmt.executeUpdate();
+				}catch (Exception e) {
+		            e.printStackTrace();
+		        }
+			    return exeResult;
+		}	
+	//通过id删除区域中位数房价
+	public int deleteMiddlePrice(String area_num){
+		int exeResult=0;
+		try{
+				String sql = " delete from area_middle_price where area_quyu= ?";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, area_num);
+				exeResult = pstmt.executeUpdate();
+			}catch (Exception e) {
+	            e.printStackTrace();
+	        }
+		    return exeResult;
+	}	
+	//通过id删除区域家庭构成
+			public int deleteFamily(String area_num){
+				int exeResult=0;
+				try{
+						String sql = " delete from area_family where area_code= ?";
+						PreparedStatement pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, area_num);
+						exeResult = pstmt.executeUpdate();
+					}catch (Exception e) {
+			            e.printStackTrace();
+			        }
+				    return exeResult;
+			}
+	//通过id删除投资数据
+		public int deleteInvest(String area_num){
+			int exeResult=0;
+			try{
+					String sql = " delete from investment_data where area_num= ?";
+					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, area_num);
+					exeResult = pstmt.executeUpdate();
+				}catch (Exception e) {
+		            e.printStackTrace();
+		        }
+			    return exeResult;
+		}
+	//通过id删除区域信息
+	public int deleteAreaInfo(int id){
+		int exeResult=0;
+		try{
+				String sql = " delete from area_info where id= ?";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, id);
+				exeResult = pstmt.executeUpdate();
+			}catch (Exception e) {
+	            e.printStackTrace();
+	        }
+		    return exeResult;
+	}
+	//通过区域id获取新闻报道信息
+		public List<NewsZhiye> getAreaNewsBokeList(String area_num){
+			List<NewsZhiye> areaInfolist = new ArrayList<NewsZhiye>();
+			AreaTuijianNews areaInfo=new AreaTuijianNews();
+			NewsZhiye newsZhiyeInfo = new NewsZhiye();
+			try {
+				String sql = " SELECT * from recommend_news where area_code=?";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.setString(1,area_num);
+				ResultSet rs = pstmt.executeQuery();
+				while(rs.next()){
+					areaInfo.setId(rs.getInt("id"));
+					areaInfo.setReco_news_num_1(rs.getString("reco_news_num_1"));
+					areaInfo.setReco_news_num_2(rs.getString("reco_news_num_2"));
+					areaInfo.setReco_news_num_3(rs.getString("reco_news_num_3"));
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			String news1=areaInfo.getReco_news_num_1();
+			String news2=areaInfo.getReco_news_num_2();
+			String news3=areaInfo.getReco_news_num_3();
+			if(news1!=null && !"".equals(news1)){
+			if(news1.startsWith("blog")){
+				newsZhiyeInfo=getNewsBokeList(news1);
+				areaInfolist.add(newsZhiyeInfo);
+			}else{
+				newsZhiyeInfo=getZhiYeZhiDaoList(news1);
+				areaInfolist.add(newsZhiyeInfo);
+			}}
+			if(news2!=null && !"".equals(news2)){
+			if(news2.startsWith("blog")){
+				newsZhiyeInfo=getNewsBokeList(news2);
+				areaInfolist.add(newsZhiyeInfo);
+			}else{
+				newsZhiyeInfo=getZhiYeZhiDaoList(news2);
+				areaInfolist.add(newsZhiyeInfo);
+			}}
+			if(news3!=null && !"".equals(news3)){
+			if(news3.startsWith("blog")){
+				newsZhiyeInfo=getNewsBokeList(news3);
+				areaInfolist.add(newsZhiyeInfo);
+			}else{
+				newsZhiyeInfo=getZhiYeZhiDaoList(news3);
+				areaInfolist.add(newsZhiyeInfo);
+			}}
+			return areaInfolist;
+		}
+		
+		public NewsZhiye getNewsBokeList(String news_num){
+			NewsZhiye newsBokeInfo = new NewsZhiye();
+			try {
+				String sql = " SELECT * from news_boke where news_num=?";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.setString(1,news_num);
+				ResultSet rs = pstmt.executeQuery();
+				while(rs.next()){
+					newsBokeInfo.setId(rs.getInt("id"));
+					newsBokeInfo.setTitle(rs.getString("news_title"));
+					newsBokeInfo.setPeople(rs.getString("news_people"));
+					newsBokeInfo.setFenlei(rs.getString("news_fenlei"));
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return newsBokeInfo;
+		}
+		
+		public NewsZhiye getZhiYeZhiDaoList(String zhiye_num){
+			NewsZhiye zhiyeInfo = new NewsZhiye();
+			try {
+				String sql = " SELECT * from zhiye_zhidao where zhiye_num=?";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.setString(1,zhiye_num);
+				ResultSet rs = pstmt.executeQuery();
+				while(rs.next()){
+					zhiyeInfo.setId(rs.getInt("id"));
+					zhiyeInfo.setTitle(rs.getString("title"));
+					zhiyeInfo.setPeople(rs.getString("fabu_people"));
+					zhiyeInfo.setFenlei(rs.getString("fenlei"));
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return zhiyeInfo;
+		}
+	//通过区域id获取推荐项目信息
+	public List<HouseProject> getAreaProjectList(String area_num){
+		List<HouseProject> areaInfolist = new ArrayList<HouseProject>();
+		AreaTuijianProject areaInfo=new AreaTuijianProject();
+		HouseProject projectInfo = new HouseProject();
+		try {
+			String sql = " SELECT * from recommend_project where area_code=?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,area_num);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()){
+				areaInfo.setId(rs.getInt("id"));
+				areaInfo.setRecommend_num_1(rs.getString("recommend_num_1"));
+				areaInfo.setRecommend_num_2(rs.getString("recommend_num_2"));
+				areaInfo.setRecommend_num_3(rs.getString("recommend_num_3"));
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String pro1=areaInfo.getRecommend_num_1();
+		String pro2=areaInfo.getRecommend_num_2();
+		String pro3=areaInfo.getRecommend_num_3();
+		projectInfo=getProjectList(pro1);
+		areaInfolist.add(projectInfo);
+		projectInfo=getProjectList(pro2);
+		areaInfolist.add(projectInfo);
+		projectInfo=getProjectList(pro3);
+		areaInfolist.add(projectInfo);
+		return areaInfolist;
+	}
+	
+	public HouseProject getProjectList(String project_num){
+		HouseProject projectInfo = new HouseProject();
+		try {
+			String sql = " SELECT * from house_project where project_num=?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,project_num);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()){
+				projectInfo.setId(rs.getInt("id"));
+				projectInfo.setProject_name(rs.getString("project_name"));
+				projectInfo.setProject_area(rs.getString("project_area"));
+				projectInfo.setProject_price_qi(rs.getString("project_price_qi"));
+				projectInfo.setProject_type(rs.getString("project_type"));
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return projectInfo;
+	}
+	//通过区域id获取推荐经纪人信息
+			public List<BrokerInfo> getAreaBrokerList(String area_num){
+				List<BrokerInfo> areaInfolist = new ArrayList<BrokerInfo>();
+				AreaTuijianBroker areaInfo = new AreaTuijianBroker();
+				BrokerInfo brokerInfo=new BrokerInfo();
+				try {
+					String sql = " SELECT * from area_recommend_broker where area_code=?";
+					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt.setString(1,area_num);
+					ResultSet rs = pstmt.executeQuery();
+					while(rs.next()){
+						areaInfo.setId(rs.getInt("id"));
+						areaInfo.setBroker_code1(rs.getString("broker_code1"));
+						areaInfo.setBroker_code2(rs.getString("broker_code2"));
+						areaInfo.setBroker_code3(rs.getString("broker_code3"));
+						//areaInfolist.add(areaInfo);
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				String broker1=areaInfo.getBroker_code1();
+				String broker2=areaInfo.getBroker_code2();
+				String broker3=areaInfo.getBroker_code3();
+				brokerInfo=getBrokerList(broker1);
+				areaInfolist.add(brokerInfo);
+				brokerInfo=getBrokerList(broker2);
+				areaInfolist.add(brokerInfo);
+				brokerInfo=getBrokerList(broker3);
+				areaInfolist.add(brokerInfo);
+				return areaInfolist;
+			}
+			
+			public BrokerInfo getBrokerList(String broker_num){
+				BrokerInfo brokerInfo = new BrokerInfo();
+				try {
+					String sql = " SELECT * from broker_info where broker_num=?";
+					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt.setString(1,broker_num);
+					ResultSet rs = pstmt.executeQuery();
+					while(rs.next()){
+						brokerInfo.setId(rs.getInt("id"));
+						brokerInfo.setBroker_name(rs.getString("broker_name"));
+						brokerInfo.setBroker_type(rs.getString("broker_type"));
+						brokerInfo.setBroker_language(rs.getString("broker_language"));
+						brokerInfo.setBroker_region(rs.getString("broker_region"));						
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return brokerInfo;
+			}
+	//通过区域id获取区域人口分布信息
+		public List<AreaPeopleInfo> getAreaPeopleList(String area_num){
+			List<AreaPeopleInfo> areaInfolist = new ArrayList<AreaPeopleInfo>();
+			try {
+				String sql = " SELECT * from area_people where area_code=?";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.setString(1,area_num);
+				ResultSet rs = pstmt.executeQuery();
+				while(rs.next()){
+					AreaPeopleInfo areaInfo = new AreaPeopleInfo();
+					areaInfo.setId(rs.getInt("id"));
+					areaInfo.setView_shunxu(rs.getInt("view_shunxu"));
+					areaInfo.setArea_code(rs.getString("area_code"));
+					areaInfo.setColumn1(rs.getString("column1"));
+					areaInfo.setColumn2(rs.getString("column2"));
+					areaInfo.setColumn3(rs.getString("column3"));
+					areaInfo.setPeople_datasource(rs.getString("people_datasource"));
+					areaInfo.setPeople_date(rs.getTimestamp("people_date"));
+					areaInfolist.add(areaInfo);
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return areaInfolist;
+		}
+	//通过区域id获取区域特点信息
+	public List<AreaTeDian> getAreaTedianList(String area_num){
+		List<AreaTeDian> areaInfolist = new ArrayList<AreaTeDian>();
+		try {
+			String sql = " SELECT * from area_features where area_code=?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,area_num);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()){
+				AreaTeDian areaInfo = new AreaTeDian();
+				areaInfo.setId(rs.getInt("id"));
+				areaInfo.setArea_character(rs.getString("area_character"));
+				areaInfo.setView_shunxu(rs.getInt("view_shunxu"));
+				areaInfo.setArea_code(rs.getString("area_code"));
+				areaInfo.setData_source(rs.getString("data_source"));
+				areaInfo.setUpdate_time(rs.getTimestamp("update_time"));
+				areaInfolist.add(areaInfo);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return areaInfolist;
+	}
+	//通过区域id获取区域租金回报走势信息
+			public List<AreaZhikong> getAreaKongzhiList(String area_num){
+				List<AreaZhikong> areaInfolist = new ArrayList<AreaZhikong>();
+				try {
+					String sql = " SELECT * from area_kongzhi where area_code=?";
+					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt.setString(1,area_num);
+					ResultSet rs = pstmt.executeQuery();
+					while(rs.next()){
+						AreaZhikong areaInfo = new AreaZhikong();
+						areaInfo.setId(rs.getInt("id"));
+						areaInfo.setHeng(rs.getString("heng"));
+						areaInfo.setZong(rs.getInt("zong"));
+						areaInfo.setView_shunxu(rs.getInt("view_shunxu"));
+						areaInfo.setProject_type(rs.getString("project_type"));
+						areaInfo.setArea_code(rs.getString("area_code"));
+						areaInfo.setZujin_huibao_datasource(rs.getString("zujin_huibao_datasource"));
+						areaInfo.setZujin_huibao_date(rs.getTimestamp("zujin_huibao_date"));
+						areaInfolist.add(areaInfo);
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return areaInfolist;
+			}
+			
+	//通过区域id获取区域租金走势信息
+		public List<AreaZujin> getAreaZujinList(String area_num){
+			List<AreaZujin> areaInfolist = new ArrayList<AreaZujin>();
+			try {
+				String sql = " SELECT * from area_zujin where area_code=?";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.setString(1,area_num);
+				ResultSet rs = pstmt.executeQuery();
+				while(rs.next()){
+					AreaZujin areaInfo = new AreaZujin();
+					areaInfo.setId(rs.getInt("id"));
+					areaInfo.setHeng(rs.getString("heng"));
+					areaInfo.setZong(rs.getInt("zong"));
+					areaInfo.setView_shunxu(rs.getInt("view_shunxu"));
+					areaInfo.setProject_type(rs.getString("project_type"));
+					areaInfo.setArea_code(rs.getString("area_code"));
+					areaInfo.setZujin_datasource(rs.getString("zujin_datasource"));
+					areaInfo.setZujin_date(rs.getTimestamp("zujin_date"));
+					areaInfolist.add(areaInfo);
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return areaInfolist;
+		}
+		
 	//通过区域id获取区域房价中位数走势信息
 	public List<AreaMiddle> getAreaMiddleList(String area_num){
 		List<AreaMiddle> areaInfolist = new ArrayList<AreaMiddle>();
 		try {
-			String sql = " SELECT * from area_middle where area_num=?";
+			String sql = " SELECT * from area_middle where area_code=?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,area_num);
 			ResultSet rs = pstmt.executeQuery();
@@ -53,7 +518,7 @@ public class AreaInfoDao extends BaseDao {
 			public List<MiddlePriceBackEnd> getMiddlePrice(String area_num){
 				List<MiddlePriceBackEnd> areaInfolist = new ArrayList<MiddlePriceBackEnd>();
 				try {
-					String sql = " SELECT * from middleprice where area_num=?";
+					String sql = " SELECT * from area_middle_price where area_quyu=?";
 					PreparedStatement pstmt = con.prepareStatement(sql);
 					pstmt.setString(1,area_num);
 					ResultSet rs = pstmt.executeQuery();
@@ -91,7 +556,7 @@ public class AreaInfoDao extends BaseDao {
 		public AreaFamilyBackEnd getFamilyBackEnd(String area_num){
 			AreaFamilyBackEnd areaInfo = new AreaFamilyBackEnd();
 			try {
-				String sql = " SELECT * from areafamily where area_num=?";
+				String sql = " SELECT * from area_family where area_code=?";
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				pstmt.setString(1,area_num);
 				ResultSet rs = pstmt.executeQuery();

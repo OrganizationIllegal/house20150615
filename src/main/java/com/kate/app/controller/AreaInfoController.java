@@ -26,8 +26,11 @@ import com.kate.app.model.AreaFamilyBackEnd;
 import com.kate.app.model.AreaInfo;
 import com.kate.app.model.AreaMiddle;
 import com.kate.app.model.AreaMiddle2;
+import com.kate.app.model.AreaPeopleInfo;
 import com.kate.app.model.AreaPeopleInfo2;
+import com.kate.app.model.AreaTeDian;
 import com.kate.app.model.AreaTeDian2;
+import com.kate.app.model.AreaZhikong;
 import com.kate.app.model.AreaZhikong2;
 import com.kate.app.model.AreaZujin;
 import com.kate.app.model.AreaZujin2;
@@ -37,6 +40,7 @@ import com.kate.app.model.InvestmentDataBackEnd;
 import com.kate.app.model.MiddlePrice2;
 import com.kate.app.model.MiddlePriceBackEnd;
 import com.kate.app.model.NewsBoke;
+import com.kate.app.model.NewsZhiye;
 import com.kate.app.model.ZhiYeZhiDao;
 import com.kate.app.service.ConvertJson;
 
@@ -52,7 +56,32 @@ public class AreaInfoController extends BaseDao {
 	private ZhiYeDao zhiYeDao;
 	@Autowired
 	private AjaxDao ajaxDao;
-	//
+	
+			@RequestMapping({ "/AreaDelete" })
+			public void deleteArea(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+				int id = Integer.parseInt(req.getParameter("id"));
+				String area_num=req.getParameter("area_num");
+				int flag =0;
+				flag+=areaInfoDao.deleteAreaInfo(id);
+				flag+=areaInfoDao.deleteInvest(area_num);
+				flag+=areaInfoDao.deleteFamily(area_num);
+				flag+=areaInfoDao.deleteMiddlePrice(area_num);
+				flag+=areaInfoDao.deleteMiddleTrend(area_num);
+				flag+=areaInfoDao.deleteZujin(area_num);
+				flag+=areaInfoDao.deleteHuibao(area_num);
+				flag+=areaInfoDao.deleteTedian(area_num);
+				flag+=areaInfoDao.deletePeople(area_num);
+				flag+=areaInfoDao.deleteBroker(area_num);
+				flag+=areaInfoDao.deleteProject(area_num);
+				flag+=areaInfoDao.deleteNewsBoke(area_num);
+				JSONObject json = new JSONObject();
+				json.put("data", flag);
+				try{
+					writeJson(json.toJSONString(),resp);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			}
 	@RequestMapping({"/AreaEdit"})
 	public String areaEidt(HttpServletRequest req,HttpServletResponse resp){
 		String id=req.getParameter("id");
@@ -67,7 +96,40 @@ public class AreaInfoController extends BaseDao {
 		List<AreaMiddle> areamiddlelist=new  ArrayList<AreaMiddle>();
 		areamiddlelist=areaInfoDao.getAreaMiddleList(ai.getArea_num());
 		List<AreaZujin> zujinlist=new ArrayList<AreaZujin>();
-		/*zujinlist=areaInfoDao*/
+		zujinlist=areaInfoDao.getAreaZujinList(ai.getArea_num());
+		List<AreaZhikong> huibaolist=new ArrayList<AreaZhikong>();
+		huibaolist=areaInfoDao.getAreaKongzhiList(ai.getArea_num());
+		List<AreaTeDian> tedianlist=new ArrayList<AreaTeDian>();
+		tedianlist=areaInfoDao.getAreaTedianList(ai.getArea_num());
+		List<AreaPeopleInfo> peoplelist=new ArrayList<AreaPeopleInfo>();
+		peoplelist=areaInfoDao.getAreaPeopleList(ai.getArea_num());
+		List<BrokerInfo> brokerlist=new ArrayList<BrokerInfo>();
+		brokerlist=areaInfoDao.getAreaBrokerList(ai.getArea_num());
+		List<HouseProject> projectlist=new ArrayList<HouseProject>();
+		projectlist=areaInfoDao.getAreaProjectList(ai.getArea_num());
+		List<NewsZhiye> newszhiyelist=new ArrayList<NewsZhiye>();
+		newszhiyelist=areaInfoDao.getAreaNewsBokeList(ai.getArea_num());
+		req.setAttribute("AreaInfo", ai);
+		req.setAttribute("Invest", invest);
+		req.setAttribute("Family", family);
+		req.setAttribute("middlepricebackendlist", middlepricebackendlist);
+		req.setAttribute("middlepricebackendlistjson", ConvertJson.list2json(middlepricebackendlist));
+		req.setAttribute("areamiddlelist", areamiddlelist);
+		req.setAttribute("areamiddlelistjson", ConvertJson.list2json(areamiddlelist));
+		req.setAttribute("zujinlist", zujinlist);
+		req.setAttribute("zujinlistjson", ConvertJson.list2json(zujinlist));
+		req.setAttribute("huibaolist", huibaolist);
+		req.setAttribute("huibaolistjson", ConvertJson.list2json(huibaolist));
+		req.setAttribute("tedianlist", tedianlist);
+		req.setAttribute("tedianlistjson", ConvertJson.list2json(tedianlist));
+		req.setAttribute("peoplelist", peoplelist);
+		req.setAttribute("peoplelistjson", ConvertJson.list2json(peoplelist));
+		req.setAttribute("broker", brokerlist);
+		req.setAttribute("brokerlistjson", ConvertJson.list2json(brokerlist));
+		req.setAttribute("project", projectlist);
+		req.setAttribute("projectlistjson", ConvertJson.list2json(projectlist));
+		req.setAttribute("news", newszhiyelist);
+		req.setAttribute("newszhiyelistjson", ConvertJson.list2json(newszhiyelist));		
 		getBrokerName(req,resp);
 		getProjectName(req,resp);
 		getNewsList(req,resp);

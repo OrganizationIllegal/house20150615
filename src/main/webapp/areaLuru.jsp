@@ -657,42 +657,84 @@ $(function(){
 	$(".addmiddleprice").click(function(){
 		//alert(middlepriceedit);
 		if(middlepriceedit==100){
-			/* if($('#houseimg').val()==""){
-				alert("请选择文件！");
-				return false;} */
+			if(isNaN($('#buy_price').val())){
+				alert("购买价格-请输入数字！");
+				return false;
+			}
+			else if(isNaN($('#zu_price').val())){
+				alert("租赁价格-请输入数字！");
+				return false;
+			}
+			else if(isNaN($('#buy_one_price').val())){
+				alert("买一价格-请输入数字！");
+				return false;
+			}
+			else if(isNaN($('#buy_two_price').val())){
+				alert("买二价格-请输入数字！");
+				return false;
+			}
+			else if(isNaN($('#buy_three_price').val())){
+				alert("买三价格-请输入数字！");
+				return false;
+			}
+			else if(isNaN($('#zu_one_price').val())){
+				alert("租一价格-请输入数字！");
+				return false;
+			}
+			else if(isNaN($('#zu_two_price').val())){
+				alert("租二价格-请输入数字！");
+				return false;
+			}
+			else if(isNaN($('#zu_three_price').val())){
+				alert("租三价格-请输入数字！");
+				return false;
+			}
 			var middleprice={};
-			/* var filenames=$('#houseimg').val().split("\\");
-			var filename=filenames[filenames.length-1]; */
 			middleprice=DataDeal.formToJson(data= decodeURIComponent($("#middleprice").serialize(),true));
 			middleprice=eval("("+middleprice+")");
-			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
-			/* peitao.shunxu=peitaocount+1; */
-			/* peitao.view= */
-			/* alert($("#huxingjiage").serializeArray()); */
-			/* huxing.housename=$("#housename").val();
-			huxing.houseprice=$("#houseprice").val();
-			huxing.room_num=$("#room_num").val();
-			huxing.tudi_mianji=$("#tudi_mianji").val();
-			huxing.jianzhu_mianji=$("#jianzhu_mianji").val();
-			huxing.shinei_mianji=$("#") */
+			
 			middlepricelist.push(middleprice);
 			/* $("#middlepricelist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++middlepricecount)+"</span><span style='padding-right:10px;'>"+middlepricelist[middlepricecount-1].houseTaxtype+"</span><span style='padding-right:10px;'>"+middlepricelist[middlepricecount-1].houseTaxprice+"</span><span style='padding-right:10px;'>"+middlepricelist[middlepricecount-1].houseTaxdesc+"</span><span style='padding-right:10px;'>"+middlepricelist[middlepricecount-1].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>"); */
 			$('#middlepricelist').append("<div><div class='area_left3'><span style='display:none;'>"+(++middlepricecount)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+middlepricelist[middlepricecount-1].project_type+"</span><span class='area_span'>"+middlepricelist[middlepricecount-1].zu_price+"</span><span class='area_span'>"+middlepricelist[middlepricecount-1].buy_price+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editmiddleprice'>编辑</a></span><span class='area_span5'><a href='#' class='deletemiddleprice'>删除</a></span></div></div>");
-			/* UpladFile("houseimg"); */
+			
 			$("#middleprice input").each(function(){
 				$(this).val("");
 				});
-			/* $("#huxingjiage").reset();  */
-			/* <a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a> */
+			
 			}
 		else{
-			/* if($('#houseimg').val()==""){
-				alert("请选择文件！");
-				return false;} */
-			//alert("edit");
-			/* var huxing={}; */
-			/* var filenames=$('#houseimg').val().split("\\");
-			var filename=filenames[filenames.length-1]; */
+			if(isNaN($('#buy_price').val())){
+				alert("购买价格-请输入数字！");
+				return false;
+			}
+			else if(isNaN($('#zu_price').val())){
+				alert("租赁价格-请输入数字！");
+				return false;
+			}
+			else if(isNaN($('#buy_one_price').val())){
+				alert("买一价格-请输入数字！");
+				return false;
+			}
+			else if(isNaN($('#buy_two_price').val())){
+				alert("买二价格-请输入数字！");
+				return false;
+			}
+			else if(isNaN($('#buy_three_price').val())){
+				alert("买三价格-请输入数字！");
+				return false;
+			}
+			else if(isNaN($('#zu_one_price').val())){
+				alert("租一价格-请输入数字！");
+				return false;
+			}
+			else if(isNaN($('#zu_two_price').val())){
+				alert("租二价格-请输入数字！");
+				return false;
+			}
+			else if(isNaN($('#zu_three_price').val())){
+				alert("租三价格-请输入数字！");
+				return false;
+			}
 			middlepriceedititem=DataDeal.formToJson(data= decodeURIComponent($("#middleprice").serialize(),true));
 			middlepriceedititem=eval("("+middlepriceedititem+")");
 			/* middlepriceedititem["houseimg"]=filename; */
@@ -761,9 +803,14 @@ $(function(){
 	$(".addmiddletrend").click(function(){
 		//alert(middletrendedit);
 		if(middletrendedit==100){
-			/* if($('#houseimg').val()==""){
-				alert("请选择文件！");
-				return false;} */
+			if(isNaN($('#view_shunxu2').val())){
+				alert("区域房价中位数走势的显示顺序-请输入数字！");
+				return false;
+			}
+			else if(isNaN($('#zong2').val())){
+				alert("区域房价中位数走势的纵坐标-请输入数字！");
+				return false;
+			}
 			var middletrend={};
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -790,13 +837,14 @@ $(function(){
 			/* <a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a> */
 			}
 		else{
-			/* if($('#houseimg').val()==""){
-				alert("请选择文件！");
-				return false;} */
-			//alert("edit");
-			/* var huxing={}; */
-			/* var filenames=$('#houseimg').val().split("\\");
-			var filename=filenames[filenames.length-1]; */
+			if(isNaN($('#view_shunxu2').val())){
+				alert("区域房价中位数走势的显示顺序-请输入数字！");
+				return false;
+			}
+			else if(isNaN($('#zong2').val())){
+				alert("区域房价中位数走势的纵坐标-请输入数字！");
+				return false;
+			}
 			middletrendedititem=DataDeal.formToJson(data= decodeURIComponent($("#middletrend").serialize(),true));
 			middletrendedititem=eval("("+middletrendedititem+")");
 			/* middletrendedititem["houseimg"]=filename; */
@@ -854,9 +902,14 @@ $(function(){
 	$(".addzujintrend").click(function(){
 		//alert(zujintrendedit);
 		if(zujintrendedit==100){
-			/* if($('#houseimg').val()==""){
-				alert("请选择文件！");
-				return false;} */
+			if(isNaN($('#view_shunxu3').val())){
+				alert("区域租金走势的显示顺序-请输入数字！");
+				return false;
+			}
+			else if(isNaN($('#zong3').val())){
+				alert("区域租金走势的纵坐标-请输入数字！");
+				return false;
+			}
 			var zujintrend={};
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -883,13 +936,14 @@ $(function(){
 			/* <a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a> */
 			}
 		else{
-			/* if($('#houseimg').val()==""){
-				alert("请选择文件！");
-				return false;} */
-			//alert("edit");
-			/* var huxing={}; */
-			/* var filenames=$('#houseimg').val().split("\\");
-			var filename=filenames[filenames.length-1]; */
+			if(isNaN($('#view_shunxu3').val())){
+				alert("区域租金走势的显示顺序-请输入数字！");
+				return false;
+			}
+			else if(isNaN($('#zong3').val())){
+				alert("区域租金走势的纵坐标-请输入数字！");
+				return false;
+			}
 			zujintrendedititem=DataDeal.formToJson(data= decodeURIComponent($("#zujintrend").serialize(),true));
 			zujintrendedititem=eval("("+zujintrendedititem+")");
 			/* zujintrendedititem["houseimg"]=filename; */
@@ -948,9 +1002,14 @@ $(function(){
 	$(".addhuibaotrend").click(function(){
 		//alert(huibaotrendedit);
 		if(huibaotrendedit==100){
-			/* if($('#houseimg').val()==""){
-				alert("请选择文件！");
-				return false;} */
+			if(isNaN($('#view_shunxu4').val())){
+				alert("区域租金回报走势的显示顺序-请输入数字！");
+				return false;
+			}
+			else if(isNaN($('#zong4').val())){
+				alert("区域租金回报走势的纵坐标-请输入数字！");
+				return false;
+			}
 			var huibaotrend={};
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -977,13 +1036,14 @@ $(function(){
 			/* <a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a> */
 			}
 		else{
-			/* if($('#houseimg').val()==""){
-				alert("请选择文件！");
-				return false;} */
-			//alert("edit");
-			/* var huxing={}; */
-			/* var filenames=$('#houseimg').val().split("\\");
-			var filename=filenames[filenames.length-1]; */
+			if(isNaN($('#view_shunxu4').val())){
+				alert("区域租金回报走势的显示顺序-请输入数字！");
+				return false;
+			}
+			else if(isNaN($('#zong4').val())){
+				alert("区域租金回报走势的纵坐标-请输入数字！");
+				return false;
+			}
 			huibaotrendedititem=DataDeal.formToJson(data= decodeURIComponent($("#huibaotrend").serialize(),true));
 			huibaotrendedititem=eval("("+huibaotrendedititem+")");
 			/* huibaotrendedititem["houseimg"]=filename; */
@@ -1043,24 +1103,13 @@ $(function(){
 	$(".addtedian").click(function(){
 		//alert(tedianedit);
 		if(tedianedit==100){
-			/* if($('#houseimg').val()==""){
-				alert("请选择文件！");
-				return false;} */
+			if(isNaN($('#view_shunxu').val())){
+				alert("区域特点的显示顺序-请输入数字！");
+				return false;
+			}
 			var tedian={};
-			/* var filenames=$('#houseimg').val().split("\\");
-			var filename=filenames[filenames.length-1]; */
 			tedian=DataDeal.formToJson(data= decodeURIComponent($("#tedian").serialize(),true));
 			tedian=eval("("+tedian+")");
-			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
-			/* peitao.shunxu=peitaocount+1; */
-			/* peitao.view= */
-			/* alert($("#huxingjiage").serializeArray()); */
-			/* huxing.housename=$("#housename").val();
-			huxing.houseprice=$("#houseprice").val();
-			huxing.room_num=$("#room_num").val();
-			huxing.tudi_mianji=$("#tudi_mianji").val();
-			huxing.jianzhu_mianji=$("#jianzhu_mianji").val();
-			huxing.shinei_mianji=$("#") */
 			tedianlist.push(tedian);
 			/* $("#tedianlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++tediancount)+"</span><span style='padding-right:10px;'>"+tedianlist[tediancount-1].houseTaxtype+"</span><span style='padding-right:10px;'>"+tedianlist[tediancount-1].houseTaxprice+"</span><span style='padding-right:10px;'>"+tedianlist[tediancount-1].houseTaxdesc+"</span><span style='padding-right:10px;'>"+tedianlist[tediancount-1].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>"); */
 			$('#tedianlist').append("<div><div class='area_left3'><span style='display:none;'>"+(++tediancount)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+tedianlist[tediancount-1].data_source+"</span><span class='area_span'>"+tedianlist[tediancount-1].update_time+"</span><span class='area_span'>"+tedianlist[tediancount-1].view_shunxu+"</span><span class='area_span6'>"+tedianlist[tediancount-1].area_character+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edittedian'>编辑</a></span><span class='area_span5'><a href='#' class='deletetedian'>删除</a></span></div></div>");
@@ -1072,13 +1121,10 @@ $(function(){
 			/* <a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a> */
 			}
 		else{
-			/* if($('#houseimg').val()==""){
-				alert("请选择文件！");
-				return false;} */
-			//alert("edit");
-			/* var huxing={}; */
-			/* var filenames=$('#houseimg').val().split("\\");
-			var filename=filenames[filenames.length-1]; */
+			if(isNaN($('#view_shunxu').val())){
+				alert("区域特点的显示顺序-请输入数字！");
+				return false;
+			}
 			tedianedititem=DataDeal.formToJson(data= decodeURIComponent($("#tedian").serialize(),true));
 			tedianedititem=eval("("+tedianedititem+")");
 			/* tedianedititem["houseimg"]=filename; */
@@ -1138,6 +1184,10 @@ $(function(){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
 				return false;} */
+			if(isNaN($('#view_shunxu_people').val())){
+				alert("区域人口的显示顺序-请输入数字！");
+				return false;
+			}
 			var people={};
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -1164,13 +1214,10 @@ $(function(){
 			/* <a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a> */
 			}
 		else{
-			/* if($('#houseimg').val()==""){
-				alert("请选择文件！");
-				return false;} */
-			//alert("edit");
-			/* var huxing={}; */
-			/* var filenames=$('#houseimg').val().split("\\");
-			var filename=filenames[filenames.length-1]; */
+			if(isNaN($('#view_shunxu_people').val())){
+				alert("区域人口的显示顺序-请输入数字！");
+				return false;
+			}
 			peopleedititem=DataDeal.formToJson(data= decodeURIComponent($("#people").serialize(),true));
 			peopleedititem=eval("("+peopleedititem+")");
 			/* peopleedititem["houseimg"]=filename; */
@@ -1493,7 +1540,16 @@ var DataDeal = {
 		};  
 
 function savepro(){
-
+	if(isNaN($('#area_postcode').val())){
+		alert("邮政编码-请输入数字！");
+		return false;
+	}
+	
+	
+	
+	
+	
+	
 	var area;
 	area=DataDeal.formToJson(data= decodeURIComponent($("#area").serialize(),true));
 	area=eval("("+area+")");
