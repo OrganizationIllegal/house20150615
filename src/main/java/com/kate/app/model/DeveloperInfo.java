@@ -5,6 +5,14 @@ public class DeveloperInfo {
 	private String developer_name;
 	private String developer_logo;
 	private String developer_desc;
+	private String developer_num;
+	
+	public String getDeveloper_num() {
+		return developer_num;
+	}
+	public void setDeveloper_num(String developer_num) {
+		this.developer_num = developer_num;
+	}
 	public int getId() {
 		return id;
 	}

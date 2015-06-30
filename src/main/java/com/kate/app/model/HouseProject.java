@@ -230,7 +230,8 @@ public class HouseProject {
 	public void setMianji(String mianji) {
 		this.mianji = mianji;
 	}
-	
+
+
 	public String getRecommend_id_1() {
 		return recommend_id_1;
 	}

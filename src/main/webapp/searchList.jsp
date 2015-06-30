@@ -98,27 +98,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div style="display:block;width:100%;height:1px;background-color:#666;clear:both;float:left;margin-top:3px;margin-bottom:3px"></div>
 
 					<input style="display:block;clear:both;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="xinaipan"  />
-					<a style="display:block;width:60px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">新开盘</a>
+					<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">新开盘</a>
 					<input style="display:block;float:left;height:30px" type="checkbox" name="key" id="remen" />
 					<a style="display:block;width:50px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">热门项目</a>
 
 					<input style="display:block;clear:both;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="youxiu"/>
-					<a style="display:block;width:60px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">优秀学区</a>
+					<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">优秀学区</a>
 					<input style="display:block;float:left;height:30px" type="checkbox" name="key" id="center" />
 					<a style="display:block;width:50px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;" >城市中心</a>
 
 					<input style="display:block;clear:both;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="baozu" />
-					<a style="display:block;width:60px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">包租项目</a>
+					<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">包租项目</a>
 					<input style="display:block;float:left;height:30px" type="checkbox" name="key" id="huaren"/>
 					<a style="display:block;width:50px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">华人区</a>
 
 					<input style="display:block;clear:both;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="zuixin" />
-					<a style="display:block;width:60px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">最新项目</a>
+					<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">最新项目</a>
 					<input style="display:block;float:left;height:30px" type="checkbox" name="key" id="daxue" />
 					<a style="display:block;width:50px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">大学附近</a>
 
 					<input style="display:block;clear:both;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="xianfang"  />
-					<a style="display:block;width:60px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">现房项目</a>
+					<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">现房项目</a>
 					<input style="display:block;float:left;height:30px" type="checkbox" name="key" id="traffic" />
 					<a style="display:block;width:50px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">轨道交通</a>
 
@@ -190,12 +190,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    			 type: "double",
    			 min: 100000,
     		 max: 2000000,
+    		 step: 100000
    			 //grid: true
 		});
 			$("#danjia").ionRangeSlider({
    			 type: "double",
    			 min: 0,
     		max: 20000,
+    		step: 500
    			 //grid: true
 		});
 		$("#woshi").ionRangeSlider({

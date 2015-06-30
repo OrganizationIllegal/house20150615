@@ -44,4 +44,32 @@ import com.kate.app.model.NewsInfo;
 			return invest;
 	        
 		}
+		
+		public InvestmentData getInvestmentDateNum(String area_num){
+			InvestmentData invest = new InvestmentData();
+			try{
+				String sql = " select * from investment_data where area_num=?";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, area_num);
+				ResultSet rs = pstmt.executeQuery();
+				
+				while(rs.next()){
+					invest.setArea_id(rs.getInt("area_id"));
+					invest.setId(rs.getInt("id"));
+					invest.setData_exam(rs.getString("data_exam"));
+					invest.setMiddle_price(rs.getString("middle_price"));
+					invest.setMiddle_zu_price(rs.getString("middle_zu_price"));
+					invest.setPrice_review(rs.getString("price_review"));
+					invest.setYear_increment_rate(rs.getString("year_increment_rate"));
+					invest.setZu_house_rate(rs.getString("zu_house_rate"));
+					invest.setZu_xuqiu(rs.getString("zu_xuqiu"));
+					invest.setArea_num(rs.getString("area_name"));
+				}
+			}catch (Exception e) {
+	            e.printStackTrace();
+	        }
+			return invest;
+	        
+		}
+		
 }

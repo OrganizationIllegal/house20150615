@@ -136,7 +136,7 @@ function reLoad(){
                                 </a>
                               </div>
                               <div class="media-body" style="padding-left:20px;">
-                                <div class="media-heading" style="font-size:20px;color:rgb(147,181,219);">${item.title}</div>
+                                <div class="media-heading" style="font-size:20px;color:rgb(147,181,219);"><a  href="/Detail?id=${item.id}&type=0">${item.title}</a></div>
                                 <p style="font-size:12px;">${item.fenlei}&nbsp;&nbsp;&nbsp;&nbsp;${fn:substring(item.fabu_time,0,10)}</p>
                                 <p style="font-size:12px;">
                                 	<c:choose> 
@@ -271,7 +271,12 @@ function reLoad(){
                 						$(this).hide();
                 					}
                 				});
-                        }  
+                        },
+                        error:function(a,b,c){
+								alert(a);
+								alert(b);
+								alert(c);
+                            }  
                     }); 
 			
 			});
@@ -312,11 +317,11 @@ function reLoad(){
                 if(items!=null){
                 	for(var j=0;j<items.length;j++){
                 	    html+="<li class='media'><div class='media-left'><a href='/Detail?id="+items[j].id+"&type=0'>";
-                	    html+="<img class='media-object' src='http://101.200.174.253:9090/all/"+items[j].image+"' alt='' width='180px' height='140px'>";
- 						html+="</a></div><div class='media-body' style='padding-left:20px;'><div class='media-heading' style='font-size:20px;color:rgb(147,181,219);'>"+items[j].title;
- 						html+="</div><p style='font-size:12px;'>"+items[j].fenlei;
- 						html+="</p><p style='font-size:120x;'>"+items[j].zhiye_abstract;
- 						
+                	    html+="<img class='media-object' src='http://101.200.174.253:9090/all/"+items[j].image+"' alt='' width='180px' height='134px'>";
+ 						html+="</a></div><div class='media-body' style='padding-left:20px;'><div class='media-heading' style='font-size:20px;color:rgb(147,181,219);'><a href='/Detail?id="+items[j].id+"&type=0'>"+items[j].title;
+ 						html+="</a></div><p style='font-size:12px;'>"+items[j].fenlei;
+ 						html+="&nbsp;&nbsp;&nbsp;&nbsp;"+items[j].fabu_time;
+ 						html+="</p><p style='font-size:12px;'>"+items[j].zhiye_abstract;			
  						html+="</p><a href='/Detail?id="+items[j].id+"&type=0'>全文></a></div></li>";
  						
                 	}

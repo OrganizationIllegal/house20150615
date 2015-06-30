@@ -99,7 +99,7 @@ public class SearchListDao extends BaseDao {
 		}
 		return searchInfoList;
 	} 
-	//按条件过滤
+	//鎸夋潯浠惰繃婊�
 	public List<SearchList> filterSearchList(String projecttype,int zongjiamin,int zongjiamax,int danjiamin,int danjiamax,String xinaipan1,String remen1,String youxiu1,String center1,String baozu1,String huaren1,String zuixin1,String daxue1,String xianfang1,String traffic1){
 		List<SearchList> searchInfoList=new ArrayList<SearchList>();
 		try {
@@ -110,34 +110,34 @@ public class SearchListDao extends BaseDao {
 			sql+=" and project_price_int_qi >"+danjiamin;
 			sql+=" and project_price_int_qi <"+danjiamax;
 			if(xinaipan1.equals("1")){
-				sql+=" and p.xinkaipan='1'";//选中
+				sql+=" and p.xinkaipan='1'";//閫変腑
 			}
 			if(remen1.equals("1")){
-				sql+=" and p.remen='1'";//选中
+				sql+=" and p.remen='1'";//閫変腑
 			}
 			if(youxiu1=="1"){
-				sql+=" and p.xuequ='1'";//选中
+				sql+=" and p.xuequ='1'";//閫変腑
 			}
 			if(center1=="1"){
-				sql+=" and p.center='1'";//选中
+				sql+=" and p.center='1'";//閫変腑
 			}
 			if(baozu1=="1"){
-				sql+=" and p.baozu='1'";//选中
+				sql+=" and p.baozu='1'";//閫変腑
 			}
 			if(huaren1=="1"){
-				sql+=" and p.huaren='1'";//选中
+				sql+=" and p.huaren='1'";//閫変腑
 			}
 			if(zuixin1=="1"){
-				sql+=" and p.maidi='1'";//选中
+				sql+=" and p.maidi='1'";//閫変腑
 			}
 			if(daxue1=="1"){
-				sql+=" and p.daxue='1'";//选中
+				sql+=" and p.daxue='1'";//閫変腑
 			}
 			if(xianfang1=="1"){
-				sql+=" and p.xianfang='1'";//选中
+				sql+=" and p.xianfang='1'";//閫変腑
 			}
 			if(traffic1=="1"){
-				sql+=" and p.traffic='1'";//选中
+				sql+=" and p.traffic='1'";//閫変腑
 			}
 			
 			Statement stmt = con.createStatement();
@@ -220,7 +220,7 @@ public class SearchListDao extends BaseDao {
 		return searchInfoList;
 		
 	}
-	//按推荐度排序
+	//鎸夋帹鑽愬害鎺掑簭
 	public List<SearchList> OrderlistSearchList(){
 		List<SearchList> searchInfoList=new ArrayList<SearchList>();
 		try {
@@ -305,7 +305,7 @@ public class SearchListDao extends BaseDao {
 		return searchInfoList;
 	} 
 	
-	//根据当前登录用户获取收藏表中的proNum
+	//鏍规嵁褰撳墠鐧诲綍鐢ㄦ埛鑾峰彇鏀惰棌琛ㄤ腑鐨刾roNum
 	public Set<String> proNumList(int userid){
 		Set<String>  proNums=new HashSet<String>();
 		try{
@@ -321,13 +321,13 @@ public class SearchListDao extends BaseDao {
 		}
 		return proNums;
 	}
-	//获取收藏夹中的项目
+	//鑾峰彇鏀惰棌澶逛腑鐨勯」鐩�
 	public List<SearchList> listCollectList(int userid){
-		//TODO获取当前登录用户
+		//TODO鑾峰彇褰撳墠鐧诲綍鐢ㄦ埛
 		
-		//根据当前登录用户获取收藏表中的proNum
+		//鏍规嵁褰撳墠鐧诲綍鐢ㄦ埛鑾峰彇鏀惰棌琛ㄤ腑鐨刾roNum
 		Set<String> proNums=proNumList(userid);
-		//遍历每个proNums,根据每个proNum得到项目信息
+		//閬嶅巻姣忎釜proNums,鏍规嵁姣忎釜proNum寰楀埌椤圭洰淇℃伅
 		List<SearchList> searchInfoListResult=new ArrayList<SearchList>();
 		for(String proNum : proNums)
 		{
@@ -336,7 +336,7 @@ public class SearchListDao extends BaseDao {
 		}
 		return searchInfoListResult;
 	} 
-	//根据proNum得到项目信息
+	//鏍规嵁proNum寰楀埌椤圭洰淇℃伅
 	public SearchList findInfoByProNum(String ProNum){
 		SearchList  searchList=new SearchList();
 		try {
@@ -418,7 +418,7 @@ public class SearchListDao extends BaseDao {
 		return searchList;
 	}
 	
-	//点击“收藏”，收藏表中add
+	//鐐瑰嚮鈥滄敹钘忊�锛屾敹钘忚〃涓璦dd
 	public int AddCollect(int userid,String proNum ){
 		int exeResult=0;
 		try {
@@ -433,7 +433,7 @@ public class SearchListDao extends BaseDao {
 		}
 		return exeResult;
 	}
-	//收藏列表点击“删除”，
+	//鏀惰棌鍒楄〃鐐瑰嚮鈥滃垹闄も�锛�
 	public int DelCollect(int userid,String proNum ){
 		int exeResult=0;
 		try {
@@ -545,7 +545,7 @@ public class SearchListDao extends BaseDao {
 				projectInfo.setProject_price_qi(rs.getString("project_price_qi"));
 				projectInfo.setProject_type(rs.getString("project_type"));
 				projectInfo.setProject_sales_remain(rs.getInt("project_sales_remain"));
-				projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));
+				//projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));
 				projectInfo.setProject_desc(rs.getString("project_desc"));
 				projectInfo.setProject_city(rs.getString("project_city"));
 				projectInfo.setProject_house_type(rs.getString("project_house_type"));
@@ -1350,7 +1350,7 @@ public class SearchListDao extends BaseDao {
 				projectInfo.setProject_price_qi(rs.getString("project_price_qi"));
 				projectInfo.setProject_type(rs.getString("project_type"));
 				projectInfo.setProject_sales_remain(rs.getInt("project_sales_remain"));
-				projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));
+				//projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));
 				projectInfo.setProject_desc(rs.getString("project_desc"));
 				projectInfo.setProject_city(rs.getString("project_city"));
 				projectInfo.setProject_house_type(rs.getString("project_house_type"));
@@ -1402,7 +1402,7 @@ public class SearchListDao extends BaseDao {
 				projectInfo.setProject_price_qi(rs.getString("project_price_qi"));
 				projectInfo.setProject_type(rs.getString("project_type"));
 				projectInfo.setProject_sales_remain(rs.getInt("project_sales_remain"));
-				projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));
+				//projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));
 				projectInfo.setProject_desc(rs.getString("project_desc"));
 				projectInfo.setProject_city(rs.getString("project_city"));
 				projectInfo.setProject_house_type(rs.getString("project_house_type"));
