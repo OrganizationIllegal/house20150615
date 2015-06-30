@@ -636,18 +636,23 @@ public class ProjectInfoController {
 		//根据项目编号获取项目配套
 		List <ProjectPeiTao> projectPeiTaoList =projectInputDao.getProjectpeiTaoByProNum(pronum);
 		req.setAttribute("projectPeitaoList", projectPeiTaoList);
+		req.setAttribute("projectPeitaoListJson", ConvertJson.list2json(projectPeiTaoList));
 		//根据项目编号获取附近配套
 		List<FujinPeiTao> fujinPeitaoList=projectInputDao.getFujinPeiTaoByProNum(pronum);
 		req.setAttribute("fujinPeitaoList",fujinPeitaoList );
+		req.setAttribute("fujinPeitaoListJson", ConvertJson.list2json(fujinPeitaoList));
 		//根据项目编号获取附近学校
 		List<FujinSchool> fujinSchoolList=projectInputDao.getFujinSchoolByProNum(pronum);
 		req.setAttribute("fujinSchoolList",fujinSchoolList );
+		req.setAttribute("fujinSchoolListJson", ConvertJson.list2json(fujinSchoolList));
 		//根据项目编号获取持有成本
 		List<HoldCost> holdCostList=projectInputDao.getHoldCostByProNum(pronum);
 		req.setAttribute("holdCostList",holdCostList );
+		req.setAttribute("holdCostListJson", ConvertJson.list2json(holdCostList));
 		//根据项目编号获取购房税费
 		List<HouseTax> houseTaxList=projectInputDao.getHouseTaxByProNum(pronum);
 		req.setAttribute("houseTaxList",houseTaxList );
+		req.setAttribute("houseTaxListJson", ConvertJson.list2json(houseTaxList));
 		return "/ProjectInfo.jsp";
 	}
 	//根据id取学校信息
@@ -701,11 +706,13 @@ public class ProjectInfoController {
 					//获取经纪人编号
 					String broker_num=projectInputDao.findBrokerNumById(id);
 					//获取经纪人服务区域
-					List<BrokerServiceArea> brokerServiceAreaList=projectInputDao.findBrokerAreaList(broker_num);
+					List<ServiceArea> brokerServiceAreaList=projectInputDao.findBrokerAreaList(broker_num);
 					req.setAttribute("brokerServiceAreaList", brokerServiceAreaList);
+					req.setAttribute("brokerServiceAreaListJson", ConvertJson.list2json(brokerServiceAreaList));
 					//获取经纪人擅长类型
-					List<BrokerIntegerType> brokerIntegertypeList=projectInputDao.findBrokerTypeList(broker_num);
+					List<BrokerType> brokerIntegertypeList=projectInputDao.findBrokerTypeList(broker_num);
 					req.setAttribute("brokerIntegertypeList", brokerIntegertypeList);
+					req.setAttribute("brokerIntegertypeListJson", ConvertJson.list2json(brokerIntegertypeList));
 					return "/brokerInfo.jsp";
 				}
 	

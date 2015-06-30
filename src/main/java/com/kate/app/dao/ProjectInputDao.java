@@ -529,17 +529,16 @@ public class ProjectInputDao extends BaseDao {
 					return broker_num;
 				} 	
 				//根据经纪人编号查找经纪人服务区域列表
-				public List<BrokerServiceArea> findBrokerAreaList(String broker_num){
-					List<BrokerServiceArea> brokerServiceAreaList=new ArrayList<BrokerServiceArea>();
+				public List<ServiceArea> findBrokerAreaList(String broker_num){
+					List<ServiceArea> brokerServiceAreaList=new ArrayList<ServiceArea>();
 					try {
 						String sql ="select * from broker_service_area  where broker_num =?";
 						PreparedStatement pstmt = con.prepareStatement(sql);
 						pstmt.setString(1,broker_num);
 						ResultSet rs = pstmt.executeQuery();
 						while(rs.next()){
-							BrokerServiceArea brokerServiceArea=new BrokerServiceArea();
+							ServiceArea brokerServiceArea=new ServiceArea();
 							brokerServiceArea.setArea_code(rs.getString("area_code"));
-							brokerServiceArea.setBroker_num(rs.getString("broker_num"));
 							brokerServiceArea.setView_shunxu(rs.getInt("view_shunxu"));
 							brokerServiceArea.setId(rs.getInt("id"));
 							brokerServiceAreaList.add(brokerServiceArea);
@@ -551,18 +550,17 @@ public class ProjectInputDao extends BaseDao {
 					return brokerServiceAreaList;
 				} 
 				//根据经纪人编号查找经纪人擅长类型
-				public List<BrokerIntegerType> findBrokerTypeList(String broker_num){
-					List<BrokerIntegerType> brokerIntegerTypeList=new ArrayList<BrokerIntegerType>();
+				public List<BrokerType> findBrokerTypeList(String broker_num){
+					List<BrokerType> brokerIntegerTypeList=new ArrayList<BrokerType>();
 					try {
 						String sql ="select * from broker_interested_type  where broker_num =?";
 						PreparedStatement pstmt = con.prepareStatement(sql);
 						pstmt.setString(1,broker_num);
 						ResultSet rs = pstmt.executeQuery();
 						while(rs.next()){
-							BrokerIntegerType brokerIntegerType=new BrokerIntegerType();
-							brokerIntegerType.setBroker_num(rs.getString("broker_num"));
+							BrokerType brokerIntegerType=new BrokerType();
 							brokerIntegerType.setInterested_num(rs.getString("interested_num"));
-							brokerIntegerType.setView_shunxu(rs.getInt("view_shunxu"));
+							brokerIntegerType.setView_shunxu2(rs.getInt("view_shunxu"));
 							brokerIntegerType.setId(rs.getInt("id"));
 							brokerIntegerTypeList.add(brokerIntegerType);
 						}

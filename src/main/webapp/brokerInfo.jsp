@@ -35,31 +35,31 @@ body{
 <div class="area_bkg2" >经纪人信息</div>
 <form id="brokerinfo">
 <div class="area_left">
-<span class="area_span">经纪人编号</span><span><input type="text" id="broker_num" name="broker_num" class="area_input" value="${broker.broker_num} "></span>
-<input type="hidden" id="id" name="id" class="area_input" value="${broker.id} ">
+<span class="area_span">经纪人编号</span><span><input type="text" id="broker_num" name="broker_num" class="area_input" value="${broker.broker_num}"></span>
+<input type="hidden" id="id" name="id" class="area_input" value="${broker.id}">
 </div>
 <div class="area_right">
-<span class="area_span">经纪人姓名</span><span><input type="text" id="broker_name" name="broker_name" class="area_input" value="${broker.broker_name} "></span>
+<span class="area_span">经纪人姓名</span><span><input type="text" id="broker_name" name="broker_name" class="area_input" value="${broker.broker_name}"></span>
 </div>
 <div class="area_left">
-<span class="area_span">掌握语言</span><span><input type="text" id="broker_language" name="broker_language" class="area_input" value="${broker.broker_language} "></span>
+<span class="area_span">掌握语言</span><span><input type="text" id="broker_language" name="broker_language" class="area_input" value="${broker.broker_language}"></span>
 </div>
 <div class="area_right">
-<span class="area_span">所在地区</span><span><input type="text" id="broker_region" name="broker_region" class="area_input" value="${broker.broker_region} "></span>
+<span class="area_span">所在地区</span><span><input type="text" id="broker_region" name="broker_region" class="area_input" value="${broker.broker_region}"></span>
 </div>
 <div class="area_left">
-<span class="area_span">经纪人类型</span><span><input type="text" id="broker_type" name="broker_type" class="area_input" value="${broker.broker_type} "></span>
+<span class="area_span">经纪人类型</span><span><input type="text" id="broker_type" name="broker_type" class="area_input" value="${broker.broker_type}"></span>
 </div>
 <div class="area_right">
-<span class="area_span">经纪人资质</span><span><input type="text" id="broker_zizhi" name="broker_zizhi" class="area_input" value="${broker.broker_zizhi} "></span>
+<span class="area_span">经纪人资质</span><span><input type="text" id="broker_zizhi" name="broker_zizhi" class="area_input" value="${broker.broker_zizhi}"></span>
 </div>
 <div class="area_left">
-<span class="area_span ">经纪人经验</span><span><input type="text" id="broker_experience" name="broker_experience" class="area_input" value="${broker.broker_experience} "></span>
+<span class="area_span ">经纪人经验</span><span><input type="text" id="broker_experience" name="broker_experience" class="area_input" value="${broker.broker_experience}"></span>
 </div>
 </form>
 <div class="c-fix" style="padding-left:35px;">
 <span class="area_span">经纪人图片</span>
-<span style="float:right;"> <input type="file" name="broker_img" id="broker_img" value="${broker.broker_img} " style="width:677px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"/><a class="addBrokerImage" href="#">上传</a></span>
+<span style="float:right;"> <input type="file" name="broker_img" id="broker_img" value="${broker.broker_img}" style="width:677px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"/><a class="addBrokerImage" href="#">上传</a></span>
 </div>
 <!-- <div id="brokerImglist">
 
@@ -67,7 +67,7 @@ body{
 <div class="area_left c-fix">
 <span class="area_span">经纪人描述</span>
 </div>
-<div class="c-fix" style="margin-bottom:15px;"><textarea id="introduction"  value="${broker.introduction} " placeholder="经纪人描述" name="introduction"></textarea></div>
+<div class="c-fix" style="margin-bottom:15px;"><textarea id="introduction"  value="${broker.introduction}" placeholder="经纪人描述" name="introduction"></textarea></div>
 
 <!-- 
 <div class="area_bkg2 c-fix" id="shanchang">擅长类型</div>
@@ -116,8 +116,8 @@ body{
  <table>
  <tr>
 <td><span style="padding-right:10px">${status.index + 1}</span></td>
-<td><span style="padding-right:10px">${brokerServiceArea.broker_num}</span></td>
 <td><span style="padding-right:10px">${brokerServiceArea.area_code}</span></td>
+<td><span style="padding-right:10px">${brokerServiceArea.view_shunxu}</span></td>
 </tr>
 </table>
 </c:forEach>
@@ -141,8 +141,8 @@ body{
  <table>
  <tr>
 <td><span style="padding-right:10px">${status.index + 1}</span></td>
-<td><span style="padding-right:10px">${brokerType.broker_num}</span></td>
 <td><span style="padding-right:10px">${brokerType.interested_num}</span></td>
+<td><span style="padding-right:10px">${brokerType.view_shunxu2}</span></td>
 </tr>
 </table>
 </c:forEach>
@@ -207,7 +207,8 @@ $(function(){
 		});
 });
 
-var arealist=[];
+var arealist='${brokerServiceAreaListJson}';
+arealist=eval("("+arealist+")");
 var areaedit=100;
 var areaedititem;
 var areacount=0;
@@ -230,10 +231,11 @@ $(function(){
 		else{
 			//alert("edit");
 			areaedititem=DataDeal.formToJson(data= decodeURIComponent($("#area").serialize(),true));
+			//alert("aaa"+areaedititem);
 			areaedititem=eval("("+areaedititem+")");
 			$("#area input").each(function(){
 				$(this).val("");
-				});
+			});
 			areaedititem.id=arealist[areaedit].id;
 			arealist[areaedit]=areaedititem;
 			//alert($("#arealist").children().eq(areaedit));
@@ -261,7 +263,8 @@ $(function(){
 });
 
 
-var typelist=[];
+var typelist='${brokerIntegertypeListJson}';
+typelist=eval("("+typelist+")");
 var typeedit=100;
 var typeedititem;
 var typecount=0;
@@ -348,12 +351,15 @@ function saveBroker(){
 	broker.broker_img=filename;
 	//alert(CKEDITOR.instances.introduction.getData());
 	broker.introduction=CKEDITOR.instances.introduction.getData();
+	alert(JSON.stringify(broker));
+	alert(JSON.stringify(arealist));
+	alert(JSON.stringify(typelist));
     $.ajax({
 	    type: "POST",
  		async:false, 
 		dateType: "json",
-		data:{id:id,"broker":broker,"arealist":JSON.stringify(arealist),"typelist":JSON.stringify(typelist)},
-		url: "/EditBrokerInfo",
+		data:{"broker":JSON.stringify(broker),"arealist":JSON.stringify(arealist),"typelist":JSON.stringify(typelist)},
+		url: "/EditBrokerInfo?id="+id,
 		success:function(data){
 			alert("更新成功")
 		},
