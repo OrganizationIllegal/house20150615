@@ -70,6 +70,28 @@ body{
 </div>
 </div>
 <script type="text/javascript">
+$('#school_total').blur(function() {
+	if(isNaN($('#school_total').val())){
+		alert("请输入数字！");
+		$("#school_total").focus();
+		return false;
+	}
+	});
+$('#teacher_num').blur(function() {
+	if(isNaN($('#teacher_num').val())){
+		alert("请输入数字！");
+		$("#teacher_num").focus();
+		return false;
+	}
+	});
+$('#non_en_studen_trate').blur(function() {
+	if(isNaN($('#non_en_studen_trate').val())){
+		alert("请输入数字！");
+		$("#non_en_studen_trate").focus();
+		return false;
+	}
+	});
+
    function save(){
      var school_name=$("#school_name").val();
      var school_rank=$("#school_rank").val();

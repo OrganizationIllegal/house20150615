@@ -88,6 +88,11 @@ $(".uploadimg").click(function(){
 });
 
   function add(){
+		if($('#news_time').val()==""){
+			alert("请选择发布时间！");
+			$("#news_time").focus();
+			return false;
+		}
 	  //alert("add");
 	  var news_num=$("#news_num").val();
 	  var news_title=$("#news_title").val();

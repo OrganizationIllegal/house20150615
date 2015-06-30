@@ -138,7 +138,20 @@ CKEDITOR.replace( 'introduction' );
 
 
 <script type="text/javascript">
-
+$('#view_shunxu').blur(function() {
+	if(isNaN($('#view_shunxu').val())){
+		alert("请输入数字！");
+		$("#view_shunxu").focus();
+		return false;
+	}
+	});
+$('#view_shunxu2').blur(function() {
+	if(isNaN($('#view_shunxu2').val())){
+		alert("请输入数字！");
+		$("#view_shunxu2").focus();
+		return false;
+	}
+	});
 $(function(){
 	$.ajaxSetup({  
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
@@ -343,6 +356,7 @@ function saveBroker(){
 
 
 <script type="text/javascript">
+
 function add(){
 	  var broker_num=$("#broker_num").val();
 	  var broker_name=$("#broker_name").val();

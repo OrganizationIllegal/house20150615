@@ -185,17 +185,23 @@ body{
             
         },
         'click .remove': function (e, value, row, index) {
-            alert(row.id);
+            //alert(row.id);
             var id = row.id;
             
              $.ajax({
 		 	    type: "POST",
 		 		data: {id: id},
 		 		dateType: "json",
-		 		url: "/deleteRecomProject",
+		 		url: "/deleteDeveloper",
 		 		
 		 		success:function(data){
-		 			alert("删除成功")
+		 			data=eval("("+data+")");
+		 			if(data.flag==0){
+		 				alert("删除成功");
+		 			}else{
+		 				alert("删除失败");
+		 			}
+		 			
 		 		},
 		 		error:function(){
 		 			alert("error")

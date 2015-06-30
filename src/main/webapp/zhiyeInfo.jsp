@@ -91,6 +91,11 @@ $(".uploadimg").click(function(){
 </script>
 <script type="text/javascript">
   function add(){
+		if($('#fabu_time').val()==""){
+			alert("请选择发布时间！");
+			$("#fabu_time").focus();
+			return false;
+		}
 	  var id=$("#id").val();
 	  var zhiye_num=$("#zhiye_num").val();
 	  var title=$("#title").val();

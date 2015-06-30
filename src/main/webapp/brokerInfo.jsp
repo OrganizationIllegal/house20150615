@@ -235,6 +235,20 @@ $(function(){
 
 
 <script type="text/javascript">
+$('#view_shunxu').blur(function() {
+	if(isNaN($('#view_shunxu').val())){
+		alert("请输入数字！");
+		$("#view_shunxu").focus();
+		return false;
+	}
+	});
+$('#view_shunxu2').blur(function() {
+	if(isNaN($('#view_shunxu2').val())){
+		alert("请输入数字！");
+		$("#view_shunxu2").focus();
+		return false;
+	}
+	});
 $(function(){
 	$(".addBrokerImage").click(function(){
 		UpladFile("broker_img");

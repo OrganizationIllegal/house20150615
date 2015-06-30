@@ -110,10 +110,10 @@ body{
 <span class="area_span">面积单位</span><span><input type="text" id="mianji" name="mianji" class="area_input"></span>
 </div>
 <div class="area_left">
-<span class="area_span">最小单位</span><span><input type="text" id="minarea" name="minarea" class="area_input"></span>
+<span class="area_span">最小面积</span><span><input type="text" id="minarea" name="minarea" class="area_input"></span>
 </div>
 <div class="area_right">
-<span class="area_span">最大单位</span><span><input type="text" id="maxarea" name="maxarea" class="area_input"></span>
+<span class="area_span">最大面积</span><span><input type="text" id="maxarea" name="maxarea" class="area_input"></span>
 </div>
 <div class="area_left">
 <span class="area_span">单价（起价）</span><span><input type="text" id="danjia" name="danjia" class="area_input"></span>
@@ -352,7 +352,69 @@ body{
 </div>
 </div>
 <script type="text/javascript">
-
+$('#keshou').blur(function() {
+	if(isNaN($('#keshou').val())){
+		alert("请输入数字！");
+		$("#keshou").focus();
+		return false;
+	}
+	});
+$('#walk_num').blur(function() {
+	if(isNaN($('#walk_num').val())){
+		alert("请输入数字！");
+		$("#walk_num").focus();
+		return false;
+	}
+	});
+$('#tuijian').blur(function() {
+	if(isNaN($('#tuijian').val())){
+		alert("请输入数字！");
+		$("#tuijian").focus();
+		return false;
+	}
+	});
+$('#minarea').blur(function() {
+	if(isNaN($('#minarea').val())){
+		alert("请输入数字！");
+		$("#minarea").focus();
+		return false;
+	}
+	});
+$('#maxarea').blur(function() {
+	if(isNaN($('#maxarea').val())){
+		alert("请输入数字！");
+		$("#maxarea").focus();
+		return false;
+	}
+	});
+$('#room_num').blur(function() {
+	if(isNaN($('#room_num').val())){
+		alert("请输入数字！");
+		$("#room_num").focus();
+		return false;
+	}
+	});
+$('#wc_num').blur(function() {
+	if(isNaN($('#wc_num').val())){
+		alert("请输入数字！");
+		$("#wc_num").focus();
+		return false;
+	}
+	});
+$('#holdcostprice').blur(function() {
+	if(isNaN($('#holdcostprice').val())){
+		alert("请输入数字！");
+		$("#holdcostprice").focus();
+		return false;
+	}
+	});
+$('#houseTaxprice').blur(function() {
+	if(isNaN($('#houseTaxprice').val())){
+		alert("请输入数字！");
+		$("#houseTaxprice").focus();
+		return false;
+	}
+	});
 $(function(){
 	$.ajaxSetup({  
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  

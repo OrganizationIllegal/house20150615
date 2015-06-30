@@ -185,14 +185,14 @@ body{
             
         },
         'click .remove': function (e, value, row, index) {
-            alert(row.id);
+            alert("wenruijie"+row.id);
             var id = row.id;
             
              $.ajax({
 		 	    type: "POST",
 		 		data: {id: id},
 		 		dateType: "json",
-		 		url: "/deleteRecomProject",
+		 		url: "/deleteProject",
 		 		
 		 		success:function(data){
 		 			alert("删除成功")

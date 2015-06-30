@@ -235,6 +235,196 @@ public class ProjectInputDao extends BaseDao {
 		}
 		return jsonArray;
 	} 
+	//项目删除
+			public int deleteProjectById(int id,String proNum){
+				boolean flag=true;
+				PreparedStatement pstmt=null;
+				try {
+					con.setAutoCommit(false);
+					//删除项目
+					String sql1 = "delete from house_project where id=?";
+					pstmt = con.prepareStatement(sql1);
+					pstmt.setInt(1, id);
+					int result1=pstmt.executeUpdate();
+					//删除户型及价格
+					String sql2="delete from house_info where project_num=?";
+					pstmt = con.prepareStatement(sql2);
+					pstmt.setString(1, proNum);
+					int result2=pstmt.executeUpdate();
+					//删除项目配套
+					String sql3="delete from project_peitao_image where project_num=?";
+					pstmt = con.prepareStatement(sql3);
+					pstmt.setString(1, proNum);
+					int result3=pstmt.executeUpdate();
+					//删除附近配套
+					String sql4="delete from near_peitao where project_num=?";
+					pstmt = con.prepareStatement(sql4);
+					pstmt.setString(1, proNum);
+					int result4=pstmt.executeUpdate();
+					//删除附近学校
+					String sql5="delete from near_school where project_num=?";
+					pstmt = con.prepareStatement(sql5);
+					pstmt.setString(1, proNum);
+					int result5=pstmt.executeUpdate();
+					//删除持有成本
+					String sql6="delete from holding_finace where project_num=?";
+					pstmt = con.prepareStatement(sql6);
+					pstmt.setString(1, proNum);
+					int result6=pstmt.executeUpdate();
+					//删除购房税费
+					String sql7="delete from house_tax where project_num=?";
+					pstmt = con.prepareStatement(sql7);
+					pstmt.setString(1, proNum);
+					int result7=pstmt.executeUpdate();
+					con.commit();
+					con.setAutoCommit(true);
+					return 1;
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					try {
+						con.rollback();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					return -1;
+				}
+			}
+			//学校信息删除
+			public int deleteSchool(int id){
+				boolean flag=true;
+				PreparedStatement pstmt=null;
+				try {
+					con.setAutoCommit(false);
+					//删除项目
+					String sql1 = "delete from school_info where id=?";
+					pstmt = con.prepareStatement(sql1);
+					pstmt.setInt(1, id);
+					int result1=pstmt.executeUpdate();
+					con.commit();
+					con.setAutoCommit(true);
+					return 1;
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					try {
+						con.rollback();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					return -1;
+				}
+			}
+			//开发商信息删除
+			public int deleteDeveloper(int id){
+				boolean flag=true;
+				PreparedStatement pstmt=null;
+				try {
+					con.setAutoCommit(false);
+					//删除项目
+					String sql1 = "delete from developer_info where id=?";
+					pstmt = con.prepareStatement(sql1);
+					pstmt.setInt(1, id);
+					int result1=pstmt.executeUpdate();
+					con.commit();
+					con.setAutoCommit(true);
+					return 1;
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					try {
+						con.rollback();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					return -1;
+				}
+			}
+			//新闻博客删除
+			public int deleteNewsBoke(int id){
+				boolean flag=true;
+				PreparedStatement pstmt=null;
+				try {
+					con.setAutoCommit(false);
+					String sql1 = "delete from news_boke where id=?";
+					pstmt = con.prepareStatement(sql1);
+					pstmt.setInt(1, id);
+					int result1=pstmt.executeUpdate();
+					con.commit();
+					con.setAutoCommit(true);
+					return 1;
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					try {
+						con.rollback();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					return -1;
+				}
+			}
+			//置业指导删除
+			public int deleteZhiye(int id){
+				boolean flag=true;
+				PreparedStatement pstmt=null;
+				try {
+					con.setAutoCommit(false);
+					String sql1 = "delete from zhiye_zhidao where id=?";
+					pstmt = con.prepareStatement(sql1);
+					pstmt.setInt(1, id);
+					int result1=pstmt.executeUpdate();
+					con.commit();
+					con.setAutoCommit(true);
+					return 1;
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					try {
+						con.rollback();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					return -1;
+				}
+			}
+			//经纪人删除
+			public int deleteBroker(int id,String brokerNum){
+				boolean flag=true;
+				PreparedStatement pstmt=null;
+				try {
+					con.setAutoCommit(false);
+					//删除经纪人信息
+					String sql1 = "delete from broker_info where id=?";
+					pstmt = con.prepareStatement(sql1);
+					pstmt.setInt(1, id);
+					int result1=pstmt.executeUpdate();
+					//删除经纪人服务区域
+					String sql2 = "delete from broker_service_area where broker_num=?";
+					pstmt = con.prepareStatement(sql2);
+					pstmt.setString(1, brokerNum);
+					int result2=pstmt.executeUpdate();
+					//删除经纪人擅长类型
+					String sql3 = "delete from broker_interested_type where broker_num=?";
+					pstmt = con.prepareStatement(sql3);
+					pstmt.setString(1, brokerNum);
+					int result3=pstmt.executeUpdate();
+					
+					con.commit();
+					con.setAutoCommit(true);
+					return 1;
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					try {
+						con.rollback();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					return -1;
+				}
+			}
+			
 	//学校列表
 		public JSONArray selectSchoolList(){
 			JSONArray jsonArray=new JSONArray();

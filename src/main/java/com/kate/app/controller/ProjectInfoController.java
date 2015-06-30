@@ -516,6 +516,122 @@ public class ProjectInfoController {
 				e.printStackTrace();
 		}
 	}
+	@RequestMapping({ "/deleteProject" })
+	public void DeleteDeveloperInfo(HttpServletRequest req,HttpServletResponse resp){
+		JSONObject json = new JSONObject();
+		int id=Integer.parseInt(req.getParameter("id"));
+		HouseProject houseProject=projectInputDao.selectProjectInfo(id);
+		String proNum=houseProject.getProject_num();
+	    int flagbol=projectInputDao.deleteProjectById(id,proNum);
+	    if(flagbol==1){
+	    	json.put("flag", "0");
+		}
+	    else{
+	    	json.put("flag", "1");
+	    }
+		try{
+			 PrintWriter out = resp.getWriter();
+			 out.print(json);
+			}catch(Exception e){
+				e.printStackTrace();
+		}
+	}
+	//删除学校信息
+	@RequestMapping({ "/deleteSchool" })
+	public void DeleteSchool(HttpServletRequest req,HttpServletResponse resp){
+		JSONObject json = new JSONObject();
+		int id=Integer.parseInt(req.getParameter("id"));
+	    int flagbol=projectInputDao.deleteSchool(id);
+	    if(flagbol==1){
+	    	json.put("flag", "0");
+		}
+	    else{
+	    	json.put("flag", "1");
+	    }
+		try{
+			 PrintWriter out = resp.getWriter();
+			 out.print(json);
+			}catch(Exception e){
+				e.printStackTrace();
+		}
+	}
+	//删除开发商信息
+		@RequestMapping({ "/deleteDeveloper" })
+		public void DeleteDeveloper(HttpServletRequest req,HttpServletResponse resp){
+			JSONObject json = new JSONObject();
+			int id=Integer.parseInt(req.getParameter("id"));
+		    int flagbol=projectInputDao.deleteDeveloper(id);
+		    if(flagbol==1){
+		    	json.put("flag", "0");
+			}
+		    else{
+		    	json.put("flag", "1");
+		    }
+			try{
+				 PrintWriter out = resp.getWriter();
+				 out.print(json);
+				}catch(Exception e){
+					e.printStackTrace();
+			}
+		}
+		//删除置业指导
+				@RequestMapping({ "/deleteZhiye" })
+				public void DeleteZhiye(HttpServletRequest req,HttpServletResponse resp){
+					JSONObject json = new JSONObject();
+					int id=Integer.parseInt(req.getParameter("id"));
+				    int flagbol=projectInputDao.deleteZhiye(id);
+				    if(flagbol==1){
+				    	json.put("flag", "0");
+					}
+				    else{
+				    	json.put("flag", "1");
+				    }
+					try{
+						 PrintWriter out = resp.getWriter();
+						 out.print(json);
+						}catch(Exception e){
+							e.printStackTrace();
+					}
+				}
+				//删除经纪人
+				@RequestMapping({ "/deleteBroker" })
+				public void DeleteBroker(HttpServletRequest req,HttpServletResponse resp){
+					JSONObject json = new JSONObject();
+					int id=Integer.parseInt(req.getParameter("id"));
+					String brokerNum=projectInputDao.findBrokerNumById(id);
+				    int flagbol=projectInputDao.deleteBroker(id, brokerNum);
+				    if(flagbol==1){
+				    	json.put("flag", "0");
+					}
+				    else{
+				    	json.put("flag", "1");
+				    }
+					try{
+						 PrintWriter out = resp.getWriter();
+						 out.print(json);
+						}catch(Exception e){
+							e.printStackTrace();
+					}
+				}
+				//删除新闻博客
+				@RequestMapping({ "/deleteNewsBoke" })
+				public void DeleteNewsBoke(HttpServletRequest req,HttpServletResponse resp){
+					JSONObject json = new JSONObject();
+					int id=Integer.parseInt(req.getParameter("id"));
+				    int flagbol=projectInputDao.deleteNewsBoke(id);
+				    if(flagbol==1){
+				    	json.put("flag", "0");
+					}
+				    else{
+				    	json.put("flag", "1");
+				    }
+					try{
+						 PrintWriter out = resp.getWriter();
+						 out.print(json);
+						}catch(Exception e){
+							e.printStackTrace();
+					}
+				}
 	//编辑开发商信息
 	@RequestMapping({ "/EditDeveloperInfo" })
 	public void UpdateDeveloperInfo(HttpServletRequest req,HttpServletResponse resp){
