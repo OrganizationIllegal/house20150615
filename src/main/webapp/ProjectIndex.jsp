@@ -237,10 +237,10 @@ function popInfo(){
                 <div class="top_button off"></div>
                 <div class="small_right_limit">
                     <ul style="margin-top: 0px;">
-                    <li><img src="http://101.200.174.253:9090/all/The Atrium_Project_01.jpg" width="210" height="140"/></li>
+                    <li style="margin-top:6px"><img src="http://101.200.174.253:9090/all/The Atrium_Project_01.jpg" width="210" height="140"/></li>
 			            <c:forEach var="item"  items="${imageList}"   varStatus="status">
 			            <c:if test="${status.index<2}">
-			            	<li style="padding-top:12px"><img src="http://101.200.174.253:9090/all/${item.image_name}" width="210" height="140"/></li>
+			            	<li style="margin-top:6px"><img src="http://101.200.174.253:9090/all/${item.image_name}" width="210" height="140"/></li>
 			            </c:if>
                     		
                     	</c:forEach>
@@ -251,7 +251,7 @@ function popInfo(){
                     	</c:forEach> --%>
                        
                     </ul>
-                    <div class="this_ad" style="top:0px;"><img style="border:blue 2px solid;width:211px;height:140px;margin-left:9px;"/></div>
+                    <div class="this_ad" style="top:0px;"><img style="border:blue 2px solid;width:211px;height:146px;margin-left:9px;margin-top:6px;"/></div>
                 </div>
                 <div class="bottom_button off"></div>
             </div>
@@ -438,12 +438,12 @@ function popInfo(){
                     <ul style="margin-top: 0px;">
                     	<c:forEach items="${ProjectPeitaoImage}" var="item" varStatus="status">
                     	<c:if test="${status.index<3 }">
-                    		<li><img src="http://101.200.174.253:9090/all/${item.image_name}" width="210" height="140"/></li>
+                    		<li style="margin-top:8px;"><img src="http://101.200.174.253:9090/all/${item.image_name}" width="210" height="140"/></li>
                     	</c:if>
                     </c:forEach>
                     	
                     </ul>
-                    <div class="this_ad_p" style="top:0px;"><img style="border:blue 2px solid;width:211px;height:140px;margin-left:9px;"/></div>
+                    <div class="this_ad_p" style="top:0px;"><img style="border:blue 2px solid;width:211px;height:151px;margin-left:9px;margin-top:8px;"/></div>
                 </div>
                 <div class="bottom_button off"></div>
             </div>

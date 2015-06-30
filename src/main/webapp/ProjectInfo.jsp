@@ -464,7 +464,8 @@ $(function(){
 
 </script>
 <script type="text/javascript">
-var peitaolist=[];
+var peitaolist='${projectPeitaoListJson}';
+peitaolist=eval("("+peitaolist+")"); 
 var isedit=100;
 var edititem;
 var peitaocount=0;
@@ -619,7 +620,8 @@ $(function(){
 	
 });
 
-var fujinlist=[];
+var fujinlist='${fujinPeitaoListJson}';
+fujinlist=eval("("+fujinlist+")");
 var fujinedit=100;
 var fujinedititem;
 var fujincount=0;
@@ -709,7 +711,8 @@ $(function(){
 	
 });
 
-var schoollist=[];
+var schoollist='${fujinSchoolListJson}';
+schoollist=eval("("+schoollist+")");
 var schooledit=100;
 var schooledititem;
 var schoolcount=0;
@@ -796,7 +799,8 @@ $(function(){
 	
 });
 
-var holdingcostlist=[];
+var holdingcostlist='${holdCostListJson}';
+holdingcostlist=eval("("+holdingcostlist+")");
 var holdingcostedit=100;
 var holdingcostedititem;
 var holdingcostcount=0;
@@ -891,7 +895,8 @@ $(function(){
 
 
 
-var housetaxformlist=[];
+var housetaxformlist='${houseTaxList}';
+housetaxformlist=eval("("+housetaxformlist+")");
 var housetaxformedit=100;
 var housetaxformedititem;
 var housetaxformcount=0;

@@ -384,10 +384,10 @@ public class ProjectInfoController {
 					JSONObject object = (JSONObject)areaArray.get(i); //对于每个json对象
 					ServiceArea e = (ServiceArea) JSONToObj(object.toString(), ServiceArea.class);
 				    if(e.getId()==0){
-				    	serviceArealist2.add(e);//用于编辑
+				    	serviceArealist2.add(e);//用于添加
 				    }
 				    else{
-				    	serviceArealist.add(e);//用于添加
+				    	serviceArealist.add(e);//用于编辑
 				    }
 				}
 			//经纪人擅长类型
@@ -399,21 +399,21 @@ public class ProjectInfoController {
 					JSONObject object = (JSONObject)typeArray.get(i); //对于每个json对象
 					BrokerType e = (BrokerType) JSONToObj(object.toString(), BrokerType.class);
 				    if(e.getId()==0){
-				    	brokerTypelist2.add(e);//用于编辑
+				    	brokerTypelist2.add(e);//用于添加
 				    }
 				    else{
-				    	brokerTypelist.add(e);//用于添加
+				    	brokerTypelist.add(e);//用于编辑
 				    }
 				}
 			//更新
-		 /*   try {
-				int result=projectInputDao.EditProject(id, projectlist,houseInfolist,houseInfolist2,fujinpeitaoList,fujinpeitaoList2,fujinSchoolList,fujinSchoolList2,holdCostList,holdCostList2,houseTaxList,houseTaxList2);
+		  try {
+				int result=projectInputDao.UpdateBroker(id, broker, serviceArealist,serviceArealist2, brokerTypelist,brokerTypelist2);
 				System.out.println("result::"+result);
-		    } catch (SQLException e1) {
+		    } catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			*/
+			
 		}
 		
 	
@@ -636,18 +636,23 @@ public class ProjectInfoController {
 		//根据项目编号获取项目配套
 		List <ProjectPeiTao> projectPeiTaoList =projectInputDao.getProjectpeiTaoByProNum(pronum);
 		req.setAttribute("projectPeitaoList", projectPeiTaoList);
+		req.setAttribute("projectPeitaoListJson", ConvertJson.list2json(projectPeiTaoList));
 		//根据项目编号获取附近配套
 		List<FujinPeiTao> fujinPeitaoList=projectInputDao.getFujinPeiTaoByProNum(pronum);
 		req.setAttribute("fujinPeitaoList",fujinPeitaoList );
+		req.setAttribute("fujinPeitaoListJson", ConvertJson.list2json(fujinPeitaoList));
 		//根据项目编号获取附近学校
 		List<FujinSchool> fujinSchoolList=projectInputDao.getFujinSchoolByProNum(pronum);
 		req.setAttribute("fujinSchoolList",fujinSchoolList );
+		req.setAttribute("fujinSchoolListJson", ConvertJson.list2json(fujinSchoolList));
 		//根据项目编号获取持有成本
 		List<HoldCost> holdCostList=projectInputDao.getHoldCostByProNum(pronum);
 		req.setAttribute("holdCostList",holdCostList );
+		req.setAttribute("holdCostListJson", ConvertJson.list2json(holdCostList));
 		//根据项目编号获取购房税费
 		List<HouseTax> houseTaxList=projectInputDao.getHouseTaxByProNum(pronum);
 		req.setAttribute("houseTaxList",houseTaxList );
+		req.setAttribute("houseTaxListJson", ConvertJson.list2json(houseTaxList));
 		return "/ProjectInfo.jsp";
 	}
 	//根据id取学校信息
@@ -701,11 +706,13 @@ public class ProjectInfoController {
 					//获取经纪人编号
 					String broker_num=projectInputDao.findBrokerNumById(id);
 					//获取经纪人服务区域
-					List<BrokerServiceArea> brokerServiceAreaList=projectInputDao.findBrokerAreaList(broker_num);
+					List<ServiceArea> brokerServiceAreaList=projectInputDao.findBrokerAreaList(broker_num);
 					req.setAttribute("brokerServiceAreaList", brokerServiceAreaList);
+					req.setAttribute("brokerServiceAreaListJson", ConvertJson.list2json(brokerServiceAreaList));
 					//获取经纪人擅长类型
-					List<BrokerIntegerType> brokerIntegertypeList=projectInputDao.findBrokerTypeList(broker_num);
+					List<BrokerType> brokerIntegertypeList=projectInputDao.findBrokerTypeList(broker_num);
 					req.setAttribute("brokerIntegertypeList", brokerIntegertypeList);
+					req.setAttribute("brokerIntegertypeListJson", ConvertJson.list2json(brokerIntegertypeList));
 					return "/brokerInfo.jsp";
 				}
 	
