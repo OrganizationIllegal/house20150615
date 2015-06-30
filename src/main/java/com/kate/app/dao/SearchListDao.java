@@ -564,9 +564,9 @@ public class SearchListDao extends BaseDao {
 				projectInfo.setProject_min_price(rs.getString("project_min_price"));
 				projectInfo.setArea_id(rs.getInt("area_id"));
 				projectInfo.setMianji(rs.getString("mianji"));
-				projectInfo.setRecommend_id_1(rs.getInt("recommend_id_1"));
-				projectInfo.setRecommend_id_2(rs.getInt("recommend_id_2"));
-				projectInfo.setRecommend_id_3(rs.getInt("recommend_id_3"));
+				projectInfo.setRecommend_id_1(rs.getString("recommend_id_1"));
+				projectInfo.setRecommend_id_2(rs.getString("recommend_id_2"));
+				projectInfo.setRecommend_id_3(rs.getString("recommend_id_3"));
 				projectInfo.setWuyefei(rs.getString("wuyefei"));
 				houseProjectList.add(projectInfo);
 
@@ -1369,9 +1369,9 @@ public class SearchListDao extends BaseDao {
 				projectInfo.setProject_min_price(rs.getString("project_min_price"));
 				projectInfo.setArea_id(rs.getInt("area_id"));
 				projectInfo.setMianji(rs.getString("mianji"));
-				projectInfo.setRecommend_id_1(rs.getInt("recommend_id_1"));
-				projectInfo.setRecommend_id_2(rs.getInt("recommend_id_2"));
-				projectInfo.setRecommend_id_3(rs.getInt("recommend_id_3"));
+				projectInfo.setRecommend_id_1(rs.getString("recommend_id_1"));
+				projectInfo.setRecommend_id_2(rs.getString("recommend_id_2"));
+				projectInfo.setRecommend_id_3(rs.getString("recommend_id_3"));
 				projectInfo.setWuyefei(rs.getString("wuyefei"));
 				houseProjectList.add(projectInfo);
 
@@ -1421,9 +1421,9 @@ public class SearchListDao extends BaseDao {
 				projectInfo.setProject_min_price(rs.getString("project_min_price"));
 				projectInfo.setArea_id(rs.getInt("area_id"));
 				projectInfo.setMianji(rs.getString("mianji"));
-				projectInfo.setRecommend_id_1(rs.getInt("recommend_id_1"));
-				projectInfo.setRecommend_id_2(rs.getInt("recommend_id_2"));
-				projectInfo.setRecommend_id_3(rs.getInt("recommend_id_3"));
+				projectInfo.setRecommend_id_1(rs.getString("recommend_id_1"));
+				projectInfo.setRecommend_id_2(rs.getString("recommend_id_2"));
+				projectInfo.setRecommend_id_3(rs.getString("recommend_id_3"));
 				projectInfo.setWuyefei(rs.getString("wuyefei"));
 				houseProjectList.add(projectInfo);
 

@@ -11,7 +11,8 @@ public class AreaZujin {
 	private int house_project_id;
 	private String zujin_datasource;
 	private Timestamp zujin_date;
-	
+	private int area_id;
+	private int view_shunxu;
 	
 	
 	public String getZujin_datasource() {
@@ -32,8 +33,7 @@ public class AreaZujin {
 	public void setHouse_project_id(int house_project_id) {
 		this.house_project_id = house_project_id;
 	}
-	private int area_id;
-	private int view_shunxu;
+	
 	public int getId() {
 		return id;
 	}

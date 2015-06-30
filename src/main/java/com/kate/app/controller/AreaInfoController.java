@@ -22,6 +22,7 @@ import com.kate.app.dao.AreaInputDao;
 import com.kate.app.dao.BaseDao;
 import com.kate.app.dao.NewsBokeDao;
 import com.kate.app.dao.ZhiYeDao;
+import com.kate.app.model.AreaInfo;
 import com.kate.app.model.AreaMiddle2;
 import com.kate.app.model.AreaPeopleInfo2;
 import com.kate.app.model.AreaTeDian2;
@@ -29,7 +30,7 @@ import com.kate.app.model.AreaZhikong2;
 import com.kate.app.model.AreaZujin2;
 import com.kate.app.model.BrokerInfo;
 import com.kate.app.model.HouseProject;
-import com.kate.app.model.MiddlePrice;
+import com.kate.app.model.InvestmentDataBackEnd;
 import com.kate.app.model.MiddlePrice2;
 import com.kate.app.model.NewsBoke;
 import com.kate.app.model.ZhiYeZhiDao;
@@ -47,6 +48,19 @@ public class AreaInfoController extends BaseDao {
 	private ZhiYeDao zhiYeDao;
 	@Autowired
 	private AjaxDao ajaxDao;
+	//
+	@RequestMapping({"/AreaEdit"})
+	public String areaEidt(HttpServletRequest req,HttpServletResponse resp){
+		String id=req.getParameter("id");
+		AreaInfo ai=new AreaInfo();
+		ai=areaInfoDao.getAreaInfoBackEnd(Integer.parseInt(id));
+		InvestmentDataBackEnd invest=new InvestmentDataBackEnd();
+		getBrokerName(req,resp);
+		getProjectName(req,resp);
+		getNewsList(req,resp);
+		return "/areaEdit.jsp";
+	}
+	
 	
 	//ajax 鑾峰彇鎸囧畾id鍊煎拰type绫诲瀷鐨勭疆涓氭寚瀵兼垨鑰呮柊闂诲崥瀹㈢殑淇℃伅
 	@RequestMapping({ "/getnewsinfo" })    

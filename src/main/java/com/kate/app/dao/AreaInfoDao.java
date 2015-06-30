@@ -489,6 +489,29 @@ public class AreaInfoDao extends BaseDao {
         }
 	}
 	
+	//Area编辑模块的查询AreaInfo信息
+	public AreaInfo getAreaInfoBackEnd(int id){
+		AreaInfo areaInfo = new AreaInfo();
+		try {
+			String sql = " SELECT * from area_info where id=?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()){
+				areaInfo.setArea_city(rs.getString("area_city"));
+				areaInfo.setArea_name(rs.getString("area_name"));
+				areaInfo.setArea_nation(rs.getString("area_nation"));
+				areaInfo.setArea_num(rs.getString("area_num"));
+				areaInfo.setArea_zhou(rs.getString("area_zhou"));
+				areaInfo.setHouse_pro_id(rs.getInt("area_postcode"));
+				areaInfo.setId(id);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return areaInfo;
+	}
 	
 	
 	public AreaInfo getAreaInfo(int id){
