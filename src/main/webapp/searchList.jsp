@@ -223,6 +223,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 });
                 //翻页调用   
                 function PageCallback(index, jq) {   
+                	/* alert(index+"ffff") */
                     InitTable(index);  
                 }  
                 //请求数据   
@@ -295,6 +296,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 				}   
                 				return false;
 		   						  function InitTable2(pageIndex2) { 
+		   							
 						                	pageIndex2 = pageIndex2+1;   
 						                	var count = 0;   
 						                    $.ajax({   
@@ -336,7 +338,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                    				   
                    					 InitTable3(index);  
                 				}  
-		   						  function InitTable3(pageIndex) { 
+		   						  function InitTable3(pageIndex3) { 
 						                	pageIndex3 = pageIndex3+1;   
 						                	var count = 0; 
 						                	       
@@ -457,11 +459,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	//});
 	
 	$(".prev").click(function(){
-		//alert("前一页");
+		alert("前一页");
 	});
 
 	$(".next").click(function(){
-		//alert("后一页");
+		alert("后一页");
 	});
 	
 	

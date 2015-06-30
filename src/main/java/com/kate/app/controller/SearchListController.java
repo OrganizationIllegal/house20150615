@@ -28,27 +28,27 @@ public class SearchListController {
 	@Autowired
 	private UserDao userDao;
 	
-	//锟斤拷锟斤拷锟斤拷锟斤拷锟叫憋拷锟斤拷示
+	//閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熷彨鎲嬫嫹閿熸枻鎷风ず
 	@RequestMapping({"/SearchList"})
 	public String search_controller(HttpServletRequest req, HttpServletResponse resp){
 		//List<SearchList> searchList=searchListDao.listSearchList().subList(0, 5);
 		//req.setAttribute("searchList",searchList);
 		return "/searchList.jsp";
 	}
-	//左侧搜索
+	//宸︿晶鎼滅储
 	@RequestMapping({"/FilterList"})
 	public void filter_controller(HttpServletRequest req, HttpServletResponse resp){
 		int projecttypeNum=Integer.parseInt(req.getParameter("projecttype"));
 		String projecttype=null;
 		switch(projecttypeNum){
 			case 1:
-				projecttype="公寓";
+				projecttype="鍏瘬";
 				break;
 			case 2:
-				projecttype="别墅";
+				projecttype="鍒";
 				break;
 			case 3:
-				projecttype="联排别墅";
+				projecttype="鑱旀帓鍒";
 				break;
 				
 		}
@@ -74,10 +74,10 @@ public class SearchListController {
 		String xianfang=req.getParameter("xianfang");
 		String traffic=req.getParameter("traffic");
 		
-		String pageIndex = req.getParameter("pageIndex");   //锟斤拷前页锟斤拷
+		String pageIndex = req.getParameter("pageIndex");   //閿熸枻鎷峰墠椤甸敓鏂ゆ嫹
 		int pageNum  = pageIndex==null? 0 :Integer.parseInt(pageIndex);
 		
-		String pageSize_str  = req.getParameter("pageSize");  //每页锟斤拷锟斤拷锟斤拷锟�
+		String pageSize_str  = req.getParameter("pageSize");  //姣忛〉閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓锟�
 		int pageSize  = pageSize_str==null? 0 :Integer.parseInt(pageSize_str);
 		
 		List<SearchList> searchList=searchListDao.filterSearchList(projecttype, zongjiamin, zongjiamax,danjiamin,danjiamax,xinaipan,remen,youxiu,center,baozu,huaren,zuixin,daxue,xianfang,traffic);
@@ -87,10 +87,10 @@ public class SearchListController {
 		
 		int start = (pageNum-1) * pageSize;
 		int pageStart = start == pageEnd ? 0 : start;
-		//得到当前用户的id
+		//寰楀埌褰撳墠鐢ㄦ埛鐨刬d
 		String username = (String)req.getSession().getAttribute("username");
 		int userid=userDao.findUserByName(username);
-		//得到当前用户收藏的ProNum的集合
+		//寰楀埌褰撳墠鐢ㄦ埛鏀惰棌鐨凱roNum鐨勯泦鍚�
 		Set<String> proNumList=searchListDao.proNumList(userid);
 		
 		JSONObject json = new JSONObject();
@@ -124,12 +124,18 @@ public class SearchListController {
 				obj.put("maidi", item.getMaidi());
 				obj.put("project_price_int_qi", item.getProject_price_int_qi());
 				obj.put("project_desc", item.getProject_desc());
-				obj.put("project_lan_cn", item.getProject_lan_cn());
-				//循环遍历当前用户收藏的项目，若有，将isCollected置为1,表示当前用户收藏;若无，将isCollected置为0，表示当前用户没有收藏
+				String lan = item.getProject_lan_cn();
+				String lan_en = item.getProject_lan_en();
+				
+				if(null == lan || "".equals(lan)){
+					lan = lan_en;
+				}
+				obj.put("project_lan_cn", lan);
+				//寰幆閬嶅巻褰撳墠鐢ㄦ埛鏀惰棌鐨勯」鐩紝鑻ユ湁锛屽皢isCollected缃负1,琛ㄧず褰撳墠鐢ㄦ埛鏀惰棌;鑻ユ棤锛屽皢isCollected缃负0锛岃〃绀哄綋鍓嶇敤鎴锋病鏈夋敹钘�
 				String pronum=item.getProject_num();
-				int flag=0;//没有收藏
+				int flag=0;//娌℃湁鏀惰棌
 				if(proNumList.contains(pronum)){
-					flag=1;//收藏
+					flag=1;//鏀惰棌
 				}
 				obj.put("isCollected", flag);
 				array.add(obj);
@@ -154,13 +160,13 @@ public class SearchListController {
 	
 	
 	
-	//锟斤拷锟斤拷锟斤拷锟斤拷锟叫憋拷锟斤拷示
+	//閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熷彨鎲嬫嫹閿熸枻鎷风ず
 		@RequestMapping({"/SearchListPage"})
 		public void SearchListPage(HttpServletRequest req, HttpServletResponse resp){
-			String pageIndex = req.getParameter("pageIndex");   //锟斤拷前页锟斤拷
+			String pageIndex = req.getParameter("pageIndex");   //閿熸枻鎷峰墠椤甸敓鏂ゆ嫹
 			int pageNum  = pageIndex==null? 0 :Integer.parseInt(pageIndex);
 			
-			String pageSize_str  = req.getParameter("pageSize");  //每页锟斤拷锟斤拷锟斤拷锟�
+			String pageSize_str  = req.getParameter("pageSize");  //姣忛〉閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓锟�
 			int pageSize  = pageSize_str==null? 0 :Integer.parseInt(pageSize_str);
 			
 			List<SearchList> searchList=searchListDao.listSearchList();
@@ -171,10 +177,10 @@ public class SearchListController {
 			
 			int start = (pageNum-1) * pageSize;
 			int pageStart = start == pageEnd ? 0 : start;
-			//得到当前用户的id
+			//寰楀埌褰撳墠鐢ㄦ埛鐨刬d
 			String username = (String)req.getSession().getAttribute("username");
 			int userid=userDao.findUserByName(username);
-			//得到当前用户收藏的ProNum的集合
+			//寰楀埌褰撳墠鐢ㄦ埛鏀惰棌鐨凱roNum鐨勯泦鍚�
 			Set<String> proNumList=searchListDao.proNumList(userid);
 			
 			JSONObject json = new JSONObject();
@@ -187,9 +193,9 @@ public class SearchListController {
 					obj.put("Fanxian", item.getFanxian());
 					obj.put("Keshou", item.getKeshou());
 					obj.put("MaxArea", item.getMaxArea());
-					obj.put("MaxPrice", item.getMaxPrice());
+					obj.put("MaxPrice", item.getMaxPrice()==null?"":item.getMaxPrice());
 					obj.put("MinArea", item.getMinArea());
-					obj.put("MinPrice", item.getMinPrice());
+					obj.put("MinPrice", item.getMinPrice()==null?"":item.getMinPrice());
 					obj.put("Project_img", item.getProject_img());
 					obj.put("Project_name", item.getProject_name());
 					obj.put("project_num", item.getProject_num());
@@ -208,12 +214,17 @@ public class SearchListController {
 					obj.put("maidi", item.getMaidi());
 					obj.put("project_price_int_qi", item.getProject_price_int_qi());
 					obj.put("project_desc", item.getProject_desc());
-					obj.put("project_lan_cn", item.getProject_lan_cn());
-					//循环遍历当前用户收藏的项目，若有，将isCollected置为1,表示当前用户收藏;若无，将isCollected置为0，表示当前用户没有收藏
+					String lan = item.getProject_lan_cn();
+					String lan_en = item.getProject_lan_en();
+					if(null == lan || "".equals(lan)){
+						lan = lan_en;
+					}
+					obj.put("project_lan_cn", lan);
+					//寰幆閬嶅巻褰撳墠鐢ㄦ埛鏀惰棌鐨勯」鐩紝鑻ユ湁锛屽皢isCollected缃负1,琛ㄧず褰撳墠鐢ㄦ埛鏀惰棌;鑻ユ棤锛屽皢isCollected缃负0锛岃〃绀哄綋鍓嶇敤鎴锋病鏈夋敹钘�
 					String pronum=item.getProject_num();
-					int flag=0;//没有收藏
+					int flag=0;//娌℃湁鏀惰棌
 					if(proNumList.contains(pronum)){
-						flag=1;//收藏
+						flag=1;//鏀惰棌
 					}
 					obj.put("isCollected", flag);
 					array.add(obj);
@@ -233,14 +244,14 @@ public class SearchListController {
 				e.printStackTrace();
 			}
 		}
-		//按推荐度排序
+		//鎸夋帹鑽愬害鎺掑簭
 		@RequestMapping({"/OrderPage"})
 		public void OrderListPage(HttpServletRequest req, HttpServletResponse resp){
 			//String orderBy=req.getParameter("orderBy");
-			String pageIndex = req.getParameter("pageIndex");   //锟斤拷前页锟斤拷
+			String pageIndex = req.getParameter("pageIndex");   //閿熸枻鎷峰墠椤甸敓鏂ゆ嫹
 			int pageNum  = pageIndex==null? 0 :Integer.parseInt(pageIndex);
 			
-			String pageSize_str  = req.getParameter("pageSize");  //每页锟斤拷锟斤拷锟斤拷锟�
+			String pageSize_str  = req.getParameter("pageSize");  //姣忛〉閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓锟�
 			int pageSize  = pageSize_str==null? 0 :Integer.parseInt(pageSize_str);
 			
 			List<SearchList> searchList=searchListDao.OrderlistSearchList();
@@ -251,10 +262,10 @@ public class SearchListController {
 			
 			int start = (pageNum-1) * pageSize;
 			int pageStart = start == pageEnd ? 0 : start;
-			//得到当前用户的id
+			//寰楀埌褰撳墠鐢ㄦ埛鐨刬d
 			String username = (String)req.getSession().getAttribute("username");
 			int userid=userDao.findUserByName(username);
-			//得到当前用户收藏的ProNum的集合
+			//寰楀埌褰撳墠鐢ㄦ埛鏀惰棌鐨凱roNum鐨勯泦鍚�
 			Set<String> proNumList=searchListDao.proNumList(userid);
 			
 			JSONObject json = new JSONObject();
@@ -267,9 +278,9 @@ public class SearchListController {
 					obj.put("Fanxian", item.getFanxian());
 					obj.put("Keshou", item.getKeshou());
 					obj.put("MaxArea", item.getMaxArea());
-					obj.put("MaxPrice", item.getMaxPrice());
+					obj.put("MaxPrice", item.getMaxPrice()==null?"":item.getMaxPrice());
 					obj.put("MinArea", item.getMinArea());
-					obj.put("MinPrice", item.getMinPrice());
+					obj.put("MinPrice", item.getMinPrice()==null?"":item.getMinPrice());
 					obj.put("Project_img", item.getProject_img());
 					obj.put("Project_name", item.getProject_name());
 					obj.put("project_num", item.getProject_num());
@@ -288,12 +299,17 @@ public class SearchListController {
 					obj.put("maidi", item.getMaidi());
 					obj.put("project_price_int_qi", item.getProject_price_int_qi());
 					obj.put("project_desc", item.getProject_desc());
-					obj.put("project_lan_cn", item.getProject_lan_cn());
-					//循环遍历当前用户收藏的项目，若有，将isCollected置为1,表示当前用户收藏;若无，将isCollected置为0，表示当前用户没有收藏
+					String lan = item.getProject_lan_cn();
+					String lan_en = item.getProject_lan_en();
+					if(null == lan || "".equals(lan)){
+						lan = lan_en;
+					}
+					obj.put("project_lan_cn", lan);
+					//寰幆閬嶅巻褰撳墠鐢ㄦ埛鏀惰棌鐨勯」鐩紝鑻ユ湁锛屽皢isCollected缃负1,琛ㄧず褰撳墠鐢ㄦ埛鏀惰棌;鑻ユ棤锛屽皢isCollected缃负0锛岃〃绀哄綋鍓嶇敤鎴锋病鏈夋敹钘�
 					String pronum=item.getProject_num();
-					int flag=0;//没有收藏
+					int flag=0;//娌℃湁鏀惰棌
 					if(proNumList.contains(pronum)){
-						flag=1;//收藏
+						flag=1;//鏀惰棌
 					}
 					obj.put("isCollected", flag);
 					array.add(obj);
@@ -313,13 +329,13 @@ public class SearchListController {
 				e.printStackTrace();
 			}
 		}
-		//收藏列表分页
+		//鏀惰棌鍒楄〃鍒嗛〉
 		@RequestMapping({"/ColloectListPage"})
 		public void CollectListPage(HttpServletRequest req, HttpServletResponse resp){
-			String pageIndex = req.getParameter("pageIndex");   //锟斤拷前页锟斤拷
+			String pageIndex = req.getParameter("pageIndex");   //閿熸枻鎷峰墠椤甸敓鏂ゆ嫹
 			int pageNum  = pageIndex==null? 0 :Integer.parseInt(pageIndex);
 			
-			String pageSize_str  = req.getParameter("pageSize");  //每页锟斤拷锟斤拷锟斤拷锟�
+			String pageSize_str  = req.getParameter("pageSize");  //姣忛〉閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓锟�
 			int pageSize  = pageSize_str==null? 0 :Integer.parseInt(pageSize_str);
 			
 			String username = (String)req.getSession().getAttribute("username");
@@ -343,9 +359,9 @@ public class SearchListController {
 					obj.put("Fanxian", item.getFanxian());
 					obj.put("Keshou", item.getKeshou());
 					obj.put("MaxArea", item.getMaxArea());
-					obj.put("MaxPrice", item.getMaxPrice());
+					obj.put("MaxPrice", item.getMaxPrice()==null?"":item.getMaxPrice());
 					obj.put("MinArea", item.getMinArea());
-					obj.put("MinPrice", item.getMinPrice());
+					obj.put("MinPrice", item.getMinPrice()==null?"":item.getMinPrice());
 					obj.put("Project_img", item.getProject_img());
 					obj.put("Project_name", item.getProject_name());
 					obj.put("project_num", item.getProject_num());
@@ -363,7 +379,12 @@ public class SearchListController {
 					obj.put("xianfang", item.getXianfang());
 					obj.put("maidi", item.getMaidi());
 					obj.put("project_price_int_qi", item.getProject_price_int_qi());
-					obj.put("project_lan_cn", item.getProject_lan_cn());
+					String lan = item.getProject_lan_cn();
+					String lan_en = item.getProject_lan_en();
+					if(null == lan || "".equals(lan)){
+						lan = lan_en;
+					}
+					obj.put("project_lan_cn", lan);
 					array.add(obj);
 				}
 				json.put("List", array);
@@ -382,14 +403,14 @@ public class SearchListController {
 			}
 		}
 		
-		//收藏列表添加
+		//鏀惰棌鍒楄〃娣诲姞
 		@RequestMapping({"/AddCollect"})
 		public void AddCollect(HttpServletRequest req, HttpServletResponse resp){
 			JSONObject json = new JSONObject();
 			String username = (String)req.getSession().getAttribute("username");
-			if(username==null){//如果用户没有登录
+			if(username==null){//濡傛灉鐢ㄦ埛娌℃湁鐧诲綍
 				json.put("user", "0");
-				System.out.println("用户没有登录");
+				System.out.println("鐢ㄦ埛娌℃湁鐧诲綍");
 			}
 			else{
 				int userid=userDao.findUserByName(username);
@@ -397,10 +418,10 @@ public class SearchListController {
 				int flag=searchListDao.AddCollect(userid, proNum);
 				if(flag==0){
 					json.put("flag", "0");
-					System.out.println("添加失败");
+					System.out.println("娣诲姞澶辫触");
 				}else{
 					json.put("flag", "1");
-					System.out.println("添加成功");
+					System.out.println("娣诲姞鎴愬姛");
 				}
 				json.put("user", "1");
 			}
@@ -410,10 +431,10 @@ public class SearchListController {
 				e.printStackTrace();
 			}
 		}
-		//收藏列表删除
+		//鏀惰棌鍒楄〃鍒犻櫎
 		@RequestMapping({"/DelCollect"})
 		public void DelCollect(HttpServletRequest req, HttpServletResponse resp){
-			//TODO获得session中的用户id
+			//TODO鑾峰緱session涓殑鐢ㄦ埛id
 			String proNum=req.getParameter("proNum");
 			String username = (String)req.getSession().getAttribute("username");
 			int userid=userDao.findUserByName(username);
@@ -421,10 +442,10 @@ public class SearchListController {
 			JSONObject json = new JSONObject();
 			if(flag==0){
 				json.put("flag", "0");
-				System.out.println("删除失败");
+				System.out.println("鍒犻櫎澶辫触");
 			}else{
 				json.put("flag", "1");
-				System.out.println("删除成功");
+				System.out.println("鍒犻櫎鎴愬姛");
 			}
 			//return "/Collect.jsp";
 			try{
