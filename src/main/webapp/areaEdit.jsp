@@ -248,10 +248,10 @@ body{
 	<div class='area_left3'>
 	<span style='display:none;'>${status.index + 1}</span>
 	<span class='area_span'>${AreaInfo.area_num}</span>
-	<span class='area_span'>${areamiddle.project_type}</span>
-	<span class='area_span'>${areamiddle.view_shunxu}</span>
-	<span class='area_span'>${areamiddle.heng}</span>
-	<span class='area_span6'>${areamiddle.zong}</span>
+	<span class='area_span'>${areamiddle.project_type2}</span>
+	<span class='area_span'>${areamiddle.view_shunxu2}</span>
+	<span class='area_span'>${areamiddle.heng2}</span>
+	<span class='area_span6'>${areamiddle.zong2}</span>
 	</div>
 	<div class='area_right3'>
 	<span class='area_span4'><a href='#' class='editmiddletrend'>编辑</a></span>
@@ -317,10 +317,10 @@ body{
 	<div class='area_left3'>
 	<span style='display:none;'>${status.index + 1}</span>
 	<span class='area_span'>${AreaInfo.area_num}</span>
-	<span class='area_span'>${zujin.project_type}</span>
-	<span class='area_span'>${zujin.view_shunxu}</span>
-	<span class='area_span'>${zujin.heng}</span>
-	<span class='area_span6'>${zujin.zong}</span>
+	<span class='area_span'>${zujin.project_type3}</span>
+	<span class='area_span'>${zujin.view_shunxu3}</span>
+	<span class='area_span'>${zujin.heng3}</span>
+	<span class='area_span6'>${zujin.zong3}</span>
 	</div>
 	<div class='area_right3'>
 	<span class='area_span4'><a href='#' class='editzujintrend'>编辑</a></span>
@@ -386,10 +386,10 @@ body{
 	<div class='area_left3'>
 	<span style='display:none;'>${status.index + 1}</span>
 	<span class='area_span'>${AreaInfo.area_num}</span>
-	<span class='area_span'>${huibao.project_type}</span>
-	<span class='area_span'>${huibao.view_shunxu}</span>
-	<span class='area_span'>${huibao.heng}</span>
-	<span class='area_span6'>${huibao.zong}</span>
+	<span class='area_span'>${huibao.project_type4}</span>
+	<span class='area_span'>${huibao.view_shunxu4}</span>
+	<span class='area_span'>${huibao.heng4}</span>
+	<span class='area_span6'>${huibao.zong4}</span>
 	</div>
 	<div class='area_right3'>
 	<span class='area_span4'><a href='#' class='edithuibaotrend'>编辑</a></span>
@@ -492,7 +492,7 @@ body{
 	<span class='area_span'>${people.column1}</span>
 	<span class='area_span'>${people.column2}</span>
 	<span class='area_span'>${people.column3 }</span>
-	<span class='area_span'>${people.view_shunxu}</span>
+	<span class='area_span'>${people.view_shunxu_people}</span>
 	</div>
 	<div class='area_right3'>
 	<span class='area_span4'><a href='#' class='editpeople'>编辑</a></span>
@@ -1629,7 +1629,8 @@ function savepro(){
 
 	var area;
 	area=DataDeal.formToJson(data= decodeURIComponent($("#area").serialize(),true));
-	area=area.replace(/\+\"\,\"\+/, " & ")
+	area=area.replace(/\+\"\,\"\+/, " & ").replace(/\+/," ");
+	/* area=area; */
 	/* alert(area); */
 	area=eval("("+area+")");
 	//alert("ff1")

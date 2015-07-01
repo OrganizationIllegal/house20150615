@@ -2,28 +2,29 @@ package com.kate.app.model;
 
 import java.sql.Timestamp;
 
+
 public class MiddlePrice2 {
-	private int id;
-	private int buy_price;//购买价格
+	private int id;//?
+	private int buy_price;//购买价格??
 	//private int house_pro_id;
 	private int zu_price;//
-	private String buy_one_name;//
-	private int buy_one_price;//
-	private String buy_two_name;//
-	private int buy_two_price;//
-	private String buy_three_name;//
-	private int buy_three_price;//
-	private String zu_one_name;//
-	private int zu_one_price;//
+	private String buy_one_name;//??
+	private int buy_one_price;//??
+	private String buy_two_name;//?
+	private int buy_two_price;//?
+	private String buy_three_name;//?
+	private int buy_three_price;//?
+	private String zu_one_name;//?
+	private int zu_one_price;//?
 	private String zu_two_name;//
 	private int zu_two_price;//
 	private String zu_three_name;//
 	private int zu_three_price;//
 	//private int area_id;
-	private String project_type;
+	private String project_type;//?
 	//private String area_quyu;
-	private String middle_datasource;//
-	private Timestamp middle_date;//
+	private String middle_datasource;//?
+	private String  middle_date;//?
 	
 	public String getProject_type() {
 		return project_type;
@@ -127,12 +128,14 @@ public class MiddlePrice2 {
 	public void setMiddle_datasource(String middle_datasource) {
 		this.middle_datasource = middle_datasource;
 	}
-	public Timestamp getMiddle_date() {
+	public String getMiddle_date() {
 		return middle_date;
 	}
-	public void setMiddle_date(Timestamp middle_date) {
+	public void setMiddle_date(String middle_date) {
 		this.middle_date = middle_date;
 	}
+
+	
 	
 
 }

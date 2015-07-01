@@ -9,7 +9,7 @@ public class AreaMiddle2 {
 	private String project_type2;//
 	private int view_shunxu2;//
 	private String middle_zoushi_datasource;//
-	private Timestamp middle_zoushi_date;//
+	private String middle_zoushi_date;//
 	public int getId() {
 		return id;
 	}
@@ -46,13 +46,13 @@ public class AreaMiddle2 {
 	public void setMiddle_zoushi_datasource(String middle_zoushi_datasource) {
 		this.middle_zoushi_datasource = middle_zoushi_datasource;
 	}
-	public Timestamp getMiddle_zoushi_date() {
+	public String getMiddle_zoushi_date() {
 		return middle_zoushi_date;
 	}
-	public void setMiddle_zoushi_date(Timestamp middle_zoushi_date) {
+	public void setMiddle_zoushi_date(String middle_zoushi_date) {
 		this.middle_zoushi_date = middle_zoushi_date;
 	}
-	
+
 	
 	
 

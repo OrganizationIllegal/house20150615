@@ -85,28 +85,40 @@ public class AreaInfoController extends BaseDao {
 	@RequestMapping({"/AreaEdit"})
 	public String areaEidt(HttpServletRequest req,HttpServletResponse resp){
 		String id=req.getParameter("id");
+		//区域信息
 		AreaInfo ai=new AreaInfo();
 		ai=areaInfoDao.getAreaInfoBackEnd(Integer.parseInt(id));
+		//投资数据
 		InvestmentDataBackEnd invest=new InvestmentDataBackEnd();
 		invest=areaInfoDao.getInvestInfo(ai.getArea_num());
+		//区域家庭构成
 		AreaFamilyBackEnd family=new AreaFamilyBackEnd();
 		family=areaInfoDao.getFamilyBackEnd(ai.getArea_num());
-		List<MiddlePriceBackEnd> middlepricebackendlist = new ArrayList<MiddlePriceBackEnd>();
+		//区域中位数房价
+		List<MiddlePrice2> middlepricebackendlist = new ArrayList<MiddlePrice2>();
 		middlepricebackendlist=areaInfoDao.getMiddlePrice(ai.getArea_num());
-		List<AreaMiddle> areamiddlelist=new  ArrayList<AreaMiddle>();
+		//区域房价中位数走势
+		List<AreaMiddle2> areamiddlelist=new  ArrayList<AreaMiddle2>();
 		areamiddlelist=areaInfoDao.getAreaMiddleList(ai.getArea_num());
-		List<AreaZujin> zujinlist=new ArrayList<AreaZujin>();
+		//区域租金走势
+		List<AreaZujin2> zujinlist=new ArrayList<AreaZujin2>();
 		zujinlist=areaInfoDao.getAreaZujinList(ai.getArea_num());
-		List<AreaZhikong> huibaolist=new ArrayList<AreaZhikong>();
+		//区域租金回报走势
+		List<AreaZhikong2> huibaolist=new ArrayList<AreaZhikong2>();
 		huibaolist=areaInfoDao.getAreaKongzhiList(ai.getArea_num());
-		List<AreaTeDian> tedianlist=new ArrayList<AreaTeDian>();
+		//区域特点
+		List<AreaTeDian2> tedianlist=new ArrayList<AreaTeDian2>();
 		tedianlist=areaInfoDao.getAreaTedianList(ai.getArea_num());
-		List<AreaPeopleInfo> peoplelist=new ArrayList<AreaPeopleInfo>();
+		//区域人口分布
+		List<AreaPeopleInfo2> peoplelist=new ArrayList<AreaPeopleInfo2>();
 		peoplelist=areaInfoDao.getAreaPeopleList(ai.getArea_num());
+		//推荐经纪人
 		List<BrokerInfo> brokerlist=new ArrayList<BrokerInfo>();
 		brokerlist=areaInfoDao.getAreaBrokerList(ai.getArea_num());
+		//推荐项目
 		List<HouseProject> projectlist=new ArrayList<HouseProject>();
 		projectlist=areaInfoDao.getAreaProjectList(ai.getArea_num());
+		//新闻报道
 		List<NewsZhiye> newszhiyelist=new ArrayList<NewsZhiye>();
 		newszhiyelist=areaInfoDao.getAreaNewsBokeList(ai.getArea_num());
 		req.setAttribute("AreaInfo", ai);

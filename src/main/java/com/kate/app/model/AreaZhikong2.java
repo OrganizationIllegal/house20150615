@@ -9,7 +9,7 @@ public class AreaZhikong2 {
 	private String project_type4;//
 	private int view_shunxu4;//
 	private String zujin_huibao_datasource;//
-	private Timestamp zujin_huibao_date;//
+	private String zujin_huibao_date;//
 	public int getId() {
 		return id;
 	}
@@ -47,12 +47,13 @@ public class AreaZhikong2 {
 	public void setZujin_huibao_datasource(String zujin_huibao_datasource) {
 		this.zujin_huibao_datasource = zujin_huibao_datasource;
 	}
-	public Timestamp getZujin_huibao_date() {
+	public String getZujin_huibao_date() {
 		return zujin_huibao_date;
 	}
-	public void setZujin_huibao_date(Timestamp zujin_huibao_date) {
+	public void setZujin_huibao_date(String zujin_huibao_date) {
 		this.zujin_huibao_date = zujin_huibao_date;
 	}
+	
 	
 	
 	

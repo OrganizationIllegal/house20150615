@@ -7,7 +7,7 @@ public class AreaTeDian2 {
 	private String area_character;//
 	private int view_shunxu;//
 	private String data_source;//
-	private Timestamp update_time;//
+	private String update_time;//
 	public int getId() {
 		return id;
 	}
@@ -32,10 +32,10 @@ public class AreaTeDian2 {
 	public void setData_source(String data_source) {
 		this.data_source = data_source;
 	}
-	public Timestamp getUpdate_time() {
+	public String getUpdate_time() {
 		return update_time;
 	}
-	public void setUpdate_time(Timestamp update_time) {
+	public void setUpdate_time(String update_time) {
 		this.update_time = update_time;
 	}
 	

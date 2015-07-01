@@ -9,7 +9,7 @@ public class AreaPeopleInfo2 {
 	private String column3;//
 	private int view_shunxu_people;//
 	private String people_datasource;//
-	private Timestamp people_date;//
+	private String people_date;//
 	public int getId() {
 		return id;
 	}
@@ -46,12 +46,13 @@ public class AreaPeopleInfo2 {
 	public void setPeople_datasource(String people_datasource) {
 		this.people_datasource = people_datasource;
 	}
-	public Timestamp getPeople_date() {
+	public String getPeople_date() {
 		return people_date;
 	}
-	public void setPeople_date(Timestamp people_date) {
+	public void setPeople_date(String people_date) {
 		this.people_date = people_date;
 	}
+	
 	
 	
 	

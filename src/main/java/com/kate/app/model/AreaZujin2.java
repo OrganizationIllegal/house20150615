@@ -9,7 +9,7 @@ public class AreaZujin2 {
 	private String project_type3;//project_type3
 	private int view_shunxu3;//view_shunxu3
 	private String zujin_datasource;//zujin_datasource
-	private Timestamp zujin_date;//zujin_date
+	private String zujin_date;//zujin_date
 	public int getId() {
 		return id;
 	}
@@ -47,12 +47,13 @@ public class AreaZujin2 {
 	public void setZujin_datasource(String zujin_datasource) {
 		this.zujin_datasource = zujin_datasource;
 	}
-	public Timestamp getZujin_date() {
+	public String getZujin_date() {
 		return zujin_date;
 	}
-	public void setZujin_date(Timestamp zujin_date) {
+	public void setZujin_date(String zujin_date) {
 		this.zujin_date = zujin_date;
 	}
+
 	
 	
 	
