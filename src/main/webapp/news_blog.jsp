@@ -126,10 +126,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                           <li class="media">
                           <c:choose>
             	<c:when test="${type==0}">
-            		<img src="http://101.200.174.253:9090/all/${zhiYeDetail.image}" width="601px" height="373px">
+            		<img src="<%=application.getInitParameter("imagedir")%>/${zhiYeDetail.image}" width="601px" height="373px">
             	</c:when>
             	<c:otherwise>
-            		<img src="http://101.200.174.253:9090/all/${newsBokeDetail.news_image}" width="601px" height="373px">
+            		<img src="<%=application.getInitParameter("imagedir")%>/${newsBokeDetail.news_image}" width="601px" height="373px">
             	</c:otherwise>
             </c:choose>
                             
@@ -219,7 +219,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 		 <li class="media">
                              <div class="media-left" style="float:left;">
                                 <a href="/Detail?id=${item.id}&type=1">
-                                  <img class="media-object" src="http://101.200.174.253:9090/all/${item.news_image}" alt=""  width="62px" height="46px">
+                                  <img class="media-object" src="<%=application.getInitParameter("imagedir")%>/${item.news_image}" alt=""  width="62px" height="46px">
                                 </a>
                               </div>
                               <div class="media-body" style="padding-left:10px;padding-top:5px;">
@@ -247,7 +247,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	 	 <li class="media">
                              <div class="media-left" style="float:left;">
                                <a href="/Detail?id=${item.id}&type=0">
-                                  <img class="media-object" src="http://101.200.174.253:9090/all/${item.image}" alt=""  width="62px" height="46px">
+                                  <img class="media-object" src="<%=application.getInitParameter("imagedir")%>/${item.image}" alt=""  width="62px" height="46px">
                                 </a>
                               </div>
                               <div class="media-body" style="padding-left:10px;padding-top:5px;">

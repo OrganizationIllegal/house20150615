@@ -108,7 +108,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<c:forEach items="${resultList}"  var="item">
 					 <div id="item1" style="width:502px;height:155px;padding:15px 10px;margin-top:10px;margin-bottom:10px;border:1px solid rgb(207,201,201)">
                 	  <div style="float:left">
-                	  <a href="Service?brokerId=${item.id}"><img src="http://101.200.174.253:9090/all/${item.broker_img }" style="width:126px;height:124px;"/></a>
+                	  <a href="Service?brokerId=${item.id}"><img src="<%=application.getInitParameter("imagedir")%>/${item.broker_img }" style="width:126px;height:124px;"/></a>
                 	  </div>
                 	   <div style="width:354px;float:left;font-family:微软雅黑;padding-left:15px">
                 	   <div style="font-size:18px;font-weight:bolder">${item.broker_name}</div>
@@ -247,8 +247,8 @@ var pageNum = (totleSize+3)/4;
                 	   //html+="<div id='item1' style='width:502px;height:155px;background-color:red;padding:15px 10px;margin-top:10px;margin-bottom:10px;border:1px solid rgb(236,235,235)'>";
                 	  html+="<div id='item1' style='width:502px;height:180px;background-color:white;padding:15px 10px;margin-top:10px;margin-bottom:10px;border:1px solid rgb(207,201,201)'>";
                 	   html+="<div style='float:left'>";
-                	  // html+="<img src='http://101.200.174.253:9090/all/"+items[j].broker_img+"' style='width:126px;height:124px;'/>";
-                	  html+="<a href='Service?brokerId="+items[j].id+"'><img src='http://101.200.174.253:9090/all/"+items[j].broker_img+"' style='width:126px;height:149px;'/></a>";
+                	  // html+="<img src='<%=application.getInitParameter("imagedir")%>/"+items[j].broker_img+"' style='width:126px;height:124px;'/>";
+                	  html+="<a href='Service?brokerId="+items[j].id+"'><img src='<%=application.getInitParameter("imagedir")%>/"+items[j].broker_img+"' style='width:126px;height:149px;'/></a>";
                 	   html+="</div>";
                 	   html+="<div style='width:354px;float:left;font-family:微软雅黑;padding-left:15px'>";
                 	   html+="<div style='font-size:18px;font-weight:bolder' >"+items[j].broker_name+"</div>";
@@ -276,7 +276,7 @@ var pageNum = (totleSize+3)/4;
                 	 for(var j=0;j<items.length;j++){
                 	   html+="<div id='item1' style='width:502px;height:155px;padding:15px 10px;margin-top:10px;margin-bottom:10px;border:1px solid rgb(207,201,201)'>";
                 	   html+="<div style='float:left'>";
-                	  html+="<a href='Service?brokerId="+items[j].id+"'><img src='http://101.200.174.253:9090/all/"+items[j].broker_img+"' style='width:126px;height:124px;'/></a>";
+                	  html+="<a href='Service?brokerId="+items[j].id+"'><img src='<%=application.getInitParameter("imagedir")%>/"+items[j].broker_img+"' style='width:126px;height:124px;'/></a>";
                 	   html+="</div>";
                 	   html+="<div style='width:354px;float:left;font-family:微软雅黑;padding-left:15px'>";
                 	   html+="<div style='font-size:18px;font-weight:bolder' >"+items[j].broker_name+"</div>";

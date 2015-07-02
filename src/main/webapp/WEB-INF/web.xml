@@ -18,7 +18,10 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring-base.xml</param-value>
 	</context-param>
-
+	<context-param>
+		<param-name>imagedir</param-name>
+		<param-value>/Uploadimages</param-value>
+	</context-param>
 	<!-- listener Configuration -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -31,6 +34,10 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/spring-view.xml</param-value>
 		</init-param>
+		<!-- <init-param>  
+			<param-name>imagedir</param-name>  
+			<param-value>/aaa</param-value>  
+		</init-param> -->
 		<load-on-startup>2</load-on-startup>
 	</servlet>
 	

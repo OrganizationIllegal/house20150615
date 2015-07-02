@@ -38,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="container">
 		<div class="row" style="background-color:rgba(245, 244, 244, 1);padding-top:20px;padding-bottom:10px;">
 			<div class="col-md-2" > 
-				<img src="http://101.200.174.253:9090/all/${brokerInfo.broker_img }" style="width:150px">
+				<img src="<%=application.getInitParameter("imagedir")%>/${brokerInfo.broker_img }" style="width:150px">
 			</div>
 				
 			<div class="col-md-6" style="padding-top:20px;">
