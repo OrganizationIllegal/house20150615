@@ -17,9 +17,9 @@
 						<a style="display:block;width:100%;text-align:center;line-height:40px;color:#666;">c2014-2015北京胜义行有限公司 . All rights reserved. 京ICP备1234567</a>
 					</div>
 					<div style="display:block;width:150px;float:right;min-height:30px;position:relative;left:-80px;"> 
-						<div style="display:block;width:20px;height:26px;background-image:url(images/footer_mini.png);float:left;margin-top:10px;cursor:pointer;"></div>
-						<div style="display:block;width:33px;height:26px;background-image:url(images/footer_mini.png);background-position:-20px 0px;float:left;margin-top:10px;margin-left:10px;cursor:pointer"></div>
-						<div style="display:block;width:26px;height:26px;background-image:url(images/footer_mini.png);background-position:-53px 0px;float:left;margin-top:10px;margin-left:10px;cursor:pointer"></div>
+						<div style="display:block;width:33px;height:26px;float:left;margin-top:10px;cursor:pointer;" ><a href="http://wpa.qq.com/msgrd?v=3&uin=718406390&site=sina&menu=yes" id="qq" ><img src="images/qq.png" ></img></a></div>
+						<div style="display:block;width:33px;height:26px;background-position:-20px 0px;float:left;margin-top:10px;margin-left:10px;cursor:pointer"><a href="#" id="weixin" ><img src="images/weixin.png"></img></a></div>
+						<div style="display:block;width:33px;height:26px;background-position:-53px 0px;float:left;margin-top:10px;margin-left:10px;cursor:pointer"><a href="#" id="weibo" ><img src="images/weibo.png"></img></a></div>
 					</div>
 				</div>
 				<div style="display:block;width:90px;float:left;margin-top:30px;">
@@ -28,3 +28,23 @@
 			</div>
 		</div> 
 </div>
+<script type="text/javascript">
+   $().ready(function() {
+   $("#weixin").click(function(){
+   	$('#weixinmodal').modal('show');
+  })
+   })
+  </script>
+  
+  
+  <!-- weixin start -->
+<div class="modal fade" id="weixinmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog" style="margin-top:100px;">
+     <div class="modal-content" style="margin:0 auto;height:200px;width:150px;margin-top:50px">
+     		<div style="margin:0 auto;margin-top:30px;margin-left:22px">
+     			<img src="images/erweima.jpg"></img>
+     		</div>
+      </div>
+   </div>
+ </div>
+<!-- weixin end -->

@@ -165,7 +165,8 @@
 <div class="modal fade" id="login" tabindex="-1" role="dialog" 
    aria-labelledby="myModalLabel" aria-hidden="true">
    <div class="modal-dialog" style="margin-top:100px;">
-      <div class="modal-content" style="margin-left:100px;height:270px;width:355px;">
+     <!--  <div class="modal-content" style="margin-left:100px;height:270px;width:355px;"> -->
+    <div class="modal-content" style="margin:0 auto;height:270px;width:355px;">
          <div class="modal-header" style="background-color:rgb(55,52,67);padding:0px 10px;height:10px;">
             <button type="button" class="close" 
                data-dismiss="modal" aria-hidden="true" style="font-size:18px;color:white;">
@@ -211,7 +212,8 @@
 <!-- register start -->
 <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
    <div class="modal-dialog" style="margin-top:100px;">
-      <div class="modal-content" style="margin-left:100px;height:290px;width:355px;">
+     <!--  <div class="modal-content" style="margin-left:100px;height:290px;width:355px;"> -->
+     <div class="modal-content" style="margin:0 auto;height:290px;width:355px;">
          <div class="modal-header" style="background-color:rgb(55,52,67);padding:0px 10px;height:10px;">
             <button type="button" class="close" 
                data-dismiss="modal" aria-hidden="true" style="font-size:18px;color:white;">

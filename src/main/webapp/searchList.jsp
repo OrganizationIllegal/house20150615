@@ -144,7 +144,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 		<div class="c-fix f-l list_node_header">
                 		<a class="c-fix f-l f-arial s-16 list_node_name fw">${item.project_name}</a>
                 		<a class="f-l f-arial s-12 list_node_address">${item.project_address}</a>
-                		<div class="f-r btn_star cp"  id="star" data-proNum=${item.project_num}></div>	
+                		<div class="f-r btn_star cp"  id="star" data-proNum=${item.project_num}></div>
+                		<span style="margin-right:-58px;float:right;color:white;font-size:13px;font-family:微软雅黑">收藏</span>
                 		</div>
                 		<div class="c-fix f-l list_node_body">
                 		<a href="/Index?proNum=${item.project_num}"><img class="c-fix f-l list_node_img" src="<%=application.getInitParameter("imagedir")%>/${item.project_img}"></img></a>
@@ -377,7 +378,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 		else{
                 			 html+="<div class='f-r btn_star cp btn_star_sel'  id='star"+j+"' data-proNum="+items[j].project_num+"></div>";
                 		}
-                	   
+                	    html+="<span style='margin-right:-58px;float:right;color:white;font-size:13px;font-family:微软雅黑'>收藏</span>";
                 		html+="</div>";
                 		html+="<div class='c-fix f-l list_node_body'>";
                 		html+="<a href='/Index?proNum="+items[j].project_num+"'><img class='c-fix f-l list_node_img' src='<%=application.getInitParameter("imagedir")%>/"+items[j].Project_img+"'></img></a>";
