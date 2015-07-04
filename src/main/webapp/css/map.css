@@ -18,7 +18,7 @@ body{margin:0 auto;}
 .sel_type{display:block;height:30px;width:108px;margin-top:5px;margin-left:2px;}
 .sel_price{display:block;height:40px;width:100px;padding-left:10px;padding-right:10px;color:#000;line-height:40px;}
 
-.div2{display:block;height:40px;width:840px;background-color:rgb(199,213,226)}
+.div2{display:block;height:40px;-width:840px;background-color:rgb(199,213,226)}
 .inp{display:block;height:30px;padding:0px;border:0px solid #000;margin-top:5px;padding-left:5px;margin-left:25px;width:260px;}
 .btn_search{display:block;margin-left:5px;height:40px;line-height:40px;color:rgb(24,61,103)}
 .btn{display:block;width:70px;height:30px;line-height:30px;margin-top:4px;text-align:center;border:1px solid rgb(245,161,27);color:rgb(245,161,27);background-color:#fff;}

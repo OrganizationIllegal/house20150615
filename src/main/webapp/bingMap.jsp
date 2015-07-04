@@ -218,12 +218,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                }
 	 	 
    </script>
- 
+ <script type="text/javascript">
+ $(function(){
+	 var wid=document.documentElement.clientWidth ;
+     var right=wid-350-17;
+     if(wid>350){
+         $("#right1").css("width",right);
+         $("#right2").css("width",right);
+     }
+     else{
+         $("#right1").css("width",right);
+         $("#right2").css("width",right);
+     }
+	 });
+ function reLoad(){
+     var wid=document.documentElement.clientWidth ;
+     var right=wid-350-17;
+     if(wid>350){
+         $("#right1").css("width",right);
+         $("#right2").css("width",right);
+     }
+     else{
+         $("#right1").css("width",right);
+         $("#right2").css("width",right);
+     }
+ }
+ </script>
 </head>
-<body onload="getMap();">
+<body onload="getMap();" onresize="reLoad()">
 <jsp:include page="head4index.jsp" />
 	
-		<div class="c-fix map_bkg" style="margin:0 auto;">
+		<div class="c-fix map_bkg" style="margin:0 auto;width:100%;">
 			<div class="c-fix f-l div1">
 				<select class="c-fix f-l sel_type" style="background:none;border:none;font-family:微软雅黑;padding-left:10px">
 					<option>房屋类型</option>
@@ -238,7 +263,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" >价格从高到低</a>
 			
 			</div>
-			<div class="f-l div2">
+			<div class="f-l div2" id="right1">
 				<input type="text" class="c-fix f-l inp" id="keyWord" value="Melbourne,墨尔本" style="color:rgb(213,213,213);font-family:微软雅黑;height:28px;"></input>	
 				<a class="f-l f-yahei s-14 cp btn_search" onclick="addPushpinsearch()">搜索</a>
 				<a class="f-r f-yahei s-14 btn cp hover" style="padding:4px 6px;border:2px solid rgb(245,161,27)" href="/SearchList">列表找房</a>
@@ -365,8 +390,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 				</div> -->
 			</div>
-			<div class="f-l div4">
-				<div  id="myMap" style="position:relative;width:840px;height:840px;"></div>
+			<div class="f-l div4" id="right2">
+				<div  id="myMap" style="position:relative;width:100%;height:840px;"></div>
 			</div>
 		</div>
 		<!-- <div style="display:block;width:100%;min-height:40px;background-color:rgb(228,229,231);float:left;clear:both">
@@ -396,6 +421,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 		</div> -->
-		<jsp:include page="foot4index.jsp" />
+		<%-- <jsp:include page="foot4index.jsp" /> --%>
 	</body>
 </html>
