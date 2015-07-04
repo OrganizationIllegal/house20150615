@@ -77,7 +77,7 @@ public class HouseTaxDao extends BaseDao {
 				String description=null;
 				while(rs.next()){
 					price=rs.getInt("price");
-					type=rs.getString("type")+"约"+price+"澳元"+"\n"+rs.getString("description");
+					type=rs.getString("type")+" 约"+price+"澳元"+"\n"+rs.getString("description");
 					HouseTaxData holdingTaxVo=new HouseTaxData(type,price);
 					holdingTaxVoList.add(holdingTaxVo);
 				}
@@ -99,7 +99,7 @@ public class HouseTaxDao extends BaseDao {
 				String description=null;
 				while(rs.next()){
 					price=rs.getInt("price");
-					type=rs.getString("type")+"约"+price+"澳元"+"\n"+rs.getString("description");
+					type=rs.getString("type")+" 约"+price+"澳元"+"\n"+rs.getString("description");
 					HouseTaxData holdingTaxVo=new HouseTaxData(type,price);
 					holdingTaxVoList.add(holdingTaxVo);
 				}

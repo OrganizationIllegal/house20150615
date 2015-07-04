@@ -221,7 +221,7 @@ function popInfo(){
                     </tr>
                     <c:forEach var="item"  items="${imageList}"   varStatus="status">
                     <c:if test="${status.index<2 }">
-                    	<tr><td><img src="http://101.200.174.253:9090/all/${item.image_name}" width="750" height="474" /></a></td></tr>
+                    	<tr><td><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="750" height="474" /></a></td></tr>
                     </c:if>
                     </c:forEach>
                    <%-- <c:forEach var="item"  items="${vedioList}"   varStatus="status">
@@ -237,16 +237,16 @@ function popInfo(){
                 <div class="top_button off"></div>
                 <div class="small_right_limit">
                     <ul style="margin-top: 0px;">
-                    <li style="margin-top:6px"><img src="http://101.200.174.253:9090/all/The Atrium_Project_01.jpg" width="210" height="140"/></li>
+                    <li style="margin-top:6px"><img src="<%=application.getInitParameter("imagedir")%>/The Atrium_Project_01.jpg" width="210" height="140"/></li>
 			            <c:forEach var="item"  items="${imageList}"   varStatus="status">
 			            <c:if test="${status.index<2}">
-			            	<li style="margin-top:6px"><img src="http://101.200.174.253:9090/all/${item.image_name}" width="210" height="140"/></li>
+			            	<li style="margin-top:6px"><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="210" height="140"/></li>
 			            </c:if>
                     		
                     	</c:forEach>
                         <%-- <c:forEach var="item"  items="${vedioList}"   varStatus="status">
                         <c:if test="${status.index<3}">
-                    		<li><img src="http://101.200.174.253:9090/all/${item.image_name}" width="210" height="140"/></li>
+                    		<li><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="210" height="140"/></li>
                     	</c:if>
                     	</c:forEach> --%>
                        
@@ -297,7 +297,7 @@ function popInfo(){
 				</div>
 				<div class="f-l p_panel_1">
 					<a class="c-fix f-l f-yahei s-14 p_panel_title2 fw">开发商信息：${HouseProject.developer_id_name}</a>
-					<img class="c-fix f-l p_panel_logo" src="http://101.200.174.253:9090/all/${DeveloperInfo.developer_logo }"></img>
+					<img class="c-fix f-l p_panel_logo" src="<%=application.getInitParameter("imagedir")%>/${DeveloperInfo.developer_logo }"></img>
 					<a class="c-fix f-l p_panel_intro f-yahei s-14">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${DeveloperInfo.developer_desc}</a>
 				</div>
 				<div class="f-l p_panel_2" style="height:390px">
@@ -370,7 +370,7 @@ function popInfo(){
 						<a class="c-fix f-l attr3 f-yahei s-14 fw">${obj.house_price}</a>
 						<a class="c-fix f-l attr4 f-yahei s-12 fw">房价</a>
 					</div>
-					<img src="images/btn_get_struct.jpg" class="f-l btn_get_struct cp" onclick="pop6('${obj.house_type}','http://101.200.174.253:9090/all/${obj.house_img}')"></img>
+					<img src="images/btn_get_struct.jpg" class="f-l btn_get_struct cp" onclick="pop6('${obj.house_type}','<%=application.getInitParameter("imagedir")%>/${obj.house_img}')"></img>
 				</div>
 				</c:if>
 				</c:forEach>
@@ -425,7 +425,7 @@ function popInfo(){
                 <table class="ad_left_big_p" width="720" border="0" cellpadding="0" cellspacing="0" style="margin-top: 0px;">
                     <c:forEach items="${ProjectPeitaoImage}" var="item" varStatus="status">
                     <c:if test="${status.index<3 }">
-                    	<tr><td><img src="http://101.200.174.253:9090/all/${item.image_name}" width="720" height="487" /></a></td></tr>
+                    	<tr><td><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="720" height="487" /></a></td></tr>
                    </c:if>
                     </c:forEach>
                     
@@ -438,7 +438,7 @@ function popInfo(){
                     <ul style="margin-top: 0px;">
                     	<c:forEach items="${ProjectPeitaoImage}" var="item" varStatus="status">
                     	<c:if test="${status.index<3 }">
-                    		<li style="margin-top:8px;"><img src="http://101.200.174.253:9090/all/${item.image_name}" width="210" height="140"/></li>
+                    		<li style="margin-top:8px;"><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="210" height="140"/></li>
                     	</c:if>
                     </c:forEach>
                     	
@@ -853,7 +853,7 @@ function popInfo(){
 				<div class="c-fix p_inner bgc" style="padding-bottom:30px;">
 					<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:950px;margin-bottom:10px;">新闻报道</a>
 					<div class="c-fix f-l p_news_node" style="margin-left:15px;">
-						<img src="http://101.200.174.253:9090/all/${newsInfo_one.news_image}" class="c-fix f-l news_img"></img>
+						<img src="<%=application.getInitParameter("imagedir")%>/${newsInfo_one.news_image}" class="c-fix f-l news_img"></img>
 						<a class="c-fix f-l f-yahei s-16 fw news_title">新闻标题：${newsInfo_one.news_title}</a>
 						<div class="p_foot">
 						<a class="c-fix f-l f-yahei s-14 news_type">分类：${newsInfo_one.news_fenlei}</a>
@@ -862,13 +862,13 @@ function popInfo(){
 					</div>
 			
 					 <div class="f-l p_news_node" style="margin-left:5px;">
-						<img src="http://101.200.174.253:9090/all/${newsInfo_two.news_image}" class="c-fix f-l news_img"></img>
+						<img src="<%=application.getInitParameter("imagedir")%>/${newsInfo_two.news_image}" class="c-fix f-l news_img"></img>
 						<a class="c-fix f-l f-yahei s-16 fw news_title">新闻标题：${newsInfo_two.news_title}</a>
 						<a class="c-fix f-l f-yahei s-14 news_type">分类：${newsInfo_two.news_fenlei}</a>
 						<a class="f-l f-yahei s-14 news_time">时间：${timeResuleTwo}</a>
 					</div>
 					<div class="f-l p_news_node" style="margin-left:5px;">
-						<img src="http://101.200.174.253:9090/all/${newsInfo_three.news_image}" class="c-fix f-l news_img"></img>
+						<img src="<%=application.getInitParameter("imagedir")%>/${newsInfo_three.news_image}" class="c-fix f-l news_img"></img>
 						<a class="c-fix f-l f-yahei s-16 fw news_title">新闻标题：${newsInfo_three.news_title}</a>
 						<a class="c-fix f-l f-yahei s-14 news_type">分类：${newsInfo_three.news_fenlei}</a>
 						<a class="f-l f-yahei s-14 news_time">时间：${timeResuleThree}</a>
@@ -888,8 +888,8 @@ function popInfo(){
 					<div class="f-r p_right2">
 					<c:forEach var="item" items="${recommendBroker}" varStatus="stat">
 						<div class="c-fix f-l agent_node" <c:if test="${stat.index!=0 }">style="margin-top:10px;"</c:if>>
-							<%-- <img src="http://101.200.174.253:9090/all/${item.broker_img}" height="143" class="c-fix f-l agent_avatar"></img> --%>
-							<a href="Service?brokerId=${item.id}"><img src="http://101.200.174.253:9090/all/${item.broker_img}" height="143" class="c-fix f-l agent_avatar"></img></a>
+							<%-- <img src="<%=application.getInitParameter("imagedir")%>/${item.broker_img}" height="143" class="c-fix f-l agent_avatar"></img> --%>
+							<a href="Service?brokerId=${item.id}"><img src="<%=application.getInitParameter("imagedir")%>/${item.broker_img}" height="143" class="c-fix f-l agent_avatar"></img></a>
 							<a class="f-l agent_name f-yahei s-16 fw">${item.broker_name }</a>
 							<a class="f-l agent_lab f-yahei s-14" style="margin-top:15px;">从业经验：${item.broker_experience }年</a>
 							<a class="f-l agent_lab f-yahei s-14">语言：${item.broker_language }</a>
@@ -921,15 +921,15 @@ function popInfo(){
 				<div class="c-fix p_inner bgc" style="padding-bottom:30px;">
 					<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:950px;margin-bottom:10px;">推荐项目</a>
 					<div class="c-fix f-l p_project_node">
-						<a href="Index?proNum=${RecommendProject1.project_num}"><img src="http://101.200.174.253:9090/all/${RecommendProject1.project_img}" class="c-fix f-l project_img"></img></a>
+						<a href="Index?proNum=${RecommendProject1.project_num}"><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject1.project_img}" class="c-fix f-l project_img"></img></a>
 						<a class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject1.project_name}<br/>${RecommendProject1.project_desc}</a>
 					</div>
 					<div class="f-l p_project_node" style="margin-left:25px;">
-						<a href="Index?proNum=${RecommendProject2.project_num}"><img src="http://101.200.174.253:9090/all/${RecommendProject2.project_img}" class="c-fix f-l project_img"></img></a>
+						<a href="Index?proNum=${RecommendProject2.project_num}"><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject2.project_img}" class="c-fix f-l project_img"></img></a>
 						<a class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject2.project_name}<br/>${RecommendProject2.project_desc}</a>
 					</div>
 					<div class="f-l p_project_node" style="margin-left:25px;">
-						<a href="Index?proNum=${RecommendProject3.project_num}"><img src="http://101.200.174.253:9090/all/${RecommendProject3.project_img}" class="c-fix f-l project_img"></img></a>
+						<a href="Index?proNum=${RecommendProject3.project_num}"><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject3.project_img}" class="c-fix f-l project_img"></img></a>
 						<a class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject3.project_name}<br/>${RecommendProject3.project_desc}</a>
 					</div>
 				</div>

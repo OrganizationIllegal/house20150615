@@ -110,7 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   						//html+="<span style='float:left'><span style='color:white;font-family:微软雅黑;font-size:14px;float:left'>"+items[j].Project_name+"</span><span style='color:white;font-family:微软雅黑;font-size:12px;margin-left:20px;float:left'>"+items[j].project_address+"</span></span><span style='font-family:微软雅黑;font-size:12px;color:white;margin-left:367px;float:left'><a  style='color:white' onclick='aa("+items[j].project_num+")' href=''>删除</a></span><img src='pic/xing.jpg' style='float:right;margin-top:-9px'/></span>";
   						html+="<div class='panel-body' style='padding-top:5px;padding-bottom:11px;padding-left:13px'><div id='item'><div class='media'><div >";
   						html+="<a class='pull-left' href='/Index?proNum="+items[j].project_num+"'"+" target='_parent'>";
-  						html+="<img  style='height:227px;width:366px' src='http://101.200.174.253:9090/all/"+items[j].Project_img+"'></a></div>";
+  						html+="<img  style='height:227px;width:366px' src='<%=application.getInitParameter("imagedir")%>/"+items[j].Project_img+"'></a></div>";
   						html+="<div class=media-body fnt-smaller' style='padding:0 0 0 15px'><div class='col-xs-8' style='margin-top:15px'>";
    	                    html+="<span style='font-family:微软雅黑;font-size:14px;font-weight:bolder'>"+items[j].Project_name+"</span><hr style='margin-top:8px;margin-bottom:8px'/>";
    	       				html+="<span  style='font-family:微软雅黑;font-size:12px'><span>"+items[j].project_lan_cn+"</span>";
@@ -149,7 +149,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	       			 		 html+="<span style ='border:solid 1px rgb(254,254,241);font-family:微软雅黑;font-size:12px;opacity:50%;padding-left:3px;padding-right:3px;width:58px;height:22px;text-align:center;margin-right:10px'><span style='display:inline-block;margin:0 auto;margin-bottom:10px'>"+items[j].xinkaipan+"</span></span>";
    	       			    }
    	       			    html+="</div>";
-   	       				//html+="<div class='row' style='margin-top:20px'><img alt='image' class='img-responsive' style='width:121px;height:50px;margin-top:8px' src='http://101.200.174.253:9090/all/"+items[j].project_logo+"'></div></div>";
+   	       				//html+="<div class='row' style='margin-top:20px'><img alt='image' class='img-responsive' style='width:121px;height:50px;margin-top:8px' src='<%=application.getInitParameter("imagedir")%>/"+items[j].project_logo+"'></div></div>";
    	       				if(items[j].developer_id_name!=null)
    	       				{
    	       					html+="<div><div  style='margin-top:20px;font-family:微软雅黑;color:rgb(170,16,25);font-style:italic;font-size:20px;'>"+items[j].developer_id_name+"</div></div></div>";

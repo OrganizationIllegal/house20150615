@@ -196,7 +196,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                		html+="<hr style='margin-top:6px;margin-bottom:8px'/>"
 	                    	html+="<div class='media' style='padding-left:4px'> ";
 	                    	html+="<a class='pull-left' href='/Index?proNum="+items[j].project_num+"'"+" target='_parent'>";
-	                    	html+="<img alt='image' class='img-responsive' src='http://101.200.174.253:9090/all/"+items[j].project_img+"' style='width:160px;height:100px' ></a>";
+	                    	html+="<img alt='image' class='img-responsive' src='<%=application.getInitParameter("imagedir")%>/"+items[j].project_img+"' style='width:160px;height:100px' ></a>";
 	                    	html+="<div class='clearfix visible-sm'></div>";
 	                    	html+="<div class='media-body fnt-smaller' style='padding-left:4px'>";
 	                    	html+="<div style='font-family:微软雅黑;font-weight:bolder;font-size:15px' class='media-heading'>"+items[j].project_name+"</div>";
@@ -262,7 +262,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="c-fix f-l div_node">
 					<a class="c-fix f-l f-yahei s-12 node_address">${item.project_address}</a>
 					<a href="/Index?proNum=${item.project_num}" target="blank">
-					<img class="c-fix f-l node_img" src="http://101.200.174.253:9090/all/${item.project_img}" style="width:160px;height:100px" ></img>
+					<img class="c-fix f-l node_img" src="<%=application.getInitParameter("imagedir")%>/${item.project_img}" style="width:160px;height:100px" ></img>
 					</a>
 					<div class="f-l node_right" style="width:167px">
 						<a class="c-fix f-l f-arial s-12 fw node_name">${item.project_name}</a>

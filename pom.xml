@@ -140,6 +140,12 @@
 							<port>90</port>
 						</connector>
 					</connectors>
+					<contextHandlers>  
+			            <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">  
+			                <contextPath>/Uploadimages</contextPath>  
+			                <resourceBase>D:/Pictures/all</resourceBase>  
+			            </contextHandler>
+			     	</contextHandlers>
 				</configuration>
 			</plugin>
 		</plugins>
