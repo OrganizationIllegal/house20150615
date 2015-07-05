@@ -504,11 +504,19 @@ if(navigator.userAgent.toLowerCase().indexOf('msie')>0 || navigator.userAgent.to
 $("#searchTerritory").on('focus',function(e){
 	 if($('#searchTerritory').val()==""){
 		 $("#_suggestion").hide();
+		 
 	 }
 	 else{
 	 	input_suggest();
 	 }
     
+});
+
+$("#searchTerritory").on('click',function(e){
+	 if($('#searchTerritory').val()==""){
+		 input_suggest_recommend();
+	 }
+	 
 });
 
 $("#searchTerritory").on('blur',function(e){      //焦点 
@@ -576,7 +584,9 @@ var input_suggest = function(){
                 $("#_suggestion div ul li").each(function(){
                 
 					$(this).on('click',function(event){
-						window.open("/IndexSearch?searchcity="+encodeURIComponent($(this).text()),"_blank");
+						var info = $(this).text();
+						$('#searchTerritory').val(info);
+						//window.open("/IndexSearch?searchcity="+encodeURIComponent($(this).text()),"_blank");
 					});
                 }); 
                 $("#_suggestion").show();
@@ -593,7 +603,83 @@ var input_suggest = function(){
 };
 
 
-
+var input_suggest_recommend = function(){
+	value = $('#searchTerritory').val();
+    $.ajax({
+        type:"get",
+        url:"/getSuggestionRecommend",
+        dataType:"json",
+        async:true,
+        data:{},
+        success:function(data){
+       
+            if(data.success && data.list.length>0){
+           
+                var _html = "";
+                 
+                for(var i = 0 ; i<10 && i < data.list.length;i++){
+                    var _text = data.list[i];
+                    if(_text=='' || _text==undefined){
+                        continue;
+                    }
+                    if(_text.length>30){
+                        _text = _text.substring(0,30);
+                    }
+                    var _text = data.list[i];
+               //alert(_text.indexOf(value))
+                    _html += "<li>";
+                    /* var arr=new Array();   
+                    arr = _text.split(',');
+               
+                    for(var i=0; i<arr.length; i++){
+                    	var item = $.trim(arr[i]);  
+                    	if(item.indexOf(value)==0){
+                    		_html += "<strong>"+arr[i]+"</strong>";
+                    	}
+                    	else{
+                    		_html += arr[i];
+                    	}
+                    		
+                    } */
+                    //var txt=$.trim(_text);  
+                    //alert(txt.indexOf(value));
+                   if(_text.indexOf(value)==0){
+                	   
+                        _text = _text.substring(value.length,_text.length);
+                        _html += value+"<strong>"+_text+"</strong>";
+                   }/* else if(_text.indexOf(value)==_text.length-4){
+                	   var tempText = _text.substring(_text.indexOf(value),_text.length);
+                       _html += "<strong>"+_text.substring(0,_text.indexOf(value))+"</strong>"+tempText;
+                   } */
+                   
+                   else{
+                        _html += _text;
+                   }
+                    _html += "</li>"; 
+                }
+                $("#_suggestion div ul").html(_html);
+                
+				
+                $("#_suggestion div ul li").each(function(){
+                
+					$(this).on('click',function(event){
+						var info = $(this).text();
+						$('#searchTerritory').val(info);
+						//window.open("/IndexSearch?searchcity="+encodeURIComponent($(this).text()),"_blank");
+					});
+                }); 
+                $("#_suggestion").show();
+               
+                suggLis = $("#_suggestion div ul li");
+                highlight_li = -1;
+                hoverFunc('#_suggestion div ul li', 'cur');
+            }else{
+                $("#_suggestion").hide();
+            }
+        },
+        error:function(){}
+    });
+};
 
 function stopEvent(evt){
     if(evt.preventDefault){
@@ -684,7 +770,7 @@ function hoverFunc(select, css){
     )
 }
 
-    function s0(o,key){
+    /* function s0(o,key){
         var _input=$("#searchTerritory").val();
         if(_input.length>0){
             var h = $(o).attr("search");
@@ -725,7 +811,7 @@ function hoverFunc(select, css){
             h+="&w="+encodeURIComponent(_input);
             $(o).attr("href",h);
         }
-    }
+    } */
     function checkForm(){
         var _input=$("#searchTerritory").val();
         if(_input.length>40){

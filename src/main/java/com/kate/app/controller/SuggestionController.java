@@ -56,7 +56,7 @@ public class SuggestionController {
 	private NewsBokeDao newsBokeDao;
 	@Autowired
 	private SuggestionService suggestionService;
-	//¹ÜÀíÔ±   ÇøÓò¼ÒÍ¥Çé¿ö¹¹³É  ÁÐ±í
+	//ï¿½ï¿½ï¿½ï¿½Ô±   ï¿½ï¿½ï¿½ï¿½ï¿½Í¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½Ð±ï¿½
 	@RequestMapping({"/getSuggestion"})
 	public void  getSuggestion(HttpServletRequest req,HttpServletResponse resp) throws IOException{
 		String query = req.getParameter("query");
@@ -65,6 +65,28 @@ public class SuggestionController {
 		suggestionService.writeFileByName();
 		array = suggestionService.getSuggestion(query);
 		
+		json.put("list", array);
+		json.put("success", true);
+		try{
+			writeJson(json.toJSONString(),resp);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	@RequestMapping({"/getSuggestionRecommend"})
+	public void  getSuggestionRecommend(HttpServletRequest req,HttpServletResponse resp) throws IOException{
+		String query = req.getParameter("query");
+		JSONObject json = new JSONObject();
+		List <String> array = new ArrayList<String>();
+		array = suggestionService.getSuggestionReco();
+		if(array.size()<=0 || array==null){
+			array = null;
+		}else if(array.size()>10){
+			array = array.subList(0, 10);
+		}
 		json.put("list", array);
 		json.put("success", true);
 		try{

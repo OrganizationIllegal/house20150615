@@ -29,6 +29,7 @@ public class SuggestionService {
     private HouseProjectDao houseProjectDao;
 	
 	private  final static String SUGGESTION = "data1.txt";
+	private  final static String SUGGESTIONRECO = "dataReco.txt";
 	private final static String URL = "D:/";
 	
 	public List<String>  getSuggestion(String query) throws IOException{
@@ -142,8 +143,11 @@ public class SuggestionService {
 				data.setProNum(proNum);
 				list.add(data);
 			}
-			for(SuggestionProject item : projectList){
+			/*for(SuggestionProject item : projectList){
 				p.append(item.getProject_name()+"\r\n");
+			}*/
+			for(Suggestion item : list){
+				p.append(item.getArea_name()+"\r\n");
 			}
 			for(String zhou : zhouList){
 				p.append(zhou+"\r\n");
@@ -151,6 +155,7 @@ public class SuggestionService {
 			for(String city : cityList){
 				p.append(city+"\r\n");
 			}
+			
 			for(Suggestion item : list){
 				String post = item.getArea_postcode();
 				String code = "";
@@ -179,7 +184,22 @@ public class SuggestionService {
 		}
 	}
 
-	
+	public List<String>  getSuggestionReco() throws IOException{
+		List<String[]> list = new ArrayList<String[]>();
+		String path = URL + SUGGESTIONRECO;
+		
+		List<String> resultList = new ArrayList<String>();
+		//BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(path), "gbk"));
+		BufferedReader reader = new BufferedReader(new FileReader(path));
+		while (reader.ready()) {
+			String line = reader.readLine();
+			resultList.add(line);
+		}
+		reader.close();
+		for(String e: resultList)
+			System.out.println(e);
+			return resultList;
+	}
 	
 	
 	
