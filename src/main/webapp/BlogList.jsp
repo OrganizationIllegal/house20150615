@@ -339,7 +339,7 @@ function reLoad(){
                 	for(var j=0;j<items.length;j++){
                 	    html+="<li class='media'><div class='media-left'><a href='/Detail?id="+items[j].id+"&type=1'>";
                 	    html+="<img class='media-object' src='<%=application.getInitParameter("imagedir")%>/"+items[j].image+"' alt='' width='180px' height='134px'>";
- 						html+="</a></div><div class='media-body' style='padding-left:20px;'><div class='media-heading' style='font-size:20px;color:rgb(147,181,219);'><a  href="/Detail?id=${item.id}&type=1">"+items[j].title;
+ 						html+="</a></div><div class='media-body' style='padding-left:20px;'><div class='media-heading' style='font-size:20px;color:rgb(147,181,219);'><a  href='/Detail?id="+items[j].id+"&type=1'>"+items[j].title;
  						html+="</a></div><p style='font-size:12px;'>"+items[j].news_fenlei;
  						html+="&nbsp;&nbsp;&nbsp;&nbsp;"+items[j].newstime;
  						html+="</p><p style='font-size:12px;'>"+items[j].news_abstract;
