@@ -18,6 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&mkt=zh-cn"></script> 
    <script type="text/javascript" src="/js/bingMap.js"></script>
    <script type="text/javascript">
+   var imgdir="<%=application.getInitParameter("imagedir")%>";
    function housetype(v){
 	   var selectedOption=v.options[v.selectedIndex];  
 	   switch(selectedOption.value){

@@ -213,6 +213,9 @@ public class BingMapDao extends BaseDao {
 		    	coordinates.setProject_num(rs.getString("project_num"));
 		    	coordinates.setProject_min_price(rs.getString("project_min_price"));
 		    	coordinates.setProject_high_price(rs.getString("project_high_price"));
+		    	coordinates.setProject_zhou(rs.getString("project_zhou"));
+		    	coordinates.setProject_city(rs.getString("project_city"));
+		    	coordinates.setProject_nation(rs.getString("project_nation"));
 		    	coordinatesList.add(coordinates);
 		    }
 		    
@@ -231,16 +234,16 @@ public class BingMapDao extends BaseDao {
 			switch(type)
 			{
 			case 1:
-				housetype="%1居室%";
+				housetype="%1房%";
 				break;
 			case 2:
-				housetype="%2居室%";
+				housetype="%2房%";
 				break;
 			case 3:
-				housetype="%3居室%";
+				housetype="%3房%";
 				break;
 			case 4:
-				housetype="%4居室%";
+				housetype="%4房%";
 				break;
 			}
 			String sql = "SELECT * FROM `house_project` WHERE gps!='' and project_house_type like '"+housetype+"'";
@@ -256,6 +259,9 @@ public class BingMapDao extends BaseDao {
 		    	coordinates.setProject_num(rs.getString("project_num"));
 		    	coordinates.setProject_min_price(rs.getString("project_min_price"));
 		    	coordinates.setProject_high_price(rs.getString("project_high_price"));
+		    	coordinates.setProject_zhou(rs.getString("project_zhou"));
+		    	coordinates.setProject_city(rs.getString("project_city"));
+		    	coordinates.setProject_nation(rs.getString("project_nation"));
 		    	coordinatesList.add(coordinates);
 		    }
 		} catch (Exception e) {
@@ -280,6 +286,9 @@ public class BingMapDao extends BaseDao {
 		    	coordinates.setProject_num(rs.getString("project_num"));
 		    	coordinates.setProject_min_price(rs.getString("project_min_price"));
 		    	coordinates.setProject_high_price(rs.getString("project_high_price"));
+		    	coordinates.setProject_zhou(rs.getString("project_zhou"));
+		    	coordinates.setProject_city(rs.getString("project_city"));
+		    	coordinates.setProject_nation(rs.getString("project_nation"));
 		    	coordinatesList.add(coordinates);
 		    }
 		} catch (Exception e) {
