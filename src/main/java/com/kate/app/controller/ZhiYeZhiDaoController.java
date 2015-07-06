@@ -98,7 +98,7 @@ public class ZhiYeZhiDaoController {
 		int pageNum  = pageIndex==null? 0 :Integer.parseInt(pageIndex);
 		List<NewsBoke> newsBokeList = new ArrayList(); 
 		String fenlei = req.getParameter("type");
-		if(fenlei==null||"".equals(fenlei)||fenlei.equals("璇烽�鎷╀竴涓被鍒�")){
+		if(fenlei==null||"".equals(fenlei)||fenlei.equals("请选择一个类别")){
 			newsBokeList = zhiYeDao.selectNewsBoke();  //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
 		}
 		else{
@@ -168,7 +168,7 @@ public class ZhiYeZhiDaoController {
 				int pageNum  = pageIndex==null? 0 :Integer.parseInt(pageIndex);
 				List<ZhiYeZhiDao> zhiYeList = new ArrayList(); 
 				String fenlei = req.getParameter("type");
-				if(fenlei==null||"".equals(fenlei)||fenlei.equals("璇烽�鎷╀竴涓被鍒�")){
+				if(fenlei==null||"".equals(fenlei)||fenlei.equals("请选择一个类别")){
 					zhiYeList = zhiYeDao.selectZhiYe();   //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
 				}
 				else{

@@ -478,13 +478,13 @@ function popInfo(){
 					<a class="c-fix f-l walk_lab f-yahei s-14" style="margin-top:20px;">步行指数：99</a>
 					<a class="c-fix f-l walk_lab f-arial s-14">Walk Score</a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:445px;margin-left:0px;">附近学校</a>
-					<c:forEach items="${nearSchoolList}" var="item" begin="0" end="4" step="1" varStatus="var">
+					<c:forEach items="${nearSchoolList}" var="item" begin="0" end="2" step="1" varStatus="var">
 					<div class="c-fix f-l p_school_node">
 						<div class="c-fix f-l p_school_inner">
 							<a class="c-fix f-l p_school_lab f-yahei s-14">${item.school_type}</a>	
 							<a class="f-r p_school_lab f-yahei s-14" style="margin-right:20px;">${item.school_name}</a>	
 						</div>
-						<a class="c-fix f-r p_school_distance f-yahei s-14" style="margin-right:20px;">${item.school_distance}km</a>	
+						<a class="c-fix f-r p_school_distance f-yahei s-14" style="margin-right:20px;">${item.school_distance}m</a>	
 					</div>
 					</c:forEach>
 					
@@ -494,7 +494,7 @@ function popInfo(){
 				</div>
 				<a class="f-l f-yahei s-14 p_panel_title4 fw" style="width:455px;margin-left:60px;margin-top:-8px;">附近配套</a>
 				<div class="f-l p_right_bottom" style="margin-left:35px;">
-				<c:forEach items="${nearSchoolFacility}" var="item" begin="0" end="4" step="1" varStatus="var">
+				<c:forEach items="${nearSchoolFacility}" var="item" begin="0" end="2" step="1" varStatus="var">
 					<div class="c-fix f-l p_school_node">
 						<div class="c-fix f-l p_school_inner">
 							<a class="c-fix f-l p_school_lab f-yahei s-14">${item.market_type}</a>	

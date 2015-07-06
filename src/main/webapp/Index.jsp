@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link rel="stylesheet" type="text/css" href="css/newstyle.css" />
 		<link rel="stylesheet" type="text/css" href="css/selectDIV.css" />
 		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
-		<script type="text/javascript" src="js/jquery.js"></script>
+		<!-- <script type="text/javascript" src="js/jquery.js"></script> -->
 		<script src="/js/jquery-1.11.1.min.js"></script>
 		<script src="/js/suggestion.js"></script>
 		<!--<script type="text/javascript" src="js/divselect.js"></script>  -->
@@ -96,6 +96,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    				var txt = $(this).text();
    				$("#territory").find("cite").html(txt);
    				var value = $(this).attr("selectid");
+   				$("#typeInfo").slideUp("fast");
    				/*inputselect.val(value);*/
    				/* ul.hide(); */
    				
@@ -105,6 +106,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    				var txt = $(this).text();
    				$("#terry").find("cite").html(txt);
    				var value = $(this).attr("selectid");
+   				$("#minimumpriceInfo").slideUp("fast");
    				/*inputselect.val(value);*/
    				/* ul.hide(); */
    				
@@ -113,6 +115,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    			ul3.find("li").find("a").click(function(){
    				var txt = $(this).text();
    				$("#territ").find("cite").html(txt);
+   				$("#maxNum").slideUp("fast");
    				//var value = $(this).attr("selectid");
    				/*inputselect.val(value);*/
    				/* ul.hide(); */
@@ -129,30 +132,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    			}
    		}
    		function city1(){
-   			if($("#typeInfo").css("display")=="none"){
+   			/* if($("#typeInfo").css("display")=="none"){
    				$("#typeInfo").css("display","block");
    			}else{
    				$("#typeInfo").slideUp("fast");
-   			}
+   			} */
+   			$("#typeInfo").css("display","block");
+   			$("#territory").mouseleave(function(){
+   		   		$("#typeInfo").slideUp("fast");
+   			   	});
    		}
    		function city2(){
-   			if($("#minimumpriceInfo").css("display")=="none"){
+   			/* if($("#minimumpriceInfo").css("display")=="none"){
    				$("#minimumpriceInfo").css("display","block");
    				
    			}else{
    				$("#minimumpriceInfo").slideUp("fast");
-   			}
+   			} */
+   			$("#minimumpriceInfo").css("display","block");
+   			$("#terry").mouseleave(function(){
+   		   		$("#minimumpriceInfo").slideUp("fast");
+   			   	});
    		}
    		function city3(){
    	   		//alert("999");
-   			if($("#maxNum").css("display")=="none"){
+   			/* if($("#maxNum").css("display")=="none"){
    				$("#maxNum").css("display","block");
    			}else{
    				$("#maxNum").slideUp("fast");
-   			}
+   			} */
+   			$("#maxNum").css("display","block");
+   			$("#territ").mouseleave(function(){
+   		   		$("#maxNum").slideUp("fast");
+   			   	});
    		}
 
    		
+   		/* $(document).click(function(){
+   			$("#maxNum").slideUp("fast");
+   			$("#minimumpriceInfo").slideUp("fast");
+   			$("#typeInfo").slideUp("fast");
+   	   		}); */
+	   	
 </script>
 
 	</head>
@@ -194,36 +215,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<!-- <a class="f-l btn_search cp"></a> -->
 						
 					</div>
-					<div id="territory" onclick="city1()" style="width:110px; clear:left; margin-top:5px;" class="divselect">
+					<div id="territory" onmouseover="city1()" style="width:110px; clear:left; margin-top:5px;" class="divselect">
 	      				<cite id="city1" style="width:100px; font-family:微软雅黑; -font-size:14px;font-size:16px; background:url(/pic/jiaoy.png) no-repeat right center; color:#efef39;">房屋类型</cite>
-					      <ul id="typeInfo" style="width:94px;font-size:16px;">
+					      <ul onmouseover="city1()"  id="typeInfo" style="width:94px;font-size:16px;">
 					         <li><a href="javascript:;" selectid="1" >公寓</a></li>
 					         <li><a href="javascript:;" selectid="2">别墅</a></li>
 					         <li><a href="javascript:;" selectid="3">联排别墅</a></li>
 					      </ul>
 					      <input type="hidden" name="type" value="" id="typeName">
 					 </div>
-					 
-					 <div id="terry" onclick="city2()" style="width:110px;  margin-top:5px;margin-left:8px;" class="divselect">
+					  <!-- onmouseout="city1out()" -->
+					 <div id="terry" onmouseover="city2()" style="width:110px;  margin-top:5px;margin-left:8px;" class="divselect">
 	      				<cite id="city2" style="width:100px; font-family:微软雅黑; -font-size:14px;font-size:16px; background:url(/pic/jiaoy.png) no-repeat right center; color:#efef39;">最小价格</cite>
-					      <ul id="minimumpriceInfo" style="width:94px; display:none;font-size:16px;">
+					      <ul  onmouseover="city2()"  id="minimumpriceInfo" style="width:94px; display:none;font-size:16px;">
 					         <li><a href="javascript:;" selectid="1">$10,000</a></li>
 					         <li><a href="javascript:;" selectid="2">$20,000</a></li>
 					         <li><a href="javascript:;" selectid="3">$30,000</a></li>
 					      </ul>
 					      <input type="hidden" name="minimumprice" value="" id="minimumpriceName">
 					 </div>
+					 <!-- onmouseout="city2out()" -->
 					 
-					 <div id="territ" onclick="city3()" style="width:110px; margin-top:5px; margin-left:8px;" class="divselect">
+					 <div id="territ" onmouseover="city3()"   style="width:110px; margin-top:5px; margin-left:8px;" class="divselect">
 	      				<cite id="city3" style="width:100px; font-family:微软雅黑; -font-size:14px;font-size:16px; background:url(/pic/jiaoy.png) no-repeat right center; color:#efef39;">最大价格</cite>
-					      <ul id="maxNum" style="width:94px; display:none;font-size:16px;">
+					      <div>
+					      <ul  onmouseover="city3()"  id="maxNum" style="width:94px; display:none;font-size:16px;">
 					         <li><a href="javascript:;" selectid="1">$70,000</a></li>
 					         <li><a href="javascript:;" selectid="2">$80,000</a></li>
 					         <li><a href="javascript:;" selectid="3">$90,000</a></li>
 					      </ul>
+					      </div>
 					      <input type="hidden" name="maximumprice" value="" id="maximumpriceName">
 					 </div>
 					 
+					 <!-- onmouseout="city3out()" -->
 					<a class="f-l f-yahei s-14 btn_more cp">更多</a>
 					<div class="c-fix f-l main_more" style="display:none;">
 						<div class="c-fix f-l main_more_line">
