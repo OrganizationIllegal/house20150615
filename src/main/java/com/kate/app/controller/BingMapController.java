@@ -1,7 +1,11 @@
 package com.kate.app.controller;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,11 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.kate.app.model.BingMapVo;
-import com.kate.app.model.Coordinates;
-import com.kate.app.model.SearchList;
 import com.kate.app.service.BingMapService;
 @Controller
 public class BingMapController {
@@ -209,8 +213,36 @@ public class BingMapController {
 	public void listMap(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();
 		JSONArray array = new JSONArray();
+		JSONArray array2 = new JSONArray();
+		JSONArray array3 = new JSONArray();
+		List<String> zhou=new ArrayList<String>();
 		array = bingMapService.jsonCoordinates();
-		json.put("List", array);		
+		int len=array.size();
+		for(int i=0;i<len;i++){
+			JSONObject obj=(JSONObject)array.get(i);
+			String project_zhou=obj.getString("project_zhou");
+			zhou.add(project_zhou);
+		}
+		Set<String> uniqueSet = new HashSet<String>(zhou);
+		for (String temp : uniqueSet) {
+			String str1=temp;
+			int size=Collections.frequency(zhou, temp);
+			JSONObject obj2 = new JSONObject();
+			obj2.put("zhou", size);
+			array2.add(obj2);
+			for(int j=0;j<len;j++){
+				JSONObject obj3=(JSONObject)array.get(j);
+				String project_zhou2=obj3.getString("project_zhou");
+				if(project_zhou2.equals(str1)){
+					array3.add(obj3);
+					break;
+				}
+			}
+        }
+		json.put("List", array);
+		json.put("List2", array2);
+		json.put("List3", JSONArray.parseArray(JSON.toJSONString(array3, SerializerFeature.DisableCircularReferenceDetect)));
+		
 		try{
 			writeJson(json.toJSONString(),resp);
 		}catch(Exception e){
@@ -222,9 +254,40 @@ public class BingMapController {
 	public void filterByHouseType2(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();
 		JSONArray array = new JSONArray();
+		JSONArray array2 = new JSONArray();
+		JSONArray array3 = new JSONArray();
+		List<String> zhou=new ArrayList<String>();
 		int type=Integer.parseInt(req.getParameter("house_type"));
 		array = bingMapService.filterByHouseType2(type);
-		json.put("List", array);		
+		int len=array.size();
+		for(int i=0;i<len;i++){
+			JSONObject obj=(JSONObject)array.get(i);
+			String project_zhou=obj.getString("project_zhou");
+			zhou.add(project_zhou);
+		}
+		Set<String> uniqueSet = new HashSet<String>(zhou);
+		for (String temp : uniqueSet) {
+			String str1=temp;
+			int size=Collections.frequency(zhou, temp);
+			JSONObject obj2 = new JSONObject();
+			obj2.put("zhou", size);
+			array2.add(obj2);
+			for(int j=0;j<len;j++){
+				JSONObject obj3=(JSONObject)array.get(j);
+				String project_zhou2=obj3.getString("project_zhou");
+				if(project_zhou2.equals(str1)){
+					array3.add(obj3);
+					break;
+				}
+			}
+        }
+		System.out.println(array2);
+		System.out.println(array3);
+		System.out.println(array2.size());
+		System.out.println(array3.size());
+		json.put("List", array);
+		json.put("List2", array2);
+		json.put("List3", JSONArray.parseArray(JSON.toJSONString(array3, SerializerFeature.DisableCircularReferenceDetect)));
 		try{
 			writeJson(json.toJSONString(),resp);
 		}catch(Exception e){
@@ -235,9 +298,40 @@ public class BingMapController {
 	public void filterByKeyWord(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();
 		JSONArray array = new JSONArray();
+		JSONArray array2 = new JSONArray();
+		JSONArray array3 = new JSONArray();
+		List<String> zhou=new ArrayList<String>();
 		String key=req.getParameter("keyword");
 		array = bingMapService.filterByKeyWord(key);
-		json.put("List", array);		
+		int len=array.size();
+		for(int i=0;i<len;i++){
+			JSONObject obj=(JSONObject)array.get(i);
+			String project_zhou=obj.getString("project_zhou");
+			zhou.add(project_zhou);
+		}
+		Set<String> uniqueSet = new HashSet<String>(zhou);
+		for (String temp : uniqueSet) {
+			String str1=temp;
+			int size=Collections.frequency(zhou, temp);
+			JSONObject obj2 = new JSONObject();
+			obj2.put("zhou", size);
+			array2.add(obj2);
+			for(int j=0;j<len;j++){
+				JSONObject obj3=(JSONObject)array.get(j);
+				String project_zhou2=obj3.getString("project_zhou");
+				if(project_zhou2.equals(str1)){
+					array3.add(obj3);
+					break;
+				}
+			}
+        }
+		System.out.println(array2);
+		System.out.println(array3);
+		System.out.println(array2.size());
+		System.out.println(array3.size());
+		json.put("List", array);
+		json.put("List2", array2);
+		json.put("List3", JSONArray.parseArray(JSON.toJSONString(array3, SerializerFeature.DisableCircularReferenceDetect)));
 		try{
 			writeJson(json.toJSONString(),resp);
 		}catch(Exception e){

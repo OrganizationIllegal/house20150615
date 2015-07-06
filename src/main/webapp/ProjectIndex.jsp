@@ -84,7 +84,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 		</style>
 <script type="text/javascript">
-
+var imgdir="<%=application.getInitParameter("imagedir")%>";
 function compute(){
 var a=$('#select1').find("option:selected").val();
 var b=$('#select2').find("option:selected").val();

@@ -4,106 +4,69 @@
       /*加载地图*/
       function getMap()
       {
-       map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AiI0UVY6YDQ0GtOirYyxVo0F_NckOJMIDtjDeuHjOqfENWZ3a_pDopdHYOTAZSjn',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
+       map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
        $.ajax({
- 	 	    type: "GET",
- 	 		dateType: "json",
- 	 		url: "/BingMap/Coordinates", 		
- 	 		success:function(data){
- 	        //alert(data)
- 	 		data=$.parseJSON(data);
- 	 		    var items=data.List;
-	 		    var a=new Array();
-	 		    a=items[0].gps.split(",");
-	 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
-	 		    map.setView({ zoom: 11, center: Center });	
- 	 		    for(var i=0;i<items.length;i++){
- 	 		        var arr=new Array();
- 	 		        arr=items[i].gps.split(",");
- 	 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]);
- 	 		        var num=items[i].project_num;
- 	 		        var name=items[i].project_name;
- 	 		        var image=items[i].project_img;
- 	 		        var img="http://101.200.174.253:8080/all/"+image;	 		        
- 	 		        var minprice=items[i].project_min_price;
- 	 		        var maxprice=items[i].project_high_price;
- 	 		        var price="$"+minprice+"-$"+maxprice;
- 	 		     var name=items[i].project_name;
-	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:12px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"}; 
-	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
- 				    add(name,img,price,num,pushpin,LA);
- 				    map.entities.push(pushpin);	
- 	 		    }
- 	 		   
- 	 		},
- 	 		error:function(){
- 	 			alert("addDefaultPushpin error")
- 	 		}
-         });		 
-      /* $.ajax({
 	 	    type: "GET",
 	 		dateType: "json",
 	 		url: "/BingMap/Coordinates", 		
 	 		success:function(data){
+	        //alert(data)
 	 		data=$.parseJSON(data);
 	 		    var items=data.List;
+	 		    var items2=data.List2;
+	 		    var items3=data.List3;
 	 		    var a=new Array();
 	 		    a=items[0].gps.split(",");
 	 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
 	 		    map.setView({ zoom: 11, center: Center });	
-	 		    for(var i=0;i<items.length;i++){
-	 		        var arr=new Array();
-	 		        arr=items[i].gps.split(",");
-	 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]);
-	 		        var name=items[i].project_name;
-	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:5px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"}; 
-	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
-	 		        Microsoft.Maps.Events.addHandler(pushpin, 'click', popModal); 
-				    map.entities.push(pushpin);
-	 		    }
+	 		    lastZoomLevel = map.getZoom();
+	 	        Microsoft.Maps.Events.addHandler(map, 'viewchangeend', function(){
+	 	        	if(lastZoomLevel != map.getZoom()){
+	 	               lastZoomLevel = map.getZoom();
+	 	               if(lastZoomLevel>6){
+	 	            	  map.entities.clear();
+	 	            	  for(var i=0;i<items.length;i++){
+	 	 	 		        var arr=new Array();
+	 	 	 		        arr=items[i].gps.split(",");
+	 	 	 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]);
+	 	 	 		        var num=items[i].project_num;
+	 	 	 		        var name=items[i].project_name;
+	 	 	 		        var image=items[i].project_img;
+	 	 	 		        var img=imgdir+"/"+image;	 		        
+	 	 	 		        var minprice=items[i].project_min_price;
+	 	 	 		        var maxprice=items[i].project_high_price;
+	 	 	 		        var zhou=items[i].project_zhou;
+	 	 	 		        var price="$"+minprice+"-$"+maxprice;
+	 	 	 		        var name=items[i].project_name;
+	 	 	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:12px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"}; 
+	 	 	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
+	 	 				    add(name,img,price,num,pushpin,LA);
+	 	 				    map.entities.push(pushpin);	
+	 	 	 		    }	 	            	   
+	 	               }else{
+	 	            	    //alert(lastZoomLevel);
+	 	            	    map.entities.clear();
+	 	            	    var len=items2.length;
+	 	            	    for(var j=0;j<len;j++){
+	 	            	        var arr2=new Array();
+	 	            	        arr2=items3[j].gps.split(",");
+	 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
+	 	            	        var zhou2=items3[j].project_zhou;
+	 	            	        var total=items2[j].zhou;
+	 	            	        var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; 
+	 	                  	    var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
+	 	                  	    map.entities.push(pushpin2);
+	 	            	    }
+	 	               }
+	 	        	}
+	 	        });
+	 		   
 	 		   
 	 		},
 	 		error:function(){
 	 			alert("addDefaultPushpin error")
 	 		}
-       });		 */
-      }
-      function getPopMap(){
-    	  map = new Microsoft.Maps.Map(document.getElementById('popMap'), {credentials: 'AiI0UVY6YDQ0GtOirYyxVo0F_NckOJMIDtjDeuHjOqfENWZ3a_pDopdHYOTAZSjn',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false});
-    	  $.ajax({
-  	 	    type: "GET",
-  	 		dateType: "json",
-  	 		url: "/BingMap/Coordinates", 		
-  	 		success:function(data){
-  	 		data=$.parseJSON(data);
-  	 		    var items=data.List;
-	 		    var a=new Array();
-	 		    a=items[0].gps.split(",");
-	 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
-	 		    map.setView({ zoom: 11, center: Center });	
-  	 		    for(var i=0;i<items.length;i++){
-  	 		        var arr=new Array();
-  	 		        arr=items[i].gps.split(",");
-  	 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]);
-  	 		        var num=items[i].project_num;
-  	 		        var name=items[i].project_name;
-  	 		        var image=items[i].project_img;
-  	 		        var img="http://101.200.174.253:8080/all/"+image;	 		        
-  	 		        var minprice=items[i].project_min_price;
-  	 		        var maxprice=items[i].project_high_price;
-  	 		        var price="$"+minprice+"-$"+maxprice;
-  	 		     var name=items[i].project_name;
-	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:5px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"}; 
-	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
-  				    add(name,img,price,num,pushpin,LA);
-  				    map.entities.push(pushpin);	
-  	 		    }
-  	 		   
-  	 		},
-  	 		error:function(){
-  	 			alert("addDefaultPushpin error")
-  	 		}
-          });		 
+        });		 
       }
       function add(name,img,price,num,pushpin,LA){
     	  Microsoft.Maps.Events.addHandler(pushpin, 'click', function(){
@@ -125,86 +88,74 @@
       function display(){
     	  defaultInfobox.setOptions({ visible: false });
       }
-	  /*弹出模态框*/
-	  function popModal(){
-		  getPopMap();
-		  $('#myModal').modal('show');
-	  }
-
 	   /* 增加一居室pushpin*/
 	   function addPushpin1()
       {
 		 //alert("yijushi")
 		 map.entities.clear(); 
-		 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AiI0UVY6YDQ0GtOirYyxVo0F_NckOJMIDtjDeuHjOqfENWZ3a_pDopdHYOTAZSjn',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: true });
+		 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
 		 $.ajax({
-	  	 	    type: "POST",
-	  	 		dateType: "json",
-	  	 		url: "/BingMap/FileterType2?house_type=1", 		
-	  	 		success:function(data){
-	  	 		//alert(data)
-	  	 		data=$.parseJSON(data);
-	  	 		    var items=data.List;
-	  	 		    if(items.length>0){ 
-	  	 		    	var a=new Array();
-	  		 		    a=items[0].gps.split(",");
-	  		 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
-	  		 		    map.setView({ zoom: 11, center: Center });	
-	  	 		    for(var i=0;i<items.length;i++){
-	  	 		        var arr=new Array();
-	  	 		        arr=items[i].gps.split(",");
-	  	 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]); 
-	  	 		        var num=items[i].project_num;
-	  	 		        var name=items[i].project_name;
-	  	 		        var image=items[i].project_img;
-	  	 		        var img="http://101.200.174.253:8080/all/"+image;	 		        
-	  	 		        var minprice=items[i].project_min_price;
-	  	 		        var maxprice=items[i].project_high_price;
-	  	 		        var price="$"+minprice+"-$"+maxprice;
-	  	 		     var name=items[i].project_name;
-		 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:5px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"};  
-		 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
-	  				    add1(name,img,price,num,pushpin,LA);	
-	  				    map.entities.push(pushpin);	  		        	        
-	  	 		    }
-	  	 		    }else{
-	  	 		    map.entities.clear();
-	  	 		    }
-	  	 		},
-	  	 		error:function(){
-	  	 			alert("addDefaultPushpin error")
-	  	 		}
-	          });		
-        /* $.ajax({
-	 	    type: "POST",
-	 		dateType: "json",
-	 		url: "/BingMap/FileterType2?house_type=1", 		
-	 		success:function(data){
-	 		data=$.parseJSON(data);
-	 		    var items=data.List;
-	 		    if(items.length>0){
-	 		    	var a=new Array();
+		 	    type: "GET",
+		 		dateType: "json",
+		 		url: "/BingMap/FileterType2?house_type=1",		
+		 		success:function(data){
+		        //alert(data)
+		 		data=$.parseJSON(data);
+		 		    var items=data.List;
+		 		    var items2=data.List2;
+		 		    var items3=data.List3;
+		 		    var a=new Array();
 		 		    a=items[0].gps.split(",");
 		 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
 		 		    map.setView({ zoom: 11, center: Center });	
-	 		    for(var i=0;i<items.length;i++){
-	 		        var arr=new Array();
-	 		        arr=items[i].gps.split(",");
-	 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]);
-	 		       var name=items[i].project_name;
-	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:5px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"}; 
-	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
-	 		        Microsoft.Maps.Events.addHandler(pushpin, 'click', popModal1); 
-				    map.entities.push(pushpin);				     		        	        
-	 		    }
-	 		    }else{
-	 		    map.entities.clear();
-	 		    }
-	 		},
-	 		error:function(){
-	 			alert("addDefaultPushpin error")
-	 		}
-        });		 */
+		 		    lastZoomLevel = map.getZoom();
+		 	        Microsoft.Maps.Events.addHandler(map, 'viewchangeend', function(){
+		 	        	if(lastZoomLevel != map.getZoom()){
+		 	               lastZoomLevel = map.getZoom();
+		 	               if(lastZoomLevel>6){
+		 	            	  map.entities.clear();
+		 	            	  for(var i=0;i<items.length;i++){
+		 	 	 		        var arr=new Array();
+		 	 	 		        arr=items[i].gps.split(",");
+		 	 	 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]);
+		 	 	 		        var num=items[i].project_num;
+		 	 	 		        var name=items[i].project_name;
+		 	 	 		        var image=items[i].project_img;
+		 	 	 		        var img=imgdir+"/"+image;	 		        
+		 	 	 		        var minprice=items[i].project_min_price;
+		 	 	 		        var maxprice=items[i].project_high_price;
+		 	 	 		        var zhou=items[i].project_zhou;
+		 	 	 		        var price="$"+minprice+"-$"+maxprice;
+		 	 	 		        var name=items[i].project_name;
+		 	 	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:12px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"}; 
+		 	 	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
+		 	 				    add(name,img,price,num,pushpin,LA);
+		 	 				    map.entities.push(pushpin);	
+		 	 	 		    }	 	            	   
+		 	               }else{
+		 	            	    //alert(lastZoomLevel);
+		 	            	    map.entities.clear();
+		 	            	    var len=items2.length;
+		 	            	    for(var j=0;j<len;j++){
+		 	            	        var arr2=new Array();
+		 	            	        arr2=items3[j].gps.split(",");
+		 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
+		 	            	        var zhou2=items3[j].project_zhou;
+		 	            	        var total=items2[j].zhou;
+		 	            	        var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; 
+		 	                  	    var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
+		 	                  	    map.entities.push(pushpin2);
+		 	            	    }
+		 	               }
+		 	        	}
+		 	        });
+		 		   
+		 		   
+		 		},
+		 		error:function(){
+		 			alert("addDefaultPushpin error")
+		 		}
+	        });		 
       }
       function add1(name,img,price,num,pushpin,LA){
     	  Microsoft.Maps.Events.addHandler(pushpin, 'click', function(){
@@ -223,128 +174,74 @@
 			    
 		    });
       }
-      /* 弹出一居室map*/
-       function getPopMap1(){
-    	  map = new Microsoft.Maps.Map(document.getElementById('popMap'), {credentials: 'AiI0UVY6YDQ0GtOirYyxVo0F_NckOJMIDtjDeuHjOqfENWZ3a_pDopdHYOTAZSjn',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false});
-    	  $.ajax({
-  	 	    type: "POST",
-  	 		dateType: "json",
-  	 		url: "/BingMap/FileterType2?house_type=1", 		
-  	 		success:function(data){
-  	 		//alert(data)
-  	 		data=$.parseJSON(data);
-  	 		    var items=data.List;
-  	 		    if(items.length>0){ 
-  	 		    	var a=new Array();
-  		 		    a=items[0].gps.split(",");
-  		 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
-  		 		    map.setView({ zoom: 11, center: Center });	
-  	 		    for(var i=0;i<items.length;i++){
-  	 		        var arr=new Array();
-  	 		        arr=items[i].gps.split(",");
-  	 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]); 
-  	 		        var num=items[i].project_num;
-  	 		        var name=items[i].project_name;
-  	 		        var image=items[i].project_img;
-  	 		        var img="http://101.200.174.253:8080/all/"+image;	 		        
-  	 		        var minprice=items[i].project_min_price;
-  	 		        var maxprice=items[i].project_high_price;
-  	 		        var price="$"+minprice+"-$"+maxprice;
-  	 		     var name=items[i].project_name;
-	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:5px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"};  
-	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
-  				    add1(name,img,price,num,pushpin,LA);	
-  				    map.entities.push(pushpin);	  		        	        
-  	 		    }
-  	 		    }else{
-  	 		    map.entities.clear();
-  	 		    }
-  	 		},
-  	 		error:function(){
-  	 			alert("addDefaultPushpin error")
-  	 		}
-          });		 
-      }
-      
-       function popModal1(){
-		  getPopMap1();
-		  $('#myModal').modal('show');
-	  }
        /* 增加二居室pushpin*/
 	   function addPushpin2()
       {
-		  // alert("erjushi")
+	    //alert("erjushi")
 		map.entities.clear(); 
-	    map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AiI0UVY6YDQ0GtOirYyxVo0F_NckOJMIDtjDeuHjOqfENWZ3a_pDopdHYOTAZSjn',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: true });
+	    map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
 	    $.ajax({
-	 	    type: "POST",
+	 	    type: "GET",
 	 		dateType: "json",
-	 		url: "/BingMap/FileterType2?house_type=2", 		
+	 		url: "/BingMap/FileterType2?house_type=2",		
 	 		success:function(data){
-	 		//alert(data)
+	        //alert(data)
 	 		data=$.parseJSON(data);
 	 		    var items=data.List;
-	 		    if(items.length>0){ 
-	 		    	var a=new Array();
-		 		    a=items[0].gps.split(",");
-		 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
-		 		    map.setView({ zoom: 11, center: Center });	
-	 		    for(var i=0;i<items.length;i++){
-	 		        var arr=new Array();
-	 		        arr=items[i].gps.split(",");
-	 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]); 
-	 		        var num=items[i].project_num;
-	 		        var name=items[i].project_name;
-	 		        var image=items[i].project_img;
-	 		        var img="http://101.200.174.253:8080/all/"+image;	 		        
-	 		        var minprice=items[i].project_min_price;
-	 		        var maxprice=items[i].project_high_price;
-	 		        var price="$"+minprice+"-$"+maxprice;
-	 		       var name=items[i].project_name;
-	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:5px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"}; 
-	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions); 
-				    add2(name,img,price,num,pushpin,LA);	
-				    map.entities.push(pushpin);	  		        	        
-	 		    }
-	 		    }else{
-	 		    map.entities.clear();
-	 		    }
+	 		    var items2=data.List2;
+	 		    var items3=data.List3;
+	 		    var a=new Array();
+	 		    a=items[0].gps.split(",");
+	 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
+	 		    map.setView({ zoom: 11, center: Center });	
+	 		    lastZoomLevel = map.getZoom();
+	 	        Microsoft.Maps.Events.addHandler(map, 'viewchangeend', function(){
+	 	        	if(lastZoomLevel != map.getZoom()){
+	 	               lastZoomLevel = map.getZoom();
+	 	               if(lastZoomLevel>6){
+	 	            	  map.entities.clear();
+	 	            	  for(var i=0;i<items.length;i++){
+	 	 	 		        var arr=new Array();
+	 	 	 		        arr=items[i].gps.split(",");
+	 	 	 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]);
+	 	 	 		        var num=items[i].project_num;
+	 	 	 		        var name=items[i].project_name;
+	 	 	 		        var image=items[i].project_img;
+	 	 	 		        var img=imgdir+"/"+image;	 		        
+	 	 	 		        var minprice=items[i].project_min_price;
+	 	 	 		        var maxprice=items[i].project_high_price;
+	 	 	 		        var zhou=items[i].project_zhou;
+	 	 	 		        var price="$"+minprice+"-$"+maxprice;
+	 	 	 		        var name=items[i].project_name;
+	 	 	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:12px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"}; 
+	 	 	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
+	 	 				    add(name,img,price,num,pushpin,LA);
+	 	 				    map.entities.push(pushpin);	
+	 	 	 		    }	 	            	   
+	 	               }else{
+	 	            	    //alert(lastZoomLevel);
+	 	            	    map.entities.clear();
+	 	            	    var len=items2.length;
+	 	            	    for(var j=0;j<len;j++){
+	 	            	        var arr2=new Array();
+	 	            	        arr2=items3[j].gps.split(",");
+	 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
+	 	            	        var zhou2=items3[j].project_zhou;
+	 	            	        var total=items2[j].zhou;
+	 	            	        var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; 
+	 	                  	    var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
+	 	                  	    map.entities.push(pushpin2);
+	 	            	    }
+	 	               }
+	 	        	}
+	 	        });
+	 		   
+	 		   
 	 		},
 	 		error:function(){
 	 			alert("addDefaultPushpin error")
 	 		}
-        });		
-        /* $.ajax({
-	 	    type: "POST",
-	 		dateType: "json",
-	 		url: "/BingMap/FileterType2?house_type=2", 		
-	 		success:function(data){
-	 		//alert(data)
-	 		data=$.parseJSON(data);
-	 		    var items=data.List;
-	 		    if(items.length>0){
-	 		    	var a=new Array();
-		 		    a=items[0].gps.split(",");
-		 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
-		 		    map.setView({ zoom: 11, center: Center });
-	 		    for(var i=0;i<items.length;i++){
-	 		        var arr=new Array();
-	 		        arr=items[i].gps.split(",");
-	 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]);
-	 		       var name=items[i].project_name;
-	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:5px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"}; 
-	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
-	 		       Microsoft.Maps.Events.addHandler(pushpin, 'click', popModal2); 
-				    map.entities.push(pushpin);    	        
-	 		    }
-	 		    }else{
-	 		     map.entities.clear();
-	 		    }
-	 		},
-	 		error:function(){
-	 			alert("addDefaultPushpin error")
-	 		}
-        });		 */
+        });		 
       }
        function add2(name,img,price,num,pushpin,LA){
      	  Microsoft.Maps.Events.addHandler(pushpin, 'click', function(){
@@ -363,126 +260,74 @@
  			    
  		    });
        } 
-      /* 弹出二居室map*/
-       function getPopMap2(){
-    	  map = new Microsoft.Maps.Map(document.getElementById('popMap'), {credentials: 'AiI0UVY6YDQ0GtOirYyxVo0F_NckOJMIDtjDeuHjOqfENWZ3a_pDopdHYOTAZSjn',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false});
-    	  $.ajax({
-    	 	    type: "POST",
-    	 		dateType: "json",
-    	 		url: "/BingMap/FileterType2?house_type=2", 		
-    	 		success:function(data){
-    	 		//alert(data)
-    	 		data=$.parseJSON(data);
-    	 		    var items=data.List;
-    	 		    if(items.length>0){ 
-    	 		    	var a=new Array();
-    		 		    a=items[0].gps.split(",");
-    		 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
-    		 		    map.setView({ zoom: 11, center: Center });	
-    	 		    for(var i=0;i<items.length;i++){
-    	 		        var arr=new Array();
-    	 		        arr=items[i].gps.split(",");
-    	 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]); 
-    	 		        var num=items[i].project_num;
-    	 		        var name=items[i].project_name;
-    	 		        var image=items[i].project_img;
-    	 		        var img="http://101.200.174.253:8080/all/"+image;	 		        
-    	 		        var minprice=items[i].project_min_price;
-    	 		        var maxprice=items[i].project_high_price;
-    	 		        var price="$"+minprice+"-$"+maxprice;
-    	 		       var name=items[i].project_name;
-   	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:5px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"}; 
-   	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions); 
-    				    add2(name,img,price,num,pushpin,LA);	
-    				    map.entities.push(pushpin);	  		        	        
-    	 		    }
-    	 		    }else{
-    	 		    map.entities.clear();
-    	 		    }
-    	 		},
-    	 		error:function(){
-    	 			alert("addDefaultPushpin error")
-    	 		}
-            });		 
-      }
-      
-       function popModal2(){
-		  getPopMap2();
-		  $('#myModal').modal('show');
-	  }
       /* 增加三居室pushpin*/
 	   function addPushpin3()
       {
-		  // alert("sanjushi")
+		     //alert("sanjushi")
 			 map.entities.clear(); 
-			 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AiI0UVY6YDQ0GtOirYyxVo0F_NckOJMIDtjDeuHjOqfENWZ3a_pDopdHYOTAZSjn',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: true });
+			 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
 			 $.ajax({
-		  	 	    type: "POST",
-		  	 		dateType: "json",
-		  	 		url: "/BingMap/FileterType2?house_type=3", 		
-		  	 		success:function(data){
-		  	 		data=$.parseJSON(data);
-		  	 		    var items=data.List;
-		  	 		    if(items.length>0){ 
-		  	 		    	var a=new Array();
-		  		 		    a=items[0].gps.split(",");
-		  		 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
-		  		 		    map.setView({ zoom: 11, center: Center });	
-		  	 		    for(var i=0;i<items.length;i++){
-		  	 		        var arr=new Array();
-		  	 		        arr=items[i].gps.split(",");
-		  	 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]); 
-		  	 		        var num=items[i].project_num;
-		  	 		        var name=items[i].project_name;
-		  	 		        var image=items[i].project_img;
-		  	 		        var img="http://101.200.174.253:8080/all/"+image;	 		        
-		  	 		        var minprice=items[i].project_min_price;
-		  	 		        var maxprice=items[i].project_high_price;
-		  	 		        var price="$"+minprice+"-$"+maxprice;
-		  	 		     var name=items[i].project_name;
-			 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:5px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"}; 
-			 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
-		  				    add3(name,img,price,num,pushpin,LA);	
-		  				    map.entities.push(pushpin);	  		        	        
-		  	 		    }
-		  	 		    }else{
-		  	 		    map.entities.clear();
-		  	 		    }
-		  	 		},
-		  	 		error:function(){
-		  	 			alert("addDefaultPushpin error")
-		  	 		}
-		          });		 
-	         /*$.ajax({
-		 	    type: "POST",
-		 		dateType: "json",
-		 		url: "/BingMap/FileterType2?house_type=3", 		
-		 		success:function(data){
-		 		data=$.parseJSON(data);
-		 		    var items=data.List;
-		 		    if(items.length>0){
-		 		    	var a=new Array();
+			 	    type: "GET",
+			 		dateType: "json",
+			 		url: "/BingMap/FileterType2?house_type=3",		
+			 		success:function(data){
+			        //alert(data)
+			 		data=$.parseJSON(data);
+			 		    var items=data.List;
+			 		    var items2=data.List2;
+			 		    var items3=data.List3;
+			 		    var a=new Array();
 			 		    a=items[0].gps.split(",");
 			 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
 			 		    map.setView({ zoom: 11, center: Center });	
-		 		    for(var i=0;i<items.length;i++){
-		 		        var arr=new Array();
-		 		        arr=items[i].gps.split(",");
-		 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]);
-		 		       var name=items[i].project_name;
-		 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:5px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"}; 
-		 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
-		 		        Microsoft.Maps.Events.addHandler(pushpin, 'click', popModal3); 
-					    map.entities.push(pushpin);				     		        	        
-		 		    }
-		 		    }else{
-		 		    map.entities.clear();
-		 		    }
-		 		},
-		 		error:function(){
-		 			alert("addDefaultPushpin error")
-		 		}
-	        });		 */
+			 		    lastZoomLevel = map.getZoom();
+			 	        Microsoft.Maps.Events.addHandler(map, 'viewchangeend', function(){
+			 	        	if(lastZoomLevel != map.getZoom()){
+			 	               lastZoomLevel = map.getZoom();
+			 	               if(lastZoomLevel>6){
+			 	            	  map.entities.clear();
+			 	            	  for(var i=0;i<items.length;i++){
+			 	 	 		        var arr=new Array();
+			 	 	 		        arr=items[i].gps.split(",");
+			 	 	 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]);
+			 	 	 		        var num=items[i].project_num;
+			 	 	 		        var name=items[i].project_name;
+			 	 	 		        var image=items[i].project_img;
+			 	 	 		        var img=imgdir+"/"+image;	 		        
+			 	 	 		        var minprice=items[i].project_min_price;
+			 	 	 		        var maxprice=items[i].project_high_price;
+			 	 	 		        var zhou=items[i].project_zhou;
+			 	 	 		        var price="$"+minprice+"-$"+maxprice;
+			 	 	 		        var name=items[i].project_name;
+			 	 	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:12px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"}; 
+			 	 	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
+			 	 				    add(name,img,price,num,pushpin,LA);
+			 	 				    map.entities.push(pushpin);	
+			 	 	 		    }	 	            	   
+			 	               }else{
+			 	            	    //alert(lastZoomLevel);
+			 	            	    map.entities.clear();
+			 	            	    var len=items2.length;
+			 	            	    for(var j=0;j<len;j++){
+			 	            	        var arr2=new Array();
+			 	            	        arr2=items3[j].gps.split(",");
+			 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
+			 	            	        var zhou2=items3[j].project_zhou;
+			 	            	        var total=items2[j].zhou;
+			 	            	        var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; 
+			 	                  	    var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
+			 	                  	    map.entities.push(pushpin2);
+			 	            	    }
+			 	               }
+			 	        	}
+			 	        });
+			 		   
+			 		   
+			 		},
+			 		error:function(){
+			 			alert("addDefaultPushpin error")
+			 		}
+		        });		 
       }
        function add3(name,img,price,num,pushpin,LA){
       	  Microsoft.Maps.Events.addHandler(pushpin, 'click', function(){
@@ -501,125 +346,74 @@
   			    
   		    });
         } 
-       /* 弹出三居室map*/
-       function getPopMap3(){
-    	  map = new Microsoft.Maps.Map(document.getElementById('popMap'), {credentials: 'AiI0UVY6YDQ0GtOirYyxVo0F_NckOJMIDtjDeuHjOqfENWZ3a_pDopdHYOTAZSjn',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false});
-    	  $.ajax({
-  	 	    type: "POST",
-  	 		dateType: "json",
-  	 		url: "/BingMap/FileterType2?house_type=3", 		
-  	 		success:function(data){
-  	 		data=$.parseJSON(data);
-  	 		    var items=data.List;
-  	 		    if(items.length>0){ 
-  	 		    	var a=new Array();
-  		 		    a=items[0].gps.split(",");
-  		 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
-  		 		    map.setView({ zoom: 11, center: Center });	
-  	 		    for(var i=0;i<items.length;i++){
-  	 		        var arr=new Array();
-  	 		        arr=items[i].gps.split(",");
-  	 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]); 
-  	 		        var num=items[i].project_num;
-  	 		        var name=items[i].project_name;
-  	 		        var image=items[i].project_img;
-  	 		        var img="http://101.200.174.253:8080/all/"+image;	 		        
-  	 		        var minprice=items[i].project_min_price;
-  	 		        var maxprice=items[i].project_high_price;
-  	 		        var price="$"+minprice+"-$"+maxprice;
-  	 		     var name=items[i].project_name;
-	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:5px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"}; 
-	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
-  				    add3(name,img,price,num,pushpin,LA);	
-  				    map.entities.push(pushpin);	  		        	        
-  	 		    }
-  	 		    }else{
-  	 		    map.entities.clear();
-  	 		    }
-  	 		},
-  	 		error:function(){
-  	 			alert("addDefaultPushpin error")
-  	 		}
-          });		 
-      }
-      
-       function popModal3(){
-		  getPopMap3();
-		  $('#myModal').modal('show');
-	  }
        /* 增加四居室pushpin*/
 	   function addPushpin4()
       {
-		  // alert("sijushi")
+		     //alert("sijushi")
 			 map.entities.clear(); 
-			 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AiI0UVY6YDQ0GtOirYyxVo0F_NckOJMIDtjDeuHjOqfENWZ3a_pDopdHYOTAZSjn',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: true });
+			 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
 			 $.ajax({
-	    	 	    type: "POST",
-	    	 		dateType: "json",
-	    	 		url: "/BingMap/FileterType2?house_type=4", 		
-	    	 		success:function(data){
-	    	 		data=$.parseJSON(data);
-	    	 		    var items=data.List;
-	    	 		    if(items.length>0){ 
-	    	 		    	var a=new Array();
-	    		 		    a=items[0].gps.split(",");
-	    		 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
-	    		 		    map.setView({ zoom: 11, center: Center });	
-	    	 		    for(var i=0;i<items.length;i++){
-	    	 		        var arr=new Array();
-	    	 		        arr=items[i].gps.split(",");
-	    	 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]); 
-	    	 		        var num=items[i].project_num;
-	    	 		        var name=items[i].project_name;
-	    	 		        var image=items[i].project_img;
-	    	 		        var img="http://101.200.174.253:8080/all/"+image;	 		        
-	    	 		        var minprice=items[i].project_min_price;
-	    	 		        var maxprice=items[i].project_high_price;
-	    	 		        var price="$"+minprice+"-$"+maxprice;
-	    	 		       var name=items[i].project_name;
-	   	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:5px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"};  
-	   	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
-	    				    add4(name,img,price,num,pushpin,LA);	
-	    				    map.entities.push(pushpin);	  		        	        
-	    	 		    }
-	    	 		    }else{
-	    	 		    map.entities.clear();
-	    	 		    }
-	    	 		},
-	    	 		error:function(){
-	    	 			alert("addDefaultPushpin error")
-	    	 		}
-	            });		 
-	        /* $.ajax({
-		 	    type: "POST",
-		 		dateType: "json",
-		 		url: "/BingMap/FileterType2?house_type=4", 		
-		 		success:function(data){
-		 		data=$.parseJSON(data);
-		 		    var items=data.List;
-		 		    if(items.length>0){
-		 		    	var a=new Array();
+			 	    type: "GET",
+			 		dateType: "json",
+			 		url: "/BingMap/FileterType2?house_type=4",		
+			 		success:function(data){
+			        //alert(data)
+			 		data=$.parseJSON(data);
+			 		    var items=data.List;
+			 		    var items2=data.List2;
+			 		    var items3=data.List3;
+			 		    var a=new Array();
 			 		    a=items[0].gps.split(",");
 			 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
 			 		    map.setView({ zoom: 11, center: Center });	
-		 		    for(var i=0;i<items.length;i++){
-		 		        var arr=new Array();
-		 		        arr=items[i].gps.split(",");
-		 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]);
-		 		       var name=items[i].project_name;
-		 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:5px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"}; 
-		 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
-		 		        Microsoft.Maps.Events.addHandler(pushpin, 'click', popModal4); 
-					    map.entities.push(pushpin);				     		        	        
-		 		    }
-		 		    }else{
-		 		    map.entities.clear();
-		 		    }
-		 		},
-		 		error:function(){
-		 			alert("addDefaultPushpin error")
-		 		}
-	        });		 */
+			 		    lastZoomLevel = map.getZoom();
+			 	        Microsoft.Maps.Events.addHandler(map, 'viewchangeend', function(){
+			 	        	if(lastZoomLevel != map.getZoom()){
+			 	               lastZoomLevel = map.getZoom();
+			 	               if(lastZoomLevel>6){
+			 	            	  map.entities.clear();
+			 	            	  for(var i=0;i<items.length;i++){
+			 	 	 		        var arr=new Array();
+			 	 	 		        arr=items[i].gps.split(",");
+			 	 	 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]);
+			 	 	 		        var num=items[i].project_num;
+			 	 	 		        var name=items[i].project_name;
+			 	 	 		        var image=items[i].project_img;
+			 	 	 		        var img=imgdir+"/"+image;	 		        
+			 	 	 		        var minprice=items[i].project_min_price;
+			 	 	 		        var maxprice=items[i].project_high_price;
+			 	 	 		        var zhou=items[i].project_zhou;
+			 	 	 		        var price="$"+minprice+"-$"+maxprice;
+			 	 	 		        var name=items[i].project_name;
+			 	 	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:12px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"}; 
+			 	 	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
+			 	 				    add(name,img,price,num,pushpin,LA);
+			 	 				    map.entities.push(pushpin);	
+			 	 	 		    }	 	            	   
+			 	               }else{
+			 	            	    //alert(lastZoomLevel);
+			 	            	    map.entities.clear();
+			 	            	    var len=items2.length;
+			 	            	    for(var j=0;j<len;j++){
+			 	            	        var arr2=new Array();
+			 	            	        arr2=items3[j].gps.split(",");
+			 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
+			 	            	        var zhou2=items3[j].project_zhou;
+			 	            	        var total=items2[j].zhou;
+			 	            	        var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; 
+			 	                  	    var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
+			 	                  	    map.entities.push(pushpin2);
+			 	            	    }
+			 	               }
+			 	        	}
+			 	        });
+			 		   
+			 		   
+			 		},
+			 		error:function(){
+			 			alert("addDefaultPushpin error")
+			 		}
+		        });		 
       }
        function add4(name,img,price,num,pushpin,LA){
       	  Microsoft.Maps.Events.addHandler(pushpin, 'click', function(){
@@ -638,60 +432,76 @@
   			    
   		    });
         } 
-       /* 弹出三居室map*/
-       function getPopMap4(){
-    	  map = new Microsoft.Maps.Map(document.getElementById('popMap'), {credentials: 'AiI0UVY6YDQ0GtOirYyxVo0F_NckOJMIDtjDeuHjOqfENWZ3a_pDopdHYOTAZSjn',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false});
-    	  $.ajax({
-    	 	    type: "POST",
-    	 		dateType: "json",
-    	 		url: "/BingMap/FileterType2?house_type=4", 		
-    	 		success:function(data){
-    	 		data=$.parseJSON(data);
-    	 		    var items=data.List;
-    	 		    if(items.length>0){ 
-    	 		    	var a=new Array();
-    		 		    a=items[0].gps.split(",");
-    		 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
-    		 		    map.setView({ zoom: 11, center: Center });	
-    	 		    for(var i=0;i<items.length;i++){
-    	 		        var arr=new Array();
-    	 		        arr=items[i].gps.split(",");
-    	 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]); 
-    	 		        var num=items[i].project_num;
-    	 		        var name=items[i].project_name;
-    	 		        var image=items[i].project_img;
-    	 		        var img="http://101.200.174.253:8080/all/"+image;	 		        
-    	 		        var minprice=items[i].project_min_price;
-    	 		        var maxprice=items[i].project_high_price;
-    	 		        var price="$"+minprice+"-$"+maxprice;
-    	 		       var name=items[i].project_name;
-   	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:5px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"};  
-   	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
-    				    add4(name,img,price,num,pushpin,LA);	
-    				    map.entities.push(pushpin);	  		        	        
-    	 		    }
-    	 		    }else{
-    	 		    map.entities.clear();
-    	 		    }
-    	 		},
-    	 		error:function(){
-    	 			alert("addDefaultPushpin error")
-    	 		}
-            });		 
-      }
-      
-       function popModal4(){
-		  getPopMap4();
-		  $('#myModal').modal('show');
-	  }
        /* 增加搜索pushpin*/
          function addPushpinsearch()
       {
          var key=$("#keyWord").val();
          //alert("key")
 		 map.entities.clear(); 
-		 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AiI0UVY6YDQ0GtOirYyxVo0F_NckOJMIDtjDeuHjOqfENWZ3a_pDopdHYOTAZSjn',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: true });
+		 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
 		 $.ajax({
+		 	    type: "GET",
+		 		dateType: "json",
+		 		url: "/BingMap/FileterKeyWord?keyword="+key, 		
+		 		success:function(data){
+		        //alert(data)
+		 		data=$.parseJSON(data);
+		 		    var items=data.List;
+		 		    var items2=data.List2;
+		 		    var items3=data.List3;
+		 		    var a=new Array();
+		 		    a=items[0].gps.split(",");
+		 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
+		 		    map.setView({ zoom: 11, center: Center });	
+		 		    lastZoomLevel = map.getZoom();
+		 	        Microsoft.Maps.Events.addHandler(map, 'viewchangeend', function(){
+		 	        	if(lastZoomLevel != map.getZoom()){
+		 	               lastZoomLevel = map.getZoom();
+		 	               if(lastZoomLevel>6){
+		 	            	  map.entities.clear();
+		 	            	  for(var i=0;i<items.length;i++){
+		 	 	 		        var arr=new Array();
+		 	 	 		        arr=items[i].gps.split(",");
+		 	 	 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]);
+		 	 	 		        var num=items[i].project_num;
+		 	 	 		        var name=items[i].project_name;
+		 	 	 		        var image=items[i].project_img;
+		 	 	 		        var img=imgdir+"/"+image;	 		        
+		 	 	 		        var minprice=items[i].project_min_price;
+		 	 	 		        var maxprice=items[i].project_high_price;
+		 	 	 		        var zhou=items[i].project_zhou;
+		 	 	 		        var price="$"+minprice+"-$"+maxprice;
+		 	 	 		        var name=items[i].project_name;
+		 	 	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:12px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"}; 
+		 	 	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
+		 	 				    add(name,img,price,num,pushpin,LA);
+		 	 				    map.entities.push(pushpin);	
+		 	 	 		    }	 	            	   
+		 	               }else{
+		 	            	    //alert(lastZoomLevel);
+		 	            	    map.entities.clear();
+		 	            	    var len=items2.length;
+		 	            	    for(var j=0;j<len;j++){
+		 	            	        var arr2=new Array();
+		 	            	        arr2=items3[j].gps.split(",");
+		 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
+		 	            	        var zhou2=items3[j].project_zhou;
+		 	            	        var total=items2[j].zhou;
+		 	            	        var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; 
+		 	                  	    var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
+		 	                  	    map.entities.push(pushpin2);
+		 	            	    }
+		 	               }
+		 	        	}
+		 	        });
+		 		   
+		 		   
+		 		},
+		 		error:function(){
+		 			alert("addDefaultPushpin error")
+		 		}
+	        });		 
+		 /*$.ajax({
 	  	 	    type: "POST",
 	  	 		dateType: "json",
 	  	 		url: "/BingMap/FileterKeyWord?keyword="+key, 	
@@ -728,37 +538,7 @@
 	  	 		error:function(){
 	  	 			alert("addDefaultPushpin error")
 	  	 		}
-	          });		 
-		/* $.ajax({
-		 	    type: "POST",
-		 		dateType: "json",
-		 		url: "/BingMap/FileterKeyWord?keyword="+key, 		
-		 		success:function(data){
-		 		data=$.parseJSON(data);
-		 		    var items=data.List;
-		 		    if(items.length>0){
-		 		    	var a=new Array();
-			 		    a=items[0].gps.split(",");
-			 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
-			 		    map.setView({ zoom: 11, center: Center });	
-		 		    for(var i=0;i<items.length;i++){
-		 		        var arr=new Array();
-		 		        arr=items[i].gps.split(",");
-		 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]);
-		 		       var name=items[i].project_name;
-		 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:5px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"}; 
-		 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
-		 		        Microsoft.Maps.Events.addHandler(pushpin, 'click', popModalsearch); 
-					    map.entities.push(pushpin);				     		        	        
-		 		    }
-		 		    }else{
-		 		    map.entities.clear();
-		 		    }
-		 		},
-		 		error:function(){
-		 			alert("addDefaultPushpin error")
-		 		}
-	        });		 */
+	          });	*/	 
       }
       function addSearch(name,img,price,num,pushpin,LA){
       	  Microsoft.Maps.Events.addHandler(pushpin, 'click', function(){
@@ -778,9 +558,9 @@
   		    });
         } 
       /* 弹出搜索map*/
-       function getPopMapsearch(){
+      /* function getPopMapsearch(){
     	  var key=$("#keyWord").val();
-    	  map = new Microsoft.Maps.Map(document.getElementById('popMap'), {credentials: 'AiI0UVY6YDQ0GtOirYyxVo0F_NckOJMIDtjDeuHjOqfENWZ3a_pDopdHYOTAZSjn',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false});
+    	  map = new Microsoft.Maps.Map(document.getElementById('popMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false});
     	  $.ajax({
   	 	    type: "POST",
   	 		dateType: "json",
@@ -823,4 +603,4 @@
        function popModalsearch(){
 		  getPopMapsearch();
 		  $('#myModal').modal('show');
-	  }
+	  }*/
