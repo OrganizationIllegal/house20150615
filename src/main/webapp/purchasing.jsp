@@ -151,8 +151,6 @@ function reLoad(){
                                 </p>
                                 <a href="/Detail?id=${item.id}&type=0">全文></a>
                               </div>
-                              
-                              
                           </li>
                         	</c:if>
                         	

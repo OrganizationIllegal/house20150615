@@ -24,6 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      <link href="/ion.rangeSlider-2.0.10/css/ion.rangeSlider.css" rel="stylesheet">
       <link href="/ion.rangeSlider-2.0.10/css/ion.rangeSlider.css" rel="stylesheet">
        <link href="/ion.rangeSlider-2.0.10/css/ion.rangeSlider.skinNice.css" rel="stylesheet">
+        <script src="/js/jquery.bootpag.min.js"></script>
      
    
    		<style>
@@ -129,7 +130,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="f-r list_right">
 				<div class="c-fix f-l nav_panel" id="page" style="-margin-bottom:35px;height:80px;">
-				   <div id="Pagination" class="pagination"  style="margin:0 0;height:0px;"></div>
+				    <div id="Pagination" class="pagination"  style="margin:0 0;height:87px;"></div>
+				   <!--  <div id="page-selection"></div> -->
 					 <div style="float:right;margin-top:22px">
 					<select class="f-l sel_order" style="background-color:#eae8e8;padding-left:5px;-margin-top:-40px;" onchange="paixu(this)">
 						<option value="0">排序</option>
@@ -142,16 +144,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			 <c:forEach var="item" items="${searchList}"> 		 
 	<div class="c-fix f-r list_node" style="margin-top:15px;margin-bottom:15px">
                 		<div class="c-fix f-l list_node_header">
-                		<a class="c-fix f-l f-arial s-16 list_node_name fw">${item.project_name}</a>
-                		<a class="f-l f-arial s-12 list_node_address">${item.project_address}</a>
+                		<a href="/Index?proNum=${item.project_num}" class="c-fix f-l f-arial s-16 list_node_name fw" style="cursor:pointer;">${item.project_name}</a>
+                		<a href="/Index?proNum=${item.project_num}" class="f-l f-arial s-12 list_node_address" style="cursor:pointer;">${item.project_address}</a>
                 		<div class="f-r btn_star cp"  id="star" data-proNum=${item.project_num}></div>
                 		<span style="margin-right:-58px;float:right;color:white;font-size:13px;font-family:微软雅黑">收藏</span>
                 		</div>
                 		<div class="c-fix f-l list_node_body">
                 		<a href="/Index?proNum=${item.project_num}"><img class="c-fix f-l list_node_img" src="<%=application.getInitParameter("imagedir")%>/${item.project_img}"></img></a>
                 		<div class="f-l list_node_middle">
-                		<a class="c-fix f-l list_node_inner_name f-yahei s-14"  style="font-weight:bolder">${item.project_name}</a>
-                		<a class="c-fix f-l list_node_desc f-yahei s-13">${item.project_lan_cn}</a>
+                		<a href="/Index?proNum=${items[j].project_num}" class="c-fix f-l list_node_inner_name f-yahei s-14"  style="font-weight:bolder;cursor:pointer;">${item.project_name}</a>
+                		<a href="/Index?proNum=${items[j].project_num}" class="c-fix f-l list_node_desc f-yahei s-13;"  style="height:80px;overflow-y:hidden;cursor:pointer;">${item.project_lan_cn}</a>
                 		<div class="c-fix f-l list_node_tag_div" style="margin-bottom:10px;margin-top:10px;">
 						<div style="border:1px solid rgb(254,254,230); text-align:center;margin-left:5px;margin-right:5px;margin-bottom:10px;font-size:10px;width:54px;float:left;"  >热门项目</div>
                 		
@@ -224,7 +226,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 });
                 //翻页调用   
                 function PageCallback(index, jq) {   
-                	/* alert(index+"ffff") */
+                	 //alert(index+"ffff");
                     InitTable(index);  
                 }  
                 //请求数据   
@@ -251,12 +253,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 }
            }); 
        $("#filter").submit(function(e){
- 						 //alert("Submitted");
  						 var projecttype=$("#projecttype").val();
- 						//var zongjia=$("#zongjia").val();
- 						//var zongjiamin=$("#zongjia").min;
  						var zongjia=$("#zongjia").val();
- 						//alert("ooooo"+zongjiamin);
  						 var danjia=$("#danjia").val();
  						 var keylist=document.getElementsByName('key');
  						 for(var i=0;i<keylist.length;i++){
@@ -308,7 +306,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						                        data: { pageIndex : pageIndex2, pageSize : 5},
 						                        success: function(data) {
 						                        count = data.total;
-						                       
 						                        var html = getHtml(data.List);
 						                       		//$("#Result tr:gt(0)").remove();        //移除Id为Result的表格里的行，从第二行开始（这里根据页面布局不同页变）   
 						                       		//$("#list").html(""); 
@@ -368,8 +365,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	for(var j=0;j<items.length;j++){
                 		html+="<div class='c-fix f-r list_node' style='margin-top:15px;margin-bottom:15px'>";
                 		html+="<div class='c-fix f-l list_node_header'>";
-                		html+="<a class='c-fix f-l f-arial s-16 list_node_name fw'>"+items[j].Project_name+"</a>";
-                		html+="<a class='f-l f-arial s-12 list_node_address'>"+items[j].project_address+"</a>";
+                		html+="<a href='/Index?proNum="+items[j].project_num+"' class='c-fix f-l f-arial s-16 list_node_name fw' style='cursor:pointer;'>"+items[j].Project_name+"</a>";
+                		html+="<a href='/Index?proNum="+items[j].project_num+"' class='f-l f-arial s-12 list_node_address' style='cursor:pointer'>"+items[j].project_address+"</a>";
                 		//html+="<div class='f-r btn_star cp' id='star' onclick=a(\""+items[j].project_num+"\")></div>";
                 		if(items[j].isCollected==0)//未收藏 星星显示白色
                 		{
@@ -383,8 +380,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 		html+="<div class='c-fix f-l list_node_body'>";
                 		html+="<a href='/Index?proNum="+items[j].project_num+"'><img class='c-fix f-l list_node_img' src='<%=application.getInitParameter("imagedir")%>/"+items[j].Project_img+"'></img></a>";
                 		html+="<div class='f-l list_node_middle'>";
-                		html+="<a class='c-fix f-l list_node_inner_name f-yahei s-14'  style='font-weight:bolder'>"+items[j].Project_name+"</a>";
-                		html+="<a class='c-fix f-l list_node_desc f-yahei s-13' style='height:80px;overflow-y:hidden'>"+items[j].project_lan_cn+"</a>";
+                		html+="<a href='/Index?proNum="+items[j].project_num+"' class='c-fix f-l list_node_inner_name f-yahei s-14'  style='font-weight:bolder;cursor:pointer;'>"+items[j].Project_name+"</a>";
+                		html+="<a href='/Index?proNum="+items[j].project_num+"' class='c-fix f-l list_node_desc f-yahei s-13' style='height:80px;overflow-y:hidden;cursor:pointer;'>"+items[j].project_lan_cn+"</a>";
                 		html+="<div class='c-fix f-l list_node_tag_div' style='margin-bottom:10px;margin-top:10px;height:58px'>";
                 		if(items[j].remen==1){
                 			html+="<div style='border:1px solid rgb(254,254,230); text-align:center;margin-left:5px;margin-right:5px;margin-bottom:10px;font-size:10px;width:54px;float:left;'  >热门项目</div>";

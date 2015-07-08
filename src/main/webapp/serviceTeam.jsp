@@ -149,26 +149,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div style="color:white;text-align: center;font-family:微软雅黑;font-weight:bolder;font-size:18px">您的房产经纪</div>
 				</div>
 				<div style="height:345px;background-color:#d9d2e9;padding:15px 15px;padding-top:0px">
-				<form class="form-horizontal" role="form" action="/ServiceTeam/MessageSubmit" method="post" >
+			<!-- 	<form class="form-horizontal" role="form" action="/MessageSubmit" method="post" > -->
 				<c:if test="${empty userList}">
 					<div class="form-group" style="padding:15px 15px">
-					 	<input type="text" class="form-control" name="name" placeholder="姓名" style="margin-bottom:15px">
-					 	<input type="text" class="form-control" name="email" placeholder="邮箱"  style="margin-bottom:15px">
-					 	 <input type="text" class="form-control" name="tel" placeholder="电话"  style="margin-bottom:15px">
-					 	 <textarea type="text" rows="5" cols="20" class="form-control" name="message_content"  placeholder="留言" style="height:108px;margin-bottom:15px"></textarea>
-					 	  <button type="submit" class="btn btn-default" style="width:87px;height:38px;background-color:rgb(192,59,72);color:white;margin-left:262px" type="submit" id="submit">提交</button>
+					 	<input type="text" class="form-control" id="name" name="name" placeholder="姓名" style="margin-bottom:15px">
+					 	<input type="text" class="form-control" id="email" name="email" placeholder="邮箱"  style="margin-bottom:15px">
+					 	 <input type="text" class="form-control" id="tel" name="tel" placeholder="电话"  style="margin-bottom:15px">
+					 	 <textarea type="text" rows="5" cols="20" class="form-control" id="message_content" name="message_content"  placeholder="留言" style="height:108px;margin-bottom:15px"></textarea>
+					 	  <button type="button" class="btn btn-default" style="width:87px;height:38px;background-color:rgb(192,59,72);color:white;margin-left:262px" id="submit" onclick="tijiao()">提交</button>
 					 </div>
 				</c:if>
 				 <c:forEach items="${userList}"  var="item">
 				 		<div class="form-group" style="padding:15px 15px;paddign-top:0px">
-					 	<input type="text" class="form-control" name="name" placeholder=${item.nick_name} style="margin-bottom:15px">
-					 	<input type="text" class="form-control" name="email" placeholder=${item.email} style="margin-bottom:15px">
-					 	 <input type="text" class="form-control" name="tel" placeholder=${item.tel}  style="margin-bottom:15px">
-					 	 <textarea type="text" rows="5" cols="20" class="form-control" name="message_content"  placeholder="留言" style="height:108px;margin-bottom:15px"></textarea>
-					 	  <button type="submit" class="btn btn-default" style="width:87px;height:38px;background-color:rgb(192,59,72);color:white;margin-left:262px" type="submit" id="submit">提交</button>
-					 </div>
+					 	<input type="text" class="form-control" id="name" name="name" placeholder=${item.nick_name} style="margin-bottom:15px">
+					 	<input type="text" class="form-control" id="email" name="email" placeholder=${item.email} style="margin-bottom:15px">
+					 	 <input type="text" class="form-control" id="tel" name="tel" placeholder=${item.tel}  style="margin-bottom:15px">
+					 	 <textarea type="text" rows="5" cols="20" class="form-control" id="message_content" name="message_content"  placeholder="留言" style="height:108px;margin-bottom:15px"></textarea>
+					 	 <!--  <button type="submit" class="btn btn-default" style="width:87px;height:38px;background-color:rgb(192,59,72);color:white;margin-left:262px" type="submit" id="submit">提交</button> -->
+						<button type="button" class="btn btn-default" style="width:87px;height:38px;background-color:rgb(192,59,72);color:white;margin-left:262px"  id="submit" onclick="tijiao()">提交</button>					
+			</div>
 				 </c:forEach>
-			    </form>
+			  <!--   </form> -->
 				</div>
 				  <img src="/images/book.PNG" style="height:138px;width:380px;margin-top:10px">
 				</div>
@@ -177,6 +178,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	<jsp:include page="foot4index.jsp" />
 			
+<script type="text/javascript">
+
+function tijiao(){
+	var  username=$("#name").val();
+	var message_content=$("#message_content").val();
+	 $.ajax({  
+         type: "POST",  
+         dataType: "json",  
+         data:{username:username,message_content:message_content},
+         url: '/MessageSubmit',           
+         success: function(data) {
+        	 if(data.flag==1){
+        	 alert("提交成功");
+        	 }
+         }
+      		});
+}
+</script>
+
 <script type="text/javascript">
 var num = 1;
 var totleSize = "${count}"

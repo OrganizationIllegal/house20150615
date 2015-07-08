@@ -111,8 +111,9 @@ public class BrokerInfoController {
 		}
 		
 	//鐐瑰嚮鎻愪氦锛屾彁浜ょ暀瑷�
-	@RequestMapping({"/ServiceTeam/MessageSubmit"})
-	public String messageSubmit(HttpServletRequest req,HttpServletResponse resp){
+	@RequestMapping({"/MessageSubmit"})
+	public void messageSubmit(HttpServletRequest req,HttpServletResponse resp){
+		JSONObject json = new JSONObject();
 		String username = (String)req.getSession().getAttribute("username");
 		//if(user==null)
 		
@@ -136,7 +137,15 @@ public class BrokerInfoController {
 		List<User> userList=userDao.listUser(username);
 		req.setAttribute("brokerInfoList", brokerInfoList);
 		req.setAttribute("userList", userList);
-		return "/serviceTeam.jsp";
+		
+		json.put("flag", result);
+		try{
+			 PrintWriter out = resp.getWriter();
+			 out.print(json);
+			}catch(Exception e){
+				e.printStackTrace();
+		}
+		//return "/serviceTeam.jsp";
 	}
 	
 

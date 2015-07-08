@@ -15,9 +15,10 @@ public class UserDao extends BaseDao {
 	public List<User> listUser(String username){
 		List<User> userList=new ArrayList<User>();
 		try {
-			String sql = "select t.pwd,t.email,t.tel,t.role from user t where t.nick_name=?";
+			String sql = "select t.pwd,t.email,t.tel,t.role from user t where t.email=? or t.tel=?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, username);
+			pstmt.setString(2, username);
 			ResultSet rs = pstmt.executeQuery();
 		    String nick_name=null;
 		    String pwd=null;

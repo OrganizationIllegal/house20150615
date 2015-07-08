@@ -283,7 +283,18 @@ function popInfo(){
 			<div class="c-fix p_panel">
 				<div class="c-fix f-l p_panel_1">
 					<a class="c-fix f-l f-yahei s-14 p_panel_title fw">基本信息</a>
-					<a class="c-fix f-l f-yahei s-14 p_panel_con" style="margin-top:20px;">位置：<span style="font-size:12px;">${HouseProject.project_address}</span></a>
+					<a class="c-fix f-l f-yahei s-14 p_panel_con" style="margin-top:20px;">位置：<span style="font-size:12px;" title="${HouseProject.project_address}">
+					         <c:choose> 
+								     <c:when test="${fn:length(HouseProject.project_address) > 40}"> 
+								      <c:out value="${fn:substring(HouseProject.project_address, 0, 40)}......" /> 
+								     </c:when> 
+								     <c:otherwise> 
+								      <c:out value="${HouseProject.project_address}" /> 
+								     </c:otherwise>
+							 </c:choose>
+							
+					   </span>
+					</a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_con">类型：${HouseProject.project_type}</a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_con">国家：${HouseProject.project_nation}</a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_con">州/省：${HouseProject.project_zhou}</a>

@@ -52,10 +52,10 @@ public class SearchController {
 		String type = req.getParameter("type");
 		String area = req.getParameter("area");
 		String lang = req.getParameter("lang");
-		if(type!=null && !"".endsWith(type) && type.equals("绫诲瀷")){
+		if(type!=null && !"".endsWith(type) && type.equals("类型")){
 			type = "";
 		}
-		if(lang!=null && !"".endsWith(lang) && lang.equals("璇█")){
+		if(lang!=null && !"".endsWith(lang) && lang.equals("语言")){
 			lang = "";
 		}
 		List<BrokerInfo> brokerInfoList = searchListDao.searchSericeList(brokerName, type, area, lang);

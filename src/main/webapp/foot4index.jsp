@@ -31,7 +31,7 @@
 <script type="text/javascript">
    $().ready(function() {
    $("#weixin").click(function(){
-   	$('#weixinmodal').modal('show');
+   		$('#weixinmodal').modal('show');
   })
    })
   </script>
