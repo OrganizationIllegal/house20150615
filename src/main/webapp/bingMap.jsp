@@ -269,12 +269,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a class="f-l f-yahei s-14 cp btn_search" onclick="addPushpinsearch()">搜索</a>
 				<a class="f-r f-yahei s-14 btn cp hover" style="padding:4px 6px;border:2px solid rgb(245,161,27)" href="/SearchList">列表找房</a>
 				<a class="f-r f-yahei s-14 btn btn_sel cp hover" style="padding:4px 6px"  href="#">地图找房</a>
-				<select class="f-r sel" style=" background: none;border: none;font-family: 微软雅黑;">
+				<!-- <select class="f-r sel" style=" background: none;border: none;font-family: 微软雅黑;">
 					<option>交房时间</option>
 				</select>
 				<select class="f-r sel" style=" background: none;border: none;font-family: 微软雅黑;">
 					<option>价格范围</option>
-				</select>
+				</select> -->
 				<select class="f-r sel" id="house" onchange="housetype(this)"  style=" background: none;border: none;font-family: 微软雅黑;">
 					<option value="0">房屋类型</option>
 					<option value="1">一居室</option>
