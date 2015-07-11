@@ -90,6 +90,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            ]
 	          },
 	          {
+		            text: '项目列表',	
+		            color: '#ffffff', 
+		            backColor:'rgb(59,94,132)',      
+		            href:'#title',       
+		            nodes: [
+		              {
+		                text: '项目列表',
+			            href:'#title'	                
+		              },
+		              
+		            ]
+		          },
+	          {
 		            text: '区域录入',	
 		            color: '#ffffff', 
 		            backColor:'rgb(59,94,132)',
@@ -142,6 +155,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		              
 		            ]
 		          },
+
+		          {
+			            text: '区域列表',	
+			            color: '#ffffff', 
+			            backColor:'rgb(59,94,132)',   
+			            href:'#title',          
+			            nodes: [
+			              {
+			                text: '区域列表',
+				            href:'#title'	                
+			              },
+			              
+			            ]
+			          },
 		          {
 			            text: '经纪人录入',	
 			            color: '#ffffff', 
@@ -284,32 +311,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						              
 						            ]
 						          },
-				          {
-					            text: '项目列表',	
-					            color: '#ffffff', 
-					            backColor:'rgb(59,94,132)',      
-					            href:'#title',       
-					            nodes: [
-					              {
-					                text: '项目列表',
-						            href:'#title'	                
-					              },
-					              
-					            ]
-					          },
-					          {
-						            text: '区域列表',	
-						            color: '#ffffff', 
-						            backColor:'rgb(59,94,132)',   
-						            href:'#title',          
-						            nodes: [
-						              {
-						                text: '区域列表',
-							            href:'#title'	                
-						              },
-						              
-						            ]
-						          },
+				        
 		          
 	         /*  {
 	           text: '管理员',	
