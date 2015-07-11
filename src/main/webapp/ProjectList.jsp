@@ -20,15 +20,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <script src="/js/jquery.min.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
-<script src="uploadify/jquery.uploadify.js"></script>
+<!-- <script src="uploadify/jquery.uploadify.js"></script> -->
 
 
 <script src="/bootstrap/js/bootstrap-table.js"></script>
-<script src="/bootstrap/js/bootstrap-editable.js"></script>
-<script src="/bootstrap/js/bootstrap-table-export.js"></script>
-<script src="/bootstrap/js/bootstrap-table-editable.js"></script>
-<script src="/bootstrap/js/tableExport.js"></script>
-<script src="/bootstrap/js/jquery.base64.js"></script>
+<!-- <script src="/bootstrap/js/bootstrap-editable.js"></script>
+<script src="/bootstrap/js/bootstrap-table-export.js"></script> -->
+<!-- <script src="/bootstrap/js/bootstrap-table-editable.js"></script> -->
+<!-- <script src="/bootstrap/js/tableExport.js"></script> -->
+<!-- <script src="/bootstrap/js/jquery.base64.js"></script> -->
 
 <style type="text/css">
 body{
@@ -42,18 +42,29 @@ body{
 <div style="width:900px;margin:25px auto;">
 <div class="area_bkg1">当前位置:项目列表</div>
  <table id="table"
-           
+ 		data-toggle='table'
+ 		data-url="/ProjectInfoList"
+ 		data-striped='true'
+ 		data-search="true"
+           data-show-refresh="true"
+           data-show-toggle="true"
+           data-show-columns="true"
+           data-show-export="true"
+           data-detail-view="true"
+           data-minimum-count-columns="2"
+           data-show-pagination-switch="true"
            data-pagination="true"
+           data-page-list="[10, 25, 50, 100, ALL]"
+           
            data-side-pagination="server"
-           data-url="/ProjectInfoList"
-           data-response-handler="responseHandler"
-           >
+           data-page-size="10"
+ 		>
         <thead>
         <tr>
             <th data-field="state" data-checkbox="true"></th>
             <th data-field="id" data-sortable="true"data-editable="true">ID</th>
-            <th data-field="project_num" data-sortable="true" data-editable="true">项目编号</th>
-            <th data-field="project_name" data-sortable="true" data-editable="true">项目名称</th>
+            <th data-field="project_num"  data-searchable="true">项目编号</th>
+            <th data-field="project_name"  data-searchable="true">项目名称</th>
             <th data-field="operate"
                 data-formatter="operateFormatter"
                 data-events="operateEvents">Item Operate</th>
@@ -71,7 +82,13 @@ body{
 	var i=0;
     $(function () {
         $table.bootstrapTable({
+            /* url:'/ProjectInfoList', */
             height: getHeight()
+            /* striped:true, */
+            /* pagination:true, */
+            /* sidePagination:'client', */
+            /* responseHandler:responseHandler(), */
+            /* search:true, */
         });
         $table.on('check.bs.table uncheck.bs.table ' +
                 'check-all.bs.table uncheck-all.bs.table', function () {

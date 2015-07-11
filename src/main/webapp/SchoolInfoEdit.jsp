@@ -66,8 +66,8 @@ body{
 
 
 <div style="width:900px;clear:both;margin:20px auto;text-align:center;">
-<button type="submit" onclick="edit()" >提交</button>
-<button type="reset" >重置</button>
+<button type="submit" onclick="edit()">提交</button>
+<button onClick="clearAllInput()">不保存</button>
 </div>
 </div>
 <script type="text/javascript">
@@ -127,6 +127,11 @@ $('#non_en_studen_trate').blur(function() {
 	 		}
 	 	});
     }
+   function clearAllInput(){
+		$("input").val("");
+		$("#school_intro").val("");
+		return false;
+	}
 </script>
 </body>
 </html>

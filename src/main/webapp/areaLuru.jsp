@@ -580,7 +580,7 @@ body{
 </div>
 
 <div class="area_left4"><button type="submit" class="btn" onclick="savepro()">提交</button></div>
-<div class="area_right4"><button type="reset" class="btn">重置</button></div>
+<div class="area_right4"><button onClick="clearAllInput()" class="btn">不保存</button></div>
 </div>
 
 <script type="text/javascript">
@@ -1544,12 +1544,6 @@ function savepro(){
 		alert("邮政编码-请输入数字！");
 		return false;
 	}
-	
-	
-	
-	
-	
-	
 	var area;
 	area=DataDeal.formToJson(data= decodeURIComponent($("#area").serialize(),true));
 	area=eval("("+area+")");
@@ -1568,7 +1562,29 @@ function savepro(){
 		}
     });
 }
-	
+
+function clearAllInput(){
+	$("input").val("");
+	newslist=[];
+	projectlist=[];
+	brokerlist=[];
+	peoplelist=[];
+	tedianlist=[];
+	huibaotrendlist=[];
+	zujintrendlist=[];
+	middlepricelist=[];
+	middlepricelist=[];
+	$("#newslist")。empty();
+	$("#projectlist")。empty();
+	$("#brokerlist")。empty();
+	$("#peoplelist")。empty();
+	$("#tedianlist")。empty();
+	$("#huibaotrendlist")。empty();
+	$("#zujintrendlist")。empty();
+	$("#middletrendlist")。empty();
+	$("#middlepricelist")。empty();
+	return false;
+}
 </script>
 <script type="text/javascript">
 CKEDITOR.replace( 'detail' );

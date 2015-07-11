@@ -139,12 +139,15 @@ body{
 <span class="area_span">更新时间</span><span><input type="text" id="update_time" name="update_time" class="area_input" value="${houseProject.housePrice_update_time}"></span>
 </div>
 <div class="area_left">
+<span class="area_span">所属区域</span><span><input type="text" id="area_num" name="area_num" class="area_input" value="${houseProject.area_num}"></span>
+</div>
+<%-- <div class="area_left">
 <span class="area_span">购房税费说明</span><span><input type="text" id="buyTaxInfo" name="buyTaxInfo" class="area_input" value="${houseProject.buytaxInfo}"></span>
 </div>
 <div class="area_right">
 <span class="area_span">持有成本说明</span><span><input type="text" id="holdCostInfo" name="holdCostInfo" class="area_input" value="${houseProject.holdInfo}"></span>
 </div>
-
+ --%>
  </form> 
 <!-- ****************************************************项目信息end***************************************************** -->
 
@@ -419,7 +422,7 @@ body{
 <div style="float:left;">
 
 <div class="area_left4"><button  class="btn" onClick="savepro()">提交</button></div>
-<div class="area_right4"><button type="reset" class="btn">重置</button></div>
+<div class="area_right4"><button class="btn" onClick="clearAllInput()">重置</button></div>
 </div>
 
 </div>
@@ -1135,6 +1138,24 @@ function savepro(){
 		}
     });
 }
+
+function clearAllInput(){
+	$("input").val("");
+	housetaxformlist=[];
+	holdingcostlist=[];
+	schoollist=[];
+	fujinlist=[];
+	huxinglist=[];
+	peitaolist=[];
+	$("#housetaxformlist")。empty();
+	$("#holdingcostlist")。empty();
+	$("#schoollist")。empty();
+	$("#fujinlist")。empty();
+	$("#peitaolist")。empty();
+	$("#huxingjiagelist")。empty();
+	return false;
+}
+
 
 </script>
 

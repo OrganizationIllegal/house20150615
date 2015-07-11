@@ -43,9 +43,10 @@ body{
 <div class="area_bkg1">当前位置:区域列表</div>
  <table id="table"          
            data-pagination="true"
-           data-side-pagination="server"
+           data-side-pagination="client"
            data-url="/AreaInfoList"
            data-response-handler="responseHandler"
+           data-search="true"
            >
         <thead>
         <tr>

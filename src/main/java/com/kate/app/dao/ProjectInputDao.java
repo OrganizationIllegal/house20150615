@@ -1061,8 +1061,9 @@ public class ProjectInputDao extends BaseDao {
 			String project_high_price=project.getProject_high_price();
 			int tuijiandu=project.getTuijiandu();
 			String housePrice_update_time=project.getHousePrice_update_time().toString();
-			String buytaxInfo=project.getBuytaxInfo();
-			String holdInfo=project.getHoldInfo();
+			/*String buytaxInfo=project.getBuytaxInfo();
+			String holdInfo=project.getHoldInfo();*/
+			String area_num=project.getArea_num();
 			int  min_area=project.getMin_area();
 			int  max_area=project.getMax_area();
 			String developer_num=project.getDeveloper_id_name();
@@ -1098,7 +1099,7 @@ public class ProjectInputDao extends BaseDao {
 			try{
 				con.setAutoCommit(false);
 				//项目添加
-				String sql1= " insert into house_project(project_name, project_nation, project_address, project_price_qi, project_type, project_sales_remain,  project_finish_time, project_desc, project_city, project_house_type, project_high, project_lan_cn, project_lan_en, project_num, project_vedio, project_zhou, gps, return_money, walk_num, mianji, project_min_price, project_high_price, tuijiandu, housePrice_update_time, buytaxInfo, holdInfo, min_area, max_area,  developer_id_name) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				String sql1= " insert into house_project(project_name, project_nation, project_address, project_price_qi, project_type, project_sales_remain,  project_finish_time, project_desc, project_city, project_house_type, project_high, project_lan_cn, project_lan_en, project_num, project_vedio, project_zhou, gps, return_money, walk_num, mianji, project_min_price, project_high_price, tuijiandu, housePrice_update_time,area_num, min_area, max_area,  developer_id_name) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			    pstmt = con.prepareStatement(sql1);
 				pstmt.setString(1, project_name);
 				pstmt.setString(2, project_nation);
@@ -1124,11 +1125,12 @@ public class ProjectInputDao extends BaseDao {
 				pstmt.setString(22, project_high_price);
 				pstmt.setInt(23, tuijiandu);
 				pstmt.setString(24, time1);
-				pstmt.setString(25, buytaxInfo);
-				pstmt.setString(26, holdInfo);
-				pstmt.setInt(27, min_area);
-				pstmt.setInt(28, max_area);
-				pstmt.setString(29, developer_num);
+				pstmt.setString(25, area_num);
+				/*pstmt.setString(25, buytaxInfo);
+				pstmt.setString(26, holdInfo);*/
+				pstmt.setInt(26, min_area);
+				pstmt.setInt(27, max_area);
+				pstmt.setString(28, developer_num);
 				int result1 = pstmt.executeUpdate();
 				System.out.println("result1:"+result1);
 			     //户型及价格
@@ -1303,8 +1305,9 @@ public class ProjectInputDao extends BaseDao {
 			String project_high_price=project.getProject_high_price();
 			int tuijiandu=project.getTuijiandu();
 			String housePrice_update_time=project.getHousePrice_update_time().toString();
-			String buytaxInfo=project.getBuytaxInfo();
-			String holdInfo=project.getHoldInfo();
+			/*String buytaxInfo=project.getBuytaxInfo();
+			String holdInfo=project.getHoldInfo();*/
+			String area_num=project.getArea_num();
 			int  min_area=project.getMin_area();
 			int  max_area=project.getMax_area();
 			String developer_num=project.getDeveloper_id_name();
@@ -1340,7 +1343,7 @@ public class ProjectInputDao extends BaseDao {
 			try{
 				con.setAutoCommit(false);
 				//项目更新
-				String sql1= "update house_project set project_name=?, project_nation=?, project_address=?, project_price_qi=?, project_type=?, project_sales_remain=?,  project_finish_time=?, project_desc=?, project_city=?, project_house_type=?, project_high=?, project_lan_cn=?, project_lan_en=?, project_num=?, project_vedio=?, project_zhou=?, gps=?, return_money=?, walk_num=?, mianji=?, project_min_price=?, project_high_price=?, tuijiandu=?, housePrice_update_time=?, buytaxInfo=?, holdInfo=?, min_area=?, max_area=?,  developer_id_name=? where id="+id;
+				String sql1= "update house_project set project_name=?, project_nation=?, project_address=?, project_price_qi=?, project_type=?, project_sales_remain=?,  project_finish_time=?, project_desc=?, project_city=?, project_house_type=?, project_high=?, project_lan_cn=?, project_lan_en=?, project_num=?, project_vedio=?, project_zhou=?, gps=?, return_money=?, walk_num=?, mianji=?, project_min_price=?, project_high_price=?, tuijiandu=?, housePrice_update_time=?,area_num=?, min_area=?, max_area=?,  developer_id_name=? where id="+id;
 			    pstmt = con.prepareStatement(sql1);
 				pstmt.setString(1, project_name);
 				pstmt.setString(2, project_nation);
@@ -1368,11 +1371,12 @@ public class ProjectInputDao extends BaseDao {
 				pstmt.setInt(23, tuijiandu);
 				//pstmt.setString(24, time1);
 				pstmt.setString(24, housePrice_update_time);
-				pstmt.setString(25, buytaxInfo);
-				pstmt.setString(26, holdInfo);
-				pstmt.setInt(27, min_area);
-				pstmt.setInt(28, max_area);
-				pstmt.setString(29, developer_num);
+				/*pstmt.setString(25, buytaxInfo);
+				pstmt.setString(26, holdInfo);*/
+				pstmt.setString(25, area_num);
+				pstmt.setInt(26, min_area);
+				pstmt.setInt(27, max_area);
+				pstmt.setString(28, developer_num);
 				int result1 = pstmt.executeUpdate();
 				System.out.println("result1:"+result1);
 				//户型及价格更新

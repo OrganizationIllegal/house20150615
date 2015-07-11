@@ -184,7 +184,7 @@ body{
 </div>
 
 <div class="area_left4"><button type="button" class="btn" onclick="saveBroker()">提交</button></div>
-<div class="area_right4"><button type="reset" class="btn">重置</button></div>
+<div class="area_right4"><button onClick="clearAllInput()" class="btn">不保存</button></div>
 </div>
 
 <script type="text/javascript">
@@ -419,6 +419,14 @@ function saveBroker(){
     });
 }
 
+function clearAllInput(){
+	$("input").val("");
+	typelist=[];
+	arealist=[];
+	$("#typelist")。empty();
+	$("#arealist")。empty();
+	return false;
+}
 </script>
 
 

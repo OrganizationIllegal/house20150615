@@ -45,7 +45,7 @@ body{
 <!-- <button type="submit" >提交</button>
 <button type="reset" >重置</button> -->
 <button  type="button" onclick="save()">提交</button>
-<button type="reset" >重置</button>
+<button type="reset" onClick="clearAllInput()">重置</button>
 </div>
 
 </div>
@@ -78,4 +78,9 @@ body{
 	 		}
 	 	});
     }
+   function clearAllInput(){
+		$("input").val("");
+		$("#developer_desc").val("");
+		return false;
+	}
 </script>

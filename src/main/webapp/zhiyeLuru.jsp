@@ -56,7 +56,7 @@ body{
 </div>
 <div class="c-fix" style="margin-bottom:15px;"><textarea id="detail" placeholder="详情" name="detail"></textarea></div>
 <div class="area_left4"><button type="button" class="btn" onclick="add()">提交</button></div>
-<div class="area_right4"><button type="reset" class="btn">重置</button></div>
+<div class="area_right4"><button onClick="clearAllInput()" class="btn">不保存</button></div>
 </div>
 
 <script type="text/javascript">
@@ -123,6 +123,10 @@ $(".uploadimg").click(function(){
 	 		}
 	 	});
 	  }
+  function clearAllInput(){
+		$("input").val("");
+		return false;
+	}
 </script>
 </body>
 </html>

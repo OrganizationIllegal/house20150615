@@ -32,8 +32,16 @@ public class Project {
 	private String developer_id_name;//?????
 	private int min_area;//?????
 	private int max_area;//?????
-	private String buytaxInfo;//?????
-	private String holdInfo;//?????
+/*	private String buytaxInfo;//?????
+	private String holdInfo;//?????*/
+	private String area_num;
+	
+	public String getArea_num() {
+		return area_num;
+	}
+	public void setArea_num(String area_num) {
+		this.area_num = area_num;
+	}
 	public int getId() {
 		return id;
 	}
@@ -198,7 +206,7 @@ public class Project {
 	public void setMax_area(int max_area) {
 		this.max_area = max_area;
 	}
-	public String getBuytaxInfo() {
+	/*public String getBuytaxInfo() {
 		return buytaxInfo;
 	}
 	public void setBuytaxInfo(String buytaxInfo) {
@@ -209,7 +217,7 @@ public class Project {
 	}
 	public void setHoldInfo(String holdInfo) {
 		this.holdInfo = holdInfo;
-	}
+	}*/
 	public String getProject_finish_time() {
 		return project_finish_time;
 	}
