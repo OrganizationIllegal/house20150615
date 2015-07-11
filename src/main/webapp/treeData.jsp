@@ -72,7 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                href:'#projectpeitao'
 	              },
 	              {
-	                text: '附件配套',
+	                text: '附近配套',
 	                href:'#nearpeitao'
 	              },
 	              {
