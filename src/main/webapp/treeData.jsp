@@ -328,6 +328,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        $("#showlist").load("/ProjectInput");
 	        $('#treeview').treeview({
 	          //color: "#428bca",
+	          levels: 1,
 	          color: "#000000",
 	          data: defaultData,
 	          enableLinks:true,

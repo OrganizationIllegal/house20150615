@@ -170,7 +170,7 @@ body{
 
     window.operateEvents = {
         'click .like': function (e, value, row, index) {
-            alert('You click like action, row: ' + JSON.stringify(row));
+            //alert('You click like action, row: ' + JSON.stringify(row));
             var id=row.id;
             window.open ('/selectProject?id='+id);
 	        /*  $.ajax({
@@ -202,7 +202,7 @@ body{
             
         },
         'click .remove': function (e, value, row, index) {
-            alert("wenruijie"+row.id);
+            //alert("wenruijie"+row.id);
             var id = row.id;
             
              $.ajax({
