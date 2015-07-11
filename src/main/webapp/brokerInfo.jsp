@@ -256,9 +256,9 @@ $(function(){
 });
 
 var arealist='${brokerServiceAreaListJson}';
-alert(arealist);
+//alert(arealist);
 arealist=eval("("+arealist+")");
-alert("arealist"+arealist);
+//alert("arealist"+arealist);
 var areaedit=100;
 var areaedititem;
 var areacount=arealist.length;
@@ -392,7 +392,7 @@ var DataDeal = {
 
 function saveBroker(){
 	var id=$("#id").val();
-	alert("id"+id);
+	//alert("id"+id);
 	var broker;
 	broker=DataDeal.formToJson(data= decodeURIComponent($("#brokerinfo").serialize(),true));
 	broker=eval("("+broker+")");
@@ -401,9 +401,9 @@ function saveBroker(){
 	broker.broker_img=filename;
 	//alert(CKEDITOR.instances.introduction.getData());
 	broker.introduction=CKEDITOR.instances.introduction.getData();
-	alert(JSON.stringify(broker));
-	alert(JSON.stringify(arealist));
-	alert(JSON.stringify(typelist));
+	//alert(JSON.stringify(broker));
+	//alert(JSON.stringify(arealist));
+	//alert(JSON.stringify(typelist));
     $.ajax({
 	    type: "POST",
  		async:false, 
@@ -423,8 +423,8 @@ function clearAllInput(){
 	$("input").val("");
 	typelist=[];
 	arealist=[];
-	$("#typelist")。empty();
-	$("#arealist")。empty();
+	$("#typelist").empty();
+	$("#arealist").empty();
 	return false;
 }
 </script>
