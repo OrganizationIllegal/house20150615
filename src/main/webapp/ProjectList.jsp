@@ -11,24 +11,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/base.css" />
 <link rel="stylesheet" type="text/css" href="css/main.css" />
-<link rel="stylesheet" type="text/css" href="css/projectLuru.css" />
-<link rel="stylesheet" type="text/css" href="uploadify/uploadify.css" />
-
 <link href="/bootstrap/css/bootstrap-table.css" rel="stylesheet">
-<link href="/bootstrap/css/bootstrap-editable.css" rel="stylesheet">
 <link href="/bootstrap/css/examples.css" rel="stylesheet">
 
-<script src="/js/jquery.min.js"></script>
+<script src="/jquery.min.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
-<!-- <script src="uploadify/jquery.uploadify.js"></script> -->
-
-
 <script src="/bootstrap/js/bootstrap-table.js"></script>
-<!-- <script src="/bootstrap/js/bootstrap-editable.js"></script>
-<script src="/bootstrap/js/bootstrap-table-export.js"></script> -->
-<!-- <script src="/bootstrap/js/bootstrap-table-editable.js"></script> -->
-<!-- <script src="/bootstrap/js/tableExport.js"></script> -->
-<!-- <script src="/bootstrap/js/jquery.base64.js"></script> -->
+
 
 <style type="text/css">
 body{
@@ -41,7 +30,7 @@ body{
 <body>
 <div style="width:900px;margin:25px auto;">
 <div class="area_bkg1">当前位置:项目列表</div>
- <table id="table"
+ <table id="table" 
  		data-toggle='table'
  		data-url="/ProjectInfoList"
  		data-striped='true'
@@ -54,10 +43,11 @@ body{
            data-minimum-count-columns="2"
            data-show-pagination-switch="true"
            data-pagination="true"
-           data-page-list="[10, 25, 50, 100, ALL]"
-           
-           data-side-pagination="server"
+           data-page-list="[10, 25, ALL]"
+           data-strict-search="true"
+           data-side-pagination="client"
            data-page-size="10"
+           data-page-number=1
  		>
         <thead>
         <tr>
@@ -101,34 +91,7 @@ body{
         $table.on('all.bs.table', function (e, name, args) {
             // console.log(name, args);
         });
-  
-        $remove.click(function () {
-        	var ids = getIdSelections();
-            ids = '"'+ids+'"';
-            alert(ids);
-            $.ajax({
-	 	    type: "POST",
-	 		data: { ids : ids},
-	 		dateType: "json",
-	 		url: "/touzi/deleteAllData",
-	 		
-	 		success:function(data){
-	 			alert("删除成功")
-	 			window.location.reload();
-	 		},
-	 		error:function(){
-	 			alert("error")
-	 		}
-	 	});
-	 	
-            
-            $table.bootstrapTable('remove', {
-                field: 'id',
-                values: ids
-            });
-     
-            $remove.prop('disabled', true);
-        });
+ 
         $(window).resize(function () {
             $table.bootstrapTable('resetView', {
                 height: getHeight()
@@ -173,38 +136,10 @@ body{
             alert('You click like action, row: ' + JSON.stringify(row));
             var id=row.id;
             window.open ('/selectProject?id='+id);
-	        /*  $.ajax({
-		 	    type: "POST",
-		 		//data: {id:row.id,project_num: row.project_num,recommend_project_num1: row.recommend_project_num1, recommend_project_num2: row.recommend_project_num2,recommend_project_num3: row.recommend_project_num3},
-		 		dateType: "json",
-		 		url: "/editRecoProject",
-		 		
-		 		success:function(data){
-	 			data=$.parseJSON(data);
-	 			if(data.result==0){
-	 				alert("项目编号不能为空！")
-	 			}
-	 			else if(data.result==-1){
-	 				alert("项目编号不存在！")
-	 			}else if(data.result==-2){
-	 				alert("修改失败")
-	 			}
-	 			else{
-	 				alert("修改成功")
-	 			}
-	 		},
-		 		error:function(){
-		 			alert("error")
-		 		}
-	 		});
-      */
-            
-            
         },
         'click .remove': function (e, value, row, index) {
             alert("wenruijie"+row.id);
             var id = row.id;
-            
              $.ajax({
 		 	    type: "POST",
 		 		data: {id: id},
@@ -217,18 +152,13 @@ body{
 		 		error:function(){
 		 			alert("error")
 		 		}
-	 	});
-           
-           
-            
+	 		});
             $table.bootstrapTable('remove', {
                 field: 'id',
                 values: [row.id]
             });
         }
     };
-
-    
 
     function getHeight() {
         return $(window).height() - $('h1').outerHeight(true);
