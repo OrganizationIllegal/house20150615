@@ -28,6 +28,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <!-- <script src="/js/jquery.min.js"></script> -->
    <script src="/bootstrap/js/bootstrap.min.js"></script>
    <script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script>
+ <!--    <link rel="stylesheet" href="/docsupport/style.css">
+  <link rel="stylesheet" href="/docsupport/prism.css"> -->
+  <link rel="stylesheet" href="css/chosen.css">
 
 
 <style type="text/css">
@@ -81,11 +84,17 @@ body{
 <div class="area_right">
 <span class="area_span">项目类型</span>
 <span>
-<select class="area_select" id="project_type" name="project_type">
+<!-- <select class="area_select" id="project_type" name="project_type">
   <option >公寓</option>
   <option >别墅</option>
   <option>联排别墅</option>
-</select>
+</select> -->
+<select data-placeholder="请选择..." class="chosen-select" id="project_type" name="project_type" style="width:220px;" tabindex="4">
+ 	 <option value=""></option>
+  	 <option >公寓</option>
+     <option >别墅</option>
+     <option>联排别墅</option>
+ </select>
 </span>
 </div>
 <div class="area_right">
@@ -161,12 +170,18 @@ body{
 <div class="area_left" style="width:900px">
 <span class="area_span">开发商编号</span>
 <span>
-<select class="area_select" id="developer_code" name="developer_code" style="width:670px">
+<%-- <select class="area_select" id="developer_code" name="developer_code" style="width:670px">
 				 <option value="请选择">请选择</option>
          <c:forEach items="${codeAndNameSet}" var="item">
         		 <option>${item}</option>
        	 </c:forEach>
-</select>
+</select> --%>
+ <select data-placeholder="请选择..." class="chosen-select" id="developer_code" name="developer_code" style="width:670px;" tabindex="4">
+ 	<option value=""></option>
+  	<c:forEach items="${codeAndNameSet}" var="item">
+        		 <option>${item}</option>
+    </c:forEach>
+ </select>
 </span>
 </div>
 </form>
@@ -278,12 +293,19 @@ body{
 <div class="area_left">
 <span class="area_span">学校名称</span>
 <span>
-<select class="area_select" id="school_name" name="school_name">
+<%-- <select class="area_select" id="school_name" name="school_name">
 				  <option>请选择</option>
 		 <c:forEach items="${schoolList}" var="item">
         		 <option>${item}</option>
        	 </c:forEach>
-</select>
+</select> --%>
+
+ <select data-placeholder="请选择..." class="chosen-select"  style="width:220px;" tabindex="4" id="school_name" name="school_name">
+ 	<option value=""></option>
+    <c:forEach items="${schoolList}" var="item">
+        		 <option>${item}</option>
+    </c:forEach>
+ </select>
 </span>
 <!-- <span><input type="text" id="school_name" name="school_name" class="area_input"></span> -->
 </div>
@@ -311,9 +333,9 @@ body{
 <div class="chang_left2">
 <span class="area_span">描述</span><span><input type="text" id="holdcostdesc" name="holdcostdesc" class="chang_input2"></span>
 </div>
-<div class="area_left">
+<!-- <div class="area_left">
 <span class="area_span">户型名称</span><span><input type="text" id="holdcost_housename" name="holdcost_housename" class="area_input"></span>
-</div>
+</div> -->
 <div style="clear: both;float: right;padding-right: 55px;"><a href="#" class="addholdingcost">添加</a></div>
 </form>
 <div id="holdingcostlist">
@@ -334,9 +356,9 @@ body{
 <div class="chang_left2">
 <span class="area_span">描述</span><span><input type="text" id="houseTaxdesc" name="houseTaxdesc" class="chang_input2"></span>
 </div>
-<div class="area_left">
+<!-- <div class="area_left">
 <span class="area_span">户型名称</span><span><input type="text" id="houseTax_housename" name="houseTax_housename" class="area_input"></span>
-</div>
+</div> -->
 <div style="clear: both;float: right;padding-right: 55px;"><a href="#" class="addhousetaxform">添加</a></div>
 </form>
 <div id="housetaxformlist">
@@ -348,8 +370,8 @@ body{
 </div> -->
 <div style="float:left;">
 
-<div class="area_left4"><button  class="btn" onClick="savepro()">提交</button></div>
-<div class="area_right4"><button class="btn" onClick="clearAllInput()">不保存</button></div>
+<div class="area_left4"><button  class="btn" onclick="savepro()">提交</button></div>
+<div class="area_right4"><button class="btn" onclick="clearAllInput()">不保存</button></div>
 </div>
 
 </div>
@@ -533,6 +555,7 @@ $(function(){
 			var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1];
 			huxing=DataDeal.formToJson(data= decodeURIComponent($("#huxingjiage").serialize(),true));
+			huxing=huxing.replace(/\+/g," ");
 			huxing=eval("("+huxing+")");
 			huxing["houseimg"]=filename/* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
@@ -627,6 +650,7 @@ $(function(){
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			fujin=DataDeal.formToJson(data= decodeURIComponent($("#fujin").serialize(),true));
+			fujin=fujin.replace(/\+/g," ");
 			fujin=eval("("+fujin+")");
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
@@ -717,7 +741,9 @@ $(function(){
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			school=DataDeal.formToJson(data= decodeURIComponent($("#school").serialize(),true));
+			school=school.replace(/\+/g," ");
 			school=eval("("+school+")");
+
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
 			/* peitao.view= */
@@ -803,6 +829,7 @@ $(function(){
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			holdingcost=DataDeal.formToJson(data= decodeURIComponent($("#holdingcost").serialize(),true));
+			holdingcost=holdingcost.replace(/\+/g," ");
 			holdingcost=eval("("+holdingcost+")");
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
@@ -815,7 +842,8 @@ $(function(){
 			huxing.jianzhu_mianji=$("#jianzhu_mianji").val();
 			huxing.shinei_mianji=$("#") */
 			holdingcostlist.push(holdingcost);
-			$("#holdingcostlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++holdingcostcount)+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostcount-1].holdcosttype+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostcount-1].holdcostprice+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostcount-1].holdcostdesc+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostcount-1].holdcost_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
+			/* $("#holdingcostlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++holdingcostcount)+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostcount-1].holdcosttype+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostcount-1].holdcostprice+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostcount-1].holdcostdesc+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostcount-1].holdcost_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>"); */
+			$("#holdingcostlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++holdingcostcount)+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostcount-1].holdcosttype+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostcount-1].holdcostprice+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostcount-1].holdcostdesc+"</span>"+"<span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
 			
 			/* UpladFile("houseimg"); */
 			$("#holdingcost input").each(function(){
@@ -843,7 +871,8 @@ $(function(){
 				});
 			holdingcostlist[holdingcostedit]=holdingcostedititem;
 			//alert($("#holdingcostlist").children().eq(holdingcostedit));
-			$("#holdingcostlist").children().eq(holdingcostedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(holdingcostedit+1)+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcosttype+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcostprice+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcostdesc+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcost_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show();
+			/* $("#holdingcostlist").children().eq(holdingcostedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(holdingcostedit+1)+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcosttype+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcostprice+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcostdesc+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcost_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
+			$("#holdingcostlist").children().eq(holdingcostedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(holdingcostedit+1)+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcosttype+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcostprice+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcostdesc+"</span>"+"<span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); 
 			holdingcostedit=100;
 			//$("#peitaolist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++peitaocount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
 			/*peitao.view= */
@@ -871,7 +900,7 @@ $(function(){
 		$("#holdcosttype").val(holdingcostedititem.holdcosttype);
 		$("#holdcostprice").val(holdingcostedititem.holdcostprice);
 		$("#holdcostdesc").val(holdingcostedititem.holdcostdesc);
-		$("#holdcost_housename").val(holdingcostedititem.holdcost_housename);
+	/* 	$("#holdcost_housename").val(holdingcostedititem.holdcost_housename); */
 
 		}); 
 	
@@ -897,6 +926,7 @@ $(function(){
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			housetaxform=DataDeal.formToJson(data= decodeURIComponent($("#housetaxform").serialize(),true));
+			housetaxform=housetaxform.replace(/\+/g," ");
 			housetaxform=eval("("+housetaxform+")");
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
@@ -909,8 +939,8 @@ $(function(){
 			huxing.jianzhu_mianji=$("#jianzhu_mianji").val();
 			huxing.shinei_mianji=$("#") */
 			housetaxformlist.push(housetaxform);
-			$("#housetaxformlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++housetaxformcount)+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxtype+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxprice+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxdesc+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
-			
+			/* $("#housetaxformlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++housetaxformcount)+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxtype+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxprice+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxdesc+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>"); */
+			$("#housetaxformlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++housetaxformcount)+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxtype+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxprice+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxdesc+"</span>"+"<span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
 			/* UpladFile("houseimg"); */
 			$("#housetaxform input").each(function(){
 				$(this).val("");
@@ -937,7 +967,8 @@ $(function(){
 				});
 			housetaxformlist[housetaxformedit]=housetaxformedititem;
 			//alert($("#housetaxformlist").children().eq(housetaxformedit));
-			$("#housetaxformlist").children().eq(housetaxformedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(housetaxformedit+1)+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show();
+			/* $("#housetaxformlist").children().eq(housetaxformedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(housetaxformedit+1)+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
+			$("#housetaxformlist").children().eq(housetaxformedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(housetaxformedit+1)+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxdesc+"</span>"+"<span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show();
 			housetaxformedit=100;
 			//$("#peitaolist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++peitaocount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
 			/*peitao.view= */
@@ -962,7 +993,7 @@ $(function(){
 		$("#houseTaxtype").val(housetaxformedititem.houseTaxtype);
 		$("#houseTaxprice").val(housetaxformedititem.houseTaxprice);
 		$("#houseTaxdesc").val(housetaxformedititem.houseTaxdesc);
-		$("#houseTax_housename").val(housetaxformedititem.houseTax_housename);
+	/* 	$("#houseTax_housename").val(housetaxformedititem.houseTax_housename); */
 		}); 
 	
 });
@@ -1061,17 +1092,29 @@ function clearAllInput(){
 	fujinlist=[];
 	huxinglist=[];
 	peitaolist=[];
-	$("#housetaxformlist")。empty();
-	$("#holdingcostlist")。empty();
-	$("#schoollist")。empty();
-	$("#fujinlist")。empty();
-	$("#peitaolist")。empty();
-	$("#huxingjiagelist")。empty();
+	$("#housetaxformlist").empty();
+	$("#holdingcostlist").empty();
+	$("#schoollist").empty();
+	$("#fujinlist").empty();
+	$("#peitaolist").empty();
+	$("#huxingjiagelist").empMty();
 	return false;
 }
 </script>
 
-
-</script>
+<script src="/js/chosen.jquery.js" type="text/javascript"></script>
+ <script src="/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+ <script type="text/javascript">
+    var config = {
+      '.chosen-select'           : {},
+      '.chosen-select-deselect'  : {allow_single_deselect:true},
+      '.chosen-select-no-single' : {disable_search_threshold:10},
+      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+  </script>
 </body>
 </html>

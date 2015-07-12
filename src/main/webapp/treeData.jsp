@@ -72,7 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                href:'#projectpeitao'
 	              },
 	              {
-	                text: '附件配套',
+	                text: '附近配套',
 	                href:'#nearpeitao'
 	              },
 	              {
@@ -89,6 +89,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	              }
 	            ]
 	          },
+	          {
+		            text: '项目列表',	
+		            color: '#ffffff', 
+		            backColor:'rgb(59,94,132)',      
+		            href:'#title',       
+		            nodes: [
+		              {
+		                text: '项目列表',
+			            href:'#title'	                
+		              },
+		              
+		            ]
+		          },
 	          {
 		            text: '区域录入',	
 		            color: '#ffffff', 
@@ -142,6 +155,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		              
 		            ]
 		          },
+
+		          {
+			            text: '区域列表',	
+			            color: '#ffffff', 
+			            backColor:'rgb(59,94,132)',   
+			            href:'#title',          
+			            nodes: [
+			              {
+			                text: '区域列表',
+				            href:'#title'	                
+			              },
+			              
+			            ]
+			          },
 		          {
 			            text: '经纪人录入',	
 			            color: '#ffffff', 
@@ -284,32 +311,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						              
 						            ]
 						          },
-				          {
-					            text: '项目列表',	
-					            color: '#ffffff', 
-					            backColor:'rgb(59,94,132)',      
-					            href:'#title',       
-					            nodes: [
-					              {
-					                text: '项目列表',
-						            href:'#title'	                
-					              },
-					              
-					            ]
-					          },
-					          {
-						            text: '区域列表',	
-						            color: '#ffffff', 
-						            backColor:'rgb(59,94,132)',   
-						            href:'#title',          
-						            nodes: [
-						              {
-						                text: '区域列表',
-							            href:'#title'	                
-						              },
-						              
-						            ]
-						          },
+				        
 		          
 	         /*  {
 	           text: '管理员',	
@@ -326,6 +328,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        $("#showlist").load("/ProjectInput");
 	        $('#treeview').treeview({
 	          //color: "#428bca",
+	          levels: 1,
 	          color: "#000000",
 	          data: defaultData,
 	          enableLinks:true,
@@ -336,6 +339,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	           if(node.text=="区域录入"){
 		           /* $("#showlist").load("areaLuru.jsp"); */
 		           $("#showlist").load("/AreaInput");
+		           
 		           }
 	           if(node.text=="经纪人录入"){
 		           $("#showlist").load("brokerLuru.jsp");
@@ -377,5 +381,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        });
  });
  </script>
+ 
 </body>
 </html>

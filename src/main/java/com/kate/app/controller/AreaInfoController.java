@@ -236,7 +236,7 @@ public class AreaInfoController extends BaseDao {
 		json.put("rows", array);
 		
 		try{
-			writeJson(json.toJSONString(),resp);
+			writeJson(array.toJSONString(),resp);
 		}catch(Exception e){
 			e.printStackTrace();
 		}

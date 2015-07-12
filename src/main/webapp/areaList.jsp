@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/base.css" />
 <link rel="stylesheet" type="text/css" href="css/main.css" />
-<link rel="stylesheet" type="text/css" href="css/projectLuru.css" />
+<!-- <link rel="stylesheet" type="text/css" href="css/projectLuru.css" /> -->
 <link rel="stylesheet" type="text/css" href="uploadify/uploadify.css" />
 
 <link href="/bootstrap/css/bootstrap-table.css" rel="stylesheet">
@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <script src="/js/jquery.min.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
-<script src="uploadify/jquery.uploadify.js"></script>
+
 
 
 <script src="/bootstrap/js/bootstrap-table.js"></script>
@@ -42,18 +42,29 @@ body{
 <div style="width:900px;margin:25px auto;">
 <div class="area_bkg1">当前位置:区域列表</div>
  <table id="table"          
+
+           data-toggle='table'
+ 		data-url="/AreaInfoList"
+ 		data-striped='true'
+ 		data-search="true"
+           data-show-refresh="true"
+           data-show-columns="true"
+           data-minimum-count-columns="2"
+           data-show-pagination-switch="true"
            data-pagination="true"
+           data-page-list="[10, 22, ALL]"
+           data-strict-search="true"
            data-side-pagination="client"
-           data-url="/AreaInfoList"
-           data-response-handler="responseHandler"
-           data-search="true"
+           data-page-size="10"
+           data-page-number=1
+           
            >
         <thead>
         <tr>
             <th data-field="state" data-checkbox="true"></th>
-            <th data-field="id" data-sortable="true" data-editable="true">ID</th>
-            <th data-field="area_num" data-sortable="true" data-editable="true">区域编号</th>
-            <th data-field="area_name" data-sortable="true" data-editable="true">区域名称</th>
+            <th data-field="id" data-sortable="true" >ID</th>
+            <th data-field="area_num" data-sortable="true">区域编号</th>
+            <th data-field="area_name" data-sortable="true">区域名称</th>
             <th data-field="operate"
                 data-formatter="operateFormatter"
                 data-events="operateEvents">Item Operate</th>
@@ -74,7 +85,7 @@ body{
             $table.bootstrapTable('insertRow', {index: 0, row:{id:'x'+(i++)} });
         });
         $table.bootstrapTable({
-            height: getHeight()
+            height: 500
         });
         $table.on('check.bs.table uncheck.bs.table ' +
                 'check-all.bs.table uncheck-all.bs.table', function () {
@@ -158,64 +169,6 @@ body{
             /* alert('You click like action, row: ' + JSON.stringify(row)); */
             var id=row.id;
             window.open ('/AreaEdit?id='+id);
-            /* var id=row.id;
-            if(isNaN(id)){
-           
-            	$.ajax({
-	 	    type: "POST",
-	 		data: {project_num: row.project_num,recommend_project_num1: row.recommend_project_num1, recommend_project_num2: row.recommend_project_num2,recommend_project_num3: row.recommend_project_num3},
-	 		dateType: "json",
-	 		url: "/addRecoProject",
-	 		
-	 		success:function(data){
-	 			data=$.parseJSON(data);
-	 			if(data.result==0){
-	 				alert("项目编号不能为空！")
-	 			}
-	 			else if(data.result==-1){
-	 				alert("项目编号不存在！")
-	 			}else if(data.result==-2){
-	 				alert("增加失败")
-	 			}
-	 			else{
-	 				alert("增加成功")
-	 			}
-	 		},
-	 		error:function(){
-	 			alert("error")
-	 		}
-	 	});
-          }
-          else{
-        
-	           $.ajax({
-		 	    type: "POST",
-		 		data: {id:row.id,project_num: row.project_num,recommend_project_num1: row.recommend_project_num1, recommend_project_num2: row.recommend_project_num2,recommend_project_num3: row.recommend_project_num3},
-		 		dateType: "json",
-		 		url: "/editRecoProject",
-		 		
-		 		success:function(data){
-	 			data=$.parseJSON(data);
-	 			if(data.result==0){
-	 				alert("项目编号不能为空！")
-	 			}
-	 			else if(data.result==-1){
-	 				alert("项目编号不存在！")
-	 			}else if(data.result==-2){
-	 				alert("修改失败")
-	 			}
-	 			else{
-	 				alert("修改成功")
-	 			}
-	 		},
-		 		error:function(){
-		 			alert("error")
-		 		}
-	 		});
-          }
-          
-            
-             */
         },
         'click .remove': function (e, value, row, index) {
             //alert(row.id);
@@ -235,13 +188,10 @@ body{
 		 				alert("删除失败！");
 		 			}
 		 		},
-		 		error:function(){s
+		 		error:function(){
 		 			alert("error")
 		 		}
 	 	});
-           
-           
-            
             $table.bootstrapTable('remove', {
                 field: 'id',
                 values: [row.id]
@@ -252,7 +202,7 @@ body{
     
 
     function getHeight() {
-        return $(window).height() - $('h1').outerHeight(true);
+        return 500;
     }
 </script>
 </body>
