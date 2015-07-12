@@ -28,6 +28,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <!-- <script src="/js/jquery.min.js"></script> -->
    <script src="/bootstrap/js/bootstrap.min.js"></script>
    <script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script>
+ <!--    <link rel="stylesheet" href="/docsupport/style.css">
+  <link rel="stylesheet" href="/docsupport/prism.css"> -->
+  <link rel="stylesheet" href="css/chosen.css">
 
 
 <style type="text/css">
@@ -81,11 +84,17 @@ body{
 <div class="area_right">
 <span class="area_span">项目类型</span>
 <span>
-<select class="area_select" id="project_type" name="project_type">
+<!-- <select class="area_select" id="project_type" name="project_type">
   <option >公寓</option>
   <option >别墅</option>
   <option>联排别墅</option>
-</select>
+</select> -->
+<select data-placeholder="请选择..." class="chosen-select" id="project_type" name="project_type" style="width:220px;" tabindex="4">
+ 	 <option value=""></option>
+  	 <option >公寓</option>
+     <option >别墅</option>
+     <option>联排别墅</option>
+ </select>
 </span>
 </div>
 <div class="area_right">
@@ -161,12 +170,18 @@ body{
 <div class="area_left" style="width:900px">
 <span class="area_span">开发商编号</span>
 <span>
-<select class="area_select" id="developer_code" name="developer_code" style="width:670px">
+<%-- <select class="area_select" id="developer_code" name="developer_code" style="width:670px">
 				 <option value="请选择">请选择</option>
          <c:forEach items="${codeAndNameSet}" var="item">
         		 <option>${item}</option>
        	 </c:forEach>
-</select>
+</select> --%>
+ <select data-placeholder="请选择..." class="chosen-select" id="developer_code" name="developer_code" style="width:670px;" tabindex="4">
+ 	<option value=""></option>
+  	<c:forEach items="${codeAndNameSet}" var="item">
+        		 <option>${item}</option>
+    </c:forEach>
+ </select>
 </span>
 </div>
 </form>
@@ -278,12 +293,19 @@ body{
 <div class="area_left">
 <span class="area_span">学校名称</span>
 <span>
-<select class="area_select" id="school_name" name="school_name">
+<%-- <select class="area_select" id="school_name" name="school_name">
 				  <option>请选择</option>
 		 <c:forEach items="${schoolList}" var="item">
         		 <option>${item}</option>
        	 </c:forEach>
-</select>
+</select> --%>
+
+ <select data-placeholder="请选择..." class="chosen-select"  style="width:220px;" tabindex="4" id="school_name" name="school_name">
+ 	<option value=""></option>
+    <c:forEach items="${schoolList}" var="item">
+        		 <option>${item}</option>
+    </c:forEach>
+ </select>
 </span>
 <!-- <span><input type="text" id="school_name" name="school_name" class="area_input"></span> -->
 </div>
@@ -1075,10 +1097,24 @@ function clearAllInput(){
 	$("#schoollist").empty();
 	$("#fujinlist").empty();
 	$("#peitaolist").empty();
-	$("#huxingjiagelist").empty();
+	$("#huxingjiagelist").empMty();
 	return false;
 }
 </script>
 
+<script src="/js/chosen.jquery.js" type="text/javascript"></script>
+ <script src="/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+ <script type="text/javascript">
+    var config = {
+      '.chosen-select'           : {},
+      '.chosen-select-deselect'  : {allow_single_deselect:true},
+      '.chosen-select-no-single' : {disable_search_threshold:10},
+      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+  </script>
 </body>
 </html>
