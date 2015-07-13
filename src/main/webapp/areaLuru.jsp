@@ -9,12 +9,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <title>区域录入</title>
 <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/base.css" />
-<link rel="stylesheet" type="text/css" href="css/main.css" />
+<!-- <link rel="stylesheet" type="text/css" href="css/base.css" />
+<link rel="stylesheet" type="text/css" href="css/main.css" /> -->
 <link rel="stylesheet" type="text/css" href="css/areaLuru.css" />
 <!-- <script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script> -->
-<script src="/js/jquery.min.js"></script>
-<script src="/bootstrap/js/bootstrap.min.js"></script>
+<!-- <script src="/js/jquery.min.js"></script> -->
+<!-- <script src="/bootstrap/js/bootstrap.min.js"></script> -->
 <link rel="stylesheet" href="css/chosen.css">
  
 <style type="text/css">

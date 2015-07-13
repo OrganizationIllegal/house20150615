@@ -9,26 +9,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <title>Service Protocol</title>
 <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/base.css" />
-<link rel="stylesheet" type="text/css" href="css/main.css" />
-<link rel="stylesheet" type="text/css" href="css/projectLuru.css" />
-<link rel="stylesheet" type="text/css" href="uploadify/uploadify.css" />
-
 <link href="/bootstrap/css/bootstrap-table.css" rel="stylesheet">
-<link href="/bootstrap/css/bootstrap-editable.css" rel="stylesheet">
-<link href="/bootstrap/css/examples.css" rel="stylesheet">
-
-<script src="/js/jquery.min.js"></script>
-<script src="/bootstrap/js/bootstrap.min.js"></script>
-<script src="uploadify/jquery.uploadify.js"></script>
 
 
+<!-- <script src="/js/jquery.min.js"></script> -->
+<!-- <script src="/bootstrap/js/bootstrap.min.js"></script> -->
 <script src="/bootstrap/js/bootstrap-table.js"></script>
-<script src="/bootstrap/js/bootstrap-editable.js"></script>
-<script src="/bootstrap/js/bootstrap-table-export.js"></script>
-<script src="/bootstrap/js/bootstrap-table-editable.js"></script>
-<script src="/bootstrap/js/tableExport.js"></script>
-<script src="/bootstrap/js/jquery.base64.js"></script>
+
 
 <style type="text/css">
 body{
@@ -42,11 +29,17 @@ body{
 <div style="width:900px;margin:25px auto;">
 <div class="area_bkg1">当前位置:置业指导列表</div>
  <table id="table"
-           
-           data-pagination="true"
-           data-side-pagination="server"
            data-url="/zhiyeList"
-           data-response-handler="responseHandler"
+           data-toggle='table'
+ 		data-striped='true'
+ 		data-search="true"
+           data-show-pagination-switch="true"
+           data-pagination="true"
+           data-page-list="[10, 20, ALL]"
+           data-strict-search="true"
+           data-side-pagination="client"
+           data-page-size="20"
+           data-page-number=1
            >
         <thead>
         <tr>

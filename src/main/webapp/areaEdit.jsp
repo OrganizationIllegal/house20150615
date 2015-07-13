@@ -789,6 +789,7 @@ $(function(){
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			middleprice=DataDeal.formToJson(data= decodeURIComponent($("#middleprice").serialize(),true));
+			middleprice=middleprice.replace(/\+/g," ");
 			middleprice=eval("("+middleprice+")");
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
@@ -819,6 +820,7 @@ $(function(){
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			middlepriceedititem=DataDeal.formToJson(data= decodeURIComponent($("#middleprice").serialize(),true));
+			middlepriceedititem=middlepriceedititem.replace(/\+/g," ");
 			middlepriceedititem=eval("("+middlepriceedititem+")");
 			/* middlepriceedititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
@@ -894,6 +896,7 @@ $(function(){
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			middletrend=DataDeal.formToJson(data= decodeURIComponent($("#middletrend").serialize(),true));
+			middletrend=middletrend.replace(/\+/g," ");
 			middletrend=eval("("+middletrend+")");
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
@@ -924,6 +927,7 @@ $(function(){
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			middletrendedititem=DataDeal.formToJson(data= decodeURIComponent($("#middletrend").serialize(),true));
+			middletrendedititem=middletrendedititem.replace(/\+/g," ");
 			middletrendedititem=eval("("+middletrendedititem+")");
 			/* middletrendedititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
@@ -988,6 +992,7 @@ $(function(){
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			zujintrend=DataDeal.formToJson(data= decodeURIComponent($("#zujintrend").serialize(),true));
+			zujintrend=zujintrend.replace(/\+/g," ");
 			zujintrend=eval("("+zujintrend+")");
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
@@ -1018,6 +1023,7 @@ $(function(){
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			zujintrendedititem=DataDeal.formToJson(data= decodeURIComponent($("#zujintrend").serialize(),true));
+			zujintrendedititem=zujintrendedititem.replace(/\+/g," ");
 			zujintrendedititem=eval("("+zujintrendedititem+")");
 			/* zujintrendedititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
@@ -1083,6 +1089,7 @@ $(function(){
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			huibaotrend=DataDeal.formToJson(data= decodeURIComponent($("#huibaotrend").serialize(),true));
+			huibaotrend=huibaotrend.replace(/\+/g," ");
 			huibaotrend=eval("("+huibaotrend+")");
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
@@ -1113,6 +1120,7 @@ $(function(){
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			huibaotrendedititem=DataDeal.formToJson(data= decodeURIComponent($("#huibaotrend").serialize(),true));
+			huibaotrendedititem=huibaotrendedititem.replace(/\+/g," ");
 			huibaotrendedititem=eval("("+huibaotrendedititem+")");
 			/* huibaotrendedititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
@@ -1179,6 +1187,7 @@ $(function(){
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			tedian=DataDeal.formToJson(data= decodeURIComponent($("#tedian").serialize(),true));
+			tedian=tedian.replace(/\+/g," ");
 			tedian=eval("("+tedian+")");
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
@@ -1209,6 +1218,7 @@ $(function(){
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			tedianedititem=DataDeal.formToJson(data= decodeURIComponent($("#tedian").serialize(),true));
+			tedianedititem=tedianedititem.replace(/\+/g," ");
 			tedianedititem=eval("("+tedianedititem+")");
 			/* tedianedititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
@@ -1272,6 +1282,7 @@ $(function(){
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			people=DataDeal.formToJson(data= decodeURIComponent($("#people").serialize(),true));
+			people=people.replace(/\+/g," ");
 			people=eval("("+people+")");
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
@@ -1302,6 +1313,7 @@ $(function(){
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			peopleedititem=DataDeal.formToJson(data= decodeURIComponent($("#people").serialize(),true));
+			peopleedititem=peopleedititem.replace(/\+/g," ");
 			peopleedititem=eval("("+peopleedititem+")");
 			/* peopleedititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
@@ -1366,6 +1378,7 @@ $(function(){
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			broker=DataDeal.formToJson(data= decodeURIComponent($("#broker").serialize(),true));
+			broker=broker.replace(/\+/g," ");
 			broker=eval("("+broker+")");
 			$.ajax({
 				  url: "/getjingjireninfo",
@@ -1406,6 +1419,7 @@ $(function(){
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			brokeredititem=DataDeal.formToJson(data= decodeURIComponent($("#broker").serialize(),true));
+			brokeredititem=brokeredititem.replace(/\+/g," ");
 			brokeredititem=eval("("+brokeredititem+")");
 			/* brokeredititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
@@ -1453,6 +1467,7 @@ $(function(){
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			project=DataDeal.formToJson(data= decodeURIComponent($("#project").serialize(),true));
+			project=project.replace(/\+/g," ");
 			project=eval("("+project+")");
 			$.ajax({
 				  url: "/getprojectinfo",
@@ -1493,6 +1508,7 @@ $(function(){
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			projectedititem=DataDeal.formToJson(data= decodeURIComponent($("#project").serialize(),true));
+			projectedititem=projectedititem.replace(/\+/g," ");
 			projectedititem=eval("("+projectedititem+")");
 			/* projectedititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
@@ -1539,6 +1555,7 @@ $(function(){
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			news=DataDeal.formToJson(data= decodeURIComponent($("#news").serialize(),true));
+			news=news.replace(/\+/g," ");
 			news=eval("("+news+")");
 			$.ajax({
 				  url: "/getnewsinfo",
@@ -1584,6 +1601,7 @@ $(function(){
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			newsedititem=DataDeal.formToJson(data= decodeURIComponent($("#news").serialize(),true));
+			newsedititem=newsedititem.replace(/\+/g," ");
 			newsedititem=eval("("+newsedititem+")");
 			/* newsedititem["houseimg"]=filename; */
 			/* var filenames=$('#newsimage').val().split("\\");

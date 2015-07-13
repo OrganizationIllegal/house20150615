@@ -7,28 +7,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>区域录入</title>
+<title>区域列表</title>
 <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/base.css" />
-<link rel="stylesheet" type="text/css" href="css/main.css" />
-<!-- <link rel="stylesheet" type="text/css" href="css/projectLuru.css" /> -->
-<link rel="stylesheet" type="text/css" href="uploadify/uploadify.css" />
-
 <link href="/bootstrap/css/bootstrap-table.css" rel="stylesheet">
-<link href="/bootstrap/css/bootstrap-editable.css" rel="stylesheet">
-<link href="/bootstrap/css/examples.css" rel="stylesheet">
 
-<script src="/js/jquery.min.js"></script>
-<script src="/bootstrap/js/bootstrap.min.js"></script>
-
-
-
+<!-- <script src="/js/jquery.min.js"></script> -->
+<!-- <script src="/bootstrap/js/bootstrap.min.js"></script> -->
 <script src="/bootstrap/js/bootstrap-table.js"></script>
-<script src="/bootstrap/js/bootstrap-editable.js"></script>
-<script src="/bootstrap/js/bootstrap-table-export.js"></script>
-<script src="/bootstrap/js/bootstrap-table-editable.js"></script>
-<script src="/bootstrap/js/tableExport.js"></script>
-<script src="/bootstrap/js/jquery.base64.js"></script>
+
+
+
 
 <style type="text/css">
 body{
@@ -47,15 +35,12 @@ body{
  		data-url="/AreaInfoList"
  		data-striped='true'
  		data-search="true"
-           data-show-refresh="true"
-           data-show-columns="true"
-           data-minimum-count-columns="2"
            data-show-pagination-switch="true"
            data-pagination="true"
-           data-page-list="[10, 22, ALL]"
+           data-page-list="[10, 20, ALL]"
            data-strict-search="true"
            data-side-pagination="client"
-           data-page-size="10"
+           data-page-size="20"
            data-page-number=1
            
            >
