@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -13,8 +14,6 @@ import org.springframework.stereotype.Repository;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kate.app.model.Broker;
-import com.kate.app.model.BrokerIntegerType;
-import com.kate.app.model.BrokerServiceArea;
 import com.kate.app.model.BrokerType;
 import com.kate.app.model.DeveloperInfo;
 import com.kate.app.model.FujinPeiTao;
@@ -25,6 +24,7 @@ import com.kate.app.model.HouseProject;
 import com.kate.app.model.HouseTax;
 import com.kate.app.model.NewsBoke;
 import com.kate.app.model.Project;
+import com.kate.app.model.ProjectDescImage;
 import com.kate.app.model.ProjectPeiTao;
 import com.kate.app.model.SchoolInfo;
 import com.kate.app.model.ServiceArea;
@@ -36,7 +36,7 @@ public class ProjectInputDao extends BaseDao {
 	public List<String> getDeveloperCodeName(){
 		List<String> codeAndNameSet=new ArrayList<String>();
 		try {
-			String sql ="select t.developer_num,t.developer_name from developer_info t ";
+			String sql ="select t.developer_num,t.developer_name from developer_info t order by developer_name asc ";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -54,7 +54,7 @@ public class ProjectInputDao extends BaseDao {
 	public List<String> getAllSchoolName(){
 		List<String> schoolList=new ArrayList<String>();
 		try {
-			String sql ="select school_name from school_info ";
+			String sql ="select school_name from school_info  order by school_name asc";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -1033,7 +1033,27 @@ public class ProjectInputDao extends BaseDao {
 					}
 				}
 		
-		public int AddProject(List<Project> projectList,List<HouseInfo1>houseInfolist,List<ProjectPeiTao>projectPeitaolist,List<FujinPeiTao> fujinList,List<FujinSchool>fujinSchoolList,List<HoldCost>holdCostList,List<HouseTax>houseTaxList) throws SQLException{
+				//判断所给项目编号是否重复
+				public int isDuplicateNum(String project_num){
+					HashSet<String> project_numSet=new HashSet<String>();
+					try {
+						String sql = " select project_num from house_project";
+						Statement stmt = con.createStatement();
+						ResultSet rs = stmt.executeQuery(sql);
+						while(rs.next()){
+							String num=rs.getString("project_num");
+							project_numSet.add(num);
+						}
+						if(project_numSet.contains(project_num)){
+							return 1;//1表示此编号已存在
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return 0;
+				}
+		public int AddProject(List<Project> projectList,List<HouseInfo1>houseInfolist,List<ProjectDescImage>projectimagelist,List<ProjectPeiTao>projectPeitaolist,List<FujinPeiTao> fujinList,List<FujinSchool>fujinSchoolList,List<HoldCost>holdCostList,List<HouseTax>houseTaxList) throws SQLException{
 			//项目信息参数接收
 			Project project=projectList.get(0);
 			String project_name=project.getProject_name();
@@ -1099,7 +1119,7 @@ public class ProjectInputDao extends BaseDao {
 			try{
 				con.setAutoCommit(false);
 				//项目添加
-				String sql1= " insert into house_project(project_name, project_nation, project_address, project_price_qi, project_type, project_sales_remain,  project_finish_time, project_desc, project_city, project_house_type, project_high, project_lan_cn, project_lan_en, project_num, project_vedio, project_zhou, gps, return_money, walk_num, mianji, project_min_price, project_high_price, tuijiandu, housePrice_update_time,area_num, min_area, max_area,  developer_id_name) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				String sql1= " insert into house_project(project_name, project_nation, project_address, project_price_qi, project_type, project_sales_remain,  project_finish_time, project_desc, project_city, project_house_type, project_high, project_lan_cn, project_lan_en, project_num, project_vedio, project_zhou, gps, return_money, walk_num, mianji, project_min_price, project_high_price, tuijiandu, housePrice_update_time,area_num, min_area, max_area,  developer_id_name) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			    pstmt = con.prepareStatement(sql1);
 				pstmt.setString(1, project_name);
 				pstmt.setString(2, project_nation);
@@ -1164,9 +1184,9 @@ public class ProjectInputDao extends BaseDao {
 				for(int i=0;i<result2list.length;i++){
 					System.out.println("result2list"+i+":"+result2list[i]);
 				}
-				//项目配套
-				 String sql3="insert into project_peitao_image(image_name,image_type,view_shunxu,project_num,project_name) values(?,?,?,?,?) ";
-		         pstmt = con.prepareStatement(sql3);
+				//项目图片
+				 String sql8="insert into project_peitao_image(image_name,image_type,view_shunxu,project_num,project_name) values(?,?,?,?,?) ";
+		         pstmt = con.prepareStatement(sql8);
 		        for(int i=0;i<projectPeitaolist.size();i++){
 		        	ProjectPeiTao projectPeiTao=projectPeitaolist.get(i);
 		            String image_name=projectPeiTao.getName();
@@ -1182,6 +1202,26 @@ public class ProjectInputDao extends BaseDao {
 				System.out.println("result3list.length:"+result3list.length);
 				for(int i=0;i<result3list.length;i++){
 					System.out.println("result3list"+i+":"+result3list[i]);
+				}
+				
+				//项目配套
+				 String sql3="insert into project_desc_image(image_name,image_type,view_shunxu,project_num,project_name) values(?,?,?,?,?) ";
+		         pstmt = con.prepareStatement(sql3);
+		        for(int i=0;i<projectimagelist.size();i++){
+		        	ProjectDescImage projectImage=projectimagelist.get(i);
+		            String image_name=projectImage.getName();
+		            int shunxu=projectImage.getShunxu();
+		            pstmt.setString(1, image_name);
+		            pstmt.setString(2, "图片");
+		            pstmt.setInt(3, shunxu);
+		            pstmt.setString(4,project_num);
+		            pstmt.setString(5, project_name);
+		            pstmt.addBatch();
+		        }
+				int[] result8list=pstmt.executeBatch();
+				System.out.println("result8list.length:"+result8list.length);
+				for(int i=0;i<result8list.length;i++){
+					System.out.println("result8list"+i+":"+result8list[i]);
 				}
 				
 				//附近配套

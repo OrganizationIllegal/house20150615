@@ -65,6 +65,9 @@ $('#news_time').datepicker({
     language: "zh-CN",
     format: "yyyy-mm-dd"
 });
+
+	CKEDITOR.instances.news_detail.setData("${newsBoke.news_detail}");
+
 </script>
 <script type="text/javascript">
         function UpladFile(imageid) {

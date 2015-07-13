@@ -23,8 +23,6 @@ import com.kate.app.dao.ImageDao;
 import com.kate.app.dao.ProjectInputDao;
 import com.kate.app.dao.SchoolNearDao;
 import com.kate.app.model.Broker;
-import com.kate.app.model.BrokerIntegerType;
-import com.kate.app.model.BrokerServiceArea;
 import com.kate.app.model.BrokerType;
 import com.kate.app.model.DeveloperInfo;
 import com.kate.app.model.FujinPeiTao;
@@ -35,6 +33,7 @@ import com.kate.app.model.HouseProject;
 import com.kate.app.model.HouseTax;
 import com.kate.app.model.NewsBoke;
 import com.kate.app.model.Project;
+import com.kate.app.model.ProjectDescImage;
 import com.kate.app.model.ProjectPeiTao;
 import com.kate.app.model.SchoolInfo;
 import com.kate.app.model.ServiceArea;
@@ -172,6 +171,9 @@ public class ProjectInfoController {
 	//添加项目
 	@RequestMapping({ "/AddprojectInfo" })
 	public void InsertProjectInfo(HttpServletRequest req, HttpServletResponse resp){
+		JSONObject json = new JSONObject();
+		//接收项目编号
+		String project_num=req.getParameter("project_num");
 		//项目信息
 		String project=req.getParameter("project");
 		JSONArray projectArray = JSONArray.parseArray(project);
@@ -192,6 +194,15 @@ public class ProjectInfoController {
 			 houseInfolist.add(e);
 		}
 		System.out.println("houseInfolist.length():"+houseInfolist.size());
+		//项目图片
+		    String images=req.getParameter("imagelist");
+			JSONArray imageArray = JSONArray.parseArray(images);
+			List<ProjectDescImage> projectimagelist=new ArrayList<ProjectDescImage>();
+			for (int i=0;i<imageArray.size();i++){
+				 JSONObject object = (JSONObject)imageArray.get(i); //对于每个json对象
+				 ProjectDescImage e = (ProjectDescImage) JSONToObj(object.toString(), ProjectDescImage.class);
+				 projectimagelist.add(e);
+			}
 	    //项目配套
 	    String peitao=req.getParameter("peitaolist");
 		JSONArray peitaoArray = JSONArray.parseArray(peitao);
@@ -242,14 +253,36 @@ public class ProjectInfoController {
 				 houseTaxList.add(e);
 		}
 		System.out.println("houseTaxList.length():"+houseTaxList.size());
+		//判断项目编号不能重复
+		int isDuplicate=projectInputDao.isDuplicateNum(project_num);//1表示此编号已存在,0表示此编号不存在
+		if(isDuplicate==1){
+			json.put("duplicate", "1");
+		}
+		else{
 		//添加
 	    try {
-			int result=projectInputDao.AddProject(projectlist,houseInfolist,projectPeitaolist,fujinpeitaoList,fujinSchoolList,holdCostList,houseTaxList);
+			int result=projectInputDao.AddProject(projectlist,houseInfolist,projectimagelist,projectPeitaolist,fujinpeitaoList,fujinSchoolList,holdCostList,houseTaxList);
 			System.out.println("result::"+result);
+			if(result==1){
+				json.put("flag", "1");
+			}
+			else{
+				json.put("flag", "0");
+			}
+			
 	    } catch (SQLException e1) {
+	    
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+	 }
+		  try {
+				writeJson(json.toJSONString(),resp);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    
 		
 	}
 	//编辑项目

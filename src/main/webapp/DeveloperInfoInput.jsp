@@ -30,11 +30,16 @@ body{
 <span class="area_span">开发商名称</span><span><input type="text" id="developer_name" name="developer_name" class="area_input"></span>
 </div>
 <div class="area_right">
-<span class="area_span">开发商logo</span><span><input type="text" id="developer_logo" name="developer_logo" class="area_input"></span>
-</div>
-<div class="area_left">
 <span class="area_span">开发商编号</span><span><input type="text" id="developer_num" name="developer_num" class="area_input"></span>
 </div>
+<!-- <div class="area_right">
+<span class="area_span">开发商logo</span><span><input type="text" id="developer_logo" name="developer_logo" class="area_input"></span>
+</div> -->
+<div class="area_left" style="width:900px">
+<span class="area_span" style="float:left;">开发商logo</span>
+<span><input type="file" name="developer_logo" id="developer_logo"  multiple  style="float:left;width:620px;border:1px solid rgb(239,235,242);"/><a href="#" class="addpeitao" onclick="addimage()">上传</a></span>
+</div>
+
 <div class="duoarea_left2">
 <span class="area_span">开发商介绍</span><span><textarea id="developer_desc" name="developer_desc" class="duoarea_input2"></textarea></span>
 </div>
@@ -54,11 +59,17 @@ body{
 </html>
 
 <script type="text/javascript">
+function addimage(){
+	UpladFile("developer_logo");
+}
    function save(){
      var developer_name=$("#developer_name").val();
-     var developer_logo=$("#developer_logo").val();
+  /*    var developer_logo=$("#developer_logo").val(); */
      var developer_num=$("#developer_num").val();
      var developer_desc=$("#developer_desc").val();
+     
+     var filenames=$('#developer_logo').val().split("\\");
+	 var developer_logo=filenames[filenames.length-1];
      $.ajax({
 	 	   type: "GET",
 	 		data: { developer_name : developer_name,developer_logo:developer_logo,developer_num:developer_num,developer_desc:developer_desc},
@@ -83,4 +94,35 @@ body{
 		$("#developer_desc").val("");
 		return false;
 	}
+   
+
+   function UpladFile(imageid) {
+       var fileObj = document.getElementById(imageid).files[0]; // 获取文件对象
+
+       var FileController = "/imageupload";                    // 接收上传文件的后台地址 
+
+       // FormData 对象
+
+       var form = new FormData();
+
+       /* form.append("author", "hooyes");    */                     // 可以增加表单数据
+
+       form.append("file", fileObj);                           // 文件对象
+
+
+
+       // XMLHttpRequest 对象
+
+       var xhr = new XMLHttpRequest();
+
+       xhr.open("post", FileController, true);
+
+       xhr.onload = function () {
+
+           alert("上传完成!");
+
+       };
+
+       xhr.send(form);
+   }
 </script>

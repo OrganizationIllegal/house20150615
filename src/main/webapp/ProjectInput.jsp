@@ -236,7 +236,20 @@ body{
 </form>
 <div id="huxingjiagelist">
 </div>
+<!-- ****************************************************项目图片start***************************************************** -->
 
+<div class="area_bkg2" style="clear:both;" id="projectimages">项目图片</div>
+
+<div class="area_left"  style="width:900px;height:auto;">
+<div id="some_queue" style="width:700px;height:auto;"></div>
+ <input type="file" name="oneimage" id="oneimage"  multiple  style="width:700px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"/><a href="#" class="addimage">添加</a>
+ 
+<div id="imagelist">
+</div>
+</div>
+
+
+<!-- ****************************************************项目图片end***************************************************** -->
 
 <!-- ****************************************************项目配套start***************************************************** -->
 
@@ -478,6 +491,67 @@ $(function(){
 
 </script>
 <script type="text/javascript">
+//项目图片
+var imagelist=[];
+var isedit=100;
+var edititem;
+var imagecount=0;
+$(function(){
+	$.ajaxSetup({  
+	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
+	});  
+	$(".addimage").click(function(){
+		//alert(isedit);
+		if(isedit==100){
+			if($('#oneimage').val()==""){
+				alert("请选择文件！");
+				return false;}
+			var image={};
+			var filenames=$('#oneimage').val().split("\\");
+			var filename=filenames[filenames.length-1];
+			image["name"]=filename/* $('#projectimage').val() */;
+			image.shunxu=imagecount+1;
+			/* peitao.view= */
+			imagelist.push(image);
+			UpladFile("oneimage");
+			$("#oneimage").val("");
+			$("#imagelist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++imagecount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' class='deleteimage'>删除</a></span></div>")
+			/* <a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a> */
+			}
+		else{
+			//alert("edit");
+			/* var filenames=$('#projectimage').val().split("\\");
+			var filename=filenames[filenames.length-1]; */
+			edititem.name=$('#oneimage').val();
+			UpladFile("oneimage");
+			$("#oneimage").val("");
+			//alert($("#peitaolist").children().eq(isedit));
+			$("#imagelist").children().eq(++isedit).show();
+			isedit=100;
+			//$("#peitaolist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++peitaocount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
+			/*peitao.view= */
+			
+			}
+		});
+	$("#imagelist").on("click",".deleteimage",function(){
+		imagelist.splice($(this).parent().parent().prevAll().length,1);
+		$(this).parent().parent().remove();
+		imagecount--;
+		});
+	$("#imagelist").on("click",".editpeitao",function(){
+		
+		var index=$(this).parent().parent().children().eq(0).text()-1;
+		//alert(index);
+		edititem=imagelist[index];
+		$(this).parent().parent().hide();
+		//alert(edititem.name);
+		//$("#projectimage").val(edititem.name+"");
+		//alert(index+"index");
+		isedit=index;
+		}); 
+	
+});
+//项目配套
 var peitaolist=[];
 var isedit=100;
 var edititem;
@@ -1035,6 +1109,8 @@ function savepro(){
 	obj1.peitao_distance="aa";
 	list.push(obj1);
 	alert("list:"+list); */
+	//接受项目编号
+	var project_num=$("#project_code").val();
 	//项目
 	var projectlist=[];
 	var project = {};
@@ -1074,10 +1150,21 @@ function savepro(){
 	    type: "POST",
  		async:false, 
 		dateType: "json",
-		data:{"project":JSON.stringify(projectlist),"huxinglist":JSON.stringify(huxinglist),"peitaolist":JSON.stringify(peitaolist),"fujinlist":JSON.stringify(fujinlist),"schoollist":JSON.stringify(schoollist),"holdingcostlist":JSON.stringify(holdingcostlist),"housetaxformlist":JSON.stringify(housetaxformlist)},
+		data:{"project_num":project_num,"project":JSON.stringify(projectlist),"huxinglist":JSON.stringify(huxinglist),"imagelist":JSON.stringify(imagelist),"peitaolist":JSON.stringify(peitaolist),"fujinlist":JSON.stringify(fujinlist),"schoollist":JSON.stringify(schoollist),"holdingcostlist":JSON.stringify(holdingcostlist),"housetaxformlist":JSON.stringify(housetaxformlist)},
 		url: "/AddprojectInfo",
 		success:function(data){
-			alert("添加成功")
+			data=eval("("+data+")");
+			if(data.duplicate==1){
+				alert("项目编号已存在！");
+			}
+			if(data.flag==1)
+			{
+				alert("添加成功");
+			}
+			else if(data.flag==0){
+				alert("添加失败");
+			}
+		
 		},
 		error:function(){
 			alert("error")
@@ -1092,11 +1179,13 @@ function clearAllInput(){
 	fujinlist=[];
 	huxinglist=[];
 	peitaolist=[];
+	imagelist=[];
 	$("#housetaxformlist").empty();
 	$("#holdingcostlist").empty();
 	$("#schoollist").empty();
 	$("#fujinlist").empty();
 	$("#peitaolist").empty();
+	$("#imagelist").empty();
 	$("#huxingjiagelist").empMty();
 	return false;
 }

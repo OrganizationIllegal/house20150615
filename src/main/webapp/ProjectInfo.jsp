@@ -61,21 +61,25 @@ body{
 <span class="area_span">项目视频链接</span><span><input type="text" id="project_video" name="project_video" class="area_input" value="${houseProject.project_vedio}"></span>
 </div>
 <div class="area_right">
+<span class="area_span">项目GPS</span><span><input type="text" id="GPS" name="GPS" class="area_input" value="${houseProject.gps}"></span>
+</div>
+<div class="area_left">
 <span class="area_span">项目所在国家</span><span><input type="text" id="project_nation" name="project_nation" class="area_input" value="${houseProject.project_nation}"></span>
 </div>
-<div class="area_left">
+
+<div class="area_right">
 <span class="area_span">项目所在州/省</span><span><input type="text" id="project_zhou" name="project_zhou" class="area_input" value="${houseProject.project_zhou}"></span>
 </div>
-<div class="area_right">
+<div class="area_left">
 <span class="area_span">项目所在城市</span><span><input type="text" id="project_city" name="project_city" class="area_input" value="${houseProject.project_city}"></span>
 </div>
-<div class="area_left">
+<div class="area_right">
 <span class="area_span">项目所在地区</span><span><input type="text" id="project_area" name="project_area" class="area_input" value="${houseProject.project_area}"></span>
 </div>
-<div class="duoarea_right">
+<div class="duoarea_left">
 <span class="duoarea_span" >项目所在地址</span><span><textarea id="project_address" name="project_address" class="duoarea_input" value="${houseProject.project_address}"></textarea></span>
 </div>
-<div class="area_left">
+<div class="area_right">
 <span class="area_span">项目类型</span>
 <span>
 <%-- <select class="area_select" id="project_type" name="project_type">
@@ -86,43 +90,43 @@ body{
  </select>
 </span>
 </div>
-<div class="area_left">
+<div class="area_right">
 <span class="area_span">户型</span><span><input type="text" id="house_type" name="house_type" class="area_input" value="${houseProject.project_house_type}"></span>
 </div>
-<div class="area_right">
+<div class="area_left">
 <span class="area_span">项目完成时间</span><span><input type="text" id="finish_time" name="finish_time" class="area_input" value="${houseProject.project_finish_time}"></span>
 </div>
-<div class="area_left">
+<div class="area_right">
 <span class="area_span">可售套数</span><span><input type="text" id="keshou" name="keshou" class="area_input" value="${houseProject.project_sales_remain}"></span>
 </div>
-<div class="area_right">
+<div class="area_left">
 <span class="area_span">步行指数</span><span><input type="text" id="walk_num" name="walk_num" class="area_input" value="${houseProject.walk_num}"></span>
 </div>
-<div class="area_left">
+<div class="area_right">
 <span class="area_span">层数</span><span><input type="text" id="ceng" name="ceng" class="area_input" value="${houseProject.project_high}"></span>
 </div>
-<div class="area_right">
+<div class="area_left">
 <span class="area_span">推荐度</span><span><input type="text" id="tuijian" name="tuijian" class="area_input" value="${houseProject.tuijiandu}"></span>
 </div>
-<div class="area_left">
+<div class="area_right">
 <span class="area_span">面积单位</span><span><input type="text" id="mianji" name="mianji" class="area_input" value="${houseProject.mianji}"></span>
 </div>
+<div class="area_left">
+<span class="area_span">最小面积</span><span><input type="text" id="minarea" name="minarea" class="area_input" value="${houseProject.min_area}"></span>
+</div>
 <div class="area_right">
-<span class="area_span">最小单位</span><span><input type="text" id="minarea" name="minarea" class="area_input" value="${houseProject.min_area}"></span>
+<span class="area_span">最大面积</span><span><input type="text" id="maxarea" name="maxarea" class="area_input" value="${houseProject.max_area}"></span>
 </div>
 <div class="area_left">
-<span class="area_span">最大单位</span><span><input type="text" id="maxarea" name="maxarea" class="area_input" value="${houseProject.max_area}"></span>
-</div>
-<div class="area_right">
 <span class="area_span">单价（起价）</span><span><input type="text" id="danjia" name="danjia" class="area_input" value="${houseProject.project_price_qi}"></span>
 </div>
-<div class="area_left">
+<div class="area_right">
 <span class="area_span">返利</span><span><input type="text" id="return_money" name="return_money" class="area_input" value="${houseProject.return_money}"></span>
 </div>
-<div class="area_right">
+<div class="area_left">
 <span class="area_span">最低价格</span><span><input type="text" id="minprice" name="minprice" class="area_input" value="${houseProject.project_min_price}"></span>
 </div>
-<div class="area_left">
+<div class="area_right">
 <span class="area_span">最高价格</span><span><input type="text" id="maxprice" name="maxprice" class="area_input" value="${houseProject.project_high_price}"></span>
 </div>
 <div class="duoarea_left">
@@ -134,13 +138,11 @@ body{
 <div class="duoarea_left2">
 <span class="duoarea_span">项目描述</span><span><textarea id="project_desc" name="project_desc" class="duoarea_input2" value="${houseProject.project_desc}"></textarea></span>
 </div>
+
 <div class="area_left">
-<span class="area_span">项目GPS</span><span><input type="text" id="GPS" name="GPS" class="area_input" value="${houseProject.gps}"></span>
-</div>
-<div class="area_right">
 <span class="area_span">更新时间</span><span><input type="text" id="update_time" name="update_time" class="area_input" value="${houseProject.housePrice_update_time}"></span>
 </div>
-<div class="area_left">
+<div class="area_right">
 <span class="area_span">所属区域</span><span><input type="text" id="area_num" name="area_num" class="area_input" value="${houseProject.area_num}"></span>
 </div>
 <%-- <div class="area_left">

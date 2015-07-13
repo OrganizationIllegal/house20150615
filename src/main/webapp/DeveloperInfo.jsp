@@ -31,13 +31,17 @@ body{
 <input type="hidden" id="id" name="id" class="area_input" value="${developerInfo.id}">
 </div>
 <div class="area_right">
-<span class="area_span">开发商logo</span><span><input type="text" id="developer_logo" name="developer_logo" class="area_input" value="${developerInfo.developer_logo}"></span>
-</div>
-<div class="area_left">
 <span class="area_span">开发商编号</span><span><input type="text" id="developer_num" name="developer_num" class="area_input" value="${developerInfo.developer_num}"></span>
 </div>
+<%-- <div class="area_right">
+<span class="area_span">开发商logo</span><span><input type="text" id="developer_logo" name="developer_logo" class="area_input" value="${developerInfo.developer_logo}"></span>
+</div> --%>
+<div class="area_left" style="width:900px">
+<span class="area_span" style="float:left;">开发商logo</span>
+<span><input type="file" name="developer_logo" id="developer_logo"  multiple  style="float:left;width:620px;border:1px solid rgb(239,235,242);" value="${developerInfo.developer_logo}"/><a href="#" class="addpeitao" onclick="upload()">上传</a></span>
+</div>
 <div class="duoarea_left2">
-<span class="area_span">开发商介绍</span><span><textarea id="developer_desc" name="developer_desc" class="duoarea_input2" value="${developerInfo.developer_desc}"></textarea></span>
+<span class="area_span">开发商介绍</span><span><textarea id="developer_desc" name="developer_desc" class="duoarea_input2" >${developerInfo.developer_desc}</textarea></span>
 </div>
 <!-- ****************************************************学校信息end***************************************************** -->
 
@@ -85,4 +89,37 @@ body{
 		$("#developer_desc").val("");
 		return false;
 	}
+   function upload(){
+	   UpladFile("developer_logo");
+   }
+   
+   function UpladFile(imageid) {
+       var fileObj = document.getElementById(imageid).files[0]; // 获取文件对象
+
+       var FileController = "/imageupload";                    // 接收上传文件的后台地址 
+
+       // FormData 对象
+
+       var form = new FormData();
+
+       /* form.append("author", "hooyes");    */                     // 可以增加表单数据
+
+       form.append("file", fileObj);                           // 文件对象
+
+
+
+       // XMLHttpRequest 对象
+
+       var xhr = new XMLHttpRequest();
+
+       xhr.open("post", FileController, true);
+
+       xhr.onload = function () {
+
+           alert("上传完成!");
+
+       };
+
+       xhr.send(form);
+   }
 </script>
