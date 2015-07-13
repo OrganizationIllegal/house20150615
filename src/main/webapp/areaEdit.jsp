@@ -15,6 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script>
 <script src="/js/jquery.min.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/chosen.css">
 <style type="text/css">
 body{
 	/* background-color:rgb(232, 233, 234)!important; */
@@ -118,10 +119,17 @@ body{
 <div class="area_left">
 <span class="area_span">项目类型</span>
 <span>
-<select class="area_select" id="project_type" name="project_type">
+<!-- <select class="area_select" id="project_type" name="project_type">
   <option value ="公寓">公寓</option>
   <option value ="别墅">别墅</option>
-</select>
+</select>  -->
+<select data-placeholder="请选择..." class="chosen-select" id="project_type" name="project_type" style="width:220px;" tabindex="1">
+ 	 <option value=""></option>
+  	 <option >公寓</option>
+     <option >别墅</option>
+     <option>联排别墅</option>
+ </select>
+
 </span>
 </div>
 <div class="area_right"></div>
@@ -217,10 +225,16 @@ body{
 <div class="area_left">
 <span class="area_span">项目类型</span>
 <span>
-<select class="area_select" id="project_type2" name="project_type2">
+<!-- <select class="area_select" id="project_type2" name="project_type2">
   <option value ="公寓">公寓</option>
   <option value ="别墅">别墅</option>
-</select>
+</select> -->
+<select data-placeholder="请选择..." class="chosen-select" id="project_type2" name="project_type2" style="width:220px;" tabindex="2">
+ 	 <option value=""></option>
+  	 <option >公寓</option>
+     <option >别墅</option>
+     <option>联排别墅</option>
+ </select>
 </span>
 </div>
 <div class="area_right">
@@ -285,10 +299,16 @@ body{
 <div class="area_left">
 <span class="area_span">项目类型</span>
 <span>
-<select class="area_select" id="project_type3" name="project_type3">
+<!-- <select class="area_select" id="project_type3" name="project_type3">
   <option value ="公寓">公寓</option>
   <option value ="别墅">别墅</option>
-</select>
+</select> -->
+<select data-placeholder="请选择..." class="chosen-select" id="project_type3" name="project_type3" style="width:220px;" tabindex="3">
+ 	 <option value=""></option>
+  	 <option >公寓</option>
+     <option >别墅</option>
+     <option>联排别墅</option>
+ </select>
 </span>
 </div>
 <div class="area_right">
@@ -354,10 +374,16 @@ body{
 <div class="area_left">
 <span class="area_span">项目类型</span>
 <span>
-<select class="area_select" id="project_type4" name="project_type4">
+<!-- <select class="area_select" id="project_type4" name="project_type4">
   <option value ="公寓">公寓</option>
   <option value ="别墅">别墅</option>
-</select>
+</select> -->
+<select data-placeholder="请选择..." class="chosen-select" id="project_type4" name="project_type4" style="width:220px;" tabindex="4">
+ 	 <option value=""></option>
+  	 <option >公寓</option>
+     <option >别墅</option>
+     <option>联排别墅</option>
+ </select>
 </span>
 </div>
 <div class="area_right">
@@ -528,7 +554,7 @@ body{
 <div class="area_left">
 <span class="area_span">经纪人姓名</span>
 <span>
-<select class="area_select" id="broker_name" name="broker_name">
+<%-- <select class="area_select" id="broker_name" name="broker_name">
  <!--  <option value ="broker1">韩嵩</option>
   <option value ="broker2">李海涛</option>
   <option value ="broker3">阎松</option>
@@ -538,7 +564,13 @@ body{
    <c:forEach items="${brokerSet}" var="item">
         		 <option value="${item.id}">${item.broker_name}</option>
    </c:forEach>
-</select>
+</select> --%>
+<select data-placeholder="请选择..." class="chosen-select" id="broker_name" name="broker_name" style="width:220px;" tabindex="5">
+ 	 <option value=""></option>
+  	 <c:forEach items="${brokerSet}" var="item">
+        		 <option value="${item.id}">${item.broker_name}</option>
+    </c:forEach>
+ </select>
 </span>
 </div>
 <div class="area_right"></div>
@@ -589,7 +621,7 @@ body{
 <div class="area_left">
 <span class="area_span">项目名称</span>
 <span>
-<select class="area_select" id="project_name" name="project_name">
+<%-- <select class="area_select" id="project_name" name="project_name">
  <!--  <option value ="pro1">The Atrium</option>
   <option value ="pro2">Thrive Parkside</option>
   <option value ="pro3">The Moreland</option>
@@ -603,7 +635,13 @@ body{
   <c:forEach items="${projectSet}" var="item">
         		 <option value="${item.id}">${item.project_name}</option>
    </c:forEach>
-</select>
+</select> --%>
+<select data-placeholder="请选择..." class="chosen-select" id="project_name" name="project_name" style="width:220px;" tabindex="6">
+ 	 <option value=""></option>
+  	 <c:forEach items="${projectSet}" var="item">
+        		 <option value="${item.id}">${item.project_name}</option>
+   </c:forEach>
+ </select>
 </span>
 </div>
 <div class="area_right"></div>
@@ -652,17 +690,25 @@ body{
 <div class="area_left">
 <span class="area_span">新闻类型</span>
 <span>
-<select class="area_select" id="news_type" name="news_type">
+<!-- <select class="area_select" id="news_type" name="news_type">
   <option value ="newsboke">新闻博客</option>
   <option value ="zhiyezhidao">置业指导</option>
-</select>
+</select> -->
+<select data-placeholder="请选择..." class="chosen-select" id="news_type" name="news_type" style="width:220px;" tabindex="7">
+ 	 <option value=""></option>
+  	 <option value ="newsboke">新闻博客</option>
+     <option value ="zhiyezhidao">置业指导</option>
+ </select>
 </span>
 </div>
 <div class="area_right">
 <span class="area_span">新闻标题</span>
 <span>
-<select class="area_select" id="news_title" name="news_title">
-</select>
+<!-- <select class="area_select" id="news_title" name="news_title">
+</select> -->
+<select data-placeholder="请选择..." class="chosen-select" id="news_title" name="news_title" style="width:220px;" tabindex="8">
+ 	 <option value=""></option>
+ </select>
 </span>
 </div>
 </form>
@@ -1795,5 +1841,19 @@ function addHuibaoTrend(){
 	 	});
 	  }
 </script>
+ <script src="/js/chosen.jquery.js" type="text/javascript"></script>
+ <script src="/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+ <script type="text/javascript">
+    var config = {
+      '.chosen-select'           : {},
+      '.chosen-select-deselect'  : {allow_single_deselect:true},
+      '.chosen-select-no-single' : {disable_search_threshold:10},
+      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+  </script> 
 </body>
 </html>
