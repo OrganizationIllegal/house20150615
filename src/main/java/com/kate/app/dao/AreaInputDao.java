@@ -39,7 +39,7 @@ public class AreaInputDao extends BaseDao {
 	public List<BrokerInfo> getBrokers(){
 		List<BrokerInfo> brokerSet=new ArrayList<BrokerInfo>();
 		try {
-			String sql ="select * from broker_info";
+			String sql ="select * from broker_info order by broker_name asc";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -79,7 +79,7 @@ public class AreaInputDao extends BaseDao {
 	public List<HouseProject> getProjectInfos(){
 		List<HouseProject> projectSet=new ArrayList<HouseProject>();
 		try {
-			String sql ="select * from house_project";
+			String sql ="select * from house_project order by project_name asc";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()){

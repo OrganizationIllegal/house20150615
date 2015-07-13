@@ -558,6 +558,7 @@ public class AreaInfoController extends BaseDao {
 				//区域信息添加
 				@RequestMapping({ "/AddAreaInfo" })
 				public void AddBrokerInfo(HttpServletRequest req, HttpServletResponse resp){
+					JSONObject ajson=new JSONObject();
 					String area = req.getParameter("area");
 					String middleprice = req.getParameter("middleprice");
 					String middletrend = req.getParameter("middletrend");
@@ -575,7 +576,7 @@ public class AreaInfoController extends BaseDao {
 					
 					
 					JSONObject json = JSONObject.parseObject(area);
-					String area_num = json.getString("area_num");
+					String area_num = json.getString("area_num");//区域编号
 					String area_name = json.getString("area_name");
 					String area_city = json.getString("area_city");
 					String area_zhou = json.getString("area_zhou");
@@ -726,19 +727,39 @@ public class AreaInfoController extends BaseDao {
 						 }
 					}
 					/*boolean resultTuijianBoke = areaInfoDao.addAreaTuijianBoke(newslistList, list, area_num);*/
-					
+					//判断区域编号不能重复
+					int isDuplicate=areaInfoDao.isDuplicate(area_num);
+					if(isDuplicate==1){
+						ajson.put("isDuplicate", "1");
+					}
+					else{
 					//添加
 				    try {
 						int result=areaInfoDao.AddArea(area_num, area_name, area_city, area_zhou, area_nation, area_postcode,touzi_datasource, touzi_date, middle_price, middle_zu_price, price_review, year_increment_rate, zu_house_rate, zu_xuqiu, data_exam, family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, family_datasource, family_date,middlepriceList,middletrendList,zujintrendlistList,huibaotrendlistList,tedianlistList,peoplelistList,brokerlistList,projectlistList,newslistList,list);
-						System.out.println("result::"+result);
+						if(result==1){
+							ajson.put("flag", "1");
+						}
+						else{
+							ajson.put("flag", "0");
+						}
 				    } catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+					}
+					 try {
+							writeJson(ajson.toJSONString(),resp);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					    
+					
 			}
 				//区域信息编辑
 				@RequestMapping({ "/EditAreaInfo" })
 				public void UpdateBrokerInfo(HttpServletRequest req, HttpServletResponse resp){
+					JSONObject ajson=new JSONObject();
 					int id=Integer.parseInt(req.getParameter("id"));
 					int id2=Integer.parseInt(req.getParameter("id2"));
 					int id3=Integer.parseInt(req.getParameter("id3"));
@@ -941,15 +962,32 @@ public class AreaInfoController extends BaseDao {
 						 }
 					}
 					/*boolean resultTuijianBoke = areaInfoDao.addAreaTuijianBoke(newslistList, list, area_num);*/
-					
+					/*int isDuplicate=areaInfoDao.isDuplicate(area_num);
+					if(isDuplicate==1){
+						ajson.put("isDuplicate", "1");
+					}
+					else{*/
 					//添加
 				    try {
 						int result=areaInfoDao.EditArea(id,id2,id3,area_num, area_name, area_city, area_zhou, area_nation, area_postcode,touzi_datasource, touzi_date, middle_price, middle_zu_price, price_review, year_increment_rate, zu_house_rate, zu_xuqiu, data_exam, family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, family_datasource, family_date,middlepriceList,middlepriceList2,middletrendList,middletrendList2,zujintrendlistList,zujintrendlistList2,huibaotrendlistList,huibaotrendlistList2,tedianlistList,tedianlistList2,peoplelistList,peoplelistList2,brokerlistList,projectlistList,newslistList,list);
 						System.out.println("result::"+result);
+						if(result==1){
+							ajson.put("flag", "1");
+						}
+						else{
+							ajson.put("flag", "0");
+						}
 				    } catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+				    //}
+					 try {
+							writeJson(ajson.toJSONString(),resp);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 			}
 			public void writeJson(String json, HttpServletResponse response)throws Exception{
 			    response.setContentType("text/html");

@@ -1589,6 +1589,7 @@ var DataDeal = {
 		};  
 
 function savepro(){
+	var area_num=$("#area_num").val();
 	if(isNaN($('#area_postcode').val())){
 		alert("邮政编码-请输入数字！");
 		return false;
@@ -1604,7 +1605,17 @@ function savepro(){
 		data:{"area":JSON.stringify(area),"middleprice":JSON.stringify(middlepricelist),"middletrend":JSON.stringify(middletrendlist),"zujintrendlist":JSON.stringify(zujintrendlist),"huibaotrendlist":JSON.stringify(huibaotrendlist),"tedianlist":JSON.stringify(tedianlist),"peoplelist":JSON.stringify(peoplelist),"brokerlist":JSON.stringify(brokerlist),"projectlist":JSON.stringify(projectlist),"newslist":JSON.stringify(newslist)},
 		url: "/AddAreaInfo",
 		success:function(data){
-			alert("添加成功")
+			data=eval("("+data+")");
+			if(data.isDuplicate==1){
+				alert("区域编号已存在！");
+			}
+			if(data.flag==1)
+			{
+				alert("添加成功");
+			}
+			else if(data.flag==0){
+				alert("添加失败");
+			}
 		},
 		error:function(){
 			alert("error")

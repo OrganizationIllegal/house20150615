@@ -5,33 +5,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 import com.kate.app.model.AreaFamilyBackEnd;
 import com.kate.app.model.AreaInfo;
-import com.kate.app.model.AreaMiddle;
 import com.kate.app.model.AreaMiddle2;
-import com.kate.app.model.AreaPeopleInfo;
 import com.kate.app.model.AreaPeopleInfo2;
-import com.kate.app.model.AreaTeDian;
 import com.kate.app.model.AreaTeDian2;
 import com.kate.app.model.AreaTuijianBroker;
 import com.kate.app.model.AreaTuijianNews;
 import com.kate.app.model.AreaTuijianProject;
-import com.kate.app.model.AreaZhikong;
 import com.kate.app.model.AreaZhikong2;
-import com.kate.app.model.AreaZujin;
 import com.kate.app.model.AreaZujin2;
 import com.kate.app.model.BrokerInfo;
 import com.kate.app.model.HouseProject;
 import com.kate.app.model.InvestmentDataBackEnd;
 import com.kate.app.model.MiddlePrice2;
-import com.kate.app.model.MiddlePriceBackEnd;
-import com.kate.app.model.NewsBoke;
 import com.kate.app.model.NewsZhiye;
-import com.kate.app.model.ZhiYeZhiDao;
 @Repository 
 public class AreaInfoDao extends BaseDao {
 	//通过id删除区域推荐新闻
@@ -603,6 +596,26 @@ public class AreaInfoDao extends BaseDao {
 			e.printStackTrace();
 		}
 		return areaInfo;
+	}
+	//判断区域编号是否重复
+	public int isDuplicate(String area_num){
+		HashSet<String> areaNumSet=new HashSet<String>();
+		try {
+			String sql = " SELECT area_num from area_info";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()){
+				String anum=rs.getString("area_num");
+				areaNumSet.add(anum);
+			}
+			if(areaNumSet.contains(area_num)){//如果包括area_num时，返回1
+				return 1;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
 	}
 	//区域录入
 	public int AddArea(String area_num,String area_name,String area_city,String area_zhou,String area_nation,String area_postcode,String touzi_datasource,String touzi_date,String middle_price,String middle_zu_price,String price_review,String year_increment_rate,String zu_house_rate,String zu_xuqiu,String data_exam,String family_one,String family_one_rate,String family_two,String family_two_rate,String family_three,String family_three_rate,String family_datasource,String family_date,List<MiddlePrice2> middlepriceList,List<AreaMiddle2> middletrendList,List<AreaZujin2> zujintrendlistList,List<AreaZhikong2> huibaotrendlistList,List<AreaTeDian2> tedianlistList,List<AreaPeopleInfo2> peoplelistList,List<BrokerInfo> brokerlistList,List<String> projectlistList,List<String> newslistList,List<String> list) throws SQLException{

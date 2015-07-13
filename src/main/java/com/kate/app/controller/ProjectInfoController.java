@@ -288,6 +288,9 @@ public class ProjectInfoController {
 	//编辑项目
 	@RequestMapping({ "/EditProject" })
 	public void  EditProject(HttpServletRequest req,HttpServletResponse resp){
+		//接收项目编号参数
+		//String project_num=req.getParameter("project_num");
+		JSONObject json=new JSONObject();
 		//接收项目id
 		int id=Integer.parseInt(req.getParameter("id"));
 		//项目信息
@@ -385,14 +388,30 @@ public class ProjectInfoController {
 		}
 		System.out.println("houseTaxList.length():"+houseTaxList.size());
 		System.out.println("houseTaxList2.length():"+houseTaxList2.size());
+		/*int isDuplicate=projectInputDao.isDuplicateNum(project_num);
+		if(isDuplicate==1){
+			json.put("isDuplicate", "1");
+		}
+		else{*/
 		//更新
 	    try {
 			int result=projectInputDao.EditProject(id, projectlist,houseInfolist,houseInfolist2,fujinpeitaoList,fujinpeitaoList2,fujinSchoolList,fujinSchoolList2,holdCostList,holdCostList2,houseTaxList,houseTaxList2);
 			System.out.println("result::"+result);
+			if(result==1){
+				json.put("flag", "1");
+			}else{
+				json.put("flag", "0");
+			}
 	    } catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+	   // }
+		 try{
+				writeJson(json.toJSONString(),resp);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		
 	}
 	

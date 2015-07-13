@@ -1664,7 +1664,17 @@ function savepro(){
 		data:{"id":id1.toString(),"id2":id2.toString(),"id3":id3.toString(),"area":JSON.stringify(area),"middleprice":JSON.stringify(middlepricelist),"middletrend":JSON.stringify(middletrendlist),"zujintrendlist":JSON.stringify(zujintrendlist),"huibaotrendlist":JSON.stringify(huibaotrendlist),"tedianlist":JSON.stringify(tedianlist),"peoplelist":JSON.stringify(peoplelist),"brokerlist":JSON.stringify(brokerlist),"projectlist":JSON.stringify(projectlist),"newslist":JSON.stringify(newslist)},
 		url: "/EditAreaInfo",
 		success:function(data){
-			alert("更新成功");
+			data=eval("("+data+")");
+			/* if(data.isDuplicate==1){
+				alert("区域编号已存在！");
+			} */
+			if(data.flag==1)
+			{
+				alert("更新成功");
+			}
+			else if(data.flag==0){
+				alert("更新失败");
+			}
 		},
 		error:function(a,b,c){
 			/* alert(a);

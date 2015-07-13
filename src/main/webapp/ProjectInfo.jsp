@@ -1135,7 +1135,8 @@ function savepro(){
 	project.buytaxInfo=$("#buyTaxInfo").val();
 	project.holdInfo=$("#holdCostInfo").val();								
 	projectlist.push(project);
-
+    //接收项目编号
+    var project_num=$("#project_code").val();
 
     $.ajax({
 	    type: "POST",
@@ -1144,7 +1145,17 @@ function savepro(){
 		data:{id:id,"project":JSON.stringify(projectlist),"huxinglist":JSON.stringify(huxinglist),"peitaolist":JSON.stringify(peitaolist),"fujinlist":JSON.stringify(fujinlist),"schoollist":JSON.stringify(schoollist),"holdingcostlist":JSON.stringify(holdingcostlist),"housetaxformlist":JSON.stringify(housetaxformlist)},
 		url: "/EditProject",
 		success:function(data){
-			alert("添加成功")
+			data=eval("("+data+")");
+		/* 	if(data.isDuplicate==1){
+				alert("区域编号已存在！");
+			} */
+			if(data.flag==1)
+			{
+				alert("更新成功");
+			}
+			else if(data.flag==0){
+				alert("更新失败");
+			}
 		},
 		error:function(){
 			alert("error")
