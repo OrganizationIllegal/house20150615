@@ -55,7 +55,7 @@ body{
 <div class="area_left c-fix">
 <span class="area_span">详情</span>
 </div>
-<div class="c-fix" style="margin-bottom:15px;"><textarea id="detail" placeholder="详情" name="detail" value="${zhiYeZhiDao.detail}"></textarea></div>
+<div class="c-fix" style="margin-bottom:15px;"><textarea id="detail" placeholder="详情" name="detail">${zhiYeZhiDao.detail}</textarea></div>
 <div class="area_left4"><button type="button" class="btn" onclick="add()">提交</button></div>
 <div class="area_right4"><button onClick="clearAllInput()" class="btn">不保存</button></div>
 </div>
