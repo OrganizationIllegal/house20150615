@@ -67,7 +67,7 @@ body{
 <div class="area_left c-fix">
 <span class="area_span">经纪人描述</span>
 </div>
-<div class="c-fix" style="margin-bottom:15px;"><textarea id="introduction"  value="${broker.introduction}" placeholder="经纪人描述" name="introduction"></textarea></div>
+<div class="c-fix" style="margin-bottom:15px;"><textarea id="introduction"  placeholder="经纪人描述" name="introduction">${broker.introduction}</textarea></div>
 
 <!-- 
 <div class="area_bkg2 c-fix" id="shanchang">擅长类型</div>
