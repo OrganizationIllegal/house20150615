@@ -38,7 +38,22 @@ body{
 </div> --%>
 <div class="area_left" style="width:900px">
 <span class="area_span" style="float:left;">开发商logo</span>
-<span><input type="file" name="developer_logo" id="developer_logo"  multiple  style="float:left;width:620px;border:1px solid rgb(239,235,242);" value="${developerInfo.developer_logo}"/><a href="#" class="addpeitao" onclick="upload()">上传</a></span>
+<span>
+<input type="text" id="file1" value="${developerInfo.developer_logo}" style="float:left;width:580px;border:1px solid rgb(239,235,242);"><input type="button" id="file2" value="浏览...">
+<input type="file" name="developer_logo" id="developer_logo"  multiple  style="float:left;width:620px;border:1px solid rgb(239,235,242);display:none;" value="${developerInfo.developer_logo}"/><a href="#" class="addpeitao" onclick="upload()">上传</a></span>
+<script>
+$(function(){
+	$("#file2").click(
+			function(){
+				$("#developer_logo").click();
+				$("#developer_logo").change(function(){
+					$("#file1").val($("#developer_logo").val());
+					});
+				
+			});
+});
+
+</script>
 </div>
 <div class="duoarea_left2">
 <span class="area_span">开发商介绍</span><span><textarea id="developer_desc" name="developer_desc" class="duoarea_input2" >${developerInfo.developer_desc}</textarea></span>

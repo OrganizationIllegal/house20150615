@@ -50,7 +50,22 @@ body{
 </div>
 <div class="c-fix" style="padding-left:35px;">
 <span class="area_span">新闻图片</span>
-<span style="float:right;"> <input type="file" name="news_image" id="news_image"  value="${newsBoke.news_image}" style="width:677px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"/><a href="#" class="uploadimg">上传</a></span>
+<span style="float:right;"> 
+
+<input type="text" id="file1" value="${newsBoke.news_image}" style="width:619px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"><input type="button" id="file2" value="浏览...">
+<input type="file" name="news_image" id="news_image"  value="${newsBoke.news_image}" style="width:677px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;display:none;"/><a href="#" class="uploadimg">上传</a></span>
+<script>
+$(function(){
+	$("#file2").click(
+			function(){
+				$("#news_image").click();
+				$("#news_image").change(function(){
+					$("#file1").val($("#news_image").val());
+					});
+			});
+});
+
+</script>
 </div>
 <div class="area_left c-fix">
 <span class="area_span">新闻详情</span>

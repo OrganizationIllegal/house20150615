@@ -56,7 +56,22 @@ body{
 </div>
 <div class="area_left" style="width:900px">
 <span class="area_span" style="float:left;">学校照片</span>
-<span></span><input type="file" name="schoolimg" id="schoolimg"  value="${schoolInfo.school_image}" style="width:620px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"/><a href="#">上传</a></span>
+<span></span>
+<input type="text" id="file1" value="${schoolInfo.school_image}" style="float:left;width:580px;border:1px solid rgb(239,235,242);"><input type="button" id="file2" value="浏览...">
+<input type="file" name="schoolimg" id="schoolimg"  value="${schoolInfo.school_image}" style="width:620px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;display:none;"/><a href="#"  onclick="upload()">上传</a></span>
+<script>
+$(function(){
+	$("#file2").click(
+			function(){
+				$("#schoolimg").click();
+				$("#schoolimg").change(function(){
+					$("#file1").val($("#schoolimg").val());
+					});
+			});
+});
+
+</script>
+
 </div>
 <div class="duoarea_left2">
 <span class="duoarea_span">学校简介</span><span><textarea id="school_intro" name="school_intro" value="${schoolInfo.school_desc}" class="duoarea_input2"></textarea></span>
@@ -132,6 +147,40 @@ $('#non_en_studen_trate').blur(function() {
 		$("#school_intro").val("");
 		return false;
 	}
+
+   function upload(){
+	   UpladFile("schoolimg");
+   }
+   
+   function UpladFile(imageid) {
+       var fileObj = document.getElementById(imageid).files[0]; // 获取文件对象
+
+       var FileController = "/imageupload";                    // 接收上传文件的后台地址 
+
+       // FormData 对象
+
+       var form = new FormData();
+
+       /* form.append("author", "hooyes");    */                     // 可以增加表单数据
+
+       form.append("file", fileObj);                           // 文件对象
+
+
+
+       // XMLHttpRequest 对象
+
+       var xhr = new XMLHttpRequest();
+
+       xhr.open("post", FileController, true);
+
+       xhr.onload = function () {
+
+           alert("上传完成!");
+
+       };
+
+       xhr.send(form);
+   }
 </script>
 </body>
 </html>

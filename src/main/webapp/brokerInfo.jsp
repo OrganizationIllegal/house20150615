@@ -59,7 +59,20 @@ body{
 </form>
 <div class="c-fix" style="padding-left:35px;">
 <span class="area_span">经纪人图片</span>
-<span style="float:right;"> <input type="file" name="broker_img" id="broker_img" value="${broker.broker_img}" style="width:677px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"/><a class="addBrokerImage" href="#">上传</a></span>
+<span style="float:right;"> 
+<input type="text" id="file1" value="${broker.broker_img}" style="width:619px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"><input type="button" id="file2" value="浏览...">
+<input type="file" name="broker_img" id="broker_img" value="${broker.broker_img}" style="width:677px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;display:none;"/><a class="addBrokerImage" href="#">上传</a></span>
+<script>
+$(function(){
+	$("#file2").click(
+			function(){
+				$("#broker_img").click();
+				$("#broker_img").change(function(){
+					$("#file1").val($("#broker_img").val());
+					});
+			});
+});
+</script>
 </div>
 <!-- <div id="brokerImglist">
 

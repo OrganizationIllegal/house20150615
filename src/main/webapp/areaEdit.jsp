@@ -768,6 +768,7 @@ $(function(){
 						optstr+="<option value='"+value.id+"'>"+value.news_title+"</option>";
 					});
 				$("#news_title").html(optstr);
+				$("#news_title").trigger("chosen:updated");
 			}
 			else if($(this).val()=="zhiyezhidao"){
 				var optstr="";
@@ -775,6 +776,7 @@ $(function(){
 					optstr+="<option value='"+value.id+"'>"+value.title+"</option>";
 				});
 				$("#news_title").html(optstr);
+				$("#news_title").trigger("chosen:updated");
 			}
 		});
 });
