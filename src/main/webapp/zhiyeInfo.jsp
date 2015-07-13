@@ -40,7 +40,7 @@ body{
 <span class="area_span">发布人</span><span><input type="text" id="fabu_people" name="fabu_people" class="area_input" value="${zhiYeZhiDao.fabu_people}"></span>
 </div>
 <div class="area_right">
-<span class="area_span">发布时间</span><span><input type="text" id="fabu_time" name="fabu_time" class="area_input" value="${zhiYeZhiDao.fabu_time}"></span>
+<span class="area_span">发布时间</span><span><input type="text" id="fabu_time" name="fabu_time" class="area_input" value="${zhiYeZhiDao.fabu_time.toString().length()>10?zhiYeZhiDao.fabu_time.toString().substring(0,10):zhiYeZhiDao.fabu_time.toString()}"></span>
 </div>
 <div class="area_left">
 <span class="area_span">分类</span><span><input type="text" id="fenlei" name="fenlei" class="area_input" value="${zhiYeZhiDao.fenlei}"></span>

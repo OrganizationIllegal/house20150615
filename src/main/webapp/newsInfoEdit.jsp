@@ -40,7 +40,7 @@ body{
 <span class="area_span">发布人</span><span><input type="text" id="news_people" name="news_people" class="area_input" value="${newsBoke.news_people}"></span>
 </div>
 <div class="area_right">
-<span class="area_span">发布时间</span><span><input type="text" id="news_time" name="news_time" class="area_input" value="${newsBoke.news_time}" ></span>
+<span class="area_span">发布时间</span><span><input type="text" id="news_time" name="news_time" class="area_input" value="${newsBoke.news_time.toString().length()>10?newsBoke.news_time.toString().substring(0,10):newsBoke.news_time.toString()}" ></span>
 </div>
 <div class="area_left">
 <span class="area_span">分类</span><span><input type="text" id="news_fenlei" name="news_fenlei" class="area_input" value="${newsBoke.news_fenlei}"></span>

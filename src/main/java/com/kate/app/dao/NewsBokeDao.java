@@ -119,7 +119,9 @@ public class NewsBokeDao extends BaseDao{
 					obj.setNews_image(rs.getString("news_image"));
 					obj.setNews_num(rs.getString("news_num"));
 					obj.setNews_people(rs.getString("news_people"));
+//					String time_str=rs.getTimestamp("news_time").toString().length()<10?rs.getTimestamp("news_time").toString():rs.getTimestamp("news_time").toString().substring(0, 10);
 					obj.setNews_time(rs.getTimestamp("news_time"));
+					//obj.setNews_time(time_str);
 					obj.setNews_title(rs.getString("news_title"));
 					list.add(obj);
 				}
