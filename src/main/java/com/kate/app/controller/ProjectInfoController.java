@@ -72,7 +72,7 @@ public class ProjectInfoController {
 		json.put("rows", array);
 		
 		try{
-			writeJson(json.toJSONString(),resp);
+			writeJson(array.toJSONString(),resp);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -88,7 +88,7 @@ public class ProjectInfoController {
 		json.put("rows", array);
 		
 		try{
-			writeJson(json.toJSONString(),resp);
+			writeJson(array.toJSONString(),resp);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -104,7 +104,7 @@ public class ProjectInfoController {
 			json.put("rows", array);
 			
 			try{
-				writeJson(json.toJSONString(),resp);
+				writeJson(array.toJSONString(),resp);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
@@ -120,7 +120,7 @@ public class ProjectInfoController {
 					json.put("rows", array);
 					
 					try{
-						writeJson(json.toJSONString(),resp);
+						writeJson(array.toJSONString(),resp);
 					}catch(Exception e){
 						e.printStackTrace();
 					}
@@ -136,7 +136,7 @@ public class ProjectInfoController {
 					json.put("rows", array);
 					
 					try{
-						writeJson(json.toJSONString(),resp);
+						writeJson(array.toJSONString(),resp);
 					}catch(Exception e){
 						e.printStackTrace();
 					}

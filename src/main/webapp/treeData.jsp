@@ -12,9 +12,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <link href="/css/default.css" rel="stylesheet">
    <link rel="stylesheet" type="text/css" href="css/base.css" />
    <link rel="stylesheet" type="text/css" href="css/main.css" />
-   <script src="/js/jquery.min.js"></script>
-   <script src="/bootstrap/js/bootstrap.min.js"></script>
-   <script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script>
+   <script src="/js/jquery-2.1.4.js"></script>
+   <script src="/bootstrap/js/bootstrap.js"></script>
+<!--    <script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script> -->
 </head>
 <body>
 <%
@@ -310,19 +310,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						              },
 						              
 						            ]
-						          },
-				        
-		          
-	         /*  {
-	           text: '管理员',	
-	           color: "#ffffff", 
-	           backColor:"rgb(59,94,132)",  
-	           nodes: [
-	              {
-	                text: '管理员查看留言'	                
-	              },
-	             ]
-	          } */
+						          }
 	        ];
 	      /*   $("#showlist").load("areaLuru.jsp"); */
 	        $("#showlist").load("/ProjectInput");
@@ -336,45 +324,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	           if(node.text=="项目录入"){
 	           		$("#showlist").load("/ProjectInput");
 	           }
-	           if(node.text=="区域录入"){
+	           else if(node.text=="区域录入"){
 		           /* $("#showlist").load("areaLuru.jsp"); */
 		           $("#showlist").load("/AreaInput");
 		           
 		           }
-	           if(node.text=="经纪人录入"){
+	           else if(node.text=="经纪人录入"){
 		           $("#showlist").load("brokerLuru.jsp");
 		           }
-	           if(node.text=="经纪人列表"){
+	           else if(node.text=="经纪人列表"){
 		           $("#showlist").load("brokerList.jsp");
 		           }
-	           if(node.text=="新闻博客录入"){
+	           else if(node.text=="新闻博客录入"){
 		           $("#showlist").load("newsLuru.jsp");
 		           }
-	           if(node.text=="新闻博客列表"){
+	           else if(node.text=="新闻博客列表"){
 		           $("#showlist").load("newsList.jsp");
 		           }
-	           if(node.text=="置业指导录入"){
+	           else if(node.text=="置业指导录入"){
 		           $("#showlist").load("zhiyeLuru.jsp");
 		           }
-	           if(node.text=="置业指导列表"){
+	           else if(node.text=="置业指导列表"){
 		           $("#showlist").load("zhiyeList.jsp");
 		           }
-	           if(node.text=="学校信息录入"){
+	           else if(node.text=="学校信息录入"){
 		           $("#showlist").load("SchoolInfoInput.jsp");
 		           }
-	           if(node.text=="学校信息列表"){
+	           else if(node.text=="学校信息列表"){
 		           $("#showlist").load("SchoolList.jsp");
 		           }
-	           if(node.text=="开发商信息录入"){
+	           else if(node.text=="开发商信息录入"){
 		           $("#showlist").load("DeveloperInfoInput.jsp");
 		           }
-	           if(node.text=="开发商信息列表"){
+	           else if(node.text=="开发商信息列表"){
 		           $("#showlist").load("DeveloperList.jsp");
 		           }
-	           if(node.text=="项目列表"){
+	           else if(node.text=="项目列表"){
 		           $("#showlist").load("ProjectList.jsp");
 		           }
-	           if(node.text=="区域列表"){
+	           else if(node.text=="区域列表"){
 		           $("#showlist").load("areaList.jsp");
 		           }
 	          } 

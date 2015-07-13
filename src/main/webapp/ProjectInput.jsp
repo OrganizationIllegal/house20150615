@@ -14,11 +14,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="css/main.css" />
 <link rel="stylesheet" type="text/css" href="css/projectLuru.css" />
 <!-- <link rel="stylesheet" type="text/css" href="uploadify/uploadify.css" /> -->
-<link rel="stylesheet" type="text/css" href="/webuploader-0.1.5/webuploader.css"/> 
-<script src="/js/jquery.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="/webuploader-0.1.5/webuploader.css"/>  -->
+<!-- <script src="/js/jquery.min.js"></script> -->
 <!-- <script src="/bootstrap/js/bootstrap.min.js"></script> -->
 <!-- <script src="uploadify/jquery.uploadify.js"></script> -->
-<script src="/webuploader-0.1.5/webuploader.min.js"></script>
+<!-- <script src="/webuploader-0.1.5/webuploader.min.js"></script> -->
 
 <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
    <!-- <link href="/css/default.css" rel="stylesheet"> -->
@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <link rel="stylesheet" type="text/css" href="css/main.css" />
   <!--  <link rel="stylesheet" type="text/css" href="/webuploader-0.1.5/webuploader.css"/>  -->
    <!-- <script src="/js/jquery.min.js"></script> -->
-   <script src="/bootstrap/js/bootstrap.min.js"></script>
+   <!-- <script src="/bootstrap/js/bootstrap.min.js"></script> -->
    <script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script>
  <!--    <link rel="stylesheet" href="/docsupport/style.css">
   <link rel="stylesheet" href="/docsupport/prism.css"> -->

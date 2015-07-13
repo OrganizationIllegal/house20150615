@@ -7,15 +7,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Service Protocol</title>
+<title>项目列表</title>
 <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/base.css" />
-<link rel="stylesheet" type="text/css" href="css/main.css" />
 <link href="/bootstrap/css/bootstrap-table.css" rel="stylesheet">
-<link href="/bootstrap/css/examples.css" rel="stylesheet">
 
-<script src="/jquery.min.js"></script>
-<script src="/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- <script src="/jquery.min.js"></script> -->
+<!-- <script src="/bootstrap/js/bootstrap.min.js"></script> -->
 <script src="/bootstrap/js/bootstrap-table.js"></script>
 
 
@@ -35,24 +33,18 @@ body{
  		data-url="/ProjectInfoList"
  		data-striped='true'
  		data-search="true"
-           data-show-refresh="true"
-           data-show-toggle="true"
-           data-show-columns="true"
-           data-show-export="true"
-           data-detail-view="true"
-           data-minimum-count-columns="2"
            data-show-pagination-switch="true"
            data-pagination="true"
-           data-page-list="[10, 25, ALL]"
+           data-page-list="[10, 20, ALL]"
            data-strict-search="true"
            data-side-pagination="client"
-           data-page-size="10"
+           data-page-size="20"
            data-page-number=1
  		>
         <thead>
         <tr>
             <th data-field="state" data-checkbox="true"></th>
-            <th data-field="id" data-sortable="true"data-editable="true">ID</th>
+            <th data-field="id" data-sortable="true">ID</th>
             <th data-field="project_num"  data-searchable="true">项目编号</th>
             <th data-field="project_name"  data-searchable="true">项目名称</th>
             <th data-field="operate"
