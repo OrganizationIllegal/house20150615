@@ -206,7 +206,7 @@ public class ProjectInputDao extends BaseDao {
 							houseTax.setHouseTaxtype(rs.getString("type"));
 							houseTax.setHouseTaxprice(rs.getString("price"));
 							houseTax.setHouseTaxdesc(rs.getString("description"));
-							houseTax.setHouseTax_housename(rs.getString("house_name"));
+							/*houseTax.setHouseTax_housename(rs.getString("house_name"));*/
 							houseTaxlList.add(houseTax);
 						}
 					} catch (Exception e) {
@@ -1290,12 +1290,12 @@ public class ProjectInputDao extends BaseDao {
 		            String type=housetax.getHouseTaxtype();
 		            String price=housetax.getHouseTaxprice();
 		            String description=housetax.getHouseTaxdesc();
-		            String housename=housetax.getHouseTax_housename();
+		          /*  String housename=housetax.getHouseTax_housename();*/
 		            pstmt.setString(1, type);
 		            pstmt.setString(2, price);
 		            pstmt.setString(3,description);
 		            pstmt.setString(4,project_num);
-		            pstmt.setString(5,housename);
+		           /* pstmt.setString(5,housename);*/
 		            pstmt.addBatch();
 		        }
 				int[] result7list=pstmt.executeBatch();
@@ -1605,21 +1605,21 @@ public class ProjectInputDao extends BaseDao {
 					System.out.println("result66list"+i+":"+result66list[i]);
 				}
 				//购房税费编辑
-				 String sql7="update  house_tax set type=?,price=?,description=?,project_num=?,house_name=?  where id=?";
+				 String sql7="update  house_tax set type=?,price=?,description=?,project_num=? where id=?";
 		         pstmt = con.prepareStatement(sql7);
 		        for(int i=0;i<houseTaxList.size();i++){
 		        	HouseTax housetax=houseTaxList.get(i);
 		            String type=housetax.getHouseTaxtype();
 		            String price=housetax.getHouseTaxprice();
 		            String description=housetax.getHouseTaxdesc();
-		            String housename=housetax.getHouseTax_housename();
+		          /*  String housename=housetax.getHouseTax_housename();*/
 		            int Id=housetax.getId();
 		            pstmt.setString(1, type);
 		            pstmt.setString(2, price);
 		            pstmt.setString(3,description);
 		            pstmt.setString(4,project_num);
-		            pstmt.setString(5,housename);
-		            pstmt.setInt(6, Id);
+		         /*   pstmt.setString(5,housename);*/
+		            pstmt.setInt(5, Id);
 		            pstmt.addBatch();
 		        }
 				int[] result7list=pstmt.executeBatch();
@@ -1628,19 +1628,19 @@ public class ProjectInputDao extends BaseDao {
 					System.out.println("result7list"+i+":"+result7list[i]);
 				}
 				//购房税费添加
-				 String sql77="insert into house_tax(type,price,description,project_num,house_name) values(?,?,?,?,?) ";
+				 String sql77="insert into house_tax(type,price,description,project_num) values(?,?,?,?) ";
 		         pstmt = con.prepareStatement(sql77);
 		        for(int i=0;i<houseTaxList2.size();i++){
 		        	HouseTax housetax=houseTaxList2.get(i);
 		            String type=housetax.getHouseTaxtype();
 		            String price=housetax.getHouseTaxprice();
 		            String description=housetax.getHouseTaxdesc();
-		            String housename=housetax.getHouseTax_housename();
+		          /*  String housename=housetax.getHouseTax_housename();*/
 		            pstmt.setString(1, type);
 		            pstmt.setString(2, price);
 		            pstmt.setString(3,description);
 		            pstmt.setString(4,project_num);
-		            pstmt.setString(5,housename);
+		           /* pstmt.setString(5,housename);*/
 		            pstmt.addBatch();
 		        }
 				int[] result77list=pstmt.executeBatch();

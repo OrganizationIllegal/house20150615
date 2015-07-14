@@ -719,6 +719,9 @@ public class AreaInfoDao extends BaseDao {
 				String zu_three_name =item.getZu_three_name();
 				int zu_three_price = item.getZu_three_price();
 				String middle_datasource = item.getMiddle_datasource();
+				
+				
+				
 				String middle_date = item.getMiddle_date();
 				String time_str = "";
 				if(middle_date != null){
@@ -757,7 +760,7 @@ public class AreaInfoDao extends BaseDao {
 					if(resultmiddleprice == 0){
 						flagmiddleprice = false;
 					}
-				
+				    
 			}
 			//区域房价中位数走势
 			for(AreaMiddle2 item : middletrendList){

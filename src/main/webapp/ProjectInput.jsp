@@ -91,9 +91,9 @@ body{
 </select> -->
 <select data-placeholder="请选择..." class="chosen-select" id="project_type" name="project_type" style="width:220px;" tabindex="4">
  	 <option value=""></option>
-  	 <option >公寓</option>
-     <option >别墅</option>
-     <option>联排别墅</option>
+  	 <option value="公寓">公寓</option>
+     <option value="別墅">别墅</option>
+     <option value="聯排別墅">联排别墅</option>
  </select>
 </span>
 </div>
@@ -179,7 +179,7 @@ body{
  <select data-placeholder="请选择..." class="chosen-select" id="developer_code" name="developer_code" style="width:670px;" tabindex="4">
  	<option value=""></option>
   	<c:forEach items="${codeAndNameSet}" var="item">
-        		 <option>${item}</option>
+        		 <option value="${item}">${item}</option>
     </c:forEach>
  </select>
 </span>
@@ -316,7 +316,7 @@ body{
  <select data-placeholder="请选择..." class="chosen-select"  style="width:220px;" tabindex="4" id="school_name" name="school_name">
  	<option value=""></option>
     <c:forEach items="${schoolList}" var="item">
-        		 <option>${item}</option>
+        		 <option value="${item}">${item}</option>
     </c:forEach>
  </select>
 </span>
@@ -1142,7 +1142,9 @@ function savepro(){
 	project.min_area=$("#minarea").val();
 	project.max_area=$("#maxarea").val();
 	project.buytaxInfo=$("#buyTaxInfo").val();
-	project.holdInfo=$("#holdCostInfo").val();								
+	project.holdInfo=$("#holdCostInfo").val();	
+	project.project_type=$("#project_type").val();	
+	
 	projectlist.push(project);
 
 

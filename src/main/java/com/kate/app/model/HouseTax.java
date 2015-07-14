@@ -5,7 +5,7 @@ public class HouseTax {
 	private String houseTaxtype;
 	private String  houseTaxprice;
 	private String  houseTaxdesc;
-	private String  houseTax_housename;
+/*	private String  houseTax_housename;*/
 	
 	public int getId() {
 		return id;
@@ -31,12 +31,12 @@ public class HouseTax {
 	public void setHouseTaxdesc(String houseTaxdesc) {
 		this.houseTaxdesc = houseTaxdesc;
 	}
-	public String getHouseTax_housename() {
+	/*public String getHouseTax_housename() {
 		return houseTax_housename;
 	}
 	public void setHouseTax_housename(String houseTax_housename) {
 		this.houseTax_housename = houseTax_housename;
-	}
+	}*/
 	
 	
 	

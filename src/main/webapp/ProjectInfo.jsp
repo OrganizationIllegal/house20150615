@@ -86,7 +86,35 @@ body{
   <option >${houseProject.project_type}</option>
 </select> --%>
 <select data-placeholder="请选择..." class="chosen-select"  id="project_type" name="project_type" style="width:220px;" tabindex="4">
-	 <option >${houseProject.project_type}</option>
+	 <%-- <option value="${houseProject.project_type}">${houseProject.project_type}</option> --%>
+	<!--   <option value=""></option>
+  	 <option value="公寓">公寓</option>
+     <option value="別墅">别墅</option>
+     <option value="聯排別墅">联排别墅</option> -->
+     <c:choose>
+	    <c:when test="${houseProject.project_type eq '公寓'}">
+	      <option value="公寓" selected="selected">公寓</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="公寓">公寓</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	  <c:choose>
+	    <c:when test="${houseProject.project_type eq '別墅'}">
+	      <option value="別墅" selected="selected">別墅</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="別墅">別墅</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${houseProject.project_type eq '联排别墅' }">
+	      <option value="联排别墅" selected="selected">联排别墅</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="联排别墅">联排别墅</option>
+	   </c:otherwise>
+  	  </c:choose>
  </select>
 </span>
 </div>
@@ -94,7 +122,7 @@ body{
 <span class="area_span">户型</span><span><input type="text" id="house_type" name="house_type" class="area_input" value="${houseProject.project_house_type}"></span>
 </div>
 <div class="area_left">
-<span class="area_span">项目完成时间</span><span><input type="text" id="finish_time" name="finish_time" class="area_input" value="${houseProject.project_finish_time}"></span>
+<span class="area_span">项目完成时间</span><span><input type="text" id="finish_time" name="finish_time" class="area_input"  value="${houseProject.project_finish_time.toString().length()>10?houseProject.project_finish_time.toString().substring(0,10):houseProject.project_finish_time.toString()}"></span>
 </div>
 <div class="area_right">
 <span class="area_span">可售套数</span><span><input type="text" id="keshou" name="keshou" class="area_input" value="${houseProject.project_sales_remain}"></span>
@@ -140,7 +168,7 @@ body{
 </div>
 
 <div class="area_left">
-<span class="area_span">更新时间</span><span><input type="text" id="update_time" name="update_time" class="area_input" value="${houseProject.housePrice_update_time}"></span>
+<span class="area_span">更新时间</span><span><input type="text" id="update_time" name="update_time" class="area_input"  value="${houseProject.housePrice_update_time.toString().length()>10?houseProject.housePrice_update_time.toString().substring(0,10):houseProject.housePrice_update_time.toString()}"></span>
 </div>
 <div class="area_right">
 <span class="area_span">所属区域</span><span><input type="text" id="area_num" name="area_num" class="area_input" value="${houseProject.area_num}"></span>
@@ -170,7 +198,17 @@ body{
        	      </c:forEach>
 </select> --%>
  <select data-placeholder="请选择..." class="chosen-select" id="developer_code" name="developer_code" style="width:670px;" tabindex="4">
-  	 <option value="${houseProject.developer_id_name}"></option>
+   <option value=""></option>
+  	<c:forEach items="${codeAndNameSet}" var="item">
+	  <c:choose>
+	    <c:when test="${item == houseProject.developer_id_name}">
+	      <option value="${item}" selected="selected">${item}</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="${item}">${item}</option>
+	   </c:otherwise>
+  	  </c:choose>
+    </c:forEach>
  </select>
 </span>
 </div>
@@ -276,6 +314,7 @@ body{
 <td><span style="padding-right:10px">${status.index + 1}</span></td>
 <td><span style="padding-right:10px">${projectpeitao.name}</span></td>
 <td><span style="padding-right:10px">${projectpeitao.view_shunxu}</span></td>
+<td><span><a href="#" style="padding-right:10px;" class="editpeitao">编辑</a><a href="#" class="deletepeitao">删除</a></span></td>
 </tr>
 </table>
 </c:forEach>
@@ -310,6 +349,7 @@ body{
 <td><span style="padding-right:10px">${fujinPeiTao.peitao_type}</span></td>
 <td><span style="padding-right:10px">${fujinPeiTao.peitao_name}</span></td>
 <td><span style="padding-right:10px">${fujinPeiTao.peitao_distance}</span></td>
+<td><span><a href="#" style="padding-right:10px;" class="editpeitao">编辑</a><a href="#" class="deletepeitao">删除</a></span></td>
 </tr>
 </table>
 </c:forEach>
@@ -331,9 +371,20 @@ body{
 </select> --%>
 
 <select data-placeholder="请选择..." class="chosen-select"  style="width:220px;" tabindex="4" id="school_name" name="school_name">
- 	 <c:forEach items="${schoolList}" var="item">
-        		 <option>${item}</option>
-       	 </c:forEach>
+ 	  <c:forEach items="${schoolList}" var="item">
+        		 <option value="${item}">${item}</option>
+       	 </c:forEach> 
+       	<!--  <option value=""></option> -->
+  <%-- 	<c:forEach items="${schoolList}" var="item">
+	  <c:choose>
+	    <c:when test="${item == houseProject.developer_id_name}">
+	      <option selected="selected">${item}</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option>${item}</option>
+	   </c:otherwise>
+  	  </c:choose>
+    </c:forEach> --%>
 </select> 
 </span>
 <!-- <span><input type="text" id="school_name" name="school_name" class="area_input"></span> -->
@@ -351,6 +402,7 @@ body{
 <td><span style="padding-right:10px">${status.index + 1}</span></td>
 <td><span style="padding-right:10px">${fujinSchool.school_name}</span></td>
 <td><span style="padding-right:10px">${fujinSchool.school_distance}</span></td>
+<td><span><a href="#" style="padding-right:10px;" class="editpeitao">编辑</a><a href="#" class="deletepeitao">删除</a></span></td>
 </tr>
 </table>
 </c:forEach>
@@ -378,19 +430,33 @@ body{
 <div style="clear: both;float: right;padding-right: 55px;"><a href="#" class="addholdingcost">添加</a></div>
 </form>
 <div id="holdingcostlist">
-<div style="float:left;padding-left:40px;">
+
  <c:forEach items="${holdCostList}" var="holdCost" varStatus="status">
- <table>
+<%--  <table>
  <tr>
 <td><span style="padding-right:10px">${status.index + 1}</span></td>
 <td><span style="padding-right:10px">${holdCost.holdcosttype}</span></td>
 <td><span style="padding-right:10px">${holdCost.holdcostprice}</span></td>
 <td><span style="padding-right:10px">${holdCost.holdcostdesc}</span></td>
-<%-- <td><span style="padding-right:10px">${holdCost.holdcost_housename}</span></td> --%>
+<td><span><a href="#" style="padding-right:10px;" class="editpeitao">编辑</a><a href="#" class="deletepeitao">删除</a></span></td>
+<td><span style="padding-right:10px">${holdCost.holdcost_housename}</span></td>
 </tr>
-</table>
-</c:forEach>
+</table> --%>
+
+<div style='float:left;padding-left:40px;'>
+<span style='padding-right:10px;'>${status.index + 1}</span>
+<span style='padding-right:10px;'>${holdCost.holdcosttype}</span>
+<span style='padding-right:10px;'>${holdCost.holdcostprice}</span>
+<span style='padding-right:10px;'>${holdCost.holdcostdesc}</span>
+<span style='padding-left: 30px;padding-right: 40px;'>
+<a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a>
+<a href='#' class='deletepeitao'>删除</a>
+</span>
 </div>
+
+
+</c:forEach>
+
 </div>
 <!-- ****************************************************持有成本end***************************************************** -->
 
@@ -413,19 +479,30 @@ body{
 <div style="clear: both;float: right;padding-right: 55px;"><a href="#" class="addhousetaxform">添加</a></div>
 </form>
 <div id="housetaxformlist">
-<div style="float:left;padding-left:40px;">
  <c:forEach items="${houseTaxList}" var="houseTax" varStatus="status">
- <table>
+<%--  <table>
  <tr>
 <td><span style="padding-right:10px">${status.index + 1}</span></td>
 <td><span style="padding-right:10px">${houseTax.houseTaxtype}</span></td>
 <td><span style="padding-right:10px">${houseTax.houseTaxprice}</span></td>
 <td><span style="padding-right:10px">${houseTax.houseTaxdesc}</span></td>
-<%-- <td><span style="padding-right:10px">${houseTax.houseTax_housename}</span></td> --%>
+<td><span style="padding-right:10px">${houseTax.houseTax_housename}</span></td>
+<td><span><a href="#" style="padding-right:10px;" class="editpeitao">编辑</a><a href="#" class="deletepeitao">删除</a></span></td>
 </tr>
-</table>
-</c:forEach>
+</table> --%>
+<div style='float:left;padding-left:40px;'>
+<span style='padding-right:10px;'>${status.index + 1}</span>
+<span style='padding-right:10px;'>${houseTax.houseTaxtype}</span>
+<span style='padding-right:10px;'>${houseTax.houseTaxprice}</span>
+<span style='padding-right:10px;'>${houseTax.houseTaxdesc}</span>
+<span style='padding-left: 30px;padding-right: 40px;'>
+<a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a>
+<a href='#' class='deletepeitao'>删除</a>
+</span>
 </div>
+
+</c:forEach>
+
 </div>
 <!-- ****************************************************购房税费end***************************************************** -->
 <!-- <div style="width:900px;clear:both;margin:20px auto;text-align:center;">
@@ -881,7 +958,7 @@ var holdingcostlist='${holdCostListJson}';
 holdingcostlist=eval("("+holdingcostlist+")");
 var holdingcostedit=100;
 var holdingcostedititem;
-var holdingcostcount=0;
+var holdingcostcount=holdingcostlist.length;
 $(function(){
 	$.ajaxSetup({  
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
@@ -908,7 +985,7 @@ $(function(){
 			huxing.jianzhu_mianji=$("#jianzhu_mianji").val();
 			huxing.shinei_mianji=$("#") */
 			holdingcostlist.push(holdingcost);
-			$("#holdingcostlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++holdingcostcount)+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostcount-1].holdcosttype+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostcount-1].holdcostprice+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostcount-1].holdcostdesc+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostcount-1].holdcost_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
+			$("#holdingcostlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++holdingcostcount)+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostcount-1].holdcosttype+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostcount-1].holdcostprice+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostcount-1].holdcostdesc+"</span>"+"<span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
 			
 			/* UpladFile("houseimg"); */
 			$("#holdingcost input").each(function(){
@@ -937,7 +1014,7 @@ $(function(){
 			holdingcostedititem.id=holdingcostlist[holdingcostedit].id;
 			holdingcostlist[holdingcostedit]=holdingcostedititem;
 			//alert($("#holdingcostlist").children().eq(holdingcostedit));
-			$("#holdingcostlist").children().eq(holdingcostedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(holdingcostedit+1)+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcosttype+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcostprice+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcostdesc+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcost_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show();
+			$("#holdingcostlist").children().eq(holdingcostedit).html("<span style='padding-right:10px;'>"+(holdingcostedit+1)+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcosttype+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcostprice+"</span><span style='padding-right:10px;'>"+holdingcostlist[holdingcostedit].holdcostdesc+"</span>"+"<span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span>").show();
 			holdingcostedit=100;
 			//$("#peitaolist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++peitaocount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
 			/*peitao.view= */
@@ -973,7 +1050,7 @@ $(function(){
 
 
 
-var housetaxformlist='${houseTaxList}';
+var housetaxformlist='${houseTaxListJson}';
 housetaxformlist=eval("("+housetaxformlist+")");
 var housetaxformedit=100;
 var housetaxformedititem;
@@ -1004,7 +1081,7 @@ $(function(){
 			huxing.jianzhu_mianji=$("#jianzhu_mianji").val();
 			huxing.shinei_mianji=$("#") */
 			housetaxformlist.push(housetaxform);
-			$("#housetaxformlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++housetaxformcount)+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxtype+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxprice+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxdesc+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
+			$("#housetaxformlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++housetaxformcount)+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxtype+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxprice+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxdesc+"</span>"+"<span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
 			
 			/* UpladFile("houseimg"); */
 			$("#housetaxform input").each(function(){
@@ -1033,7 +1110,7 @@ $(function(){
 			housetaxformedititem.id=housetaxformlist[housetaxformedit].id;
 			housetaxformlist[housetaxformedit]=housetaxformedititem;
 			//alert($("#housetaxformlist").children().eq(housetaxformedit));
-			$("#housetaxformlist").children().eq(housetaxformedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(housetaxformedit+1)+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show();
+			$("#housetaxformlist").children().eq(housetaxformedit).html("<span style='padding-right:10px;'>"+(housetaxformedit+1)+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxdesc+"</span>"+"<span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span>").show();
 			housetaxformedit=100;
 			//$("#peitaolist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++peitaocount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
 			/*peitao.view= */
@@ -1058,7 +1135,7 @@ $(function(){
 		$("#houseTaxtype").val(housetaxformedititem.houseTaxtype);
 		$("#houseTaxprice").val(housetaxformedititem.houseTaxprice);
 		$("#houseTaxdesc").val(housetaxformedititem.houseTaxdesc);
-		$("#houseTax_housename").val(housetaxformedititem.houseTax_housename);
+	/* 	$("#houseTax_housename").val(housetaxformedititem.houseTax_housename); */
 		}); 
 	
 });
@@ -1088,6 +1165,8 @@ var DataDeal = {
 <script>
 
 function savepro(){
+	
+	alert(JSON.stringify(housetaxformlist));
 	/* var list=[];
 	var obj={};
 	obj.peitao_type="alue1";

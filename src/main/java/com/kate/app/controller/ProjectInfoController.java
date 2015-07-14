@@ -821,6 +821,14 @@ public class ProjectInfoController {
 		List<HouseTax> houseTaxList=projectInputDao.getHouseTaxByProNum(pronum);
 		req.setAttribute("houseTaxList",houseTaxList );
 		req.setAttribute("houseTaxListJson", ConvertJson.list2json(houseTaxList));
+		
+		
+		//得到开发商的编号和名称
+		List<String> codeAndNameSet=projectInputDao.getDeveloperCodeName();
+		req.setAttribute("codeAndNameSet", codeAndNameSet);
+		//得到所有学校的名称
+		List<String> schoolList=projectInputDao.getAllSchoolName();
+		req.setAttribute("schoolList", schoolList);
 		return "/ProjectInfo.jsp";
 	}
 	//根据id取学校信息
