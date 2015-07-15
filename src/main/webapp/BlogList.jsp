@@ -115,7 +115,7 @@ function reLoad(){
             <div class="col-md-3" style="width:340px;height:100%;line-height:37px;color:white;"><a href="/index01" style="color: #FFE4B5;padding-right: 10px;">首页</a><a href="/BlogList" style="color: white;padding-right: 10px;">新闻博客 </a><a href="/ZhiYeInfo" style="color: #FFE4B5;padding-right: 10px;">置业指导</a></div>
         </div> -->
         <div  style="height:82px;border:1px solid #FFE4E1;width:100%; margin: 0 auto;background-color: white;margin-top:-10px;position:relative;">
-            <div class="" style="width:980px;font-size:24px;line-height:70px;height:100%;font-weight:bold;margin:0 auto;">置业指导</div>
+            <div class="" style="width:980px;font-size:24px;line-height:70px;height:100%;font-weight:bold;margin:0 auto;">新闻博客</div>
         </div>
         <div style="padding-top: 35px;width:100%; margin: 0 auto;background-color:rgb(247,248,250);">
         <div class="row" style="width:980px; margin: 0 auto;position:relative;">

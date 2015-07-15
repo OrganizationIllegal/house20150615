@@ -812,7 +812,7 @@ public class ProjectInfoController {
 		//根据项目编号获取附近学校
 		List<FujinSchool> fujinSchoolList=projectInputDao.getFujinSchoolByProNum(pronum);
 		req.setAttribute("fujinSchoolList",fujinSchoolList );
-		req.setAttribute("fujinSchoolListJson", ConvertJson.list2json(fujinSchoolList));
+		req.setAttribute("fujinSchoolListJson", ConvertJson.list2json(fujinSchoolList).replace("'", "&#39;"));
 		//根据项目编号获取持有成本
 		List<HoldCost> holdCostList=projectInputDao.getHoldCostByProNum(pronum);
 		req.setAttribute("holdCostList",holdCostList );

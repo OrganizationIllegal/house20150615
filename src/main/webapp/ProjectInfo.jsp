@@ -77,7 +77,7 @@ body{
 <span class="area_span">项目所在地区</span><span><input type="text" id="project_area" name="project_area" class="area_input" value="${houseProject.project_area}"></span>
 </div>
 <div class="duoarea_left">
-<span class="duoarea_span" >项目所在地址</span><span><textarea id="project_address" name="project_address" class="duoarea_input" value="${houseProject.project_address}"></textarea></span>
+<span class="duoarea_span" >项目所在地址</span><span><textarea id="project_address" name="project_address" class="duoarea_input">${houseProject.project_address}</textarea></span>
 </div>
 <div class="area_right">
 <span class="area_span">项目类型</span>
@@ -158,13 +158,13 @@ body{
 <span class="area_span">最高价格</span><span><input type="text" id="maxprice" name="maxprice" class="area_input" value="${houseProject.project_high_price}"></span>
 </div>
 <div class="duoarea_left">
-<span class="duoarea_span">项目一句话（中文）</span><span><textarea id="project_lan_an" name="project_lan_an" class="duoarea_input" value="${houseProject.project_lan_cn}"></textarea></span>
+<span class="duoarea_span">项目一句话（中文）</span><span><textarea id="project_lan_an" name="project_lan_an" class="duoarea_input">${houseProject.project_lan_cn}</textarea></span>
 </div>
 <div class="duoarea_right">
-<span class="duoarea_span">项目一句话（英文）</span><span><textarea id="project_lan_en" name="project_lan_en" class="duoarea_input" value="${houseProject.project_lan_en}"></textarea></span>
+<span class="duoarea_span">项目一句话（英文）</span><span><textarea id="project_lan_en" name="project_lan_en" class="duoarea_input">${houseProject.project_lan_en}</textarea></span>
 </div>
 <div class="duoarea_left2">
-<span class="duoarea_span">项目描述</span><span><textarea id="project_desc" name="project_desc" class="duoarea_input2" value="${houseProject.project_desc}"></textarea></span>
+<span class="duoarea_span">项目描述</span><span><textarea id="project_desc" name="project_desc" class="duoarea_input2">${houseProject.project_desc}</textarea></span>
 </div>
 
 <div class="area_left">
@@ -623,7 +623,7 @@ var peitaolist='${projectPeitaoListJson}';
 peitaolist=eval("("+peitaolist+")"); 
 var isedit=100;
 var edititem;
-var peitaocount=0;
+var peitaocount=peitaolist.length;
 $(function(){
 	$.ajaxSetup({  
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
@@ -683,7 +683,7 @@ var huxinglist='${houseInfoListJson}';
  huxinglist=eval("("+huxinglist+")"); 
 var ishuxingedit=100;
 var huxingedititem;
-var huxingcount=0;
+var huxingcount=huxinglist.length;
 $(function(){
 	$.ajaxSetup({  
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
@@ -779,7 +779,7 @@ var fujinlist='${fujinPeitaoListJson}';
 fujinlist=eval("("+fujinlist+")");
 var fujinedit=100;
 var fujinedititem;
-var fujincount=0;
+var fujincount=fujinlist.length;
 $(function(){
 	$.ajaxSetup({  
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
@@ -870,7 +870,7 @@ var schoollist='${fujinSchoolListJson}';
 schoollist=eval("("+schoollist+")");
 var schooledit=100;
 var schooledititem;
-var schoolcount=0;
+var schoolcount=schoollist.length;
 $(function(){
 	$.ajaxSetup({  
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
@@ -1054,7 +1054,7 @@ var housetaxformlist='${houseTaxListJson}';
 housetaxformlist=eval("("+housetaxformlist+")");
 var housetaxformedit=100;
 var housetaxformedititem;
-var housetaxformcount=0;
+var housetaxformcount=housetaxformlist.length;
 $(function(){
 	$.ajaxSetup({  
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  

@@ -65,7 +65,7 @@ body{
 <span class="area_span">数据来源</span><span><input type="text" id="touzi_datasource" name="touzi_datasource" class="area_input" value="${Invest.touzi_datasource}"></span>
 </div>
 <div class="area_right">
-<span class="area_span">更新日期</span><span><input type="text" id="touzi_date" name="touzi_date" class="area_input" value="${Invest.touzi_date}"></span>
+<span class="area_span">更新日期</span><span><input type="text" id="touzi_date" name="touzi_date" class="area_input" value="${Invest.touzi_date.toString().length()>10?Invest.touzi_date.toString().substring(0,10):Invest.touzi_date.toString()}"></span>
 </div>
 <div class="area_left">
 <span class="area_span">年增长率</span><span><input type="text" id="year_increment_rate" name="year_increment_rate" class="area_input"  value="${Invest.year_increment_rate}"></span>

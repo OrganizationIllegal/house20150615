@@ -1175,6 +1175,9 @@ function savepro(){
 }
 function clearAllInput(){
 	$("input").val("");
+	$("#project_lan_an").val("");
+	$("#project_lan_en").val("");
+	$("#project_desc").val("");
 	housetaxformlist=[];
 	holdingcostlist=[];
 	schoollist=[];

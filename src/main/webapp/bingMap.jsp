@@ -9,6 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
    <title>HouseSale</title>
    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+   <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
    <link rel="stylesheet" type="text/css" href="css/base.css" />
    <link rel="stylesheet" type="text/css" href="css/map.css" />
    <script type="text/javascript" src="js/jquery.js"></script>

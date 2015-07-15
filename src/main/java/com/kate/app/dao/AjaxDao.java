@@ -5,7 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -689,7 +691,7 @@ import com.kate.app.model.RecoProject;
 			String time_str = "";
 			Timestamp ts = new Timestamp(System.currentTimeMillis()); 
 			if(update_time==null||"".equals(update_time)){
-				update_time = "2015-05-09";
+				update_time = new SimpleDateFormat("yyyy-MM-dd").format(new Date());//"2015-05-09";
 			}
 	        try {   
 	        	time_str = update_time+" "+"00:00:00";
@@ -725,7 +727,7 @@ import com.kate.app.model.RecoProject;
 			String time_str = "";
 			Timestamp ts = new Timestamp(System.currentTimeMillis()); 
 			if(update_time==null||"".equals(update_time)){
-				update_time = "2015-05-09";
+				update_time = new SimpleDateFormat("yyyy-MM-dd").format(new Date());//"2015-05-09";
 			}
 	        try {   
 	        	time_str = update_time+" "+"00:00:00";
@@ -830,7 +832,7 @@ import com.kate.app.model.RecoProject;
 			String time_str = "";
 			Timestamp ts = new Timestamp(System.currentTimeMillis()); 
 			if(time==null||"".equals(time)){
-				time = "2015-05-09";
+				time = new SimpleDateFormat("yyyy-MM-dd").format(new Date());//"2015-05-09";
 			}
 	        try {   
 	        	time_str = time+" "+"00:00:00";
@@ -865,7 +867,7 @@ import com.kate.app.model.RecoProject;
 			String time_str = "";
 			Timestamp ts = new Timestamp(System.currentTimeMillis()); 
 			if(time==null||"".equals(time)){
-				time = "2015-05-09";
+				time = new SimpleDateFormat("yyyy-MM-dd").format(new Date());//"2015-05-09";
 			}
 	        try {   
 	        	time_str = time+" "+"00:00:00";
@@ -1139,7 +1141,7 @@ import com.kate.app.model.RecoProject;
 			String time = "";
 			Timestamp ts = new Timestamp(System.currentTimeMillis()); 
 			if(project_finish_time==null||"".equals(project_finish_time)){
-				project_finish_time = "2015-05-09";
+				project_finish_time = new SimpleDateFormat("yyyy-MM-dd").format(new Date());//"2015-05-09";
 			}
 			 
 	        try {  
@@ -1152,7 +1154,7 @@ import com.kate.app.model.RecoProject;
 	        String time1 = "";
 			Timestamp ts1 = new Timestamp(System.currentTimeMillis()); 
 			if(housePrice_update_time==null||"".equals(housePrice_update_time)){
-				housePrice_update_time = "2015-05-09";
+				housePrice_update_time = new SimpleDateFormat("yyyy-MM-dd").format(new Date());//"2015-05-09";
 			}
 			 
 	        try {  
@@ -1219,7 +1221,7 @@ import com.kate.app.model.RecoProject;
 			String time = "";
 			Timestamp ts = new Timestamp(System.currentTimeMillis()); 
 			if(project_finish_time==null||"".equals(project_finish_time)){
-				project_finish_time = "2015-05-09";
+				project_finish_time = new SimpleDateFormat("yyyy-MM-dd").format(new Date());//"2015-05-09";
 			}
 	        try {   
 	        	time = project_finish_time+" "+"00:00:00";
@@ -1231,7 +1233,7 @@ import com.kate.app.model.RecoProject;
 	        String time1 = "";
 			Timestamp ts1 = new Timestamp(System.currentTimeMillis()); 
 			if(housePrice_update_time==null||"".equals(housePrice_update_time)){
-				housePrice_update_time = "2015-05-09";
+				housePrice_update_time = new SimpleDateFormat("yyyy-MM-dd").format(new Date());//"2015-05-09";
 			}
 			 
 	        try {  

@@ -61,7 +61,7 @@ public class AdminAreaController {
 	private NewsBokeDao newsBokeDao;
 	@Autowired
 	private ZhiYeDao zhiYeDao;
-	//¹ÜÀíÔ±   ÇøÓò¼ÒÍ¥Çé¿ö¹¹³É  ÁÐ±í
+	//ï¿½ï¿½ï¿½ï¿½Ô±   ï¿½ï¿½ï¿½ï¿½ï¿½Í¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½Ð±ï¿½
 	@RequestMapping({"/Area/ListAreaFamily"})
 	public void  listAreaFamily(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -74,7 +74,7 @@ public class AdminAreaController {
 			e.printStackTrace();
 		}
 	}
-	//¹ÜÀíÔ±   ÇøÓò¼ÒÍ¥Çé¿ö¹¹³É  Ôö¼Ó
+	//ï¿½ï¿½ï¿½ï¿½Ô±   ï¿½ï¿½ï¿½ï¿½ï¿½Í¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping({"/Area/AddAreaFamily"})
 	public void InsertAreaFamily(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -91,7 +91,7 @@ public class AdminAreaController {
 		 String update_time_str=req.getParameter("update_time");
 		 Timestamp ts = new Timestamp(System.currentTimeMillis()); 
 			if(update_time_str==null||"".equals(update_time_str)){
-				update_time_str = "2015-05-09";
+				update_time_str = new SimpleDateFormat("yyyy-MM-dd").format(new Date());//"2015-05-09";
 			}
 	        try {   
 	        	update_time_str = update_time_str+" "+"00:00:00";
@@ -112,7 +112,7 @@ public class AdminAreaController {
 				e.printStackTrace();
 		}
 	}
-	//¹ÜÀíÔ±   ÇøÓò¼ÒÍ¥Çé¿ö¹¹³É  É¾³ý
+	//ï¿½ï¿½ï¿½ï¿½Ô±   ï¿½ï¿½ï¿½ï¿½ï¿½Í¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  É¾ï¿½ï¿½
 	@RequestMapping({"/Area/DelAreaFamily"})
 	public void DelAreaFamily(HttpServletRequest req,HttpServletResponse resp){
 		int id=Integer.parseInt(req.getParameter("id"));
@@ -130,7 +130,7 @@ public class AdminAreaController {
 				e.printStackTrace();
 			}
 	}
-	//¹ÜÀíÔ±   ÇøÓò¼ÒÍ¥Çé¿ö¹¹³É   ¸üÐÂ
+	//ï¿½ï¿½ï¿½ï¿½Ô±   ï¿½ï¿½ï¿½ï¿½ï¿½Í¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½   ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping({"/Area/UpdateAreaFamily"})
 	public void UpdateAreaFamily(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -150,7 +150,7 @@ public class AdminAreaController {
 		 String update_time_str=req.getParameter("update_time");
 		 Timestamp ts = new Timestamp(System.currentTimeMillis()); 
 			if(update_time_str==null||"".equals(update_time_str)){
-				update_time_str = "2015-05-09";
+				update_time_str = new SimpleDateFormat("yyyy-MM-dd").format(new Date());//"2015-05-09";
 			}
 	        try {   
 	        	update_time_str = update_time_str+" "+"00:00:00";
@@ -173,7 +173,7 @@ public class AdminAreaController {
 				e.printStackTrace();
 		}
 	}
-	//¹ÜÀíÔ± ÇøÓòÈË¿Ú·Ö²¼-->ÈË¿Ú×ÜÊý   ÁÐ±í
+	//ï¿½ï¿½ï¿½ï¿½Ô± ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿Ú·Ö²ï¿½-->ï¿½Ë¿ï¿½ï¿½ï¿½ï¿½ï¿½   ï¿½Ð±ï¿½
 	@RequestMapping({"/Area/ListPeopleInfo"})
 	public void listPeopleInfo(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -186,7 +186,7 @@ public class AdminAreaController {
 			e.printStackTrace();
 		}
 	}
-	//¹ÜÀíÔ± ÇøÓòÈË¿Ú·Ö²¼-->ÈË¿Ú×ÜÊý   Ôö¼Ó
+	//ï¿½ï¿½ï¿½ï¿½Ô± ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿Ú·Ö²ï¿½-->ï¿½Ë¿ï¿½ï¿½ï¿½ï¿½ï¿½   ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping({"/Area/AddPeopleInfo"})
 	public void InsertPeopleInfo(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -214,7 +214,7 @@ public class AdminAreaController {
 			}
 		 
 	}
-	//¹ÜÀíÔ± ÇøÓòÈË¿Ú·Ö²¼-->ÈË¿Ú×ÜÊý   ¸üÐÂ
+	//ï¿½ï¿½ï¿½ï¿½Ô± ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿Ú·Ö²ï¿½-->ï¿½Ë¿ï¿½ï¿½ï¿½ï¿½ï¿½   ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping({"/Area/UpdatePeopleInfo"})
 	public void UpdatePeopleInfo(HttpServletRequest req,HttpServletResponse resp){
 		 JSONObject json = new JSONObject();
@@ -245,7 +245,7 @@ public class AdminAreaController {
 		 
 
 	}
-	//¹ÜÀíÔ± ÇøÓòÈË¿Ú·Ö²¼-->ÈË¿Ú×ÜÊý   É¾³ý
+	//ï¿½ï¿½ï¿½ï¿½Ô± ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿Ú·Ö²ï¿½-->ï¿½Ë¿ï¿½ï¿½ï¿½ï¿½ï¿½   É¾ï¿½ï¿½
 	@RequestMapping({"/Area/DelPeopleInfo"})
 	public void DelPeopleInfo(HttpServletRequest req,HttpServletResponse resp){
 		 int id=Integer.parseInt(req.getParameter("id"));
@@ -263,7 +263,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//¹ÜÀíÔ± ÇøÓòÈË¿Ú·Ö²¼-->³öÉú¹ú¼Ò   ÁÐ±í
+	//ï¿½ï¿½ï¿½ï¿½Ô± ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿Ú·Ö²ï¿½-->ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½   ï¿½Ð±ï¿½
 	@RequestMapping({"/Area/ListPeopleNation"})
 	public void listPeopleNation(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -276,7 +276,7 @@ public class AdminAreaController {
 			e.printStackTrace();
 		}
 	}
-	//¹ÜÀíÔ± ÇøÓòÈË¿Ú·Ö²¼-->³öÉú¹ú¼Ò   Ôö
+	//ï¿½ï¿½ï¿½ï¿½Ô± ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿Ú·Ö²ï¿½-->ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½   ï¿½ï¿½
 	@RequestMapping({"/Area/AddPeopleNation"})
 	public void InsertPeopleNation(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -303,7 +303,7 @@ public class AdminAreaController {
 				e.printStackTrace();
 			}
 	}
-	//¹ÜÀíÔ± ÇøÓòÈË¿Ú·Ö²¼-->³öÉú¹ú¼Ò   ¸üÐÂ
+	//ï¿½ï¿½ï¿½ï¿½Ô± ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿Ú·Ö²ï¿½-->ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½   ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping({"/Area/UpdatePeopleNation"})
 	public void UpdatePeopleNation(HttpServletRequest req,HttpServletResponse resp){
 		 JSONObject json = new JSONObject();
@@ -333,7 +333,7 @@ public class AdminAreaController {
 			 
 		 
 	}
-	//¹ÜÀíÔ± ÇøÓòÈË¿Ú·Ö²¼-->³öÉú¹ú¼Ò   É¾
+	//ï¿½ï¿½ï¿½ï¿½Ô± ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿Ú·Ö²ï¿½-->ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½   É¾
 	@RequestMapping({"/Area/DelPeopleNation"})
 	public void DelPeopleNation(HttpServletRequest req,HttpServletResponse resp){
 		 int id=Integer.parseInt(req.getParameter("id"));
@@ -351,7 +351,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//¹ÜÀíÔ± ÇøÓòÈË¿Ú·Ö²¼-->º£Íâ³öÉú ÁÐ±í
+	//ï¿½ï¿½ï¿½ï¿½Ô± ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿Ú·Ö²ï¿½-->ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½
 	@RequestMapping({"/Area/ListPeopleForeign"})
 	public void listPeopleForeign(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -364,7 +364,7 @@ public class AdminAreaController {
 			e.printStackTrace();
 		}
 	}
-    //¹ÜÀíÔ± ÇøÓòÈË¿Ú·Ö²¼-->º£Íâ³öÉú ÐÂÔö
+    //ï¿½ï¿½ï¿½ï¿½Ô± ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿Ú·Ö²ï¿½-->ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping({"/Area/AddPeopleForeign"})
 	public void InsertPeopleForeign(HttpServletRequest req,HttpServletResponse resp){
 		 JSONObject json = new JSONObject();
@@ -391,7 +391,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-    //¹ÜÀíÔ± ÇøÓòÈË¿Ú·Ö²¼-->º£Íâ³öÉú ¸üÐÂ
+    //ï¿½ï¿½ï¿½ï¿½Ô± ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿Ú·Ö²ï¿½-->ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping({"/Area/UpdatePeopleForeign"})
 	public void UpdatePeopleForeign(HttpServletRequest req,HttpServletResponse resp){
 		 JSONObject json = new JSONObject();
@@ -420,7 +420,7 @@ public class AdminAreaController {
 				}
 			 
 	}
-	//¹ÜÀíÔ± ÇøÓòÈË¿Ú·Ö²¼-->º£Íâ³öÉú É¾³ý
+	//ï¿½ï¿½ï¿½ï¿½Ô± ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿Ú·Ö²ï¿½-->ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ É¾ï¿½ï¿½
 	@RequestMapping({"/Area/DelPeopleForeign"})
 	public void DelPeopleForeign(HttpServletRequest req,HttpServletResponse resp){
 		 int id=Integer.parseInt(req.getParameter("id"));
@@ -438,7 +438,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//¹ÜÀíÔ± ÇøÓòÈË¿Ú·Ö²¼-->º£Íâ³öÉú ÁÐ±í
+	//ï¿½ï¿½ï¿½ï¿½Ô± ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿Ú·Ö²ï¿½-->ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½
 	@RequestMapping({"/Area/ListFamilyIncome"})
 	public void listFamilyIncome(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -451,7 +451,7 @@ public class AdminAreaController {
 			e.printStackTrace();
 		}
 	}
-	//¹ÜÀíÔ± ÇøÓòÈË¿Ú·Ö²¼-->º£Íâ³öÉú ÐÂÔö
+	//ï¿½ï¿½ï¿½ï¿½Ô± ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿Ú·Ö²ï¿½-->ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping({"/Area/AddFamilyIncome"})
 	public void InsertFamilyIncome(HttpServletRequest req,HttpServletResponse resp){
 		 JSONObject json = new JSONObject();
@@ -479,7 +479,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-		//¹ÜÀíÔ± ÇøÓòÈË¿Ú·Ö²¼-->º£Íâ³öÉú ¸üÐÂ 
+		//ï¿½ï¿½ï¿½ï¿½Ô± ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿Ú·Ö²ï¿½-->ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 	@RequestMapping({"/Area/UpdateFamilyIncome"})
 	public void UpdateFamilyIncome(HttpServletRequest req,HttpServletResponse resp){
 		 JSONObject json = new JSONObject();
@@ -507,7 +507,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-		//¹ÜÀíÔ± ÇøÓòÈË¿Ú·Ö²¼-->º£Íâ³öÉú É¾³ý
+		//ï¿½ï¿½ï¿½ï¿½Ô± ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿Ú·Ö²ï¿½-->ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ É¾ï¿½ï¿½
 	@RequestMapping({"/Area/DelFamilyIncome"})
 	public void DelFamilyIncome(HttpServletRequest req,HttpServletResponse resp){
 		 int id=Integer.parseInt(req.getParameter("id"));
@@ -525,7 +525,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//µØÇøÌØµã List
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ List
 	@RequestMapping({"/Area/ListAreaFeature"})
 	public void listAreaFeature(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -538,7 +538,7 @@ public class AdminAreaController {
 			e.printStackTrace();
 		}
 	}
-	//µØÇøÌØµã Add
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ Add
 	@RequestMapping({"/Area/AddAreaFeature"})
 	public void InsertAreaFeature(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -550,7 +550,7 @@ public class AdminAreaController {
 		 String update_time_str=req.getParameter("update_time");
 		 Timestamp ts = new Timestamp(System.currentTimeMillis()); 
 			if(update_time_str==null||"".equals(update_time_str)){
-				update_time_str = "2015-05-09";
+				update_time_str = new SimpleDateFormat("yyyy-MM-dd").format(new Date());//"2015-05-09";
 			}
 	        try {   
 	        	update_time_str = update_time_str+" "+"00:00:00";
@@ -578,7 +578,7 @@ public class AdminAreaController {
 				e.printStackTrace();
 		    }
 	}
-	//µØÇøÌØµãUpdate
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½Update
 	@RequestMapping({"/Area/UpdateAreaFeature"})
 	public void UpdateAreaFeature(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -592,7 +592,7 @@ public class AdminAreaController {
 		 String update_time_str=req.getParameter("update_time");
 		 Timestamp ts = new Timestamp(System.currentTimeMillis()); 
 			if(update_time_str==null||"".equals(update_time_str)){
-				update_time_str = "2015-05-09";
+				update_time_str = new SimpleDateFormat("yyyy-MM-dd").format(new Date());//"2015-05-09";
 			}
 	        try {   
 	        	update_time_str = update_time_str+" "+"00:00:00";
@@ -619,7 +619,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//µØÇøÌØµã del
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ del
 	@RequestMapping({"/Area/DelAreaFeature"})
 	public void DelAreaFeature(HttpServletRequest req,HttpServletResponse resp){
 		 int id=Integer.parseInt(req.getParameter("id"));
@@ -637,7 +637,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//½üÆÚÇøÓò³É½»Çé¿ö list
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É½ï¿½ï¿½ï¿½ï¿½ list
 	@RequestMapping({"/Area/ListSuccessInfo"})
 	public void listSuccessInfo(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -650,7 +650,7 @@ public class AdminAreaController {
 			e.printStackTrace();
 		}
 	}
-	//½üÆÚÇøÓò³É½»Çé¿ö Add
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É½ï¿½ï¿½ï¿½ï¿½ Add
 	@RequestMapping({"/Area/AddSuccessInfo"})
 	public void InsertSuccessInfo(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -680,7 +680,7 @@ public class AdminAreaController {
 				e.printStackTrace();
 		    }
 	}
-	//½üÆÚÇøÓò³É½»Çé¿ö update
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É½ï¿½ï¿½ï¿½ï¿½ update
 	@RequestMapping({"/Area/UpdateSuccessInfo"})
 	public void UpdateSuccessInfo(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -711,7 +711,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//½üÆÚÇøÓò³É½»Çé¿ö delete
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É½ï¿½ï¿½ï¿½ï¿½ delete
 	@RequestMapping({"/Area/DeleteSuccessInfo"})
 	public void DelSuccessInfo(HttpServletRequest req,HttpServletResponse resp){
 		 int id=Integer.parseInt(req.getParameter("id"));
@@ -729,7 +729,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//ÖÐÎ»Êý·¿¼Û×ßÊÆList
+	//ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½List
 	@RequestMapping({"/Area/ListAreaMiddle"})
 	public void listAreaMiddle(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -742,7 +742,7 @@ public class AdminAreaController {
 			e.printStackTrace();
 		}
 	}
-	//ÖÐÎ»Êý·¿¼Û×ßÊÆAdd
+	//ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Add
 	@RequestMapping({"/Area/AddAreaMiddle"})
 	public void InsertAreaMiddle(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -764,7 +764,7 @@ public class AdminAreaController {
 				e.printStackTrace();
 		    }
 	}
-	//ÖÐÎ»Êý·¿¼Û×ßÊÆupdate
+	//ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½update
 	@RequestMapping({"/Area/UpdateAreaMiddle"})
 	public void UpdateAreaMiddle(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -787,7 +787,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//ÖÐÎ»Êý·¿¼Û×ßÊÆdelete
+	//ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½delete
 	@RequestMapping({"/Area/DelAreaMiddle"})
 	public void DelAreaMiddle(HttpServletRequest req,HttpServletResponse resp){
 		 int id=Integer.parseInt(req.getParameter("id"));
@@ -805,7 +805,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//ÇøÓò×â½ð×ßÊÆList
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½List
 	@RequestMapping({"/Area/ListAreaZujin"})
 	public void listAreaZujin(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -818,7 +818,7 @@ public class AdminAreaController {
 			e.printStackTrace();
 		}
 	}
-	//ÇøÓò×â½ð×ßÊÆAdd
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Add
 	@RequestMapping({"/Area/AddAreaZujin"})
 	public void InsertAreaZujin(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -841,7 +841,7 @@ public class AdminAreaController {
 				e.printStackTrace();
 		    }
 	}
-	//ÇøÓò×â½ð×ßÊÆupdate
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½update
 	@RequestMapping({"/Area/UpdateAreaZujin"})
 	public void UpdateAreaZujin(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -864,7 +864,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//ÇøÓò×â½ð×ßÊÆdelete
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½delete
 	@RequestMapping({"/Area/DelAreaZujin"})
 	public void DelAreaZujin(HttpServletRequest req,HttpServletResponse resp){
 		 int id=Integer.parseInt(req.getParameter("id"));
@@ -882,7 +882,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//ÇøÓò¿ÕÖÃÂÊ×ßÊÆlist
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½list
 	@RequestMapping({"/Area/ListAreaZhikong"})
 	public void listAreaZhikong(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -895,7 +895,7 @@ public class AdminAreaController {
 			e.printStackTrace();
 		}
 	}
-	//ÇøÓò¿ÕÖÃÂÊ×ßÊÆadd
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½add
 	@RequestMapping({"/Area/AddAreaZhikong"})
 	public void InsertAreaZhikong(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -917,7 +917,7 @@ public class AdminAreaController {
 				e.printStackTrace();
 		    }
 	}
-	//ÇøÓò¿ÕÖÃÂÊ×ßÊÆupdate
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½update
 	@RequestMapping({"/Area/updateAreaZhikong"})
 	public void UpdateAreaZhikong(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -940,7 +940,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//ÇøÓò¿ÕÖÃÂÊ×ßÊÆdelete
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½delete
 	@RequestMapping({"/Area/DelAreaZhikong"})
 	public void DelAreaZhikong(HttpServletRequest req,HttpServletResponse resp){
 		 int id=Integer.parseInt(req.getParameter("id"));
@@ -958,7 +958,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//¹º·¿Ë°·ÑList
+	//ï¿½ï¿½ï¿½ï¿½Ë°ï¿½ï¿½List
 	@RequestMapping({"/Area/ListHouseTax"})
 	public void listAreaHouseTax(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -971,7 +971,7 @@ public class AdminAreaController {
 			e.printStackTrace();
 		}
 	}
-	//¹º·¿Ë°·ÑAdd
+	//ï¿½ï¿½ï¿½ï¿½Ë°ï¿½ï¿½Add
 	@RequestMapping({"/Area/AddHouseTax"})
 	public void InsertAreaHouseTax(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -995,7 +995,7 @@ public class AdminAreaController {
 				e.printStackTrace();
 		    }
 	}
-	//¹º·¿Ë°·Ñupdate
+	//ï¿½ï¿½ï¿½ï¿½Ë°ï¿½ï¿½update
 	@RequestMapping({"/Area/updateHouseTax"})
 	public void UpdateHouseTax(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -1019,7 +1019,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//¹º·¿Ë°·Ñdelete
+	//ï¿½ï¿½ï¿½ï¿½Ë°ï¿½ï¿½delete
 	@RequestMapping({"/Area/DelHouseTax"})
 	public void DelAreaHouseTax(HttpServletRequest req,HttpServletResponse resp){
 		 int id=Integer.parseInt(req.getParameter("id"));
@@ -1037,7 +1037,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//³ÖÓÐ³É±¾List
+	//ï¿½ï¿½ï¿½Ð³É±ï¿½List
 	@RequestMapping({"/Area/ListHoldCost"})
 	public void listAreaHoldCost(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1050,7 +1050,7 @@ public class AdminAreaController {
 			e.printStackTrace();
 		}
 	}
-	//³ÖÓÐ³É±¾Add
+	//ï¿½ï¿½ï¿½Ð³É±ï¿½Add
 	@RequestMapping({"/Area/AddHoldCost"})
 	public void InsertAreaHoldCost(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -1074,7 +1074,7 @@ public class AdminAreaController {
 				e.printStackTrace();
 		    }
 	}
-	//³ÖÓÐ³É±¾update
+	//ï¿½ï¿½ï¿½Ð³É±ï¿½update
 	@RequestMapping({"/Area/UpdateHoldCost"})
 	public void UpdateHoldCost(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -1098,7 +1098,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//³ÖÓÐ³É±¾delete
+	//ï¿½ï¿½ï¿½Ð³É±ï¿½delete
 	@RequestMapping({"/Area/DelHoldCost"})
 	public void DelAreaHoldCost(HttpServletRequest req,HttpServletResponse resp){
 		 int id=Integer.parseInt(req.getParameter("id"));
@@ -1116,7 +1116,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//¸½½üÑ§Ð£List
+	//ï¿½ï¿½ï¿½ï¿½Ñ§Ð£List
 	@RequestMapping({"/Area/ListNearSchool"})
 	public void listAreaNearSchool(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1129,7 +1129,7 @@ public class AdminAreaController {
 			e.printStackTrace();
 		}
 	}
-	//¸½½üÑ§Ð£Add
+	//ï¿½ï¿½ï¿½ï¿½Ñ§Ð£Add
 	@RequestMapping({"/Area/AddNearSchool"})
 	public void InsertNearSchool(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -1149,7 +1149,7 @@ public class AdminAreaController {
 				e.printStackTrace();
 		    }
 	}
-	//¸½½üÑ§Ð£update
+	//ï¿½ï¿½ï¿½ï¿½Ñ§Ð£update
 	@RequestMapping({"/Area/UpdateNearSchool"})
 	public void UpdateNearSchool(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -1170,7 +1170,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//¸½½üÑ§Ð£delete
+	//ï¿½ï¿½ï¿½ï¿½Ñ§Ð£delete
 	@RequestMapping({"/Area/DelNearSchool"})
 	public void DelNearSchool(HttpServletRequest req,HttpServletResponse resp){
 		 int id=Integer.parseInt(req.getParameter("id"));
@@ -1188,7 +1188,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//¸½½üÅäÌ×List
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½List
 	@RequestMapping({"/Area/ListNearFacility"})
 	public void listAreaNearFacility(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1201,7 +1201,7 @@ public class AdminAreaController {
 			e.printStackTrace();
 		}
 	}
-	//¸½½üÅäÌ×Add
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Add
 	@RequestMapping({"/Area/AddNearFacility"})
 	public void InsertNearFacility(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -1223,7 +1223,7 @@ public class AdminAreaController {
 				e.printStackTrace();
 		    }
 	}
-	//¸½½üÅäÌ×update
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½update
 	@RequestMapping({"/Area/UpdateNearFacility"})
 	public void UpdateFacility(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -1246,7 +1246,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//¸½½üÅäÌ×delete
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½delete
 	@RequestMapping({"/Area/DelNearFacility"})
 	public void DelNearFacility(HttpServletRequest req,HttpServletResponse resp){
 		 int id=Integer.parseInt(req.getParameter("id"));
@@ -1264,7 +1264,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//¾­Î³¶È list
+	//ï¿½ï¿½Î³ï¿½ï¿½ list
 	@RequestMapping({"/Area/ListCoordinates"})
 	public void listCoordinates(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1278,7 +1278,7 @@ public class AdminAreaController {
 		}
 	}
 	
-	//¾­Î³¶È add
+	//ï¿½ï¿½Î³ï¿½ï¿½ add
 	@RequestMapping({"/Area/AddCoordinates"})
 	public void InsertCoordinates(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -1305,7 +1305,7 @@ public class AdminAreaController {
 				e.printStackTrace();
 		    }
 	}
-	//¾­Î³¶È update
+	//ï¿½ï¿½Î³ï¿½ï¿½ update
 	@RequestMapping({"/Area/UpdateCoordinates"})
 	public void UpdateCoordinates(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -1333,7 +1333,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//¾­Î³¶È delete
+	//ï¿½ï¿½Î³ï¿½ï¿½ delete
 	@RequestMapping({"/Area/DeleteCoordinates"})
 	public void DelCoordinates(HttpServletRequest req,HttpServletResponse resp){
 		 int id=Integer.parseInt(req.getParameter("id"));
@@ -1351,7 +1351,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//ÇøÓòÈË¿Ú·Ö²¼list
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿Ú·Ö²ï¿½list
 	@RequestMapping({"/Area/ListAreaPeople"})
 	public void listAreaPeople(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1364,7 +1364,7 @@ public class AdminAreaController {
 			e.printStackTrace();
 		}
 	}
-	//ÇøÓòÈË¿Ú·Ö²¼add
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿Ú·Ö²ï¿½add
 	@RequestMapping({"/Area/AddAreaPeople"})
 	public void InsertAreaPeople(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -1387,7 +1387,7 @@ public class AdminAreaController {
 				e.printStackTrace();
 		    }
 	}
-	//ÇøÓòÈË¿Ú·Ö²¼update
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿Ú·Ö²ï¿½update
 	@RequestMapping({"/Area/UpdateAreaPeople"})
 	public void UpdateAreaPeople(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -1411,7 +1411,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//ÇøÓòÈË¿Ú·Ö²¼delete
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿Ú·Ö²ï¿½delete
 	@RequestMapping({"/Area/DeleteAreaPeople"})
 	public void DelAreaPeople(HttpServletRequest req,HttpServletResponse resp){
 		 int id=Integer.parseInt(req.getParameter("id"));
@@ -1443,7 +1443,7 @@ public class AdminAreaController {
 		int project_id=areaFamilyService.findProjectIdByname(project_name);
 		return project_id;
 	}
-	//Ñ§Ð£ÐÅÏ¢list
+	//Ñ§Ð£ï¿½ï¿½Ï¢list
 	@RequestMapping({"/Area/listSchoolInfo"})
 	public void listSchoolInfo(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1456,7 +1456,7 @@ public class AdminAreaController {
 			e.printStackTrace();
 		}
 	}
-	//Ñ§Ð£ÐÅÏ¢add
+	//Ñ§Ð£ï¿½ï¿½Ï¢add
 	@RequestMapping({"/Area/AddSchoolInfo"})
 	public void InsertSchoolinfo(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -1493,7 +1493,7 @@ public class AdminAreaController {
 				e.printStackTrace();
 		    }
 	}
-	//Ñ§Ð£ÐÅÏ¢update
+	//Ñ§Ð£ï¿½ï¿½Ï¢update
 	@RequestMapping({"/Area/updateSchoolInfo"})
 	public void UpdateSchoolInfo(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -1531,7 +1531,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//Ñ§Ð£ÐÅÏ¢delete
+	//Ñ§Ð£ï¿½ï¿½Ï¢delete
 	@RequestMapping({"/Area/deleteSchoolInfo"})
 	public void DelSchoolInfo(HttpServletRequest req,HttpServletResponse resp){
 		 int id=Integer.parseInt(req.getParameter("id"));
@@ -1549,7 +1549,7 @@ public class AdminAreaController {
 					e.printStackTrace();
 				}
 	}
-	//ÐÂÎÅ²©¿Ílist
+	//ï¿½ï¿½ï¿½Å²ï¿½ï¿½ï¿½list
 	@RequestMapping({"/Area/listNewsBoke"})
 	public void listNewsInfo(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1562,7 +1562,7 @@ public class AdminAreaController {
 			e.printStackTrace();
 		}
 	}
-	//ÐÂÎÅ²©¿ÍAdd
+	//ï¿½ï¿½ï¿½Å²ï¿½ï¿½ï¿½Add
 	@RequestMapping({"/Area/AddNewsBoke"})
 	public String InsertNewsBoke(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -1589,7 +1589,7 @@ public class AdminAreaController {
 		    }
 		return "/NewsBoke.jsp";
 	}
-	//ÐÂÎÅ²©¿Íupdate
+	//ï¿½ï¿½ï¿½Å²ï¿½ï¿½ï¿½update
 	@RequestMapping({"/Area/UpdateNewsBoke"})
 	public String UpdateNewsBoke(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -1619,7 +1619,7 @@ public class AdminAreaController {
 		return "/NewsBoke.jsp";
 	}
 	
-	//ÐÂÎÅ²©¿Ídelete
+	//ï¿½ï¿½ï¿½Å²ï¿½ï¿½ï¿½delete
 	@RequestMapping({"/Area/deleteNewsInfo"})
 	public void DelNewsInfo(HttpServletRequest req,HttpServletResponse resp){
 		 int id=Integer.parseInt(req.getParameter("id"));
@@ -1644,7 +1644,7 @@ public class AdminAreaController {
 		 req.setAttribute("newsbokelist", newsbokelist);
 		 return "/EditNewsBlog.jsp";
 	}
-	//ÖÃÒµÖ¸µ¼list
+	//ï¿½ï¿½ÒµÖ¸ï¿½ï¿½list
 	@RequestMapping({"/Area/listZhiye"})
 	public void listZhiye(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1657,7 +1657,7 @@ public class AdminAreaController {
 			e.printStackTrace();
 		}
 	}
-	//ÖÃÒµÖ¸µ¼add
+	//ï¿½ï¿½ÒµÖ¸ï¿½ï¿½add
 	@RequestMapping({"/Area/AddZhiye"})
 	public String InsertZhiye(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -1684,7 +1684,7 @@ public class AdminAreaController {
 		    }
 		return "/ZhiYeZhiDao.jsp";
 	}
-	//ÖÃÒµÖ¸µ¼update
+	//ï¿½ï¿½ÒµÖ¸ï¿½ï¿½update
 	@RequestMapping({"/Area/UpdateZhiye"})
 	public String UpdateZhiye(HttpServletRequest req,HttpServletResponse resp) throws ParseException{
 		 JSONObject json = new JSONObject();
@@ -1712,7 +1712,7 @@ public class AdminAreaController {
 		    }
 		return "/ZhiYeZhiDao.jsp";
 	}
-	//ÖÃÒµÖ¸µ¼delete
+	//ï¿½ï¿½ÒµÖ¸ï¿½ï¿½delete
 	@RequestMapping({"/Area/deleteZhiye"})
 	public void DelZhiye(HttpServletRequest req,HttpServletResponse resp){
 		 int id=Integer.parseInt(req.getParameter("id"));

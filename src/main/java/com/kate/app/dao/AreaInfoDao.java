@@ -4,7 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -643,7 +645,7 @@ public class AreaInfoDao extends BaseDao {
 			String time_strtouzi = "";
 			Timestamp tstouzi = new Timestamp(System.currentTimeMillis()); 
 			if(touzi_date==null||"".equals(touzi_date)){
-				touzi_date = "2015-05-09";
+				touzi_date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());//"2015-05-09";
 				//(new SimpleDateFormat("yyyy-MM-dd"))。format(new Date())
 			}
 	        try {   
@@ -675,7 +677,7 @@ public class AreaInfoDao extends BaseDao {
 			String time_strfamily = "";
 			Timestamp tsfamily = new Timestamp(System.currentTimeMillis()); 
 			if(family_date==null||"".equals(family_date)){
-				family_date = "2015-05-09";
+				family_date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());//"2015-05-09";
 			}
 	        try {   
 	        	time_strfamily = family_date+" "+"00:00:00";
@@ -1953,7 +1955,7 @@ public class AreaInfoDao extends BaseDao {
 		String time_str = "";
 		Timestamp ts = new Timestamp(System.currentTimeMillis()); 
 		if(touzi_date==null||"".equals(touzi_date)){
-			touzi_date = "2015-05-09";
+			touzi_date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());//"2015-05-09";
 		}
         try {   
         	time_str = touzi_date+" "+"00:00:00";
@@ -1996,7 +1998,7 @@ public class AreaInfoDao extends BaseDao {
 		String time_str = "";
 		Timestamp ts = new Timestamp(System.currentTimeMillis()); 
 		if(family_date==null||"".equals(family_date)){
-			family_date = "2015-05-09";
+			family_date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());//"2015-05-09";
 		}
         try {   
         	time_str = family_date+" "+"00:00:00";
