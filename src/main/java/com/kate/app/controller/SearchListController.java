@@ -42,13 +42,13 @@ public class SearchListController {
 		String projecttype=null;
 		switch(projecttypeNum){
 			case 1:
-				projecttype="鍏瘬";
+				projecttype="公寓";
 				break;
 			case 2:
-				projecttype="鍒";
+				projecttype="别墅";
 				break;
 			case 3:
-				projecttype="鑱旀帓鍒";
+				projecttype="联排别墅";
 				break;
 				
 		}

@@ -254,15 +254,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="c-fix f-l div1">
 				<select class="c-fix f-l sel_type" style="background:none;border:none;font-family:微软雅黑;padding-left:10px">
 					<option>房屋类型</option>
-					<option value="1">一居室</option>
+					<!-- <option value="1">一居室</option>
 					<option value="2">二居室</option>
 					<option value="3">三居室</option>
-					<option value="4">四居室</option>
+					<option value="4">四居室</option> -->
+					<option value="1">公寓</option>
+					<option value="2">别墅</option>
+				    <option value="3">联排别墅</option>
 				</select>
 				<!-- <a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" href="/BingMap/OrderByPrice?order=1">价格从低到高</a>
 				<a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" href="/BingMap/OrderByPrice?order=2">价格从高到低</a> -->
-				<a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px">价格从低到高</a>
-				<a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" >价格从高到低</a>
+				<a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" href="/OrderByPrice?order=1">价格从低到高</a>
+				<a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" href="/OrderByPrice?order=2">价格从高到低</a>
 			
 			</div>
 			<div class="f-l div2" id="right1">
@@ -296,7 +299,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<a class="c-fix f-l f-yahei s-12 node_title" style="margin-top:1px">最多</a>
 						<a class="f-r f-yahei s-12 node_val" style="margin-top:1px">$${item.project_high_price}</a>
 						<a class="c-fix f-l f-yahei s-12 node_title">最少</a>
-						<a class="f-r f-yahei s-12 node_val">$${item.project_high_price}</a>
+						<a class="f-r f-yahei s-12 node_val">$${item.project_min_price}</a>
 						<a class="c-fix f-l f-yahei s-12 node_title">面积</a>
 						<a class="f-r f-yahei s-12 node_val">${item.minArea}-${item.maxArea}</a>
 						<a class="c-fix f-l f-yahei s-12 node_title">返利</a>

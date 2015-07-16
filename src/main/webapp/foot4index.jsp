@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8" contentType="text/html;charset=UTF-8"%>
 <div style="display:block;width:100%;min-height:40px;background-color:rgb(228,229,231);float:left;clear:both">
 	<div style="width:1190px; margin:0 auto; background:rgb(228,229,231) url(../pic/indexbg8.png) repeat-x 0 -666px;">
-			<div class="" style="background-color:rgb(228,229,231);min-height:20px;width:1000px;-position:relative;-left:50%;-margin-left:-455px;margin:0 auto;">
+			<div class="" style="background-color:rgb(228,229,231);min-height:20px;width:1000px;-position:relative;-left:50%;-margin-left:-455px;margin:0 auto;padding-left:50px;padding-right:50px;">
 				<div style="display:block;width:810px;float:left;min-height:40px;margin-top:30px;">
 					<img src="images/footer_icon.png" style="display:block;width:200px;float:left"></img>
 					<div style="display:block;height:50px;float:left">

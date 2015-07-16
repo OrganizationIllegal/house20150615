@@ -263,7 +263,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--start我们革命性的改变了-->
    <div class="" >
 		<!--<img  src="../images/bb.JPG">-->
-		<div style="background-color:rgb(20,51,82);height:450px">
+		<div style="background-color:rgb(20,51,82);height:450px;">
 			<div style="padding-top:50px;text-align:center;color:white;font-weight:bold;margin-top:-10px;"><img  src="../images/sd.JPG"></div>
 			<div align=center style="position:relative; height:50px;">
 			    <div style="width:136px; height:50px;">
@@ -276,7 +276,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- <div class="row" >
 	<div> -->
 		
-		<div class="" style="width:100%; margin:0 auto; border:1px solid #dcdcdc;">
+		<div class="" style="width:100%; margin:0 auto; border:1px solid #dcdcdc; ">
 			<ul class="ab_index">
 				<li><a href="#youxuan"  onclick="tab1()" style="color:#425a74; text-decoration:none;">海房优选</a></li>
 				<li><a href="#story"  onclick="tab2()"  style="color:#425a74; text-decoration:none;">我们的故事</a></li>
