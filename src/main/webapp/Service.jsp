@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<jsp:include page="head4index.jsp" />
 <div style="width:1190px;height:740px;padding:20px 50px;margin:0px auto;background-color:white;">
 <div style="width:1060px;height:200px;padding:15px;background-color:rgba(245, 244, 244, 1);margin:0px auto;">
-<div style="width:168px;height:168px;border:5px solid white;float:left;"><img alt="经纪人图片" src="<%=application.getInitParameter("imagedir")%>/${brokerInfo.broker_img}" style="width:168px;height:168px;"></div>
+<div style="width:168px;height:168px;-border:5px solid white;float:left;"><img alt="经纪人图片" src="<%=application.getInitParameter("imagedir")%>/${brokerInfo.broker_img}" style="width:168px;height:168px;"></div>
 <div style="width:180px;height:110px;float:left;margin-left:20px;margin-top:40px;">
 <div style="font-size:20px;font-weight:bold;">${brokerInfo.broker_name}</div>
 <div style="margin-top:10px;height:20px;">

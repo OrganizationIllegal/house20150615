@@ -111,7 +111,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	  <a href="Service?brokerId=${item.id}"><img src="<%=application.getInitParameter("imagedir")%>/${item.broker_img }" style="width:126px;height:124px;"/></a>
                 	  </div>
                 	   <div style="width:354px;float:left;font-family:微软雅黑;padding-left:15px">
-                	   <div style="font-size:18px;font-weight:bolder">${item.broker_name}</div>
+                	   <div style="font-size:18px;font-weight:bolder"><a href="Service?brokerId=${item.id}">${item.broker_name}</a></div>
                 	  <div style="font-size:13px;"><img  src="/images/serviceteam/b2.jpg"/><span style="padding-left:10px">${item.broker_type }</span></div>
                 	   <div style="font-size:13px; width:314px; height:20px; overflow:hidden;"><span style="padding-left:32px;font-style: italic;">${item.introduction}</span></div>
                 	  <!--  <hr style="height:1px;border:none;border-top:2px dashed #666666;margin-top:0px;margin-bottom:0px;"/> -->

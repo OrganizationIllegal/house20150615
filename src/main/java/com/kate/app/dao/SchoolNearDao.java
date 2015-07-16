@@ -18,7 +18,7 @@ public class SchoolNearDao extends BaseDao {
 	public List<NearSchool> getNearSchoolInfo(String proNum){
 		List<NearSchool> list=new ArrayList<NearSchool>();
 		try {
-			String sql = " select * from near_school where project_num = ?";
+			String sql = "select t.id,t.school_name,t.school_distance,s.school_type from near_school t INNER JOIN school_info s  on t.school_name=s.school_name  where project_num = ?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, proNum);
 			ResultSet rs = pstmt.executeQuery();
@@ -28,6 +28,7 @@ public class SchoolNearDao extends BaseDao {
 				data.setId(rs.getInt("id"));
 				data.setSchool_name(rs.getString("school_name"));
 				data.setSchool_distance(rs.getInt("school_distance"));
+				data.setSchool_type(rs.getString("school_type"));
 				list.add(data);
 			}
 		} catch (Exception e) {

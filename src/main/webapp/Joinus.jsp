@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <title>Join Us</title>
-<!-- <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+ <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
 <link rel="stylesheet" type="text/css" href="css/base.css" />
 <link rel="stylesheet" type="text/css" href="css/main.css" />
 <script src="/js/jquery.min.js"></script>

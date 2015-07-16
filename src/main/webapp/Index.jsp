@@ -421,12 +421,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<c:forEach var="item" items="${projectList}" varStatus="stat">
 				<div class="f-l main_node" <c:if test="${stat.index != 0}">style="margin-left:30px;"</c:if>>
 					<a href="/Index?proNum=${item.project_num}"><img src="<%=application.getInitParameter("imagedir")%>/${item.project_img }" class="c-fix f-l main_node_img"></img></a>
-						<div class="c-fix f-l main_node_bkg">
-							<a class="c-fix f-l main_node_lab f-yahei s-14" style="margin-top:5px;">${item.project_name}</a>
+						<div class="c-fix f-l main_node_bkg" onclick="location.href='/Index?proNum=${item.project_num}'">
+							<a class="c-fix f-l main_node_lab f-yahei s-14" style="margin-top:5px;" href="/Index?proNum=${item.project_num}">${item.project_name}</a>
 							<a class="c-fix f-l main_node_lab f-yahei s-14" style="font-style:italic;color:red">$${item.project_min_price}-$${item.project_high_price}</a>
 							<a class="c-fix f-l main_node_lab f-yahei s-14">${item.project_area},${item.project_city}</a>
 						</div>
-					
 				</div>
 			</c:forEach>
 			</c:if>
@@ -435,8 +434,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<c:forEach var="item" items="${projectList2}" varStatus="stat">
 						<div class="f-l main_node" style="margin-top:-20px;<c:if test="${stat.index != 0}">margin-left:30px;</c:if>">
 						  <a href="/Index?proNum=${item.project_num}"><img src="<%=application.getInitParameter("imagedir")%>/${item.project_img }" class="c-fix f-l main_node_img"></img></a>
-							<div class="c-fix f-l main_node_bkg">
-								<a class="c-fix f-l main_node_lab f-yahei s-14" style="margin-top:5px;">${item.project_name}</a>
+							<div class="c-fix f-l main_node_bkg" onclick="location.href='/Index?proNum=${item.project_num}'">
+								<a class="c-fix f-l main_node_lab f-yahei s-14" style="margin-top:5px;" href="/Index?proNum=${item.project_num}">${item.project_name}</a>
 								<a class="c-fix f-l main_node_lab f-yahei s-14" style="font-style:italic;color:red">$${item.project_min_price}-$${item.project_high_price}</a>
 								<a class="c-fix f-l main_node_lab f-yahei s-14">${item.project_area},${item.project_city}</a>
 							</div>

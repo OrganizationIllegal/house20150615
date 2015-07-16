@@ -665,7 +665,7 @@ function popInfo(){
 					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw">${middlePrice.buy_three_name}</a>
 					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${middlePrice.buy_three_price}</a>
 				</div>
-				<div class="f-l middle_inner" style="margin-left:20px;">
+				<div class="f-l middle_inner" style="margin-left:27px;">
 					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:rgb(21,63,101)">${middlePrice.zu_one_name}</a>
 					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${middlePrice.zu_one_price}</a>
 				</div>

@@ -148,7 +148,7 @@ public class BingMapController {
 			e.printStackTrace();
 		}
 	}
-	@RequestMapping({"/BingMap/OrderByPrice"})
+	@RequestMapping({"/OrderByPrice"})
 	public String OrderByPrice(HttpServletRequest req,HttpServletResponse resp){
 		int order=Integer.parseInt(req.getParameter("order"));
 		List<BingMapVo> bingMapList=bingMapService.orderByPrice(order);
