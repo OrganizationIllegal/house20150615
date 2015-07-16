@@ -57,6 +57,26 @@ public class AreaInfoController extends BaseDao {
 	@Autowired
 	private AjaxDao ajaxDao;
 	
+	//区域中位数房价
+	private List<MiddlePrice2> middlepricebackendlistbefore;
+	//区域房价中位数走势
+	private List<AreaMiddle2> areamiddlelistbefore;
+	//区域租金走势
+	private List<AreaZujin2> zujinlistbefore;
+	//区域租金回报走势
+	private List<AreaZhikong2> huibaolistbefore;
+	//区域特点
+	private List<AreaTeDian2> tedianlistbefore;
+	//区域人口分布
+	private List<AreaPeopleInfo2> peoplelistbefore;
+	//推荐经纪人
+	private List<BrokerInfo> brokerlistbefore;
+	//推荐项目
+	private List<HouseProject> projectlistbefore;
+	//新闻报道
+	private List<NewsZhiye> newszhiyelistbefore;
+	
+	
 			@RequestMapping({ "/AreaDelete" })
 			public void deleteArea(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 				int id = Integer.parseInt(req.getParameter("id"));

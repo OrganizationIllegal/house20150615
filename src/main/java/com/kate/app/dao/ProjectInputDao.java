@@ -34,7 +34,7 @@ import com.kate.app.model.ZhiYeZhiDao;
 
 @Repository 
 public class ProjectInputDao extends BaseDao {
-	//得到开发商的编号及名称
+	//寰楀埌寮�鍙戝晢鐨勭紪鍙峰強鍚嶇О
 	public List<String> getDeveloperCodeName(){
 		List<String> codeAndNameSet=new ArrayList<String>();
 		try {
@@ -52,7 +52,7 @@ public class ProjectInputDao extends BaseDao {
 		}
 		return codeAndNameSet;
 	}
-	//得到所有学校的名字
+	//寰楀埌鎵�鏈夊鏍＄殑鍚嶅瓧
 	public List<String> getAllSchoolName(){
 		List<String> schoolList=new ArrayList<String>();
 		try {
@@ -69,7 +69,7 @@ public class ProjectInputDao extends BaseDao {
 		}
 		return schoolList;
 	}
-	//根据项目id得到项目编号
+	//鏍规嵁椤圭洰id寰楀埌椤圭洰缂栧彿
 	public String getProNumById(int id){
 		String pronum=null;
 		try {
@@ -85,7 +85,7 @@ public class ProjectInputDao extends BaseDao {
 		}
 		return pronum;
 	}
-	//根据项目项目编号获取户型及信息
+	//鏍规嵁椤圭洰椤圭洰缂栧彿鑾峰彇鎴峰瀷鍙婁俊鎭�
 	public List<HouseInfo1> getHouseInfoByProNum(String proNum){
 		List<HouseInfo1> houseinfoList=new ArrayList<HouseInfo1>();
 		try {
@@ -113,7 +113,8 @@ public class ProjectInputDao extends BaseDao {
 		}
 		return houseinfoList;
 	}
-	//根据项目项目编号获取户型及信息
+	
+	//鏍规嵁椤圭洰椤圭洰缂栧彿鑾峰彇椤圭洰閰嶅
 		public List<ProjectPeiTao> getProjectpeiTaoByProNum(String proNum){
 			List<ProjectPeiTao> projectPeiTaoList=new ArrayList<ProjectPeiTao>();
 			try {
@@ -133,7 +134,27 @@ public class ProjectInputDao extends BaseDao {
 			}
 			return projectPeiTaoList;
 		}
-		//根据项目项目编号获取附近配套
+		//鏍规嵁椤圭洰椤圭洰缂栧彿鑾峰彇椤圭洰鍥剧墖
+				public List<ProjectDescImage> getProjectImageByProNum(String proNum){
+					List<ProjectDescImage> projectImageList=new ArrayList<ProjectDescImage>();
+					try {
+						String sql ="select * from project_desc_image  where project_num =?";
+						PreparedStatement pstmt = con.prepareStatement(sql);
+						pstmt.setString(1,proNum );
+						ResultSet rs = pstmt.executeQuery();
+						while(rs.next()){
+							ProjectDescImage projectImage=new ProjectDescImage();
+							projectImage.setName(rs.getString("image_name"));
+							projectImage.setShunxu(rs.getInt("view_shunxu"));
+							projectImageList.add(projectImage);
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return projectImageList;
+				}
+		//鏍规嵁椤圭洰椤圭洰缂栧彿鑾峰彇闄勮繎閰嶅
 				public List<FujinPeiTao> getFujinPeiTaoByProNum(String proNum){
 					List<FujinPeiTao> fujinPeiTaoList=new ArrayList<FujinPeiTao>();
 					try {
@@ -154,7 +175,8 @@ public class ProjectInputDao extends BaseDao {
 					}
 					return fujinPeiTaoList;
 				}
-				//根据项目项目编号获取附近学校
+		
+				//鏍规嵁椤圭洰椤圭洰缂栧彿鑾峰彇闄勮繎瀛︽牎
 				public List<FujinSchool> getFujinSchoolByProNum(String proNum){
 					List<FujinSchool> fujinSchoolList=new ArrayList<FujinSchool>();
 					try {
@@ -174,7 +196,7 @@ public class ProjectInputDao extends BaseDao {
 					}
 					return fujinSchoolList;
 				}
-				//根据项目项目编号获取附近学校
+				//鏍规嵁椤圭洰椤圭洰缂栧彿鑾峰彇闄勮繎瀛︽牎
 				public List<HoldCost> getHoldCostByProNum(String proNum){
 					List<HoldCost> holdCostlList=new ArrayList<HoldCost>();
 					try {
@@ -195,7 +217,7 @@ public class ProjectInputDao extends BaseDao {
 					}
 					return holdCostlList;
 				}
-				//根据项目项目编号获取附近学校
+				//鏍规嵁椤圭洰椤圭洰缂栧彿鑾峰彇闄勮繎瀛︽牎
 				public List<HouseTax> getHouseTaxByProNum(String proNum){
 					List<HouseTax> houseTaxlList=new ArrayList<HouseTax>();
 					try {
@@ -217,7 +239,7 @@ public class ProjectInputDao extends BaseDao {
 					}
 					return houseTaxlList;
 				}
-	//项目列表
+	//椤圭洰鍒楄〃
 	public JSONArray selectProjectList(){
 		JSONArray jsonArray=new JSONArray();
 		try {
@@ -237,43 +259,43 @@ public class ProjectInputDao extends BaseDao {
 		}
 		return jsonArray;
 	} 
-	//项目删除
+	//椤圭洰鍒犻櫎
 			public int deleteProjectById(int id,String proNum){
 				boolean flag=true;
 				PreparedStatement pstmt=null;
 				try {
 					con.setAutoCommit(false);
-					//删除项目
+					//鍒犻櫎椤圭洰
 					String sql1 = "delete from house_project where id=?";
 					pstmt = con.prepareStatement(sql1);
 					pstmt.setInt(1, id);
 					int result1=pstmt.executeUpdate();
-					//删除户型及价格
+					//鍒犻櫎鎴峰瀷鍙婁环鏍�
 					String sql2="delete from house_info where project_num=?";
 					pstmt = con.prepareStatement(sql2);
 					pstmt.setString(1, proNum);
 					int result2=pstmt.executeUpdate();
-					//删除项目配套
+					//鍒犻櫎椤圭洰閰嶅
 					String sql3="delete from project_peitao_image where project_num=?";
 					pstmt = con.prepareStatement(sql3);
 					pstmt.setString(1, proNum);
 					int result3=pstmt.executeUpdate();
-					//删除附近配套
+					//鍒犻櫎闄勮繎閰嶅
 					String sql4="delete from near_peitao where project_num=?";
 					pstmt = con.prepareStatement(sql4);
 					pstmt.setString(1, proNum);
 					int result4=pstmt.executeUpdate();
-					//删除附近学校
+					//鍒犻櫎闄勮繎瀛︽牎
 					String sql5="delete from near_school where project_num=?";
 					pstmt = con.prepareStatement(sql5);
 					pstmt.setString(1, proNum);
 					int result5=pstmt.executeUpdate();
-					//删除持有成本
+					//鍒犻櫎鎸佹湁鎴愭湰
 					String sql6="delete from holding_finace where project_num=?";
 					pstmt = con.prepareStatement(sql6);
 					pstmt.setString(1, proNum);
 					int result6=pstmt.executeUpdate();
-					//删除购房税费
+					//鍒犻櫎璐埧绋庤垂
 					String sql7="delete from house_tax where project_num=?";
 					pstmt = con.prepareStatement(sql7);
 					pstmt.setString(1, proNum);
@@ -292,13 +314,13 @@ public class ProjectInputDao extends BaseDao {
 					return -1;
 				}
 			}
-			//学校信息删除
+			//瀛︽牎淇℃伅鍒犻櫎
 			public int deleteSchool(int id){
 				boolean flag=true;
 				PreparedStatement pstmt=null;
 				try {
 					con.setAutoCommit(false);
-					//删除项目
+					//鍒犻櫎椤圭洰
 					String sql1 = "delete from school_info where id=?";
 					pstmt = con.prepareStatement(sql1);
 					pstmt.setInt(1, id);
@@ -317,13 +339,13 @@ public class ProjectInputDao extends BaseDao {
 					return -1;
 				}
 			}
-			//开发商信息删除
+			//寮�鍙戝晢淇℃伅鍒犻櫎
 			public int deleteDeveloper(int id){
 				boolean flag=true;
 				PreparedStatement pstmt=null;
 				try {
 					con.setAutoCommit(false);
-					//删除项目
+					//鍒犻櫎椤圭洰
 					String sql1 = "delete from developer_info where id=?";
 					pstmt = con.prepareStatement(sql1);
 					pstmt.setInt(1, id);
@@ -342,7 +364,7 @@ public class ProjectInputDao extends BaseDao {
 					return -1;
 				}
 			}
-			//新闻博客删除
+			//鏂伴椈鍗氬鍒犻櫎
 			public int deleteNewsBoke(int id){
 				boolean flag=true;
 				PreparedStatement pstmt=null;
@@ -366,7 +388,7 @@ public class ProjectInputDao extends BaseDao {
 					return -1;
 				}
 			}
-			//置业指导删除
+			//缃笟鎸囧鍒犻櫎
 			public int deleteZhiye(int id){
 				boolean flag=true;
 				PreparedStatement pstmt=null;
@@ -390,23 +412,23 @@ public class ProjectInputDao extends BaseDao {
 					return -1;
 				}
 			}
-			//经纪人删除
+			//缁忕邯浜哄垹闄�
 			public int deleteBroker(int id,String brokerNum){
 				boolean flag=true;
 				PreparedStatement pstmt=null;
 				try {
 					con.setAutoCommit(false);
-					//删除经纪人信息
+					//鍒犻櫎缁忕邯浜轰俊鎭�
 					String sql1 = "delete from broker_info where id=?";
 					pstmt = con.prepareStatement(sql1);
 					pstmt.setInt(1, id);
 					int result1=pstmt.executeUpdate();
-					//删除经纪人服务区域
+					//鍒犻櫎缁忕邯浜烘湇鍔″尯鍩�
 					String sql2 = "delete from broker_service_area where broker_num=?";
 					pstmt = con.prepareStatement(sql2);
 					pstmt.setString(1, brokerNum);
 					int result2=pstmt.executeUpdate();
-					//删除经纪人擅长类型
+					//鍒犻櫎缁忕邯浜烘搮闀跨被鍨�
 					String sql3 = "delete from broker_interested_type where broker_num=?";
 					pstmt = con.prepareStatement(sql3);
 					pstmt.setString(1, brokerNum);
@@ -427,7 +449,7 @@ public class ProjectInputDao extends BaseDao {
 				}
 			}
 			
-	//学校列表
+	//瀛︽牎鍒楄〃
 		public JSONArray selectSchoolList(){
 			JSONArray jsonArray=new JSONArray();
 			try {
@@ -446,7 +468,7 @@ public class ProjectInputDao extends BaseDao {
 			}
 			return jsonArray;
 		} 
-		//开发商列表
+		//寮�鍙戝晢鍒楄〃
 				public JSONArray selectDeveloperList(){
 					JSONArray jsonArray=new JSONArray();
 					try {
@@ -466,7 +488,7 @@ public class ProjectInputDao extends BaseDao {
 					}
 					return jsonArray;
 				} 
-				//新闻博客列表
+				//鏂伴椈鍗氬鍒楄〃
 				public JSONArray selectnewsList(){
 					JSONArray jsonArray=new JSONArray();
 					try {
@@ -486,7 +508,7 @@ public class ProjectInputDao extends BaseDao {
 					}
 					return jsonArray;
 				} 
-				//置业指导列表
+				//缃笟鎸囧鍒楄〃
 				public JSONArray selectzhiyeList(){
 					JSONArray jsonArray=new JSONArray();
 					try {
@@ -506,7 +528,7 @@ public class ProjectInputDao extends BaseDao {
 					}
 					return jsonArray;
 				} 
-				//经纪人列表
+				//缁忕邯浜哄垪琛�
 				public JSONArray selectBrokerList(){
 					JSONArray jsonArray=new JSONArray();
 					try {
@@ -526,7 +548,7 @@ public class ProjectInputDao extends BaseDao {
 					}
 					return jsonArray;
 				} 
-	//根据id找项目信息
+	//鏍规嵁id鎵鹃」鐩俊鎭�
 	public HouseProject selectProjectInfo(int id){
 		JSONArray jsonArray=new JSONArray();
 		HouseProject houseProject=new HouseProject();
@@ -579,7 +601,7 @@ public class ProjectInputDao extends BaseDao {
 		}
 		return houseProject;
 	} 
-	//根据id找学校信息
+	//鏍规嵁id鎵惧鏍′俊鎭�
 		public SchoolInfo selectSchoolInfo(int id){
 			JSONArray jsonArray=new JSONArray();
 			SchoolInfo schoolInfo=new SchoolInfo();
@@ -607,7 +629,7 @@ public class ProjectInputDao extends BaseDao {
 			}
 			return schoolInfo;
 		} 
-		//根据id找开发商
+		//鏍规嵁id鎵惧紑鍙戝晢
 				public DeveloperInfo selectDeveloperInfo(int id){
 					JSONArray jsonArray=new JSONArray();
 					DeveloperInfo developerInfo=new DeveloperInfo();
@@ -628,7 +650,7 @@ public class ProjectInputDao extends BaseDao {
 					}
 					return developerInfo;
 				} 
-				//根据id找新闻博客
+				//鏍规嵁id鎵炬柊闂诲崥瀹�
 				public NewsBoke selectNewsBokeInfo(int id){
 					JSONArray jsonArray=new JSONArray();
 					NewsBoke newsBoke=new NewsBoke();
@@ -653,7 +675,7 @@ public class ProjectInputDao extends BaseDao {
 					}
 					return newsBoke;
 				} 	
-				//根据id找置业指导
+				//鏍规嵁id鎵剧疆涓氭寚瀵�
 				public ZhiYeZhiDao selectZhiyeInfo(int id){
 					JSONArray jsonArray=new JSONArray();
 					ZhiYeZhiDao zhiYeZhiDao=new ZhiYeZhiDao();
@@ -678,7 +700,7 @@ public class ProjectInputDao extends BaseDao {
 					}
 					return zhiYeZhiDao;
 				} 	
-				//根据id找经纪人信息
+				//鏍规嵁id鎵剧粡绾汉淇℃伅
 				public Broker selectBroker(int id){
 					JSONArray jsonArray=new JSONArray();
 					Broker broker=new Broker();
@@ -704,7 +726,7 @@ public class ProjectInputDao extends BaseDao {
 					}
 					return broker;
 				} 	
-				//根据id查找经纪人编号
+				//鏍规嵁id鏌ユ壘缁忕邯浜虹紪鍙�
 				public String findBrokerNumById(int id){
 					JSONArray jsonArray=new JSONArray();
 					String broker_num=null;
@@ -721,7 +743,7 @@ public class ProjectInputDao extends BaseDao {
 					}
 					return broker_num;
 				} 	
-				//根据经纪人编号查找经纪人服务区域列表
+				//鏍规嵁缁忕邯浜虹紪鍙锋煡鎵剧粡绾汉鏈嶅姟鍖哄煙鍒楄〃
 				public List<ServiceArea> findBrokerAreaList(String broker_num){
 					List<ServiceArea> brokerServiceAreaList=new ArrayList<ServiceArea>();
 					try {
@@ -742,7 +764,7 @@ public class ProjectInputDao extends BaseDao {
 					}
 					return brokerServiceAreaList;
 				} 
-				//根据经纪人编号查找经纪人擅长类型
+				//鏍规嵁缁忕邯浜虹紪鍙锋煡鎵剧粡绾汉鎿呴暱绫诲瀷
 				public List<BrokerType> findBrokerTypeList(String broker_num){
 					List<BrokerType> brokerIntegerTypeList=new ArrayList<BrokerType>();
 					try {
@@ -766,7 +788,7 @@ public class ProjectInputDao extends BaseDao {
 		
 		
 	
-	//学校信息Add
+	//瀛︽牎淇℃伅Add
 	public boolean InsertSchoolInfo(String school_name,String school_ranking,String school_type,int school_total,int teacher_total,String school_position,String gps,String net_info,int not_en_stu_bili,String school_image,String school_desc){
 		boolean flag=true;
 		try {
@@ -794,7 +816,7 @@ public class ProjectInputDao extends BaseDao {
 		return flag;
 		
 	}
-	//学校信息Update
+	//瀛︽牎淇℃伅Update
 		public boolean UpdateSchoolInfo(int id,String school_name,String school_ranking,String school_type,int school_total,int teacher_total,String school_position,String gps,String net_info,int not_en_stu_bili,String school_image,String school_desc){
 			boolean flag=true;
 			try {
@@ -823,7 +845,7 @@ public class ProjectInputDao extends BaseDao {
 			return flag;
 			
 		}
-	//开发商信息Add
+	//寮�鍙戝晢淇℃伅Add
 		public boolean InsertDeveloperInfo(String developer_name,String developer_logo,String developer_desc,String developer_num){
 			boolean flag=true;
 			try {
@@ -843,7 +865,7 @@ public class ProjectInputDao extends BaseDao {
 			}
 			return flag;
 		}
-		//开发商信息update
+		//寮�鍙戝晢淇℃伅update
 				public boolean UpdateDeveloperInfo(int id,String developer_name,String developer_logo,String developer_desc,String developer_num){
 					boolean flag=true;
 					try {
@@ -864,7 +886,7 @@ public class ProjectInputDao extends BaseDao {
 					}
 					return flag;
 				}
-		//经纪人Add
+		//缁忕邯浜篈dd
 		public int InsertBroker(Broker broker,List<ServiceArea> serviceAreaList,List<BrokerType> brokerTypeList){
 			String broker_num=broker.getBroker_num();
 			String broker_name=broker.getBroker_name();
@@ -892,7 +914,7 @@ public class ProjectInputDao extends BaseDao {
 				pstmt.setString(8, broker_type);
 				pstmt.setString(9, broker_zizhi);
 				int exeResult = pstmt.executeUpdate();
-				//服务区域
+				//鏈嶅姟鍖哄煙
 				String sql2 = "insert into broker_service_area(broker_num,area_code,view_shunxu) values(?,?,?)";
 		        pstmt = con.prepareStatement(sql2);
 		        for(int i=0;i<serviceAreaList.size();i++){
@@ -905,7 +927,7 @@ public class ProjectInputDao extends BaseDao {
 		            pstmt.addBatch();
 		        }
 				int[] result2list=pstmt.executeBatch();
-				//擅长类型
+				//鎿呴暱绫诲瀷
 				String sql3 = "insert into broker_interested_type(broker_num,interested_num,view_shunxu) values(?,?,?)";
 		        pstmt = con.prepareStatement(sql3);
 		        for(int i=0;i<brokerTypeList.size();i++){
@@ -918,9 +940,9 @@ public class ProjectInputDao extends BaseDao {
 		            pstmt.addBatch();
 		        }
 				int[] result3list=pstmt.executeBatch();
-				//提交事物
+				//鎻愪氦浜嬬墿
 				con.commit();
-				//恢复JDBC事务
+				//鎭㈠JDBC浜嬪姟
 				con.setAutoCommit(true);
 				return 1;
 			} catch (Exception e) {
@@ -935,7 +957,7 @@ public class ProjectInputDao extends BaseDao {
 				return -1;
 			}
 		}
-		//经纪人update
+		//缁忕邯浜簎pdate
 				public int UpdateBroker(int id,Broker broker,List<ServiceArea> serviceAreaList,List<ServiceArea> serviceAreaList2,List<BrokerType> brokerTypeList,List<BrokerType> brokerTypeList2){
 					String broker_num=broker.getBroker_num();
 					String broker_name=broker.getBroker_name();
@@ -951,7 +973,7 @@ public class ProjectInputDao extends BaseDao {
 					
 					try {
 						con.setAutoCommit(false);
-						//经纪人信息更新
+						//缁忕邯浜轰俊鎭洿鏂�
 						String sql1 = "update broker_info set broker_num=?,broker_name=?,broker_language=?,broker_region=?,broker_img=?,introduction=?,broker_experience=?,broker_type=?,broker_zizhi=? where id=?";
 						pstmt = con.prepareStatement(sql1);
 						pstmt.setString(1, broker_num);
@@ -966,7 +988,7 @@ public class ProjectInputDao extends BaseDao {
 						pstmt.setInt(10, id);
 						int exeResult = pstmt.executeUpdate();
 						
-						//服务区域更新
+						//鏈嶅姟鍖哄煙鏇存柊
 						String sql2 = "update  broker_service_area set area_code=?,view_shunxu=? where broker_num=? ";
 				        pstmt = con.prepareStatement(sql2);
 				        for(int i=0;i<serviceAreaList.size();i++){
@@ -979,7 +1001,7 @@ public class ProjectInputDao extends BaseDao {
 				            pstmt.addBatch();
 				        }
 						int[] result2list=pstmt.executeBatch();
-						//服务区域添加
+						//鏈嶅姟鍖哄煙娣诲姞
 						String sql22 = "insert into broker_service_area(broker_num,area_code,view_shunxu) values(?,?,?)";
 				        pstmt = con.prepareStatement(sql22);
 				        for(int i=0;i<serviceAreaList2.size();i++){
@@ -992,7 +1014,7 @@ public class ProjectInputDao extends BaseDao {
 				            pstmt.addBatch();
 				        }
 						int[] result22list=pstmt.executeBatch();
-						//擅长类型更新
+						//鎿呴暱绫诲瀷鏇存柊
 						String sql3 = "update broker_interested_type set interested_num=?,view_shunxu=? where broker_num=?";
 				        pstmt = con.prepareStatement(sql3);
 				        for(int i=0;i<brokerTypeList.size();i++){
@@ -1005,7 +1027,7 @@ public class ProjectInputDao extends BaseDao {
 				            pstmt.addBatch();
 				        }
 						int[] result3list=pstmt.executeBatch();
-						//擅长类型添加
+						//鎿呴暱绫诲瀷娣诲姞
 						String sql33 = "insert into broker_interested_type(broker_num,interested_num,view_shunxu) values(?,?,?)";
 				        pstmt = con.prepareStatement(sql33);
 				        for(int i=0;i<brokerTypeList2.size();i++){
@@ -1018,9 +1040,9 @@ public class ProjectInputDao extends BaseDao {
 				            pstmt.addBatch();
 				        }
 						int[] result33list=pstmt.executeBatch();
-						//提交事物
+						//鎻愪氦浜嬬墿
 						con.commit();
-						//恢复JDBC事务
+						//鎭㈠JDBC浜嬪姟
 						con.setAutoCommit(true);
 						return 1;
 					} catch (Exception e) {
@@ -1036,7 +1058,7 @@ public class ProjectInputDao extends BaseDao {
 					}
 				}
 		
-				//判断所给项目编号是否重复
+				//鍒ゆ柇鎵�缁欓」鐩紪鍙锋槸鍚﹂噸澶�
 				public int isDuplicateNum(String project_num){
 					HashSet<String> project_numSet=new HashSet<String>();
 					try {
@@ -1048,7 +1070,7 @@ public class ProjectInputDao extends BaseDao {
 							project_numSet.add(num);
 						}
 						if(project_numSet.contains(project_num)){
-							return 1;//1表示此编号已存在
+							return 1;//1琛ㄧず姝ょ紪鍙峰凡瀛樺湪
 						}
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
@@ -1057,7 +1079,7 @@ public class ProjectInputDao extends BaseDao {
 					return 0;
 				}
 		public int AddProject(List<Project> projectList,List<HouseInfo1>houseInfolist,List<ProjectDescImage>projectimagelist,List<ProjectPeiTao>projectPeitaolist,List<FujinPeiTao> fujinList,List<FujinSchool>fujinSchoolList,List<HoldCost>holdCostList,List<HouseTax>houseTaxList) throws SQLException{
-			//项目信息参数接收
+			//椤圭洰淇℃伅鍙傛暟鎺ユ敹
 			Project project=projectList.get(0);
 			String project_name=project.getProject_name();
 			String project_nation=project.getProject_nation();
@@ -1121,7 +1143,7 @@ public class ProjectInputDao extends BaseDao {
 	        PreparedStatement pstmt=null;
 			try{
 				con.setAutoCommit(false);
-				//项目添加
+				//椤圭洰娣诲姞
 				String sql1= " insert into house_project(project_name, project_nation, project_address, project_price_qi, project_type, project_sales_remain,  project_finish_time, project_desc, project_city, project_house_type, project_high, project_lan_cn, project_lan_en, project_num, project_vedio, project_zhou, gps, return_money, walk_num, mianji, project_min_price, project_high_price, tuijiandu, housePrice_update_time,area_num, min_area, max_area,  developer_id_name) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			    pstmt = con.prepareStatement(sql1);
 				pstmt.setString(1, project_name);
@@ -1156,7 +1178,7 @@ public class ProjectInputDao extends BaseDao {
 				pstmt.setString(28, developer_num);
 				int result1 = pstmt.executeUpdate();
 				System.out.println("result1:"+result1);
-			     //户型及价格
+			     //鎴峰瀷鍙婁环鏍�
 				 String sql2="insert into house_info(house_name,house_img,house_price,house_room_num,tudi_area,jianzhu_area,house_size_in,house_size_out,house_toilet_size,project_num) values(?,?,?,?,?,?,?,?,?,?) ";
 		         pstmt = con.prepareStatement(sql2);
 		        for(int i=0;i<houseInfolist.size();i++){
@@ -1187,7 +1209,7 @@ public class ProjectInputDao extends BaseDao {
 				for(int i=0;i<result2list.length;i++){
 					System.out.println("result2list"+i+":"+result2list[i]);
 				}
-				//项目图片
+				//椤圭洰鍥剧墖
 				 String sql8="insert into project_peitao_image(image_name,image_type,view_shunxu,project_num,project_name) values(?,?,?,?,?) ";
 		         pstmt = con.prepareStatement(sql8);
 		        for(int i=0;i<projectPeitaolist.size();i++){
@@ -1195,7 +1217,7 @@ public class ProjectInputDao extends BaseDao {
 		            String image_name=projectPeiTao.getName();
 		            int shunxu=projectPeiTao.getShunxu();
 		            pstmt.setString(1, image_name);
-		            pstmt.setString(2, "图片");
+		            pstmt.setString(2, "鍥剧墖");
 		            pstmt.setInt(3, shunxu);
 		            pstmt.setString(4,project_num);
 		            pstmt.setString(5, project_name);
@@ -1207,7 +1229,7 @@ public class ProjectInputDao extends BaseDao {
 					System.out.println("result3list"+i+":"+result3list[i]);
 				}
 				
-				//项目配套
+				//椤圭洰閰嶅
 				 String sql3="insert into project_desc_image(image_name,image_type,view_shunxu,project_num,project_name) values(?,?,?,?,?) ";
 		         pstmt = con.prepareStatement(sql3);
 		        for(int i=0;i<projectimagelist.size();i++){
@@ -1215,7 +1237,7 @@ public class ProjectInputDao extends BaseDao {
 		            String image_name=projectImage.getName();
 		            int shunxu=projectImage.getShunxu();
 		            pstmt.setString(1, image_name);
-		            pstmt.setString(2, "图片");
+		            pstmt.setString(2, "鍥剧墖");
 		            pstmt.setInt(3, shunxu);
 		            pstmt.setString(4,project_num);
 		            pstmt.setString(5, project_name);
@@ -1227,7 +1249,7 @@ public class ProjectInputDao extends BaseDao {
 					System.out.println("result8list"+i+":"+result8list[i]);
 				}
 				
-				//附近配套
+				//闄勮繎閰嶅
 				 String sql4="insert into near_peitao(market_type,market_name,market_distance,project_num) values(?,?,?,?) ";
 		         pstmt = con.prepareStatement(sql4);
 		        for(int i=0;i<fujinList.size();i++){
@@ -1246,7 +1268,7 @@ public class ProjectInputDao extends BaseDao {
 				for(int i=0;i<result4list.length;i++){
 					System.out.println("result4list"+i+":"+result4list[i]);
 				}
-				//附近学校
+				//闄勮繎瀛︽牎
 				 String sql5="insert into near_school(school_name,school_distance,project_num) values(?,?,?) ";
 		         pstmt = con.prepareStatement(sql5);
 		        for(int i=0;i<fujinSchoolList.size();i++){
@@ -1263,7 +1285,7 @@ public class ProjectInputDao extends BaseDao {
 				for(int i=0;i<result5list.length;i++){
 					System.out.println("result5list"+i+":"+result5list[i]);
 				}
-				//持有成本
+				//鎸佹湁鎴愭湰
 				 String sql6="insert into holding_finace(type,price,description,project_num,house_name) values(?,?,?,?,?) ";
 		         pstmt = con.prepareStatement(sql6);
 		        for(int i=0;i<holdCostList.size();i++){
@@ -1285,7 +1307,7 @@ public class ProjectInputDao extends BaseDao {
 					System.out.println("result6list"+i+":"+result6list[i]);
 				}
 				
-				//购房税费
+				//璐埧绋庤垂
 				 String sql7="insert into house_tax(type,price,description,project_num,house_name) values(?,?,?,?,?) ";
 		         pstmt = con.prepareStatement(sql7);
 		        for(int i=0;i<houseTaxList.size();i++){
@@ -1307,21 +1329,21 @@ public class ProjectInputDao extends BaseDao {
 					System.out.println("result7list"+i+":"+result7list[i]);
 				}
 				
-				//提交事物
+				//鎻愪氦浜嬬墿
 				con.commit();
-				//恢复JDBC事务
+				//鎭㈠JDBC浜嬪姟
 				con.setAutoCommit(true);
 				return 1;
 			}catch (Exception e) {
-				//回滚JDBC事务
+				//鍥炴粴JDBC浜嬪姟
 				con.rollback();
 	            e.printStackTrace();
 	            return -1;
 	        }
 			
 		}
-		public int EditProject(int id,List<Project> projectList,List<HouseInfo1> houseInfolist,List<HouseInfo1>houseInfolist2,List<FujinPeiTao>fujinpeitaoList,List<FujinPeiTao>fujinpeitaoList2,List<FujinSchool>fujinSchoolList,List<FujinSchool>fujinSchoolList2,List<HoldCost> holdCostList,List<HoldCost>holdCostList2,List<HouseTax>houseTaxList,List<HouseTax>houseTaxList2) throws SQLException{
-			//项目信息参数接收
+		public int EditProject(int id,List<Project> projectList,List<HouseInfo1> houseInfolist,List<HouseInfo1>houseInfolist2,List<ProjectPeiTao>peitaolist,List<ProjectPeiTao>peitaolist2,List<ProjectDescImage>imagelist,List<ProjectDescImage>imagelist2,List<FujinPeiTao>fujinpeitaoList,List<FujinPeiTao>fujinpeitaoList2,List<FujinSchool>fujinSchoolList,List<FujinSchool>fujinSchoolList2,List<HoldCost> holdCostList,List<HoldCost>holdCostList2,List<HouseTax>houseTaxList,List<HouseTax>houseTaxList2,List<ProjectDescImage> imagelistdelete,List<ProjectPeiTao> peitaolistdelete,List<FujinPeiTao> fujinpeitaoListdelete,List<FujinSchool>  fujinSchoolListdelete,List<HoldCost> holdCostListdelete,List<HouseTax> houseTaxListdelete) throws SQLException{
+			//椤圭洰淇℃伅鍙傛暟鎺ユ敹
 			Project project=projectList.get(0);
 			String project_name=project.getProject_name();
 			String project_nation=project.getProject_nation();
@@ -1385,7 +1407,7 @@ public class ProjectInputDao extends BaseDao {
 	        PreparedStatement pstmt=null;
 			try{
 				con.setAutoCommit(false);
-				//项目更新
+				//椤圭洰鏇存柊
 				String sql1= "update house_project set project_name=?, project_nation=?, project_address=?, project_price_qi=?, project_type=?, project_sales_remain=?,  project_finish_time=?, project_desc=?, project_city=?, project_house_type=?, project_high=?, project_lan_cn=?, project_lan_en=?, project_num=?, project_vedio=?, project_zhou=?, gps=?, return_money=?, walk_num=?, mianji=?, project_min_price=?, project_high_price=?, tuijiandu=?, housePrice_update_time=?,area_num=?, min_area=?, max_area=?,  developer_id_name=? where id="+id;
 			    pstmt = con.prepareStatement(sql1);
 				pstmt.setString(1, project_name);
@@ -1422,7 +1444,7 @@ public class ProjectInputDao extends BaseDao {
 				pstmt.setString(28, developer_num);
 				int result1 = pstmt.executeUpdate();
 				System.out.println("result1:"+result1);
-				//户型及价格更新
+				//鎴峰瀷鍙婁环鏍兼洿鏂�
 				String sql2="update house_info set house_name=?,house_img=?,house_price=?,house_room_num=?,tudi_area=?,jianzhu_area=?,house_size_in=?,house_size_out=?,house_toilet_size=? ,project_num=? where id=?";
 		        pstmt = con.prepareStatement(sql2);
 		        for(int i=0;i<houseInfolist.size();i++){
@@ -1455,7 +1477,7 @@ public class ProjectInputDao extends BaseDao {
 				for(int i=0;i<result2list.length;i++){
 					System.out.println("result2list"+i+":"+result2list[i]);
 				}
-				//户型及价格添加
+				//鎴峰瀷鍙婁环鏍兼坊鍔�
 				String sql22="insert into house_info(house_name,house_img,house_price,house_room_num,tudi_area,jianzhu_area,house_size_in,house_size_out,house_toilet_size,project_num) values(?,?,?,?,?,?,?,?,?,?) ";
 		        pstmt = con.prepareStatement(sql22);
 		        for(int i=0;i<houseInfolist2.size();i++){
@@ -1486,7 +1508,75 @@ public class ProjectInputDao extends BaseDao {
 				for(int i=0;i<result22list.length;i++){
 					System.out.println("result22list"+i+":"+result22list[i]);
 				}
-				//附近配套编辑
+				//椤圭洰閰嶅缂栬緫
+				 String sql8="update project_peitao_image set image_name=?,project_num=? where id=? ";
+		         pstmt = con.prepareStatement(sql8);
+		        for(int i=0;i<peitaolist.size();i++){
+		        	ProjectPeiTao projectPeiTao=peitaolist.get(i);
+		            String name=projectPeiTao.getName();
+		            int Id=projectPeiTao.getId();
+		            pstmt.setString(1, name);
+		            pstmt.setString(2, project_num);
+		            pstmt.setInt(3, Id);
+		            pstmt.addBatch();
+		        }
+				int[] result8list=pstmt.executeBatch();
+				System.out.println("result8list.length:"+result8list.length);
+				for(int i=0;i<result8list.length;i++){
+					System.out.println("result8list"+i+":"+result8list[i]);
+				}
+				//椤圭洰閰嶅娣诲姞
+				 String sql88="insert into project_peitao_image(image_name,image_type,project_num)values(?,?,?) ";
+		         pstmt = con.prepareStatement(sql88);
+		        for(int i=0;i<peitaolist2.size();i++){
+		        	ProjectPeiTao projectPeiTao=peitaolist2.get(i);
+		            String name=projectPeiTao.getName();
+		            int Id=projectPeiTao.getId();
+		            pstmt.setString(1, name);
+		            pstmt.setString(2, "鍥剧墖");
+		            pstmt.setString(3, project_num);
+		            pstmt.addBatch();
+		        }
+				int[] result88list=pstmt.executeBatch();
+				System.out.println("result88list.length:"+result88list.length);
+				for(int i=0;i<result88list.length;i++){
+					System.out.println("result88list"+i+":"+result88list[i]);
+				}
+				//椤圭洰鍥剧墖缂栬緫
+				 String sql9="update project_desc_image set image_name=?,project_num=? where id=? ";
+		         pstmt = con.prepareStatement(sql9);
+		        for(int i=0;i<imagelist.size();i++){
+		        	ProjectDescImage projectImage=imagelist.get(i);
+		            String name=projectImage.getName();
+		            int Id=projectImage.getId();
+		            pstmt.setString(1, name);
+		            pstmt.setString(2, project_num);
+		            pstmt.setInt(3, Id);
+		            pstmt.addBatch();
+		        }
+				int[] result9list=pstmt.executeBatch();
+				System.out.println("result9list.length:"+result9list.length);
+				for(int i=0;i<result9list.length;i++){
+					System.out.println("result9list"+i+":"+result9list[i]);
+				}
+				//椤圭洰鍥剧墖娣诲姞
+				 String sql99="insert into project_desc_image values(image_name,image_type,project_num) values(?,?,?) ";
+		         pstmt = con.prepareStatement(sql99);
+		        for(int i=0;i<imagelist2.size();i++){
+		        	ProjectDescImage projectImage=imagelist2.get(i);
+		            String name=projectImage.getName();
+		            int Id=projectImage.getId();
+		            pstmt.setString(1, name);
+		            pstmt.setString(2, "鍥剧墖");
+		            pstmt.setString(3, project_num);
+		            pstmt.addBatch();
+		        }
+				int[] result99list=pstmt.executeBatch();
+				System.out.println("result99list.length:"+result99list.length);
+				for(int i=0;i<result99list.length;i++){
+					System.out.println("result99list"+i+":"+result99list[i]);
+				}
+				//闄勮繎閰嶅缂栬緫
 				 String sql4="update near_peitao set market_type=?,market_name=?,market_distance=?,project_num=? where id=? ";
 		         pstmt = con.prepareStatement(sql4);
 		        for(int i=0;i<fujinpeitaoList.size();i++){
@@ -1507,7 +1597,7 @@ public class ProjectInputDao extends BaseDao {
 				for(int i=0;i<result4list.length;i++){
 					System.out.println("result4list"+i+":"+result4list[i]);
 				}
-				//附近配套添加
+				//闄勮繎閰嶅娣诲姞
 				 String sql44="insert into near_peitao(market_type,market_name,market_distance,project_num) values(?,?,?,?) ";
 		         pstmt = con.prepareStatement(sql44);
 		        for(int i=0;i<fujinpeitaoList2.size();i++){
@@ -1526,7 +1616,7 @@ public class ProjectInputDao extends BaseDao {
 				for(int i=0;i<result44list.length;i++){
 					System.out.println("result44list"+i+":"+result44list[i]);
 				}
-				//附近学校编辑
+				//闄勮繎瀛︽牎缂栬緫
 				 String sql5="update near_school set school_name=?,school_distance=?,project_num=? where id=?";
 		         pstmt = con.prepareStatement(sql5);
 		        for(int i=0;i<fujinSchoolList.size();i++){
@@ -1545,7 +1635,7 @@ public class ProjectInputDao extends BaseDao {
 				for(int i=0;i<result5list.length;i++){
 					System.out.println("result5list"+i+":"+result5list[i]);
 				}
-				//附近学校添加
+				//闄勮繎瀛︽牎娣诲姞
 				 String sql55="insert into near_school(school_name,school_distance,project_num) values(?,?,?) ";
 		         pstmt = con.prepareStatement(sql55);
 		        for(int i=0;i<fujinSchoolList2.size();i++){
@@ -1562,7 +1652,7 @@ public class ProjectInputDao extends BaseDao {
 				for(int i=0;i<result55list.length;i++){
 					System.out.println("result55list"+i+":"+result55list[i]);
 				}
-				//持有成本编辑
+				//鎸佹湁鎴愭湰缂栬緫
 				 String sql6="update holding_finace set type=?,price=?,description=?,project_num=?,house_name=? where id=? ";
 		         pstmt = con.prepareStatement(sql6);
 		        for(int i=0;i<holdCostList.size();i++){
@@ -1586,7 +1676,7 @@ public class ProjectInputDao extends BaseDao {
 					System.out.println("result6list"+i+":"+result6list[i]);
 				}
 				
-				//持有成本添加
+				//鎸佹湁鎴愭湰娣诲姞
 				 String sql66="insert into holding_finace(type,price,description,project_num,house_name) values(?,?,?,?,?) ";
 		         pstmt = con.prepareStatement(sql66);
 		        for(int i=0;i<holdCostList.size();i++){
@@ -1607,7 +1697,7 @@ public class ProjectInputDao extends BaseDao {
 				for(int i=0;i<result66list.length;i++){
 					System.out.println("result66list"+i+":"+result66list[i]);
 				}
-				//购房税费编辑
+				//璐埧绋庤垂缂栬緫
 				 String sql7="update  house_tax set type=?,price=?,description=?,project_num=? where id=?";
 		         pstmt = con.prepareStatement(sql7);
 		        for(int i=0;i<houseTaxList.size();i++){
@@ -1630,7 +1720,7 @@ public class ProjectInputDao extends BaseDao {
 				for(int i=0;i<result7list.length;i++){
 					System.out.println("result7list"+i+":"+result7list[i]);
 				}
-				//购房税费添加
+				//璐埧绋庤垂娣诲姞
 				 String sql77="insert into house_tax(type,price,description,project_num) values(?,?,?,?) ";
 		         pstmt = con.prepareStatement(sql77);
 		        for(int i=0;i<houseTaxList2.size();i++){
@@ -1651,13 +1741,104 @@ public class ProjectInputDao extends BaseDao {
 				for(int i=0;i<result7list.length;i++){
 					System.out.println("result77list"+i+":"+result77list[i]);
 				}
-				//提交事物
+				//,,,,,
+				//delete from project_desc_image
+				String sqldeleteimage = "delete from project_desc_image where id= ?";
+				for(int i=0;i<imagelistdelete.size();i++){
+					pstmt = con.prepareStatement(sqldeleteimage);
+					pstmt.setInt(1, imagelistdelete.get(i).getId());
+					pstmt.addBatch();
+				}
+				int[] resultimagedelete=pstmt.executeBatch();
+				System.out.println("resultimagedelete.length:"+resultimagedelete.length);
+				for(int i=0;i<result7list.length;i++){
+					System.out.println("resultimagedelete"+i+":"+resultimagedelete[i]);
+				}
+				
+				//delete from project_desc_image
+				String sqldeletepeitaolist = "delete from project_peitao_image where id= ?";
+				for(int i=0;i<peitaolistdelete.size();i++){
+					pstmt = con.prepareStatement(sqldeletepeitaolist);
+					pstmt.setInt(1, peitaolistdelete.get(i).getId());
+					pstmt.addBatch();
+				}
+				int[] resultpeitaolistdelete=pstmt.executeBatch();
+				System.out.println("resultpeitaolistdelete.length:"+resultpeitaolistdelete.length);
+				for(int i=0;i<resultpeitaolistdelete.length;i++){
+					System.out.println("resultpeitaolistdelete"+i+":"+resultpeitaolistdelete[i]);
+				}
+				
+				//delete from project_desc_image
+				String sqldeleteprojectimage = "delete from project_desc_image where id= ?";
+				for(int i=0;i<imagelistdelete.size();i++){
+					pstmt = con.prepareStatement(sqldeleteprojectimage);
+					pstmt.setInt(1, imagelistdelete.get(i).getId());
+					pstmt.addBatch();
+				}
+				int[] resultprojectimagedelete=pstmt.executeBatch();
+				System.out.println("resultprojectimagedelete.length:"+resultprojectimagedelete.length);
+				for(int i=0;i<result7list.length;i++){
+					System.out.println("resultprojectimagedelete"+i+":"+resultprojectimagedelete[i]);
+				}
+				
+				//delete from project_desc_image
+				String sqldeletefujinpeitao = "delete from near_peitao where id= ?";
+				for(int i=0;i<fujinpeitaoListdelete.size();i++){
+					pstmt = con.prepareStatement(sqldeletefujinpeitao);
+					pstmt.setInt(1, fujinpeitaoListdelete.get(i).getId());
+					pstmt.addBatch();
+				}
+				int[] resultfujinpeitaodelete=pstmt.executeBatch();
+				System.out.println("resultfujinpeitaodelete.length:"+resultfujinpeitaodelete.length);
+				for(int i=0;i<resultfujinpeitaodelete.length;i++){
+					System.out.println("resultfujinpeitaodelete"+i+":"+resultfujinpeitaodelete[i]);
+				}
+				
+				//delete from project_desc_image
+				String sqldeletefujinschool = "delete from near_school where id= ?";
+				for(int i=0;i<fujinSchoolListdelete.size();i++){
+					pstmt = con.prepareStatement(sqldeletefujinschool);
+					pstmt.setInt(1, fujinSchoolListdelete.get(i).getId());
+					pstmt.addBatch();
+				}
+				int[] resultfujinschooldelete=pstmt.executeBatch();
+				System.out.println("resultfujinschooldelete.length:"+resultfujinschooldelete.length);
+				for(int i=0;i<resultfujinschooldelete.length;i++){
+					System.out.println("resultfujinschooldelete"+i+":"+resultfujinschooldelete[i]);
+				}
+				
+				//delete from project_desc_image
+				String sqldeletehousecost = "delete from holding_finace where id= ?";
+				for(int i=0;i<holdCostListdelete.size();i++){
+					pstmt = con.prepareStatement(sqldeletehousecost);
+					pstmt.setInt(1, holdCostListdelete.get(i).getId());
+					pstmt.addBatch();
+				}
+				int[] resulthousecostdelete=pstmt.executeBatch();
+				System.out.println("resulthousecostdelete.length:"+resulthousecostdelete.length);
+				for(int i=0;i<resulthousecostdelete.length;i++){
+					System.out.println("resulthousecostdelete"+i+":"+resulthousecostdelete[i]);
+				}
+				
+				//delete from project_desc_image
+				String sqldeletehousetax = "delete from holding_finace where id= ?";
+				for(int i=0;i<houseTaxListdelete.size();i++){
+					pstmt = con.prepareStatement(sqldeletehousetax);
+					pstmt.setInt(1, houseTaxListdelete.get(i).getId());
+					pstmt.addBatch();
+				}
+				int[] resulthousetaxdelete=pstmt.executeBatch();
+				System.out.println("resulthousetaxdelete.length:"+resulthousetaxdelete.length);
+				for(int i=0;i<resulthousetaxdelete.length;i++){
+					System.out.println("resulthousetaxdelete"+i+":"+resulthousetaxdelete[i]);
+				}
+				//鎻愪氦浜嬬墿
 				con.commit();
-				//恢复JDBC事务
+				//鎭㈠JDBC浜嬪姟
 				con.setAutoCommit(true);
 				return 1;
 			}catch (Exception e) {
-				//回滚JDBC事务
+				//鍥炴粴JDBC浜嬪姟
 				con.rollback();
 	            e.printStackTrace();
 	            return -1;
@@ -1665,7 +1846,7 @@ public class ProjectInputDao extends BaseDao {
 			
 		}
 		
-		//添加项目
+		//娣诲姞椤圭洰
 		public int addPro(String project_name, String project_img, String project_nation, String project_address, String project_area, String project_price_qi, String project_type, int project_sales_remain, String project_finish_time, String project_desc, String project_city, String project_house_type, String project_high, String project_price, String project_lan_cn, String project_lan_en, String project_num, String project_vedio, String project_zhou, String area_qujian, String gps, String return_money, int walk_num, String mianji, String project_min_price, String project_high_price, int tuijiandu, String housePrice_update_time, String buytaxInfo, String holdInfo, int min_area, int max_area, String area_num, String developer_num,
 				 String peitao_type,String peitao_name,String peitao_distance,
 				 String house_name,String house_img,String house_price,int house_room_num,String tudi_area,String jianzhu_area,String house_size_in,String house_size_out,int house_toilet_size,
@@ -1703,7 +1884,7 @@ public class ProjectInputDao extends BaseDao {
 			
 			try{
 				con.setAutoCommit(false);
-				//项目添加
+				//椤圭洰娣诲姞
 				String sql1= " insert into house_project(project_name, project_img, project_nation, project_address, project_area, project_price_qi, project_type, project_sales_remain,  project_finish_time, project_desc, project_city, project_house_type, project_high, project_price, project_lan_cn, project_lan_en, project_num, project_vedio, project_zhou, area_qujian, gps, return_money, walk_num, mianji, project_min_price, project_high_price, tuijiandu, housePrice_update_time, buytaxInfo, holdInfo, min_area, max_area, area_num, developer_id_name) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				PreparedStatement pstmt = con.prepareStatement(sql1);
 				pstmt.setString(1, project_name);
@@ -1742,7 +1923,7 @@ public class ProjectInputDao extends BaseDao {
 				pstmt.setString(34, developer_num);
 				int result1 = pstmt.executeUpdate();
 				System.out.println("result1:"+result1);
-				//户型及价格添加
+				//鎴峰瀷鍙婁环鏍兼坊鍔�
 				String sql2="insert into house_info(house_name,house_img,house_price,house_room_num,tudi_area,jianzhu_area,house_size_in,house_size_out,house_toilet_size,project_num) values (?,?,?,?,?,?,?,?,?,?)";
 				pstmt = con.prepareStatement(sql2);
 				pstmt.setString(1, house_name);
@@ -1757,17 +1938,17 @@ public class ProjectInputDao extends BaseDao {
 				pstmt.setString(10, project_num);
 				int result2 = pstmt.executeUpdate();
 				System.out.println("result2:"+result2);
-				//项目配套添加
+				//椤圭洰閰嶅娣诲姞
 				String sql3="insert into project_peitao_image(image_name,image_type,view_shunxu,project_num,project_name) values(?,?,?,?,?) ";
 				pstmt = con.prepareStatement(sql3);
 				pstmt.setString(1, image_name);
-				pstmt.setString(2, "图片");
+				pstmt.setString(2, "鍥剧墖");
 				pstmt.setString(3, "1");
 				pstmt.setString(4, project_num);
 				pstmt.setString(5, project_name);
 				int result3 = pstmt.executeUpdate();
 				System.out.println("result3:"+result3);
-				//附近配套添加
+				//闄勮繎閰嶅娣诲姞
 				String sql4= " insert into near_peitao(market_type,market_name,market_distance,project_num) values(?,?,?,?)";
 				pstmt = con.prepareStatement(sql4);
 				pstmt.setString(1, peitao_type);
@@ -1776,7 +1957,7 @@ public class ProjectInputDao extends BaseDao {
 				pstmt.setString(4, project_num);
 				int result4 = pstmt.executeUpdate();
 				System.out.println("result4:"+result4);
-				//附近学校添加
+				//闄勮繎瀛︽牎娣诲姞
 				String sql5= " insert into near_school(school_name,school_distance,project_num) values(?,?,?)";
 				pstmt = con.prepareStatement(sql5);
 				pstmt.setString(1, school_name);
@@ -1784,7 +1965,7 @@ public class ProjectInputDao extends BaseDao {
 				pstmt.setString(3, project_num);
 				int result5 = pstmt.executeUpdate();
 				System.out.println("result5:"+result5);
-				//持有成本添加
+				//鎸佹湁鎴愭湰娣诲姞
 				String sql6= " insert into holding_finace(type,price,description,view_shunxu,project_num,house_name) values(?,?,?,?,?,?)";
 				pstmt = con.prepareStatement(sql6);
 				pstmt.setString(1, hold_type);
@@ -1795,7 +1976,7 @@ public class ProjectInputDao extends BaseDao {
 				pstmt.setString(6, hold_housename);
 				int result6 = pstmt.executeUpdate();
 				System.out.println("result6:"+result6);
-				//购房税费添加
+				//璐埧绋庤垂娣诲姞
 				String sql7= " insert into house_tax(type,price,description,view_shunxu,project_num,house_name) values(?,?,?,?,?,?)";
 				pstmt = con.prepareStatement(sql6);
 				pstmt.setString(1, tax_type);
@@ -1806,13 +1987,13 @@ public class ProjectInputDao extends BaseDao {
 				pstmt.setString(6, tax_housename);
 				int result7 = pstmt.executeUpdate();
 				System.out.println("result7:"+result7);
-				//提交事物
+				//鎻愪氦浜嬬墿
 				con.commit();
-				//恢复JDBC事务
+				//鎭㈠JDBC浜嬪姟
 				con.setAutoCommit(true);
 				return 1;
 			}catch (Exception e) {
-				//回滚JDBC事务
+				//鍥炴粴JDBC浜嬪姟
 				con.rollback();
 	            e.printStackTrace();
 	            return -1;

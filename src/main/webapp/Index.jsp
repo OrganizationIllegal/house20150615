@@ -312,6 +312,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<input type="checkbox" name="maidi" value="买地建房"class="f-l main_more_check">
 							<a class="f-l f-yahei s-12 main_more_name">买地建房</a>
 						</div>
+						<div class="c-fix f-l main_more_line" style="border-width:0px;text-align:center">
+							<input  type="button" value="提交" style="background-color:#ff6600;width:50px;height:30px;font-family:微软雅黑"/>
+							<input type="button" value="取消 " style="background-color:#ff6600;width:50px;height:30px;font-family:微软雅黑"/>
+						</div>
 					</div>
 					</form>
 				</div>
@@ -450,7 +454,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a class="c-fix f-l f-yahei s-20 main_title fw" style="margin:0 auto">最新博客</a>
 						<c:forEach var="item" items="${newsList}" varStatus="stat">
 						<div class="f-l main_node" <c:if test="${stat.index != 0}">style="margin-left:30px;"</c:if>>
-							<img src="<%=application.getInitParameter("imagedir")%>/${item.news_image}" class="c-fix f-l main_node_img"></img>
+							<img src="<%=application.getInitParameter("imagedir")%>/${item.news_image}" class="c-fix f-l main_node_img" style="width:360px;height:225px"></img>
 							<a href="/Detail?id=${item.id}&type=1" style="text-decoration:none" class="c-fix f-l main_node_article f-yahei s-14">
 							<c:if test="${fn:length(item.news_abstract) > 30}">
 								${fn:substring(item.news_abstract, 0, 30)}...</a>
