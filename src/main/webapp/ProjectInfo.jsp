@@ -285,7 +285,39 @@ body{
 </c:forEach>
 
 </div>
+<!-- ****************************************************项目图片start***************************************************** -->
 
+<div class="area_bkg2" style="clear:both;" id="projectimages">项目图片</div>
+
+<div class="area_left"  style="width:900px;height:auto;">
+<div id="some_queue" style="width:700px;height:auto;"></div>
+ <input type="file" name="oneimage" id="oneimage"  multiple  style="width:700px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"/><a href="#" class="addimage">添加</a>
+ 
+<div id="imagelist">
+<%-- <div style="float:left;padding-left:40px;">
+  <c:forEach items="${projectImageList}" var="projectImage" varStatus="status">
+ <table>
+ <tr>
+<td><span style="padding-right:10px">${projectImage.index + 1}</span></td>
+<td><span style="padding-right:10px">${projectImage.name}</span></td>
+<td><span style="padding-right:10px">${projectImage.shunxu}</span></td>
+<td><span><a href="#" class="deletepeitao">删除</a></span></td>
+</tr>
+</table>
+</c:forEach>
+</div> --%>
+<div style='float:left;padding-left:40px;'>
+ <c:forEach items="${projectImageList}" var="projectImage" varStatus="status">
+<span style='padding-right:10px;'>${status.index + 1}</span>
+<span class=''>${projectImage.name}</span>
+<span style='padding-left: 30px;padding-right: 40px;'><a href='#' class='deletepeitao'>删除</a></span>
+</c:forEach>
+</div>
+</div>
+</div>
+
+
+<!-- ****************************************************项目图片end***************************************************** -->
 
 <!-- ****************************************************项目配套start***************************************************** -->
 
@@ -307,16 +339,24 @@ body{
 <!--   -->
  
 <div id="peitaolist">
-<div style="float:left;padding-left:40px;">
- <c:forEach items="${projectPeiTaoList}" var="projectpeitao" varStatus="status">
+<%-- <div style="float:left;padding-left:40px;">
+ <c:forEach items="${projectPeitaoList}" var="projectpeitao" varStatus="status">
  <table>
  <tr>
 <td><span style="padding-right:10px">${status.index + 1}</span></td>
 <td><span style="padding-right:10px">${projectpeitao.name}</span></td>
-<td><span style="padding-right:10px">${projectpeitao.view_shunxu}</span></td>
-<td><span><a href="#" style="padding-right:10px;" class="editpeitao">编辑</a><a href="#" class="deletepeitao">删除</a></span></td>
+<td><span style="padding-right:10px">${projectpeitao.shunxu}</span></td>
+<td><span><a href="#" class="deletepeitao">删除</a></span></td>
 </tr>
 </table>
+</c:forEach>
+
+</div> --%>
+<div style='float:left;padding-left:40px;'>
+ <c:forEach items="${projectPeitaoList}" var="projectpeitao" varStatus="status">
+<span style='padding-right:10px;'>${status.index + 1}</span>
+<span class=''>${projectpeitao.name}</span>
+<span style='padding-left: 30px;padding-right: 40px;'><a href='#' class='deletepeitao'>删除</a></span>
 </c:forEach>
 </div>
 </div>
@@ -671,6 +711,66 @@ $(function(){
 		var index=$(this).parent().parent().children().eq(0).text()-1;
 		//alert(index);
 		edititem=peitaolist[index];
+		$(this).parent().parent().hide();
+		//alert(edititem.name);
+		//$("#projectimage").val(edititem.name+"");
+		//alert(index+"index");
+		isedit=index;
+		}); 
+	
+});
+var imagelist='${projectImageListJson}';
+imagelist=eval("("+imagelist+")"); 
+var isedit=100;
+var edititem;
+var imagecount=imagelist.length;
+$(function(){
+	$.ajaxSetup({  
+	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
+	});  
+	$(".addpeitao").click(function(){
+		//alert(isedit);
+		if(isedit==100){
+			if($('#oneimage').val()==""){
+				alert("请选择文件！");
+				return false;}
+			var peitao={};
+			var filenames=$('#oneimage').val().split("\\");
+			var filename=filenames[filenames.length-1];
+			peitao["name"]=filename/* $('#projectimage').val() */;
+			peitao.shunxu=peitaocount+1;
+			/* peitao.view= */
+			imagelist.push(peitao);
+			UpladFile("oneimage");
+			$("#oneimage").val("");
+			$("#imagelist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++imagecount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' class='deletepeitao'>删除</a></span></div>")
+			/* <a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a> */
+			}
+		else{
+			//alert("edit");
+			/* var filenames=$('#projectimage').val().split("\\");
+			var filename=filenames[filenames.length-1]; */
+			edititem.name=$('#oneimage').val();
+			UpladFile("oneimage");
+			$("#oneimage").val("");
+			//alert($("#peitaolist").children().eq(isedit));
+			$("#imagelist").children().eq(++isedit).show();
+			isedit=100;
+			//$("#peitaolist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++peitaocount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
+			/*peitao.view= */
+			
+			}
+		});
+	$("#imagelist").on("click",".deletepeitao",function(){
+		imagelist.splice($(this).parent().parent().children().eq(0).text()-1,1);
+		$(this).parent().parent().empty();
+		imagecount--;
+		});
+	$("#imagelist").on("click",".editpeitao",function(){
+		
+		var index=$(this).parent().parent().children().eq(0).text()-1;
+		//alert(index);
+		edititem=imagelist[index];
 		$(this).parent().parent().hide();
 		//alert(edititem.name);
 		//$("#projectimage").val(edititem.name+"");
@@ -1221,7 +1321,7 @@ function savepro(){
 	    type: "POST",
  		async:false, 
 		dateType: "json",
-		data:{id:id,"project":JSON.stringify(projectlist),"huxinglist":JSON.stringify(huxinglist),"peitaolist":JSON.stringify(peitaolist),"fujinlist":JSON.stringify(fujinlist),"schoollist":JSON.stringify(schoollist),"holdingcostlist":JSON.stringify(holdingcostlist),"housetaxformlist":JSON.stringify(housetaxformlist)},
+		data:{id:id,"project":JSON.stringify(projectlist),"huxinglist":JSON.stringify(huxinglist),"imagelist":JSON.stringify(imagelist),"peitaolist":JSON.stringify(peitaolist),"fujinlist":JSON.stringify(fujinlist),"schoollist":JSON.stringify(schoollist),"holdingcostlist":JSON.stringify(holdingcostlist),"housetaxformlist":JSON.stringify(housetaxformlist)},
 		url: "/EditProject",
 		success:function(data){
 			data=eval("("+data+")");

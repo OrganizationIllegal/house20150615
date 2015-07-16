@@ -24,7 +24,7 @@ public class ZhiYeZhiDaoController {
 	@Autowired
 	private ZhiYeDao zhiYeDao;
 	
-	private static final int PAGE_SIZE = 6;
+	private static final int PAGE_SIZE = 10;
 	@RequestMapping({"/ZhiYeInfo"})
 	public String ZhiYeInfo(HttpServletRequest req, HttpServletResponse resp){
 		List<ZhiYeZhiDao> zhiYeList=zhiYeDao.selectZhiYe();   //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�

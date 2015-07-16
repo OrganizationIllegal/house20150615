@@ -129,7 +129,7 @@ function reLoad(){
                       <div class="panel-body">
                         <ul class="media-list" id="mainlist">
                         <c:forEach items="${resultList}" var="item" varStatus="status">
-                        	<c:if test="${status.index < 6}">
+                        	<c:if test="${status.index < 10}">
                         		<li class="media" >
                              <div class="media-left">
                                 <a href="/Detail?id=${item.id}&type=0">
@@ -197,7 +197,7 @@ function reLoad(){
                                 </a>
                               </div>
                               <div class="media-body" style="padding-left:10px;padding-top:5px;">
-                                <a href="/Detail?id=${item.id}&type=1"><div class="media-heading" style="font-size:13px;">${item.news_title}</div></a>
+                                <a href="/Detail?id=${item.id}&type=1"><div class="media-heading" style="font-size:13px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${item.news_title}</div></a>
                                 <div style="font-size:11px;">${item.news_people}</div>
                                 
                               </div>
@@ -224,7 +224,7 @@ function reLoad(){
                                 </a>
                               </div>
                               <div class="media-body" style="padding-left:10px;padding-top:5px;">
-                                <a href="/Detail?id=${item.id}&type=0"> <div class="media-heading" style="font-size:13px;">${item.title}</div></a>
+                                <a href="/Detail?id=${item.id}&type=0"> <div class="media-heading" style="font-size:13px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${item.title}</div></a>
                                 <div style="font-size:11px;">${item.fenlei}</div>
                                 
                               </div>
@@ -272,9 +272,9 @@ function reLoad(){
                 				});
                         },
                         error:function(a,b,c){
-								alert(a);
+								/* alert(a);
 								alert(b);
-								alert(c);
+								alert(c); */
                             }  
                     }); 
 			

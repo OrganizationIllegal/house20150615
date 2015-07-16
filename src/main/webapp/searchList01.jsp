@@ -15,9 +15,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- <script type="text/javascript" src="/js/jquery.js"></script>  -->
 		<script type="text/javascript" src="/js/jquery-1.11.2.js"></script> 
 		<!-- <script type="text/javascript" src="/js/list.js"></script> -->
-		<!--  <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+		 <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
   		 <link href="/css/pagination.css" rel="stylesheet">
-   	<!-- 	<script src="/bootstrap/js/bootstrap.min.js"></script> -->
+  	<script src="/bootstrap/js/bootstrap.min.js"></script>
    	<!-- 	<script src="js/jquery.pagination.js"></script> -->
    <script type="text/javascript" src="/ion.rangeSlider-2.0.10/js/ion-rangeSlider/ion.rangeSlider.min.js"></script> 
     <link href="/ion.rangeSlider-2.0.10/css/normalize.css" rel="stylesheet">

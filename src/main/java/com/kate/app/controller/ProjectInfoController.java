@@ -320,6 +320,36 @@ public class ProjectInfoController {
 			}
 		System.out.println("houseInfolist.length():"+houseInfolist.size());
 		System.out.println("houseInfolist2.length():"+houseInfolist2.size());
+		//项目图片
+	    String projectImage=req.getParameter("imagelist");
+		JSONArray imageArray = JSONArray.parseArray(projectImage);
+		List<ProjectDescImage> imagelist=new ArrayList<ProjectDescImage>();//存放要编辑的项
+		List<ProjectDescImage> imagelist2=new ArrayList<ProjectDescImage>();//存放新添加的项
+		for (int i=0;i<imageArray.size();i++){
+				JSONObject object = (JSONObject)imageArray.get(i); //对于每个json对象
+				ProjectDescImage e = (ProjectDescImage) JSONToObj(object.toString(), ProjectDescImage.class);
+			    if(e.getId()==0){
+			    	imagelist2.add(e);//添加
+			    }
+			    else{
+			    	imagelist.add(e);
+			    }
+			}
+		//项目配套
+		    String projectpeitao=req.getParameter("peitaolist");
+			JSONArray peitaoArray = JSONArray.parseArray(projectpeitao);
+			List<ProjectPeiTao> peitaolist=new ArrayList<ProjectPeiTao>();//存放要编辑的项
+			List<ProjectPeiTao> peitaolist2=new ArrayList<ProjectPeiTao>();//存放新添加的项
+			for (int i=0;i<peitaoArray.size();i++){
+					JSONObject object = (JSONObject)peitaoArray.get(i); //对于每个json对象
+					ProjectPeiTao e = (ProjectPeiTao) JSONToObj(object.toString(), ProjectPeiTao.class);
+				    if(e.getId()==0){
+				    	peitaolist2.add(e);//添加
+				    }
+				    else{
+				    	peitaolist.add(e);
+				    }
+				}
 		//附近配套
 		String fujinpeitao=req.getParameter("fujinlist");
 		JSONArray fujinArray = JSONArray.parseArray(fujinpeitao);
@@ -395,7 +425,7 @@ public class ProjectInfoController {
 		else{*/
 		//更新
 	    try {
-			int result=projectInputDao.EditProject(id, projectlist,houseInfolist,houseInfolist2,fujinpeitaoList,fujinpeitaoList2,fujinSchoolList,fujinSchoolList2,holdCostList,holdCostList2,houseTaxList,houseTaxList2);
+			int result=projectInputDao.EditProject(id, projectlist,houseInfolist,houseInfolist2,peitaolist,peitaolist2,imagelist,imagelist2,fujinpeitaoList,fujinpeitaoList2,fujinSchoolList,fujinSchoolList2,holdCostList,holdCostList2,houseTaxList,houseTaxList2);
 			System.out.println("result::"+result);
 			if(result==1){
 				json.put("flag", "1");
@@ -801,10 +831,14 @@ public class ProjectInfoController {
 		List<HouseInfo1> houseInfoList=projectInputDao.getHouseInfoByProNum(pronum);
 		req.setAttribute("houseInfoList", houseInfoList);
 		req.setAttribute("houseInfoListJson", ConvertJson.list2json(houseInfoList));
-		//根据项目编号获取项目配套
+		//根据项目编号获取项目图片
 		List <ProjectPeiTao> projectPeiTaoList =projectInputDao.getProjectpeiTaoByProNum(pronum);
 		req.setAttribute("projectPeitaoList", projectPeiTaoList);
 		req.setAttribute("projectPeitaoListJson", ConvertJson.list2json(projectPeiTaoList));
+		//根据项目编号获取项目配套
+		List <ProjectDescImage> projectImageList =projectInputDao.getProjectImageByProNum(pronum);
+		req.setAttribute("projectImageList", projectImageList);
+		req.setAttribute("projectImageListJson", ConvertJson.list2json(projectImageList));
 		//根据项目编号获取附近配套
 		List<FujinPeiTao> fujinPeitaoList=projectInputDao.getFujinPeiTaoByProNum(pronum);
 		req.setAttribute("fujinPeitaoList",fujinPeitaoList );

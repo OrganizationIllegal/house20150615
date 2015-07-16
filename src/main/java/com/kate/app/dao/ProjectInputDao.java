@@ -113,7 +113,8 @@ public class ProjectInputDao extends BaseDao {
 		}
 		return houseinfoList;
 	}
-	//根据项目项目编号获取户型及信息
+	
+	//根据项目项目编号获取项目配套
 		public List<ProjectPeiTao> getProjectpeiTaoByProNum(String proNum){
 			List<ProjectPeiTao> projectPeiTaoList=new ArrayList<ProjectPeiTao>();
 			try {
@@ -133,6 +134,26 @@ public class ProjectInputDao extends BaseDao {
 			}
 			return projectPeiTaoList;
 		}
+		//根据项目项目编号获取项目图片
+				public List<ProjectDescImage> getProjectImageByProNum(String proNum){
+					List<ProjectDescImage> projectImageList=new ArrayList<ProjectDescImage>();
+					try {
+						String sql ="select * from project_desc_image  where project_num =?";
+						PreparedStatement pstmt = con.prepareStatement(sql);
+						pstmt.setString(1,proNum );
+						ResultSet rs = pstmt.executeQuery();
+						while(rs.next()){
+							ProjectDescImage projectImage=new ProjectDescImage();
+							projectImage.setName(rs.getString("image_name"));
+							projectImage.setShunxu(rs.getInt("view_shunxu"));
+							projectImageList.add(projectImage);
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return projectImageList;
+				}
 		//根据项目项目编号获取附近配套
 				public List<FujinPeiTao> getFujinPeiTaoByProNum(String proNum){
 					List<FujinPeiTao> fujinPeiTaoList=new ArrayList<FujinPeiTao>();
@@ -154,6 +175,7 @@ public class ProjectInputDao extends BaseDao {
 					}
 					return fujinPeiTaoList;
 				}
+		
 				//根据项目项目编号获取附近学校
 				public List<FujinSchool> getFujinSchoolByProNum(String proNum){
 					List<FujinSchool> fujinSchoolList=new ArrayList<FujinSchool>();
@@ -1320,7 +1342,7 @@ public class ProjectInputDao extends BaseDao {
 	        }
 			
 		}
-		public int EditProject(int id,List<Project> projectList,List<HouseInfo1> houseInfolist,List<HouseInfo1>houseInfolist2,List<FujinPeiTao>fujinpeitaoList,List<FujinPeiTao>fujinpeitaoList2,List<FujinSchool>fujinSchoolList,List<FujinSchool>fujinSchoolList2,List<HoldCost> holdCostList,List<HoldCost>holdCostList2,List<HouseTax>houseTaxList,List<HouseTax>houseTaxList2) throws SQLException{
+		public int EditProject(int id,List<Project> projectList,List<HouseInfo1> houseInfolist,List<HouseInfo1>houseInfolist2,List<ProjectPeiTao>peitaolist,List<ProjectPeiTao>peitaolist2,List<ProjectDescImage>imagelist,List<ProjectDescImage>imagelist2,List<FujinPeiTao>fujinpeitaoList,List<FujinPeiTao>fujinpeitaoList2,List<FujinSchool>fujinSchoolList,List<FujinSchool>fujinSchoolList2,List<HoldCost> holdCostList,List<HoldCost>holdCostList2,List<HouseTax>houseTaxList,List<HouseTax>houseTaxList2) throws SQLException{
 			//项目信息参数接收
 			Project project=projectList.get(0);
 			String project_name=project.getProject_name();
@@ -1485,6 +1507,74 @@ public class ProjectInputDao extends BaseDao {
 				System.out.println("result22list.length:"+result22list.length);
 				for(int i=0;i<result22list.length;i++){
 					System.out.println("result22list"+i+":"+result22list[i]);
+				}
+				//项目配套编辑
+				 String sql8="update project_peitao_image set image_name=?,project_num=? where id=? ";
+		         pstmt = con.prepareStatement(sql8);
+		        for(int i=0;i<peitaolist.size();i++){
+		        	ProjectPeiTao projectPeiTao=peitaolist.get(i);
+		            String name=projectPeiTao.getName();
+		            int Id=projectPeiTao.getId();
+		            pstmt.setString(1, name);
+		            pstmt.setString(2, project_num);
+		            pstmt.setInt(3, Id);
+		            pstmt.addBatch();
+		        }
+				int[] result8list=pstmt.executeBatch();
+				System.out.println("result8list.length:"+result8list.length);
+				for(int i=0;i<result8list.length;i++){
+					System.out.println("result8list"+i+":"+result8list[i]);
+				}
+				//项目配套添加
+				 String sql88="insert into project_peitao_image(image_name,image_type,project_num)values(?,?,?) ";
+		         pstmt = con.prepareStatement(sql88);
+		        for(int i=0;i<peitaolist2.size();i++){
+		        	ProjectPeiTao projectPeiTao=peitaolist2.get(i);
+		            String name=projectPeiTao.getName();
+		            int Id=projectPeiTao.getId();
+		            pstmt.setString(1, name);
+		            pstmt.setString(2, "图片");
+		            pstmt.setString(3, project_num);
+		            pstmt.addBatch();
+		        }
+				int[] result88list=pstmt.executeBatch();
+				System.out.println("result88list.length:"+result88list.length);
+				for(int i=0;i<result88list.length;i++){
+					System.out.println("result88list"+i+":"+result88list[i]);
+				}
+				//项目图片编辑
+				 String sql9="update project_desc_image set image_name=?,project_num=? where id=? ";
+		         pstmt = con.prepareStatement(sql9);
+		        for(int i=0;i<imagelist.size();i++){
+		        	ProjectDescImage projectImage=imagelist.get(i);
+		            String name=projectImage.getName();
+		            int Id=projectImage.getId();
+		            pstmt.setString(1, name);
+		            pstmt.setString(2, project_num);
+		            pstmt.setInt(3, Id);
+		            pstmt.addBatch();
+		        }
+				int[] result9list=pstmt.executeBatch();
+				System.out.println("result9list.length:"+result9list.length);
+				for(int i=0;i<result9list.length;i++){
+					System.out.println("result9list"+i+":"+result9list[i]);
+				}
+				//项目图片添加
+				 String sql99="insert into project_desc_image values(image_name,image_type,project_num) values(?,?,?) ";
+		         pstmt = con.prepareStatement(sql99);
+		        for(int i=0;i<imagelist2.size();i++){
+		        	ProjectDescImage projectImage=imagelist2.get(i);
+		            String name=projectImage.getName();
+		            int Id=projectImage.getId();
+		            pstmt.setString(1, name);
+		            pstmt.setString(2, "图片");
+		            pstmt.setString(3, project_num);
+		            pstmt.addBatch();
+		        }
+				int[] result99list=pstmt.executeBatch();
+				System.out.println("result99list.length:"+result99list.length);
+				for(int i=0;i<result99list.length;i++){
+					System.out.println("result99list"+i+":"+result99list[i]);
 				}
 				//附近配套编辑
 				 String sql4="update near_peitao set market_type=?,market_name=?,market_distance=?,project_num=? where id=? ";
