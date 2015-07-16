@@ -1,8 +1,8 @@
-#Wed Jul 01 16:19:57 CST 2015
 eclipse.preferences.version=1
 encoding//src/main/java/com/kate/app/controller/AreaInfoController.java=UTF-8
 encoding//src/main/java/com/kate/app/controller/BrokerInfoController.java=UTF-8
 encoding//src/main/java/com/kate/app/controller/MyController.java=UTF-8
+encoding//src/main/java/com/kate/app/controller/ProjectInfoController.java=UTF-8
 encoding//src/main/java/com/kate/app/controller/SearchController.java=UTF-8
 encoding//src/main/java/com/kate/app/controller/SearchListController.java=UTF-8
 encoding//src/main/java/com/kate/app/controller/UserInfoController.java=UTF-8
