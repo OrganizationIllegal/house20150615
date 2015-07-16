@@ -43,8 +43,10 @@ body{
  		>
         <thead>
         <tr>
-            <th data-field="state" data-checkbox="true"></th>
-            <th data-field="id" data-sortable="true">ID</th>
+            <!-- <th data-field="state" data-checkbox="true"></th> -->
+            <th data-formatter="countFormatter"
+                ></th>
+            <th data-field="id" data-sortable="true" data-visible="false">ID</th>
             <th data-field="project_num"  data-searchable="true">项目编号</th>
             <th data-field="project_name"  data-searchable="true">项目名称</th>
             <th data-field="operate"
@@ -62,6 +64,7 @@ body{
         $add = $('#add'),
         selections = [];
 	var i=0;
+	var count=0;
     $(function () {
         $table.bootstrapTable({
             /* url:'/ProjectInfoList', */
@@ -112,6 +115,12 @@ body{
             '<a class="remove" href="javascript:void(0)" title="Remove">',
             '<i class="glyphicon glyphicon-remove"></i>',
             '</a>'
+        ].join('');
+    }
+    
+    function countFormatter(value, row, index) {
+        return [
+            ++i
         ].join('');
     }
     

@@ -43,10 +43,10 @@ body{
            >
         <thead>
         <tr>
-            <th data-field="state" data-checkbox="true"></th>
-            <th data-field="id" data-sortable="true"data-editable="true" style="display:none" >ID</th>
-            <th data-field="news_num" data-sortable="true" data-editable="true">新闻编号</th>
-            <th data-field="news_title" data-sortable="true" data-editable="true">新闻标题</th>
+            <th data-formatter="countFormatter"></th>
+            <th data-field="id" data-visible="false">ID</th>
+            <th data-field="news_num">新闻编号</th>
+            <th data-field="news_title">新闻标题</th>
             <th data-field="operate"
                 data-formatter="operateFormatter"
                 data-events="operateEvents">Item Operate</th>
@@ -62,6 +62,7 @@ body{
         $add = $('#add'),
         selections = [];
 	var i=0;
+	var count=0;
     $(function () {
         $table.bootstrapTable({
             height: getHeight()
@@ -133,6 +134,12 @@ body{
             '<a class="remove" href="javascript:void(0)" title="Remove">',
             '<i class="glyphicon glyphicon-remove"></i>',
             '</a>'
+        ].join('');
+    }
+    
+    function countFormatter(value, row, index) {
+        return [
+            ++count
         ].join('');
     }
     
