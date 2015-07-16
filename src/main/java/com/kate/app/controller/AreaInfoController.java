@@ -57,7 +57,7 @@ public class AreaInfoController extends BaseDao {
 	@Autowired
 	private AjaxDao ajaxDao;
 	
-	//区域中位数房价
+	//区域中位数房价   
 	private List<MiddlePrice2> middlepricebackendlistbefore;
 	//区域房价中位数走势
 	private List<AreaMiddle2> areamiddlelistbefore;
