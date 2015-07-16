@@ -44,7 +44,7 @@ body{
         <thead>
         <tr>
             <th data-field="state" data-checkbox="true"></th>
-            <th data-field="id" data-sortable="true"data-editable="true">ID</th>
+            <th data-field="id" data-sortable="true"data-editable="true" style="display:none" >ID</th>
             <th data-field="news_num" data-sortable="true" data-editable="true">新闻编号</th>
             <th data-field="news_title" data-sortable="true" data-editable="true">新闻标题</th>
             <th data-field="operate"
@@ -136,14 +136,14 @@ body{
         ].join('');
     }
     
-    window.operateEvents = {
+  /*   window.operateEvents = {
             'click .like': function (e, value, row, index) {
                 var id=row.id;
                 alert("id"+id);
                 window.open ('/Area/editNewsInfo?id='+id)
                 
             }},
-
+ */
     window.operateEvents = {
         'click .like': function (e, value, row, index) {
            // alert('You click like action, row: ' + JSON.stringify(row));
@@ -178,35 +178,35 @@ body{
             
         },
         'click .remove': function (e, value, row, index) {
-            //alert(row.id);
             var id = row.id;
-            
-             $.ajax({
-		 	    type: "POST",
-		 		data: {id: id},
-		 		dateType: "json",
-		 		url: "/deleteNewsBoke",
-		 		
-		 		success:function(data){
-		 			data=eval("("+data+")");
-		 			if(data.flag==0){
-		 				alert("删除成功");
-		 			}else{
-		 				alert("删除失败");
-		 			}
-		 			
-		 		},
-		 		error:function(){
-		 			alert("error")
-		 		}
-	 	});
+        	if (confirm("是否确认删除？")){
+        		  $.ajax({
+      		 	    type: "POST",
+      		 		data: {id: id},
+      		 		dateType: "json",
+      		 		url: "/deleteNewsBoke",
+      		 		
+      		 		success:function(data){
+      		 			data=eval("("+data+")");
+      		 			if(data.flag==0){
+      		 				alert("删除成功");
+      		 			}else{
+      		 				alert("删除失败");
+      		 			}
+      		 			
+      		 		},
+      		 		error:function(){
+      		 			alert("error");
+      		 		}
+      	 	});
+        		  $table.bootstrapTable('remove', {
+                      field: 'id',
+                      values: [row.id]
+                  });
+        	} else {
+        	    /* alert("您选择了不删除"); */
+        	}
            
-           
-            
-            $table.bootstrapTable('remove', {
-                field: 'id',
-                values: [row.id]
-            });
         }
     };
 

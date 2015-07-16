@@ -7,7 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>经纪人录入</title>
+<title>新闻博客录入</title>
 <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/base.css" />
 <link rel="stylesheet" type="text/css" href="css/main.css" />
@@ -52,7 +52,7 @@ body{
 <span class="area_span">新闻图片</span>
 <span style="float:right;"> 
 
-<input type="text" id="file1" value="${newsBoke.news_image}" style="width:619px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"><input type="button" id="file2" value="浏览...">
+<input type="text" id="file1" value="${newsBoke.news_image}" style="width:619px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"><button  id="file2" >浏览...</button>
 <input type="file" name="news_image" id="news_image"  value="${newsBoke.news_image}" style="width:677px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;display:none;"/><a href="#" class="uploadimg">上传</a></span>
 <script>
 $(function(){
@@ -143,7 +143,10 @@ $(".uploadimg").click(function(){
 	  }
 
   function clearAllInput(){
+	    var id=$("#id").val();
+	    CKEDITOR.instances.news_detail.setData(' ');//蓝色为控件名称
 		$("input").val("");
+		$("#id").val(id);
 		return false;
 	}
 </script>

@@ -662,6 +662,7 @@ public class ProjectInputDao extends BaseDao {
 						Statement stmt = con.createStatement();
 						ResultSet rs = stmt.executeQuery(sql);
 						while(rs.next()){
+							zhiYeZhiDao.setId(rs.getInt("id"));
 							zhiYeZhiDao.setZhiye_num(rs.getString("zhiye_num"));
 							zhiYeZhiDao.setFabu_people(rs.getString("fabu_people"));
 							zhiYeZhiDao.setFabu_time(rs.getTimestamp("fabu_time"));

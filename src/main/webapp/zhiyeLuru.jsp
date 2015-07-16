@@ -33,7 +33,7 @@ body{
 <span class="area_span">编号</span><span><input type="text" id="zhiye_num" name="zhiye_num" class="area_input"></span>
 </div>
 <div class="area_right">
-<span class="area_span">标题</span><span><input type="text" id="title" name="title" class="area_input"></span>
+<span class="area_span">标题</span><span><input type="text" id="biaoti" name="biaoti" class="area_input"></span>
 </div>
 <div class="area_left">
 <span class="area_span">发布人</span><span><input type="text" id="fabu_people" name="fabu_people" class="area_input"></span>
@@ -97,7 +97,7 @@ $(".uploadimg").click(function(){
 				return false;
 			}
 	  var zhiye_num=$("#zhiye_num").val();
-	  var title=$("#title").val();
+	  var biaoti=$("#biaoti").val();
 	  var fabu_people=$("#fabu_people").val();
 	  var fabu_time=$("#fabu_time").val();
 	  var fenlei=$("#fenlei").val();
@@ -108,7 +108,7 @@ $(".uploadimg").click(function(){
 	  //alert(detail);
 	  $.ajax({
 	 	    type: "POST",
-	 		data: { zhiye_num : zhiye_num,title : title,fabu_people : fabu_people,fabu_time : fabu_time,fenlei : fenlei,zhiye_abstract : zhiye_abstract,image : image,detail : detail},
+	 		data: { zhiye_num : zhiye_num,title : biaoti,fabu_people : fabu_people,fabu_time : fabu_time,fenlei : fenlei,zhiye_abstract : zhiye_abstract,image : image,detail : detail},
 	 		dataType: "json",
 	 		url: "/inputZhiYe",
 	 		success:function(data){

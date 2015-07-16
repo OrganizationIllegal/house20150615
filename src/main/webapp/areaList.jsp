@@ -156,10 +156,9 @@ body{
             window.open ('/AreaEdit?id='+id);
         },
         'click .remove': function (e, value, row, index) {
-            //alert(row.id);
-            //alert(row.area_num);
             var id = row.id;
             var area_num=row.area_num;
+            if(confirm("是否确认删除？")){
              $.ajax({
 		 	    type: "POST",
 		 		data: {id: id,area_num: area_num},
@@ -181,6 +180,10 @@ body{
                 field: 'id',
                 values: [row.id]
             });
+            }
+            else{
+            	
+            }
         }
     };
 

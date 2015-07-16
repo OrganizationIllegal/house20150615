@@ -181,7 +181,7 @@ body{
         'click .remove': function (e, value, row, index) {
             //alert(row.id);
             var id = row.id;
-            
+            if(confirm("是否确认删除？")){
              $.ajax({
 		 	    type: "POST",
 		 		data: {id: id},
@@ -208,6 +208,9 @@ body{
                 field: 'id',
                 values: [row.id]
             });
+            }else{
+            	
+            }
         }
     };
 

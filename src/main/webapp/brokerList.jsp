@@ -26,7 +26,7 @@ body{
 </head>
 <body>
 <div style="width:900px;margin:25px auto;">
-<div class="area_bkg1">当前位置:新闻博客列表</div>
+<div class="area_bkg1">当前位置:经纪人列表</div>
  <table id="table"
            data-url="/brokerList"
             data-toggle='table'
@@ -135,13 +135,13 @@ body{
         ].join('');
     }
     
-    window.operateEvents = {
+ /*    window.operateEvents = {
             'click .like': function (e, value, row, index) {
                 var id=row.id;
                 alert("id"+id);
                 window.open ('/Area/editNewsInfo?id='+id)
                 
-            }},
+            }}, */
 
     window.operateEvents = {
         'click .like': function (e, value, row, index) {
@@ -179,7 +179,7 @@ body{
         'click .remove': function (e, value, row, index) {
            //// alert(row.id);
             var id = row.id;
-            
+            if(confirm("是否确认删除？")){
              $.ajax({
 		 	    type: "POST",
 		 		data: {id: id},
@@ -201,13 +201,14 @@ body{
 		 			alert("error")
 		 		}
 	 	});
-           
-           
-            
             $table.bootstrapTable('remove', {
                 field: 'id',
                 values: [row.id]
             });
+            }
+            else{
+            	
+            }
         }
     };
 

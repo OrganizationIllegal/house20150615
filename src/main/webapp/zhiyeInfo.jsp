@@ -7,7 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>经纪人录入</title>
+<title>置业指导录入</title>
 <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/base.css" />
 <link rel="stylesheet" type="text/css" href="css/main.css" />
@@ -52,7 +52,7 @@ body{
 <span class="area_span">图片</span>
 <span style="float:right;"> 
 
-<input type="text" id="file1" value="${zhiYeZhiDao.image}" style="width:619px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"><input type="button" id="file2" value="浏览...">
+<input type="text" id="file1" value="${zhiYeZhiDao.image}" style="width:619px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"><button id="file2" >浏览...</button>
 <input type="file" name="image" id="image" value="${zhiYeZhiDao.image}" style="width:677px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;display:none;"/><a href="#" class="uploadimg">上传</a></span>
 <script>
 $(function(){
@@ -112,6 +112,7 @@ $(".uploadimg").click(function(){
 			return false;
 		}
 	  var id=$("#id").val();
+	  alert("id"+id);
 	  var zhiye_num=$("#zhiye_num").val();
 	  var title=$("#title").val();
 	  var fabu_people=$("#fabu_people").val();
@@ -129,9 +130,9 @@ $(".uploadimg").click(function(){
 	 		url: "/EditZhiYe",
 	 		success:function(data){
 	 			if(data.flag == 1){
-	 				alert("添加成功！");
+	 				alert("更新成功！");
 	 			}else if(data.flag == 0){
-	 				alert("添加失败！");
+	 				alert("更新失败！");
 	 			}
 	 		},
 	 		error:function(){
@@ -140,7 +141,10 @@ $(".uploadimg").click(function(){
 	 	});
 	  }
   function clearAllInput(){
+	    var id=$("#id").val();
+	    CKEDITOR.instances.detail.setData(' ');//蓝色为控件名称
 		$("input").val("");
+		$("#id").val(id);
 		return false;
 	}
 </script>

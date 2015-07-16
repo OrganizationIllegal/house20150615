@@ -60,7 +60,7 @@ body{
 <div class="c-fix" style="padding-left:35px;">
 <span class="area_span">经纪人图片</span>
 <span style="float:right;"> 
-<input type="text" id="file1" value="${broker.broker_img}" style="width:619px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"><input type="button" id="file2" value="浏览...">
+<input type="text" id="file1" value="${broker.broker_img}" style="width:619px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"><button id="file2" >浏览...。</button>
 <input type="file" name="broker_img" id="broker_img" value="${broker.broker_img}" style="width:677px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;display:none;"/><a class="addBrokerImage" href="#">上传</a></span>
 <script>
 $(function(){
@@ -207,7 +207,13 @@ CKEDITOR.replace( 'introduction' );
 
 
 <script type="text/javascript">
-
+$('#broker_experience').blur(function() {
+	if(isNaN($('#broker_experience').val())){
+		alert("请输入数字！");
+		$("#broker_experience").focus();
+		return false;
+	}
+	});
 $(function(){
 	$.ajaxSetup({  
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
@@ -434,7 +440,10 @@ function saveBroker(){
 }
 
 function clearAllInput(){
+	CKEDITOR.instances.introduction.setData(' ');//蓝色为控件名称
+	var id=$("#id").val();
 	$("input").val("");
+	$("#id").val(id);
 	typelist=[];
 	arealist=[];
 	$("#typelist").empty();

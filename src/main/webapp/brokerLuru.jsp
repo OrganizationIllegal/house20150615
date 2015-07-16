@@ -214,7 +214,7 @@ $(function(){
 			area=DataDeal.formToJson(data= decodeURIComponent($("#area").serialize(),true));
 			area=eval("("+area+")");
 			arealist.push(area);
-			$('#arealist').append("<div><div class='area_left3'><span style='display:none;'>"+(++areacount)+"</span><span class='area_span'>"+arealist[areacount-1].area_code+"</span><span class='area_span'>"+arealist[areacount-1].view_shunxu+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editarea'>编辑</a></span><span class='area_span5'><a href='#' class='deletearea'>删除</a></span></div></div>");
+			$('#arealist').append("<div><div class='area_left3'><span class='area_span'>"+(++areacount)+"</span><span class='area_span'>"+arealist[areacount-1].area_code+"</span><span class='area_span'>"+arealist[areacount-1].view_shunxu+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editarea'>编辑</a></span><span class='area_span5'><a href='#' class='deletearea'>删除</a></span></div></div>");
 			$("#area input").each(function(){
 				$(this).val("");
 				});
@@ -228,7 +228,7 @@ $(function(){
 				});
 			arealist[areaedit]=areaedititem;
 			//alert($("#arealist").children().eq(areaedit));
-			$("#arealist").children().eq(areaedit).html("<div class='area_left3'><span style='display:none;'>"+(areaedit+1)+"</span><span class='area_span'>"+arealist[areaedit].area_code+"</span><span class='area_span'>"+arealist[areaedit].view_shunxu+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editarea'>编辑</a></span><span class='area_span5'><a href='#' class='deletearea'>删除</a></span></div>").show();
+			$("#arealist").children().eq(areaedit).html("<div class='area_left3'><span class='area_span'>"+(areaedit+1)+"</span><span class='area_span'>"+arealist[areaedit].area_code+"</span><span class='area_span'>"+arealist[areaedit].view_shunxu+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editarea'>编辑</a></span><span class='area_span5'><a href='#' class='deletearea'>删除</a></span></div>").show();
 			areaedit=100;
 			}
 		});
@@ -267,7 +267,7 @@ $(function(){
 			type=DataDeal.formToJson(data= decodeURIComponent($("#type").serialize(),true));
 			type=eval("("+type+")");
 			typelist.push(type);
-			$('#typelist').append("<div><div class='area_left3'><span style='display:none;'>"+(++typecount)+"</span><span class='area_span'>"+typelist[typecount-1].interested_num+"</span><span class='area_span'>"+typelist[typecount-1].view_shunxu2+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edittype'>编辑</a></span><span class='area_span5'><a href='#' class='deletetype'>删除</a></span></div></div>");
+			$('#typelist').append("<div><div class='area_left3'><span class='area_span'>"+(++typecount)+"</span><span class='area_span'>"+typelist[typecount-1].interested_num+"</span><span class='area_span'>"+typelist[typecount-1].view_shunxu2+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edittype'>编辑</a></span><span class='area_span5'><a href='#' class='deletetype'>删除</a></span></div></div>");
 			$("#type input").each(function(){
 				$(this).val("");
 				});
@@ -281,7 +281,7 @@ $(function(){
 				});
 			typelist[typeedit]=typeedititem;
 			//alert($("#typelist").children().eq(typeedit));
-			$("#typelist").children().eq(typeedit).html("<div class='area_left3'><span style='display:none;'>"+(typeedit+1)+"</span><span class='area_span'>"+typelist[typeedit].interested_num+"</span><span class='area_span'>"+typelist[typeedit].view_shunxu2+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edittype'>编辑</a></span><span class='area_span5'><a href='#' class='deletetype'>删除</a></span></div>").show();
+			$("#typelist").children().eq(typeedit).html("<div class='area_left3'><span class='area_span'>"+(typeedit+1)+"</span><span class='area_span'>"+typelist[typeedit].interested_num+"</span><span class='area_span'>"+typelist[typeedit].view_shunxu2+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edittype'>编辑</a></span><span class='area_span5'><a href='#' class='deletetype'>删除</a></span></div>").show();
 			typeedit=100;
 			}
 		});
@@ -326,7 +326,13 @@ var DataDeal = {
 
 
 <script>
-
+$('#broker_experience').blur(function() {
+	if(isNaN($('#broker_experience').val())){
+		alert("请输入数字！");
+		$("#broker_experience").focus();
+		return false;
+	}
+	});
 function saveBroker(){
 	var broker;
 	broker=DataDeal.formToJson(data= decodeURIComponent($("#brokerinfo").serialize(),true));
@@ -343,7 +349,13 @@ function saveBroker(){
 		data:{"brokerinfo":JSON.stringify(broker),"arealist":JSON.stringify(arealist),"typelist":JSON.stringify(typelist)},
 		url: "/AddBrokerInfo",
 		success:function(data){
-			alert("添加成功")
+			data=eval("("+data+")");
+			if(data.flag==1){
+				alert("添加成功");
+			}else{
+				alert("添加失败");
+			}
+			
 		},
 		error:function(){
 			alert("error")
@@ -352,11 +364,14 @@ function saveBroker(){
 }
 
 function clearAllInput(){
+	var id=$("#id").val();
 	$("input").val("");
+	$("#id").val(id);
+    CKEDITOR.instances.detail.setData(' ');//蓝色为控件名称
 	typelist=[];
 	arealist=[];
-	$("#typelist")。empty();
-	$("#arealist")。empty();
+	$("#typelist").empty();
+	$("#arealist").empty();
 	return false;
 }
 </script>

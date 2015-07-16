@@ -152,6 +152,7 @@ public class BrokerInfoController {
 //经纪人录入
 		@RequestMapping({ "/AddBrokerInfo" })
 		public void AddBrokerInfo(HttpServletRequest req, HttpServletResponse resp){
+			JSONObject json=new JSONObject();
 			String brokerlist=req.getParameter("brokerinfo");
 			String arealist=req.getParameter("arealist");
 			String intelist=req.getParameter("typelist");
@@ -176,10 +177,21 @@ public class BrokerInfoController {
 			}
 		    try {
 				int result=projectInputDao.InsertBroker(broker,BrokerServicelist,BrokerTypelist);
+				if(result==1){
+					json.put("flag", "1");
+				}
+				else{
+					json.put("flag", "0");
+				}
 				System.out.println("result::"+result);
 		    } catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
+			}
+		    try{
+				writeJson(json.toJSONString(),resp);
+			}catch(Exception e){
+				e.printStackTrace();
 			}
 	}
 	public void writeJson(String json, HttpServletResponse response)throws Exception{
