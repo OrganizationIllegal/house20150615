@@ -618,6 +618,42 @@ public class ProjectInfoController {
 				e.printStackTrace();
 		}
 	}
+	@RequestMapping({ "/ShowProject" })
+	public void ShowProject(HttpServletRequest req,HttpServletResponse resp){
+		JSONObject json = new JSONObject();
+		int id=Integer.parseInt(req.getParameter("id"));
+		int result=projectInputDao.ShowProject(id);
+	    if(result==1){
+	    	json.put("flag", "1");
+		}
+	    else{
+	    	json.put("flag", "0");
+	    }
+		try{
+			 PrintWriter out = resp.getWriter();
+			 out.print(json);
+			}catch(Exception e){
+				e.printStackTrace();
+		}
+	}
+	@RequestMapping({ "/UnShowProject" })
+	public void UnShowProject(HttpServletRequest req,HttpServletResponse resp){
+		JSONObject json = new JSONObject();
+		int id=Integer.parseInt(req.getParameter("id"));
+		int result=projectInputDao.UnShowProject(id);
+	    if(result==1){
+	    	json.put("flag", "1");
+		}
+	    else{
+	    	json.put("flag", "0");
+	    }
+		try{
+			 PrintWriter out = resp.getWriter();
+			 out.print(json);
+			}catch(Exception e){
+				e.printStackTrace();
+		}
+	}
 	//删除学校信息
 	@RequestMapping({ "/deleteSchool" })
 	public void DeleteSchool(HttpServletRequest req,HttpServletResponse resp){

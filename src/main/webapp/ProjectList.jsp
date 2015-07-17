@@ -12,8 +12,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="/bootstrap/css/bootstrap-table.css" rel="stylesheet">
 
 
-<!-- <script src="/jquery.min.js"></script> -->
-<!-- <script src="/bootstrap/js/bootstrap.min.js"></script> -->
+ <script src="/jquery.min.js"></script> 
+ <script src="/bootstrap/js/bootstrap.min.js"></script> 
 <script src="/bootstrap/js/bootstrap-table.js"></script>
 
 
@@ -49,6 +49,7 @@ body{
             <th data-field="id" data-sortable="true" data-visible="false">ID</th>
             <th data-field="project_num"  data-searchable="true">项目编号</th>
             <th data-field="project_name"  data-searchable="true">项目名称</th>
+            <th data-field="isSeen"  data-formatter="showFormatter" data-events="operateEvents">是否上架</th>
             <th data-field="operate"
                 data-formatter="operateFormatter"
                 data-events="operateEvents">Item Operate</th>
@@ -124,13 +125,24 @@ body{
         ].join('');
     }
     
-    window.operateEvents = {
+    function showFormatter(value, row, index) {
+       /*  return [
+            ++i
+        ].join(''); */
+        if(value==0){
+        	return '<a class="show" href="javascript:void(0)" title="show">上架</a>';
+        }
+        else if(value==1){
+        	return '<a class="unshow" href="javascript:void(0)" title="show">已上架</a>';
+        }
+    }
+   /*  window.operateEvents = {
             'click .like': function (e, value, row, index) {
                 var id=row.id;
                 alert("id"+id);
                 window.open ('/Area/editNewsInfo?id='+id)
                 
-            }},
+            }}, */
 
     window.operateEvents = {
         'click .like': function (e, value, row, index) {
@@ -146,7 +158,6 @@ body{
 		 		data: {id: id},
 		 		dateType: "json",
 		 		url: "/deleteProject",
-		 		
 		 		success:function(data){
 		 			alert("删除成功")
 		 		},
@@ -162,6 +173,74 @@ body{
             else{
             	
             }
+        },
+        'click .show': function (e, value, row, index) {
+            var id=row.id;
+            if(confirm("是否确定上架该项目？")){
+                $.ajax({
+   		 	    type: "POST",
+   		 		data: {id: id},
+   		 		dateType: "json",
+   		 		url: "/ShowProject",
+   		 		
+   		 		success:function(data){
+   		 		    data=eval("("+data+")");
+   		 		    if(data.flag==1){
+   		 		       alert("上架成功");
+   		 		    }else if(data.flag==0){
+   		 		      alert("上架失败");
+   		 		    }
+   		 			
+   		 		},
+   		 		error:function(){
+   		 			alert("error")
+   		 		}
+   	 		});
+               $table.bootstrapTable('show', {
+                   field: 'id',
+                   values: [row.id]
+               });
+               }
+               else{
+               	
+               }
+            
+        },
+        'click .unshow': function (e, value, row, index) {
+            var id=row.id;
+            if(confirm("是否确定下架该项目？")){
+                $.ajax({
+   		 	    type: "POST",
+   		 		data: {id: id},
+   		 		dateType: "json",
+   		 		url: "/UnShowProject",
+   		 		
+   		 		success:function(data){
+   		 		   data=eval("("+data+")");
+  		 		    if(data.flag==1){
+  		 		       alert("下架成功");
+  		 		    row.isSeen="<a class='show' href='javascript:void(0)' title='show'>上架</a>";
+  		 		    alert(index);
+  		 		 	$table.bootstrapTable('updateRow', {index: index, row: row});
+  		 		    alert(row.isSeen);
+  		 		    }else if(data.flag==0){
+  		 		      alert("下架失败");
+  		 		    }
+   		 		},
+   		 		error:function(){
+   		 			alert("error")
+   		 		}
+   	 		});
+               $table.bootstrapTable('unshow', {
+                   field: 'id',
+                   values: [row.id]
+               });
+               }
+               else{
+               	
+               }
+            
+           
         }
     };
 

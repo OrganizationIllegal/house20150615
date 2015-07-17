@@ -243,7 +243,7 @@ public class ProjectInputDao extends BaseDao {
 	public JSONArray selectProjectList(){
 		JSONArray jsonArray=new JSONArray();
 		try {
-			String sql = " select t.id,t.project_num,t.project_name from house_project t";
+			String sql = " select t.id,t.project_num,t.project_name,t.isSeen from house_project t";
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()){
@@ -251,6 +251,7 @@ public class ProjectInputDao extends BaseDao {
 				obj.put("id", rs.getInt("id"));
 				obj.put("project_num", rs.getString("project_num"));
 				obj.put("project_name", rs.getString("project_name"));
+				obj.put("isSeen", rs.getInt("isSeen"));
 				jsonArray.add(obj);
 			}
 		} catch (Exception e) {
@@ -601,6 +602,32 @@ public class ProjectInputDao extends BaseDao {
 		}
 		return houseProject;
 	} 
+	//上架项目
+			public int ShowProject(int id){
+				int exeResult =0;
+				try {
+					String sql = "update house_project set isSeen=1 where id="+id;
+					PreparedStatement pstmt = con.prepareStatement(sql);
+				    exeResult = pstmt.executeUpdate();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return exeResult;
+			}
+	//下架项目
+			public int UnShowProject(int id){
+				int exeResult =0;
+				try {
+					String sql = "update house_project set isSeen=0 where id="+id;
+					PreparedStatement pstmt = con.prepareStatement(sql);
+				    exeResult = pstmt.executeUpdate();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return exeResult;
+			}
 	//根据id找学校信息
 		public SchoolInfo selectSchoolInfo(int id){
 			JSONArray jsonArray=new JSONArray();
@@ -1144,7 +1171,7 @@ public class ProjectInputDao extends BaseDao {
 			try{
 				con.setAutoCommit(false);
 				//项目添加
-				String sql1= " insert into house_project(project_name, project_nation, project_address, project_price_qi, project_type, project_sales_remain,  project_finish_time, project_desc, project_city, project_house_type, project_high, project_lan_cn, project_lan_en, project_num, project_vedio, project_zhou, gps, return_money, walk_num, mianji, project_min_price, project_high_price, tuijiandu, housePrice_update_time,area_num, min_area, max_area,  developer_id_name) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				String sql1= " insert into house_project(project_name, project_nation, project_address, project_price_qi, project_type, project_sales_remain,  project_finish_time, project_desc, project_city, project_house_type, project_high, project_lan_cn, project_lan_en, project_num, project_vedio, project_zhou, gps, return_money, walk_num, mianji, project_min_price, project_high_price, tuijiandu, housePrice_update_time,area_num, min_area, max_area,  developer_id_name,isSeen) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			    pstmt = con.prepareStatement(sql1);
 				pstmt.setString(1, project_name);
 				pstmt.setString(2, project_nation);
@@ -1176,6 +1203,7 @@ public class ProjectInputDao extends BaseDao {
 				pstmt.setInt(26, min_area);
 				pstmt.setInt(27, max_area);
 				pstmt.setString(28, developer_num);
+				pstmt.setInt(29, 0);//0表示下架，1表示上架，默认是不显示
 				int result1 = pstmt.executeUpdate();
 				System.out.println("result1:"+result1);
 			     //户型及价格
