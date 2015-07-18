@@ -649,6 +649,8 @@ public class ProjectInputDao extends BaseDao {
 					schoolInfo.setNot_en_stu_bili(rs.getInt("not_en_stu_bili"));
 					schoolInfo.setSchool_image(rs.getString("school_image"));
 					schoolInfo.setSchool_desc(rs.getString("school_desc"));
+					schoolInfo.setNation(rs.getString("nation"));
+					schoolInfo.setCity(rs.getString("city"));
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -670,6 +672,7 @@ public class ProjectInputDao extends BaseDao {
 							developerInfo.setDeveloper_name(rs.getString("developer_name"));
 							developerInfo.setDeveloper_logo(rs.getString("developer_logo"));
 							developerInfo.setDeveloper_desc(rs.getString("developer_desc"));
+							developerInfo.setNation(rs.getString("nation"));
 						}
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
@@ -816,10 +819,10 @@ public class ProjectInputDao extends BaseDao {
 		
 	
 	//瀛︽牎淇℃伅Add
-	public boolean InsertSchoolInfo(String school_name,String school_ranking,String school_type,int school_total,int teacher_total,String school_position,String gps,String net_info,int not_en_stu_bili,String school_image,String school_desc){
+	public boolean InsertSchoolInfo(String school_name,String school_ranking,String school_type,int school_total,int teacher_total,String school_position,String gps,String net_info,int not_en_stu_bili,String school_image,String school_desc,String nation,String city){
 		boolean flag=true;
 		try {
-			String sql = "insert into school_info(school_name,school_ranking,school_type,student_total,teacher_total, school_position,gps,net_info,not_en_stu_bili,school_image,school_desc) values(?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into school_info(school_name,school_ranking,school_type,student_total,teacher_total, school_position,gps,net_info,not_en_stu_bili,school_image,school_desc,nation,city) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, school_name);
 			pstmt.setString(2, school_ranking);
@@ -832,6 +835,8 @@ public class ProjectInputDao extends BaseDao {
 			pstmt.setInt(9, not_en_stu_bili);
 			pstmt.setString(10, school_image);
 			pstmt.setString(11, school_desc);
+			pstmt.setString(12, nation);
+			pstmt.setString(13, city);
 			int exeResult = pstmt.executeUpdate();
 			if(exeResult == 0){
 				flag = false;
@@ -844,10 +849,10 @@ public class ProjectInputDao extends BaseDao {
 		
 	}
 	//瀛︽牎淇℃伅Update
-		public boolean UpdateSchoolInfo(int id,String school_name,String school_ranking,String school_type,int school_total,int teacher_total,String school_position,String gps,String net_info,int not_en_stu_bili,String school_image,String school_desc){
+		public boolean UpdateSchoolInfo(int id,String school_name,String school_ranking,String school_type,int school_total,int teacher_total,String school_position,String gps,String net_info,int not_en_stu_bili,String school_image,String school_desc,String nation,String city){
 			boolean flag=true;
 			try {
-				String sql = "update school_info set school_name=?,school_ranking=?,school_type=?,student_total=?,teacher_total=?, school_position=?,gps=?,net_info=?,not_en_stu_bili=?,school_image=?,school_desc=? where id=?";
+				String sql = "update school_info set school_name=?,school_ranking=?,school_type=?,student_total=?,teacher_total=?, school_position=?,gps=?,net_info=?,not_en_stu_bili=?,school_image=?,school_desc=?,nation=?,city=? where id=?";
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, school_name);
 				pstmt.setString(2, school_ranking);
@@ -860,7 +865,9 @@ public class ProjectInputDao extends BaseDao {
 				pstmt.setInt(9, not_en_stu_bili);
 				pstmt.setString(10, school_image);
 				pstmt.setString(11, school_desc);
-				pstmt.setInt(12, id);
+				pstmt.setString(12, nation);
+				pstmt.setString(13, city);
+				pstmt.setInt(14, id);
 				int exeResult = pstmt.executeUpdate();
 				if(exeResult == 0){
 					flag = false;
@@ -873,15 +880,16 @@ public class ProjectInputDao extends BaseDao {
 			
 		}
 	//寮�鍙戝晢淇℃伅Add
-		public boolean InsertDeveloperInfo(String developer_name,String developer_logo,String developer_desc,String developer_num){
+		public boolean InsertDeveloperInfo(String developer_name,String developer_logo,String developer_desc,String developer_num,String nation){
 			boolean flag=true;
 			try {
-				String sql = "insert into developer_info(developer_name,developer_logo,developer_desc,developer_num) values(?,?,?,?)";
+				String sql = "insert into developer_info(developer_name,developer_logo,developer_desc,developer_num,nation) values(?,?,?,?,?)";
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, developer_name);
 				pstmt.setString(2, developer_logo);
 				pstmt.setString(3, developer_desc);
 				pstmt.setString(4, developer_num);
+				pstmt.setString(5, nation);
 				int exeResult = pstmt.executeUpdate();
 				if(exeResult == 0){
 					flag = false;
@@ -893,16 +901,17 @@ public class ProjectInputDao extends BaseDao {
 			return flag;
 		}
 		//寮�鍙戝晢淇℃伅update
-				public boolean UpdateDeveloperInfo(int id,String developer_name,String developer_logo,String developer_desc,String developer_num){
+				public boolean UpdateDeveloperInfo(int id,String developer_name,String developer_logo,String developer_desc,String developer_num,String nation){
 					boolean flag=true;
 					try {
-						String sql = "update  developer_info  set developer_name=?,developer_logo=?,developer_desc=?,developer_num=? where id=?";
+						String sql = "update  developer_info  set developer_name=?,developer_logo=?,developer_desc=?,developer_num=?,nation=? where id=?";
 						PreparedStatement pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, developer_name);
 						pstmt.setString(2, developer_logo);
 						pstmt.setString(3, developer_desc);
 						pstmt.setString(4, developer_num);
-						pstmt.setInt(5, id);
+						pstmt.setString(5, nation);
+						pstmt.setInt(6, id);
 						int exeResult = pstmt.executeUpdate();
 						if(exeResult == 0){
 							flag = false;

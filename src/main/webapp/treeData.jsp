@@ -336,7 +336,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		           $("#showlist").load("brokerList.jsp");
 		           }
 	           else if(node.text=="新闻博客录入"){
-		           $("#showlist").load("newsLuru.jsp");
+		           $("#showlist").load("/NewsInput");
 		           }
 	           else if(node.text=="新闻博客列表"){
 		           $("#showlist").load("newsList.jsp");

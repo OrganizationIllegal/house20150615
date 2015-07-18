@@ -57,6 +57,7 @@ public class AreaInfoController extends BaseDao {
 	@Autowired
 	private AjaxDao ajaxDao;
 	
+	
 	//区域中位数房价   
 	private List<MiddlePrice2> middlepricebackendlistbefore;
 	//区域房价中位数走势
@@ -283,6 +284,13 @@ public class AreaInfoController extends BaseDao {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	@RequestMapping({ "/NewsInput" })
+	public String inputNewsBoke2(HttpServletRequest req, HttpServletResponse resp){
+		List<String> fenleiList = zhiYeDao.newsBokeFenlei();
+		req.setAttribute("fenleiList",fenleiList);
+		return "/newsLuru.jsp";		
 	}
 	//新闻博客更新
 	@RequestMapping({ "/EditNewsBoke" })

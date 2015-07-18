@@ -231,9 +231,9 @@ body{
 </select> -->
 <select data-placeholder="请选择..." class="chosen-select" id="project_type2" name="project_type2" style="width:220px;" tabindex="2">
  	 <option value=""></option>
-  	 <option >公寓</option>
-     <option >别墅</option>
-     <option>联排别墅</option>
+  	 <option value="公寓">公寓</option>
+     <option value="别墅">别墅</option>
+     <option value="联排别墅">联排别墅</option>
  </select>
 </span>
 </div>
@@ -1010,8 +1010,16 @@ $(function(){
 		//$("#projectimage").val(edititem.name+"");
 		//alert(index+"index");
 		middletrendedit=index;
-		$("#project_type2").val(middletrendedititem.project_type2||middletrendedititem.project_type);
-		$("#view_shunxu2").val(middletrendedititem.view_shunxu2||middletrendedititem.view_shunxu);
+		/* $("#project_type2").val(middletrendedititem.project_type2||middletrendedititem.project_type);
+		$("#view_shunxu2").val(middletrendedititem.view_shunxu2||middletrendedititem.view_shunxu); */
+		var selectCount = document.getElementById("project_type2");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==middletrendedititem.project_type2){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#project_type2').trigger('chosen:updated');
+		$("#view_shunxu2").val(middletrendedititem.view_shunxu2);
 		$("#heng2").val(middletrendedititem.heng2||middletrendedititem.heng);
 		$("#zong2").val(middletrendedititem.zong2||middletrendedititem.zong);
 		$("#middle_zoushi_datasource").val(middletrendedititem.middle_zoushi_datasource);
