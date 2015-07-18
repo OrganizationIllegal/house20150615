@@ -171,12 +171,13 @@ public class AjaxService {
 			obj.put("project_price_qi", data.getProject_price_qi()==null?"":data.getProject_price_qi());
 			obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
 			obj.put("project_sales_remain", data.getProject_sales_remain());
-			String timeResule = null;
-			Timestamp time = data.getProject_finish_time();
+			/*String timeResule = null;*/
+		/*	Timestamp time = data.getProject_finish_time();
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 			if(time!=null){
 				timeResule = df.format(time);
-			}
+			}*/
+			String timeResule = data.getProject_finish_time();
 			obj.put("project_finish_time", timeResule==null?"":timeResule);
 			
 			
@@ -307,13 +308,13 @@ public class AjaxService {
 		for(HouseProject data : list){
 			JSONObject obj = new JSONObject();
 			String project_num =  data.getProject_num();
-			String timeResule = null;
-			Timestamp time = data.getProject_finish_time();
+			/*String timeResule = null;*/
+			/*Timestamp time = data.getProject_finish_time();
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 			if(time!=null){
 				timeResule = df.format(time);
-			}
-			
+			}*/
+			String timeResule =data.getProject_finish_time();
 			obj.put("id", data.getId());    //椤圭洰id
 			obj.put("project_num", project_num==null?"":project_num);    //閿熸枻鎷风洰閿熸枻鎷烽敓锟�
 			obj.put("project_finish_time", timeResule==null?"":timeResule);

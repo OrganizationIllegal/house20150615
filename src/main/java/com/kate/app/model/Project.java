@@ -1,6 +1,5 @@
 package com.kate.app.model;
 
-import java.sql.Timestamp;
 
 public class Project {
 	private int id;
@@ -8,7 +7,8 @@ public class Project {
 	private String project_nation;//?????
 	private String project_address;//?????
 	private String project_area; //?????   
-	private String project_price_qi;//?????
+	/*private String project_price_qi;//?????*/
+	private int  project_price_int_qi;
 	private String project_type;//?????
 	private int project_sales_remain;//?????
 	private String project_finish_time;//?????
@@ -35,6 +35,7 @@ public class Project {
 /*	private String buytaxInfo;//?????
 	private String holdInfo;//?????*/
 	private String area_num;
+	
 	
 	public String getArea_num() {
 		return area_num;
@@ -72,12 +73,19 @@ public class Project {
 	public void setProject_area(String project_area) {
 		this.project_area = project_area;
 	}
-	public String getProject_price_qi() {
+	
+	public int getProject_price_int_qi() {
+		return project_price_int_qi;
+	}
+	public void setProject_price_int_qi(int project_price_int_qi) {
+		this.project_price_int_qi = project_price_int_qi;
+	}
+	/*public String getProject_price_qi() {
 		return project_price_qi;
 	}
 	public void setProject_price_qi(String project_price_qi) {
 		this.project_price_qi = project_price_qi;
-	}
+	}*/
 	public String getProject_type() {
 		return project_type;
 	}

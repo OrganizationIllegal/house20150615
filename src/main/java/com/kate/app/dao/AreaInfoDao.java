@@ -4,7 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -27,7 +29,7 @@ import com.kate.app.model.MiddlePrice2;
 import com.kate.app.model.NewsZhiye;
 @Repository 
 public class AreaInfoDao extends BaseDao {
-	//通过id删除区域推荐新闻
+	//閫氳繃id鍒犻櫎鍖哄煙鎺ㄨ崘鏂伴椈
 			public int deleteNewsBoke(String area_num){
 				int exeResult=0;
 				try{
@@ -40,7 +42,7 @@ public class AreaInfoDao extends BaseDao {
 			        }
 				    return exeResult;
 			}
-	//通过id删除区域推荐项目
+	//閫氳繃id鍒犻櫎鍖哄煙鎺ㄨ崘椤圭洰
 		public int deleteProject(String area_num){
 			int exeResult=0;
 			try{
@@ -53,7 +55,7 @@ public class AreaInfoDao extends BaseDao {
 		        }
 			    return exeResult;
 		}	
-	//通过id删除区域经纪人
+	//閫氳繃id鍒犻櫎鍖哄煙缁忕邯浜�
 	public int deleteBroker(String area_num){
 		int exeResult=0;
 		try{
@@ -66,7 +68,7 @@ public class AreaInfoDao extends BaseDao {
 	        }
 		    return exeResult;
 	}	
-	//通过id删除区域人口分布走势
+	//閫氳繃id鍒犻櫎鍖哄煙浜哄彛鍒嗗竷璧板娍
 			public int deletePeople(String area_num){
 				int exeResult=0;
 				try{
@@ -79,7 +81,7 @@ public class AreaInfoDao extends BaseDao {
 			        }
 				    return exeResult;
 			}	
-	//通过id删除区域特点走势
+	//閫氳繃id鍒犻櫎鍖哄煙鐗圭偣璧板娍
 		public int deleteTedian(String area_num){
 			int exeResult=0;
 			try{
@@ -92,7 +94,7 @@ public class AreaInfoDao extends BaseDao {
 		        }
 			    return exeResult;
 		}	
-	//通过id删除区域租回报走势
+	//閫氳繃id鍒犻櫎鍖哄煙绉熷洖鎶ヨ蛋鍔�
 	public int deleteHuibao(String area_num){
 		int exeResult=0;
 		try{
@@ -105,7 +107,7 @@ public class AreaInfoDao extends BaseDao {
 	        }
 		    return exeResult;
 	}	
-	//通过id删除区域租金走势
+	//閫氳繃id鍒犻櫎鍖哄煙绉熼噾璧板娍
 			public int deleteZujin(String area_num){
 				int exeResult=0;
 				try{
@@ -118,7 +120,7 @@ public class AreaInfoDao extends BaseDao {
 			        }
 				    return exeResult;
 			}	
-	//通过id删除区域房价中位数走势
+	//閫氳繃id鍒犻櫎鍖哄煙鎴夸环涓綅鏁拌蛋鍔�
 		public int deleteMiddleTrend(String area_num){
 			int exeResult=0;
 			try{
@@ -131,7 +133,7 @@ public class AreaInfoDao extends BaseDao {
 		        }
 			    return exeResult;
 		}	
-	//通过id删除区域中位数房价
+	//閫氳繃id鍒犻櫎鍖哄煙涓綅鏁版埧浠�
 	public int deleteMiddlePrice(String area_num){
 		int exeResult=0;
 		try{
@@ -144,7 +146,7 @@ public class AreaInfoDao extends BaseDao {
 	        }
 		    return exeResult;
 	}	
-	//通过id删除区域家庭构成
+	//閫氳繃id鍒犻櫎鍖哄煙瀹跺涵鏋勬垚
 			public int deleteFamily(String area_num){
 				int exeResult=0;
 				try{
@@ -157,7 +159,7 @@ public class AreaInfoDao extends BaseDao {
 			        }
 				    return exeResult;
 			}
-	//通过id删除投资数据
+	//閫氳繃id鍒犻櫎鎶曡祫鏁版嵁
 		public int deleteInvest(String area_num){
 			int exeResult=0;
 			try{
@@ -170,7 +172,7 @@ public class AreaInfoDao extends BaseDao {
 		        }
 			    return exeResult;
 		}
-	//通过id删除区域信息
+	//閫氳繃id鍒犻櫎鍖哄煙淇℃伅
 	public int deleteAreaInfo(int id){
 		int exeResult=0;
 		try{
@@ -183,7 +185,7 @@ public class AreaInfoDao extends BaseDao {
 	        }
 		    return exeResult;
 	}
-	//通过区域id获取新闻报道信息
+	//閫氳繃鍖哄煙id鑾峰彇鏂伴椈鎶ラ亾淇℃伅
 		public List<NewsZhiye> getAreaNewsBokeList(String area_num){
 			List<NewsZhiye> areaInfolist = new ArrayList<NewsZhiye>();
 			AreaTuijianNews areaInfo=new AreaTuijianNews();
@@ -272,7 +274,7 @@ public class AreaInfoDao extends BaseDao {
 			}
 			return zhiyeInfo;
 		}
-	//通过区域id获取推荐项目信息
+	//閫氳繃鍖哄煙id鑾峰彇鎺ㄨ崘椤圭洰淇℃伅
 	public List<HouseProject> getAreaProjectList(String area_num){
 		List<HouseProject> areaInfolist = new ArrayList<HouseProject>();
 		AreaTuijianProject areaInfo=new AreaTuijianProject();
@@ -324,7 +326,7 @@ public class AreaInfoDao extends BaseDao {
 		}
 		return projectInfo;
 	}
-	//通过区域id获取推荐经纪人信息
+	//閫氳繃鍖哄煙id鑾峰彇鎺ㄨ崘缁忕邯浜轰俊鎭�
 			public List<BrokerInfo> getAreaBrokerList(String area_num){
 				List<BrokerInfo> areaInfolist = new ArrayList<BrokerInfo>();
 				AreaTuijianBroker areaInfo = new AreaTuijianBroker();
@@ -377,7 +379,7 @@ public class AreaInfoDao extends BaseDao {
 				}
 				return brokerInfo;
 			}
-	//通过区域id获取区域人口分布信息
+	//閫氳繃鍖哄煙id鑾峰彇鍖哄煙浜哄彛鍒嗗竷淇℃伅
 		public List<AreaPeopleInfo2> getAreaPeopleList(String area_num){
 			List<AreaPeopleInfo2> areaInfolist = new ArrayList<AreaPeopleInfo2>();
 			try {
@@ -404,7 +406,7 @@ public class AreaInfoDao extends BaseDao {
 			}
 			return areaInfolist;
 		}
-	//通过区域id获取区域特点信息
+	//閫氳繃鍖哄煙id鑾峰彇鍖哄煙鐗圭偣淇℃伅
 	public List<AreaTeDian2> getAreaTedianList(String area_num){
 		List<AreaTeDian2> areaInfolist = new ArrayList<AreaTeDian2>();
 		try {
@@ -428,7 +430,7 @@ public class AreaInfoDao extends BaseDao {
 		}
 		return areaInfolist;
 	}
-	//通过区域id获取区域租金回报走势信息
+	//閫氳繃鍖哄煙id鑾峰彇鍖哄煙绉熼噾鍥炴姤璧板娍淇℃伅
 			public List<AreaZhikong2> getAreaKongzhiList(String area_num){
 				List<AreaZhikong2> areaInfolist = new ArrayList<AreaZhikong2>();
 				try {
@@ -455,7 +457,7 @@ public class AreaInfoDao extends BaseDao {
 				return areaInfolist;
 			}
 			
-	//通过区域id获取区域租金走势信息
+	//閫氳繃鍖哄煙id鑾峰彇鍖哄煙绉熼噾璧板娍淇℃伅
 		public List<AreaZujin2> getAreaZujinList(String area_num){
 			List<AreaZujin2> areaInfolist = new ArrayList<AreaZujin2>();
 			try {
@@ -482,7 +484,7 @@ public class AreaInfoDao extends BaseDao {
 			return areaInfolist;
 		}
 		
-	//通过区域id获取区域房价中位数走势信息
+	//閫氳繃鍖哄煙id鑾峰彇鍖哄煙鎴夸环涓綅鏁拌蛋鍔夸俊鎭�
 	public List<AreaMiddle2> getAreaMiddleList(String area_num){
 		List<AreaMiddle2> areaInfolist = new ArrayList<AreaMiddle2>();
 		try {
@@ -508,7 +510,7 @@ public class AreaInfoDao extends BaseDao {
 		}
 		return areaInfolist;
 	}
-	//通过区域id获取区域中位数房价信息
+	//閫氳繃鍖哄煙id鑾峰彇鍖哄煙涓綅鏁版埧浠蜂俊鎭�
 			public List<MiddlePrice2> getMiddlePrice(String area_num){
 				List<MiddlePrice2> areaInfolist = new ArrayList<MiddlePrice2>();
 				try {
@@ -546,7 +548,7 @@ public class AreaInfoDao extends BaseDao {
 				return areaInfolist;
 			}
 
-	//通过区域id获取投资家庭信息
+	//閫氳繃鍖哄煙id鑾峰彇鎶曡祫瀹跺涵淇℃伅
 		public AreaFamilyBackEnd getFamilyBackEnd(String area_num){
 			AreaFamilyBackEnd areaInfo = new AreaFamilyBackEnd();
 			try {
@@ -572,7 +574,7 @@ public class AreaInfoDao extends BaseDao {
 			}
 			return areaInfo;
 		}
-	//通过区域id获取投资数据信息
+	//閫氳繃鍖哄煙id鑾峰彇鎶曡祫鏁版嵁淇℃伅
 	public InvestmentDataBackEnd getInvestInfo(String area_num){
 		InvestmentDataBackEnd areaInfo = new InvestmentDataBackEnd();
 		try {
@@ -597,7 +599,7 @@ public class AreaInfoDao extends BaseDao {
 		}
 		return areaInfo;
 	}
-	//判断区域编号是否重复
+	//鍒ゆ柇鍖哄煙缂栧彿鏄惁閲嶅
 	public int isDuplicate(String area_num){
 		HashSet<String> areaNumSet=new HashSet<String>();
 		try {
@@ -608,7 +610,7 @@ public class AreaInfoDao extends BaseDao {
 				String anum=rs.getString("area_num");
 				areaNumSet.add(anum);
 			}
-			if(areaNumSet.contains(area_num)){//如果包括area_num时，返回1
+			if(areaNumSet.contains(area_num)){//濡傛灉鍖呮嫭area_num鏃讹紝杩斿洖1
 				return 1;
 			}
 		} catch (Exception e) {
@@ -617,12 +619,12 @@ public class AreaInfoDao extends BaseDao {
 		}
 		return 0;
 	}
-	//区域录入
+	//鍖哄煙褰曞叆
 	public int AddArea(String area_num,String area_name,String area_city,String area_zhou,String area_nation,String area_postcode,String touzi_datasource,String touzi_date,String middle_price,String middle_zu_price,String price_review,String year_increment_rate,String zu_house_rate,String zu_xuqiu,String data_exam,String family_one,String family_one_rate,String family_two,String family_two_rate,String family_three,String family_three_rate,String family_datasource,String family_date,List<MiddlePrice2> middlepriceList,List<AreaMiddle2> middletrendList,List<AreaZujin2> zujintrendlistList,List<AreaZhikong2> huibaotrendlistList,List<AreaTeDian2> tedianlistList,List<AreaPeopleInfo2> peoplelistList,List<BrokerInfo> brokerlistList,List<String> projectlistList,List<String> newslistList,List<String> list) throws SQLException{
 		PreparedStatement pstmt=null;
 		try {
 			con.setAutoCommit(false);
-			//区域信息
+			//鍖哄煙淇℃伅
 			boolean flagquyu;
 			String sql = " insert into area_info(area_num, area_name, area_city, area_zhou, area_nation, area_postcode) values(?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
@@ -638,13 +640,13 @@ public class AreaInfoDao extends BaseDao {
 				flagquyu = false;
 			}
 			
-			//投资数据
+			//鎶曡祫鏁版嵁
 			boolean flagtouzi = true;
 			String time_strtouzi = "";
 			Timestamp tstouzi = new Timestamp(System.currentTimeMillis()); 
 			if(touzi_date==null||"".equals(touzi_date)){
 				touzi_date = "2015-05-09";
-				//(new SimpleDateFormat("yyyy-MM-dd"))。format(new Date())
+				//(new SimpleDateFormat("yyyy-MM-dd"))銆俧ormat(new Date())
 			}
 	        try {   
 	        	time_strtouzi = touzi_date+" "+"00:00:00";
@@ -701,7 +703,7 @@ public class AreaInfoDao extends BaseDao {
 			if(result == 0){
 				flagfamily = false;
 			}
-	        //区域中位数房价
+	        //鍖哄煙涓綅鏁版埧浠�
 			for(MiddlePrice2 item : middlepriceList){
 				boolean flagmiddleprice = true;
 				int buy_price = item.getBuy_price();
@@ -762,7 +764,7 @@ public class AreaInfoDao extends BaseDao {
 					}
 				    
 			}
-			//区域房价中位数走势
+			//鍖哄煙鎴夸环涓綅鏁拌蛋鍔�
 			for(AreaMiddle2 item : middletrendList){
 				/*boolean resultMiddle = areaInfoDao.addMiddleTrend(item, area_num);*/
 				boolean flag = true;
@@ -800,7 +802,7 @@ public class AreaInfoDao extends BaseDao {
 					}
 				
 			}
-			//区域租金走势
+			//鍖哄煙绉熼噾璧板娍
 			for(AreaZujin2 item : zujintrendlistList){
 				/*boolean resultZujin = areaInfoDao.addMiddleZujin(item, area_num);*/
 				boolean flag = true;
@@ -838,7 +840,7 @@ public class AreaInfoDao extends BaseDao {
 					}
 				
 			}
-			//区域租金回报率
+			//鍖哄煙绉熼噾鍥炴姤鐜�
 			for(AreaZhikong2 item : huibaotrendlistList){
 				/*boolean resultZujin = areaInfoDao.addAreaZhikong(item, area_num);*/
 				boolean flag = true;
@@ -876,7 +878,7 @@ public class AreaInfoDao extends BaseDao {
 					}
 				
 			}
-			//区域特点
+			//鍖哄煙鐗圭偣
 			for(AreaTeDian2 item : tedianlistList){
 				/*boolean resultZujin = areaInfoDao.addAreaTeDian(item, area_num);*/
 				boolean flag = true;
@@ -912,7 +914,7 @@ public class AreaInfoDao extends BaseDao {
 					}
 				
 			}
-			//区域人口分布
+			//鍖哄煙浜哄彛鍒嗗竷
 			for(AreaPeopleInfo2 item : peoplelistList){
 				/*boolean resultZujin = areaInfoDao.addAreaPeople(item, area_num);*/
 				boolean flag = true;
@@ -945,7 +947,7 @@ public class AreaInfoDao extends BaseDao {
 					}
 				
 			}
-			//推荐经纪人
+			//鎺ㄨ崘缁忕邯浜�
 			boolean flagbroker = true;
 			List<String> numList = new ArrayList<String>();
 			String broker_code1 = "";
@@ -984,7 +986,7 @@ public class AreaInfoDao extends BaseDao {
 					flagbroker = false;
 				}
 			
-			//推荐项目
+			//鎺ㄨ崘椤圭洰
 			boolean flagproject = true;
 			
 			String recommend_num_1 = "";
@@ -1024,7 +1026,7 @@ public class AreaInfoDao extends BaseDao {
 					flagproject = false;
 				}
 			
-			//新闻报道
+			//鏂伴椈鎶ラ亾
 			boolean flagnews = true;
 			String reco_news_num_1 = "";
 			String reco_news_num_2 = "";
@@ -1070,24 +1072,26 @@ public class AreaInfoDao extends BaseDao {
 			
 			
 			
-			//提交事物
+			//鎻愪氦浜嬬墿
 			con.commit();
-			//恢复JDBC事务
+			//鎭㈠JDBC浜嬪姟
 			con.setAutoCommit(true);
 			return 1;
 		}catch (Exception e) {
-			//回滚JDBC事务
+			//鍥炴粴JDBC浜嬪姟
 			con.rollback();
             e.printStackTrace();
             return -1;
         }
 	}
-	//区域编辑
-		public int EditArea(int Id,int Id2,int Id3,String area_num,String area_name,String area_city,String area_zhou,String area_nation,String area_postcode,String touzi_datasource,String touzi_date,String middle_price,String middle_zu_price,String price_review,String year_increment_rate,String zu_house_rate,String zu_xuqiu,String data_exam,String family_one,String family_one_rate,String family_two,String family_two_rate,String family_three,String family_three_rate,String family_datasource,String family_date,List<MiddlePrice2> middlepriceList,List<MiddlePrice2> middlepriceList2,List<AreaMiddle2> middletrendList,List<AreaMiddle2> middletrendList2,List<AreaZujin2> zujintrendlistList,List<AreaZujin2> zujintrendlistList2,List<AreaZhikong2> huibaotrendlistList,List<AreaZhikong2> huibaotrendlistList2,List<AreaTeDian2> tedianlistList,List<AreaTeDian2> tedianlistList2,List<AreaPeopleInfo2> peoplelistList,List<AreaPeopleInfo2> peoplelistList2,List<BrokerInfo> brokerlistList,List<String> projectlistList,List<String> newslistList,List<String> list) throws SQLException{
+	//鍖哄煙缂栬緫
+		public int EditArea(int Id,int Id2,int Id3,String area_num,String area_name,String area_city,String area_zhou,String area_nation,String area_postcode,String touzi_datasource,String touzi_date,String middle_price,String middle_zu_price,String price_review,String year_increment_rate,String zu_house_rate,String zu_xuqiu,String data_exam,String family_one,String family_one_rate,String family_two,String family_two_rate,String family_three,String family_three_rate,String family_datasource,String family_date,List<MiddlePrice2> middlepriceList,List<MiddlePrice2> middlepriceList2,List<AreaMiddle2> middletrendList,List<AreaMiddle2> middletrendList2,List<AreaZujin2> zujintrendlistList,List<AreaZujin2> zujintrendlistList2,List<AreaZhikong2> huibaotrendlistList,List<AreaZhikong2> huibaotrendlistList2,List<AreaTeDian2> tedianlistList,List<AreaTeDian2> tedianlistList2,List<AreaPeopleInfo2> peoplelistList,List<AreaPeopleInfo2> peoplelistList2,List<BrokerInfo> brokerlistList,List<String> projectlistList,List<String> newslistList,List<String> list
+				,List<MiddlePrice2> middlepriceListdelete,List<AreaMiddle2> middletrendListdelete,List<AreaZujin2> zujintrendlistListdelete
+				,List<AreaZhikong2> huibaotrendlistListdelete,List<AreaTeDian2> tedianlistListdelete,List<AreaPeopleInfo2> peoplelistListdelete) throws SQLException{
 			PreparedStatement pstmt=null;
 			try {
 				con.setAutoCommit(false);
-				//区域信息
+				//鍖哄煙淇℃伅
 				boolean flagquyu;
 				String sql = " update  area_info set area_num=?, area_name=?, area_city=?, area_zhou=?, area_nation=?, area_postcode=? where id=?";
 				pstmt = con.prepareStatement(sql);
@@ -1104,16 +1108,16 @@ public class AreaInfoDao extends BaseDao {
 					flagquyu = false;
 				}
 				
-				//投资数据
+				//鎶曡祫鏁版嵁
 				boolean flagtouzi = true;
 				String time_strtouzi = "";
 				if("".equals(touzi_date)){
-					touzi_date="2015-05-09 "+"00:00:00";
+					touzi_date=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//
 				}
 				/*Timestamp tstouzi = new Timestamp(System.currentTimeMillis()); 
 				if(touzi_date==null||"".equals(touzi_date)){
 					touzi_date = "2015-05-09";
-					//(new SimpleDateFormat("yyyy-MM-dd"))。format(new Date())
+					//(new SimpleDateFormat("yyyy-MM-dd"))銆俧ormat(new Date())
 				 	time_strtouzi = touzi_date+" "+"00:00:00";
 				}
 		        try {   
@@ -1141,7 +1145,7 @@ public class AreaInfoDao extends BaseDao {
 				if(resulttouzi == 0){
 					flagtouzi = false;
 				}
-		        //areafamily区域家庭构成
+		        //areafamily鍖哄煙瀹跺涵鏋勬垚
 				boolean flagfamily = true;
 				/*String time_strfamily = "";
 				Timestamp tsfamily = new Timestamp(System.currentTimeMillis()); 
@@ -1157,7 +1161,7 @@ public class AreaInfoDao extends BaseDao {
 		            e.printStackTrace();   
 		        }  */
 				if("".equals(family_date)){
-					family_date="2015-05-09 "+"00:00:00";
+					family_date=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//
 				}
 		        String sqlfamily = " update area_family set family_one=?, family_one_rate=?, family_two=?, family_two_rate=?, family_three=?, family_three_rate=?, area_code=?, family_datasource=?, family_date=? where id=?";
 				pstmt = con.prepareStatement(sqlfamily);
@@ -1177,7 +1181,7 @@ public class AreaInfoDao extends BaseDao {
 				if(result == 0){
 					flagfamily = false;
 				}
-		        //区域中位数房价编辑
+		        //鍖哄煙涓綅鏁版埧浠风紪杈�
 				for(MiddlePrice2 item : middlepriceList){
 					boolean flagmiddleprice = true;
 					int id=item.getId();
@@ -1202,7 +1206,8 @@ public class AreaInfoDao extends BaseDao {
 						time_str = middle_date.toString(); 
 					}*/
 					if("".equals(middle_date)){
-						middle_date="2015-05-09 "+"00:00:00";
+						//middle_date=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//
+						middle_date=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//"2015-05-09 "+"00:00:00";
 					}
 					String sqlmiddleprice = " update area_middle_price set buy_price=?, zu_price=?, " +
 								"buy_one_name=?, buy_one_price=?, buy_two_name=?, buy_two_price=?, " +
@@ -1234,7 +1239,7 @@ public class AreaInfoDao extends BaseDao {
 						}
 					
 				}
-				  //区域中位数房价添加
+				  //鍖哄煙涓綅鏁版埧浠锋坊鍔�
 				for(MiddlePrice2 item : middlepriceList2){
 					boolean flagmiddleprice = true;
 					int buy_price = item.getBuy_price();
@@ -1258,7 +1263,7 @@ public class AreaInfoDao extends BaseDao {
 						time_str = middle_date.toString(); 
 					}*/
 					if("".equals(middle_date)){
-						middle_date="2015-05-09 "+"00:00:00";
+						middle_date=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//
 					}
 					String sqlmiddleprice = " insert into area_middle_price(buy_price, zu_price, " +
 								"buy_one_name, buy_one_price, buy_two_name, buy_two_price, " +
@@ -1289,7 +1294,7 @@ public class AreaInfoDao extends BaseDao {
 						}
 					
 				}
-				//区域房价中位数走势编辑
+				//鍖哄煙鎴夸环涓綅鏁拌蛋鍔跨紪杈�
 				for(AreaMiddle2 item : middletrendList){
 					/*boolean resultMiddle = areaInfoDao.addMiddleTrend(item, area_num);*/
 					boolean flag = true;
@@ -1306,7 +1311,7 @@ public class AreaInfoDao extends BaseDao {
 						time_str = middle_zoushi_date.toString(); 
 					}*/
 					if("".equals(middle_zoushi_date)){
-						middle_zoushi_date="2015-05-09 "+"00:00:00";
+						middle_zoushi_date=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//
 					}
 					
 			        
@@ -1332,7 +1337,7 @@ public class AreaInfoDao extends BaseDao {
 						}
 					
 				}
-				//区域房价中位数走势添加
+				//鍖哄煙鎴夸环涓綅鏁拌蛋鍔挎坊鍔�
 				for(AreaMiddle2 item : middletrendList2){
 					/*boolean resultMiddle = areaInfoDao.addMiddleTrend(item, area_num);*/
 					boolean flag = true;
@@ -1348,7 +1353,7 @@ public class AreaInfoDao extends BaseDao {
 						time_str = middle_zoushi_date.toString(); 
 					}*/
 					if("".equals(middle_zoushi_date)){
-						middle_zoushi_date="2015-05-09 "+"00:00:00";
+						middle_zoushi_date=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//
 					}
 					
 					
@@ -1374,7 +1379,7 @@ public class AreaInfoDao extends BaseDao {
 						}
 					
 				}
-				//区域租金走势编辑
+				//鍖哄煙绉熼噾璧板娍缂栬緫
 				for(AreaZujin2 item : zujintrendlistList){
 					/*boolean resultZujin = areaInfoDao.addMiddleZujin(item, area_num);*/
 					boolean flag = true;
@@ -1391,7 +1396,7 @@ public class AreaInfoDao extends BaseDao {
 						time_str = zujin_dates.toString(); 
 					}*/
 					if("".equals(zujin_dates)){
-						zujin_dates="2015-05-09 "+"00:00:00";
+						zujin_dates=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//
 					}
 					
 					
@@ -1418,7 +1423,7 @@ public class AreaInfoDao extends BaseDao {
 						}
 					
 				}
-				//区域租金走势添加
+				//鍖哄煙绉熼噾璧板娍娣诲姞
 				for(AreaZujin2 item : zujintrendlistList2){
 					/*boolean resultZujin = areaInfoDao.addMiddleZujin(item, area_num);*/
 					boolean flag = true;
@@ -1434,7 +1439,7 @@ public class AreaInfoDao extends BaseDao {
 						time_str = zujin_dates.toString(); 
 					}*/
 					if("".equals(zujin_dates)){
-						zujin_dates="2015-05-09 "+"00:00:00";
+						zujin_dates=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//
 					}
 					
 			        
@@ -1459,7 +1464,7 @@ public class AreaInfoDao extends BaseDao {
 						}
 					
 				}
-				//区域租金回报率编辑
+				//鍖哄煙绉熼噾鍥炴姤鐜囩紪杈�
 				for(AreaZhikong2 item : huibaotrendlistList){
 					/*boolean resultZujin = areaInfoDao.addAreaZhikong(item, area_num);*/
 					boolean flag = true;
@@ -1476,7 +1481,7 @@ public class AreaInfoDao extends BaseDao {
 						time_str = zujin_huibao_date.toString(); 
 					}*/
 					if("".equals(zujin_huibao_date)){
-						zujin_huibao_date="2015-05-09 "+"00:00:00";
+						zujin_huibao_date=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//
 					}
 					
 					
@@ -1503,7 +1508,7 @@ public class AreaInfoDao extends BaseDao {
 						}
 					
 				}
-				//区域租金回报率添加
+				//鍖哄煙绉熼噾鍥炴姤鐜囨坊鍔�
 				for(AreaZhikong2 item : huibaotrendlistList2){
 					/*boolean resultZujin = areaInfoDao.addAreaZhikong(item, area_num);*/
 					boolean flag = true;
@@ -1519,7 +1524,7 @@ public class AreaInfoDao extends BaseDao {
 						time_str = zujin_huibao_date.toString(); 
 					}*/
 					if("".equals(zujin_huibao_date)){
-						zujin_huibao_date="2015-05-09 "+"00:00:00";
+						zujin_huibao_date=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//
 					}
 					
 			        
@@ -1544,7 +1549,7 @@ public class AreaInfoDao extends BaseDao {
 						}
 					
 				}
-				//区域特点编辑
+				//鍖哄煙鐗圭偣缂栬緫
 				for(AreaTeDian2 item : tedianlistList){
 					/*boolean resultZujin = areaInfoDao.addAreaTeDian(item, area_num);*/
 					boolean flag = true;
@@ -1560,7 +1565,7 @@ public class AreaInfoDao extends BaseDao {
 						time_str = update_time.toString(); 
 					}*/
 					if("".equals(update_time)){
-						update_time="2015-05-09 "+"00:00:00";
+						update_time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//
 					}
 					
 			        
@@ -1585,7 +1590,7 @@ public class AreaInfoDao extends BaseDao {
 						}
 					
 				}
-				//区域特点添加
+				//鍖哄煙鐗圭偣娣诲姞
 				for(AreaTeDian2 item : tedianlistList2){
 					/*boolean resultZujin = areaInfoDao.addAreaTeDian(item, area_num);*/
 					boolean flag = true;
@@ -1600,7 +1605,7 @@ public class AreaInfoDao extends BaseDao {
 						time_str = update_time.toString(); 
 					}*/
 					if("".equals(update_time)){
-						update_time="2015-05-09 "+"00:00:00";
+						update_time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//
 					}
 					
 			        
@@ -1624,7 +1629,7 @@ public class AreaInfoDao extends BaseDao {
 						}
 					
 				}
-				//区域人口分布
+				//鍖哄煙浜哄彛鍒嗗竷
 				for(AreaPeopleInfo2 item : peoplelistList){
 					/*boolean resultZujin = areaInfoDao.addAreaPeople(item, area_num);*/
 					boolean flag = true;
@@ -1640,7 +1645,7 @@ public class AreaInfoDao extends BaseDao {
 						time_str = people_date.toString(); 
 					}*/
 					if("".equals(people_date)){
-						people_date="2015-05-09 "+"00:00:00";
+						people_date=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//
 					}
 						String sqlpeople = " update area_people set column1=?, column2=?, " +
 								"column3=?, view_shunxu=?, area_code=?, people_datasource=?, people_date=? where id=?";
@@ -1659,7 +1664,7 @@ public class AreaInfoDao extends BaseDao {
 						}
 					
 				}
-				//区域人口分布添加
+				//鍖哄煙浜哄彛鍒嗗竷娣诲姞
 				for(AreaPeopleInfo2 item : peoplelistList2){
 					/*boolean resultZujin = areaInfoDao.addAreaPeople(item, area_num);*/
 					boolean flag = true;
@@ -1674,7 +1679,7 @@ public class AreaInfoDao extends BaseDao {
 						time_str = people_date.toString(); 
 					}*/
 					if("".equals(people_date)){
-						people_date="2015-05-09 "+"00:00:00";
+						people_date=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//
 					}
 						String sqlpeople = " insert into area_people(column1, column2, " +
 								"column3, view_shunxu, area_code, people_datasource, people_date) values(?,?,?,?,?,?,?)";
@@ -1692,7 +1697,7 @@ public class AreaInfoDao extends BaseDao {
 						}
 					
 				}
-				//推荐经纪人
+				//鎺ㄨ崘缁忕邯浜�
 				boolean flagbroker = true;
 				List<String> numList = new ArrayList<String>();
 				String broker_code1 = "";
@@ -1718,8 +1723,9 @@ public class AreaInfoDao extends BaseDao {
 					broker_code3 = findBrokerbyName(name3);
 				}
 				
-					String sqlbroker = " insert into area_recommend_broker(broker_code1, broker_code2, " +
-							"broker_code3, area_code) values(?,?,?,?)";
+					/*String sqlbroker = " insert into area_recommend_broker(broker_code1, broker_code2, " +
+							" , area_code) values(?,?,?,?)";*/
+					String sqlbroker = " update area_recommend_broker set broker_code1=?, broker_code2=?, recommend_num_3=? where area_code=?";
 					pstmt = con.prepareStatement(sqlbroker);
 					pstmt.setString(1, broker_code1);
 					pstmt.setString(2, broker_code2);
@@ -1731,7 +1737,7 @@ public class AreaInfoDao extends BaseDao {
 						flagbroker = false;
 					}
 				
-				//推荐项目
+				//鎺ㄨ崘椤圭洰
 				boolean flagproject = true;
 				
 				String recommend_num_1 = "";
@@ -1758,8 +1764,9 @@ public class AreaInfoDao extends BaseDao {
 					recommend_num_3 = findProByName(name3);
 				}
 				
-					String sqlproject = " insert into recommend_project(recommend_num_1, recommend_num_2, " +
-							"recommend_num_3, area_code) values(?,?,?,?)";
+					/*String sqlproject = " insert into recommend_project(recommend_num_1, recommend_num_2, " +
+							"recommend_num_3, area_code) values(?,?,?,?)";*/
+					String sqlproject = " update recommend_project set recommend_num_1=?, recommend_num_2=?, recommend_num_3=? where area_code=?";
 					pstmt = con.prepareStatement(sqlproject);
 					pstmt.setString(1, recommend_num_1);
 					pstmt.setString(2, recommend_num_2);
@@ -1771,7 +1778,7 @@ public class AreaInfoDao extends BaseDao {
 						flagproject = false;
 					}
 				
-				//新闻报道
+				//鏂伴椈鎶ラ亾
 				boolean flagnews = true;
 				String reco_news_num_1 = "";
 				String reco_news_num_2 = "";
@@ -1801,8 +1808,9 @@ public class AreaInfoDao extends BaseDao {
 					reco_news_num_3 = resultList.get(2);
 				}
 				
-					String sqlnews = " insert into recommend_news(reco_news_num_1, reco_news_num_2, " +
-							"reco_news_num_3, area_code) values(?,?,?,?)";
+					/*String sqlnews = " insert into recommend_news(reco_news_num_1, reco_news_num_2, " +
+							"reco_news_num_3, area_code) values(?,?,?,?)";*/
+					String sqlnews = " update recommend_news set reco_news_num_1=?, reco_news_num_2=?, reco_news_num_3=? where area_code=?";
 					pstmt = con.prepareStatement(sqlnews);
 					pstmt.setString(1, reco_news_num_1);
 					pstmt.setString(2, reco_news_num_2);
@@ -1813,23 +1821,96 @@ public class AreaInfoDao extends BaseDao {
 					if(resultnews == 0){
 						flagnews = false;
 					}
+					//middlepriceListdelete,middletrendListdelete,zujintrendlistListdelete
+					//,huibaotrendlistListdelete,tedianlistListdelete,peoplelistListdelete
+					//delete from project_desc_image
+					String sqldeletemiddleprice = "delete from area_middle_price where id= ?";
+					pstmt = con.prepareStatement(sqldeletemiddleprice);
+					for(int i=0;i<middlepriceListdelete.size();i++){
+						pstmt.setInt(1, middlepriceListdelete.get(i).getId());
+						pstmt.addBatch();
+					}
+					int[] resultmiddlepricedelete=pstmt.executeBatch();
+					System.out.println("resultmiddlepricedelete.length:"+resultmiddlepricedelete.length);
+					for(int i=0;i<resultmiddlepricedelete.length;i++){
+						System.out.println("resultmiddlepricedelete"+i+":"+resultmiddlepricedelete[i]);
+					}
+					
+					String sqldeletemiddletrend = "delete from area_middle where id= ?";
+					pstmt = con.prepareStatement(sqldeletemiddletrend);
+					for(int i=0;i<middletrendListdelete.size();i++){
+						pstmt.setInt(1, middletrendListdelete.get(i).getId());
+						pstmt.addBatch();
+					}
+					int[] resultmiddletrenddelete=pstmt.executeBatch();
+					System.out.println("resultmiddletrenddelete.length:"+resultmiddletrenddelete.length);
+					for(int i=0;i<resultmiddletrenddelete.length;i++){
+						System.out.println("resultmiddletrenddelete"+i+":"+resultmiddletrenddelete[i]);
+					}
 				
-				
-				
-				
-				//提交事物
+					
+					String sqldeletezujin = "delete from area_zujin where id= ?";
+					pstmt = con.prepareStatement(sqldeletezujin);
+					for(int i=0;i<zujintrendlistListdelete.size();i++){
+						pstmt.setInt(1, zujintrendlistListdelete.get(i).getId());
+						pstmt.addBatch();
+					}
+					int[] resultzujindelete=pstmt.executeBatch();
+					System.out.println("resultzujindelete.length:"+resultzujindelete.length);
+					for(int i=0;i<resultzujindelete.length;i++){
+						System.out.println("resultzujindelete"+i+":"+resultzujindelete[i]);
+					}
+					
+
+					String sqldeletehuibao = "delete from area_kongzhi where id= ?";
+					pstmt = con.prepareStatement(sqldeletehuibao);
+					for(int i=0;i<huibaotrendlistListdelete.size();i++){
+						pstmt.setInt(1, huibaotrendlistListdelete.get(i).getId());
+						pstmt.addBatch();
+					}
+					int[] resulthuibaodelete=pstmt.executeBatch();
+					System.out.println("resulthuibaodelete.length:"+resulthuibaodelete.length);
+					for(int i=0;i<resulthuibaodelete.length;i++){
+						System.out.println("resulthuibaodelete"+i+":"+resulthuibaodelete[i]);
+					}
+					
+					String sqldeletetedian = "delete from area_features where id= ?";
+					pstmt = con.prepareStatement(sqldeletetedian);
+					for(int i=0;i<tedianlistListdelete.size();i++){
+						pstmt.setInt(1, tedianlistListdelete.get(i).getId());
+						pstmt.addBatch();
+					}
+					int[] resulttediandelete=pstmt.executeBatch();
+					System.out.println("resulttediandelete.length:"+resulttediandelete.length);
+					for(int i=0;i<resulttediandelete.length;i++){
+						System.out.println("resulttediandelete"+i+":"+resulttediandelete[i]);
+					}
+					
+
+					String sqldeletepeople = "delete from area_people where id= ?";
+					pstmt = con.prepareStatement(sqldeletepeople);
+					for(int i=0;i<peoplelistListdelete.size();i++){
+						pstmt.setInt(1, peoplelistListdelete.get(i).getId());
+						pstmt.addBatch();
+					}
+					int[] resultpeopledelete=pstmt.executeBatch();
+					System.out.println("resultpeopledelete.length:"+resultpeopledelete.length);
+					for(int i=0;i<resultpeopledelete.length;i++){
+						System.out.println("resultpeopledelete"+i+":"+resultpeopledelete[i]);
+					}
+				//鎻愪氦浜嬬墿
 				con.commit();
-				//恢复JDBC事务
+				//鎭㈠JDBC浜嬪姟
 				con.setAutoCommit(true);
 				return 1;
 			}catch (Exception e) {
-				//回滚JDBC事务
+				//鍥炴粴JDBC浜嬪姟
 				con.rollback();
 	            e.printStackTrace();
 	            return -1;
 	        }
 		}
-	//Area编辑模块的查询AreaInfo信息
+	//Area缂栬緫妯″潡鐨勬煡璇reaInfo淇℃伅
 	public AreaInfo getAreaInfoBackEnd(int id){
 		AreaInfo areaInfo = new AreaInfo();
 		try {

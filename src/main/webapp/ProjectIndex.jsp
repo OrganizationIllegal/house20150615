@@ -301,10 +301,11 @@ function popInfo(){
 					<a class="c-fix f-l f-yahei s-14 p_panel_con">城市：${HouseProject.project_city}</a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_con">区域：${HouseProject.project_area}</a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_con">面积：${HouseProject.min_area}${HouseProject.mianji}-${HouseProject.max_area}${HouseProject.mianji}</a>
-					<a class="c-fix f-l f-yahei s-14 p_panel_con">起价：${HouseProject.project_price_qi}</a>
+					<a class="c-fix f-l f-yahei s-14 p_panel_con">起价：$${HouseProject.project_price_int_qi}</a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_con">户型：${HouseProject.project_house_type}</a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_con">层数：${HouseProject.project_high}</a>
-					<a class="c-fix f-l f-yahei s-14 p_panel_con">预计交房期：${timeResule}</a>
+					<%-- <a class="c-fix f-l f-yahei s-14 p_panel_con">预计交房期：${timeResule}</a> --%>
+					<a class="c-fix f-l f-yahei s-14 p_panel_con">预计交房期：${HouseProject.project_finish_time}</a>
 				</div>
 				<div class="f-l p_panel_1">
 					<a class="c-fix f-l f-yahei s-14 p_panel_title2 fw">开发商信息：${HouseProject.developer_id_name}</a>
@@ -616,7 +617,7 @@ function popInfo(){
 		</div>
 		<div class="c-fix  bkg3"  style="margin:0 auto;height:280px;width:990px">
 			<div class="c-fix p_panel_4">
-				<a class="c-fix f-l p_inves_name f-yahei s-18 fw">${HouseProject.project_area}    ${HouseProject.project_type}投资数据</a>
+				<a class="c-fix f-l p_inves_name f-yahei s-18 fw">${HouseProject.project_area}${HouseProject.project_type}投资数据</a>
 				<a class="c-fix f-l p_inves_name f-yahei s-14" style="border-bottom:1px solid #999;padding-bottom:20px;">投资数据参考 公寓房产</a>
 				<div class="c-fix f-l p_inves_div">
 					<a class="c-fix f-l p_inves_lab f-yahei s-14 fw">年增长率</a>
@@ -630,7 +631,7 @@ function popInfo(){
 					<a class="c-fix f-l p_inves_lab f-yahei s-14 fw">中位数租金</a>
 					<a class="c-fix f-l p_inves_lab f-yahei s-18" style="color:rgb(21,63,101);margin-top:10px;">${data.middle_zu_price}</a>
 				</div>
-				<div class="f-l p_inves_div">
+				 <div class="f-l p_inves_div">
 					<a class="c-fix f-l p_inves_lab f-yahei s-14 fw">租金回报率</a>
 					<a class="c-fix f-l p_inves_lab f-yahei s-18" style="color:rgb(21,63,101);margin-top:10px;">${data.zu_house_rate}</a>
 				</div>
@@ -838,7 +839,7 @@ function popInfo(){
 				<img class="f-r p_adv2" src="images/adv.jpg"></img>
 				</c:if>
 				
-				
+				<c:if test="${!empty dulirateVo && !empty youngfamilyVo && !empty oldfamilyVo}">
 				<div class="c-fix bkg3" style="margin:0 auto;height:265px;width:990px">
 				<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:950px;margin-bottom:10px;">${area_name} 区域家庭情况构成</a>
 				<div class="c-fix f-l p_family" style="margin-left:72px;-margin-top:20px;height:184px">
@@ -854,6 +855,7 @@ function popInfo(){
 					<span class="c-fix f-yahei s-12 fw f-r">数据来源：RPData&nbsp;&nbsp; 更新日期：2015.05.02</span>
 				</div>
 				</div>
+				</c:if>
 			</div>
 		</div>
 		

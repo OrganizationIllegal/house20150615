@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.Flags.Flag;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -52,12 +53,14 @@ public class ProjectInfoController {
 	@Autowired
 	private ZhiYeDao zhiYeDao;
 	
-	List <ProjectPeiTao> projectPeiTaoListbefore;
-	List<FujinPeiTao> fujinPeitaoListbefore;
-	List<FujinSchool> fujinSchoolListbefore;
-	List<HoldCost> holdCostListbefore;
-	List<HouseTax> houseTaxListbefore;
-	List <ProjectDescImage> projectImageListbefore;
+	private List <ProjectPeiTao> projectPeiTaoListbefore;
+	private List<FujinPeiTao> fujinPeitaoListbefore;
+	private List<FujinSchool> fujinSchoolListbefore;
+	private List<HoldCost> holdCostListbefore;
+	private List<HouseTax> houseTaxListbefore;
+	private List <ProjectDescImage> projectImageListbefore;
+	private List<ServiceArea> brokerServiceAreaListbefore;
+	private List<BrokerType> brokerIntegertypeListbefore;
 	//鏄剧ず寮�鍙戝晢淇℃伅
 	@RequestMapping({"/ProjectInput"})
 	public String getProjectCodeAndName(HttpServletRequest req,HttpServletResponse resp){
@@ -346,14 +349,21 @@ public class ProjectInfoController {
 			    	imagelist.add(e);
 			    }
 			}
+
 		for (int i=0;i<projectImageListbefore.size();i++){
+			boolean flag=false;
+
 			for(int j=0;j<imagelist.size();j++){
 				if(projectImageListbefore.get(i).getId()==imagelist.get(j).getId()){
-					imagelistdelete.add(imagelist.get(j));
+					flag=true;
 					break;
 				}
 			}
+			if (flag==false) {
+				imagelistdelete.add(projectImageListbefore.get(i));
+			}
 		}
+		
 		//项目配套
 		    String projectpeitao=req.getParameter("peitaolist");
 			JSONArray peitaoArray = JSONArray.parseArray(projectpeitao);
@@ -370,14 +380,21 @@ public class ProjectInfoController {
 				    	peitaolist.add(e);
 				    }
 				}
+
 			for (int i=0;i<projectPeiTaoListbefore.size();i++){
+				boolean flag=false;
+
 				for(int j=0;j<peitaolist.size();j++){
 					if(projectPeiTaoListbefore.get(i).getId()==peitaolist.get(j).getId()){
-						peitaolistdelete.add(peitaolist.get(j));
+						flag=true;
 						break;
 					}
 				}
+				if (flag==false) {
+					peitaolistdelete.add(projectPeiTaoListbefore.get(i));
+				}
 			}
+
 		//附近配套
 
 		String fujinpeitao=req.getParameter("fujinlist");
@@ -395,14 +412,20 @@ public class ProjectInfoController {
 					 fujinpeitaoList.add(e);//鍚﹀垯锛岀紪杈�
 				 }
 		}
+
 		for (int i=0;i<fujinPeitaoListbefore.size();i++){
+			boolean flag=false;
 			for(int j=0;j<fujinpeitaoList.size();j++){
 				if(fujinPeitaoListbefore.get(i).getId()==fujinpeitaoList.get(j).getId()){
-					fujinpeitaoListdelete.add(fujinpeitaoList.get(j));
+					flag=true;
 					break;
 				}
 			}
+			if(flag==false){
+				fujinpeitaoListdelete.add(fujinPeitaoListbefore.get(i));
+			}
 		}
+
 		System.out.println("fujinpeitaoList.length():"+fujinpeitaoList.size());
 		System.out.println("fujinpeitaoList2.length():"+fujinpeitaoList2.size());
 		//闄勮繎瀛︽牎
@@ -421,12 +444,18 @@ public class ProjectInfoController {
 							 fujinSchoolList.add(e);
 						 }
 		   }
+
 		for (int i=0;i<fujinSchoolListbefore .size();i++){
+			boolean flag=false;
 			for(int j=0;j<fujinSchoolList.size();j++){
 				if(fujinSchoolListbefore.get(i).getId()==fujinSchoolList.get(j).getId()){
-					fujinSchoolListdelete.add(fujinSchoolList.get(j));
+					flag=true;
 					break;
 				}
+			}
+
+			if(flag==true){
+				fujinSchoolListdelete.add(fujinSchoolListbefore.get(i));
 			}
 		}
 		System.out.println("fujinSchoolList.length():"+fujinSchoolList.size());
@@ -447,14 +476,20 @@ public class ProjectInfoController {
 			    	holdCostList.add(e);//娣诲姞鐨勯」
 			    }
 			}
+
 		for (int i=0;i<holdCostListbefore.size();i++){
+			boolean flag=false;
 			for(int j=0;j<holdCostList.size();j++){
 				if(holdCostListbefore.get(i).getId()==holdCostList.get(j).getId()){
-					holdCostListdelete.add(holdCostList.get(j));
+					flag=true;
 					break;
 				}
 			}
+			if(flag==false){
+				holdCostListdelete.add(holdCostListbefore.get(i));
+			}
 		}
+
 		System.out.println("holdCostList.length():"+holdCostList.size());
 		System.out.println("holdCostList2.length():"+holdCostList2.size());
 		//璐埧绋庤垂
@@ -474,11 +509,16 @@ public class ProjectInfoController {
 					}
 		}
 		for (int i=0;i<houseTaxListbefore.size();i++){
+			boolean flag=false;
+
 			for(int j=0;j<houseTaxList.size();j++){
 				if(houseTaxListbefore.get(i).getId()==houseTaxList.get(j).getId()){
-					houseTaxListdelete.add(houseTaxList.get(j));
+					flag=true;
 					break;
 				}
+			}
+			if(flag==false){
+				houseTaxListdelete.add(houseTaxListbefore.get(i));
 			}
 		}
 		System.out.println("houseTaxList.length():"+houseTaxList.size());
@@ -527,6 +567,7 @@ public class ProjectInfoController {
 			JSONArray areaArray = JSONArray.parseArray(arealist);
 			List<ServiceArea> serviceArealist=new ArrayList<ServiceArea>();//瀛樻斁瑕佺紪杈戠殑椤�
 			List<ServiceArea> serviceArealist2=new ArrayList<ServiceArea>();//瀛樻斁鏂版坊鍔犵殑椤�
+			List<ServiceArea> serviceArealistdelete=new ArrayList<ServiceArea>();//瀛樻斁鏂版坊鍔犵殑椤�
 			for (int i=0;i<areaArray.size();i++){
 					JSONObject object = (JSONObject)areaArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
 					ServiceArea e = (ServiceArea) JSONToObj(object.toString(), ServiceArea.class);
@@ -537,11 +578,25 @@ public class ProjectInfoController {
 				    	serviceArealist.add(e);//鐢ㄤ簬缂栬緫
 				    }
 				}
+			
+			for (int i=0;i<brokerServiceAreaListbefore.size();i++){
+				boolean flag=false;
+				for(int j=0;j<serviceArealist.size();j++){
+					if(brokerServiceAreaListbefore.get(i).getId()==serviceArealist.get(j).getId()){
+						flag=true;
+						break;
+					}
+				}
+				if(flag==false){
+					serviceArealistdelete.add(brokerServiceAreaListbefore.get(i));
+				}
+			}
 			//缁忕邯浜烘搮闀跨被鍨�
 			String typelist=req.getParameter("typelist");
 			JSONArray typeArray = JSONArray.parseArray(typelist);
 			List<BrokerType> brokerTypelist=new ArrayList<BrokerType>();//瀛樻斁瑕佺紪杈戠殑椤�
 			List<BrokerType> brokerTypelist2=new ArrayList<BrokerType>();//瀛樻斁鏂版坊鍔犵殑椤�
+			List<BrokerType> brokerTypelistdelete=new ArrayList<BrokerType>();//瀛樻斁鏂版坊鍔犵殑椤�
 			for (int i=0;i<typeArray.size();i++){
 					JSONObject object = (JSONObject)typeArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
 					BrokerType e = (BrokerType) JSONToObj(object.toString(), BrokerType.class);
@@ -552,9 +607,26 @@ public class ProjectInfoController {
 				    	brokerTypelist.add(e);//鐢ㄤ簬缂栬緫
 				    }
 				}
+			/*if(brokerTypelist.size()==0){
+				brokerTypelistdelete=brokerIntegertypeListbefore;
+			}*/
+			for (int i=0;i<brokerIntegertypeListbefore.size();i++){
+				boolean flag=false;
+				for(int j=0;j<brokerTypelist.size();j++){
+					if(brokerIntegertypeListbefore.get(i).getId()==brokerTypelist.get(j).getId()){
+						flag=true;
+						break;
+					}
+				}
+				if(flag==false){
+					brokerTypelistdelete.add(brokerIntegertypeListbefore.get(i));
+				}
+			}
+			/*brokerIntegertypeListbefore.removeAll(brokerTypelist);
+			brokerTypelistdelete=brokerIntegertypeListbefore;*/
 			//鏇存柊
 		  try {
-				int result=projectInputDao.UpdateBroker(id, broker, serviceArealist,serviceArealist2, brokerTypelist,brokerTypelist2);
+				int result=projectInputDao.UpdateBroker(id, broker, serviceArealist,serviceArealist2, brokerTypelist,brokerTypelist2,serviceArealistdelete,brokerTypelistdelete);
 				System.out.println("result::"+result);
 		    } catch (Exception e1) {
 				// TODO Auto-generated catch block
@@ -1032,10 +1104,13 @@ public class ProjectInfoController {
 					String broker_num=projectInputDao.findBrokerNumById(id);
 					//鑾峰彇缁忕邯浜烘湇鍔″尯鍩�
 					List<ServiceArea> brokerServiceAreaList=projectInputDao.findBrokerAreaList(broker_num);
+					brokerServiceAreaListbefore=projectInputDao.findBrokerAreaList(broker_num);
+					
 					req.setAttribute("brokerServiceAreaList", brokerServiceAreaList);
 					req.setAttribute("brokerServiceAreaListJson", ConvertJson.list2json(brokerServiceAreaList));
 					//鑾峰彇缁忕邯浜烘搮闀跨被鍨�
 					List<BrokerType> brokerIntegertypeList=projectInputDao.findBrokerTypeList(broker_num);
+					brokerIntegertypeListbefore=projectInputDao.findBrokerTypeList(broker_num);
 					req.setAttribute("brokerIntegertypeList", brokerIntegertypeList);
 					req.setAttribute("brokerIntegertypeListJson", ConvertJson.list2json(brokerIntegertypeList));
 					return "/brokerInfo.jsp";
