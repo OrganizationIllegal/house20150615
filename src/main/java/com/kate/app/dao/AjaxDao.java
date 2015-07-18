@@ -180,7 +180,8 @@ import com.kate.app.model.RecoProject;
 					projectInfo.setProject_price_qi(rs.getString("project_price_qi"));
 					projectInfo.setProject_type(rs.getString("project_type"));
 					projectInfo.setProject_sales_remain(rs.getInt("project_sales_remain"));
-					projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));
+					/*projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));*/
+					projectInfo.setProject_finish_time(rs.getString("project_finish_time"));
 					projectInfo.setProject_desc(rs.getString("project_desc"));
 					projectInfo.setProject_city(rs.getString("project_city"));
 					projectInfo.setProject_house_type(rs.getString("project_house_type"));
@@ -557,7 +558,8 @@ import com.kate.app.model.RecoProject;
 					projectInfo.setProject_price_qi(rs.getString("project_price_qi"));
 					projectInfo.setProject_type(rs.getString("project_type"));
 					projectInfo.setProject_sales_remain(rs.getInt("project_sales_remain"));
-					projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));
+					/*projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));*/
+					projectInfo.setProject_finish_time(rs.getString("project_finish_time"));
 					projectInfo.setProject_desc(rs.getString("project_desc"));
 					projectInfo.setProject_city(rs.getString("project_city"));
 					projectInfo.setProject_house_type(rs.getString("project_house_type"));
@@ -598,7 +600,8 @@ import com.kate.app.model.RecoProject;
 					projectInfo.setProject_price_qi(rs.getString("project_price_qi"));
 					projectInfo.setProject_type(rs.getString("project_type"));
 					projectInfo.setProject_sales_remain(rs.getInt("project_sales_remain"));
-					projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));
+					/*projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));*/
+					projectInfo.setProject_finish_time(rs.getString("project_finish_time"));
 					projectInfo.setProject_desc(rs.getString("project_desc"));
 					projectInfo.setProject_city(rs.getString("project_city"));
 					projectInfo.setProject_house_type(rs.getString("project_house_type"));

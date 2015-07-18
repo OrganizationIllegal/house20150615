@@ -117,7 +117,7 @@ public class MyController {
 	private AreaInfoDao areaInfoDao;
 	
 	
-	@RequestMapping({ "/Index" })
+	@RequestMapping({"/Index" })
 	public String Index(HttpServletRequest req, HttpServletResponse resp){
 		String username = (String)req.getSession().getAttribute("username");
 		String proNum = req.getParameter("proNum");
@@ -261,15 +261,16 @@ public class MyController {
 	@RequestMapping({"/Index/TheElement"})    
 	public void  TheElement(HttpServletRequest req, HttpServletResponse resp, int proId){
 		HouseProject project = houseProjectService.getHouseProject(proId);
-        String timeResule = null;
+       /* String timeResule = null;*/
 		
-		if(project!=null){
+		/*if(project!=null){
 			Timestamp time = project.getProject_finish_time();
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 			if(time!=null){
 				timeResule = df.format(time);
 			} 
-		}
+		}*/
+        String timeResule=project.getProject_finish_time();
 		BuyInfo buyInfo = ajaxDao.getBuyInfo(proId);
 		int stamp_tax = 0;
 		if(buyInfo!=null){
@@ -312,11 +313,12 @@ public class MyController {
 		
 		if(pro!=null){
 			developer_num = pro.getDeveloper_id_name();
-			Timestamp time = pro.getProject_finish_time();
+			/*Timestamp time = pro.getProject_finish_time();
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 			if(time!=null){
 				timeResule = df.format(time);
-			} 
+			} */
+			timeResule=pro.getProject_finish_time();
 		}
 		DeveloperInfo developerInfo = houseProjectService.getDeveloperInfo(developer_num);
 		req.setAttribute("timeResule", timeResule);
@@ -364,10 +366,10 @@ public class MyController {
 	@RequestMapping({"/Index/HouseTax"})
 	public void getHouseTax(HttpServletRequest req, HttpServletResponse resp,String proNum){
 
-		List<HouseTaxVo> houseTaxVoList=houseTaxService.getHouseTaxVo(proNum);
+		List<HouseTaxVo> houseTaxVoList=houseTaxService.getHouseTaxVo(proNum);//house_tax购房税费
 		 List<String> houseTaxStr=new ArrayList<String>();
 		 int houseTaxSum=0;
-		 List<HoldingTaxVo> holdingTaxVoList=houseTaxService.getHoldingTaxVo(proNum);
+		 List<HoldingTaxVo> holdingTaxVoList=houseTaxService.getHoldingTaxVo(proNum);//holding_finace持有成本
 		 List<String> holdingTaxStr=new ArrayList<String>();
 		 int holdingTaxSunm=0;
 		 for(HouseTaxVo houseTaxVo:houseTaxVoList){
