@@ -343,14 +343,14 @@ public class ProjectInfoController {
 			    	imagelist.add(e);
 			    }
 			}
-		for (int i=0;i<projectImageListbefore.size();i++){
+/*		for (int i=0;i<projectImageListbefore.size();i++){
 			for(int j=0;j<imagelist.size();j++){
 				if(projectImageListbefore.get(i).getId()==imagelist.get(j).getId()){
 					imagelistdelete.add(imagelist.get(j));
 					break;
 				}
 			}
-		}
+		}*/
 		//项目配套
 		    String projectpeitao=req.getParameter("peitaolist");
 			JSONArray peitaoArray = JSONArray.parseArray(projectpeitao);
@@ -367,14 +367,14 @@ public class ProjectInfoController {
 				    	peitaolist.add(e);
 				    }
 				}
-			for (int i=0;i<projectPeiTaoListbefore.size();i++){
+		/*	for (int i=0;i<projectPeiTaoListbefore.size();i++){
 				for(int j=0;j<peitaolist.size();j++){
 					if(projectPeiTaoListbefore.get(i).getId()==peitaolist.get(j).getId()){
 						peitaolistdelete.add(peitaolist.get(j));
 						break;
 					}
 				}
-			}
+			}*/
 		//附近配套
 
 		String fujinpeitao=req.getParameter("fujinlist");
@@ -392,14 +392,14 @@ public class ProjectInfoController {
 					 fujinpeitaoList.add(e);//鍚﹀垯锛岀紪杈�
 				 }
 		}
-		for (int i=0;i<fujinPeitaoListbefore.size();i++){
+	/*	for (int i=0;i<fujinPeitaoListbefore.size();i++){
 			for(int j=0;j<fujinpeitaoList.size();j++){
 				if(fujinPeitaoListbefore.get(i).getId()==fujinpeitaoList.get(j).getId()){
 					fujinpeitaoListdelete.add(fujinpeitaoList.get(j));
 					break;
 				}
 			}
-		}
+		}*/
 		System.out.println("fujinpeitaoList.length():"+fujinpeitaoList.size());
 		System.out.println("fujinpeitaoList2.length():"+fujinpeitaoList2.size());
 		//闄勮繎瀛︽牎
@@ -418,14 +418,14 @@ public class ProjectInfoController {
 							 fujinSchoolList.add(e);
 						 }
 		   }
-		for (int i=0;i<fujinSchoolListbefore .size();i++){
+	/*	for (int i=0;i<fujinSchoolListbefore .size();i++){
 			for(int j=0;j<fujinSchoolList.size();j++){
 				if(fujinSchoolListbefore.get(i).getId()==fujinSchoolList.get(j).getId()){
 					fujinSchoolListdelete.add(fujinSchoolList.get(j));
 					break;
 				}
 			}
-		}
+		}*/
 		System.out.println("fujinSchoolList.length():"+fujinSchoolList.size());
 		System.out.println("fujinSchoolList2.length():"+fujinSchoolList2.size());
 		//鎸佹湁鎴愭湰
@@ -444,14 +444,14 @@ public class ProjectInfoController {
 			    	holdCostList.add(e);//娣诲姞鐨勯」
 			    }
 			}
-		for (int i=0;i<holdCostListbefore.size();i++){
+		/*for (int i=0;i<holdCostListbefore.size();i++){
 			for(int j=0;j<holdCostList.size();j++){
 				if(holdCostListbefore.get(i).getId()==holdCostList.get(j).getId()){
 					holdCostListdelete.add(holdCostList.get(j));
 					break;
 				}
 			}
-		}
+		}*/
 		System.out.println("holdCostList.length():"+holdCostList.size());
 		System.out.println("holdCostList2.length():"+holdCostList2.size());
 		//璐埧绋庤垂
@@ -470,14 +470,14 @@ public class ProjectInfoController {
 						 houseTaxList.add(e);//鐢ㄤ簬缂栬緫
 					}
 		}
-		for (int i=0;i<houseTaxListbefore.size();i++){
+		/*for (int i=0;i<houseTaxListbefore.size();i++){
 			for(int j=0;j<houseTaxList.size();j++){
 				if(houseTaxListbefore.get(i).getId()==houseTaxList.get(j).getId()){
 					houseTaxListdelete.add(houseTaxList.get(j));
 					break;
 				}
 			}
-		}
+		}*/
 		System.out.println("houseTaxList.length():"+houseTaxList.size());
 		System.out.println("houseTaxList2.length():"+houseTaxList2.size());
 		/*int isDuplicate=projectInputDao.isDuplicateNum(project_num);

@@ -31,6 +31,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  <!--    <link rel="stylesheet" href="/docsupport/style.css">
   <link rel="stylesheet" href="/docsupport/prism.css"> -->
   <link rel="stylesheet" href="css/chosen.css">
+  <link rel="stylesheet" type="text/css" href="/bootstrap-datepicker-1.4.0-dist/css/bootstrap-datepicker.min.css" />
+  <script src="/bootstrap-datepicker-1.4.0-dist/js/bootstrap-datepicker.min.js"></script>
+<script src="/bootstrap-datepicker-1.4.0-dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
 
 
 <style type="text/css">
@@ -116,7 +119,12 @@ body{
 <span class="area_span">推荐度</span><span><input type="text" id="tuijian" name="tuijian" class="area_input"></span>
 </div>
 <div class="area_right">
-<span class="area_span">面积单位</span><span><input type="text" id="mianji" name="mianji" class="area_input"></span>
+<span class="area_span">面积单位</span><!-- <span><input type="text" id="mianji" name="mianji" class="area_input"></span> -->
+<select data-placeholder="请选择..." class="chosen-select" id="mianji" name="mianji" style="width:220px;" tabindex="4">
+ 	 <option value=""></option>
+  	 <option value="平米">平米</option>
+     <option value="英尺">英尺</option>
+ </select>
 </div>
 <div class="area_left">
 <span class="area_span">最小面积</span><span><input type="text" id="minarea" name="minarea" class="area_input"></span>
@@ -390,6 +398,13 @@ body{
 </div>
 </div>
 <script type="text/javascript">
+$('#danjia').blur(function() {
+	if(isNaN($('#danjia').val())){
+		alert("请输入数字！");
+		$("#danjia").focus();
+		return false;
+	}
+	});
 $('#keshou').blur(function() {
 	if(isNaN($('#keshou').val())){
 		alert("请输入数字！");
@@ -453,6 +468,10 @@ $('#houseTaxprice').blur(function() {
 		return false;
 	}
 	});
+$('#update_time').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
 $(function(){
 	$.ajaxSetup({  
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
@@ -847,6 +866,7 @@ $(function(){
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			schooledititem=DataDeal.formToJson(data= decodeURIComponent($("#school").serialize(),true));
+			schooledititem=schooledititem.replace(/\+/g," ");
 			schooledititem=eval("("+schooledititem+")");
 			/* schooledititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
@@ -1118,7 +1138,7 @@ function savepro(){
 	project.project_nation=$("#project_nation").val();
 	project.project_address=$("#project_address").val();
 	project.project_area=$("#project_area").val();
-	project.project_price_qi=$("#danjia").val();
+	project.project_price_int_qi=$("#danjia").val();
 	project.project_sales_remain=$("#keshou").val();
 	project.project_finish_time=$("#finish_time").val();
 	project.project_desc=$("#project_desc").val();
@@ -1144,6 +1164,7 @@ function savepro(){
 	project.buytaxInfo=$("#buyTaxInfo").val();
 	project.holdInfo=$("#holdCostInfo").val();	
 	project.project_type=$("#project_type").val();	
+    project.area_num=$("#area_num").val();
 	
 	projectlist.push(project);
 
