@@ -45,7 +45,7 @@ public class SendMailService {
 	    //String []attach={"F:\\login.properties"};  
 	    //mailinfo.setAttachFileNames(attach);  
 	    mailinfo.setSubject("-----邮件测试----");  
-	    mailinfo.setContent("<a href='#'>"+password+"</a>");//网页内容  
+	    mailinfo.setContent("您的密码是：<a href='#'>"+password+"</a> 请您记住！");//网页内容  
 	    SendMail sm=new SendMail();  
 	    if(sm.sendAttach(mailinfo))  
 	        System.out.println("邮件发送成功");  
