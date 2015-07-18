@@ -133,6 +133,14 @@
 	 <ul id="info3" style="padding-left:0px;font-size:13px;font-family:Microsoft YaHei;">
 		<li><a href="/Collect.jsp">我的收藏</a></li>
 		<li><a href="/changePass.jsp">更改密码</a></li>
+		<%
+	       	 if("0".equals(role)){
+	       				
+	    %><li><a href="/treeData.jsp">后台管理</a></li>
+	    <%
+	       	 }
+	    %>
+	    
 		<li><a href="${pageContext.request.contextPath}/logout.jsp">退出登录</a></li>
 	</ul> 
 </div>
