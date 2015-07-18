@@ -26,7 +26,8 @@ public class HouseProject {
 	}
 	private String project_type;
 	private int project_sales_remain;
-	private Timestamp project_finish_time;
+/*	private Timestamp project_finish_time;*/
+	private String project_finish_time;
 	private String project_desc;
 	private int developer_id;
 	private String project_city;
@@ -130,14 +131,21 @@ public class HouseProject {
 	public void setProject_sales_remain(int project_sales_remain) {
 		this.project_sales_remain = project_sales_remain;
 	}
-	public Timestamp getProject_finish_time() {
+	/*public Timestamp getProject_finish_time() {
 		return project_finish_time;
 	}
 	public void setProject_finish_time(Timestamp project_finish_time) {
 		this.project_finish_time = project_finish_time;
-	}
+	}*/
+	
 	public String getProject_desc() {
 		return project_desc;
+	}
+	public String getProject_finish_time() {
+		return project_finish_time;
+	}
+	public void setProject_finish_time(String project_finish_time) {
+		this.project_finish_time = project_finish_time;
 	}
 	public void setProject_desc(String project_desc) {
 		this.project_desc = project_desc;

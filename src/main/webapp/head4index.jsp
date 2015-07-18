@@ -51,7 +51,10 @@
    $("#register2").click(function(){
    	$('#register').modal('show');
   })
-  
+  $("#forget2").click(function(){
+	//$('#login').modal('hide');
+   	$('#forget').modal('show');
+  })
   
    /* function poplogin(){
       
@@ -133,6 +136,14 @@
 	 <ul id="info3" style="padding-left:0px;font-size:13px;font-family:Microsoft YaHei;">
 		<li><a href="/Collect.jsp">我的收藏</a></li>
 		<li><a href="/changePass.jsp">更改密码</a></li>
+		<%
+	       	 if("0".equals(role)){
+	       				
+	    %><li><a href="/treeData.jsp">后台管理</a></li>
+	    <%
+	       	 }
+	    %>
+	    
 		<li><a href="${pageContext.request.contextPath}/logout.jsp">退出登录</a></li>
 	</ul> 
 </div>
@@ -195,7 +206,7 @@
    </div>
    
    <div style="padding-top:20px;padding-left:20px;float:left;font-size:12px;">
-      <span><input type="checkbox" checked="true">记住我 <a href="/changePass.jsp" style="padding-left:160px;color:black;">忘记密码？</a></span>  
+      <span><input type="checkbox" checked="true">记住我 <a href="javacript:void(0);" id="forget2" style="padding-left:160px;color:black;">忘记密码？</a></span>  
    </div>
    <div style="padding-top:15px;padding-left:20px;float:left;">
    <img src="images/3.png" id="login1" style="width:120px;height:30px;cursor:pointer;">   
@@ -244,6 +255,47 @@
 </div>
 </div>
 <!-- register end -->
+
+
+<!-- forget start -->
+<div class="modal fade" id="forget" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog" style="margin-top:100px;">
+    <div class="modal-content" style="margin:0 auto;height:270px;width:355px;">
+         <div class="modal-header" style="background-color:rgb(55,52,67);padding:0px 10px;height:10px;">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="font-size:18px;color:white;">
+                  &times;
+            </button>
+         </div>
+         <div class="modal-body">
+  			<div style="text-align:center;margin-top:5px;">
+  			<div style="font-size:20px;font-weight:bold;">欢迎登录海外房产优选</div>
+  			<form method="post" name="fm" action="/login" autocomplete="off" >
+  <div  style="padding-top:25px;">
+         <input type="text"  id="userEmail"
+            name="userEmail" style="background-image:url(images/0.png);background-repeat:no-repeat;background-position:left;width:270px;padding-left:35px;height:32px;background-color:rgba(246, 245, 245, 1);" placeholder="手机号/邮箱" autocomplete="off"  disableautocomplete />
+         <input type="hidden" id="userEmail1" 
+            name="userEmail1" style="background-image:url(images/0.png);background-repeat:no-repeat;background-position:left;width:270px;padding-left:35px;height:32px;background-color:rgba(246, 245, 245, 1);" placeholder="手机号/邮箱" autocomplete="off">
+        <input type="hidden" style="background-image:url(images/0.png);background-repeat:no-repeat;background-position:left;width:270px;padding-left:35px;height:32px;background-color:rgba(246, 245, 245, 1);" id="role" 
+            name="role" placeholder="用户角色">
+       <div id="user" style="margin-left:20px;"></div>
+      
+   </div>
+   
+       
+   
+   <div style="padding-top:15px;padding-left:20px;float:left;">
+   		<a href="javacript:void(0);" id="forgetSend" style="padding-left:105px;color:black;">确认发送</a>    
+   </div>
+</form>
+         </div>
+   
+      </div>
+</div>
+</div>
+</div>
+<!-- forget end -->
+
+
 </body>
 
 <script>
@@ -382,7 +434,33 @@ function judgeRe(username, password){
    }
  }
  
-   
+$("#forgetSend").click(function(){
+	if($("#userEmail").val()==""){
+ 	     alert("请输入用户名");
+ 	 }
+	else{
+		var userEmail = $("#userEmail").val();
+		$.ajax({
+			type:'post',
+			url:'/sendEmail',
+			dateType:'json',
+			data:{"userEmail":userEmail},
+			success:function(data){
+				var result = JSON.parse(data);
+				if(result.flag == -1){
+					alert("您填写的邮箱错误！");
+				}
+				else{
+					alert("密码已经发送您的邮箱，请注意查收！");
+					window.location.href = '/index01';
+				}
+
+			},
+			error:function(){
+  			}
+		});
+	}
+})
   
 var keyStr = "ABCDEFGHIJKLMNOP" + "QRSTUVWXYZabcdef" + "ghijklmnopqrstuv"
 + "wxyz0123456789+/" + "=";

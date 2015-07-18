@@ -20,7 +20,7 @@ public class SearchListDao extends BaseDao {
 	public List<SearchList> listSearchList(){
 		List<SearchList> searchInfoList=new ArrayList<SearchList>();
 		try {
-			String sql = "select t.id,t.project_num,t.project_desc,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi from house_project t left join project_key p on t.project_num=p.project_num";
+			String sql = "select t.id,t.project_num,t.project_desc,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi from house_project t left join project_key p on t.project_num=p.project_num where isSeen=1";
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 		    int id=0;
