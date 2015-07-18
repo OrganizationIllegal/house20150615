@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kate.app.dao.ZhiYeDao;
+import com.kate.app.model.MailSenderInfo;
 import com.kate.app.model.NewsBoke;
 import com.kate.app.model.SearchList;
 import com.kate.app.model.ZhiYeZhiDao;
@@ -28,10 +29,13 @@ public class DetailInfoController {
 	@RequestMapping({"/Detail"})
 	public String ZhiYeInfo(HttpServletRequest req, HttpServletResponse resp){
 		String id = req.getParameter("id");
-		String type = req.getParameter("type");   //0置业  1新闻博客
+		String type = req.getParameter("type");   //0缃笟  1鏂伴椈鍗氬
 		int idInfo = 0;
 		ZhiYeZhiDao zhiYeDetail = null;
 		NewsBoke newsBokeDetail = null;
+		
+		
+		
 		if(id!=null && !"".equals(id)){
 			idInfo = Integer.parseInt(id);
 		}
@@ -41,7 +45,7 @@ public class DetailInfoController {
 		else{
 			newsBokeDetail = zhiYeDao.selectNewsBokeById(idInfo);
 		}
-		List<ZhiYeZhiDao> zhiYeList=zhiYeDao.selectZhiYe();   //得到所有的信息，按时间排序
+		List<ZhiYeZhiDao> zhiYeList=zhiYeDao.selectZhiYe();   //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
 		List<NewsBoke> newsList = zhiYeDao.selectNewsBoke();
 		List<ZhiYeZhiDao> lastestList = new ArrayList<ZhiYeZhiDao>();
 		/*if(zhiYeList!=null){
@@ -56,6 +60,7 @@ public class DetailInfoController {
 		if(newsList.size() > 3){
 			newsList = newsList.subList(0, 3);
 		}
+		
 		req.setAttribute("type",type);
 		req.setAttribute("zhiYeDetail",zhiYeDetail);
 		req.setAttribute("newsBokeDetail",newsBokeDetail);

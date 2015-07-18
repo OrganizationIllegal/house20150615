@@ -13,7 +13,7 @@ import com.kate.app.model.User;
 @Repository 
 public class UserInfoDao extends BaseDao {
 	
-	//判断用户
+	//鍒ゆ柇鐢ㄦ埛
 		public List<User> judge(String username) throws SQLException{
 			List<User> list = new ArrayList<User>();
 			try{
@@ -44,9 +44,37 @@ public class UserInfoDao extends BaseDao {
 	        
 		}
 		
+		public List<User> judgeEmail(String userEmail) throws SQLException{
+			List<User> list = new ArrayList<User>();
+			try{
+				String sql = "select * from user where email=?";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, userEmail);
+				ResultSet rs = pstmt.executeQuery();
+				int id=0;
+				String pwd=null;
+				String email=null;
+				String tel=null;
+				int role=0;
+				while(rs.next()){
+					id = rs.getInt("id");
+					pwd = rs.getString("pwd");
+					email = rs.getString("email");
+					tel = rs.getString("tel");
+					role = rs.getInt("role");
+					User data = new User(username, pwd, email, tel, role);
+					list.add(data);
+				}
+				
+			}catch (Exception e) {
+	            e.printStackTrace();
+	        }
+			return list;
+	        
+		}
 		
 		
-		//用户修改密码
+		//鐢ㄦ埛淇敼瀵嗙爜
 				public boolean changePass(String username,String passNew) throws SQLException{
 					boolean flag = true;
 					try{
@@ -69,7 +97,7 @@ public class UserInfoDao extends BaseDao {
 	
 	
 	
-	//开立账户
+	//寮�珛璐︽埛
 	public int addAccount(String nick_name,String pwd,String tel,String email,String account,String msg) throws SQLException{
 		int exeResult=0;
 		try{
@@ -88,7 +116,7 @@ public class UserInfoDao extends BaseDao {
 		return exeResult;
         
 	}
-	//索取完整价格
+	//绱㈠彇瀹屾暣浠锋牸
 		public int addAllPrice(String nick_name,String pwd,String tel,String email,String allprice,String msg) throws SQLException{
 			int exeResult=0;
 			try{
@@ -108,7 +136,7 @@ public class UserInfoDao extends BaseDao {
 	        
 		}
 		
-		//需求
+		//闇�眰
 				public int addNeed(String nick_name,String tel,String email,String need,String msg) throws SQLException{
 					int exeResult=0;
 					try{
@@ -127,7 +155,7 @@ public class UserInfoDao extends BaseDao {
 			        
 				}
 
-				//详情咨询
+				//璇︽儏鍜ㄨ
 				public int addAsk(String nick_name,String pwd,String tel,String email,String ask,String msg) throws SQLException{
 					int exeResult=0;
 					try{
@@ -147,7 +175,7 @@ public class UserInfoDao extends BaseDao {
 			        
 				}
 				
-				//最新价格
+				//鏈�柊浠锋牸
 				public int addNewestPrice(String nick_name,String pwd,String tel,String email,String newestprice,String msg) throws SQLException{
 					int exeResult=0;
 					try{
@@ -166,7 +194,7 @@ public class UserInfoDao extends BaseDao {
 					return exeResult;
 			        
 				}
-				//完整价格
+				//瀹屾暣浠锋牸
 				public int addHouseType(String nick_name,String pwd,String tel,String email,String housetype,String msg) throws SQLException{
 					int exeResult=0;
 					try{
@@ -185,7 +213,7 @@ public class UserInfoDao extends BaseDao {
 					return exeResult;
 			        
 				}
-				//注册账户
+				//娉ㄥ唽璐︽埛
 				public int register(String nick_name,String pwd,String repwd,String tel,String email) throws SQLException{
 					int exeResult=0;
 					try{
@@ -205,7 +233,7 @@ public class UserInfoDao extends BaseDao {
 			        
 				}
 				
-				//手机注册
+				//鎵嬫満娉ㄥ唽
 				public int register1(String tel,String pwd) throws SQLException{
 					int exeResult=0;
 					try{
@@ -222,7 +250,7 @@ public class UserInfoDao extends BaseDao {
 			        
 				}
 				
-				//邮箱注册
+				//閭娉ㄥ唽
 				public int register2(String email,String pwd) throws SQLException{
 					int exeResult=0;
 					try{
