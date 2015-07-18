@@ -1814,21 +1814,21 @@ public class ProjectInputDao extends BaseDao {
 				//,,,,,
 				//delete from project_desc_image
 				String sqldeleteimage = "delete from project_desc_image where id= ?";
+				pstmt = con.prepareStatement(sqldeleteimage);
 				for(int i=0;i<imagelistdelete.size();i++){
-					pstmt = con.prepareStatement(sqldeleteimage);
 					pstmt.setInt(1, imagelistdelete.get(i).getId());
 					pstmt.addBatch();
 				}
 				int[] resultimagedelete=pstmt.executeBatch();
-				/*System.out.println("resultimagedelete.length:"+resultimagedelete.length);
-				for(int i=0;i<result7list.length;i++){
+				System.out.println("resultimagedelete.length:"+resultimagedelete.length);
+				for(int i=0;i<resultimagedelete.length;i++){
 					System.out.println("resultimagedelete"+i+":"+resultimagedelete[i]);
 				}
-				*/
+				
 				//delete from project_desc_image
-				/*String sqldeletepeitaolist = "delete from project_peitao_image where id= ?";
+				String sqldeletepeitaolist = "delete from project_peitao_image where id= ?";
+				pstmt = con.prepareStatement(sqldeletepeitaolist);
 				for(int i=0;i<peitaolistdelete.size();i++){
-					pstmt = con.prepareStatement(sqldeletepeitaolist);
 					pstmt.setInt(1, peitaolistdelete.get(i).getId());
 					pstmt.addBatch();
 				}
@@ -1836,7 +1836,7 @@ public class ProjectInputDao extends BaseDao {
 				System.out.println("resultpeitaolistdelete.length:"+resultpeitaolistdelete.length);
 				for(int i=0;i<resultpeitaolistdelete.length;i++){
 					System.out.println("resultpeitaolistdelete"+i+":"+resultpeitaolistdelete[i]);
-				}*/
+				}
 				
 				//delete from project_desc_image
 				/*String sqldeleteprojectimage = "delete from project_desc_image where id= ?";
@@ -1847,14 +1847,14 @@ public class ProjectInputDao extends BaseDao {
 				}
 				int[] resultprojectimagedelete=pstmt.executeBatch();
 				System.out.println("resultprojectimagedelete.length:"+resultprojectimagedelete.length);
-				for(int i=0;i<result7list.length;i++){
+				for(int i=0;i<resultprojectimagedelete.length;i++){
 					System.out.println("resultprojectimagedelete"+i+":"+resultprojectimagedelete[i]);
 				}*/
 				
 				//delete from project_desc_image
-				/*String sqldeletefujinpeitao = "delete from near_peitao where id= ?";
+				String sqldeletefujinpeitao = "delete from near_peitao where id= ?";
+				pstmt = con.prepareStatement(sqldeletefujinpeitao);
 				for(int i=0;i<fujinpeitaoListdelete.size();i++){
-					pstmt = con.prepareStatement(sqldeletefujinpeitao);
 					pstmt.setInt(1, fujinpeitaoListdelete.get(i).getId());
 					pstmt.addBatch();
 				}
@@ -1862,12 +1862,12 @@ public class ProjectInputDao extends BaseDao {
 				System.out.println("resultfujinpeitaodelete.length:"+resultfujinpeitaodelete.length);
 				for(int i=0;i<resultfujinpeitaodelete.length;i++){
 					System.out.println("resultfujinpeitaodelete"+i+":"+resultfujinpeitaodelete[i]);
-				}*/
+				}
 				
 				//delete from project_desc_image
-				/*String sqldeletefujinschool = "delete from near_school where id= ?";
+				String sqldeletefujinschool = "delete from near_school where id= ?";
+				pstmt = con.prepareStatement(sqldeletefujinschool);
 				for(int i=0;i<fujinSchoolListdelete.size();i++){
-					pstmt = con.prepareStatement(sqldeletefujinschool);
 					pstmt.setInt(1, fujinSchoolListdelete.get(i).getId());
 					pstmt.addBatch();
 				}
@@ -1876,11 +1876,11 @@ public class ProjectInputDao extends BaseDao {
 				for(int i=0;i<resultfujinschooldelete.length;i++){
 					System.out.println("resultfujinschooldelete"+i+":"+resultfujinschooldelete[i]);
 				}
-				*/
+				
 				//delete from project_desc_image
-				/*String sqldeletehousecost = "delete from holding_finace where id= ?";
+				String sqldeletehousecost = "delete from holding_finace where id= ?";
+				pstmt = con.prepareStatement(sqldeletehousecost);
 				for(int i=0;i<holdCostListdelete.size();i++){
-					pstmt = con.prepareStatement(sqldeletehousecost);
 					pstmt.setInt(1, holdCostListdelete.get(i).getId());
 					pstmt.addBatch();
 				}
@@ -1888,12 +1888,12 @@ public class ProjectInputDao extends BaseDao {
 				System.out.println("resulthousecostdelete.length:"+resulthousecostdelete.length);
 				for(int i=0;i<resulthousecostdelete.length;i++){
 					System.out.println("resulthousecostdelete"+i+":"+resulthousecostdelete[i]);
-				}*/
+				}
 				
 				//delete from project_desc_image
-				/*String sqldeletehousetax = "delete from holding_finace where id= ?";
+				String sqldeletehousetax = "delete from house_tax where id= ?";
+				pstmt = con.prepareStatement(sqldeletehousetax);
 				for(int i=0;i<houseTaxListdelete.size();i++){
-					pstmt = con.prepareStatement(sqldeletehousetax);
 					pstmt.setInt(1, houseTaxListdelete.get(i).getId());
 					pstmt.addBatch();
 				}
@@ -1901,7 +1901,7 @@ public class ProjectInputDao extends BaseDao {
 				System.out.println("resulthousetaxdelete.length:"+resulthousetaxdelete.length);
 				for(int i=0;i<resulthousetaxdelete.length;i++){
 					System.out.println("resulthousetaxdelete"+i+":"+resulthousetaxdelete[i]);
-				}*/
+				}
 				//鎻愪氦浜嬬墿
 				con.commit();
 				//鎭㈠JDBC浜嬪姟

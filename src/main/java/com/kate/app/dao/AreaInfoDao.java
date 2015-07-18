@@ -1825,8 +1825,8 @@ public class AreaInfoDao extends BaseDao {
 					//,huibaotrendlistListdelete,tedianlistListdelete,peoplelistListdelete
 					//delete from project_desc_image
 					String sqldeletemiddleprice = "delete from area_middle_price where id= ?";
+					pstmt = con.prepareStatement(sqldeletemiddleprice);
 					for(int i=0;i<middlepriceListdelete.size();i++){
-						pstmt = con.prepareStatement(sqldeletemiddleprice);
 						pstmt.setInt(1, middlepriceListdelete.get(i).getId());
 						pstmt.addBatch();
 					}
@@ -1837,8 +1837,8 @@ public class AreaInfoDao extends BaseDao {
 					}
 					
 					String sqldeletemiddletrend = "delete from area_middle where id= ?";
+					pstmt = con.prepareStatement(sqldeletemiddletrend);
 					for(int i=0;i<middletrendListdelete.size();i++){
-						pstmt = con.prepareStatement(sqldeletemiddletrend);
 						pstmt.setInt(1, middletrendListdelete.get(i).getId());
 						pstmt.addBatch();
 					}
@@ -1850,8 +1850,8 @@ public class AreaInfoDao extends BaseDao {
 				
 					
 					String sqldeletezujin = "delete from area_zujin where id= ?";
+					pstmt = con.prepareStatement(sqldeletezujin);
 					for(int i=0;i<zujintrendlistListdelete.size();i++){
-						pstmt = con.prepareStatement(sqldeletezujin);
 						pstmt.setInt(1, zujintrendlistListdelete.get(i).getId());
 						pstmt.addBatch();
 					}
@@ -1863,8 +1863,8 @@ public class AreaInfoDao extends BaseDao {
 					
 
 					String sqldeletehuibao = "delete from area_kongzhi where id= ?";
+					pstmt = con.prepareStatement(sqldeletehuibao);
 					for(int i=0;i<huibaotrendlistListdelete.size();i++){
-						pstmt = con.prepareStatement(sqldeletehuibao);
 						pstmt.setInt(1, huibaotrendlistListdelete.get(i).getId());
 						pstmt.addBatch();
 					}
@@ -1875,8 +1875,8 @@ public class AreaInfoDao extends BaseDao {
 					}
 					
 					String sqldeletetedian = "delete from area_features where id= ?";
+					pstmt = con.prepareStatement(sqldeletetedian);
 					for(int i=0;i<tedianlistListdelete.size();i++){
-						pstmt = con.prepareStatement(sqldeletetedian);
 						pstmt.setInt(1, tedianlistListdelete.get(i).getId());
 						pstmt.addBatch();
 					}
@@ -1888,8 +1888,8 @@ public class AreaInfoDao extends BaseDao {
 					
 
 					String sqldeletepeople = "delete from area_people where id= ?";
+					pstmt = con.prepareStatement(sqldeletepeople);
 					for(int i=0;i<peoplelistListdelete.size();i++){
-						pstmt = con.prepareStatement(sqldeletepeople);
 						pstmt.setInt(1, peoplelistListdelete.get(i).getId());
 						pstmt.addBatch();
 					}
