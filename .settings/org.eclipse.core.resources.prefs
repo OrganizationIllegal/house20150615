@@ -8,6 +8,7 @@ encoding//src/main/java/com/kate/app/controller/SearchListController.java=UTF-8
 encoding//src/main/java/com/kate/app/controller/UserInfoController.java=UTF-8
 encoding//src/main/java/com/kate/app/controller/ZhiYeZhiDaoController.java=UTF-8
 encoding//src/main/java/com/kate/app/dao/AjaxDao.java=UTF-8
+encoding//src/main/java/com/kate/app/dao/AreaInfoDao.java=UTF-8
 encoding//src/main/java/com/kate/app/dao/BaseDao.java=UTF-8
 encoding//src/main/java/com/kate/app/dao/BrokerInfoDao.java=UTF-8
 encoding//src/main/java/com/kate/app/dao/HouseProjectDao.java=UTF-8

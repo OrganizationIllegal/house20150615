@@ -958,7 +958,9 @@ public class ProjectInputDao extends BaseDao {
 			}
 		}
 		//缁忕邯浜簎pdate
-				public int UpdateBroker(int id,Broker broker,List<ServiceArea> serviceAreaList,List<ServiceArea> serviceAreaList2,List<BrokerType> brokerTypeList,List<BrokerType> brokerTypeList2){
+				public int UpdateBroker(int id,Broker broker,List<ServiceArea> serviceAreaList,List<ServiceArea> serviceAreaList2,List<BrokerType> brokerTypeList,List<BrokerType> brokerTypeList2
+						,List<ServiceArea> serviceArealistdelete,
+				List<BrokerType> brokerTypelistdelete){
 					String broker_num=broker.getBroker_num();
 					String broker_name=broker.getBroker_name();
 					String broker_language=broker.getBroker_language();
@@ -989,15 +991,16 @@ public class ProjectInputDao extends BaseDao {
 						int exeResult = pstmt.executeUpdate();
 						
 						//鏈嶅姟鍖哄煙鏇存柊
-						String sql2 = "update  broker_service_area set area_code=?,view_shunxu=? where broker_num=? ";
+						String sql2 = "update  broker_service_area set area_code=?,view_shunxu=? where id=? ";
 				        pstmt = con.prepareStatement(sql2);
 				        for(int i=0;i<serviceAreaList.size();i++){
 				        	ServiceArea serviceArea=serviceAreaList.get(i);
 				        	String area_code=serviceArea.getArea_code();
+				        	int areaid=serviceArea.getId();
 				        	int  view_shunxu=serviceArea.getView_shunxu(); 
 				            pstmt.setString(1, area_code);
 				            pstmt.setInt(2, view_shunxu);
-				            pstmt.setString(3, broker_num);
+				            pstmt.setInt(3, areaid);
 				            pstmt.addBatch();
 				        }
 						int[] result2list=pstmt.executeBatch();
@@ -1015,15 +1018,16 @@ public class ProjectInputDao extends BaseDao {
 				        }
 						int[] result22list=pstmt.executeBatch();
 						//鎿呴暱绫诲瀷鏇存柊
-						String sql3 = "update broker_interested_type set interested_num=?,view_shunxu=? where broker_num=?";
+						String sql3 = "update broker_interested_type set interested_num=?,view_shunxu=? where id=?";
 				        pstmt = con.prepareStatement(sql3);
 				        for(int i=0;i<brokerTypeList.size();i++){
 				        	BrokerType brokertype=brokerTypeList.get(i);
 				        	String interested_num=brokertype.getInterested_num();
 				        	int  view_shunxu=brokertype.getView_shunxu2();
+				        	int  interid=brokertype.getId();
 				            pstmt.setString(1, interested_num);
 				            pstmt.setInt(2, view_shunxu);
-				            pstmt.setString(3, broker_num);
+				            pstmt.setInt(3, interid);
 				            pstmt.addBatch();
 				        }
 						int[] result3list=pstmt.executeBatch();
@@ -1040,6 +1044,31 @@ public class ProjectInputDao extends BaseDao {
 				            pstmt.addBatch();
 				        }
 						int[] result33list=pstmt.executeBatch();
+						
+						String sqldeleteservice = "delete from broker_service_area where id= ?";
+						pstmt = con.prepareStatement(sqldeleteservice);
+						for(int i=0;i<serviceArealistdelete.size();i++){
+							pstmt.setInt(1, serviceArealistdelete.get(i).getId());
+							pstmt.addBatch();
+						}
+						int[] resultservicedelete=pstmt.executeBatch();
+						System.out.println("resultservicedelete.length:"+resultservicedelete.length);
+						for(int i=0;i<resultservicedelete.length;i++){
+							System.out.println("resultservicedelete"+i+":"+resultservicedelete[i]);
+						}
+						
+						String sqldeleteinterest = "delete from broker_interested_type where id= ?";
+						pstmt = con.prepareStatement(sqldeleteinterest);
+						for(int i=0;i<brokerTypelistdelete.size();i++){
+							pstmt.setInt(1, brokerTypelistdelete.get(i).getId());
+							pstmt.addBatch();
+						}
+						int[] resultinterestdelete=pstmt.executeBatch();
+						System.out.println("resultinterestdelete.length:"+resultinterestdelete.length);
+						for(int i=0;i<resultinterestdelete.length;i++){
+							System.out.println("resultinterestdelete"+i+":"+resultinterestdelete[i]);
+						}
+						
 						//鎻愪氦浜嬬墿
 						con.commit();
 						//鎭㈠JDBC浜嬪姟
