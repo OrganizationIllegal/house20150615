@@ -15,7 +15,7 @@ import com.kate.app.model.User;
 public class UserInfoDao extends BaseDao {
 	
 	//鍒ゆ柇鐢ㄦ埛
-		public List<User> judge(String username) throws SQLException{
+		public List<User> judge(String username1) throws SQLException{
 			try{
 				con = DriverManager.getConnection(url, username, password);
 			}catch(Exception e){
@@ -26,8 +26,8 @@ public class UserInfoDao extends BaseDao {
 			try{
 				String sql = "select * from user where email=? or tel=?";
 				 pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, username);
-				pstmt.setString(2, username);
+				pstmt.setString(1, username1);
+				pstmt.setString(2, username1);
 				ResultSet rs = pstmt.executeQuery();
 				int id=0;
 				String pwd=null;
@@ -40,7 +40,7 @@ public class UserInfoDao extends BaseDao {
 					email = rs.getString("email");
 					tel = rs.getString("tel");
 					role = rs.getInt("role");
-					User data = new User(username, pwd, email, tel, role);
+					User data = new User(username1, pwd, email, tel, role);
 					list.add(data);
 				}
 				
@@ -83,6 +83,7 @@ public class UserInfoDao extends BaseDao {
 				String pwd=null;
 				String email=null;
 				String tel=null;
+				String nick_name = null;
 				int role=0;
 				while(rs.next()){
 					id = rs.getInt("id");
@@ -90,7 +91,8 @@ public class UserInfoDao extends BaseDao {
 					email = rs.getString("email");
 					tel = rs.getString("tel");
 					role = rs.getInt("role");
-					User data = new User(username, pwd, email, tel, role);
+					nick_name = rs.getString("nick_name");
+					User data = new User(nick_name, pwd, email, tel, role);
 					list.add(data);
 				}
 				
@@ -118,7 +120,7 @@ public class UserInfoDao extends BaseDao {
 		
 		
 		//鐢ㄦ埛淇敼瀵嗙爜
-				public boolean changePass(String username,String passNew) throws SQLException{
+				public boolean changePass(String username1,String passNew) throws SQLException{
 					try{
 						con = DriverManager.getConnection(url, username, password);
 					}catch(Exception e){
@@ -130,7 +132,7 @@ public class UserInfoDao extends BaseDao {
 						String sql = "update user set pwd=? where nick_name=?" ;
 						 pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, passNew);
-						pstmt.setString(2, username);
+						pstmt.setString(2, username1);
 						int result = pstmt.executeUpdate();
 						if(result == 0){
 							flag = false;
