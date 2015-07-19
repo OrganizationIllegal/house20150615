@@ -59,7 +59,10 @@ body{
 <div class="area_right4"><button onClick="clearAllInput()" class="btn">不保存</button></div>
 </div>
 <script type="text/javascript">
-CKEDITOR.replace( 'news_detail' );
+/* CKEDITOR.replace( 'news_detail' ); */
+CKEDITOR.replace( 'news_detail', {
+	extraPlugins: 'image2'
+} );
 $('#news_time').datepicker({
     language: "zh-CN",
     format: "yyyy-mm-dd"
