@@ -101,11 +101,11 @@ body{
 	   </c:otherwise>
   	  </c:choose>
   	  <c:choose>
-	    <c:when test="${houseProject.project_type eq '別墅'}">
-	      <option value="別墅" selected="selected">別墅</option>
+	    <c:when test="${houseProject.project_type eq '别墅'}">
+	      <option value="别墅" selected="selected"></option>
 	    </c:when>
 	   <c:otherwise>  
-	      <option value="別墅">別墅</option>
+	      <option value="别墅">别墅</option>
 	   </c:otherwise>
   	  </c:choose>
   	   <c:choose>

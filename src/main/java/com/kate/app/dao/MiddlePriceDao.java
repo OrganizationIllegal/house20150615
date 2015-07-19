@@ -11,13 +11,11 @@ import com.kate.app.model.MiddlePrice;
 @Repository 
 public class MiddlePriceDao extends BaseDao {
 	public MiddlePrice getMiddlePrice(String project_type, String areaNum){
-		MiddlePrice middlePrice = new MiddlePrice();
+		MiddlePrice middlePrice = new MiddlePrice() ;
 		try {
-			String sql = " SELECT * from area_middle_price where project_type=? and area_quyu=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, project_type);
-			pstmt.setString(2, areaNum);
-			ResultSet rs = pstmt.executeQuery();
+			String sql = " SELECT * from area_middle_price where project_type='"+project_type+"' and area_quyu='"+areaNum+"'";
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()){
 				middlePrice.setArea_quyu(rs.getString("area_quyu"));
 				middlePrice.setBuy_price(rs.getInt("buy_price"));
@@ -46,7 +44,7 @@ public class MiddlePriceDao extends BaseDao {
 		int houseProId=1;
 		int youngfamilyrate=0;
 		try {
-			String sql = " SELECT rate from area_family t where binary t.family_type='ÇàÄê¼ÒÍ¥'  AND t.house_pro_id="+houseProId;
+			String sql = " SELECT rate from area_family t where binary t.family_type='ï¿½ï¿½ï¿½ï¿½ï¿½Í¥'  AND t.house_pro_id="+houseProId;
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()){
@@ -62,7 +60,7 @@ public class MiddlePriceDao extends BaseDao {
 		int houseProId=1;
 		int oldfamilyrate=0;
 		try {
-			String sql = " SELECT rate from area_family t where binary t.family_type='ÀÏÄê¼ÒÍ¥'  AND t.house_pro_id="+houseProId;
+			String sql = " SELECT rate from area_family t where binary t.family_type='ï¿½ï¿½ï¿½ï¿½ï¿½Í¥'  AND t.house_pro_id="+houseProId;
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()){
@@ -74,7 +72,7 @@ public class MiddlePriceDao extends BaseDao {
 		}
 		return oldfamilyrate;
 	}
-	//Ôö
+	//ï¿½ï¿½
 	public int InsertAreaFamily(String family_type,int rate,int house_pro_id){
 		int exeResult=0;
 		try {
@@ -101,7 +99,7 @@ public class MiddlePriceDao extends BaseDao {
 		}
 		return exeResult;
 	}
-	//²é
+	//ï¿½ï¿½
 	public JSONArray listAreaFamily(){
 		JSONArray jsonArray=new JSONArray();
 		try {
@@ -115,7 +113,7 @@ public class MiddlePriceDao extends BaseDao {
 		}
 		return jsonArray;
 	} 
-	//¸Ä
+	//ï¿½ï¿½
 	public int updateAreaFamily(int id,String family_type,int rate,int house_pro_id){
 		int exeResult=0;
 		try {
@@ -132,7 +130,7 @@ public class MiddlePriceDao extends BaseDao {
 		}
 		return exeResult;
 	}
-	//¸ù¾ÝÏîÄ¿Ãû³Æ²éÕÒÏîÄ¿id
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½Æ²ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿id
 	public int findProjectIdByName(String project_name){
 		int project_id=0;
 		try {

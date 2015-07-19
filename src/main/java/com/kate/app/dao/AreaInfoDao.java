@@ -719,7 +719,7 @@ public class AreaInfoDao extends BaseDao {
 				String zu_three_name =item.getZu_three_name();
 				int zu_three_price = item.getZu_three_price();
 				String middle_datasource = item.getMiddle_datasource();
-				
+				String project_type=item.getProject_type();
 				
 				
 				String middle_date = item.getMiddle_date();
@@ -734,7 +734,7 @@ public class AreaInfoDao extends BaseDao {
 							"buy_one_name, buy_one_price, buy_two_name, buy_two_price, " +
 							"buy_three_name, buy_three_price, zu_one_name, zu_one_price, " +
 							"zu_two_name, zu_two_price, zu_three_name, zu_three_price, area_quyu, " +
-							"middle_datasource, middle_date) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+							"middle_datasource, middle_date,project_type) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 					pstmt = con.prepareStatement(sqlmiddleprice);
 					pstmt.setInt(1, buy_price);
 					pstmt.setInt(2, zu_price);
@@ -753,6 +753,7 @@ public class AreaInfoDao extends BaseDao {
 					pstmt.setString(15, area_num);
 					pstmt.setString(16, middle_datasource);
 					pstmt.setString(17, time_str);
+					pstmt.setString(18, project_type);
 					
 					
 					
@@ -1181,6 +1182,7 @@ public class AreaInfoDao extends BaseDao {
 				for(MiddlePrice2 item : middlepriceList){
 					boolean flagmiddleprice = true;
 					int id=item.getId();
+					String project_type=item.getProject_type();
 					int buy_price = item.getBuy_price();
 					int zu_price = item.getZu_price();
 					String buy_one_name =item.getBuy_one_name();
@@ -1208,7 +1210,7 @@ public class AreaInfoDao extends BaseDao {
 								"buy_one_name=?, buy_one_price=?, buy_two_name=?, buy_two_price=?, " +
 								"buy_three_name=?, buy_three_price=?, zu_one_name=?, zu_one_price=?, " +
 								"zu_two_name=?, zu_two_price=?, zu_three_name=?, zu_three_price=?, area_quyu=?, " +
-								"middle_datasource=?, middle_date=? where id=?";
+								"middle_datasource=?, middle_date=?,project_type=? where id=?";
 						pstmt = con.prepareStatement(sqlmiddleprice);
 						pstmt.setInt(1, buy_price);
 						pstmt.setInt(2, zu_price);
@@ -1227,7 +1229,8 @@ public class AreaInfoDao extends BaseDao {
 						pstmt.setString(15, area_num);
 						pstmt.setString(16, middle_datasource);
 						pstmt.setString(17, middle_date);
-						pstmt.setInt(18, id);
+						pstmt.setString(18, project_type);
+						pstmt.setInt(19, id);
 						int resultmiddleprice = pstmt.executeUpdate();
 						if(resultmiddleprice == 0){
 							flagmiddleprice = false;
@@ -1253,6 +1256,7 @@ public class AreaInfoDao extends BaseDao {
 					int zu_three_price = item.getZu_three_price();
 					String middle_datasource = item.getMiddle_datasource();
 					String middle_date = item.getMiddle_date();
+					String project_type=item.getProject_type();
 					/*String time_str = "";
 					if(middle_date != null){
 						time_str = middle_date.toString(); 
@@ -1264,7 +1268,7 @@ public class AreaInfoDao extends BaseDao {
 								"buy_one_name, buy_one_price, buy_two_name, buy_two_price, " +
 								"buy_three_name, buy_three_price, zu_one_name, zu_one_price, " +
 								"zu_two_name, zu_two_price, zu_three_name, zu_three_price, area_quyu, " +
-								"middle_datasource, middle_date) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+								"middle_datasource, middle_date,project_type) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 						pstmt = con.prepareStatement(sqlmiddleprice);
 						pstmt.setInt(1, buy_price);
 						pstmt.setInt(2, zu_price);
@@ -1283,6 +1287,7 @@ public class AreaInfoDao extends BaseDao {
 						pstmt.setString(15, area_num);
 						pstmt.setString(16, middle_datasource);
 						pstmt.setString(17, middle_date);
+						pstmt.setString(18, project_type);
 						int resultmiddleprice = pstmt.executeUpdate();
 						if(resultmiddleprice == 0){
 							flagmiddleprice = false;
