@@ -11,12 +11,12 @@ import com.kate.app.model.HouseProject;
 import com.kate.app.model.RecoProject;
 @Repository 
 public class RecoProjectDao extends BaseDao{
-	public RecoProject getRecoProjectDao(String project_num){
+	public RecoProject getRecoProjectDao(String area_num){
 		RecoProject data = new RecoProject();
 		try{
-			String sql = "select * from recommend_project where project_num=?";
+			String sql = "select * from recommend_project where area_code=?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, project_num);
+			pstmt.setString(1, area_num);
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()){

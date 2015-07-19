@@ -866,7 +866,7 @@ function popInfo(){
 				<div class="c-fix p_inner bgc" style="padding-bottom:30px;">
 					<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:950px;margin-bottom:10px;">新闻报道</a>
 					<div class="c-fix f-l p_news_node" style="margin-left:15px;">
-						<img src="<%=application.getInitParameter("imagedir")%>/${newsInfo_one.news_image}" class="c-fix f-l news_img"></img>
+						<img src="<%=application.getInitParameter("imagedir")%>/${newsInfo_one.news_image}" class="c-fix f-l news_img" style="width:315px;height:200px"></img>
 						<a class="c-fix f-l f-yahei s-16 fw news_title">新闻标题：${newsInfo_one.news_title}</a>
 						<div class="p_foot">
 						<a class="c-fix f-l f-yahei s-14 news_type">分类：${newsInfo_one.news_fenlei}</a>
@@ -875,13 +875,13 @@ function popInfo(){
 					</div>
 			
 					 <div class="f-l p_news_node" style="margin-left:5px;">
-						<img src="<%=application.getInitParameter("imagedir")%>/${newsInfo_two.news_image}" class="c-fix f-l news_img"></img>
+						<img src="<%=application.getInitParameter("imagedir")%>/${newsInfo_two.news_image}" class="c-fix f-l news_img" style="width:315px;height:200px"></img>
 						<a class="c-fix f-l f-yahei s-16 fw news_title">新闻标题：${newsInfo_two.news_title}</a>
 						<a class="c-fix f-l f-yahei s-14 news_type">分类：${newsInfo_two.news_fenlei}</a>
 						<a class="f-l f-yahei s-14 news_time">时间：${timeResuleTwo}</a>
 					</div>
 					<div class="f-l p_news_node" style="margin-left:5px;">
-						<img src="<%=application.getInitParameter("imagedir")%>/${newsInfo_three.news_image}" class="c-fix f-l news_img"></img>
+						<img src="<%=application.getInitParameter("imagedir")%>/${newsInfo_three.news_image}" class="c-fix f-l news_img" style="width:315px;height:200px"></img>
 						<a class="c-fix f-l f-yahei s-16 fw news_title">新闻标题：${newsInfo_three.news_title}</a>
 						<a class="c-fix f-l f-yahei s-14 news_type">分类：${newsInfo_three.news_fenlei}</a>
 						<a class="f-l f-yahei s-14 news_time">时间：${timeResuleThree}</a>

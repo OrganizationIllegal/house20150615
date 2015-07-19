@@ -1053,11 +1053,17 @@ public class AreaInfoController extends BaseDao {
 				int length = brokerlistArray.size() >= 3 ? 3: brokerlistArray.size();
 				
 				List<BrokerInfo> brokerlistList=new ArrayList<BrokerInfo>();
+				List<BrokerInfo> brokerlistList2=new ArrayList<BrokerInfo>();
 				/*List<BrokerInfo> brokerlistListdelete=new ArrayList<BrokerInfo>();*/
 				for (int i = 0; i < length; i++){
 					 JSONObject object = (JSONObject)brokerlistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
 					 BrokerInfo e = (BrokerInfo) JSONToObj(object.toString(), BrokerInfo.class);
-					 brokerlistList.add(e);
+					 if(e.getId()==0){
+						 brokerlistList2.add(e);
+					 }else{
+						 brokerlistList.add(e);
+					 }
+					 /*brokerlistList.add(e);*/
 				}
 				/*for (int i=0;i<brokerlistbefore.size();i++){
 					for(int j=0;j<brokerlistList.size();j++){
@@ -1078,6 +1084,11 @@ public class AreaInfoController extends BaseDao {
 					 JSONObject object = (JSONObject)projectlistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
 					 String project_name = object.getString("project_name");
 					 //HouseProject e = (HouseProject) JSONToObj(object.toString(), HouseProject.class);
+					/* if(e.getId()==0){
+						 projectlistList2.add(e);
+					 }else{
+						 projectlistList.add(e);
+					 }*/
 					 projectlistList.add(project_name);
 				}
 				/*for (int i=0;i<projectlistbefore.size();i++){
@@ -1125,7 +1136,7 @@ public class AreaInfoController extends BaseDao {
 				else{*/
 				//添加
 			    try {
-					int result=areaInfoDao.EditArea(id,id2,id3,area_num, area_name, area_city, area_zhou, area_nation, area_postcode,touzi_datasource, touzi_date, middle_price, middle_zu_price, price_review, year_increment_rate, zu_house_rate, zu_xuqiu, data_exam, family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, family_datasource, family_date,middlepriceList,middlepriceList2,middletrendList,middletrendList2,zujintrendlistList,zujintrendlistList2,huibaotrendlistList,huibaotrendlistList2,tedianlistList,tedianlistList2,peoplelistList,peoplelistList2,brokerlistList,projectlistList,newslistList,list,middlepriceListdelete,middletrendListdelete,zujintrendlistListdelete,huibaotrendlistListdelete,tedianlistListdelete,peoplelistListdelete);
+					int result=areaInfoDao.EditArea(id,id2,id3,area_num, area_name, area_city, area_zhou, area_nation, area_postcode,touzi_datasource, touzi_date, middle_price, middle_zu_price, price_review, year_increment_rate, zu_house_rate, zu_xuqiu, data_exam, family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, family_datasource, family_date,middlepriceList,middlepriceList2,middletrendList,middletrendList2,zujintrendlistList,zujintrendlistList2,huibaotrendlistList,huibaotrendlistList2,tedianlistList,tedianlistList2,peoplelistList,peoplelistList2,brokerlistList,brokerlistList2,projectlistList,newslistList,list,middlepriceListdelete,middletrendListdelete,zujintrendlistListdelete,huibaotrendlistListdelete,tedianlistListdelete,peoplelistListdelete);
 					System.out.println("result::"+result);
 					if(result==1){
 						ajson.put("flag", "1");

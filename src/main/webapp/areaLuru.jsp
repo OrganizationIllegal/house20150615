@@ -857,6 +857,13 @@ $(function(){
 		//$("#projectimage").val(edititem.name+"");
 		//alert(index+"index");
 		middlepriceedit=index;
+		var selectCount = document.getElementById("project_type");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==middlepriceedititem.project_type){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#project_type').trigger('chosen:updated');
 		$("#project_type").val(middlepriceedititem.project_type);
 		$("#buy_price").val(middlepriceedititem.buy_price);
 		$("#zu_price").val(middlepriceedititem.zu_price);
@@ -868,7 +875,7 @@ $(function(){
 		$("#buy_three_price").val(middlepriceedititem.buy_three_price);
 		$("#zu_one_name").val(middlepriceedititem.zu_one_name);
 		$("#zu_one_price").val(middlepriceedititem.zu_one_price);
-		$("#zu_two_name").val(middlepriceedititem.zu_tow_name);
+		$("#zu_two_name").val(middlepriceedititem.zu_two_name);
 		$("#zu_two_price").val(middlepriceedititem.zu_two_price);
 		$("#zu_three_name").val(middlepriceedititem.zu_three_name);
 		$("#zu_three_price").val(middlepriceedititem.zu_three_price);
@@ -968,6 +975,14 @@ $(function(){
 		//$("#projectimage").val(edititem.name+"");
 		//alert(index+"index");
 		middletrendedit=index;
+		$("#view_shunxu2").val(middletrendedititem.view_shunxu2||middletrendedititem.view_shunxu);
+		var selectCount = document.getElementById("project_type2");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==middletrendedititem.project_type2){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#project_type2').trigger('chosen:updated');
 		$("#project_type2").val(middletrendedititem.project_type2);
 		$("#view_shunxu2").val(middletrendedititem.view_shunxu2);
 		$("#heng2").val(middletrendedititem.heng2);
@@ -1069,6 +1084,14 @@ $(function(){
 		//$("#projectimage").val(edititem.name+"");
 		//alert(index+"index");
 		zujintrendedit=index;
+		var selectCount = document.getElementById("project_type3");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==zujintrendedititem.project_type3){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#project_type3').trigger('chosen:updated');
+		
 		$("#project_type3").val(zujintrendedititem.project_type3);
 		$("#view_shunxu3").val(zujintrendedititem.view_shunxu3);
 		$("#heng3").val(zujintrendedititem.heng3);
@@ -1171,6 +1194,15 @@ $(function(){
 		//$("#projectimage").val(edititem.name+"");
 		//alert(index+"index");
 		huibaotrendedit=index;
+		
+	    var selectCount = document.getElementById("project_type4");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==huibaotrendedititem.project_type4){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#project_type4').trigger('chosen:updated');
+		
 		$("#project_type4").val(huibaotrendedititem.project_type4);
 		$("#view_shunxu4").val(huibaotrendedititem.view_shunxu4);
 		$("#heng4").val(huibaotrendedititem.heng4);

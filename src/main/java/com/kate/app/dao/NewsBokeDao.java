@@ -12,8 +12,8 @@ import org.springframework.stereotype.Repository;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.kate.app.model.NearSchool;
 import com.kate.app.model.NewsBoke;
+import com.kate.app.model.ZhiYeZhiDao;
 @Repository 
 public class NewsBokeDao extends BaseDao{
 	 public JSONArray listNewsBoke(){
@@ -150,6 +150,39 @@ public class NewsBokeDao extends BaseDao{
 					data.setNews_people(rs.getString("news_people"));
 					data.setNews_time(rs.getTimestamp("news_time"));
 					data.setNews_title(rs.getString("news_title"));
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return data;
+		}
+	 public NewsBoke getZhiyeZhidaoByNum(String zhiyeNum){
+		 NewsBoke data=new NewsBoke();
+			try {
+				String sql = " select * from zhiye_zhidao where zhiye_num = ?";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, zhiyeNum);
+				ResultSet rs = pstmt.executeQuery();
+				while(rs.next()){
+					data.setId(rs.getInt("id"));
+					data.setNews_abstract(rs.getString("zhiye_abstract"));
+					data.setNews_detail(rs.getString("detail"));
+					data.setNews_fenlei(rs.getString("fenlei"));
+					data.setNews_image(rs.getString("image"));
+					data.setNews_num(rs.getString("zhiye_num"));
+					data.setNews_people(rs.getString("fabu_people"));
+					data.setNews_time(rs.getTimestamp("fabu_time"));
+					data.setNews_title(rs.getString("title"));
+					/*data.setId(rs.getInt("id"));
+					data.setDetail(rs.getString("detail"));
+					data.setFabu_people(rs.getString("fabu_people"));
+					data.setFabu_time(rs.getTimestamp("fabu_time"));
+					data.setFenlei(rs.getString("fenlei"));
+					data.setImage(rs.getString("image"));
+					data.setTitle(rs.getString("title"));
+					data.setZhiye_abstract(rs.getString("zhiye_abstract"));
+					data.setZhiye_num(rs.getString("zhiye_num"));*/
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
