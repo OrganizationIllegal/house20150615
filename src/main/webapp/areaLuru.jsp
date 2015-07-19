@@ -16,6 +16,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- <script src="/js/jquery.min.js"></script> -->
 <!-- <script src="/bootstrap/js/bootstrap.min.js"></script> -->
 <link rel="stylesheet" href="css/chosen.css">
+<link rel="stylesheet" type="text/css" href="/bootstrap-datepicker-1.4.0-dist/css/bootstrap-datepicker.min.css" />
+  <script src="/bootstrap-datepicker-1.4.0-dist/js/bootstrap-datepicker.min.js"></script>
+<script src="/bootstrap-datepicker-1.4.0-dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
  
 <style type="text/css">
 body{
@@ -631,6 +634,38 @@ body{
 </div>
 
 <script type="text/javascript">
+$('#touzi_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#family_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#middle_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#middle_zoushi_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#zujin_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#zujin_huibao_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#update_time').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#people_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
 var newstitlelist1='${newsbokelist}';
 var newstitlelist2='${zhiyelist}';
 newstitlelist1=eval("("+newstitlelist1+")");
@@ -1608,10 +1643,10 @@ var DataDeal = {
 
 function savepro(){
 	var area_num=$("#area_num").val();
-	if(isNaN($('#area_postcode').val())){
+	/* if(isNaN($('#area_postcode').val())){
 		alert("邮政编码-请输入数字！");
 		return false;
-	}
+	} */
 	var area;
 	area=DataDeal.formToJson(data= decodeURIComponent($("#area").serialize(),true));
 	area=eval("("+area+")");

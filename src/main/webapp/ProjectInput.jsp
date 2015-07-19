@@ -619,7 +619,7 @@ $(function(){
 		});
 	$("#peitaolist").on("click",".editpeitao",function(){
 		
-		var index=$(this).parent().parent().children().eq(0).text()-1;
+		var index=$(this).parent().parent().prevAll().length;
 		//alert(index);
 		edititem=peitaolist[index];
 		$(this).parent().parent().hide();

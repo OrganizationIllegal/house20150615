@@ -539,6 +539,7 @@ public class AreaInfoDao extends BaseDao {
 						areaInfo.setProject_type(rs.getString("project_type"));
 						areaInfo.setMiddle_datasource(rs.getString("middle_datasource"));
 						//areaInfo.setUpdate_time(rs.getTimestamp("update_time"));
+					    areaInfo.setMiddle_date(rs.getString("middle_date"));
 						areaInfolist.add(areaInfo);
 					}
 				} catch (Exception e) {
@@ -592,6 +593,9 @@ public class AreaInfoDao extends BaseDao {
 				areaInfo.setPrice_review(rs.getString("price_review"));
 				areaInfo.setArea_name(rs.getString("area_name"));
 				areaInfo.setArea_num(rs.getString("area_num"));
+				
+				areaInfo.setTouzi_datasource(rs.getString("touzi_datasource"));
+				areaInfo.setTouzi_date(rs.getTimestamp("touzi_date"));
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -1929,7 +1933,8 @@ public class AreaInfoDao extends BaseDao {
 				areaInfo.setArea_nation(rs.getString("area_nation"));
 				areaInfo.setArea_num(rs.getString("area_num"));
 				areaInfo.setArea_zhou(rs.getString("area_zhou"));
-				areaInfo.setHouse_pro_id(rs.getInt("area_postcode"));
+				//areaInfo.setHouse_pro_id(rs.getInt("area_postcode"));
+				areaInfo.setArea_postcode(rs.getString("area_postcode"));
 				areaInfo.setId(id);
 			}
 		} catch (Exception e) {

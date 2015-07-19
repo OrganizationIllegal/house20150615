@@ -16,6 +16,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="/js/jquery.min.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/chosen.css">
+<link rel="stylesheet" type="text/css" href="/bootstrap-datepicker-1.4.0-dist/css/bootstrap-datepicker.min.css" />
+  <script src="/bootstrap-datepicker-1.4.0-dist/js/bootstrap-datepicker.min.js"></script>
+<script src="/bootstrap-datepicker-1.4.0-dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
 <style type="text/css">
 body{
 	/* background-color:rgb(232, 233, 234)!important; */
@@ -91,7 +94,7 @@ body{
 <span class="area_span">数据来源</span><span><input type="text" id="family_datasource" name="family_datasource" class="area_input" value="${Family.family_datasource}"></span>
 </div>
 <div class="area_right">
-<span class="area_span">更新日期</span><span><input type="text" id="family_date" name="family_date" class="area_input" value="${Family.family_date}"></span>
+<span class="area_span">更新日期</span><span><input type="text" id="family_date" name="family_date" class="area_input"  value="${Family.family_date.toString().length()>10?Family.family_date.toString().substring(0,10):Family.family_date.toString()}"></span>
 </div>
 <div class="area_left">
 <span class="area_span">家庭1</span><span><input type="text" id="family_one" name="family_one" class="area_input" value="${Family.family_one}"></span>
@@ -186,7 +189,8 @@ body{
 <div class="area_left3"></div>
 <div class="area_right3"><span class="area_span5"><a href="#" class="addmiddleprice">添加</a></span></div>
 <div id="middlepricelist">
-<c:forEach items="${middlepricebackendlist}" var="middleprice" varStatus="status">
+ 
+ <c:forEach items="${middlepricebackendlist}" var="middleprice" varStatus="status">
 <div>
 	<div class='area_left3'>
 	<span style='display:none;'>${status.index + 1}</span>
@@ -200,7 +204,8 @@ body{
 	<span class='area_span5'><a href='#' class='deletemiddleprice'>删除</a></span>
 	</div>
 </div>
-</c:forEach>
+</c:forEach> 
+
 
 <!-- <div>
 <div class="area_left3">
@@ -754,6 +759,38 @@ body{
 </div>
 
 <script type="text/javascript">
+$('#touzi_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#family_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#middle_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#middle_zoushi_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#zujin_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#zujin_huibao_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#update_time').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#people_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
 var newstitlelist1='${newsbokelist}';
 var newstitlelist2='${zhiyelist}';
 newstitlelist1=eval("("+newstitlelist1+")");
@@ -890,13 +927,14 @@ $(function(){
 			}
 		});
 	$("#middlepricelist").on("click",".deletemiddleprice",function(){
-		middlepricelist.splice($(this).parent().parent().children().eq(0).eq(0).text()-1,1);
+		middlepricelist.splice($(this).parent().parent().prevAll().length,1);
 		$(this).parent().parent().parent().empty();
 		middlepricecount--;
 		});
 	$("#middlepricelist").on("click",".editmiddleprice",function(){
 		
-		var index=$(this).parent().parent().parent().children().eq(0).children().eq(0).text()-1;
+		/* var index=$(this).parent().parent().parent().children().eq(0).children().eq(0).text()-1; */
+		var index=$(this).parent().parent().parent().prevAll().length;
 		//alert(index);
 		middlepriceedititem=middlepricelist[index];
 		$(this).parent().parent().parent().hide();

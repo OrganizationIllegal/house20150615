@@ -166,11 +166,11 @@ public class AreaInfoController extends BaseDao {
 		req.setAttribute("tedianlistjson", ConvertJson.list2json(tedianlist));
 		req.setAttribute("peoplelist", peoplelist);
 		req.setAttribute("peoplelistjson", ConvertJson.list2json(peoplelist));
-		req.setAttribute("broker", brokerlist);
+		req.setAttribute("brokerlist", brokerlist);
 		req.setAttribute("brokerlistjson", ConvertJson.list2json(brokerlist));
-		req.setAttribute("project", projectlist);
+		req.setAttribute("projectlist", projectlist);
 		req.setAttribute("projectlistjson", ConvertJson.list2json(projectlist));
-		req.setAttribute("news", newszhiyelist);
+		req.setAttribute("newszhiyelist", newszhiyelist);
 		req.setAttribute("newszhiyelistjson", ConvertJson.list2json(newszhiyelist));		
 		getBrokerName(req,resp);
 		getProjectName(req,resp);
