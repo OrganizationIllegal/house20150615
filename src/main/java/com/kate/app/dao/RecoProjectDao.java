@@ -10,29 +10,21 @@ import org.springframework.stereotype.Repository;
 import com.kate.app.model.RecoProject;
 @Repository 
 public class RecoProjectDao extends BaseDao{
-<<<<<<< HEAD
-	public RecoProject getRecoProjectDao(String project_num){
+
+	public RecoProject getRecoProjectDao(String area_num){
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-=======
-	public RecoProject getRecoProjectDao(String area_num){
->>>>>>> 2b3dfb75b56f63409e28a3d39d60b75d9113fa86
+
 		RecoProject data = new RecoProject();
-		PreparedStatement pstmt =null;
 		try{
-<<<<<<< HEAD
-			String sql = "select * from recommend_project where project_num=?";
-			 pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, project_num);
-			  rs = pstmt.executeQuery();
-=======
+
 			String sql = "select * from recommend_project where area_code=?";
 		    pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, area_num);
 
-			ResultSet rs = pstmt.executeQuery();
->>>>>>> 2b3dfb75b56f63409e28a3d39d60b75d9113fa86
+			 rs = pstmt.executeQuery();
+
 			
 			while(rs.next()){
 				data.setId(rs.getInt("id"));
