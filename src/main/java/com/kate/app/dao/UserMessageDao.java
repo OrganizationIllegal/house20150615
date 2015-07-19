@@ -1,8 +1,9 @@
 package com.kate.app.dao;
 
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,10 +15,16 @@ import com.kate.app.model.MessageVo;
 @Repository 
 public class UserMessageDao extends BaseDao {
 	public List<MessageVo> getUserMessage(String username){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		List<MessageVo> messageList=new ArrayList<MessageVo>();
 		try {
 			String sql = "select t.id,t.message_content,t.message_time,t.project_id,t.type,t.viewed ,u.nick_name,u.email,u.tel from message t join user u on t.userid=u.id  where t.type=1 and u.nick_name=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, username);
 			ResultSet rs = pstmt.executeQuery();
 			
@@ -47,14 +54,35 @@ public class UserMessageDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return messageList;
 	}
 	public List<MessageVo> getUserMessagePrice(String username){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		List<MessageVo> messageList=new ArrayList<MessageVo>();
 		try {
 			String sql = "select t.id,t.message_content,t.message_time,t.project_id,t.type,t.viewed ,u.nick_name,u.email,u.tel from message t join user u on t.userid=u.id  where t.type=2 and u.nick_name=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, username);
 			ResultSet rs = pstmt.executeQuery();
 			int id=0;
@@ -82,14 +110,36 @@ public class UserMessageDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return messageList;
 	}
 	public List<MessageVo> getUserMessagLatestPrice(String username){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
+
 		List<MessageVo> messageList=new ArrayList<MessageVo>();
 		try {
 			String sql = "select t.id,t.message_content,t.message_time,t.project_id,t.type,t.viewed ,u.nick_name,u.email,u.tel from message t join user u on t.userid=u.id  where t.type=3 and u.nick_name=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, username);
 			ResultSet rs = pstmt.executeQuery();
 			int id=0;
@@ -117,14 +167,35 @@ public class UserMessageDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return messageList;
 	}
-	public boolean saveView(int id){   //0是未查看�?是已经查�?
+	public boolean saveView(int id){   //0是未查看�?是已经查�?
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		boolean flag = false;
 		try{
 			String sql = " update message set viewed=? where id=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			 pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, 1);
 			pstmt.setInt(2, id);
 			int result = pstmt.executeUpdate();
@@ -133,7 +204,23 @@ public class UserMessageDao extends BaseDao {
 			}
 		}catch (Exception e) {
             e.printStackTrace();
+        }finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
         }
+
 		return flag;
 	}
 

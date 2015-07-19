@@ -1,7 +1,9 @@
 package com.kate.app.dao;
 
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.springframework.stereotype.Repository;
@@ -10,6 +12,12 @@ import com.alibaba.fastjson.JSONArray;
 @Repository 
 public class SchoolInfoDao extends BaseDao{
 	 public JSONArray listSchoolInfo(){
+		 try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			JSONArray jsonArray=new JSONArray();
 			try {
 				String sql = "select * from school_info t;";
@@ -19,14 +27,36 @@ public class SchoolInfoDao extends BaseDao{
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
+
 			return jsonArray;
 		} 
 	public int InsertSchoolinfo(String school_name,String school_ranking,String school_type,int student_total,int teacher_total,String school_position,String gps,String net_info,int not_en_stu_bili,String school_image,String school_desc){
-			int exeResult=0;
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
+		int exeResult=0;
 			try {
 				String sql = "insert into school_info(school_name,school_ranking,school_type,student_total,teacher_total,school_position,gps,net_info,not_en_stu_bili,school_image,school_desc) values(?,?,?,?,?,?,?,?,?,?,?)";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				 pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, school_name);
 				pstmt.setString(2, school_ranking);
 				pstmt.setString(3, school_type);
@@ -42,14 +72,35 @@ public class SchoolInfoDao extends BaseDao{
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return exeResult;
 		}
 	public int updateSchoolInfo(int id,String school_name,String school_ranking,String school_type,int student_total,int teacher_total,String school_position,String gps,String net_info,int not_en_stu_bili,String school_image,String school_desc){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		int exeResult=0;
 		try {
 			String sql = "update school_info set school_name=?,school_ranking=?, school_type=?,student_total=?,teacher_total=?,school_position=?,gps=?,net_info=?,not_en_stu_bili=?,school_image=?,school_desc=? where id="+id;
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, school_name);
 			pstmt.setString(2, school_ranking);
 			pstmt.setString(3, school_type);
@@ -66,11 +117,32 @@ public class SchoolInfoDao extends BaseDao{
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return exeResult;
 	}
 	 public int delSchoolInfo(int id){
-			int exeResult=0;
+		 try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
+		 int exeResult=0;
 			try {
 				String sql = "delete from school_info where id="+id;
 				Statement stmt = con.createStatement();
@@ -78,7 +150,22 @@ public class SchoolInfoDao extends BaseDao{
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return exeResult;
 		}
 	

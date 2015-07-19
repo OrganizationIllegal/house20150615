@@ -1,28 +1,29 @@
 package com.kate.app.dao;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.SQLException;
 
 import org.springframework.stereotype.Repository;
 
-import com.kate.app.model.HouseProject;
 import com.kate.app.model.InvestmentData;
-import com.kate.app.model.MyInfo;
-import com.kate.app.model.NewsInfo;
 
 
 	@Repository 
 	public class InvestDataDao extends BaseDao{
 		public InvestmentData getInvestmentDate(String areaName){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
+
 			InvestmentData invest = new InvestmentData();
 			try{
 				String sql = " select * from investment_data where area_name=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, areaName);
 				ResultSet rs = pstmt.executeQuery();
 				
@@ -41,15 +42,37 @@ import com.kate.app.model.NewsInfo;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return invest;
 	        
 		}
 		
 		public InvestmentData getInvestmentDateNum(String area_num){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			InvestmentData invest = new InvestmentData();
 			try{
 				String sql = " select * from investment_data where area_num=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, area_num);
 				ResultSet rs = pstmt.executeQuery();
 				
@@ -67,6 +90,21 @@ import com.kate.app.model.NewsInfo;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
 	        }
 			return invest;
 	        

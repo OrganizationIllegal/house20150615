@@ -12,7 +12,7 @@ public class BaseDao {
 	protected static String url = null;
 	protected static String username = null;
 	protected static String password = null;
-	protected static Connection con = null;
+	protected  Connection con = null;
 	
 	public BaseDao()
 	{
@@ -45,7 +45,7 @@ public class BaseDao {
 
             username = "dboperator1";
             password = "gethouse";
-            con = DriverManager.getConnection(url, username, password);
+            //con = DriverManager.getConnection(url, username, password);
         } catch (Exception e) {
            System.out.print("DriverManager.getConnection faild");
            System.out.println(e.toString());

@@ -1,5 +1,6 @@
 package com.kate.app.dao;
 
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,6 +19,12 @@ import com.kate.app.model.HouseProject;
 	@Repository 
 	public class HouseTypeCRUDDao extends BaseDao{
 		public JSONArray select(){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			JSONArray jsonArray = new JSONArray();
 			List<HouseInfo> list = new ArrayList<HouseInfo>();
 			try{
@@ -38,10 +45,32 @@ import com.kate.app.model.HouseProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return jsonArray;
 		}
 		
 			public int count(){
+				try{
+					con = DriverManager.getConnection(url, username, password);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				PreparedStatement pstmt = null;
 				int count = 0;
 				try{
 					String sql = " select count(*) from house_info";
@@ -53,16 +82,38 @@ import com.kate.app.model.HouseProject;
 				}catch (Exception e) {
 		            e.printStackTrace();
 		        }
+				finally{  
+		            if(pstmt != null){  
+		                try {  
+		                	pstmt.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		            if(con != null){  
+		                try {  
+		                    con.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		        }
 				return count;
 			}
 			
 			
 		public boolean addData(int proid,String type, int roomnum, int toiletnum, int size, int price, String img) throws SQLException{
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
 			
 			try{
 				String sql = " insert into house_info(house_type, house_room_num, house_toilet_num, house_size, house_price, house_img,house_project_id) values(?,?,?,?,?,?,?)";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, type);
 				pstmt.setInt(2, roomnum);
 				pstmt.setInt(3, toiletnum);
@@ -76,18 +127,37 @@ import com.kate.app.model.HouseProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }/*finally{
-	        	con.close();
-	        }*/
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return flag;
 	        
 		}
 		
 		public boolean editData(int id,String type, int roomnum, int toiletnum, int size, int price, String img) throws SQLException{
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
 				String sql = " update house_info house_type=?, house_room_num=?, house_toilet_num=?, house_size=?, house_price=?, house_img=? where id=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, type);
 				pstmt.setInt(2, roomnum);
 				pstmt.setInt(3, toiletnum);
@@ -103,18 +173,37 @@ import com.kate.app.model.HouseProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }/*finally{
-	        	con.close();
-	        }*/
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return flag;
 	        
 		}
 		
 		public boolean deleteData(int id){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
 				String sql = " delete from house_info where id= ?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
 				int result = pstmt.executeUpdate();
 				if(result == 0){
@@ -122,18 +211,37 @@ import com.kate.app.model.HouseProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }/*finally{
-	        	con.close();
-	        }*/
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return flag;
 	        
 		}
 		
 		public boolean findById(int id){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = false;
 			try{
 				String sql = " select count(*) from house_info where id=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
 				ResultSet rs = pstmt.executeQuery();
 				if(rs.next()){
@@ -141,19 +249,38 @@ import com.kate.app.model.HouseProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }/*finally{
-	        	con.close();
-	        }*/
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			
 			return flag;
 	        
 		}
 		
 		public int findProByName(String name) throws SQLException{   //�����Ŀ��Ʋ���
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			HouseProject projectInfo = new HouseProject();
 			try{
 				String sql = " select id from house_project where project_name= ?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, name);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -162,9 +289,22 @@ import com.kate.app.model.HouseProject;
 				
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }/*finally{
-	        	con.close();
-	        }*/
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return projectInfo.getId();
 	        
 		}

@@ -1,7 +1,9 @@
 package com.kate.app.dao;
 
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,10 +15,16 @@ import com.kate.app.model.NewsInfo;
 	@Repository 
 	public class NewsInfoDao extends BaseDao{
 		public List<NewsInfo> getNewsInfo(String project_num){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			List <NewsInfo> newsList = new ArrayList<NewsInfo>();
 			try{
 				String sql = " select * from news_info where project_num=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				 pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, project_num);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -33,6 +41,21 @@ import com.kate.app.model.NewsInfo;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
 	        }
 			return newsList;
 	        

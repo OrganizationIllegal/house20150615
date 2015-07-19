@@ -1,5 +1,6 @@
 package com.kate.app.dao;
 
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,6 +29,11 @@ import com.kate.app.model.RecoProject;
 	@Repository 
 	public class AjaxDao extends BaseDao{
 		public List<InvestmentData> select(){  //鎼滅储鎶曡祫鏁版嵁淇℃伅
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 			List<InvestmentData> list = new ArrayList<InvestmentData>();
 			try{
 				String sql = " select * from investment_data";
@@ -52,11 +58,25 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return list;
 		}
 		
 		
 		public List<BrokerInfo> selectBrokerInfo(){  //鎼滅储缁忕邯浜轰俊鎭�
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 			List<BrokerInfo> list = new ArrayList<BrokerInfo>();
 			try{
 				String sql = " select * from broker_info";
@@ -81,12 +101,26 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return list;
 		}
 		
 		
 		
 		public List<HouseInfo> selectHouseInfo(){    //鎼滅储鎴垮眿淇℃伅
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 			List<HouseInfo> list = new ArrayList<HouseInfo>();
 			try{
 				String sql = " select * from house_info";
@@ -117,13 +151,29 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
+
 			return list;
 		}
 		public List<BuyInfo> selectBuyInfo(int proId){    //涓�敓鏂ゆ嫹閿熸枻鎷风洰閿熸枻鎷峰簲涓�敓鏂ゆ嫹
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			List<BuyInfo> list = new ArrayList<BuyInfo>();
 			try{
 				String sql = " select * from buy_info where house_pro_id=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, proId);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -138,15 +188,37 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return list;
 		}
 		
 		
 		public BuyInfo getBuyInfo(int proId){    //涓�敓鏂ゆ嫹閿熸枻鎷风洰閿熸枻鎷峰簲涓�敓鏂ゆ嫹
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			BuyInfo data = new BuyInfo();
 			try{
 				String sql = " select * from buy_info where house_pro_id=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, proId);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -160,10 +232,31 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return data;
 		}
 
 		public List<HouseProject> selectHouseProject(){    //鑾峰彇椤圭洰淇℃伅锛堝寘鎷墿涓氳垂锛�
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 			List<HouseProject> list = new ArrayList<HouseProject>();
 			try{
 				String sql = " select * from house_project";
@@ -219,6 +312,15 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return list;
 		}
 		
@@ -226,10 +328,16 @@ import com.kate.app.model.RecoProject;
 		 * 鎸佹湁鎴愭湰淇℃伅
 		 */
 		public List<HoldingTaxVo> selectHoldFinance(String project_num){    //鑾峰彇椤圭洰淇℃伅锛堝寘鎷墿涓氳垂锛�
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			List<HoldingTaxVo> list = new ArrayList<HoldingTaxVo>();
 			try{
 				String sql = " select * from holding_finace where project_num=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, project_num);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -244,6 +352,22 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return list;
 		}
 		
@@ -251,10 +375,16 @@ import com.kate.app.model.RecoProject;
 		 * 璐埧绋庤垂淇℃伅
 		 */
 		public List<HouseTaxVo> selectHouseTax(String project_num){    //鑾峰彇椤圭洰淇℃伅锛堝寘鎷墿涓氳垂锛�
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			List<HouseTaxVo> list = new ArrayList<HouseTaxVo>();
 			try{
 				String sql = " select * from house_tax where project_num=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, project_num);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -269,6 +399,22 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return list;
 		}
 		
@@ -278,6 +424,11 @@ import com.kate.app.model.RecoProject;
 		 */
 		
 		public List<RecoProject> selectRecomProject(){    
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 			List<RecoProject> list = new ArrayList<RecoProject>();
 			
 			try{
@@ -296,6 +447,15 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return list;
 		}
 		
@@ -303,6 +463,11 @@ import com.kate.app.model.RecoProject;
 		 * 鍖哄煙鐗圭偣淇℃伅
 		 */
 		public List<AreaTeDian> selectArea(){    
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 			List<AreaTeDian> list = new ArrayList<AreaTeDian>();
 			try{
 				String sql = " select * from area_features";
@@ -323,16 +488,32 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
+
 			return list;
 		}
 		
 		
 		
 		public DeveloperInfo selectDevInfo(int id){    //閫氳繃寮�彂鍟唅d鏌ユ壘寮�彂鍟嗕俊鎭�
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			DeveloperInfo deve = new DeveloperInfo();
 			try{
 				String sql = " select * from developer_info where id =?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -343,14 +524,37 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
+
 			return deve;
 		}
 		
 		public DeveloperInfo selectDevInfo(String developer_num){    //閫氳繃寮�彂鍟唍um鏌ユ壘寮�彂鍟嗕俊鎭�
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			DeveloperInfo deve = new DeveloperInfo();
 			try{
 				String sql = " select * from developer_info where developer_num =?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, developer_num);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -361,6 +565,22 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return deve;
 		}
 		
@@ -370,6 +590,12 @@ import com.kate.app.model.RecoProject;
 		 */
 		
 		public List<NewsInfo> selectNewsInfo(){    //鏌ユ壘鏂伴椈淇℃伅
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+
 			List<NewsInfo> list = new ArrayList<NewsInfo>();
 			try{
 				String sql = " select * from news_info";
@@ -391,12 +617,26 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return list;
 		}
 		
 		
 		
 	       public int count(){
+	    	   try{
+					con = DriverManager.getConnection(url, username, password);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
 				int count = 0;
 				try{
 					String sql = " select count(*) from investment_data";
@@ -408,10 +648,24 @@ import com.kate.app.model.RecoProject;
 				}catch (Exception e) {
 		            e.printStackTrace();
 		        }
+				finally{
+		            if(con != null){  
+		                try {  
+		                    con.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		        }
 				return count;
 			}
 	       
 	       public int countBrokerInfo(){
+	    	   try{
+					con = DriverManager.getConnection(url, username, password);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
 				int count = 0;
 				try{
 					String sql = " select count(*) from broker_info";
@@ -423,10 +677,24 @@ import com.kate.app.model.RecoProject;
 				}catch (Exception e) {
 		            e.printStackTrace();
 		        }
+				finally{
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 				return count;
 			}
 			
 			public int countHouseInfo(){
+				try{
+					con = DriverManager.getConnection(url, username, password);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
 				int count = 0;
 				try{
 					String sql = " select count(*) from house_info where house_project_id!=0";
@@ -438,10 +706,24 @@ import com.kate.app.model.RecoProject;
 				}catch (Exception e) {
 		            e.printStackTrace();
 		        }
+				finally{
+		            if(con != null){  
+		                try {  
+		                    con.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		        }
 				return count;
 			}
 			
 			public int countHouseProject(){
+				try{
+					con = DriverManager.getConnection(url, username, password);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
 				int count = 0;
 				try{
 					String sql = " select count(*) from house_project";
@@ -453,10 +735,24 @@ import com.kate.app.model.RecoProject;
 				}catch (Exception e) {
 		            e.printStackTrace();
 		        }
+				finally{
+		            if(con != null){  
+		                try {  
+		                    con.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		        }
 				return count;
 			}
 			
 			public int countArea(){
+				try{
+					con = DriverManager.getConnection(url, username, password);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
 				int count = 0;
 				try{
 					String sql = " select count(*) from area_features";
@@ -468,6 +764,15 @@ import com.kate.app.model.RecoProject;
 				}catch (Exception e) {
 		            e.printStackTrace();
 		        }
+				finally{
+		            if(con != null){  
+		                try {  
+		                    con.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		        }
 				return count;
 			}
 			
@@ -476,6 +781,11 @@ import com.kate.app.model.RecoProject;
 			 * 閿熸枻鎷烽敓鏂ゆ嫹閿熺嫛纭锋嫹閿熸枻鎷风洰閿熸枻鎷烽敓鏂ゆ嫹
 			 */
 			public int countRecomendProject(){
+				try{
+					con = DriverManager.getConnection(url, username, password);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
 				int count = 0;
 				try{
 					String sql = " select count(*) from recommend_project";
@@ -487,11 +797,25 @@ import com.kate.app.model.RecoProject;
 				}catch (Exception e) {
 		            e.printStackTrace();
 		        }
+				finally{
+		            if(con != null){  
+		                try {  
+		                    con.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		        }
 				return count;
 			}
 			
 			
 			public int countNewsInfo(){
+				try{
+					con = DriverManager.getConnection(url, username, password);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
 				int count = 0;
 				try{
 					String sql = " select count(*) from news_info";
@@ -503,50 +827,31 @@ import com.kate.app.model.RecoProject;
 				}catch (Exception e) {
 		            e.printStackTrace();
 		        }
+				finally{
+		            if(con != null){  
+		                try {  
+		                    con.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		        }
 				return count;
 			}
 			
 			
-		/*public HouseProject findProByName(String proName){    //閫氶敓鏂ゆ嫹閿熸枻鎷锋拠閿熸枻鎷烽敓鏂ゆ嫹閿熶茎鍖℃嫹閿熻緝锟�
-			HouseProject projectInfo = new HouseProject();
-			try{
-				String sql = " select * from house_project where project_name= ?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, proName);
-				ResultSet rs = pstmt.executeQuery();
-				while(rs.next()){
-					projectInfo.setId(rs.getInt("id"));
-					projectInfo.setProject_area(rs.getInt("project_area"));
-					projectInfo.setDeveloper_id(rs.getInt("developer_id"));
-					projectInfo.setProject_desc(rs.getString("project_desc"));
-					projectInfo.setProject_address(rs.getString("project_address"));
-					projectInfo.setProject_img(rs.getString("project_img"));
-					projectInfo.setProject_city(rs.getString("project_city"));
-					projectInfo.setProject_house_type(rs.getString("project_house_type"));
-					projectInfo.setProject_lan(rs.getString("project_lan"));
-					projectInfo.setProject_nation(rs.getString("project_nation"));
-					projectInfo.setProject_price_avg(rs.getInt("project_price_avg"));
-					projectInfo.setProject_type(rs.getString("project_type"));
-					projectInfo.setProject_sales_remain(rs.getInt("project_sales_remain"));
-					projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));
-					projectInfo.setProject_high(rs.getInt("project_high"));
-					projectInfo.setProject_peitao_img(rs.getString("project_peitao_img"));
-					projectInfo.setProject_price(rs.getString("project_price"));
-				}
-				
-			}catch (Exception e) {
-	            e.printStackTrace();
-	        }finally{
-	        	con.close();
-	        }
-			return projectInfo;
-		}*/
 		
 		public HouseProject findProById(int id){    //閫氳繃椤圭洰id鏌ユ壘椤圭洰淇℃伅
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			HouseProject projectInfo = new HouseProject();
 			try{
 				String sql = " select * from house_project where id= ?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -578,17 +883,36 @@ import com.kate.app.model.RecoProject;
 				
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }/*finally{
-	        	con.close();
-	        }*/
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return projectInfo;
 		}
 		
 		public HouseProject findProByNum(String proNum){    //閫氳繃椤圭洰缂栧彿鏌ユ壘椤圭洰淇℃伅
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			HouseProject projectInfo = new HouseProject();
 			try{
 				String sql = " select * from house_project where project_num= ?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, proNum);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -620,20 +944,38 @@ import com.kate.app.model.RecoProject;
 				
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }/*finally{
-	        	con.close();
-	        }*/
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return projectInfo;
 		}
 		
 			
 
 		public boolean addTouziData(String middle_price, String middle_zu_price, String price_review, String year_increment_rate, String zu_house_rate, String zu_xuqiu,String data_exam, String area_num, String area_name) throws SQLException{
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
-			
 			try{
 				String sql = " insert into investment_data(year_increment_rate, middle_price, middle_zu_price, zu_house_rate, zu_xuqiu, price_review, data_exam, area_num, area_name) values(?,?,?,?,?,?,?,?,?)";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, year_increment_rate);
 				pstmt.setString(2, middle_price);
 				pstmt.setString(3, middle_zu_price);
@@ -649,19 +991,38 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }/*finally{
-	        	con.close();
-	        }*/
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return flag;
 	        
 		}
 		
 		
 		public boolean editTouziData(int id, String middle_price, String middle_zu_price, String price_review, String year_increment_rate, String zu_house_rate, String zu_xuqiu,String data_exam, String area_num, String area_name) throws SQLException{
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
 				String sql = " update investment_data set year_increment_rate=?, middle_price=?, middle_zu_price=?, zu_house_rate=?, zu_xuqiu=?, price_review=?, data_exam=?, area_num=?, area_name=? where id=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, year_increment_rate);
 				pstmt.setString(2, middle_price);
 				pstmt.setString(3, middle_zu_price);
@@ -679,9 +1040,22 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }/*finally{
-	        	con.close();
-	        }*/
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return flag;
 	        
 		}
@@ -690,6 +1064,12 @@ import com.kate.app.model.RecoProject;
 		 * 澧炲姞鍖哄煙淇℃伅
 		 */
 		public boolean addArea(String area_code, String area_character, int view_shunxu, String data_source, String update_time) throws SQLException{
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
 			String time_str = "";
 			Timestamp ts = new Timestamp(System.currentTimeMillis()); 
@@ -706,7 +1086,7 @@ import com.kate.app.model.RecoProject;
 	        
 			try{
 				String sql = " insert into area_features(area_character, area_code, view_shunxu, data_source, update_time) values(?,?,?,?,?)";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, area_character);
 				pstmt.setString(2, area_code);
 				pstmt.setInt(3, view_shunxu);
@@ -720,12 +1100,35 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
+
 			return flag;
 		}
 		/*
 		 * 淇敼鍖哄煙淇℃伅
 		 */
 		public boolean editArea(int id, String area_code, String area_character, int view_shunxu, String data_source, String update_time) throws SQLException{
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
 			String time_str = "";
 			Timestamp ts = new Timestamp(System.currentTimeMillis()); 
@@ -741,7 +1144,7 @@ import com.kate.app.model.RecoProject;
 	        }  
 			try{
 				String sql = " update area_features set area_character=?, area_code=?, view_shunxu=?, data_source=?, update_time=? where id=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, area_character);
 				pstmt.setString(2, area_code);
 				pstmt.setInt(3, view_shunxu);
@@ -755,6 +1158,22 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return flag;
 		}
 		
@@ -762,10 +1181,16 @@ import com.kate.app.model.RecoProject;
 		 * 鍒犻櫎鍖哄煙淇℃伅
 		 */
 		public boolean deleteArea(int id) throws SQLException{
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
 					String sql = " delete from area_features where id= ?";
-					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt = con.prepareStatement(sql);
 					pstmt.setInt(1, id);
 					int result = pstmt.executeUpdate();
 					if(result == 0){
@@ -773,9 +1198,22 @@ import com.kate.app.model.RecoProject;
 					}
 				}catch (Exception e) {
 		            e.printStackTrace();
-		        }/*finally{
-		        	con.close();
-		        }*/
+		        }finally{  
+		            if(pstmt != null){  
+		                try {  
+		                	pstmt.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		            if(con != null){  
+		                try {  
+		                    con.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		        }
 				return flag;
 		}
 		
@@ -785,10 +1223,16 @@ import com.kate.app.model.RecoProject;
 		 * 閿熸枻鎷烽敓鏂ゆ嫹閿熺嫛纭锋嫹閿熸枻鎷风洰
 		 */
 		public boolean addRecoProject(String project_num, String recommend_project_num1,String recommend_project_num2,String recommend_project_num3) throws SQLException{
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
 				String sql = " insert into recommend_project(project_num, recommend_project_num1, recommend_project_num2, recommend_project_num3) values(?,?,?,?)";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, project_num);
 				pstmt.setString(2, recommend_project_num1);
 				pstmt.setString(3, recommend_project_num2);
@@ -799,9 +1243,22 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }/*finally{
-	        	con.close();
-	        }*/
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return flag;
 	        
 		}
@@ -809,10 +1266,16 @@ import com.kate.app.model.RecoProject;
 		 * 閿熺潾闈╂嫹閿熺嫛纭锋嫹閿熸枻鎷风洰
 		 */
 		public boolean editRecoProject(int id, String project_num, String recommend_project_num1,String recommend_project_num2,String recommend_project_num3) throws SQLException{
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
 				String sql = " update recommend_project set project_num=?, recommend_project_num1=?, recommend_project_num2=?, recommend_project_num3=? where id=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, project_num);
 				pstmt.setString(2, recommend_project_num1);
 				pstmt.setString(3, recommend_project_num2);
@@ -824,13 +1287,32 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }/*finally{
-	        	con.close();
-	        }*/
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return flag;
 	        
 		}
 		public boolean addNewsInfo(String title, String source, String time, String detail, String news_img, String news_abstract,String project_num) throws SQLException{
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
 			String time_str = "";
 			Timestamp ts = new Timestamp(System.currentTimeMillis()); 
@@ -846,7 +1328,7 @@ import com.kate.app.model.RecoProject;
 	        }  
 			try{
 				String sql = " insert into news_info(title, source, time, detail, news_img, news_abstract, project_num) values(?,?,?,?,?,?,?,?)";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, title);
 				pstmt.setString(2, source);
 				pstmt.setString(3, time_str);
@@ -861,11 +1343,33 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return flag;
 	        
 		}
 		
 		public boolean editNewsInfo(int id, String title, String source, String time, String detail, String news_img, String news_abstract,String project_num) throws SQLException{
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
 			String time_str = "";
 			Timestamp ts = new Timestamp(System.currentTimeMillis()); 
@@ -881,7 +1385,7 @@ import com.kate.app.model.RecoProject;
 	        }  
 			try{
 				String sql = " update news_info set title=?, source=?, time=?, detail=?, news_img=?, news_abstract=?, project_num=? where id=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, title);
 				pstmt.setString(2, source);
 				pstmt.setString(3, time_str);
@@ -897,6 +1401,22 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return flag;
 	        
 		}
@@ -904,11 +1424,16 @@ import com.kate.app.model.RecoProject;
 		
 		
 		public boolean addHouseInfo(String house_type, int house_room_num, int house_toilet_num, int house_size, String house_price, String house_img, String project_num) throws SQLException{
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
-			
 			try{
 				String sql = " insert into house_info(house_type, house_room_num, house_toilet_num, house_size, house_price, house_img, project_num) values(?,?,?,?,?,?,?)";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, house_type);
 				pstmt.setInt(2, house_room_num);
 				pstmt.setInt(3, house_toilet_num);
@@ -922,9 +1447,22 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }/*finally{
-	        	con.close();
-	        }*/
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return flag;
 	        
 		}
@@ -932,10 +1470,16 @@ import com.kate.app.model.RecoProject;
 		 * 閿熸枻鎷烽敓鎺ュ尅鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎭�
 		 */
 		public boolean addDeveInfo(String developer_name, String developer_logo, String developer_desc) throws SQLException{
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
 				String sql = " insert into developer_info(developer_name, developer_logo, developer_desc) values(?,?,?)";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, developer_name);
 				pstmt.setString(2, developer_logo);
 				pstmt.setString(3, developer_desc);
@@ -945,9 +1489,22 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }/*finally{
-	        	con.close();
-	        }*/
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return flag;
 	        
 		}
@@ -957,10 +1514,16 @@ import com.kate.app.model.RecoProject;
 		 * 閿熸枻鎷烽敓鎺ュ尅鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎭�
 		 */
 		public boolean addBrokerInfo(String broker_name, String broker_language, String broker_region, String broker_img,String broker_experience, String broker_num, String broker_type, String broker_zizhi, String introduction, String office) throws SQLException{
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
 				String sql = " insert into broker_info(broker_name, broker_language, broker_region, broker_img, broker_experience, broker_num, broker_type, broker_zizhi, introduction, office) values(?,?,?,?,?,?,?,?,?,?)";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, broker_name);
 				pstmt.setString(2, broker_language);
 				pstmt.setString(3, broker_region);
@@ -977,9 +1540,22 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }/*finally{
-	        	con.close();
-	        }*/
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return flag;
 	        
 		}
@@ -987,10 +1563,16 @@ import com.kate.app.model.RecoProject;
 		
 		
 		public boolean editHouseInfo(int id, String house_type, int house_room_num, int house_toilet_num, int house_size, String house_price, String house_img, String project_num) throws SQLException{
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
 				String sql = " update house_info set house_type=?, house_room_num=?, house_toilet_num=?, house_size=?, house_price=?, house_img=?, project_num=? where id=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, house_type);
 				pstmt.setInt(2, house_room_num);
 				pstmt.setInt(3, house_toilet_num);
@@ -1006,9 +1588,23 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }/*finally{
-	        	con.close();
-	        }*/
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
+
 			return flag;
 	        
 		}
@@ -1018,10 +1614,16 @@ import com.kate.app.model.RecoProject;
 		
 		
 		public boolean deleteTouziData(int id){     //鍒犻敓鏂ゆ嫹鎶曢敓鏂ゆ嫹閿熸枻鎷烽敓锟�
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
 				String sql = " delete from investment_data where id= ?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
 				int result = pstmt.executeUpdate();
 				if(result == 0){
@@ -1029,18 +1631,37 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }/*finally{
-	        	con.close();
-	        }*/
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return flag;
 	        
 		}
 		
 		public boolean deleteBrokerInfo(int id){     //鍒犻敓鏂ゆ嫹鎶曢敓鏂ゆ嫹閿熸枻鎷烽敓锟�
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
 				String sql = " delete from broker_info where id= ?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
 				int result = pstmt.executeUpdate();
 				if(result == 0){
@@ -1048,19 +1669,38 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }/*finally{
-	        	con.close();
-	        }*/
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return flag;
 		}
 		
 		
 		
 		public boolean deleteHouseInfo(int id){    //鍒犻敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎭�
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
 				String sql = " delete from house_info where id= ?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
 				int result = pstmt.executeUpdate();
 				if(result == 0){
@@ -1068,18 +1708,37 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }/*finally{
-	        	con.close();
-	        }*/
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return flag;
 	        
 		}
 		
 		public boolean deleteHouseProject(int id){    //鍒犻敓鏂ゆ嫹閿熸枻鎷风洰閿熸枻鎷锋伅
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
 				String sql = " delete  from house_project where id= ?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
 				int result = pstmt.executeUpdate();
 				if(result == 0){
@@ -1087,9 +1746,22 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }/*finally{
-	        	con.close();
-	        }*/
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return flag;
 	        
 		}
@@ -1097,11 +1769,17 @@ import com.kate.app.model.RecoProject;
 		/*
 		 * 閿熺嫛纭锋嫹閿熸枻鎷风洰鍒犻敓鏂ゆ嫹
 		 */
-		public boolean deleteRecomHouseProject(int id){    
+		public boolean deleteRecomHouseProject(int id){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
 				String sql = " delete from recommend_project where id= ?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
 				int result = pstmt.executeUpdate();
 				if(result == 0){
@@ -1109,19 +1787,38 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }/*finally{
-	        	con.close();
-	        }*/
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return flag;
 		}
 		
 		
 		
 		public boolean findById(int id){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = false;
 			try{
 				String sql = " select count(*) from investment_data where house_pro_id=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
 				ResultSet rs = pstmt.executeQuery();
 				if(rs.next()){
@@ -1129,9 +1826,22 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }/*finally{
-	        	con.close();
-	        }*/
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			
 			return flag;
 	        
@@ -1140,6 +1850,12 @@ import com.kate.app.model.RecoProject;
 		
 		//娣诲姞椤圭洰
 		public boolean addPro(String project_name, String project_img, String project_nation, String project_address, String project_area, String project_price_qi, String project_type, int project_sales_remain, String project_finish_time, String project_desc, String project_city, String project_house_type, String project_high, String project_price, String project_lan_cn, String project_lan_en, String project_num, String project_vedio, String project_zhou, String area_qujian, String gps, String return_money, int walk_num, String mianji, String project_min_price, String project_high_price, int tuijiandu, String housePrice_update_time, String buytaxInfo, String holdInfo, int min_area, int max_area, String area_num, String developer_num) throws SQLException{
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
 			String time = "";
 			Timestamp ts = new Timestamp(System.currentTimeMillis()); 
@@ -1171,7 +1887,7 @@ import com.kate.app.model.RecoProject;
 			try{
 				//String sql = " insert into house_project(project_name, project_img, project_nation, project_address, project_area, project_price_qi, project_type, project_sales_remain,  project_finish_time, project_desc, project_city, project_house_type, project_high, project_price, project_lan_cn, project_lan_en, project_num, project_vedio, project_zhou, area_qujian, gps, return_money, walk_num, mianji, project_min_price, project_high_price, tuijiandu, housePrice_update_time, buytaxInfo, holdInfo, min_area, max_area, area_num, developer_id_num) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				String sql = " insert into house_project(project_name, project_img, project_nation, project_address, project_area, project_price_qi, project_type, project_sales_remain,  project_finish_time, project_desc, project_city, project_house_type, project_high, project_price, project_lan_cn, project_lan_en, project_num, project_vedio, project_zhou, area_qujian, gps, return_money, walk_num, mianji, project_min_price, project_high_price, tuijiandu, housePrice_update_time, buytaxInfo, holdInfo, min_area, max_area, area_num, developer_id_name) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, project_name);
 				pstmt.setString(2, project_img);
 				pstmt.setString(3, project_nation);
@@ -1214,12 +1930,34 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return flag;
 	        
 		}
 		
 		
 		public boolean editPro(int id, String project_name, String project_img, String project_nation, String project_address, String project_area, String project_price_qi, String project_type, int project_sales_remain, String project_finish_time, String project_desc, String project_city, String project_house_type, String project_high, String project_price, String project_lan_cn, String project_lan_en, String project_num, String project_vedio, String project_zhou, String area_qujian, String gps, String return_money, int walk_num, String mianji, String project_min_price, String project_high_price, int tuijiandu, String housePrice_update_time, String buytaxInfo, String holdInfo, int min_area, int max_area, String area_num, String developer_num) throws SQLException{
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
 			String time = "";
 			Timestamp ts = new Timestamp(System.currentTimeMillis()); 
@@ -1248,7 +1986,7 @@ import com.kate.app.model.RecoProject;
 	        } 
 			try{
 				String sql = " update house_project set project_name=?,  project_img=?, project_nation=?, project_address=?, project_area=?, project_price_qi=?, project_type=?, project_sales_remain=?, project_finish_time=?, project_desc=?, project_city=?, project_house_type=?, project_high=?, project_price=?, project_lan_cn=?, project_lan_en=?, project_num=?, project_vedio=?, project_zhou=?, area_qujian=?, gps=?, return_money=?, walk_num=?, mianji=?, project_min_price=?, project_high_price=?, tuijiandu=?, housePrice_update_time=?, buytaxInfo=?, holdInfo=?, min_area=?, max_area=?, area_num=?, developer_id_name=? where id=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, project_name);
 				pstmt.setString(2, project_img);
 				pstmt.setString(3, project_nation);
@@ -1291,6 +2029,23 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
+
 			return flag;
 	        
 		}
@@ -1298,10 +2053,16 @@ import com.kate.app.model.RecoProject;
 		 * 閿熺潾鏀瑰尅鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎭�
 		 */
 		public boolean editDeveloperInfo(int deveId, String developer_name, String developer_logo, String developer_desc) throws SQLException{
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
 				String sql = " update developer_info set developer_name=?, developer_logo=?, developer_desc=? where id=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, developer_name);
 				pstmt.setString(2, developer_logo);
 				pstmt.setString(3, developer_desc);
@@ -1314,6 +2075,22 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return flag;  
 		}
 		
@@ -1323,10 +2100,16 @@ import com.kate.app.model.RecoProject;
 		 * 閿熺潾鏀瑰尅鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎭�
 		 */
 		public boolean editBrokerInfo(int id, String broker_name, String broker_language, String broker_region, String broker_img,String broker_experience, String broker_num, String broker_type, String broker_zizhi, String introduction, String office) throws SQLException{
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
 				String sql = " update broker_info set broker_name=?, broker_language=?, broker_region=?, broker_img=?, broker_experience=?, broker_num=?, broker_type=?, broker_zizhi=?, introduction=?, office=? where id=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, broker_name);
 				pstmt.setString(2, broker_language);
 				pstmt.setString(3, broker_region);
@@ -1345,16 +2128,38 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return flag;  
 		}
 		
 		
 		
 		public boolean deletePro(int proid) throws SQLException{
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
 				String sql = " delete from house_project where id= ?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, proid);
 				int result = pstmt.executeUpdate();
 				if(result == 0){
@@ -1363,16 +2168,39 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
+
 			return flag;
 	        
 		}
 		
 		
 		public boolean deleteNewsInfo(int id) throws SQLException{
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
 				String sql = " delete from news_info where id= ?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
 				int result = pstmt.executeUpdate();
 				if(result == 0){
@@ -1381,16 +2209,38 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return flag;
 	        
 		}
 		
 		
 		public int findProByName(String name) throws SQLException{   //閫氶敓鏂ゆ嫹閿熸枻鎷锋拠閿熸枻鎷烽敓绲燿
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			HouseProject projectInfo = new HouseProject();
 			try{
 				String sql = " select id from house_project where project_name= ?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, name);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -1399,19 +2249,37 @@ import com.kate.app.model.RecoProject;
 				
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }/*finally{
-	        	con.close();
-	        }*/
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return projectInfo.getId();
 	        
 		}
 		
 		public int countAreaInfo(String area_num){
-			
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			int count = 0;
 			try{
 				String sql = " select count(*) from area_info where area_num=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, area_num);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -1420,16 +2288,38 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return count;
 		}
 		/*
 		 * 閫氶敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎾囬敓鏂ゆ嫹閿熺禒d
 		 */
 		public int findDeveByName(String name) throws SQLException{   //閫氶敓鏂ゆ嫹閿熸枻鎷锋拠閿熸枻鎷烽敓绲燿
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			DeveloperInfo developerInfo = new DeveloperInfo();
 			try{
 				String sql = " select id from developer_info where developer_name= ?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, name);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -1438,18 +2328,38 @@ import com.kate.app.model.RecoProject;
 				
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }/*finally{
-	        	con.close();
-	        }*/
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
+
 			return developerInfo.getId();
 	        
 		}
 		
 		public int findDeveByNum(String num) throws SQLException{   //閫氶敓鏂ゆ嫹閿熸枻鎷锋拠閿熸枻鎷烽敓绲燿
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			DeveloperInfo developerInfo = new DeveloperInfo();
 			try{
 				String sql = " select id from developer_info where developer_num= ?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, num);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -1458,9 +2368,22 @@ import com.kate.app.model.RecoProject;
 				
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }/*finally{
-	        	con.close();
-	        }*/
+	        }finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return developerInfo.getId();
 	        
 		}

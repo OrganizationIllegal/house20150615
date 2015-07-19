@@ -1,22 +1,28 @@
 package com.kate.app.dao;
 
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 import com.kate.app.model.HouseInfo;
-import com.kate.app.model.HouseProject;
 @Repository 
 public class HouseInfoDao extends BaseDao{
 	public List<HouseInfo> HouseInfoDao(String proNum){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		List<HouseInfo> list=new ArrayList<HouseInfo>();
 		try{
 			String sql = " select * from house_info where project_num=? ";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, proNum);
 			ResultSet rs = pstmt.executeQuery();
 			
@@ -37,6 +43,22 @@ public class HouseInfoDao extends BaseDao{
 			
 		}catch (Exception e) {
             
+        }
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
         }
 		return list;
 	}
