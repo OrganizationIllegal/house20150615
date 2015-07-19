@@ -1,7 +1,9 @@
 package com.kate.app.dao;
 
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -19,6 +21,11 @@ import com.kate.app.model.ZhiYeZhiDao;
 	@Repository 
 	public class ZhiYeDao extends BaseDao{
 		public List<ZhiYeZhiDao> selectZhiYe(){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 			List<ZhiYeZhiDao> list = new ArrayList<ZhiYeZhiDao>();
 			try{
 				String sql = " select * from zhiye_zhidao order by fabu_time desc";   // ����ʱ����������
@@ -40,14 +47,29 @@ import com.kate.app.model.ZhiYeZhiDao;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        } 
 			return list;
 		}
 		
 		public ZhiYeZhiDao selectZhiYeById(int id){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			ZhiYeZhiDao zhiye = new ZhiYeZhiDao();
 			try{
 				String sql = " select * from zhiye_zhidao where id =?";   // ����ʱ����������
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -66,10 +88,31 @@ import com.kate.app.model.ZhiYeZhiDao;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }  
 			return zhiye;
 		}
 		
 		public int countZhiYe(){    //ͳ������
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 			int count = 0;
 			try{
 				String sql = " select count(*) from zhiye_zhidao";
@@ -81,11 +124,25 @@ import com.kate.app.model.ZhiYeZhiDao;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        } 
 			return count;
 			
 		}
 		
 		public List<String> zhiYeFenlei(){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 			List<String> list = new ArrayList<String>();
 			try{
 				String sql = " select distinct fenlei from zhiye_zhidao";   // ����ʱ����������
@@ -99,14 +156,29 @@ import com.kate.app.model.ZhiYeZhiDao;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return list;
 		}
 		
 		public List<ZhiYeZhiDao> selectZhiYeByFenlei(String fenLei){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			List<ZhiYeZhiDao> list = new ArrayList<ZhiYeZhiDao>();
 			try{
 				String sql = " select * from zhiye_zhidao where fenlei=?";   // ����ʱ����������
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, fenLei);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -125,10 +197,32 @@ import com.kate.app.model.ZhiYeZhiDao;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
+
 			return list;
 		}
 		
 		public List<NewsBoke> selectNewsBoke(){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 			List<NewsBoke> list = new ArrayList<NewsBoke>();
 			try{
 				String sql = " select * from news_boke order by news_time desc";   // ����ʱ����������
@@ -138,12 +232,7 @@ import com.kate.app.model.ZhiYeZhiDao;
 					NewsBoke data = new NewsBoke();
 					data.setId(rs.getInt("id"));
 					data.setNews_abstract(rs.getString("news_abstract"));
-//					String temp=rs.getString("news_abstract");
-//					if(temp.length()>60){
-//						data.setNews_abstract(temp.substring(0, 60));
-//					}else{
-//						data.setNews_abstract(temp);
-//					}
+
 					data.setNews_detail(rs.getString("news_detail"));
 					data.setNews_fenlei(rs.getString("news_fenlei"));
 					data.setNews_image(rs.getString("news_image"));
@@ -156,14 +245,29 @@ import com.kate.app.model.ZhiYeZhiDao;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return list;
 		}
 		
 		public NewsBoke selectNewsBokeById(int id){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			NewsBoke data = new NewsBoke();
 			try{
 				String sql = " select * from news_boke where id =?";   // ����ʱ����������
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -181,12 +285,33 @@ import com.kate.app.model.ZhiYeZhiDao;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return data;
 		}
 		
 	
 		
 		public int countNewsBoke(){    //ͳ������
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 			int count = 0;
 			try{
 				String sql = " select count(*) from news_boke";
@@ -198,11 +323,26 @@ import com.kate.app.model.ZhiYeZhiDao;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
+
 			return count;
 			
 		}
 		
 		public List<String> newsBokeFenlei(){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 			List<String> list = new ArrayList<String>();
 			try{
 				String sql = " select distinct news_fenlei from news_boke";   // ����ʱ����������
@@ -216,14 +356,29 @@ import com.kate.app.model.ZhiYeZhiDao;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return list;
 		}
 		
 		public List<NewsBoke> selectNewsBokeByFenlei(String fenLei){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			List<NewsBoke> list = new ArrayList<NewsBoke>();
 			try{
 				String sql = " select * from news_boke where news_fenlei=?";   // ����ʱ����������
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, fenLei);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -242,11 +397,32 @@ import com.kate.app.model.ZhiYeZhiDao;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return list;
 		}
 		
 		//置业指导list
 		 public JSONArray listZhiye(){
+			 	try{
+					con = DriverManager.getConnection(url, username, password);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
 				JSONArray jsonArray=new JSONArray();
 				try {
 					String sql = "select * from zhiye_zhidao t;";
@@ -277,14 +453,29 @@ import com.kate.app.model.ZhiYeZhiDao;
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				finally{
+		            if(con != null){  
+		                try {  
+		                    con.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		        }
 				return jsonArray;
 			} 
 		//置业指导add
 		 public int InsertZhiye(String  zhiye_num,String title,String fabu_people,String fabu_time,String fenlei,String zhiye_abstract,String detail,String image){
-				int exeResult=0;
+			 try{
+					con = DriverManager.getConnection(url, username, password);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			 PreparedStatement pstmt = null;
+			 int exeResult=0;
 				try {
 					String sql = "insert into zhiye_zhidao(zhiye_num,title,fabu_people,fabu_time,fenlei,zhiye_abstract,detail,image) values(?,?,?,?,?,?,?,?)";
-					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, zhiye_num);
 					pstmt.setString(2, title);
 					pstmt.setString(3, fabu_people);
@@ -298,14 +489,36 @@ import com.kate.app.model.ZhiYeZhiDao;
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				finally{  
+		            if(pstmt != null){  
+		                try {  
+		                	pstmt.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		            if(con != null){  
+		                try {  
+		                    con.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		        }
 				return exeResult;
 			}  
 		//置业指导update
 		 public int updateZhiye(int id,String  zhiye_num,String title,String fabu_people,String fabu_time,String fenlei,String zhiye_abstract,String detail,String image){
-				int exeResult=0;
+			 try{
+					con = DriverManager.getConnection(url, username, password);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			 PreparedStatement pstmt = null;
+			 int exeResult=0;
 				try {
 					String sql = "update zhiye_zhidao set zhiye_num=?,title=?,fabu_people=?,fabu_time=?,fenlei=?,zhiye_abstract=?,detail=?,image=? where id=?";
-					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, zhiye_num);
 					pstmt.setString(2, title);
 					pstmt.setString(3, fabu_people);
@@ -320,10 +533,31 @@ import com.kate.app.model.ZhiYeZhiDao;
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				finally{  
+		            if(pstmt != null){  
+		                try {  
+		                	pstmt.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		            if(con != null){  
+		                try {  
+		                    con.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		        }
 				return exeResult;
 			}
 		//置业指导delete
 		 public int delZhiye(int id){
+			 try{
+					con = DriverManager.getConnection(url, username, password);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
 				int exeResult=0;
 				try {
 					String sql = "delete from zhiye_zhidao where id="+id;
@@ -333,14 +567,29 @@ import com.kate.app.model.ZhiYeZhiDao;
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				finally{
+		            if(con != null){  
+		                try {  
+		                    con.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		        }
 				return exeResult;
 			}
 		 //根据id获取置业指导
 		 public List<ZhiYeZhiDao> getZhiYeZhiDao(int  id){
+			 try{
+					con = DriverManager.getConnection(url, username, password);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			 PreparedStatement pstmt = null;
 				List<ZhiYeZhiDao> list=new ArrayList<ZhiYeZhiDao>();
 				try {
 					String sql = " select * from zhiye_zhidao where id = ?";
-					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt = con.prepareStatement(sql);
 					pstmt.setInt(1, id);
 					ResultSet rs = pstmt.executeQuery();
 					while(rs.next()){
@@ -360,6 +609,22 @@ import com.kate.app.model.ZhiYeZhiDao;
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				finally{  
+		            if(pstmt != null){  
+		                try {  
+		                	pstmt.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		            if(con != null){  
+		                try {  
+		                    con.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		        }
 				return list;
 			}
 		

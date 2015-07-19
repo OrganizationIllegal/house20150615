@@ -1,8 +1,9 @@
 package com.kate.app.dao;
 
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,13 +13,19 @@ import com.kate.app.model.User;
 
 @Repository 
 public class UserDao extends BaseDao {
-	public List<User> listUser(String username){
+	public List<User> listUser(String username1){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		List<User> userList=new ArrayList<User>();
 		try {
 			String sql = "select t.pwd,t.email,t.tel,t.role from user t where t.email=? or t.tel=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, username);
-			pstmt.setString(2, username);
+			 pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, username1);
+			pstmt.setString(2, username1);
 			ResultSet rs = pstmt.executeQuery();
 		    String nick_name=null;
 		    String pwd=null;
@@ -26,7 +33,7 @@ public class UserDao extends BaseDao {
 		    String tel=null;
 		    int role=0;
 		    while(rs.next()){
-		    	nick_name=username;
+		    	nick_name=username1;
 		    	pwd=rs.getString("pwd");
 		    	email=rs.getString("email");
 		    	tel=rs.getString("tel");
@@ -39,17 +46,38 @@ public class UserDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return userList;
 	} 
 	
-	public int findUserByName(String username){
+	public int findUserByName(String username1){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		int id = 0;
 		try {
 			//String sql = "select * from user  where nick_name=?";
 			String sql = "select * from user  where email=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, username);
+			 pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, username1);
 			ResultSet rs = pstmt.executeQuery();
 		    String nick_name=null;
 		    String pwd=null;
@@ -64,7 +92,23 @@ public class UserDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
+
 		return id;
 	} 
 

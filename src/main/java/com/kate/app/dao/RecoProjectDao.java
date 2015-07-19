@@ -1,22 +1,23 @@
 package com.kate.app.dao;
 
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.SQLException;
 
 import org.springframework.stereotype.Repository;
 
-import com.kate.app.model.HouseProject;
 import com.kate.app.model.RecoProject;
 @Repository 
 public class RecoProjectDao extends BaseDao{
 	public RecoProject getRecoProjectDao(String area_num){
 		RecoProject data = new RecoProject();
+		PreparedStatement pstmt =null;
 		try{
 			String sql = "select * from recommend_project where area_code=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+		    pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, area_num);
+
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()){
@@ -31,6 +32,21 @@ public class RecoProjectDao extends BaseDao{
 			
 		}catch (Exception e) {
             
+        }finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
         }
 		return data;
 		

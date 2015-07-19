@@ -1,7 +1,9 @@
 package com.kate.app.dao;
 
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,12 @@ import com.kate.app.model.UserInfo;
 public class HistorySearchDao extends BaseDao {
 
 	public List<HistorySearch> searchHistory(int userId){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		List<HistorySearch> list = new ArrayList<HistorySearch>();
 		UserInfo userInfo = getUserInfo(userId);
 		int role = userInfo.getRole();  //0管理员;1普通人员
@@ -20,7 +28,7 @@ public class HistorySearchDao extends BaseDao {
 		try{
 			if(role == 1){
 				sql = " select * from history_search where userid = ?;";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, userId);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -33,7 +41,7 @@ public class HistorySearchDao extends BaseDao {
 				}
 			}else{
 				sql = " select * from history_search a, user b where a.userid = b.id and b.role !=0;";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
 					HistorySearch data = new HistorySearch();
@@ -49,13 +57,35 @@ public class HistorySearchDao extends BaseDao {
 		}catch (Exception e) {
             e.printStackTrace();
         }
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return list;
 	}
 	public UserInfo getUserInfo(int userId){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		UserInfo userInfo = new UserInfo();
 		try{
 			String sql = " select * from user where id = ?;";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, userId);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -68,6 +98,22 @@ public class HistorySearchDao extends BaseDao {
 			}
 		}catch (Exception e) {
             e.printStackTrace();
+        }
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
         }
 		return userInfo;
 	}

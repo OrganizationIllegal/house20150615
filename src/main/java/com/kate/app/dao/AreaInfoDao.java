@@ -1,5 +1,6 @@
 package com.kate.app.dao;
 
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,168 +32,439 @@ import com.kate.app.model.NewsZhiye;
 public class AreaInfoDao extends BaseDao {
 	//閫氳繃id鍒犻櫎鍖哄煙鎺ㄨ崘鏂伴椈
 			public int deleteNewsBoke(String area_num){
+				try{
+					con = DriverManager.getConnection(url, username, password);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				PreparedStatement pstmt = null;
 				int exeResult=0;
 				try{
 						String sql = " delete from recommend_news where area_code= ?";
-						PreparedStatement pstmt = con.prepareStatement(sql);
+						pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, area_num);
 						exeResult = pstmt.executeUpdate();
 					}catch (Exception e) {
 			            e.printStackTrace();
 			        }
+				finally{  
+		            if(pstmt != null){  
+		                try {  
+		                	pstmt.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		            if(con != null){  
+		                try {  
+		                    con.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		        }
 				    return exeResult;
 			}
 	//閫氳繃id鍒犻櫎鍖哄煙鎺ㄨ崘椤圭洰
 		public int deleteProject(String area_num){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			int exeResult=0;
 			try{
 					String sql = " delete from recommend_project where area_code= ?";
-					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, area_num);
 					exeResult = pstmt.executeUpdate();
 				}catch (Exception e) {
 		            e.printStackTrace();
 		        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			    return exeResult;
 		}	
 	//閫氳繃id鍒犻櫎鍖哄煙缁忕邯浜�
 	public int deleteBroker(String area_num){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		int exeResult=0;
 		try{
 				String sql = " delete from area_recommend_broker where area_code= ?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, area_num);
 				exeResult = pstmt.executeUpdate();
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		    return exeResult;
 	}	
 	//閫氳繃id鍒犻櫎鍖哄煙浜哄彛鍒嗗竷璧板娍
 			public int deletePeople(String area_num){
+				try{
+					con = DriverManager.getConnection(url, username, password);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				PreparedStatement pstmt = null;
 				int exeResult=0;
 				try{
 						String sql = " delete from area_people where area_code= ?";
-						PreparedStatement pstmt = con.prepareStatement(sql);
+						pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, area_num);
 						exeResult = pstmt.executeUpdate();
 					}catch (Exception e) {
 			            e.printStackTrace();
 			        }
+				finally{  
+		            if(pstmt != null){  
+		                try {  
+		                	pstmt.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		            if(con != null){  
+		                try {  
+		                    con.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		        }
 				    return exeResult;
 			}	
 	//閫氳繃id鍒犻櫎鍖哄煙鐗圭偣璧板娍
 		public int deleteTedian(String area_num){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			int exeResult=0;
 			try{
 					String sql = " delete from area_features where area_code= ?";
-					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, area_num);
 					exeResult = pstmt.executeUpdate();
 				}catch (Exception e) {
 		            e.printStackTrace();
 		        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			    return exeResult;
 		}	
 	//閫氳繃id鍒犻櫎鍖哄煙绉熷洖鎶ヨ蛋鍔�
 	public int deleteHuibao(String area_num){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		int exeResult=0;
 		try{
 				String sql = " delete from area_kongzhi where area_code= ?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, area_num);
 				exeResult = pstmt.executeUpdate();
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		    return exeResult;
 	}	
 	//閫氳繃id鍒犻櫎鍖哄煙绉熼噾璧板娍
 			public int deleteZujin(String area_num){
+				try{
+					con = DriverManager.getConnection(url, username, password);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				PreparedStatement pstmt = null;
 				int exeResult=0;
 				try{
 						String sql = " delete from area_zujin where area_code= ?";
-						PreparedStatement pstmt = con.prepareStatement(sql);
+						pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, area_num);
 						exeResult = pstmt.executeUpdate();
 					}catch (Exception e) {
 			            e.printStackTrace();
 			        }
+				finally{  
+		            if(pstmt != null){  
+		                try {  
+		                	pstmt.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		            if(con != null){  
+		                try {  
+		                    con.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		        }
 				    return exeResult;
 			}	
 	//閫氳繃id鍒犻櫎鍖哄煙鎴夸环涓綅鏁拌蛋鍔�
 		public int deleteMiddleTrend(String area_num){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			int exeResult=0;
 			try{
 					String sql = " delete from area_middle where area_code= ?";
-					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, area_num);
 					exeResult = pstmt.executeUpdate();
 				}catch (Exception e) {
 		            e.printStackTrace();
 		        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			    return exeResult;
 		}	
 	//閫氳繃id鍒犻櫎鍖哄煙涓綅鏁版埧浠�
 	public int deleteMiddlePrice(String area_num){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		int exeResult=0;
 		try{
 				String sql = " delete from area_middle_price where area_quyu= ?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, area_num);
 				exeResult = pstmt.executeUpdate();
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		    return exeResult;
 	}	
 	//閫氳繃id鍒犻櫎鍖哄煙瀹跺涵鏋勬垚
 			public int deleteFamily(String area_num){
+				try{
+					con = DriverManager.getConnection(url, username, password);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				PreparedStatement pstmt = null;
 				int exeResult=0;
 				try{
 						String sql = " delete from area_family where area_code= ?";
-						PreparedStatement pstmt = con.prepareStatement(sql);
+						pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, area_num);
 						exeResult = pstmt.executeUpdate();
 					}catch (Exception e) {
 			            e.printStackTrace();
 			        }
+				finally{  
+		            if(pstmt != null){  
+		                try {  
+		                	pstmt.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		            if(con != null){  
+		                try {  
+		                    con.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		        }
 				    return exeResult;
 			}
 	//閫氳繃id鍒犻櫎鎶曡祫鏁版嵁
 		public int deleteInvest(String area_num){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			int exeResult=0;
 			try{
 					String sql = " delete from investment_data where area_num= ?";
-					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, area_num);
 					exeResult = pstmt.executeUpdate();
 				}catch (Exception e) {
 		            e.printStackTrace();
 		        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
+
 			    return exeResult;
 		}
 	//閫氳繃id鍒犻櫎鍖哄煙淇℃伅
 	public int deleteAreaInfo(int id){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		int exeResult=0;
 		try{
 				String sql = " delete from area_info where id= ?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
 				exeResult = pstmt.executeUpdate();
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		    return exeResult;
 	}
 	//閫氳繃鍖哄煙id鑾峰彇鏂伴椈鎶ラ亾淇℃伅
 		public List<NewsZhiye> getAreaNewsBokeList(String area_num){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			List<NewsZhiye> areaInfolist = new ArrayList<NewsZhiye>();
 			AreaTuijianNews areaInfo=new AreaTuijianNews();
 			NewsZhiye newsZhiyeInfo = new NewsZhiye();
 			try {
 				String sql = " SELECT * from recommend_news where area_code=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1,area_num);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -205,6 +477,22 @@ public class AreaInfoDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			String news1=areaInfo.getReco_news_num_1();
 			String news2=areaInfo.getReco_news_num_2();
 			String news3=areaInfo.getReco_news_num_3();
@@ -236,10 +524,16 @@ public class AreaInfoDao extends BaseDao {
 		}
 		
 		public NewsZhiye getNewsBokeList(String news_num){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			NewsZhiye newsBokeInfo = new NewsZhiye();
 			try {
 				String sql = " SELECT * from news_boke where news_num=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1,news_num);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -252,14 +546,36 @@ public class AreaInfoDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return newsBokeInfo;
 		}
 		
 		public NewsZhiye getZhiYeZhiDaoList(String zhiye_num){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			NewsZhiye zhiyeInfo = new NewsZhiye();
 			try {
 				String sql = " SELECT * from zhiye_zhidao where zhiye_num=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1,zhiye_num);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -272,16 +588,39 @@ public class AreaInfoDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
+
 			return zhiyeInfo;
 		}
 	//閫氳繃鍖哄煙id鑾峰彇鎺ㄨ崘椤圭洰淇℃伅
 	public List<HouseProject> getAreaProjectList(String area_num){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		List<HouseProject> areaInfolist = new ArrayList<HouseProject>();
 		AreaTuijianProject areaInfo=new AreaTuijianProject();
 		HouseProject projectInfo = new HouseProject();
 		try {
 			String sql = " SELECT * from recommend_project where area_code=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,area_num);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -294,6 +633,22 @@ public class AreaInfoDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		String pro1=areaInfo.getRecommend_num_1();
 		String pro2=areaInfo.getRecommend_num_2();
 		String pro3=areaInfo.getRecommend_num_3();
@@ -307,10 +662,16 @@ public class AreaInfoDao extends BaseDao {
 	}
 	
 	public HouseProject getProjectList(String project_num){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		HouseProject projectInfo = new HouseProject();
 		try {
 			String sql = " SELECT * from house_project where project_num=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,project_num);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -324,16 +685,38 @@ public class AreaInfoDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return projectInfo;
 	}
 	//閫氳繃鍖哄煙id鑾峰彇鎺ㄨ崘缁忕邯浜轰俊鎭�
 			public List<BrokerInfo> getAreaBrokerList(String area_num){
+				try{
+					con = DriverManager.getConnection(url, username, password);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				PreparedStatement pstmt = null;
 				List<BrokerInfo> areaInfolist = new ArrayList<BrokerInfo>();
 				AreaTuijianBroker areaInfo = new AreaTuijianBroker();
 				BrokerInfo brokerInfo=new BrokerInfo();
 				try {
 					String sql = " SELECT * from area_recommend_broker where area_code=?";
-					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1,area_num);
 					ResultSet rs = pstmt.executeQuery();
 					while(rs.next()){
@@ -341,12 +724,28 @@ public class AreaInfoDao extends BaseDao {
 						areaInfo.setBroker_code1(rs.getString("broker_code1"));
 						areaInfo.setBroker_code2(rs.getString("broker_code2"));
 						areaInfo.setBroker_code3(rs.getString("broker_code3"));
-						//areaInfolist.add(areaInfo);
+						
 					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				finally{  
+		            if(pstmt != null){  
+		                try {  
+		                	pstmt.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		            if(con != null){  
+		                try {  
+		                    con.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		        }
 				String broker1=areaInfo.getBroker_code1();
 				String broker2=areaInfo.getBroker_code2();
 				String broker3=areaInfo.getBroker_code3();
@@ -360,10 +759,16 @@ public class AreaInfoDao extends BaseDao {
 			}
 			
 			public BrokerInfo getBrokerList(String broker_num){
+				try{
+					con = DriverManager.getConnection(url, username, password);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				PreparedStatement pstmt = null;
 				BrokerInfo brokerInfo = new BrokerInfo();
 				try {
 					String sql = " SELECT * from broker_info where broker_num=?";
-					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1,broker_num);
 					ResultSet rs = pstmt.executeQuery();
 					while(rs.next()){
@@ -377,14 +782,36 @@ public class AreaInfoDao extends BaseDao {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				finally{  
+		            if(pstmt != null){  
+		                try {  
+		                	pstmt.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		            if(con != null){  
+		                try {  
+		                    con.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		        }
 				return brokerInfo;
 			}
 	//閫氳繃鍖哄煙id鑾峰彇鍖哄煙浜哄彛鍒嗗竷淇℃伅
 		public List<AreaPeopleInfo2> getAreaPeopleList(String area_num){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			List<AreaPeopleInfo2> areaInfolist = new ArrayList<AreaPeopleInfo2>();
 			try {
 				String sql = " SELECT * from area_people where area_code=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1,area_num);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -404,14 +831,36 @@ public class AreaInfoDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return areaInfolist;
 		}
 	//閫氳繃鍖哄煙id鑾峰彇鍖哄煙鐗圭偣淇℃伅
 	public List<AreaTeDian2> getAreaTedianList(String area_num){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		List<AreaTeDian2> areaInfolist = new ArrayList<AreaTeDian2>();
 		try {
 			String sql = " SELECT * from area_features where area_code=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,area_num);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -428,14 +877,36 @@ public class AreaInfoDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return areaInfolist;
 	}
 	//閫氳繃鍖哄煙id鑾峰彇鍖哄煙绉熼噾鍥炴姤璧板娍淇℃伅
 			public List<AreaZhikong2> getAreaKongzhiList(String area_num){
+				try{
+					con = DriverManager.getConnection(url, username, password);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				PreparedStatement pstmt = null;
 				List<AreaZhikong2> areaInfolist = new ArrayList<AreaZhikong2>();
 				try {
 					String sql = " SELECT * from area_kongzhi where area_code=?";
-					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1,area_num);
 					ResultSet rs = pstmt.executeQuery();
 					while(rs.next()){
@@ -454,15 +925,37 @@ public class AreaInfoDao extends BaseDao {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				finally{  
+		            if(pstmt != null){  
+		                try {  
+		                	pstmt.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		            if(con != null){  
+		                try {  
+		                    con.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		        }
 				return areaInfolist;
 			}
 			
 	//閫氳繃鍖哄煙id鑾峰彇鍖哄煙绉熼噾璧板娍淇℃伅
 		public List<AreaZujin2> getAreaZujinList(String area_num){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			List<AreaZujin2> areaInfolist = new ArrayList<AreaZujin2>();
 			try {
 				String sql = " SELECT * from area_zujin where area_code=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1,area_num);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -481,15 +974,39 @@ public class AreaInfoDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
+
 			return areaInfolist;
 		}
 		
 	//閫氳繃鍖哄煙id鑾峰彇鍖哄煙鎴夸环涓綅鏁拌蛋鍔夸俊鎭�
 	public List<AreaMiddle2> getAreaMiddleList(String area_num){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
+		
 		List<AreaMiddle2> areaInfolist = new ArrayList<AreaMiddle2>();
 		try {
 			String sql = " SELECT * from area_middle where area_code=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,area_num);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -508,14 +1025,37 @@ public class AreaInfoDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
+
 		return areaInfolist;
 	}
 	//閫氳繃鍖哄煙id鑾峰彇鍖哄煙涓綅鏁版埧浠蜂俊鎭�
 			public List<MiddlePrice2> getMiddlePrice(String area_num){
+				try{
+					con = DriverManager.getConnection(url, username, password);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				PreparedStatement pstmt = null;
 				List<MiddlePrice2> areaInfolist = new ArrayList<MiddlePrice2>();
 				try {
 					String sql = " SELECT * from area_middle_price where area_quyu=?";
-					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1,area_num);
 					ResultSet rs = pstmt.executeQuery();
 					while(rs.next()){
@@ -546,15 +1086,37 @@ public class AreaInfoDao extends BaseDao {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				finally{  
+		            if(pstmt != null){  
+		                try {  
+		                	pstmt.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		            if(con != null){  
+		                try {  
+		                    con.close();  
+		                } catch (SQLException e) {  
+		                    e.printStackTrace();  
+		                }  
+		            }  
+		        }
 				return areaInfolist;
 			}
 
 	//閫氳繃鍖哄煙id鑾峰彇鎶曡祫瀹跺涵淇℃伅
 		public AreaFamilyBackEnd getFamilyBackEnd(String area_num){
+			try{
+				con = DriverManager.getConnection(url, username, password);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			PreparedStatement pstmt = null;
 			AreaFamilyBackEnd areaInfo = new AreaFamilyBackEnd();
 			try {
 				String sql = " SELECT * from area_family where area_code=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1,area_num);
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -573,14 +1135,36 @@ public class AreaInfoDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return areaInfo;
 		}
 	//閫氳繃鍖哄煙id鑾峰彇鎶曡祫鏁版嵁淇℃伅
 	public InvestmentDataBackEnd getInvestInfo(String area_num){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		InvestmentDataBackEnd areaInfo = new InvestmentDataBackEnd();
 		try {
 			String sql = " SELECT * from investment_data where area_num=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,area_num);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -601,14 +1185,36 @@ public class AreaInfoDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return areaInfo;
 	}
 	//鍒ゆ柇鍖哄煙缂栧彿鏄惁閲嶅
 	public int isDuplicate(String area_num){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		HashSet<String> areaNumSet=new HashSet<String>();
 		try {
 			String sql = " SELECT area_num from area_info";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()){
 				String anum=rs.getString("area_num");
@@ -621,10 +1227,31 @@ public class AreaInfoDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return 0;
 	}
 	//鍖哄煙褰曞叆
 	public int AddArea(String area_num,String area_name,String area_city,String area_zhou,String area_nation,String area_postcode,String touzi_datasource,String touzi_date,String middle_price,String middle_zu_price,String price_review,String year_increment_rate,String zu_house_rate,String zu_xuqiu,String data_exam,String family_one,String family_one_rate,String family_two,String family_two_rate,String family_three,String family_three_rate,String family_datasource,String family_date,List<MiddlePrice2> middlepriceList,List<AreaMiddle2> middletrendList,List<AreaZujin2> zujintrendlistList,List<AreaZhikong2> huibaotrendlistList,List<AreaTeDian2> tedianlistList,List<AreaPeopleInfo2> peoplelistList,List<BrokerInfo> brokerlistList,List<String> projectlistList,List<String> newslistList,List<String> list) throws SQLException{
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		PreparedStatement pstmt=null;
 		try {
 			con.setAutoCommit(false);
@@ -1088,11 +1715,37 @@ public class AreaInfoDao extends BaseDao {
             e.printStackTrace();
             return -1;
         }
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 	}
-	//鍖哄煙缂栬緫
-		public int EditArea(int Id,int Id2,int Id3,String area_num,String area_name,String area_city,String area_zhou,String area_nation,String area_postcode,String touzi_datasource,String touzi_date,String middle_price,String middle_zu_price,String price_review,String year_increment_rate,String zu_house_rate,String zu_xuqiu,String data_exam,String family_one,String family_one_rate,String family_two,String family_two_rate,String family_three,String family_three_rate,String family_datasource,String family_date,List<MiddlePrice2> middlepriceList,List<MiddlePrice2> middlepriceList2,List<AreaMiddle2> middletrendList,List<AreaMiddle2> middletrendList2,List<AreaZujin2> zujintrendlistList,List<AreaZujin2> zujintrendlistList2,List<AreaZhikong2> huibaotrendlistList,List<AreaZhikong2> huibaotrendlistList2,List<AreaTeDian2> tedianlistList,List<AreaTeDian2> tedianlistList2,List<AreaPeopleInfo2> peoplelistList,List<AreaPeopleInfo2> peoplelistList2,List<BrokerInfo> brokerlistList,List<BrokerInfo> brokerlistList2,List<String> projectlistList,List<String> newslistList,List<String> list
+
+
+	//区域编辑
+
+		public int EditArea(int Id,int Id2,int Id3,String area_num,String area_name,String area_city,String area_zhou,String area_nation,String area_postcode,String touzi_datasource,String touzi_date,String middle_price,String middle_zu_price,String price_review,String year_increment_rate,String zu_house_rate,String zu_xuqiu,String data_exam,String family_one,String family_one_rate,String family_two,String family_two_rate,String family_three,String family_three_rate,String family_datasource,String family_date,List<MiddlePrice2> middlepriceList,List<MiddlePrice2> middlepriceList2,List<AreaMiddle2> middletrendList,List<AreaMiddle2> middletrendList2,List<AreaZujin2> zujintrendlistList,List<AreaZujin2> zujintrendlistList2,List<AreaZhikong2> huibaotrendlistList,List<AreaZhikong2> huibaotrendlistList2,List<AreaTeDian2> tedianlistList,List<AreaTeDian2> tedianlistList2,List<AreaPeopleInfo2> peoplelistList,List<AreaPeopleInfo2> peoplelistList2,List<BrokerInfo> brokerlistList,List<String> projectlistList,List<String> newslistList,List<String> list
+
 				,List<MiddlePrice2> middlepriceListdelete,List<AreaMiddle2> middletrendListdelete,List<AreaZujin2> zujintrendlistListdelete
 				,List<AreaZhikong2> huibaotrendlistListdelete,List<AreaTeDian2> tedianlistListdelete,List<AreaPeopleInfo2> peoplelistListdelete) throws SQLException{
+
+	try{
+		con = DriverManager.getConnection(url, username, password);
+	}catch(Exception e){
+		e.printStackTrace();
+	}
 			PreparedStatement pstmt=null;
 			try {
 				con.setAutoCommit(false);
@@ -1918,13 +2571,35 @@ public class AreaInfoDao extends BaseDao {
 	            e.printStackTrace();
 	            return -1;
 	        }
+			finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 		}
 	//Area缂栬緫妯″潡鐨勬煡璇reaInfo淇℃伅
 	public AreaInfo getAreaInfoBackEnd(int id){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		AreaInfo areaInfo = new AreaInfo();
 		try {
 			String sql = " SELECT * from area_info where id=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -1941,15 +2616,38 @@ public class AreaInfoDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
+
 		return areaInfo;
 	}
 	
 	
 	public AreaInfo getAreaInfo(int id){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		AreaInfo areaInfo = new AreaInfo();
 		try {
 			String sql = " SELECT * from area_info where id=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -1966,14 +2664,36 @@ public class AreaInfoDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return areaInfo;
 	}
 	
 	public AreaInfo getAreaInfoByNum(String area_num){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		AreaInfo areaInfo = new AreaInfo();
 		try {
 			String sql = " SELECT * from area_info where area_num=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, area_num);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -1990,14 +2710,36 @@ public class AreaInfoDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return areaInfo;
 	}
 	
 	public AreaInfo getAreaInfo(String area_name){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		AreaInfo areaInfo = new AreaInfo();
 		try {
 			String sql = " SELECT * from area_info where area_name=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, area_name);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -2014,14 +2756,36 @@ public class AreaInfoDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return areaInfo;
 	}
 	
 	public boolean addAreaInfo(String area_num,String area_name,String area_city,String area_zhou,String area_nation,String area_postcode){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		boolean flag = true;
 		try{
 			String sql = " insert into area_info(area_num, area_name, area_city, area_zhou, area_nation, area_postcode) values(?,?,?,?,?,?)";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, area_num);
 			pstmt.setString(2, area_name);
 			pstmt.setString(3, area_city);
@@ -2036,10 +2800,33 @@ public class AreaInfoDao extends BaseDao {
 		}catch (Exception e) {
             e.printStackTrace();
         }
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return flag;
 	}
 	
 	public boolean addTouziData(String touzi_datasource, String touzi_date, String middle_price, String middle_zu_price, String price_review, String year_increment_rate, String zu_house_rate, String zu_xuqiu,String data_exam, String area_num, String area_name){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
+		
 		boolean flag = true;
 		String time_str = "";
 		Timestamp ts = new Timestamp(System.currentTimeMillis()); 
@@ -2056,7 +2843,7 @@ public class AreaInfoDao extends BaseDao {
 		
 		try{
 			String sql = " insert into investment_data(year_increment_rate, middle_price, middle_zu_price, zu_house_rate, zu_xuqiu, price_review, data_exam, area_num, area_name, touzi_datasource, touzi_date) values(?,?,?,?,?,?,?,?,?,?,?)";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, year_increment_rate);
 			pstmt.setString(2, middle_price);
 			pstmt.setString(3, middle_zu_price);
@@ -2074,15 +2861,34 @@ public class AreaInfoDao extends BaseDao {
 			}
 		}catch (Exception e) {
             e.printStackTrace();
-        }/*finally{
-        	con.close();
-        }*/
+        }finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return flag;
         
 	}
 
 	
 	public boolean addAreaFamily(String area_code, String family_one, String family_one_rate, String family_two, String family_two_rate, String family_three, String family_three_rate, String family_datasource, String family_date){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		boolean flag = true;
 		String time_str = "";
 		Timestamp ts = new Timestamp(System.currentTimeMillis()); 
@@ -2099,7 +2905,7 @@ public class AreaInfoDao extends BaseDao {
         
 		try{
 			String sql = " insert into area_family(family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, area_code, family_datasource, family_date) values(?,?,?,?,?,?,?,?,?)";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, family_one);
 			pstmt.setString(2, family_one_rate);
 			pstmt.setString(3, family_two);
@@ -2118,10 +2924,32 @@ public class AreaInfoDao extends BaseDao {
 		}catch (Exception e) {
             e.printStackTrace();
         }
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return flag;
 	}
 	
 	public boolean addMiddlePrice(MiddlePrice2 obj, String area_quyu){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		boolean flag = true;
 		int buy_price = obj.getBuy_price();
 		int zu_price = obj.getZu_price();
@@ -2151,7 +2979,7 @@ public class AreaInfoDao extends BaseDao {
 					"buy_three_name, buy_three_price, zu_one_name, zu_one_price, " +
 					"zu_two_name, zu_two_price, zu_three_name, zu_three_price, area_quyu, " +
 					"middle_datasource, middle_date) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, buy_price);
 			pstmt.setInt(2, zu_price);
 			pstmt.setString(3, buy_one_name);
@@ -2179,11 +3007,33 @@ public class AreaInfoDao extends BaseDao {
 		}catch (Exception e) {
             e.printStackTrace();
         }
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return flag;
 	}
 	
 	
 	public boolean addMiddleTrend(AreaMiddle2 obj, String area_code){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		boolean flag = true;
 		int heng = obj.getHeng2();
 		int zong = obj.getZong2();
@@ -2202,7 +3052,7 @@ public class AreaInfoDao extends BaseDao {
 			String sql = " insert into area_middle(heng, zong, " +
 					"view_shunxu, project_type, area_code, middle_zoushi_datasource, " +
 					"middle_zoushi_date) values(?,?,?,?,?,?,?)";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, heng);
 			pstmt.setInt(2, zong);
 			pstmt.setInt(3, view_shunxu);
@@ -2210,9 +3060,6 @@ public class AreaInfoDao extends BaseDao {
 			pstmt.setString(5, area_code);
 			pstmt.setString(6, middle_zoushi_datasource);
 			pstmt.setString(7, time_str);
-			
-			
-			
 			int result = pstmt.executeUpdate();
 			if(result == 0){
 				flag = false;
@@ -2220,10 +3067,32 @@ public class AreaInfoDao extends BaseDao {
 		}catch (Exception e) {
             e.printStackTrace();
         }
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return flag;
 	}
 	
 	public boolean addMiddleZujin(AreaZujin2 obj, String area_code){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		boolean flag = true;
 		int heng = obj.getHeng3();
 		int zong = obj.getZong3();
@@ -2242,7 +3111,7 @@ public class AreaInfoDao extends BaseDao {
 			String sql = " insert into area_zujin(heng, zong, " +
 					"view_shunxu, project_type, area_code, zujin_datasource, " +
 					"zujin_date) values(?,?,?,?,?,?,?)";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, heng);
 			pstmt.setInt(2, zong);
 			pstmt.setInt(3, view_shunxu);
@@ -2250,9 +3119,6 @@ public class AreaInfoDao extends BaseDao {
 			pstmt.setString(5, area_code);
 			pstmt.setString(6, zujin_datasource);
 			pstmt.setString(7, time_str);
-			
-			
-			
 			int result = pstmt.executeUpdate();
 			if(result == 0){
 				flag = false;
@@ -2260,10 +3126,32 @@ public class AreaInfoDao extends BaseDao {
 		}catch (Exception e) {
             e.printStackTrace();
         }
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return flag;
 	}
 	
 	public boolean addAreaZhikong(AreaZhikong2 obj, String area_code){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		boolean flag = true;
 		int heng = obj.getHeng4();
 		int zong = obj.getZong4();
@@ -2282,7 +3170,7 @@ public class AreaInfoDao extends BaseDao {
 			String sql = " insert into area_kongzhi(heng, zong, " +
 					"view_shunxu, project_type, area_code, zujin_huibao_datasource, " +
 					"zujin_huibao_date) values(?,?,?,?,?,?,?)";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, heng);
 			pstmt.setInt(2, zong);
 			pstmt.setInt(3, view_shunxu);
@@ -2290,9 +3178,6 @@ public class AreaInfoDao extends BaseDao {
 			pstmt.setString(5, area_code);
 			pstmt.setString(6, zujin_huibao_datasource);
 			pstmt.setString(7, time_str);
-			
-			
-			
 			int result = pstmt.executeUpdate();
 			if(result == 0){
 				flag = false;
@@ -2300,16 +3185,36 @@ public class AreaInfoDao extends BaseDao {
 		}catch (Exception e) {
             e.printStackTrace();
         }
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return flag;
 	}
 	
 	
 	public boolean addAreaTeDian(AreaTeDian2 obj, String area_code){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		boolean flag = true;
 		String area_character = obj.getArea_character();
 		int view_shunxu = obj.getView_shunxu();
-		
-		
 		String data_source = obj.getData_source();
 		String update_time = obj.getUpdate_time();
 		String time_str = "";
@@ -2321,17 +3226,13 @@ public class AreaInfoDao extends BaseDao {
 		try{
 			String sql = " insert into area_features(area_character, view_shunxu, " +
 					"area_code, data_source, update_time ) values(?,?,?,?,?)";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, area_character);
 			pstmt.setInt(2, view_shunxu);
 			
 			pstmt.setString(3, area_code);
-			
 			pstmt.setString(4, data_source);
 			pstmt.setString(5, time_str);
-			
-			
-			
 			int result = pstmt.executeUpdate();
 			if(result == 0){
 				flag = false;
@@ -2339,11 +3240,33 @@ public class AreaInfoDao extends BaseDao {
 		}catch (Exception e) {
             e.printStackTrace();
         }
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return flag;
 	}
 	
 	
 	public boolean addAreaPeople(AreaPeopleInfo2 obj, String area_code){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		boolean flag = true;
 		String column1 = obj.getColumn1();
 		String column2 = obj.getColumn2();
@@ -2360,7 +3283,7 @@ public class AreaInfoDao extends BaseDao {
 		try{
 			String sql = " insert into area_people(column1, column2, " +
 					"column3, view_shunxu, area_code, people_datasource, people_date) values(?,?,?,?,?,?,?)";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, column1);
 			pstmt.setString(2, column2);
 			pstmt.setString(3, column3);
@@ -2375,10 +3298,32 @@ public class AreaInfoDao extends BaseDao {
 		}catch (Exception e) {
             e.printStackTrace();
         }
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return flag;
 	}
 	
 	public boolean addAreaTuijianBroker(List<BrokerInfo> brokerlistList, String area_code){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		boolean flag = true;
 		List<String> numList = new ArrayList<String>();
 		String broker_code1 = "";
@@ -2406,7 +3351,7 @@ public class AreaInfoDao extends BaseDao {
 		try{
 			String sql = " insert into area_recommend_broker(broker_code1, broker_code2, " +
 					"broker_code3, area_code) values(?,?,?,?)";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, broker_code1);
 			pstmt.setString(2, broker_code2);
 			pstmt.setString(3, broker_code3);
@@ -2419,11 +3364,33 @@ public class AreaInfoDao extends BaseDao {
 		}catch (Exception e) {
             e.printStackTrace();
         }
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return flag;
 	}
 	
 	
 	public boolean addAreaTuijianPro(List<String> projectlistList, String area_code){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		boolean flag = true;
 		
 		String recommend_num_1 = "";
@@ -2452,7 +3419,7 @@ public class AreaInfoDao extends BaseDao {
 		try{
 			String sql = " insert into recommend_project(recommend_num_1, recommend_num_2, " +
 					"recommend_num_3, area_code) values(?,?,?,?)";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, recommend_num_1);
 			pstmt.setString(2, recommend_num_2);
 			pstmt.setString(3, recommend_num_3);
@@ -2465,10 +3432,34 @@ public class AreaInfoDao extends BaseDao {
 		}catch (Exception e) {
             e.printStackTrace();
         }
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
+
 		return flag;
 	}
 	
 	public boolean addAreaTuijianBoke(List<String> newslistList, List<String> list, String area_code){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
+		
 		boolean flag = true;
 		String reco_news_num_1 = "";
 		String reco_news_num_2 = "";
@@ -2500,7 +3491,7 @@ public class AreaInfoDao extends BaseDao {
 		try{
 			String sql = " insert into recommend_news(reco_news_num_1, reco_news_num_2, " +
 					"reco_news_num_3, area_code) values(?,?,?,?)";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, reco_news_num_1);
 			pstmt.setString(2, reco_news_num_2);
 			pstmt.setString(3, reco_news_num_3);
@@ -2513,14 +3504,36 @@ public class AreaInfoDao extends BaseDao {
 		}catch (Exception e) {
             e.printStackTrace();
         }
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return flag;
 	}
 	
 	public String findBrokerbyName(String broker_name){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		String brokerNum=null;
 		try {
 			String sql = "select * from broker_info where broker_name = ?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, broker_name);
 			ResultSet rs = pstmt.executeQuery();
 			
@@ -2533,16 +3546,38 @@ public class AreaInfoDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return brokerNum;
 		
 	}
 	
 	
 	public String findProByName(String Name){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		String num = null;
 		try{
 			String sql = "select * from house_project where project_name=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, Name);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -2552,14 +3587,36 @@ public class AreaInfoDao extends BaseDao {
 		}catch (Exception e) {
 			 e.printStackTrace();
         }
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return num;
 	}
 	
 	public String findBokeByName(String Name){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		String num = null;
 		try{
 			String sql = "select * from news_boke where news_title=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, Name);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -2569,14 +3626,36 @@ public class AreaInfoDao extends BaseDao {
 		}catch (Exception e) {
 			 e.printStackTrace();
         }
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return num;
 	}
 	
 	public String findZhiYeByName(String Name){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		String num = null;
 		try{
 			String sql = "select * from zhiye_zhidao where title=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, Name);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -2585,6 +3664,22 @@ public class AreaInfoDao extends BaseDao {
 			
 		}catch (Exception e) {
 			 e.printStackTrace();
+        }
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
         }
 		return num;
 	}

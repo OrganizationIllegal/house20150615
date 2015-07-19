@@ -1,6 +1,9 @@
 package com.kate.app.dao;
 
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +15,12 @@ import com.kate.app.model.SuggestionProject;
 @Repository 
 public class SuggestionDao extends BaseDao {
 	public List<SuggestionProject> getProjectSearch(){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		List<SuggestionProject> proNameList = new ArrayList<SuggestionProject>();
 		try{
 			String sql = "select * from house_project";
@@ -26,11 +35,32 @@ public class SuggestionDao extends BaseDao {
 			
 		}catch (Exception e) {
 			 e.printStackTrace();
+        }finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
         }
 		return proNameList;
 	}
 	
 	public List<String> getProjectZhou(){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		List<String> zhouList = new ArrayList<String>();
 		try{
 			String sql = "select distinct  project_zhou from house_project";
@@ -44,11 +74,32 @@ public class SuggestionDao extends BaseDao {
 			
 		}catch (Exception e) {
 			 e.printStackTrace();
+        }finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
         }
 		return zhouList;
 	}
 	
 	public List<String> getProjectCity(){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		List<String> cityList = new ArrayList<String>();
 		try{
 			String sql = "select distinct  project_city from house_project";
@@ -62,6 +113,21 @@ public class SuggestionDao extends BaseDao {
 			
 		}catch (Exception e) {
 			 e.printStackTrace();
+        }finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
         }
 		return cityList;
 	}
@@ -72,6 +138,12 @@ public class SuggestionDao extends BaseDao {
 	
 	
 	public List<AreaInfo> getAreaInfo(){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		List<AreaInfo> areaList = new ArrayList<AreaInfo>();
 		try {
 			String sql = " SELECT * from area_info";
@@ -90,7 +162,22 @@ public class SuggestionDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return areaList;
 	}
 }

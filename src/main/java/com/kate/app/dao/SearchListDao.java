@@ -1,7 +1,9 @@
 package com.kate.app.dao;
 
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -18,6 +20,12 @@ import com.kate.app.model.SearchList;
 @Repository 
 public class SearchListDao extends BaseDao {
 	public List<SearchList> listSearchList(){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		List<SearchList> searchInfoList=new ArrayList<SearchList>();
 		try {
 			String sql = "select t.id,t.project_num,t.project_desc,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi from house_project t left join project_key p on t.project_num=p.project_num where isSeen=1";
@@ -99,11 +107,33 @@ public class SearchListDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
+
 		return searchInfoList;
 	} 
 	//鎸夋潯浠惰繃婊�
 	public List<SearchList> filterSearchList(String projecttype,int zongjiamin,int zongjiamax,int danjiamin,int danjiamax,String xinaipan1,String remen1,String youxiu1,String center1,String baozu1,String huaren1,String zuixin1,String daxue1,String xianfang1,String traffic1){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		List<SearchList> searchInfoList=new ArrayList<SearchList>();
 		try {
 			String sql = "select t.id,t.project_num,t.project_desc,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi from house_project t left join project_key p on t.project_num=p.project_num  where t.project_type like ";
@@ -221,12 +251,33 @@ public class SearchListDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return searchInfoList;
 		
 	}
 	//鎸夋帹鑽愬害鎺掑簭
 	public List<SearchList> OrderlistSearchList(){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		List<SearchList> searchInfoList=new ArrayList<SearchList>();
 		try {
 			String sql = "select t.id,t.project_num,t.project_desc,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi from house_project t left join project_key p on t.project_num=p.project_num ORDER BY t.tuijiandu DESC ";
@@ -308,12 +359,33 @@ public class SearchListDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return searchInfoList;
 	} 
 	
 	//鏍规嵁褰撳墠鐧诲綍鐢ㄦ埛鑾峰彇鏀惰棌琛ㄤ腑鐨刾roNum
 	public Set<String> proNumList(int userid){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		Set<String>  proNums=new HashSet<String>();
 		try{
 			String sql ="select proNum from shoucang where userId="+userid;
@@ -325,11 +397,27 @@ public class SearchListDao extends BaseDao {
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return proNums;
 	}
 	//鑾峰彇鏀惰棌澶逛腑鐨勯」鐩�
 	public List<SearchList> listCollectList(int userid){
+		
 		//TODO鑾峰彇褰撳墠鐧诲綍鐢ㄦ埛
 		
 		//鏍规嵁褰撳墠鐧诲綍鐢ㄦ埛鑾峰彇鏀惰棌琛ㄤ腑鐨刾roNum
@@ -345,6 +433,12 @@ public class SearchListDao extends BaseDao {
 	} 
 	//鏍规嵁proNum寰楀埌椤圭洰淇℃伅
 	public SearchList findInfoByProNum(String ProNum){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		SearchList  searchList=new SearchList();
 		try {
 			String sql = "select t.id,t.project_lan_cn,t.project_desc,t.project_num,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi from house_project t left join project_key p on t.project_num=p.project_num where t.project_num='"+ProNum+"'";
@@ -423,43 +517,107 @@ public class SearchListDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
+
 		return searchList;
 	}
 	
 	//鐐瑰嚮鈥滄敹钘忊�锛屾敹钘忚〃涓璦dd
 	public int AddCollect(int userid,String proNum ){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		int exeResult=0;
 		try {
 			String sql = "insert into shoucang(userId,proNum) values(?,?) ";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			 pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, userid);
 			pstmt.setString(2, proNum);
 			exeResult = pstmt.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return exeResult;
 	}
 	//鏀惰棌鍒楄〃鐐瑰嚮鈥滃垹闄も�锛�
 	public int DelCollect(int userid,String proNum ){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		int exeResult=0;
 		try {
 			String sql = "delete  from  shoucang where userId=? and proNum=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			 pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, userid);
 			pstmt.setString(2, proNum);
 			exeResult = pstmt.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return exeResult;
 	}
 	
 	public List<BrokerInfo> searchSericeList(String name, String type, String area, String lang){
-			List<BrokerInfo> brokerInfoList=new ArrayList<BrokerInfo>();
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
+		List<BrokerInfo> brokerInfoList=new ArrayList<BrokerInfo>();
 			try {
 				String sql = "select * from broker_info where ";
 				int i=0;
@@ -534,11 +692,32 @@ public class SearchListDao extends BaseDao {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}finally{  
+	            if(pstmt != null){  
+	                try {  
+	                	pstmt.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	            if(con != null){  
+	                try {  
+	                    con.close();  
+	                } catch (SQLException e) {  
+	                    e.printStackTrace();  
+	                }  
+	            }  
+	        }
 			return brokerInfoList;
 		} 
 	
 	public List<HouseProject> searchIndexList(String city1){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		List<HouseProject> houseProjectList=new ArrayList<HouseProject>();
 		try {
 			String sql = "select * from house_project where project_name like '%" +city1+ "%' or project_city like '%" +city1+ "%'";
@@ -590,11 +769,32 @@ public class SearchListDao extends BaseDao {
 			catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return houseProjectList;
 	} 
 	
 	public List<HouseProject> indexSericeList(String city, String type, String minimumprice, String maximumprice, String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue,String center,String traffic,String xianfang,String maidi){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		List<HouseProject> houseProjectList=new ArrayList<HouseProject>();
 		try {
 			String sql = "select * from house_project where ";
@@ -1399,15 +1599,37 @@ public class SearchListDao extends BaseDao {
 			catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return houseProjectList;
 	}
 	
 	public List<HouseProject> searchIndexProject(String areaNum){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
+
 		List<HouseProject> houseProjectList=new ArrayList<HouseProject>();
 		try {
 			String sql = "select * from house_project where area_num=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, areaNum);
 			ResultSet rs = pstmt.executeQuery();
 		    while(rs.next()){
@@ -1455,7 +1677,22 @@ public class SearchListDao extends BaseDao {
 			catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return houseProjectList;
 	} 
 	
@@ -1463,10 +1700,16 @@ public class SearchListDao extends BaseDao {
 	
 	
 	public ProjectKey searchProjectKey(String proNum){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		ProjectKey projectKey=new ProjectKey();
 		try {
 			String sql = "select * from project_key where project_num=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, proNum);
 			ResultSet rs = pstmt.executeQuery();
 		    while(rs.next()){
@@ -1485,7 +1728,22 @@ public class SearchListDao extends BaseDao {
 		catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return projectKey;
 	} 
 

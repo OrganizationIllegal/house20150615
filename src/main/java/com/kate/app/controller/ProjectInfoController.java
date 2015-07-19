@@ -1110,6 +1110,16 @@ public class ProjectInfoController {
 					req.setAttribute("brokerServiceAreaListJson", ConvertJson.list2json(brokerServiceAreaList));
 					//鑾峰彇缁忕邯浜烘搮闀跨被鍨�
 					List<BrokerType> brokerIntegertypeList=projectInputDao.findBrokerTypeList(broker_num);
+					for(int i=0;i<brokerIntegertypeList.size();i++){
+						String num=brokerIntegertypeList.get(i).getInterested_num();
+						if("house_01".equals(num)){
+							brokerIntegertypeList.get(i).setInterested_num("公寓");
+						}else if("house_02".equals(num)){
+							brokerIntegertypeList.get(i).setInterested_num("别墅");
+						}else if("house_03".equals(num)){
+							brokerIntegertypeList.get(i).setInterested_num("联排别墅");
+						}
+					}
 					brokerIntegertypeListbefore=projectInputDao.findBrokerTypeList(broker_num);
 					req.setAttribute("brokerIntegertypeList", brokerIntegertypeList);
 					req.setAttribute("brokerIntegertypeListJson", ConvertJson.list2json(brokerIntegertypeList));

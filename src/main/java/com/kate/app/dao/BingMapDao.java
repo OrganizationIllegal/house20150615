@@ -1,6 +1,9 @@
 package com.kate.app.dao;
 
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +15,12 @@ import com.kate.app.model.HouseProject;
 @Repository 
 public class BingMapDao extends BaseDao {
 	public List<BingMapVo> listBingMap(){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		List<BingMapVo> bingMapList=new ArrayList<BingMapVo>();
 		try {
 			String sql = "select t.id,t.project_num,t.project_name,t.project_address,t.project_type,t.project_price_qi,t.project_price,t.project_min_price,t.project_high_price,t.mianji,t.project_img,t.project_lan_cn,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_price_int_qi from house_project t where t.isSeen=1";
@@ -65,9 +74,31 @@ public class BingMapDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return bingMapList;
 	} 
 	public List<BingMapVo> filterByHouseType(int type){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		String housetype=null;
 		switch(type)
 		{
@@ -131,9 +162,31 @@ public class BingMapDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return bingMapList;
 	}
 	public List<BingMapVo> orderByPrice(int order){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 	    String orderstr=null;
 		switch(order)
 		{
@@ -194,10 +247,32 @@ public class BingMapDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return bingMapList;
 	}
 	//经纬度及其相关信息
 	public List<HouseProject> listMap(){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		List<HouseProject> coordinatesList=new ArrayList<HouseProject>();
 		try {
 			String sql = "SELECT * FROM `house_project` WHERE gps!=''";
@@ -224,10 +299,32 @@ public class BingMapDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return coordinatesList;
 	} 
 	
 	public List<HouseProject> filterByHouseType2(int type){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		List<HouseProject> coordinatesList=new ArrayList<HouseProject>();
 		try {
 			String housetype=null;
@@ -268,9 +365,31 @@ public class BingMapDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return coordinatesList;
 	}
 	public List<HouseProject> filterByKeyWord(String key){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		List<HouseProject> coordinatesList=new ArrayList<HouseProject>();
 		try {
 			String sql = "SELECT * FROM `house_project` WHERE gps!='' and project_address like '%"+key+"%'";
@@ -295,10 +414,32 @@ public class BingMapDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return coordinatesList;
 	}
 	
 	public List<HouseProject> filterByproNum(String pro){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		List<HouseProject> coordinatesList=new ArrayList<HouseProject>();
 		try {
 			String sql = "SELECT * FROM `house_project` WHERE gps!='' and project_num = '"+pro+"'";
@@ -320,6 +461,22 @@ public class BingMapDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return coordinatesList;
 	}
 }

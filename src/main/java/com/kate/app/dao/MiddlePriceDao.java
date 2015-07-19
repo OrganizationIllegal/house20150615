@@ -1,7 +1,9 @@
 package com.kate.app.dao;
 
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.springframework.stereotype.Repository;
@@ -11,11 +13,18 @@ import com.kate.app.model.MiddlePrice;
 @Repository 
 public class MiddlePriceDao extends BaseDao {
 	public MiddlePrice getMiddlePrice(String project_type, String areaNum){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		MiddlePrice middlePrice = new MiddlePrice() ;
 		try {
 			String sql = " SELECT * from area_middle_price where project_type='"+project_type+"' and area_quyu='"+areaNum+"'";
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
+
 			while(rs.next()){
 				middlePrice.setArea_quyu(rs.getString("area_quyu"));
 				middlePrice.setBuy_price(rs.getInt("buy_price"));
@@ -37,10 +46,31 @@ public class MiddlePriceDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return middlePrice;
 	}
 	public int getyoungfamilyrate(){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		int houseProId=1;
 		int youngfamilyrate=0;
 		try {
@@ -53,10 +83,31 @@ public class MiddlePriceDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return youngfamilyrate;
 	}
-	public int getoldfamilyrate(){
+	public int getoldfamilyrate(){	
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		int houseProId=1;
 		int oldfamilyrate=0;
 		try {
@@ -69,11 +120,32 @@ public class MiddlePriceDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return oldfamilyrate;
 	}
 	//��
 	public int InsertAreaFamily(String family_type,int rate,int house_pro_id){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		int exeResult=0;
 		try {
 			String sql = "insert into area_family(family_type,rate,house_pro_id) values("+"'"+family_type+"'"+","+rate+","+house_pro_id+") ";
@@ -82,12 +154,34 @@ public class MiddlePriceDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
+
 		return exeResult;
 		
 	}
 	//ɾ
 	public int delAreaFamily(int id){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		int exeResult=0;
 		try {
 			String sql = "delete from area_family where id="+id;
@@ -96,11 +190,32 @@ public class MiddlePriceDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return exeResult;
 	}
 	//��
 	public JSONArray listAreaFamily(){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		JSONArray jsonArray=new JSONArray();
 		try {
 			String sql = " select t.id,t.family_type,t.rate,t.house_pro_id,h.project_name from area_family t LEFT JOIN house_project h on  t.house_pro_id=h.id";
@@ -110,15 +225,36 @@ public class MiddlePriceDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return jsonArray;
 	} 
 	//��
 	public int updateAreaFamily(int id,String family_type,int rate,int house_pro_id){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		int exeResult=0;
 		try {
 			String sql = "update area_family set family_type=?,rate=? where id=? and house_pro_id=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, family_type);
 			pstmt.setInt(2, rate);
 			pstmt.setInt(3, id);
@@ -128,10 +264,33 @@ public class MiddlePriceDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
+
 		return exeResult;
 	}
 	//�����Ŀ��Ʋ�����Ŀid
 	public int findProjectIdByName(String project_name){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		int project_id=0;
 		try {
 			String sql = "select t.id from house_project t where t.project_name="+"'"+project_name+"'";
@@ -143,10 +302,32 @@ public class MiddlePriceDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return project_id;
 	}
 	public int findLatestId(){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
+
 		int id=0;
 		try {
 			String sql = "SELECT LAST_INSERT_ID();";
@@ -158,7 +339,22 @@ public class MiddlePriceDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+        }
 		return id;
 	}
 }

@@ -1,22 +1,26 @@
 package com.kate.app.dao;
 
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.SQLException;
 
 import org.springframework.stereotype.Repository;
 
 import com.kate.app.model.BuyInfo;
-import com.kate.app.model.HouseProject;
 @Repository 
 public class BuyInfoDao extends BaseDao{
 	public int BuyInfoDao(int houseProId){
+		try{
+			con = DriverManager.getConnection(url, username, password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		PreparedStatement pstmt = null;
 		int returnMoney=0;
 		try{
 			String sql = " select return_money from buy_info where house_pro_id=? ";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, houseProId);
 			ResultSet rs = pstmt.executeQuery();
 			
@@ -27,6 +31,22 @@ public class BuyInfoDao extends BaseDao{
 			}
 		}catch (Exception e) {
             
+        }
+		finally{  
+            if(pstmt != null){  
+                try {  
+                	pstmt.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
+            if(con != null){  
+                try {  
+                    con.close();  
+                } catch (SQLException e) {  
+                    e.printStackTrace();  
+                }  
+            }  
         }
 		return returnMoney;
 		

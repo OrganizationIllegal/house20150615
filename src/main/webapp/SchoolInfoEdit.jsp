@@ -40,7 +40,7 @@ body{
 <select data-placeholder="请选择..." class="chosen-select" id="school_type" name="school_type" style="width:220px;" tabindex="4">
        <c:choose>
 	    <c:when test="${schoolInfo.school_type eq '儿童托管'}">
-	      <option value="儿童托管" selected="selected">公寓</option>
+	      <option value="儿童托管" selected="selected">儿童托管</option>
 	    </c:when>
 	   <c:otherwise>  
 	      <option value="儿童托管">儿童托管</option>
