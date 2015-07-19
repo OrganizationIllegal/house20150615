@@ -18,12 +18,10 @@ import com.kate.app.model.AreaZujin;
 @Repository 
 public class AreaTrendDao extends BaseDao {
   public List<AreaMiddle> getAreaMiddleTrend(String project_type, String area_code){
-	  try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+	  Statement stmt = null;
+		ResultSet rs = null;
 		PreparedStatement pstmt = null;
+
 	  List<AreaMiddle> areaMiddleTrendList=new ArrayList<AreaMiddle>();
 	
 	  try {
@@ -31,7 +29,7 @@ public class AreaTrendDao extends BaseDao {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, project_type);
 			pstmt.setString(2, area_code);
-			ResultSet rs = pstmt.executeQuery();
+			  rs = pstmt.executeQuery();
 			while(rs.next()){
 				AreaMiddle data = new AreaMiddle();
 				data.setArea_code(rs.getString("area_code"));
@@ -47,32 +45,38 @@ public class AreaTrendDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	  finally{  
-          if(pstmt != null){  
-              try {  
-              	pstmt.close();  
-              } catch (SQLException e) {  
-                  e.printStackTrace();  
-              }  
-          }  
-          if(con != null){  
-              try {  
-                  con.close();  
-              } catch (SQLException e) {  
-                  e.printStackTrace();  
-              }  
-          }  
+	  finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
       }
 		return areaMiddleTrendList;
   }
   
   public List<AreaZujin> getAreaZujinTrend(String project_type, String area_code){
-	  try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+	  Statement stmt = null;
+		ResultSet rs = null;
 		PreparedStatement pstmt = null;
+
 		
 	  List<AreaZujin> areaZujinTrendList=new ArrayList<AreaZujin>();
 	 
@@ -81,7 +85,7 @@ public class AreaTrendDao extends BaseDao {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, project_type);
 			pstmt.setString(2, area_code);
-			ResultSet rs = pstmt.executeQuery();
+			  rs = pstmt.executeQuery();
 			
 			while(rs.next()){
 				AreaZujin data = new AreaZujin();
@@ -98,32 +102,36 @@ public class AreaTrendDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	  finally{  
-          if(pstmt != null){  
-              try {  
-              	pstmt.close();  
-              } catch (SQLException e) {  
-                  e.printStackTrace();  
-              }  
-          }  
-          if(con != null){  
-              try {  
-                  con.close();  
-              } catch (SQLException e) {  
-                  e.printStackTrace();  
-              }  
-          }  
-      }
+	  finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
 
+      }
 		return areaZujinTrendList;
   }
   
   public List<AreaZhikong> getAreaZhikongTrend(String project_type, String area_code){
-	  try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+	  Statement stmt = null;
+		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 	  List<AreaZhikong> areaZhikongeTrendList=new ArrayList<AreaZhikong>();
 	  
@@ -132,7 +140,7 @@ public class AreaTrendDao extends BaseDao {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, project_type);
 			pstmt.setString(2, area_code);
-			ResultSet rs = pstmt.executeQuery();
+			  rs = pstmt.executeQuery();
 			
 			while(rs.next()){
 				AreaZhikong data = new AreaZhikong();
@@ -149,21 +157,29 @@ public class AreaTrendDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	  finally{  
-          if(pstmt != null){  
-              try {  
-              	pstmt.close();  
-              } catch (SQLException e) {  
-                  e.printStackTrace();  
-              }  
-          }  
-          if(con != null){  
-              try {  
-                  con.close();  
-              } catch (SQLException e) {  
-                  e.printStackTrace();  
-              }  
-          }  
+	  finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
       }
 		return areaZhikongeTrendList;
   }
@@ -175,48 +191,51 @@ public class AreaTrendDao extends BaseDao {
   
 //��λ������� List
   public JSONArray listAreaMiddle(){
-	  try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+	  Statement stmt = null;
+		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		JSONArray jsonArray=new JSONArray();
 		try {
 			String sql = "select * from area_middle t;";
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
 			jsonArray=ResultSetConverter.convert(rs);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		finally{  
-            if(pstmt != null){  
-                try {  
-                	pstmt.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-            if(con != null){  
-                try {  
-                    con.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
         }
 		return jsonArray;
 	} 
 //��λ������� Add
  public int InsertAreaMiddle(int heng, int zong, int view_shunxu,String area_code,String project_type){
-	 try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+	 Statement stmt = null;
+		ResultSet rs = null;
 		PreparedStatement pstmt = null;
+
 	 int exeResult=0;
 		try {
 			String sql = "insert into area_middle(heng,zong,view_shunxu,area_code,project_type) values(?,?,?,?,?)";
@@ -231,33 +250,38 @@ public class AreaTrendDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		finally{  
-            if(pstmt != null){  
-                try {  
-                	pstmt.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-            if(con != null){  
-                try {  
-                    con.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
         }
 		return exeResult;
 	}  
  
 //��λ������� update
  public int updateAreaMiddle(int id,int heng, int zong, int view_shunxu,String area_code,String project_type){ 	
-	try{
-		con = DriverManager.getConnection(url, username, password);
-	}catch(Exception e){
-		e.printStackTrace();
-	}
-PreparedStatement pstmt = null;
+	 Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 	 int exeResult=0;
 		try {
 			String sql = "update area_middle set heng=?,zong=?,view_shunxu=?,area_code=?,project_type=? where id=?";
@@ -273,103 +297,119 @@ PreparedStatement pstmt = null;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		finally{  
-            if(pstmt != null){  
-                try {  
-                	pstmt.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-            if(con != null){  
-                try {  
-                    con.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
         }
 		return exeResult;
 	}
 //��λ������� delete
  public int delAreaMiddle(int id){
-	 try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+	 Statement stmt = null;
+		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		int exeResult=0;
 		try {
 			String sql = "delete from area_middle where id="+id;
-			Statement stmt = con.createStatement();
+			  stmt = con.createStatement();
 			exeResult = stmt.executeUpdate(sql);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		finally{  
-            if(pstmt != null){  
-                try {  
-                	pstmt.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-            if(con != null){  
-                try {  
-                    con.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
         }
 		return exeResult;
 	}
  //�����������List
  public JSONArray listAreaZujin(){
-	 try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+	 Statement stmt = null;
+		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		JSONArray jsonArray=new JSONArray();
 		try {
 			String sql = "select * from area_zujin t;";
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
 			jsonArray=ResultSetConverter.convert(rs);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		finally{  
-            if(pstmt != null){  
-                try {  
-                	pstmt.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-            if(con != null){  
-                try {  
-                    con.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
         }
 		return jsonArray;
 	} 
  //�����������Add
  public int InsertAreaZujin(int heng, int zong, int view_shunxu,String area_code,String project_type){
-	 try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+	 Statement stmt = null;
+		ResultSet rs = null;
 		PreparedStatement pstmt = null;
+
 	 int exeResult=0;
 		try {
 			String sql = "insert into area_zujin(heng,zong,view_shunxu,area_code,project_type) values(?,?,?,?,?)";
@@ -384,31 +424,36 @@ PreparedStatement pstmt = null;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		finally{  
-            if(pstmt != null){  
-                try {  
-                	pstmt.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-            if(con != null){  
-                try {  
-                    con.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
         }
 		return exeResult;
 	}  
  //�����������update
  public int updateAreaZujin(int id,int heng, int zong, int view_shunxu,String area_code,String project_type){
-	 try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+	 Statement stmt = null;
+		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 	 int exeResult=0;
 		try {
@@ -425,103 +470,120 @@ PreparedStatement pstmt = null;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		finally{  
-            if(pstmt != null){  
-                try {  
-                	pstmt.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-            if(con != null){  
-                try {  
-                    con.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
         }
 		return exeResult;
 	}
  //�����������delete
  public int delAreaZujin(int id){
-	 try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+	 Statement stmt = null;
+		ResultSet rs = null;
 		PreparedStatement pstmt = null;
+
 
 		int exeResult=0;
 		try {
 			String sql = "delete from area_zujin where id="+id;
-			Statement stmt = con.createStatement();
+			  stmt = con.createStatement();
 			exeResult = stmt.executeUpdate(sql);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		finally{  
-            if(pstmt != null){  
-                try {  
-                	pstmt.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-            if(con != null){  
-                try {  
-                    con.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
         }
 		return exeResult;
 	}
  //��������� List
  public JSONArray listAreaZhikong(){
-	 try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+	 Statement stmt = null;
+		ResultSet rs = null;
 		PreparedStatement pstmt = null;
+
 		JSONArray jsonArray=new JSONArray();
 		try {
 			String sql = "select * from area_kongzhi t;";
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
 			jsonArray=ResultSetConverter.convert(rs);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		finally{  
-            if(pstmt != null){  
-                try {  
-                	pstmt.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-            if(con != null){  
-                try {  
-                    con.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
         }
 		return jsonArray;
 	} 
  //��������� Add
  public int InsertAreaZhikong(int heng, int zong, int view_shunxu,String area_code,String project_type){
-	 try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+	 Statement stmt = null;
+		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 	 int exeResult=0;
 		try {
@@ -537,33 +599,38 @@ PreparedStatement pstmt = null;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		finally{  
-            if(pstmt != null){  
-                try {  
-                	pstmt.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-            if(con != null){  
-                try {  
-                    con.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-        }
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
 
+        }
 		return exeResult;
 	}  
  //��������� update
  public int updateAreaZhikong(int id,int heng, int zong, int view_shunxu,String area_code,String project_type){
-	 try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+	 Statement stmt = null;
+		ResultSet rs = null;
 		PreparedStatement pstmt = null;
+
 	 int exeResult=0;
 		try {
 			String sql = "update area_kongzhi set heng=?,zong=?,view_shunxu=?,area_code=?,project_type=? where id=?";
@@ -579,72 +646,82 @@ PreparedStatement pstmt = null;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		finally{  
-            if(pstmt != null){  
-                try {  
-                	pstmt.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-            if(con != null){  
-                try {  
-                    con.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
         }
 		return exeResult;
 	}
  //��������� delete
  public int delAreaZhikong(int id){
-	 try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+	 Statement stmt = null;
+		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		int exeResult=0;
 		try {
 			String sql = "delete from area_kongzhi where id="+id;
-			Statement stmt = con.createStatement();
+			  stmt = con.createStatement();
 			exeResult = stmt.executeUpdate(sql);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		finally{  
-            if(pstmt != null){  
-                try {  
-                	pstmt.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-            if(con != null){  
-                try {  
-                    con.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
         }
 		return exeResult;
 	}
  //���area_id��area_info���в���area_id �Ƿ����
  public  int findAreaid(int areaid){
-	 try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+	 Statement stmt = null;
+		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 	 int area_id=0;
 		try {
 			String sql = "select id from area_info  t  WHERE t.id="+areaid;
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
 			while(rs.next()){
 				area_id=rs.getInt("id");
 			}
@@ -652,21 +729,29 @@ PreparedStatement pstmt = null;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		finally{  
-            if(pstmt != null){  
-                try {  
-                	pstmt.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-            if(con != null){  
-                try {  
-                    con.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
         }
 		return area_id;
  }

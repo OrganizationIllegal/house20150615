@@ -12,48 +12,49 @@ import com.alibaba.fastjson.JSONArray;
 @Repository 
 public class SchoolInfoDao extends BaseDao{
 	 public JSONArray listSchoolInfo(){
-		 try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+		 Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			JSONArray jsonArray=new JSONArray();
 			try {
 				String sql = "select * from school_info t;";
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				jsonArray=ResultSetConverter.convert(rs);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	        }
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
 
+	        }
 			return jsonArray;
 		} 
 
 	public int InsertSchoolinfo(String school_name,String school_ranking,String school_type,int student_total,int teacher_total,String school_position,String gps,String net_info,int not_en_stu_bili,String school_image,String school_desc,String nation,String city){
-	try{
-		con = DriverManager.getConnection(url, username, password);
-	}catch(Exception e){
-		e.printStackTrace();
-	}
-	PreparedStatement pstmt = null;		
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 	int exeResult=0;
 			try {
 				String sql = "insert into school_info(school_name,school_ranking,school_type,student_total,teacher_total,school_position,gps,net_info,not_en_stu_bili,school_image,school_desc,nation,city) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -76,30 +77,35 @@ public class SchoolInfoDao extends BaseDao{
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return exeResult;
 		}
 	public int updateSchoolInfo(int id,String school_name,String school_ranking,String school_type,int student_total,int teacher_total,String school_position,String gps,String net_info,int not_en_stu_bili,String school_image,String school_desc){
-		try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+		Statement stmt = null;
+		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		int exeResult=0;
 		try {
@@ -121,54 +127,67 @@ public class SchoolInfoDao extends BaseDao{
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{  
-            if(pstmt != null){  
-                try {  
-                	pstmt.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-            if(con != null){  
-                try {  
-                    con.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
+		}finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
         }
 		return exeResult;
 	}
 	 public int delSchoolInfo(int id){
-		 try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+		 Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 		 int exeResult=0;
 			try {
 				String sql = "delete from school_info where id="+id;
-				Statement stmt = con.createStatement();
+				  stmt = con.createStatement();
 				exeResult = stmt.executeUpdate(sql);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return exeResult;
 		}

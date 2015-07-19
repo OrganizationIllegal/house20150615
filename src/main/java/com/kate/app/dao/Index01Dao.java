@@ -18,17 +18,15 @@ public class Index01Dao extends BaseDao {
 	
 	
 	public List<Integer> getTuijian(){
-		try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
 		List<Integer> list = new ArrayList<Integer>();
 		try {
 			String sql = " select * from index_recommend_project";
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
 			while(rs.next()){
 				Integer temp1 = rs.getInt("recommend_1");
 				Integer temp2 = rs.getInt("recommend_2");
@@ -42,27 +40,40 @@ public class Index01Dao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-            if(con != null){  
-                try {  
-                    con.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-        }  
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return list;
 	}
 	public List<Integer> getTuijian2(){
-		try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		List<Integer> list = new ArrayList<Integer>();
 		try {
 			String sql = " select * from index_recommend_project";
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
 			while(rs.next()){
 				Integer temp1 = rs.getInt("recommend_3");
 				Integer temp2 = rs.getInt("recommend_4");
@@ -76,14 +87,29 @@ public class Index01Dao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-            if(con != null){  
-                try {  
-                    con.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-        } 
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return list;
 	}
 	

@@ -16,17 +16,14 @@ import com.kate.app.model.MessageVo;
 @Repository 
 public class MessageDao extends BaseDao {
 	public List<MessageVo> getMessage(){
-		try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+		Statement stmt = null;
+		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<MessageVo> messageList=new ArrayList<MessageVo>();
 		try {
 			String sql = "select t.id,t.message_content,t.message_time,t.project_id,t.type,t.viewed ,u.nick_name,u.email,u.tel from message t join user u on t.userid=u.id  where t.type=1";
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
 			int id=0;
 			String message_content=null;
 			Date message_time=null;
@@ -52,36 +49,41 @@ public class MessageDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{  
-            if(pstmt != null){  
-                try {  
-                	pstmt.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-            if(con != null){  
-                try {  
-                    con.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
+		}finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
         }
 		return messageList;
 	}
 	public List<MessageVo> getMessagePrice(){
-		try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+		Statement stmt = null;
+		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<MessageVo> messageList=new ArrayList<MessageVo>();
 		try {
 			String sql = "select t.id,t.message_content,t.message_time,t.project_id,t.type,t.viewed ,u.nick_name,u.email,u.tel from message t join user u on t.userid=u.id  where t.type=2";
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
 			int id=0;
 			String message_content=null;
 			Date message_time=null;
@@ -107,36 +109,41 @@ public class MessageDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{  
-            if(pstmt != null){  
-                try {  
-                	pstmt.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-            if(con != null){  
-                try {  
-                    con.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
+		}finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
         }
 		return messageList;
 	}
 	public List<MessageVo> getMessagLatestPrice(){
-		try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+		Statement stmt = null;
+		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<MessageVo> messageList=new ArrayList<MessageVo>();
 		try {
 			String sql = "select t.id,t.message_content,t.message_time,t.project_id,t.type,t.viewed ,u.nick_name,u.email,u.tel from message t join user u on t.userid=u.id  where t.type=3";
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
 			int id=0;
 			String message_content=null;
 			Date message_time=null;
@@ -162,32 +169,37 @@ public class MessageDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{  
-            if(pstmt != null){  
-                try {  
-                	pstmt.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-            if(con != null){  
-                try {  
-                    con.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-        }
+		}finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
 
+        }
 		return messageList;
 	}
 	public boolean saveView(int id){   //0是未查看，1是已经查看
-		try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+		Statement stmt = null;
+		ResultSet rs = null;
 		PreparedStatement pstmt = null;
+
 		boolean flag = false;
 		try{
 			String sql = " update message set viewed=? where id=?";
@@ -200,21 +212,29 @@ public class MessageDao extends BaseDao {
 			}
 		}catch (Exception e) {
             e.printStackTrace();
-        }finally{  
-            if(pstmt != null){  
-                try {  
-                	pstmt.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-            if(con != null){  
-                try {  
-                    con.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
+        }finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
         }
 		return flag;
 	}

@@ -18,17 +18,14 @@ import com.kate.app.model.NewsBoke;
 @Repository 
 public class NewsBokeDao extends BaseDao{
 	 public JSONArray listNewsBoke(){
-		 try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+		 Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			JSONArray jsonArray=new JSONArray();
 			try {
 				String sql = "select * from news_boke t;";
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				while(rs.next()){
 					JSONObject obj = new JSONObject();
 					obj.put("id", rs.getInt("id"));
@@ -53,30 +50,35 @@ public class NewsBokeDao extends BaseDao{
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return jsonArray;
 		} 
 	 public int InsertNewsBoke(String  news_num,String news_title,String news_people,String news_time,String news_fenlei,String news_abstract,String news_detail,String news_image){
-		 try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+		 Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 		 int exeResult=0;
 			try {
@@ -94,30 +96,35 @@ public class NewsBokeDao extends BaseDao{
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return exeResult;
 		}  
 	 public int updateNewsBoke(int id,String  news_num,String news_title,String news_people,String news_time,String news_fenlei,String news_abstract,String news_detail,String news_image){
-		 try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+		 Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 		 int exeResult=0;
 			try {
@@ -136,71 +143,81 @@ public class NewsBokeDao extends BaseDao{
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return exeResult;
 		}
 	 public int delNewsBoke(int id){
-		 try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+		 Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			int exeResult=0;
 			try {
 				String sql = "delete from news_boke where id="+id;
-				Statement stmt = con.createStatement();
+				  stmt = con.createStatement();
 				exeResult = stmt.executeUpdate(sql);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return exeResult;
 		}
 	 
 	 public List<NewsBoke> getNewsBoke(int  id){
-		 try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+		 Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			List<NewsBoke> list=new ArrayList<NewsBoke>();
 			try {
 				String sql = " select * from news_boke where id = ?";
 				 pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				while(rs.next()){
 					NewsBoke obj = new NewsBoke();
 					obj.setId(rs.getInt("id"));
@@ -219,39 +236,44 @@ public class NewsBokeDao extends BaseDao{
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return list;
 		}
 	 
 	 
 	 public NewsBoke getNewsBokeByNum(String blogNum){
-		 try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+		 Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			NewsBoke data=new NewsBoke();
 			try {
 				String sql = " select * from news_boke where news_num = ?";
 				 pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, blogNum);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				while(rs.next()){
 					data.setId(rs.getInt("id"));
 					data.setNews_abstract(rs.getString("news_abstract"));
@@ -266,33 +288,38 @@ public class NewsBokeDao extends BaseDao{
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	        }
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
 
+	        }
 			return data;
 		}
 	 
 	 public List<String> getRecoByAreaNum(String areaNum){
-		 try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+		 Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
+
 			List<String> list = new ArrayList<String>();
 			String reco1 = null;
 			String reco2 = null;
@@ -301,7 +328,7 @@ public class NewsBokeDao extends BaseDao{
 				String sql = " select * from recommend_news where area_code = ?";
 				 pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, areaNum);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				while(rs.next()){
 					reco1 = rs.getString("reco_news_num_1");
 					reco2 = rs.getString("reco_news_num_2");
@@ -313,21 +340,29 @@ public class NewsBokeDao extends BaseDao{
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return list;
 		}

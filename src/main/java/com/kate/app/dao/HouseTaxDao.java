@@ -17,11 +17,8 @@ import com.kate.app.model.HouseTaxVo;
 @Repository 
 public class HouseTaxDao extends BaseDao {
 	 public List<HouseTaxVo> getHouseTaxVo(String proNum){
-		 try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+		 Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 
 		  List<HouseTaxVo> houseTaxVoList=new ArrayList<HouseTaxVo>();
@@ -30,7 +27,7 @@ public class HouseTaxDao extends BaseDao {
 				String sql = "select id, type,price,description from house_tax t where t.project_num=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, proNum);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				String type=null;
 				int id=0;
 				int price=0;
@@ -47,37 +44,42 @@ public class HouseTaxDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		  finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+		  finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return houseTaxVoList;
 	  }
 	 public List<HoldingTaxVo> getHoldingTaxVo(String proNum){
-		 try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+		 Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 		  List<HoldingTaxVo> holdingTaxVoList=new ArrayList<HoldingTaxVo>();
 		 
 		  try {
 				String sql = "select id,type,price,description from holding_finace t where t.project_num='"+proNum+"'";
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				String type=null;
 				int price=0;
 				int id=0;
@@ -94,37 +96,42 @@ public class HouseTaxDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		  finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+		  finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return holdingTaxVoList;
 	  }
 	 public List<HouseTaxData> getHouseTaxData(String proNum){
-		 try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+		 Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 		  List<HouseTaxData> holdingTaxVoList=new ArrayList<HouseTaxData>();
 		  
 		  try {
 				String sql = "select type,price,description from house_tax t where t.project_num='"+proNum+"'";
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				String type=null;
 				int price=0;
 				String description=null;
@@ -138,37 +145,42 @@ public class HouseTaxDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		  finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+		  finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return holdingTaxVoList;
 	  }
 	 public List<HouseTaxData> getHoldingData(String proNum){
-		 try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+		 Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 		 List<HouseTaxData> holdingTaxVoList=new ArrayList<HouseTaxData>();
 		 
 		  try {
 				String sql = "select type,price,description from holding_finace t where t.project_num='"+proNum+"'";
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				String type=null;
 				int price=0;
 				String description=null;
@@ -182,21 +194,29 @@ public class HouseTaxDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		  finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+		  finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return holdingTaxVoList;
 	 }
@@ -207,48 +227,50 @@ public class HouseTaxDao extends BaseDao {
 	 //锟斤拷锟斤拷税锟斤拷 List
 
 	 public JSONArray listHouseTax(){
-		 try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+		 Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			JSONArray jsonArray=new JSONArray();
 			try {
 				String sql = "select * from house_tax";
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				jsonArray=ResultSetConverter.convert(rs);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 
 			return jsonArray;
 		} 
 	//锟斤拷锟斤拷税锟斤拷 Add
 	 public int InsertHouseTax(String type,int price,String description,String project_num,int view_shunxu,String house_name){
-		 try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+		 Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 
 		 int exeResult=0;
@@ -266,31 +288,36 @@ public class HouseTaxDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return exeResult;
 		}  
 	//锟斤拷锟斤拷税锟斤拷 update
 	 public int updateHouseTax(int id,String type,int price,String description,String project_num,int view_shunxu,String house_name){
-		 try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+		 Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 		 int exeResult=0;
 			try {
@@ -307,101 +334,117 @@ public class HouseTaxDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return exeResult;
 		}
 	//锟斤拷锟斤拷税锟斤拷 delete
 	 public int delHouseTax(int id){
-		 try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+		 Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			int exeResult=0;
 			try {
 				String sql = "delete from house_tax where id="+id;
-				Statement stmt = con.createStatement();
+				  stmt = con.createStatement();
 				exeResult = stmt.executeUpdate(sql);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 
 			return exeResult;
 		}
 	//锟斤拷锟叫成憋拷 List
 	 public JSONArray listHoldingCost(){
-		 try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+		 Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
+
 			JSONArray jsonArray=new JSONArray();
 			try {
 				String sql = "select * from holding_finace";
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				jsonArray=ResultSetConverter.convert(rs);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return jsonArray;
 		} 
 	//锟斤拷锟叫成憋拷 Add
 	 public int InsertHoldingCost(String type,int price,String description,String  project_num,int view_shunxu,String house_name){
-		 try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+		 Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 		 int exeResult=0;
 			try {
@@ -417,32 +460,38 @@ public class HouseTaxDao extends BaseDao {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return exeResult;
 		}  
 	//锟斤拷锟叫成憋拷 update
 	 public int updateHoldingCost(int id,String type,int price,String description,String project_num,int view_shunxu,String house_name){
-		 try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+		 Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
+
 		 int exeResult=0;
 			try {
 				String sql = "update holding_finace set type=?,price=?,description=?,view_shunxu=? ,project_num=?,house_name=? where id=?";
@@ -458,55 +507,68 @@ public class HouseTaxDao extends BaseDao {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return exeResult;
 		}
 	//锟斤拷锟叫成憋拷 delete
 	 public int delHoldingCost(int id){
-		 try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+		 Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			int exeResult=0;
 			try {
 				String sql = "delete from holding_finace where id="+id;
-				Statement stmt = con.createStatement();
+				  stmt = con.createStatement();
 				exeResult = stmt.executeUpdate(sql);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 
 			return exeResult;

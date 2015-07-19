@@ -1,8 +1,9 @@
 package com.kate.app.dao;
 
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import org.springframework.stereotype.Repository;
 
@@ -11,11 +12,8 @@ import com.kate.app.model.HistorySearch;
 public class SearchDao extends BaseDao{
 	
 	public int InsertSearch(HistorySearch his_search){
-		try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+		Statement stmt = null;
+		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		int exeResult=0;
 		try {
@@ -42,21 +40,29 @@ public class SearchDao extends BaseDao{
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{  
-            if(pstmt != null){  
-                try {  
-                	pstmt.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-            if(con != null){  
-                try {  
-                    con.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
+		}finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
         }
 		return exeResult;
 	}

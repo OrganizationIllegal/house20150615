@@ -21,16 +21,14 @@ import com.kate.app.model.ZhiYeZhiDao;
 	@Repository 
 	public class ZhiYeDao extends BaseDao{
 		public List<ZhiYeZhiDao> selectZhiYe(){
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 			List<ZhiYeZhiDao> list = new ArrayList<ZhiYeZhiDao>();
 			try{
 				String sql = " select * from zhiye_zhidao order by fabu_time desc";   // ����ʱ����������
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				while(rs.next()){
 					ZhiYeZhiDao zhiye = new ZhiYeZhiDao();
 					zhiye.setZhiye_abstract(rs.getString("zhiye_abstract"));
@@ -48,30 +46,42 @@ import com.kate.app.model.ZhiYeZhiDao;
 	            e.printStackTrace();
 	        }
 			finally{
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	        } 
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
 			return list;
 		}
 		
 		public ZhiYeZhiDao selectZhiYeById(int id){
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			ZhiYeZhiDao zhiye = new ZhiYeZhiDao();
 			try{
 				String sql = " select * from zhiye_zhidao where id =?";   // ����ʱ����������
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				while(rs.next()){
 					
 					zhiye.setZhiye_abstract(rs.getString("zhiye_abstract"));
@@ -88,36 +98,42 @@ import com.kate.app.model.ZhiYeZhiDao;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
-			finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	        }  
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        } 
 			return zhiye;
 		}
 		
 		public int countZhiYe(){    //ͳ������
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 			int count = 0;
 			try{
 				String sql = " select count(*) from zhiye_zhidao";
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				while(rs.next()){
 					count = rs.getInt(1);
 				}
@@ -125,29 +141,42 @@ import com.kate.app.model.ZhiYeZhiDao;
 	            e.printStackTrace();
 	        }
 			finally{
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        } 
 			return count;
 			
 		}
 		
 		public List<String> zhiYeFenlei(){
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 			List<String> list = new ArrayList<String>();
 			try{
 				String sql = " select distinct fenlei from zhiye_zhidao";   // ����ʱ����������
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				while(rs.next()){
 					String fenlei = new String();
 					fenlei = rs.getString("fenlei");
@@ -157,30 +186,42 @@ import com.kate.app.model.ZhiYeZhiDao;
 	            e.printStackTrace();
 	        }
 			finally{
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return list;
 		}
 		
 		public List<ZhiYeZhiDao> selectZhiYeByFenlei(String fenLei){
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			List<ZhiYeZhiDao> list = new ArrayList<ZhiYeZhiDao>();
 			try{
 				String sql = " select * from zhiye_zhidao where fenlei=?";   // ����ʱ����������
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, fenLei);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				while(rs.next()){
 					ZhiYeZhiDao zhiye = new ZhiYeZhiDao();
 					zhiye.setZhiye_abstract(rs.getString("zhiye_abstract"));
@@ -197,37 +238,42 @@ import com.kate.app.model.ZhiYeZhiDao;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
-			finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	        }
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
 
+	        }
 			return list;
 		}
 		
 		public List<NewsBoke> selectNewsBoke(){
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 			List<NewsBoke> list = new ArrayList<NewsBoke>();
 			try{
 				String sql = " select * from news_boke order by news_time desc";   // ����ʱ����������
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				while(rs.next()){
 					NewsBoke data = new NewsBoke();
 					data.setId(rs.getInt("id"));
@@ -246,32 +292,43 @@ import com.kate.app.model.ZhiYeZhiDao;
 	            e.printStackTrace();
 	        }
 			finally{
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return list;
 		}
 		
 		public NewsBoke selectNewsBokeById(int id){
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			NewsBoke data = new NewsBoke();
 			try{
 				String sql = " select * from news_boke where id =?";   // ����ʱ����������
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				while(rs.next()){
-					
 					data.setNews_abstract(rs.getString("news_abstract"));
 					data.setNews_detail(rs.getString("news_detail"));
 					data.setNews_fenlei(rs.getString("news_fenlei"));
@@ -285,21 +342,29 @@ import com.kate.app.model.ZhiYeZhiDao;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
-			finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return data;
 		}
@@ -307,16 +372,14 @@ import com.kate.app.model.ZhiYeZhiDao;
 	
 		
 		public int countNewsBoke(){    //ͳ������
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 			int count = 0;
 			try{
 				String sql = " select count(*) from news_boke";
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				while(rs.next()){
 					count = rs.getInt(1);
 				}
@@ -324,30 +387,42 @@ import com.kate.app.model.ZhiYeZhiDao;
 	            e.printStackTrace();
 	        }
 			finally{
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	        }
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
 
+	        }
 			return count;
 			
 		}
 		
 		public List<String> newsBokeFenlei(){
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 			List<String> list = new ArrayList<String>();
 			try{
 				String sql = " select distinct news_fenlei from news_boke";   // ����ʱ����������
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				while(rs.next()){
 					String fenlei = new String();
 					fenlei = rs.getString("news_fenlei");
@@ -357,30 +432,42 @@ import com.kate.app.model.ZhiYeZhiDao;
 	            e.printStackTrace();
 	        }
 			finally{
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return list;
 		}
 		
 		public List<NewsBoke> selectNewsBokeByFenlei(String fenLei){
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			List<NewsBoke> list = new ArrayList<NewsBoke>();
 			try{
 				String sql = " select * from news_boke where news_fenlei=?";   // ����ʱ����������
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, fenLei);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				while(rs.next()){
 					NewsBoke data = new NewsBoke();
 					data.setId(rs.getInt("id"));
@@ -397,37 +484,43 @@ import com.kate.app.model.ZhiYeZhiDao;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
-			finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return list;
 		}
 		
 		//置业指导list
 		 public JSONArray listZhiye(){
-			 	try{
-					con = DriverManager.getConnection(url, username, password);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+			 Statement stmt = null;
+				ResultSet rs = null;
+				PreparedStatement pstmt = null;
 				JSONArray jsonArray=new JSONArray();
 				try {
 					String sql = "select * from zhiye_zhidao t;";
-					Statement stmt = con.createStatement();
-					ResultSet rs = stmt.executeQuery(sql);
+					  stmt = con.createStatement();
+					  rs = stmt.executeQuery(sql);
 					while(rs.next()){
 						JSONObject obj = new JSONObject();
 						obj.put("id", rs.getInt("id"));
@@ -454,24 +547,36 @@ import com.kate.app.model.ZhiYeZhiDao;
 					e.printStackTrace();
 				}
 				finally{
-		            if(con != null){  
-		                try {  
-		                    con.close();  
-		                } catch (SQLException e) {  
-		                    e.printStackTrace();  
-		                }  
-		            }  
+					if(rs != null){   // 关闭记录集   
+				        try{   
+				            rs.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				          }   
+				      if(stmt != null){   // 关闭声明   
+				        try{   
+				            stmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				      if(pstmt != null){   // 关闭声明   
+					        try{   
+					            pstmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+
 		        }
 				return jsonArray;
 			} 
 		//置业指导add
 		 public int InsertZhiye(String  zhiye_num,String title,String fabu_people,String fabu_time,String fenlei,String zhiye_abstract,String detail,String image){
-			 try{
-					con = DriverManager.getConnection(url, username, password);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
-			 PreparedStatement pstmt = null;
+			 Statement stmt = null;
+				ResultSet rs = null;
+				PreparedStatement pstmt = null;
 			 int exeResult=0;
 				try {
 					String sql = "insert into zhiye_zhidao(zhiye_num,title,fabu_people,fabu_time,fenlei,zhiye_abstract,detail,image) values(?,?,?,?,?,?,?,?)";
@@ -489,32 +594,37 @@ import com.kate.app.model.ZhiYeZhiDao;
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				finally{  
-		            if(pstmt != null){  
-		                try {  
-		                	pstmt.close();  
-		                } catch (SQLException e) {  
-		                    e.printStackTrace();  
-		                }  
-		            }  
-		            if(con != null){  
-		                try {  
-		                    con.close();  
-		                } catch (SQLException e) {  
-		                    e.printStackTrace();  
-		                }  
-		            }  
+				finally{
+					if(rs != null){   // 关闭记录集   
+				        try{   
+				            rs.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				          }   
+				      if(stmt != null){   // 关闭声明   
+				        try{   
+				            stmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				      if(pstmt != null){   // 关闭声明   
+					        try{   
+					            pstmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+
 		        }
 				return exeResult;
 			}  
 		//置业指导update
 		 public int updateZhiye(int id,String  zhiye_num,String title,String fabu_people,String fabu_time,String fenlei,String zhiye_abstract,String detail,String image){
-			 try{
-					con = DriverManager.getConnection(url, username, password);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
-			 PreparedStatement pstmt = null;
+			 Statement stmt = null;
+				ResultSet rs = null;
+				PreparedStatement pstmt = null;
 			 int exeResult=0;
 				try {
 					String sql = "update zhiye_zhidao set zhiye_num=?,title=?,fabu_people=?,fabu_time=?,fenlei=?,zhiye_abstract=?,detail=?,image=? where id=?";
@@ -533,65 +643,83 @@ import com.kate.app.model.ZhiYeZhiDao;
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				finally{  
-		            if(pstmt != null){  
-		                try {  
-		                	pstmt.close();  
-		                } catch (SQLException e) {  
-		                    e.printStackTrace();  
-		                }  
-		            }  
-		            if(con != null){  
-		                try {  
-		                    con.close();  
-		                } catch (SQLException e) {  
-		                    e.printStackTrace();  
-		                }  
-		            }  
+				finally{
+					if(rs != null){   // 关闭记录集   
+				        try{   
+				            rs.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				          }   
+				      if(stmt != null){   // 关闭声明   
+				        try{   
+				            stmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				      if(pstmt != null){   // 关闭声明   
+					        try{   
+					            pstmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+
 		        }
 				return exeResult;
 			}
 		//置业指导delete
 		 public int delZhiye(int id){
-			 try{
-					con = DriverManager.getConnection(url, username, password);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+			 Statement stmt = null;
+				ResultSet rs = null;
+				PreparedStatement pstmt = null;
 				int exeResult=0;
 				try {
 					String sql = "delete from zhiye_zhidao where id="+id;
-					Statement stmt = con.createStatement();
+					  stmt = con.createStatement();
 					exeResult = stmt.executeUpdate(sql);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				finally{
-		            if(con != null){  
-		                try {  
-		                    con.close();  
-		                } catch (SQLException e) {  
-		                    e.printStackTrace();  
-		                }  
-		            }  
+					if(rs != null){   // 关闭记录集   
+				        try{   
+				            rs.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				          }   
+				      if(stmt != null){   // 关闭声明   
+				        try{   
+				            stmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				      if(pstmt != null){   // 关闭声明   
+					        try{   
+					            pstmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+
 		        }
 				return exeResult;
 			}
 		 //根据id获取置业指导
 		 public List<ZhiYeZhiDao> getZhiYeZhiDao(int  id){
-			 try{
-					con = DriverManager.getConnection(url, username, password);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
-			 PreparedStatement pstmt = null;
+			 Statement stmt = null;
+				ResultSet rs = null;
+				PreparedStatement pstmt = null;
 				List<ZhiYeZhiDao> list=new ArrayList<ZhiYeZhiDao>();
 				try {
 					String sql = " select * from zhiye_zhidao where id = ?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setInt(1, id);
-					ResultSet rs = pstmt.executeQuery();
+					  rs = pstmt.executeQuery();
 					while(rs.next()){
 						ZhiYeZhiDao obj = new ZhiYeZhiDao();
 						obj.setId(rs.getInt("id"));
@@ -609,21 +737,29 @@ import com.kate.app.model.ZhiYeZhiDao;
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				finally{  
-		            if(pstmt != null){  
-		                try {  
-		                	pstmt.close();  
-		                } catch (SQLException e) {  
-		                    e.printStackTrace();  
-		                }  
-		            }  
-		            if(con != null){  
-		                try {  
-		                    con.close();  
-		                } catch (SQLException e) {  
-		                    e.printStackTrace();  
-		                }  
-		            }  
+				finally{
+					if(rs != null){   // 关闭记录集   
+				        try{   
+				            rs.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				          }   
+				      if(stmt != null){   // 关闭声明   
+				        try{   
+				            stmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				      if(pstmt != null){   // 关闭声明   
+					        try{   
+					            pstmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+
 		        }
 				return list;
 			}

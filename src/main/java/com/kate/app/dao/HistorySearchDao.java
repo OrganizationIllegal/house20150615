@@ -1,9 +1,9 @@
 package com.kate.app.dao;
 
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,11 +15,8 @@ import com.kate.app.model.UserInfo;
 public class HistorySearchDao extends BaseDao {
 
 	public List<HistorySearch> searchHistory(int userId){
-		try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+		Statement stmt = null;
+		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<HistorySearch> list = new ArrayList<HistorySearch>();
 		UserInfo userInfo = getUserInfo(userId);
@@ -30,7 +27,7 @@ public class HistorySearchDao extends BaseDao {
 				sql = " select * from history_search where userid = ?;";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, userId);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				while(rs.next()){
 					HistorySearch data = new HistorySearch();
 					data.setId(rs.getInt("id"));
@@ -42,7 +39,7 @@ public class HistorySearchDao extends BaseDao {
 			}else{
 				sql = " select * from history_search a, user b where a.userid = b.id and b.role !=0;";
 				pstmt = con.prepareStatement(sql);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				while(rs.next()){
 					HistorySearch data = new HistorySearch();
 					data.setId(rs.getInt("id"));
@@ -57,37 +54,43 @@ public class HistorySearchDao extends BaseDao {
 		}catch (Exception e) {
             e.printStackTrace();
         }
-		finally{  
-            if(pstmt != null){  
-                try {  
-                	pstmt.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-            if(con != null){  
-                try {  
-                    con.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
         }
 		return list;
 	}
 	public UserInfo getUserInfo(int userId){
-		try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+		Statement stmt = null;
+		ResultSet rs = null;
 		PreparedStatement pstmt = null;
+
 		UserInfo userInfo = new UserInfo();
 		try{
 			String sql = " select * from user where id = ?;";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, userId);
-			ResultSet rs = pstmt.executeQuery();
+			  rs = pstmt.executeQuery();
 			while(rs.next()){
 				userInfo.setId(rs.getInt("id"));
 				userInfo.setEmail(rs.getString("email"));
@@ -99,21 +102,29 @@ public class HistorySearchDao extends BaseDao {
 		}catch (Exception e) {
             e.printStackTrace();
         }
-		finally{  
-            if(pstmt != null){  
-                try {  
-                	pstmt.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
-            if(con != null){  
-                try {  
-                    con.close();  
-                } catch (SQLException e) {  
-                    e.printStackTrace();  
-                }  
-            }  
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
         }
 		return userInfo;
 	}

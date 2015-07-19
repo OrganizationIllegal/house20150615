@@ -29,16 +29,14 @@ import com.kate.app.model.RecoProject;
 	@Repository 
 	public class AjaxDao extends BaseDao{
 		public List<InvestmentData> select(){  //鎼滅储鎶曡祫鏁版嵁淇℃伅
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 			List<InvestmentData> list = new ArrayList<InvestmentData>();
 			try{
 				String sql = " select * from investment_data";
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				while(rs.next()){
 					InvestmentData data = new InvestmentData();
 					data.setId(rs.getInt("id"));
@@ -59,29 +57,41 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();
 	        }
 			finally{
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				        	pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
 	        }
 			return list;
 		}
 		
 		
 		public List<BrokerInfo> selectBrokerInfo(){  //鎼滅储缁忕邯浜轰俊鎭�
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 			List<BrokerInfo> list = new ArrayList<BrokerInfo>();
 			try{
 				String sql = " select * from broker_info";
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				while(rs.next()){
 					BrokerInfo data = new BrokerInfo();
 					data.setId(rs.getInt("id"));
@@ -102,13 +112,28 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();
 	        }
 			finally{
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				        	pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return list;
 		}
@@ -116,16 +141,14 @@ import com.kate.app.model.RecoProject;
 		
 		
 		public List<HouseInfo> selectHouseInfo(){    //鎼滅储鎴垮眿淇℃伅
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 			List<HouseInfo> list = new ArrayList<HouseInfo>();
 			try{
 				String sql = " select * from house_info";
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				while(rs.next()){
 					HouseInfo house = new HouseInfo();
 					house.setId(rs.getInt("id"));
@@ -152,30 +175,43 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();
 	        }
 			finally{
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 
 			return list;
 		}
 		public List<BuyInfo> selectBuyInfo(int proId){    //涓�敓鏂ゆ嫹閿熸枻鎷风洰閿熸枻鎷峰簲涓�敓鏂ゆ嫹
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
+			 
 			List<BuyInfo> list = new ArrayList<BuyInfo>();
 			try{
 				String sql = " select * from buy_info where house_pro_id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, proId);
-				ResultSet rs = pstmt.executeQuery();
+				rs = pstmt.executeQuery();
 				while(rs.next()){
 					BuyInfo data = new BuyInfo();
 					data.setId(rs.getInt("id"));
@@ -188,39 +224,44 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
-			finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return list;
 		}
 		
 		
 		public BuyInfo getBuyInfo(int proId){    //涓�敓鏂ゆ嫹閿熸枻鎷风洰閿熸枻鎷峰簲涓�敓鏂ゆ嫹
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			BuyInfo data = new BuyInfo();
 			try{
 				String sql = " select * from buy_info where house_pro_id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, proId);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				while(rs.next()){
 					data.setId(rs.getInt("id"));
 					data.setFirst_money(rs.getInt("first_money"));
@@ -232,36 +273,42 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
-			finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return data;
 		}
 
 		public List<HouseProject> selectHouseProject(){    //鑾峰彇椤圭洰淇℃伅锛堝寘鎷墿涓氳垂锛�
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 			List<HouseProject> list = new ArrayList<HouseProject>();
 			try{
 				String sql = " select * from house_project";
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				while(rs.next()){
 					HouseProject projectInfo = new HouseProject();
 					projectInfo.setId(rs.getInt("id"));
@@ -313,13 +360,28 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();
 	        }
 			finally{
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return list;
 		}
@@ -328,18 +390,15 @@ import com.kate.app.model.RecoProject;
 		 * 鎸佹湁鎴愭湰淇℃伅
 		 */
 		public List<HoldingTaxVo> selectHoldFinance(String project_num){    //鑾峰彇椤圭洰淇℃伅锛堝寘鎷墿涓氳垂锛�
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			List<HoldingTaxVo> list = new ArrayList<HoldingTaxVo>();
 			try{
 				String sql = " select * from holding_finace where project_num=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, project_num);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				while(rs.next()){
 					int id = rs.getInt("id");
 					String type = rs.getString("type");
@@ -352,21 +411,29 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
-			finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return list;
 		}
@@ -375,18 +442,15 @@ import com.kate.app.model.RecoProject;
 		 * 璐埧绋庤垂淇℃伅
 		 */
 		public List<HouseTaxVo> selectHouseTax(String project_num){    //鑾峰彇椤圭洰淇℃伅锛堝寘鎷墿涓氳垂锛�
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			List<HouseTaxVo> list = new ArrayList<HouseTaxVo>();
 			try{
 				String sql = " select * from house_tax where project_num=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, project_num);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				while(rs.next()){
 					int id = rs.getInt("id");
 					String type = rs.getString("type");
@@ -399,21 +463,29 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
-			finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return list;
 		}
@@ -424,17 +496,15 @@ import com.kate.app.model.RecoProject;
 		 */
 		
 		public List<RecoProject> selectRecomProject(){    
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 			List<RecoProject> list = new ArrayList<RecoProject>();
 			
 			try{
 				String sql = " select * from recommend_project";
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				while(rs.next()){
 					RecoProject data = new RecoProject();
 					data.setId(rs.getInt("id"));
@@ -448,13 +518,28 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();
 	        }
 			finally{
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return list;
 		}
@@ -463,16 +548,14 @@ import com.kate.app.model.RecoProject;
 		 * 鍖哄煙鐗圭偣淇℃伅
 		 */
 		public List<AreaTeDian> selectArea(){    
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 			List<AreaTeDian> list = new ArrayList<AreaTeDian>();
 			try{
 				String sql = " select * from area_features";
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				while(rs.next()){
 					AreaTeDian data = new AreaTeDian();
 					data.setId(rs.getInt("id"));
@@ -489,13 +572,28 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();
 	        }
 			finally{
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 
 			return list;
@@ -504,18 +602,15 @@ import com.kate.app.model.RecoProject;
 		
 		
 		public DeveloperInfo selectDevInfo(int id){    //閫氳繃寮�彂鍟唅d鏌ユ壘寮�彂鍟嗕俊鎭�
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			DeveloperInfo deve = new DeveloperInfo();
 			try{
 				String sql = " select * from developer_info where id =?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				while(rs.next()){
 					deve.setDeveloper_desc(rs.getString("developer_desc"));
 					deve.setDeveloper_logo(rs.getString("developer_logo"));
@@ -524,39 +619,44 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
-			finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	        }
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
 
+	        }
 			return deve;
 		}
 		
 		public DeveloperInfo selectDevInfo(String developer_num){    //閫氳繃寮�彂鍟唍um鏌ユ壘寮�彂鍟嗕俊鎭�
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
+
 			DeveloperInfo deve = new DeveloperInfo();
 			try{
 				String sql = " select * from developer_info where developer_num =?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, developer_num);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				while(rs.next()){
 					deve.setDeveloper_desc(rs.getString("developer_desc"));
 					deve.setDeveloper_logo(rs.getString("developer_logo"));
@@ -565,21 +665,29 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
-			finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return deve;
 		}
@@ -590,17 +698,16 @@ import com.kate.app.model.RecoProject;
 		 */
 		
 		public List<NewsInfo> selectNewsInfo(){    //鏌ユ壘鏂伴椈淇℃伅
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+
 
 			List<NewsInfo> list = new ArrayList<NewsInfo>();
 			try{
 				String sql = " select * from news_info";
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				while(rs.next()){
 					NewsInfo info = new NewsInfo();
 					info.setId(rs.getInt("id"));
@@ -618,13 +725,28 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();
 	        }
 			finally{
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return list;
 		}
@@ -632,16 +754,14 @@ import com.kate.app.model.RecoProject;
 		
 		
 	       public int count(){
-	    	   try{
-					con = DriverManager.getConnection(url, username, password);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+	    	   Statement stmt = null;
+				ResultSet rs = null;
+				PreparedStatement pstmt = null;
 				int count = 0;
 				try{
 					String sql = " select count(*) from investment_data";
-					Statement stmt = con.createStatement();
-					ResultSet rs = stmt.executeQuery(sql);
+					  stmt = con.createStatement();
+					  rs = stmt.executeQuery(sql);
 					while(rs.next()){
 						count = rs.getInt(1);
 					}
@@ -649,28 +769,42 @@ import com.kate.app.model.RecoProject;
 		            e.printStackTrace();
 		        }
 				finally{
-		            if(con != null){  
-		                try {  
-		                    con.close();  
-		                } catch (SQLException e) {  
-		                    e.printStackTrace();  
-		                }  
-		            }  
+					if(rs != null){   // 关闭记录集   
+				        try{   
+				            rs.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				          }   
+				      if(stmt != null){   // 关闭声明   
+				        try{   
+				            stmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				      if(pstmt != null){   // 关闭声明   
+					        try{   
+					            pstmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+
 		        }
 				return count;
 			}
 	       
 	       public int countBrokerInfo(){
-	    	   try{
-					con = DriverManager.getConnection(url, username, password);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+	    	   Statement stmt = null;
+				ResultSet rs = null;
+				PreparedStatement pstmt = null;
+
 				int count = 0;
 				try{
 					String sql = " select count(*) from broker_info";
-					Statement stmt = con.createStatement();
-					ResultSet rs = stmt.executeQuery(sql);
+					  stmt = con.createStatement();
+					  rs = stmt.executeQuery(sql);
 					while(rs.next()){
 						count = rs.getInt(1);
 					}
@@ -678,28 +812,41 @@ import com.kate.app.model.RecoProject;
 		            e.printStackTrace();
 		        }
 				finally{
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	        }
+					if(rs != null){   // 关闭记录集   
+				        try{   
+				            rs.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				          }   
+				      if(stmt != null){   // 关闭声明   
+				        try{   
+				            stmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				      if(pstmt != null){   // 关闭声明   
+					        try{   
+					            pstmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+
+		        }
 				return count;
 			}
 			
 			public int countHouseInfo(){
-				try{
-					con = DriverManager.getConnection(url, username, password);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+				Statement stmt = null;
+				ResultSet rs = null;
+				PreparedStatement pstmt = null;
 				int count = 0;
 				try{
 					String sql = " select count(*) from house_info where house_project_id!=0";
-					Statement stmt = con.createStatement();
-					ResultSet rs = stmt.executeQuery(sql);
+					  stmt = con.createStatement();
+					  rs = stmt.executeQuery(sql);
 					while(rs.next()){
 						count = rs.getInt(1);
 					}
@@ -707,28 +854,41 @@ import com.kate.app.model.RecoProject;
 		            e.printStackTrace();
 		        }
 				finally{
-		            if(con != null){  
-		                try {  
-		                    con.close();  
-		                } catch (SQLException e) {  
-		                    e.printStackTrace();  
-		                }  
-		            }  
+					if(rs != null){   // 关闭记录集   
+				        try{   
+				            rs.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				          }   
+				      if(stmt != null){   // 关闭声明   
+				        try{   
+				            stmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				      if(pstmt != null){   // 关闭声明   
+					        try{   
+					            pstmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+
 		        }
 				return count;
 			}
 			
 			public int countHouseProject(){
-				try{
-					con = DriverManager.getConnection(url, username, password);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+				Statement stmt = null;
+				ResultSet rs = null;
+				PreparedStatement pstmt = null;
 				int count = 0;
 				try{
 					String sql = " select count(*) from house_project";
-					Statement stmt = con.createStatement();
-					ResultSet rs = stmt.executeQuery(sql);
+					  stmt = con.createStatement();
+					  rs = stmt.executeQuery(sql);
 					while(rs.next()){
 						count = rs.getInt(1);
 					}
@@ -736,28 +896,41 @@ import com.kate.app.model.RecoProject;
 		            e.printStackTrace();
 		        }
 				finally{
-		            if(con != null){  
-		                try {  
-		                    con.close();  
-		                } catch (SQLException e) {  
-		                    e.printStackTrace();  
-		                }  
-		            }  
+					if(rs != null){   // 关闭记录集   
+				        try{   
+				            rs.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				          }   
+				      if(stmt != null){   // 关闭声明   
+				        try{   
+				            stmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				      if(pstmt != null){   // 关闭声明   
+					        try{   
+					            pstmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+
 		        }
 				return count;
 			}
 			
 			public int countArea(){
-				try{
-					con = DriverManager.getConnection(url, username, password);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+				Statement stmt = null;
+				ResultSet rs = null;
+				PreparedStatement pstmt = null;
 				int count = 0;
 				try{
 					String sql = " select count(*) from area_features";
-					Statement stmt = con.createStatement();
-					ResultSet rs = stmt.executeQuery(sql);
+					  stmt = con.createStatement();
+					  rs = stmt.executeQuery(sql);
 					while(rs.next()){
 						count = rs.getInt(1);
 					}
@@ -765,13 +938,28 @@ import com.kate.app.model.RecoProject;
 		            e.printStackTrace();
 		        }
 				finally{
-		            if(con != null){  
-		                try {  
-		                    con.close();  
-		                } catch (SQLException e) {  
-		                    e.printStackTrace();  
-		                }  
-		            }  
+					if(rs != null){   // 关闭记录集   
+				        try{   
+				            rs.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				          }   
+				      if(stmt != null){   // 关闭声明   
+				        try{   
+				            stmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				      if(pstmt != null){   // 关闭声明   
+					        try{   
+					            pstmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+
 		        }
 				return count;
 			}
@@ -781,16 +969,14 @@ import com.kate.app.model.RecoProject;
 			 * 閿熸枻鎷烽敓鏂ゆ嫹閿熺嫛纭锋嫹閿熸枻鎷风洰閿熸枻鎷烽敓鏂ゆ嫹
 			 */
 			public int countRecomendProject(){
-				try{
-					con = DriverManager.getConnection(url, username, password);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+				Statement stmt = null;
+				ResultSet rs = null;
+				PreparedStatement pstmt = null;
 				int count = 0;
 				try{
 					String sql = " select count(*) from recommend_project";
-					Statement stmt = con.createStatement();
-					ResultSet rs = stmt.executeQuery(sql);
+					  stmt = con.createStatement();
+					  rs = stmt.executeQuery(sql);
 					while(rs.next()){
 						count = rs.getInt(1);
 					}
@@ -798,29 +984,42 @@ import com.kate.app.model.RecoProject;
 		            e.printStackTrace();
 		        }
 				finally{
-		            if(con != null){  
-		                try {  
-		                    con.close();  
-		                } catch (SQLException e) {  
-		                    e.printStackTrace();  
-		                }  
-		            }  
+					if(rs != null){   // 关闭记录集   
+				        try{   
+				            rs.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				          }   
+				      if(stmt != null){   // 关闭声明   
+				        try{   
+				            stmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				      if(pstmt != null){   // 关闭声明   
+					        try{   
+					            pstmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+
 		        }
 				return count;
 			}
 			
 			
 			public int countNewsInfo(){
-				try{
-					con = DriverManager.getConnection(url, username, password);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+				Statement stmt = null;
+				ResultSet rs = null;
+				PreparedStatement pstmt = null;
 				int count = 0;
 				try{
 					String sql = " select count(*) from news_info";
-					Statement stmt = con.createStatement();
-					ResultSet rs = stmt.executeQuery(sql);
+					  stmt = con.createStatement();
+					  rs = stmt.executeQuery(sql);
 					while(rs.next()){
 						count = rs.getInt(1);
 					}
@@ -828,13 +1027,28 @@ import com.kate.app.model.RecoProject;
 		            e.printStackTrace();
 		        }
 				finally{
-		            if(con != null){  
-		                try {  
-		                    con.close();  
-		                } catch (SQLException e) {  
-		                    e.printStackTrace();  
-		                }  
-		            }  
+					if(rs != null){   // 关闭记录集   
+				        try{   
+				            rs.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				          }   
+				      if(stmt != null){   // 关闭声明   
+				        try{   
+				            stmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				      if(pstmt != null){   // 关闭声明   
+					        try{   
+					            pstmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+
 		        }
 				return count;
 			}
@@ -842,18 +1056,16 @@ import com.kate.app.model.RecoProject;
 			
 		
 		public HouseProject findProById(int id){    //閫氳繃椤圭洰id鏌ユ壘椤圭洰淇℃伅
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
+			 
 			HouseProject projectInfo = new HouseProject();
 			try{
 				String sql = " select * from house_project where id= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				while(rs.next()){
 					projectInfo.setProject_name(rs.getString("project_name"));
 					projectInfo.setProject_img(rs.getString("project_img"));
@@ -883,38 +1095,43 @@ import com.kate.app.model.RecoProject;
 				
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+	        }finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return projectInfo;
 		}
 		
 		public HouseProject findProByNum(String proNum){    //閫氳繃椤圭洰缂栧彿鏌ユ壘椤圭洰淇℃伅
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			HouseProject projectInfo = new HouseProject();
 			try{
 				String sql = " select * from house_project where project_num= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, proNum);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				while(rs.next()){
 					projectInfo.setProject_name(rs.getString("project_name"));
 					projectInfo.setProject_img(rs.getString("project_img"));
@@ -944,21 +1161,29 @@ import com.kate.app.model.RecoProject;
 				
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+	        }finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return projectInfo;
 		}
@@ -966,12 +1191,10 @@ import com.kate.app.model.RecoProject;
 			
 
 		public boolean addTouziData(String middle_price, String middle_zu_price, String price_review, String year_increment_rate, String zu_house_rate, String zu_xuqiu,String data_exam, String area_num, String area_name) throws SQLException{
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
+			 
 			boolean flag = true;
 			try{
 				String sql = " insert into investment_data(year_increment_rate, middle_price, middle_zu_price, zu_house_rate, zu_xuqiu, price_review, data_exam, area_num, area_name) values(?,?,?,?,?,?,?,?,?)";
@@ -991,21 +1214,29 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+	        }finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return flag;
 	        
@@ -1013,12 +1244,10 @@ import com.kate.app.model.RecoProject;
 		
 		
 		public boolean editTouziData(int id, String middle_price, String middle_zu_price, String price_review, String year_increment_rate, String zu_house_rate, String zu_xuqiu,String data_exam, String area_num, String area_name) throws SQLException{
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
+			 
 			boolean flag = true;
 			try{
 				String sql = " update investment_data set year_increment_rate=?, middle_price=?, middle_zu_price=?, zu_house_rate=?, zu_xuqiu=?, price_review=?, data_exam=?, area_num=?, area_name=? where id=?";
@@ -1040,21 +1269,29 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+	        }finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return flag;
 	        
@@ -1064,11 +1301,8 @@ import com.kate.app.model.RecoProject;
 		 * 澧炲姞鍖哄煙淇℃伅
 		 */
 		public boolean addArea(String area_code, String area_character, int view_shunxu, String data_source, String update_time) throws SQLException{
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
 			String time_str = "";
@@ -1100,23 +1334,30 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
-			finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	        }
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
 
+	        }
 			return flag;
 		}
 		/*
@@ -1181,11 +1422,8 @@ import com.kate.app.model.RecoProject;
 		 * 鍒犻櫎鍖哄煙淇℃伅
 		 */
 		public boolean deleteArea(int id) throws SQLException{
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
@@ -1198,21 +1436,29 @@ import com.kate.app.model.RecoProject;
 					}
 				}catch (Exception e) {
 		            e.printStackTrace();
-		        }finally{  
-		            if(pstmt != null){  
-		                try {  
-		                	pstmt.close();  
-		                } catch (SQLException e) {  
-		                    e.printStackTrace();  
-		                }  
-		            }  
-		            if(con != null){  
-		                try {  
-		                    con.close();  
-		                } catch (SQLException e) {  
-		                    e.printStackTrace();  
-		                }  
-		            }  
+		        }finally{
+					if(rs != null){   // 关闭记录集   
+				        try{   
+				            rs.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				          }   
+				      if(stmt != null){   // 关闭声明   
+				        try{   
+				            stmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				      if(pstmt != null){   // 关闭声明   
+					        try{   
+					            pstmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+
 		        }
 				return flag;
 		}
@@ -1223,12 +1469,10 @@ import com.kate.app.model.RecoProject;
 		 * 閿熸枻鎷烽敓鏂ゆ嫹閿熺嫛纭锋嫹閿熸枻鎷风洰
 		 */
 		public boolean addRecoProject(String project_num, String recommend_project_num1,String recommend_project_num2,String recommend_project_num3) throws SQLException{
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
+			 
 			boolean flag = true;
 			try{
 				String sql = " insert into recommend_project(project_num, recommend_project_num1, recommend_project_num2, recommend_project_num3) values(?,?,?,?)";
@@ -1243,21 +1487,29 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+	        }finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return flag;
 	        
@@ -1266,11 +1518,8 @@ import com.kate.app.model.RecoProject;
 		 * 閿熺潾闈╂嫹閿熺嫛纭锋嫹閿熸枻鎷风洰
 		 */
 		public boolean editRecoProject(int id, String project_num, String recommend_project_num1,String recommend_project_num2,String recommend_project_num3) throws SQLException{
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
@@ -1287,31 +1536,36 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+	        }finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return flag;
 	        
 		}
 		public boolean addNewsInfo(String title, String source, String time, String detail, String news_img, String news_abstract,String project_num) throws SQLException{
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
 			String time_str = "";
@@ -1343,32 +1597,37 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
-			finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return flag;
 	        
 		}
 		
 		public boolean editNewsInfo(int id, String title, String source, String time, String detail, String news_img, String news_abstract,String project_num) throws SQLException{
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
 			String time_str = "";
@@ -1401,21 +1660,30 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
-			finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+
+finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return flag;
 	        
@@ -1424,11 +1692,8 @@ import com.kate.app.model.RecoProject;
 		
 		
 		public boolean addHouseInfo(String house_type, int house_room_num, int house_toilet_num, int house_size, String house_price, String house_img, String project_num) throws SQLException{
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
@@ -1447,21 +1712,29 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+	        }finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return flag;
 	        
@@ -1470,11 +1743,8 @@ import com.kate.app.model.RecoProject;
 		 * 閿熸枻鎷烽敓鎺ュ尅鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎭�
 		 */
 		public boolean addDeveInfo(String developer_name, String developer_logo, String developer_desc) throws SQLException{
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
@@ -1489,21 +1759,29 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+	        }finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return flag;
 	        
@@ -1514,11 +1792,8 @@ import com.kate.app.model.RecoProject;
 		 * 閿熸枻鎷烽敓鎺ュ尅鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎭�
 		 */
 		public boolean addBrokerInfo(String broker_name, String broker_language, String broker_region, String broker_img,String broker_experience, String broker_num, String broker_type, String broker_zizhi, String introduction, String office) throws SQLException{
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
@@ -1540,21 +1815,29 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+	        }finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return flag;
 	        
@@ -1563,12 +1846,10 @@ import com.kate.app.model.RecoProject;
 		
 		
 		public boolean editHouseInfo(int id, String house_type, int house_room_num, int house_toilet_num, int house_size, String house_price, String house_img, String project_num) throws SQLException{
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
+
 			boolean flag = true;
 			try{
 				String sql = " update house_info set house_type=?, house_room_num=?, house_toilet_num=?, house_size=?, house_price=?, house_img=?, project_num=? where id=?";
@@ -1588,21 +1869,29 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+	        }finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 
 			return flag;
@@ -1614,12 +1903,10 @@ import com.kate.app.model.RecoProject;
 		
 		
 		public boolean deleteTouziData(int id){     //鍒犻敓鏂ゆ嫹鎶曢敓鏂ゆ嫹閿熸枻鎷烽敓锟�
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
+
 			boolean flag = true;
 			try{
 				String sql = " delete from investment_data where id= ?";
@@ -1631,32 +1918,37 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+	        }finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return flag;
 	        
 		}
 		
 		public boolean deleteBrokerInfo(int id){     //鍒犻敓鏂ゆ嫹鎶曢敓鏂ゆ嫹閿熸枻鎷烽敓锟�
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
@@ -1669,21 +1961,29 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+	        }finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return flag;
 		}
@@ -1691,11 +1991,8 @@ import com.kate.app.model.RecoProject;
 		
 		
 		public boolean deleteHouseInfo(int id){    //鍒犻敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎭�
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
@@ -1708,32 +2005,37 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+	        }finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return flag;
 	        
 		}
 		
 		public boolean deleteHouseProject(int id){    //鍒犻敓鏂ゆ嫹閿熸枻鎷风洰閿熸枻鎷锋伅
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
@@ -1746,21 +2048,29 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+	        }finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return flag;
 	        
@@ -1770,11 +2080,8 @@ import com.kate.app.model.RecoProject;
 		 * 閿熺嫛纭锋嫹閿熸枻鎷风洰鍒犻敓鏂ゆ嫹
 		 */
 		public boolean deleteRecomHouseProject(int id){
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
@@ -1787,21 +2094,29 @@ import com.kate.app.model.RecoProject;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+	        }finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return flag;
 		}
@@ -1809,40 +2124,44 @@ import com.kate.app.model.RecoProject;
 		
 		
 		public boolean findById(int id){
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = false;
 			try{
 				String sql = " select count(*) from investment_data where house_pro_id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				if(rs.next()){
 					flag = true;
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+	        }finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
-			
 			return flag;
 	        
 		}
@@ -1850,11 +2169,8 @@ import com.kate.app.model.RecoProject;
 		
 		//娣诲姞椤圭洰
 		public boolean addPro(String project_name, String project_img, String project_nation, String project_address, String project_area, String project_price_qi, String project_type, int project_sales_remain, String project_finish_time, String project_desc, String project_city, String project_house_type, String project_high, String project_price, String project_lan_cn, String project_lan_en, String project_num, String project_vedio, String project_zhou, String area_qujian, String gps, String return_money, int walk_num, String mianji, String project_min_price, String project_high_price, int tuijiandu, String housePrice_update_time, String buytaxInfo, String holdInfo, int min_area, int max_area, String area_num, String developer_num) throws SQLException{
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
 			String time = "";
@@ -1930,21 +2246,29 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
-			finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return flag;
 	        
@@ -1952,11 +2276,8 @@ import com.kate.app.model.RecoProject;
 		
 		
 		public boolean editPro(int id, String project_name, String project_img, String project_nation, String project_address, String project_area, String project_price_qi, String project_type, int project_sales_remain, String project_finish_time, String project_desc, String project_city, String project_house_type, String project_high, String project_price, String project_lan_cn, String project_lan_en, String project_num, String project_vedio, String project_zhou, String area_qujian, String gps, String return_money, int walk_num, String mianji, String project_min_price, String project_high_price, int tuijiandu, String housePrice_update_time, String buytaxInfo, String holdInfo, int min_area, int max_area, String area_num, String developer_num) throws SQLException{
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
 			String time = "";
@@ -2029,23 +2350,30 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
-			finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	        }
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
 
+	        }
 			return flag;
 	        
 		}
@@ -2053,11 +2381,8 @@ import com.kate.app.model.RecoProject;
 		 * 閿熺潾鏀瑰尅鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎭�
 		 */
 		public boolean editDeveloperInfo(int deveId, String developer_name, String developer_logo, String developer_desc) throws SQLException{
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
@@ -2075,21 +2400,29 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
-			finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return flag;  
 		}
@@ -2100,11 +2433,8 @@ import com.kate.app.model.RecoProject;
 		 * 閿熺潾鏀瑰尅鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎭�
 		 */
 		public boolean editBrokerInfo(int id, String broker_name, String broker_language, String broker_region, String broker_img,String broker_experience, String broker_num, String broker_type, String broker_zizhi, String introduction, String office) throws SQLException{
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
@@ -2128,21 +2458,29 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
-			finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return flag;  
 		}
@@ -2150,11 +2488,8 @@ import com.kate.app.model.RecoProject;
 		
 		
 		public boolean deletePro(int proid) throws SQLException{
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
@@ -2168,34 +2503,38 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
-			finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	        }
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
 
+	        }
 			return flag;
 	        
 		}
 		
 		
 		public boolean deleteNewsInfo(int id) throws SQLException{
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
 			try{
@@ -2209,21 +2548,29 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
-			finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return flag;
 	        
@@ -2231,78 +2578,88 @@ import com.kate.app.model.RecoProject;
 		
 		
 		public int findProByName(String name) throws SQLException{   //閫氶敓鏂ゆ嫹閿熸枻鎷锋拠閿熸枻鎷烽敓绲燿
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			HouseProject projectInfo = new HouseProject();
 			try{
 				String sql = " select id from house_project where project_name= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, name);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				while(rs.next()){
 					projectInfo.setId(rs.getInt("id"));
 				}
 				
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+	        }finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return projectInfo.getId();
 	        
 		}
 		
 		public int countAreaInfo(String area_num){
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			int count = 0;
 			try{
 				String sql = " select count(*) from area_info where area_num=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, area_num);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				while(rs.next()){
 					count = rs.getInt(1);
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }
-			finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return count;
 		}
@@ -2310,79 +2667,89 @@ import com.kate.app.model.RecoProject;
 		 * 閫氶敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎾囬敓鏂ゆ嫹閿熺禒d
 		 */
 		public int findDeveByName(String name) throws SQLException{   //閫氶敓鏂ゆ嫹閿熸枻鎷锋拠閿熸枻鎷烽敓绲燿
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			DeveloperInfo developerInfo = new DeveloperInfo();
 			try{
 				String sql = " select id from developer_info where developer_name= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, name);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				while(rs.next()){
 					developerInfo.setId(rs.getInt("id"));
 				}
 				
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	        }
+	        }finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
 
+	        }
 			return developerInfo.getId();
 	        
 		}
 		
 		public int findDeveByNum(String num) throws SQLException{   //閫氶敓鏂ゆ嫹閿熸枻鎷锋拠閿熸枻鎷烽敓绲燿
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			Statement stmt = null;
+			ResultSet rs = null;
 			PreparedStatement pstmt = null;
+
 			DeveloperInfo developerInfo = new DeveloperInfo();
 			try{
 				String sql = " select id from developer_info where developer_num= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, num);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				while(rs.next()){
 					developerInfo.setId(rs.getInt("id"));
 				}
 				
 			}catch (Exception e) {
 	            e.printStackTrace();
-	        }finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+	        }finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			return developerInfo.getId();
 	        
