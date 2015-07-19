@@ -15,6 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script>
 <script src="/js/jquery.min.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/chosen.css">
 <style type="text/css">
 body{
 	/* background-color:rgb(232, 233, 234)!important; */
@@ -42,13 +43,84 @@ body{
 <span class="area_span">经纪人姓名</span><span><input type="text" id="broker_name" name="broker_name" class="area_input" value="${broker.broker_name}"></span>
 </div>
 <div class="area_left">
-<span class="area_span">掌握语言</span><span><input type="text" id="broker_language" name="broker_language" class="area_input" value="${broker.broker_language}"></span>
+<span class="area_span">掌握语言</span>
+<%-- <span><input type="text" id="broker_language" name="broker_language" class="area_input" value="${broker.broker_language}"></span> --%>
+<select data-placeholder="请选择..." class="chosen-select" id="broker_language" name="broker_language" style="width:220px;" tabindex="4">
+      <c:choose>
+	    <c:when test="${broker.broker_language eq '中文'}">
+	      <option value="中文" selected="selected">中文</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="中文">中文</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	  <c:choose>
+	    <c:when test="${broker.broker_language eq '英文'}">
+	      <option value="英文" selected="selected">英文</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="英文">英文</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	  <c:choose>
+	    <c:when test="${broker.broker_language eq '中英文'}">
+	      <option value="中英文" selected="selected">中英文</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="中英文">中英文</option>
+	   </c:otherwise>
+  	  </c:choose>
+<!-- <option value=""></option>
+<option value="中文">中文</option>
+<option value="英文">英文</option>
+<option value="中英文">中英文</option> -->
+</select>
 </div>
 <div class="area_right">
 <span class="area_span">所在地区</span><span><input type="text" id="broker_region" name="broker_region" class="area_input" value="${broker.broker_region}"></span>
 </div>
 <div class="area_left">
-<span class="area_span">经纪人类型</span><span><input type="text" id="broker_type" name="broker_type" class="area_input" value="${broker.broker_type}"></span>
+<span class="area_span">经纪人类型</span>
+<%-- <span><input type="text" id="broker_type" name="broker_type" class="area_input" value="${broker.broker_type}"></span> --%>
+<select data-placeholder="请选择..." class="chosen-select" id="broker_type" name="broker_type" style="width:220px;" tabindex="4">
+      <c:choose>
+	    <c:when test="${broker.broker_type eq '房产经纪'}">
+	      <option value="房产经纪" selected="selected">房产经纪</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="房产经纪">房产经纪</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	  <c:choose>
+	    <c:when test="${broker.broker_type eq '贷款经纪'}">
+	      <option value="贷款经纪" selected="selected">贷款经纪</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="贷款经纪">贷款经纪</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	  <c:choose>
+	    <c:when test="${broker.broker_type eq '购房律师'}">
+	      <option value="购房律师" selected="selected">购房律师</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="购房律师">购房律师</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	  <c:choose>
+	    <c:when test="${broker.broker_type eq '会计师'}">
+	      <option value="会计师" selected="selected">会计师</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="会计师">会计师</option>
+	   </c:otherwise>
+  	  </c:choose>
+<!-- <option value=""></option>
+<option value="房产经纪">房产经纪</option>
+<option value="贷款经纪">贷款经纪</option>
+<option value="购房律师">购房律师</option>
+<option value="会计师">会计师</option> -->
+</select>
 </div>
 <div class="area_right">
 <span class="area_span">经纪人资质</span><span><input type="text" id="broker_zizhi" name="broker_zizhi" class="area_input" value="${broker.broker_zizhi}"></span>
@@ -146,7 +218,14 @@ $(function(){
 <form id="type">
 <div class="area_bkg2 c-fix" id="shanchangtype">经纪人擅长类型</div>
 <div class="area_left">
-<span class="area_span">擅长类型编号</span><span><input type="text" id="interested_num" name="interested_num" class="area_input"></span>
+<span class="area_span">擅长类型</span>
+<!-- <span><input type="text" id="interested_num" name="interested_num" class="area_input"></span> -->
+<select data-placeholder="请选择..." class="chosen-select" id="interested_num" name="interested_num" style="width:220px;" tabindex="2">
+ 	 <option value=""></option>
+  	 <option value="house_01">公寓</option>
+     <option value="house_02">别墅</option>
+     <option value="house_03">联排别墅</option>
+ </select>
 </div>
 <div class="area_right">
 <span class="area_span">显示顺序</span><span><input type="text" id="view_shunxu2" name="view_shunxu2" class="area_input"></span>
@@ -304,7 +383,9 @@ $(function(){
 			type=DataDeal.formToJson(data= decodeURIComponent($("#type").serialize(),true));
 			type=eval("("+type+")");
 			typelist.push(type);
-			$('#typelist').append("<div><div class='area_left3'><span class='area_span'>"+(++typecount)+"</span><span class='area_span'>"+typelist[typecount-1].interested_num+"</span><span class='area_span'>"+typelist[typecount-1].view_shunxu2+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edittype'>编辑</a></span><span class='area_span5'><a href='#' class='deletetype'>删除</a></span></div></div>");
+			var selectIndex = document.getElementById("interested_num").selectedIndex;
+			var selectText = document.getElementById("interested_num").options[selectIndex].text;
+			$('#typelist').append("<div><div class='area_left3'><span class='area_span'>"+(++typecount)+"</span><span class='area_span'>"+selectText+"</span><span class='area_span'>"+typelist[typecount-1].view_shunxu2+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edittype'>编辑</a></span><span class='area_span5'><a href='#' class='deletetype'>删除</a></span></div></div>");
 			$("#type input").each(function(){
 				$(this).val("");
 				});
@@ -318,8 +399,10 @@ $(function(){
 				});
 			typeedititem.id=typelist[typeedit].id;
 			typelist[typeedit]=typeedititem;
+			var selectIndex = document.getElementById("interested_num").selectedIndex;
+			var selectText = document.getElementById("interested_num").options[selectIndex].text;
 			//alert($("#typelist").children().eq(typeedit));
-			$("#typelist").children().eq(typeedit).html("<div class='area_left3'><span class='area_span'>"+(typeedit+1)+"</span><span class='area_span'>"+typelist[typeedit].interested_num+"</span><span class='area_span'>"+typelist[typeedit].view_shunxu2+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edittype'>编辑</a></span><span class='area_span5'><a href='#' class='deletetype'>删除</a></span></div>").show();
+			$("#typelist").children().eq(typeedit).html("<div class='area_left3'><span class='area_span'>"+(typeedit+1)+"</span><span class='area_span'>"+selectText+"</span><span class='area_span'>"+typelist[typeedit].view_shunxu2+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edittype'>编辑</a></span><span class='area_span5'><a href='#' class='deletetype'>删除</a></span></div>").show();
 			typeedit=100;
 			}
 		});
@@ -337,7 +420,14 @@ $(function(){
 		$(this).parent().parent().parent().hide();
 		//alert(index+"index");
 		typeedit=index;
-		$("#interested_num").val(typeedititem.interested_num);
+		/* $("#interested_num").val(typeedititem.interested_num); */
+		var selectCount = document.getElementById("interested_num");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].text==typeedititem.interested_num){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#interested_num').trigger('chosen:updated');
 		$("#view_shunxu2").val(typeedititem.view_shunxu2);
 		}); 
 	
@@ -486,5 +576,19 @@ function add(){
 	 	});
 	  }
 </script>
+<script src="/js/chosen.jquery.js" type="text/javascript"></script>
+ <script src="/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+ <script type="text/javascript">
+    var config = {
+      '.chosen-select'           : {},
+      '.chosen-select-deselect'  : {allow_single_deselect:true},
+      '.chosen-select-no-single' : {disable_search_threshold:10},
+      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+  </script>
 </body>
 </html>

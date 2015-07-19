@@ -414,17 +414,19 @@ body{
 
 <div id="huibaotrendlist">
 <c:forEach items="${huibaolist}" var="huibao" varStatus="status">
-	<div class='area_left3'>
-	<span style='display:none;'>${status.index + 1}</span>
-	<span class='area_span'>${AreaInfo.area_num}</span>
-	<span class='area_span'>${huibao.project_type4}</span>
-	<span class='area_span'>${huibao.view_shunxu4}</span>
-	<span class='area_span'>${huibao.heng4}</span>
-	<span class='area_span6'>${huibao.zong4}</span>
-	</div>
-	<div class='area_right3'>
-	<span class='area_span4'><a href='#' class='edithuibaotrend'>编辑</a></span>
-	<span class='area_span5'><a href='#' class='deletehuibaotrend'>删除</a></span>
+	<div>
+		<div class='area_left3'>
+		<span style='display:none;'>${status.index + 1}</span>
+		<span class='area_span'>${AreaInfo.area_num}</span>
+		<span class='area_span'>${huibao.project_type4}</span>
+		<span class='area_span'>${huibao.view_shunxu4}</span>
+		<span class='area_span'>${huibao.heng4}</span>
+		<span class='area_span6'>${huibao.zong4}</span>
+		</div>
+		<div class='area_right3'>
+		<span class='area_span4'><a href='#' class='edithuibaotrend'>编辑</a></span>
+		<span class='area_span5'><a href='#' class='deletehuibaotrend'>删除</a></span>
+		</div>
 	</div>
 </c:forEach>
 </div>
@@ -942,7 +944,14 @@ $(function(){
 		//$("#projectimage").val(edititem.name+"");
 		//alert(index+"index");
 		middlepriceedit=index;
-		$("#project_type").val(middlepriceedititem.project_type);
+		var selectCount = document.getElementById("project_type");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==middlepriceedititem.project_type){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#project_type').trigger('chosen:updated');
+		 $("#project_type").val(middlepriceedititem.project_type); 
 		$("#buy_price").val(middlepriceedititem.buy_price);
 		$("#zu_price").val(middlepriceedititem.zu_price);
 		$("#buy_one_name").val(middlepriceedititem.buy_one_name);
@@ -958,7 +967,7 @@ $(function(){
 		$("#zu_three_name").val(middlepriceedititem.zu_three_name);
 		$("#zu_three_price").val(middlepriceedititem.zu_three_price);
 		$("#middle_datasource").val(middlepriceedititem.middle_datasource);
-		$("#middle_date").val(middlepriceedititem.middle_date);
+		$("#middle_date").val(middlepriceedititem.middle_date.length>=10?middlepriceedititem.middle_date.substr(0,10):middlepriceedititem.middle_date);
 		}); 
 	
 });
@@ -1034,13 +1043,13 @@ $(function(){
 			}
 		});
 	$("#middletrendlist").on("click",".deletemiddletrend",function(){
-		middletrendlist.splice($(this).parent().parent().children().eq(0).eq(0).text()-1,1);
-		$(this).parent().parent().parent().empty();
+		middletrendlist.splice($(this).parent().parent().prevAll().length,1);
+		$(this).parent().parent().parent().remove();
 		middletrendcount--;
 		});
 	$("#middletrendlist").on("click",".editmiddletrend",function(){
 		
-		var index=$(this).parent().parent().parent().children().eq(0).children().eq(0).text()-1;
+		var index=$(this).parent().parent().parent().prevAll().length;
 		//alert(index);
 		middletrendedititem=middletrendlist[index];
 		$(this).parent().parent().parent().hide();
@@ -1061,7 +1070,7 @@ $(function(){
 		$("#heng2").val(middletrendedititem.heng2||middletrendedititem.heng);
 		$("#zong2").val(middletrendedititem.zong2||middletrendedititem.zong);
 		$("#middle_zoushi_datasource").val(middletrendedititem.middle_zoushi_datasource);
-		$("#middle_zoushi_date").val(middletrendedititem.middle_zoushi_date);
+		$("#middle_zoushi_date").val(middletrendedititem.middle_zoushi_date.length>=10?middletrendedititem.middle_zoushi_date.substr(0,10):middletrendedititem.middle_zoushi_date);
 		}); 
 	
 });
@@ -1138,13 +1147,13 @@ $(function(){
 			}
 		});
 	$("#zujintrendlist").on("click",".deletezujintrend",function(){
-		zujintrendlist.splice($(this).parent().parent().children().eq(0).eq(0).text()-1,1);
-		$(this).parent().parent().parent().empty();
+		zujintrendlist.splice($(this).parent().parent().prevAll().length,1);
+		$(this).parent().parent().parent().remove();
 		zujintrendcount--;
 		});
 	$("#zujintrendlist").on("click",".editzujintrend",function(){
 		
-		var index=$(this).parent().parent().parent().children().eq(0).children().eq(0).text()-1;
+		var index=$(this).parent().parent().parent().prevAll().length;
 		//alert(index);
 		zujintrendedititem=zujintrendlist[index];
 		$(this).parent().parent().parent().hide();
@@ -1152,12 +1161,19 @@ $(function(){
 		//$("#projectimage").val(edititem.name+"");
 		//alert(index+"index");
 		zujintrendedit=index;
+		var selectCount = document.getElementById("project_type3");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==zujintrendedititem.project_type3){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#project_type3').trigger('chosen:updated');
 		$("#project_type3").val(zujintrendedititem.project_type3||zujintrendedititem.project_type);
 		$("#view_shunxu3").val(zujintrendedititem.view_shunxu3||zujintrendedititem.view_shunxu);
 		$("#heng3").val(zujintrendedititem.heng3||zujintrendedititem.heng);
 		$("#zong3").val(zujintrendedititem.zong3||zujintrendedititem.zong);
 		$("#zujin_datasource").val(zujintrendedititem.zujin_datasource||zujintrendedititem.zujin_datasource);
-		$("#zujin_date").val(zujintrendedititem.zujin_date||zujintrendedititem.zujin_date);
+		$("#zujin_date").val(zujintrendedititem.zujin_date.length>=10?zujintrendedititem.zujin_date.substr(0,10):zujintrendedititem.zujin_date);
 		}); 
 	
 });
@@ -1235,13 +1251,13 @@ $(function(){
 			}
 		});
 	$("#huibaotrendlist").on("click",".deletehuibaotrend",function(){
-		huibaotrendlist.splice($(this).parent().parent().children().eq(0).eq(0).text()-1,1);
-		$(this).parent().parent().parent().empty();
+		huibaotrendlist.splice($(this).parent().parent().prevAll().length,1);
+		$(this).parent().parent().parent().remove();
 		huibaotrendcount--;
 		});
 	$("#huibaotrendlist").on("click",".edithuibaotrend",function(){
 		
-		var index=$(this).parent().parent().parent().children().eq(0).children().eq(0).text()-1;
+		var index=$(this).parent().parent().parent().prevAll().length;
 		//alert(index);
 		huibaotrendedititem=huibaotrendlist[index];
 		$(this).parent().parent().parent().hide();
@@ -1249,12 +1265,19 @@ $(function(){
 		//$("#projectimage").val(edititem.name+"");
 		//alert(index+"index");
 		huibaotrendedit=index;
+		var selectCount = document.getElementById("project_type4");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==huibaotrendedititem.project_type4){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#project_type4').trigger('chosen:updated');
 		$("#project_type4").val(huibaotrendedititem.project_type4||huibaotrendedititem.project_type);
 		$("#view_shunxu4").val(huibaotrendedititem.view_shunxu4||huibaotrendedititem.view_shunxu);
 		$("#heng4").val(huibaotrendedititem.heng4||huibaotrendedititem.heng);
 		$("#zong4").val(huibaotrendedititem.zong4||huibaotrendedititem.zong);
 		$("#zujin_huibao_datasource").val(huibaotrendedititem.zujin_huibao_datasource||huibaotrendedititem.zujin_huibao_datasource);
-		$("#zujin_huibao_date").val(huibaotrendedititem.zujin_huibao_date||huibaotrendedititem.zujin_huibao_date);
+		$("#zujin_huibao_date").val(huibaotrendedititem.zujin_huibao_date.length>=10?huibaotrendedititem.zujin_huibao_date.substr(0,10):huibaotrendedititem.zujin_huibao_date);
 		}); 
 	
 });
@@ -1278,21 +1301,9 @@ $(function(){
 				alert("请选择文件！");
 				return false;} */
 			var tedian={};
-			/* var filenames=$('#houseimg').val().split("\\");
-			var filename=filenames[filenames.length-1]; */
 			tedian=DataDeal.formToJson(data= decodeURIComponent($("#tedian").serialize(),true));
 			tedian=tedian.replace(/\+/g," ");
 			tedian=eval("("+tedian+")");
-			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
-			/* peitao.shunxu=peitaocount+1; */
-			/* peitao.view= */
-			/* alert($("#huxingjiage").serializeArray()); */
-			/* huxing.housename=$("#housename").val();
-			huxing.houseprice=$("#houseprice").val();
-			huxing.room_num=$("#room_num").val();
-			huxing.tudi_mianji=$("#tudi_mianji").val();
-			huxing.jianzhu_mianji=$("#jianzhu_mianji").val();
-			huxing.shinei_mianji=$("#") */
 			tedianlist.push(tedian);
 			/* $("#tedianlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++tediancount)+"</span><span style='padding-right:10px;'>"+tedianlist[tediancount-1].houseTaxtype+"</span><span style='padding-right:10px;'>"+tedianlist[tediancount-1].houseTaxprice+"</span><span style='padding-right:10px;'>"+tedianlist[tediancount-1].houseTaxdesc+"</span><span style='padding-right:10px;'>"+tedianlist[tediancount-1].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>"); */
 			$('#tedianlist').append("<div><div class='area_left3'><span style='display:none;'>"+(++tediancount)+"</span><span class='area_span'>"+tedianlist[tediancount-1].view_shunxu+"</span><span class='area_input'>"+tedianlist[tediancount-1].area_character+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edittedian'>编辑</a></span><span class='area_span5'><a href='#' class='deletetedian'>删除</a></span></div></div>");
@@ -1304,25 +1315,14 @@ $(function(){
 			/* <a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a> */
 			}
 		else{
-			/* if($('#houseimg').val()==""){
-				alert("请选择文件！");
-				return false;} */
-			//alert("edit");
-			/* var huxing={}; */
-			/* var filenames=$('#houseimg').val().split("\\");
-			var filename=filenames[filenames.length-1]; */
 			tedianedititem=DataDeal.formToJson(data= decodeURIComponent($("#tedian").serialize(),true));
 			tedianedititem=tedianedititem.replace(/\+/g," ");
 			tedianedititem=eval("("+tedianedititem+")");
-			/* tedianedititem["houseimg"]=filename; */
-			/* var filenames=$('#projectimage').val().split("\\");
-			var filename=filenames[filenames.length-1]; */
-			/* UpladFile("houseimg"); */
 			$("#tedian input").each(function(){
 				$(this).val("");
 				});
 			tedianlist[tedianedit]=tedianedititem;
-			alert($("#tedianlist").children().eq(tedianedit));
+			//alert($("#tedianlist").children().eq(tedianedit));
 			/* $("#tedianlist").children().eq(tedianedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(tedianedit+1)+"</span><span style='padding-right:10px;'>"+tedianlist[tedianedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+tedianlist[tedianedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+tedianlist[tedianedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+tedianlist[tedianedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
 			$("#tedianlist").children().eq(tedianedit).html("<div class='area_left3'><span style='display:none;'>"+(tedianedit+1)+"</span><span class='area_span'>"+tedianlist[tedianedit].view_shunxu+"</span><span class='area_input'>"+tedianlist[tedianedit].area_character+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edittedian'>编辑</a></span><span class='area_span5'><a href='#' class='deletetedian'>删除</a></span></div>").show();
 
@@ -1333,13 +1333,13 @@ $(function(){
 			}
 		});
 	$("#tedianlist").on("click",".deletetedian",function(){
-		tedianlist.splice($(this).parent().parent().children().eq(0).eq(0).text()-1,1);
-		$(this).parent().parent().parent().empty();
+		tedianlist.splice($(this).parent().parent().prevAll().length,1);
+		$(this).parent().parent().parent().remove();
 		tediancount--;
 		});
 	$("#tedianlist").on("click",".edittedian",function(){
 		
-		var index=$(this).parent().parent().parent().children().eq(0).children().eq(0).text()-1;
+		var index=$(this).parent().parent().parent().prevAll().length;
 		//alert(index);
 		tedianedititem=tedianlist[index];
 		$(this).parent().parent().parent().hide();
@@ -1348,7 +1348,7 @@ $(function(){
 		//alert(index+"index");
 		tedianedit=index;
 		$("#data_source").val(tedianedititem.data_source);
-		$("#update_time").val(tedianedititem.update_time);
+		$("#update_time").val(tedianedititem.update_time.length>=10?tedianedititem.update_time.substr(0,10):tedianedititem.update_time);
 		$("#view_shunxu").val(tedianedititem.view_shunxu);
 		$("#area_character").val(tedianedititem.area_character);
 		}); 
@@ -1428,13 +1428,13 @@ $(function(){
 			}
 		});
 	$("#peoplelist").on("click",".deletepeople",function(){
-		peoplelist.splice($(this).parent().parent().children().eq(0).eq(0).text()-1,1);
-		$(this).parent().parent().parent().empty();
+		peoplelist.splice($(this).parent().parent().prevAll().length,1);
+		$(this).parent().parent().parent().remove();
 		peoplecount--;
 		});
 	$("#peoplelist").on("click",".editpeople",function(){
 		
-		var index=$(this).parent().parent().parent().children().eq(0).children().eq(0).text()-1;
+		var index=$(this).parent().parent().parent().prevAll().length;
 		//alert(index);
 		peopleedititem=peoplelist[index];
 		$(this).parent().parent().parent().hide();
@@ -1534,8 +1534,8 @@ $(function(){
 			}
 		});
 	$("#brokerlist").on("click",".deletebroker",function(){
-		brokerlist.splice($(this).parent().parent().children().eq(0).eq(0).text()-1,1);
-		$(this).parent().parent().parent().empty();
+		brokerlist.splice($(this).parent().parent().prevAll().length,1);
+		$(this).parent().parent().parent().remove();
 		brokercount--;
 		});
 });
@@ -1623,8 +1623,8 @@ $(function(){
 			}
 		});
 	$("#projectlist").on("click",".deleteproject",function(){
-		projectlist.splice($(this).parent().parent().children().eq(0).eq(0).text()-1,1);
-		$(this).parent().parent().parent().empty();
+		projectlist.splice($(this).parent().parent().prevAll().length,1);
+		$(this).parent().parent().parent().remove();
 		projectcount--;
 		});
 });
@@ -1716,8 +1716,8 @@ $(function(){
 			}
 		});
 	$("#newslist").on("click",".deletenews",function(){
-		newslist.splice($(this).parent().parent().children().eq(0).eq(0).text()-1,1);
-		$(this).parent().parent().parent().empty();
+		newslist.splice($(this).parent().parent().prevAll().length,1);
+		$(this).parent().parent().parent().remove();
 		newscount--;
 		});
 });

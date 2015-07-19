@@ -1883,9 +1883,11 @@ public class AreaInfoDao extends BaseDao {
         }
 	}
 
+
 	//区域编辑
 
 		public int EditArea(int Id,int Id2,int Id3,String area_num,String area_name,String area_city,String area_zhou,String area_nation,String area_postcode,String touzi_datasource,String touzi_date,String middle_price,String middle_zu_price,String price_review,String year_increment_rate,String zu_house_rate,String zu_xuqiu,String data_exam,String family_one,String family_one_rate,String family_two,String family_two_rate,String family_three,String family_three_rate,String family_datasource,String family_date,List<MiddlePrice2> middlepriceList,List<MiddlePrice2> middlepriceList2,List<AreaMiddle2> middletrendList,List<AreaMiddle2> middletrendList2,List<AreaZujin2> zujintrendlistList,List<AreaZujin2> zujintrendlistList2,List<AreaZhikong2> huibaotrendlistList,List<AreaZhikong2> huibaotrendlistList2,List<AreaTeDian2> tedianlistList,List<AreaTeDian2> tedianlistList2,List<AreaPeopleInfo2> peoplelistList,List<AreaPeopleInfo2> peoplelistList2,List<BrokerInfo> brokerlistList,List<String> projectlistList,List<String> newslistList,List<String> list
+
 				,List<MiddlePrice2> middlepriceListdelete,List<AreaMiddle2> middletrendListdelete,List<AreaZujin2> zujintrendlistListdelete
 				,List<AreaZhikong2> huibaotrendlistListdelete,List<AreaTeDian2> tedianlistListdelete,List<AreaPeopleInfo2> peoplelistListdelete) throws SQLException{
 
@@ -2532,7 +2534,7 @@ public class AreaInfoDao extends BaseDao {
 				
 					/*String sqlbroker = " insert into area_recommend_broker(broker_code1, broker_code2, " +
 							" , area_code) values(?,?,?,?)";*/
-					String sqlbroker = " update area_recommend_broker set broker_code1=?, broker_code2=?, recommend_num_3=? where area_code=?";
+					String sqlbroker = " update area_recommend_broker set broker_code1=?, broker_code2=?, broker_code3=? where area_code=?";
 					pstmt = con.prepareStatement(sqlbroker);
 					pstmt.setString(1, broker_code1);
 					pstmt.setString(2, broker_code2);

@@ -1053,11 +1053,17 @@ public class AreaInfoController extends BaseDao {
 				int length = brokerlistArray.size() >= 3 ? 3: brokerlistArray.size();
 				
 				List<BrokerInfo> brokerlistList=new ArrayList<BrokerInfo>();
+				List<BrokerInfo> brokerlistList2=new ArrayList<BrokerInfo>();
 				/*List<BrokerInfo> brokerlistListdelete=new ArrayList<BrokerInfo>();*/
 				for (int i = 0; i < length; i++){
 					 JSONObject object = (JSONObject)brokerlistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
 					 BrokerInfo e = (BrokerInfo) JSONToObj(object.toString(), BrokerInfo.class);
-					 brokerlistList.add(e);
+					 if(e.getId()==0){
+						 brokerlistList2.add(e);
+					 }else{
+						 brokerlistList.add(e);
+					 }
+					 /*brokerlistList.add(e);*/
 				}
 				/*for (int i=0;i<brokerlistbefore.size();i++){
 					for(int j=0;j<brokerlistList.size();j++){
@@ -1078,6 +1084,11 @@ public class AreaInfoController extends BaseDao {
 					 JSONObject object = (JSONObject)projectlistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
 					 String project_name = object.getString("project_name");
 					 //HouseProject e = (HouseProject) JSONToObj(object.toString(), HouseProject.class);
+					/* if(e.getId()==0){
+						 projectlistList2.add(e);
+					 }else{
+						 projectlistList.add(e);
+					 }*/
 					 projectlistList.add(project_name);
 				}
 				/*for (int i=0;i<projectlistbefore.size();i++){
