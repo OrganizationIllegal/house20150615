@@ -19,10 +19,9 @@ public class BaseDao {
 		if(con == null){
 			try {
 	            url = "jdbc:mysql://101.200.174.253:3306/gethouse?autoReconnect=true";
-	
 	            username = "dboperator1";
 	            password = "gethouse";
-	            con = DriverManager.getConnection(url, username, password);
+	            //con = DriverManager.getConnection(url, username, password);
 	        } catch (Exception e) {
 	           System.out.print("DriverManager.getConnection faild");
 	           System.out.println(e.toString());
@@ -32,7 +31,7 @@ public class BaseDao {
 		}
 		
 	}
-	static {
+	/*static {
 		try{   
 		    //閿熸枻鎷烽敓鏂ゆ嫹MySql閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷�  
 		    Class.forName("com.mysql.jdbc.Driver") ;   
@@ -51,7 +50,7 @@ public class BaseDao {
            System.out.print("DriverManager.getConnection faild");
            System.out.println(e.toString());
         }
-	}
+	}*/
 	
 	
 }
