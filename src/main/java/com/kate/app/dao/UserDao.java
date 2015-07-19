@@ -65,7 +65,7 @@ public class UserDao extends BaseDao {
 		return userList;
 	} 
 	
-	public int findUserByName(String username){
+	public int findUserByName(String username1){
 		try{
 			con = DriverManager.getConnection(url, username, password);
 		}catch(Exception e){
@@ -77,7 +77,7 @@ public class UserDao extends BaseDao {
 			//String sql = "select * from user  where nick_name=?";
 			String sql = "select * from user  where email=?";
 			 pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, username);
+			pstmt.setString(1, username1);
 			ResultSet rs = pstmt.executeQuery();
 		    String nick_name=null;
 		    String pwd=null;
