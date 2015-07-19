@@ -12,6 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="css/base.css" />
 <link rel="stylesheet" type="text/css" href="css/main.css" />
 <link rel="stylesheet" type="text/css" href="css/projectLuru.css" />
+<link rel="stylesheet" href="css/chosen.css">
 <script src="/js/jquery.min.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <style type="text/css">
@@ -34,7 +35,84 @@ body{
 <span class="area_span">学校排名</span><span><input type="text" id="school_rank" name="school_rank" class="area_input" value="${schoolInfo.school_ranking}"></span>
 </div>
 <div class="area_left">
-<span class="area_span">学校类型</span><span><input type="text" id="school_type" name="school_type" class="area_input" value="${schoolInfo.school_type}"></span>
+<span class="area_span">学校类型</span>
+<%-- <span><input type="text" id="school_type" name="school_type" class="area_input" value="${schoolInfo.school_type}"></span> --%>
+<select data-placeholder="请选择..." class="chosen-select" id="school_type" name="school_type" style="width:220px;" tabindex="4">
+       <c:choose>
+	    <c:when test="${schoolInfo.school_type eq '儿童托管'}">
+	      <option value="儿童托管" selected="selected">公寓</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="儿童托管">儿童托管</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	  <c:choose>
+	    <c:when test="${schoolInfo.school_type eq '公立小学'}">
+	      <option value="公立小学" selected="selected">公立小学</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="公立小学">公立小学</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	  <c:choose>
+	    <c:when test="${schoolInfo.school_type eq '私立小学'}">
+	      <option value="私立小学" selected="selected">私立小学</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="私立小学">私立小学</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	  <c:choose>
+	    <c:when test="${schoolInfo.school_type eq '公立中学'}">
+	      <option value="公立中学" selected="selected">公立中学</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="公立中学">公立中学</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	  <c:choose>
+	    <c:when test="${schoolInfo.school_type eq '私立中学'}">
+	      <option value="私立中学" selected="selected">私立中学</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="私立中学">私立中学</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	  <c:choose>
+	    <c:when test="${schoolInfo.school_type eq '公立中小学'}">
+	      <option value="公立中小学" selected="selected">公立中小学</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="公立中小学">公立中小学</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	  <c:choose>
+	    <c:when test="${schoolInfo.school_type eq '私立中小学'}">
+	      <option value="私立中小学" selected="selected">私立中小学</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="私立中小学">私立中小学</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${schoolInfo.school_type eq 'primiy school'}">
+	      <option value="primiy school" selected="selected">primiy school</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="primiy school">primiy school</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   
+<!--  <option value=""></option>
+ <option value="儿童托管">儿童托管</option>
+ <option value="公立小学">公立小学</option>
+ <option value="私立小学">私立小学</option>
+ <option value="公立中学">公立中学</option>
+ <option value="私立中学">私立中学</option>
+ <option value="公立中小学">公立中小学</option>
+ <option value="私立中小学">私立中小学</option>
+ <option value="primiy school">primiy school</option> -->
+ </select>
 </div>
 <div class="area_right">
 <span class="area_span">学生总数</span><span><input type="text" id="school_total" name="school_total" class="area_input" value="${schoolInfo.student_total}"></span>
@@ -44,6 +122,12 @@ body{
 </div>
 <div class="area_right">
 <span class="area_span">学校位置</span><span><input type="text" id="school_position" name="school_position" class="area_input" value="${schoolInfo.school_position}"></span>
+</div>
+<div class="area_left">
+<span class="area_span">国家</span><span><input type="text" id="nation" name="nation" class="area_input" value="${schoolInfo.nation}"></span>
+</div>
+<div class="area_right">
+<span class="area_span">城市</span><span><input type="text" id="city" name="city" class="area_input" value="${schoolInfo.nation}"></span>
 </div>
 <div class="area_left">
 <span class="area_span">GPS</span><span><input type="text" id="school_gps" name="school_gps" class="area_input" value="${schoolInfo.gps}"></span>
@@ -74,7 +158,7 @@ $(function(){
 
 </div>
 <div class="duoarea_left2">
-<span class="duoarea_span">学校简介</span><span><textarea id="school_intro" name="school_intro" value="${schoolInfo.school_desc}" class="duoarea_input2"></textarea></span>
+<span class="duoarea_span">学校简介</span><span><textarea id="school_intro" name="school_intro" class="duoarea_input2">${schoolInfo.school_desc}</textarea></span>
 </div>
 
 <!-- ****************************************************学校信息end***************************************************** -->
@@ -118,12 +202,16 @@ $('#non_en_studen_trate').blur(function() {
      var school_gps=$("#school_gps").val();
      var school_url=$("#school_url").val();
      var non_en_studen_trate=$("#non_en_studen_trate").val();
-    var  schoolimg=$("#schoolimg").val();
+   /*  var  schoolimg=$("#schoolimg").val(); */
+    var filenames=$('#schoolimg').val().split("\\");
+	  var schoolimg=filenames[filenames.length-1];
     var school_intro=$("#school_intro").val();
+    var  nation=$("#nation").val();
+    var city=$("#city").val();
      $.ajax({
      		async : false,
 	 	    type: "POST",
-	 		data: { id:id,school_name : school_name,school_rank:school_rank,school_type:school_type,school_total:school_total,teacher_num:teacher_num,school_position:school_position,school_gps:school_gps,school_url:school_url,non_en_studen_trate:non_en_studen_trate,schoolimg:schoolimg,school_intro:school_intro},
+	 		data: { id:id,school_name : school_name,school_rank:school_rank,school_type:school_type,school_total:school_total,teacher_num:teacher_num,school_position:school_position,school_gps:school_gps,school_url:school_url,non_en_studen_trate:non_en_studen_trate,schoolimg:schoolimg,school_intro:school_intro,nation:nation,city:city},
 	 		dataType: "json",
 	 		url: "/EditSchoolInfo",
 	 		success:function(data){
@@ -182,5 +270,19 @@ $('#non_en_studen_trate').blur(function() {
        xhr.send(form);
    }
 </script>
+<script src="/js/chosen.jquery.js" type="text/javascript"></script>
+ <script src="/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+ <script type="text/javascript">
+    var config = {
+      '.chosen-select'           : {},
+      '.chosen-select-deselect'  : {allow_single_deselect:true},
+      '.chosen-select-no-single' : {disable_search_threshold:10},
+      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+  </script>
 </body>
 </html>

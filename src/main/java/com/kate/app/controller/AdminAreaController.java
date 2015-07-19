@@ -1464,7 +1464,8 @@ public class AdminAreaController {
 		 String school_name=req.getParameter("school_name");
 		 String school_ranking=req.getParameter("school_ranking");
 		 String school_type=req.getParameter("school_type");
-		
+		 String nation=req.getParameter("nation");
+		 String city=req.getParameter("city");
 		 String student_total_str = req.getParameter("student_total");
 		 int student_total = student_total_str==null? 0 :Integer.parseInt(student_total_str);
 		 
@@ -1481,7 +1482,7 @@ public class AdminAreaController {
 		 String school_image=req.getParameter("school_image");
 		 String school_desc=req.getParameter("school_desc");
 		
-		  int insertResult=schoolInfoDao.InsertSchoolinfo(school_name, school_ranking, school_type, student_total, teacher_total, school_position, gps, net_info, not_en_stu_bili, school_image, school_desc);
+		  int insertResult=schoolInfoDao.InsertSchoolinfo(school_name, school_ranking, school_type, student_total, teacher_total, school_position, gps, net_info, not_en_stu_bili, school_image, school_desc, nation, city);
 		  if(insertResult!=0){
 				flag=true;
 		 }

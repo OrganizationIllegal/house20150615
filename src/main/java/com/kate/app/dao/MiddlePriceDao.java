@@ -19,13 +19,12 @@ public class MiddlePriceDao extends BaseDao {
 			e.printStackTrace();
 		}
 		PreparedStatement pstmt = null;
-		MiddlePrice middlePrice = new MiddlePrice();
+		MiddlePrice middlePrice = new MiddlePrice() ;
 		try {
-			String sql = " SELECT * from area_middle_price where project_type=? and area_quyu=?";
-			 pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, project_type);
-			pstmt.setString(2, areaNum);
-			ResultSet rs = pstmt.executeQuery();
+			String sql = " SELECT * from area_middle_price where project_type='"+project_type+"' and area_quyu='"+areaNum+"'";
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+
 			while(rs.next()){
 				middlePrice.setArea_quyu(rs.getString("area_quyu"));
 				middlePrice.setBuy_price(rs.getInt("buy_price"));

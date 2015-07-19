@@ -18,6 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <script src="/bootstrap-datepicker-1.4.0-dist/js/bootstrap-datepicker.min.js"></script>
 <script src="/bootstrap-datepicker-1.4.0-dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+<link rel="stylesheet" href="css/chosen.css">
 <style type="text/css">
 body{
 	/* background-color:rgb(232, 233, 234)!important; */
@@ -43,7 +44,28 @@ body{
 <span class="area_span">发布时间</span><span><input type="text" id="news_time" name="news_time" class="area_input" value="${newsBoke.news_time.toString().length()>10?newsBoke.news_time.toString().substring(0,10):newsBoke.news_time.toString()}" ></span>
 </div>
 <div class="area_left">
-<span class="area_span">分类</span><span><input type="text" id="news_fenlei" name="news_fenlei" class="area_input" value="${newsBoke.news_fenlei}"></span>
+<span class="area_span">分类</span>
+<%-- <span><input type="text" id="news_fenlei" name="news_fenlei" class="area_input" value="${newsBoke.news_fenlei}"></span> --%>
+<select data-placeholder="请选择..." class="chosen-select" id="news_fenlei" name="news_fenlei" style="width:220px;" tabindex="4">
+<option value=""></option>
+  <c:forEach items="${fenleiList}" var="item">
+	  <c:choose>
+	    <c:when test="${item == newsBoke.news_fenlei}">
+	      <option value="${item}" selected="selected">${item}</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="${item}">${item}</option>
+	   </c:otherwise>
+  	  </c:choose>
+    </c:forEach>
+  <%-- <option value ="${newsBoke.news_fenlei}">${newsBoke.news_fenlei}</option>
+  <option value ="房屋贷款">房屋贷款</option>
+  <option value ="市场现状">市场现状</option>
+  <option value ="时事新闻">时事新闻</option>
+  <option value ="投资">投资</option>
+  <option value ="攻略">攻略</option>
+  <option value ="贷款">贷款</option> --%>
+</select>
 </div>
 <div class="area_right">
 <span class="area_span">摘要</span><span><input type="text" id="news_abstract" name="news_abstract" class="area_input" value="${newsBoke.news_abstract}"></span>
@@ -150,5 +172,19 @@ $(".uploadimg").click(function(){
 		return false;
 	}
 </script>
+<script src="/js/chosen.jquery.js" type="text/javascript"></script>
+ <script src="/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+ <script type="text/javascript">
+    var config = {
+      '.chosen-select'           : {},
+      '.chosen-select-deselect'  : {allow_single_deselect:true},
+      '.chosen-select-no-single' : {disable_search_threshold:10},
+      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+  </script>
 </body>
 </html>

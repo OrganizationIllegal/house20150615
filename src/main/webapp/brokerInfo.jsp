@@ -124,34 +124,23 @@ $(function(){
 <span class="area_span4"><a href="#">编辑</a></span><span class="area_span5"><a href="#">删除</a></span>
 </div> -->
 <div id="arealist">
-<%-- <div style="float:left;padding-left:40px;">
- <c:forEach items="${brokerServiceAreaList}" var="brokerServiceArea" varStatus="status">
- <table>
- <tr>
-<td><span style="padding-right:10px">${status.index + 1}</span></td>
-<td><span style="padding-right:10px">${brokerServiceArea.area_code}</span></td>
-<td><span style="padding-right:10px">${brokerServiceArea.view_shunxu}</span></td>
-</tr>
-</table>
-</c:forEach>
-</div> --%>
-<div>
-<c:forEach items="${brokerServiceAreaList}" var="brokerServiceArea" varStatus="status">
-<div class="area_left3">
-<span class="area_span">${status.index + 1}</span>
-<span class="area_span">${brokerServiceArea.area_code}</span>
-<span class="area_span">${brokerServiceArea.view_shunxu}</span>
-</div>
-</c:forEach>
-<div class="area_right3">
-<span class="area_span4">
-<a href='#' class="edittype">编辑</a>
-</span>
-<span class="area_span5">
-<a href='#' class="deletetype">删除</a>
-</span>
-</div>
-</div>
+	<c:forEach items="${brokerServiceAreaList}" var="brokerServiceArea" varStatus="status">
+		<div>
+			<div class="area_left3">
+			<span class="area_span">${status.index + 1}</span>
+			<span class="area_span">${brokerServiceArea.area_code}</span>
+			<span class="area_span">${brokerServiceArea.view_shunxu}</span>
+			</div>
+			<div class="area_right3">
+			<span class="area_span4">
+			<a href='#' class="editarea">编辑</a>
+			</span>
+			<span class="area_span5">
+			<a href='#' class="deletearea">删除</a>
+			</span>
+			</div>
+		</div>
+	</c:forEach>
 </div>
 
 <form id="type">
@@ -166,34 +155,19 @@ $(function(){
 <div class="area_right3"><span class="area_span5"><a href="#" class="addtype">添加</a></span></div>
 </form>
 <div id="typelist">
-<%-- <div style="float:left;padding-left:40px;">
- <c:forEach items="${brokerIntegertypeList}" var="brokerType" varStatus="status">
- <table>
- <tr>
-<td><span style="padding-right:10px">${status.index + 1}</span></td>
-<td><span style="padding-right:10px">${brokerType.interested_num}</span></td>
-<td><span style="padding-right:10px">${brokerType.view_shunxu2}</span></td>
-</tr>
-</table>
-</c:forEach>
-</div> --%>
-<div>
-<c:forEach items="${brokerIntegertypeList}" var="brokerType" varStatus="status">
-<div class="area_left3">
-<span class="area_span">${status.index + 1}</span>
-<span class="area_span">${brokerType.interested_num}</span>
-<span class="area_span">${brokerType.view_shunxu2}</span>
-</div>
-</c:forEach>
-<div class="area_right3">
-<span class="area_span4">
-<a href='#' class="edittype">编辑</a>
-</span>
-<span class="area_span5">
-<a href='#' class="deletetype">删除</a>
-</span>
-</div>
-</div>
+	<c:forEach items="${brokerIntegertypeList}" var="brokerType" varStatus="status">
+		<div>
+			<div class="area_left3">
+				<span class="area_span">${status.index + 1}</span>
+				<span class="area_span">${brokerType.interested_num}</span>
+				<span class="area_span">${brokerType.view_shunxu2}</span>
+			</div>
+			<div class="area_right3">
+				<span class="area_span4"><a href="#" class="edittype">编辑</a></span>
+				<span class="area_span5"><a href="#" class="deletetype">删除</a></span>
+			</div>
+		</div>
+	</c:forEach>
 </div>
 <div>
 <div class="area_left4" style="margin-top:85px"><button type="button" class="btn" onclick="saveBroker()">提交</button></div>
@@ -219,37 +193,18 @@ $(function(){
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
 	});  
 })
-
         function UpladFile(imageid) {
-            var fileObj = document.getElementById(imageid).files[0]; // 获取文件对象
-
-            var FileController = "/imageupload";                    // 接收上传文件的后台地址 
-
-            // FormData 对象
-
+            var fileObj = document.getElementById(imageid).files[0];
+            var FileController = "/imageupload";                
             var form = new FormData();
-
-            /* form.append("author", "hooyes");    */                     // 可以增加表单数据
-
-            form.append("file", fileObj);                           // 文件对象
-
-
-
-            // XMLHttpRequest 对象
-
+            form.append("file", fileObj);                       
             var xhr = new XMLHttpRequest();
-
             xhr.open("post", FileController, true);
-
             xhr.onload = function () {
-
                 alert("上传完成!");
-
             };
-
             xhr.send(form);
         }
-
 </script>
 
 
@@ -315,12 +270,12 @@ $(function(){
 		});
 	$("#arealist").on("click",".deletearea",function(){
 		/* $(this).parent().parent().prevAll().length */
-		arealist.splice($(this).parent().parent().children().eq(0).eq(0).text()-1,1);
+		arealist.splice($(this).parent().parent().parent().prevAll().length,1);
 		$(this).parent().parent().parent().remove();
 		areacount--;
 		});
 	$("#arealist").on("click",".editarea",function(){
-		var index=$(this).parent().parent().parent().children().eq(0).children().eq(0).text()-1;
+		var index=$(this).parent().parent().parent().prevAll().length;
 		//alert(index);
 		areaedititem=arealist[index];
 		$(this).parent().parent().parent().hide();
@@ -370,12 +325,13 @@ $(function(){
 		});
 	$("#typelist").on("click",".deletetype",function(){
 		/* $(this).parent().parent().prevAll().length */
-		typelist.splice($(this).parent().parent().children().eq(0).eq(0).text()-1,1);
+		typelist.splice($(this).parent().parent().parent().prevAll().length,1);
+		$(this).parent().parent().parent().prevAll().length
 		$(this).parent().parent().parent().remove();
 		typecount--;
 		});
 	$("#typelist").on("click",".edittype",function(){
-		var index=$(this).parent().parent().parent().children().eq(0).children().eq(0).text()-1;
+		var index=$(this).parent().parent().parent().prevAll().length;
 		//alert(index);
 		typeedititem=typelist[index];
 		$(this).parent().parent().parent().hide();

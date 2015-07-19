@@ -46,17 +46,19 @@ public class SchoolInfoDao extends BaseDao{
 
 			return jsonArray;
 		} 
-	public int InsertSchoolinfo(String school_name,String school_ranking,String school_type,int student_total,int teacher_total,String school_position,String gps,String net_info,int not_en_stu_bili,String school_image,String school_desc){
-		try{
-			con = DriverManager.getConnection(url, username, password);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		PreparedStatement pstmt = null;
-		int exeResult=0;
+
+	public int InsertSchoolinfo(String school_name,String school_ranking,String school_type,int student_total,int teacher_total,String school_position,String gps,String net_info,int not_en_stu_bili,String school_image,String school_desc,String nation,String city){
+	try{
+		con = DriverManager.getConnection(url, username, password);
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+	PreparedStatement pstmt = null;		
+	int exeResult=0;
 			try {
-				String sql = "insert into school_info(school_name,school_ranking,school_type,student_total,teacher_total,school_position,gps,net_info,not_en_stu_bili,school_image,school_desc) values(?,?,?,?,?,?,?,?,?,?,?)";
-				 pstmt = con.prepareStatement(sql);
+				String sql = "insert into school_info(school_name,school_ranking,school_type,student_total,teacher_total,school_position,gps,net_info,not_en_stu_bili,school_image,school_desc,nation,city) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				pstmt = con.prepareStatement(sql);
+
 				pstmt.setString(1, school_name);
 				pstmt.setString(2, school_ranking);
 				pstmt.setString(3, school_type);
@@ -68,6 +70,8 @@ public class SchoolInfoDao extends BaseDao{
 				pstmt.setInt(9, not_en_stu_bili);
 				pstmt.setString(10, school_image);
 				pstmt.setString(11, school_desc);
+				pstmt.setString(12, nation);
+				pstmt.setString(13, city);
 				exeResult = pstmt.executeUpdate();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

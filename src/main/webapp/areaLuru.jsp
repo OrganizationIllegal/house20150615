@@ -16,6 +16,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- <script src="/js/jquery.min.js"></script> -->
 <!-- <script src="/bootstrap/js/bootstrap.min.js"></script> -->
 <link rel="stylesheet" href="css/chosen.css">
+<link rel="stylesheet" type="text/css" href="/bootstrap-datepicker-1.4.0-dist/css/bootstrap-datepicker.min.css" />
+  <script src="/bootstrap-datepicker-1.4.0-dist/js/bootstrap-datepicker.min.js"></script>
+<script src="/bootstrap-datepicker-1.4.0-dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
  
 <style type="text/css">
 body{
@@ -631,6 +634,38 @@ body{
 </div>
 
 <script type="text/javascript">
+$('#touzi_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#family_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#middle_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#middle_zoushi_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#zujin_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#zujin_huibao_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#update_time').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#people_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
 var newstitlelist1='${newsbokelist}';
 var newstitlelist2='${zhiyelist}';
 newstitlelist1=eval("("+newstitlelist1+")");
@@ -799,7 +834,7 @@ $(function(){
 			middlepricelist[middlepriceedit]=middlepriceedititem;
 			//alert($("#middlepricelist").children().eq(middlepriceedit));
 			/* $("#middlepricelist").children().eq(middlepriceedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(middlepriceedit+1)+"</span><span style='padding-right:10px;'>"+middlepricelist[middlepriceedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+middlepricelist[middlepriceedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+middlepricelist[middlepriceedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+middlepricelist[middlepriceedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
-			$("#middlepricelist").children().eq(middlepriceedit).html("<div><div class='area_left3'><span style='display:none;'>"+(middlepriceedit+1)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+middlepricelist[middlepriceedit].project_type+"</span><span class='area_span'>"+middlepricelist[middlepriceedit].buy_price+"</span><span class='area_span'>"+middlepricelist[middlepriceedit].zu_price+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='eidtmiddleprice'>编辑</a></span><span class='area_span5'><a href='#' class='deletemiddleprice'>删除</a></span></div></div>").show();
+			$("#middlepricelist").children().eq(middlepriceedit).html("<div><div class='area_left3'><span style='display:none;'>"+(middlepriceedit+1)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+middlepricelist[middlepriceedit].project_type+"</span><span class='area_span'>"+middlepricelist[middlepriceedit].buy_price+"</span><span class='area_span'>"+middlepricelist[middlepriceedit].zu_price+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editmiddleprice'>编辑</a></span><span class='area_span5'><a href='#' class='deletemiddleprice'>删除</a></span></div></div>").show();
 
 			middlepriceedit=100;
 			//$("#peitaolist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++peitaocount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
@@ -910,7 +945,7 @@ $(function(){
 			middletrendlist[middletrendedit]=middletrendedititem;
 			//alert($("#middletrendlist").children().eq(middletrendedit));
 			/* $("#middletrendlist").children().eq(middletrendedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(middletrendedit+1)+"</span><span style='padding-right:10px;'>"+middletrendlist[middletrendedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+middletrendlist[middletrendedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+middletrendlist[middletrendedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+middletrendlist[middletrendedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
-			$("#middletrendlist").children().eq(middletrendedit).html("<div><div class='area_left3'><span style='display:none;'>"+(middletrendedit+1)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+middletrendlist[middletrendedit].project_type2+"</span><span class='area_span'>"+middletrendlist[middletrendedit].view_shunxu2+"</span><span class='area_span'>"+middletrendlist[middletrendedit].heng2+"</span><span class='area_span6'>"+middletrendlist[middletrendedit].zong2+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='eidtmiddletrend'>编辑</a></span><span class='area_span5'><a href='#' class='deletemiddletrend'>删除</a></span></div></div>").show();
+			$("#middletrendlist").children().eq(middletrendedit).html("<div><div class='area_left3'><span style='display:none;'>"+(middletrendedit+1)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+middletrendlist[middletrendedit].project_type2+"</span><span class='area_span'>"+middletrendlist[middletrendedit].view_shunxu2+"</span><span class='area_span'>"+middletrendlist[middletrendedit].heng2+"</span><span class='area_span6'>"+middletrendlist[middletrendedit].zong2+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editmiddletrend'>编辑</a></span><span class='area_span5'><a href='#' class='deletemiddletrend'>删除</a></span></div></div>").show();
 
 			middletrendedit=100;
 			//$("#peitaolist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++peitaocount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
@@ -1011,7 +1046,7 @@ $(function(){
 			zujintrendlist[zujintrendedit]=zujintrendedititem;
 			//alert($("#zujintrendlist").children().eq(zujintrendedit));
 			/* $("#zujintrendlist").children().eq(zujintrendedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(zujintrendedit+1)+"</span><span style='padding-right:10px;'>"+zujintrendlist[zujintrendedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+zujintrendlist[zujintrendedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+zujintrendlist[zujintrendedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+zujintrendlist[zujintrendedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
-			$("#zujintrendlist").children().eq(zujintrendedit).html("<div><div class='area_left3'><span style='display:none;'>"+(zujintrendedit+1)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+zujintrendlist[zujintrendedit].project_type3+"</span><span class='area_span'>"+zujintrendlist[zujintrendedit].view_shunxu3+"</span><span class='area_span'>"+zujintrendlist[zujintrendedit].heng3+"</span><span class='area_span6'>"+zujintrendlist[zujintrendedit].zong3+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='eidtzujintrend'>编辑</a></span><span class='area_span5'><a href='#' class='deletezujintrend'>删除</a></span></div></div>").show();
+			$("#zujintrendlist").children().eq(zujintrendedit).html("<div class='area_left3'><span style='display:none;'>"+(zujintrendedit+1)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+zujintrendlist[zujintrendedit].project_type3+"</span><span class='area_span'>"+zujintrendlist[zujintrendedit].view_shunxu3+"</span><span class='area_span'>"+zujintrendlist[zujintrendedit].heng3+"</span><span class='area_span6'>"+zujintrendlist[zujintrendedit].zong3+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editzujintrend'>编辑</a></span><span class='area_span5'><a href='#' class='deletezujintrend'>删除</a></span></div>").show();
 
 			zujintrendedit=100;
 			//$("#peitaolist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++peitaocount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
@@ -1113,7 +1148,7 @@ $(function(){
 			huibaotrendlist[huibaotrendedit]=huibaotrendedititem;
 			//alert($("#huibaotrendlist").children().eq(huibaotrendedit));
 			/* $("#huibaotrendlist").children().eq(huibaotrendedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(huibaotrendedit+1)+"</span><span style='padding-right:10px;'>"+huibaotrendlist[huibaotrendedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+huibaotrendlist[huibaotrendedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+huibaotrendlist[huibaotrendedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+huibaotrendlist[huibaotrendedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
-			$("#huibaotrendlist").children().eq(huibaotrendedit).html("<div><div class='area_left3'><span style='display:none;'>"+(huibaotrendedit+1)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+huibaotrendlist[huibaotrendedit].project_type4+"</span><span class='area_span'>"+huibaotrendlist[huibaotrendedit].view_shunxu4+"</span><span class='area_span'>"+huibaotrendlist[huibaotrendedit].heng4+"</span><span class='area_span6'>"+huibaotrendlist[huibaotrendedit].zong4+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='eidthuibaotrend'>编辑</a></span><span class='area_span5'><a href='#' class='deletehuibaotrend'>删除</a></span></div></div>").show();
+			$("#huibaotrendlist").children().eq(huibaotrendedit).html("<div class='area_left3'><span style='display:none;'>"+(huibaotrendedit+1)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+huibaotrendlist[huibaotrendedit].project_type4+"</span><span class='area_span'>"+huibaotrendlist[huibaotrendedit].view_shunxu4+"</span><span class='area_span'>"+huibaotrendlist[huibaotrendedit].heng4+"</span><span class='area_span6'>"+huibaotrendlist[huibaotrendedit].zong4+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edithuibaotrend'>编辑</a></span><span class='area_span5'><a href='#' class='deletehuibaotrend'>删除</a></span></div>").show();
 
 			huibaotrendedit=100;
 			//$("#peitaolist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++peitaocount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
@@ -1608,10 +1643,10 @@ var DataDeal = {
 
 function savepro(){
 	var area_num=$("#area_num").val();
-	if(isNaN($('#area_postcode').val())){
+	/* if(isNaN($('#area_postcode').val())){
 		alert("邮政编码-请输入数字！");
 		return false;
-	}
+	} */
 	var area;
 	area=DataDeal.formToJson(data= decodeURIComponent($("#area").serialize(),true));
 	area=eval("("+area+")");

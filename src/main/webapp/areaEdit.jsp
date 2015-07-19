@@ -16,6 +16,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="/js/jquery.min.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/chosen.css">
+<link rel="stylesheet" type="text/css" href="/bootstrap-datepicker-1.4.0-dist/css/bootstrap-datepicker.min.css" />
+  <script src="/bootstrap-datepicker-1.4.0-dist/js/bootstrap-datepicker.min.js"></script>
+<script src="/bootstrap-datepicker-1.4.0-dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
 <style type="text/css">
 body{
 	/* background-color:rgb(232, 233, 234)!important; */
@@ -91,7 +94,7 @@ body{
 <span class="area_span">数据来源</span><span><input type="text" id="family_datasource" name="family_datasource" class="area_input" value="${Family.family_datasource}"></span>
 </div>
 <div class="area_right">
-<span class="area_span">更新日期</span><span><input type="text" id="family_date" name="family_date" class="area_input" value="${Family.family_date}"></span>
+<span class="area_span">更新日期</span><span><input type="text" id="family_date" name="family_date" class="area_input"  value="${Family.family_date.toString().length()>10?Family.family_date.toString().substring(0,10):Family.family_date.toString()}"></span>
 </div>
 <div class="area_left">
 <span class="area_span">家庭1</span><span><input type="text" id="family_one" name="family_one" class="area_input" value="${Family.family_one}"></span>
@@ -186,7 +189,8 @@ body{
 <div class="area_left3"></div>
 <div class="area_right3"><span class="area_span5"><a href="#" class="addmiddleprice">添加</a></span></div>
 <div id="middlepricelist">
-<c:forEach items="${middlepricebackendlist}" var="middleprice" varStatus="status">
+ 
+ <c:forEach items="${middlepricebackendlist}" var="middleprice" varStatus="status">
 <div>
 	<div class='area_left3'>
 	<span style='display:none;'>${status.index + 1}</span>
@@ -200,7 +204,8 @@ body{
 	<span class='area_span5'><a href='#' class='deletemiddleprice'>删除</a></span>
 	</div>
 </div>
-</c:forEach>
+</c:forEach> 
+
 
 <!-- <div>
 <div class="area_left3">
@@ -231,9 +236,9 @@ body{
 </select> -->
 <select data-placeholder="请选择..." class="chosen-select" id="project_type2" name="project_type2" style="width:220px;" tabindex="2">
  	 <option value=""></option>
-  	 <option >公寓</option>
-     <option >别墅</option>
-     <option>联排别墅</option>
+  	 <option value="公寓">公寓</option>
+     <option value="别墅">别墅</option>
+     <option value="联排别墅">联排别墅</option>
  </select>
 </span>
 </div>
@@ -754,6 +759,38 @@ body{
 </div>
 
 <script type="text/javascript">
+$('#touzi_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#family_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#middle_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#middle_zoushi_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#zujin_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#zujin_huibao_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#update_time').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#people_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
 var newstitlelist1='${newsbokelist}';
 var newstitlelist2='${zhiyelist}';
 newstitlelist1=eval("("+newstitlelist1+")");
@@ -881,7 +918,7 @@ $(function(){
 			middlepricelist[middlepriceedit]=middlepriceedititem;
 			//alert($("#middlepricelist").children().eq(middlepriceedit));
 			/* $("#middlepricelist").children().eq(middlepriceedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(middlepriceedit+1)+"</span><span style='padding-right:10px;'>"+middlepricelist[middlepriceedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+middlepricelist[middlepriceedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+middlepricelist[middlepriceedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+middlepricelist[middlepriceedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
-			$("#middlepricelist").children().eq(middlepriceedit).html("<div><div class='area_left3'><span style='display:none;'>"+(middlepriceedit+1)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+middlepricelist[middlepriceedit].project_type+"</span><span class='area_span'>"+middlepricelist[middlepriceedit].buy_price+"</span><span class='area_span'>"+middlepricelist[middlepriceedit].zu_price+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='eidtmiddleprice'>编辑</a></span><span class='area_span5'><a href='#' class='deletemiddleprice'>删除</a></span></div></div>").show();
+			$("#middlepricelist").children().eq(middlepriceedit).html("<div class='area_left3'><span style='display:none;'>"+(middlepriceedit+1)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+middlepricelist[middlepriceedit].project_type+"</span><span class='area_span'>"+middlepricelist[middlepriceedit].buy_price+"</span><span class='area_span'>"+middlepricelist[middlepriceedit].zu_price+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editmiddleprice'>编辑</a></span><span class='area_span5'><a href='#' class='deletemiddleprice'>删除</a></span></div>").show();
 
 			middlepriceedit=100;
 			//$("#peitaolist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++peitaocount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
@@ -890,13 +927,14 @@ $(function(){
 			}
 		});
 	$("#middlepricelist").on("click",".deletemiddleprice",function(){
-		middlepricelist.splice($(this).parent().parent().children().eq(0).eq(0).text()-1,1);
+		middlepricelist.splice($(this).parent().parent().prevAll().length,1);
 		$(this).parent().parent().parent().empty();
 		middlepricecount--;
 		});
 	$("#middlepricelist").on("click",".editmiddleprice",function(){
 		
-		var index=$(this).parent().parent().parent().children().eq(0).children().eq(0).text()-1;
+		/* var index=$(this).parent().parent().parent().children().eq(0).children().eq(0).text()-1; */
+		var index=$(this).parent().parent().parent().prevAll().length;
 		//alert(index);
 		middlepriceedititem=middlepricelist[index];
 		$(this).parent().parent().parent().hide();
@@ -987,7 +1025,7 @@ $(function(){
 			middletrendlist[middletrendedit]=middletrendedititem;
 			//alert($("#middletrendlist").children().eq(middletrendedit));
 			/* $("#middletrendlist").children().eq(middletrendedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(middletrendedit+1)+"</span><span style='padding-right:10px;'>"+middletrendlist[middletrendedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+middletrendlist[middletrendedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+middletrendlist[middletrendedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+middletrendlist[middletrendedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
-			$("#middletrendlist").children().eq(middletrendedit).html("<div><div class='area_left3'><span style='display:none;'>"+(middletrendedit+1)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+middletrendlist[middletrendedit].project_type2+"</span><span class='area_span'>"+middletrendlist[middletrendedit].view_shunxu2+"</span><span class='area_span'>"+middletrendlist[middletrendedit].heng2+"</span><span class='area_span6'>"+middletrendlist[middletrendedit].zong2+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='eidtmiddletrend'>编辑</a></span><span class='area_span5'><a href='#' class='deletemiddletrend'>删除</a></span></div></div>").show();
+			$("#middletrendlist").children().eq(middletrendedit).html("<div class='area_left3'><span style='display:none;'>"+(middletrendedit+1)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+middletrendlist[middletrendedit].project_type2+"</span><span class='area_span'>"+middletrendlist[middletrendedit].view_shunxu2+"</span><span class='area_span'>"+middletrendlist[middletrendedit].heng2+"</span><span class='area_span6'>"+middletrendlist[middletrendedit].zong2+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editmiddletrend'>编辑</a></span><span class='area_span5'><a href='#' class='deletemiddletrend'>删除</a></span></div>").show();
 
 			middletrendedit=100;
 			//$("#peitaolist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++peitaocount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
@@ -1010,8 +1048,16 @@ $(function(){
 		//$("#projectimage").val(edititem.name+"");
 		//alert(index+"index");
 		middletrendedit=index;
-		$("#project_type2").val(middletrendedititem.project_type2||middletrendedititem.project_type);
-		$("#view_shunxu2").val(middletrendedititem.view_shunxu2||middletrendedititem.view_shunxu);
+		/* $("#project_type2").val(middletrendedititem.project_type2||middletrendedititem.project_type);
+		$("#view_shunxu2").val(middletrendedititem.view_shunxu2||middletrendedititem.view_shunxu); */
+		var selectCount = document.getElementById("project_type2");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==middletrendedititem.project_type2){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#project_type2').trigger('chosen:updated');
+		$("#view_shunxu2").val(middletrendedititem.view_shunxu2);
 		$("#heng2").val(middletrendedititem.heng2||middletrendedititem.heng);
 		$("#zong2").val(middletrendedititem.zong2||middletrendedititem.zong);
 		$("#middle_zoushi_datasource").val(middletrendedititem.middle_zoushi_datasource);
@@ -1083,7 +1129,7 @@ $(function(){
 			zujintrendlist[zujintrendedit]=zujintrendedititem;
 			//alert($("#zujintrendlist").children().eq(zujintrendedit));
 			/* $("#zujintrendlist").children().eq(zujintrendedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(zujintrendedit+1)+"</span><span style='padding-right:10px;'>"+zujintrendlist[zujintrendedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+zujintrendlist[zujintrendedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+zujintrendlist[zujintrendedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+zujintrendlist[zujintrendedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
-			$("#zujintrendlist").children().eq(zujintrendedit).html("<div><div class='area_left3'><span style='display:none;'>"+(zujintrendedit+1)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+zujintrendlist[zujintrendedit].project_type3+"</span><span class='area_span'>"+zujintrendlist[zujintrendedit].view_shunxu3+"</span><span class='area_span'>"+zujintrendlist[zujintrendedit].heng3+"</span><span class='area_span6'>"+zujintrendlist[zujintrendedit].zong3+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='eidtzujintrend'>编辑</a></span><span class='area_span5'><a href='#' class='deletezujintrend'>删除</a></span></div></div>").show();
+			$("#zujintrendlist").children().eq(zujintrendedit).html("<div class='area_left3'><span style='display:none;'>"+(zujintrendedit+1)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+zujintrendlist[zujintrendedit].project_type3+"</span><span class='area_span'>"+zujintrendlist[zujintrendedit].view_shunxu3+"</span><span class='area_span'>"+zujintrendlist[zujintrendedit].heng3+"</span><span class='area_span6'>"+zujintrendlist[zujintrendedit].zong3+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editzujintrend'>编辑</a></span><span class='area_span5'><a href='#' class='deletezujintrend'>删除</a></span></div>").show();
 
 			zujintrendedit=100;
 			//$("#peitaolist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++peitaocount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
@@ -1180,7 +1226,7 @@ $(function(){
 			huibaotrendlist[huibaotrendedit]=huibaotrendedititem;
 			//alert($("#huibaotrendlist").children().eq(huibaotrendedit));
 			/* $("#huibaotrendlist").children().eq(huibaotrendedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(huibaotrendedit+1)+"</span><span style='padding-right:10px;'>"+huibaotrendlist[huibaotrendedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+huibaotrendlist[huibaotrendedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+huibaotrendlist[huibaotrendedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+huibaotrendlist[huibaotrendedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
-			$("#huibaotrendlist").children().eq(huibaotrendedit).html("<div><div class='area_left3'><span style='display:none;'>"+(huibaotrendedit+1)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+huibaotrendlist[huibaotrendedit].project_type4+"</span><span class='area_span'>"+huibaotrendlist[huibaotrendedit].view_shunxu4+"</span><span class='area_span'>"+huibaotrendlist[huibaotrendedit].heng4+"</span><span class='area_span6'>"+huibaotrendlist[huibaotrendedit].zong4+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='eidthuibaotrend'>编辑</a></span><span class='area_span5'><a href='#' class='deletehuibaotrend'>删除</a></span></div></div>").show();
+			$("#huibaotrendlist").children().eq(huibaotrendedit).html("<div class='area_left3'><span style='display:none;'>"+(huibaotrendedit+1)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+huibaotrendlist[huibaotrendedit].project_type4+"</span><span class='area_span'>"+huibaotrendlist[huibaotrendedit].view_shunxu4+"</span><span class='area_span'>"+huibaotrendlist[huibaotrendedit].heng4+"</span><span class='area_span6'>"+huibaotrendlist[huibaotrendedit].zong4+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edithuibaotrend'>编辑</a></span><span class='area_span5'><a href='#' class='deletehuibaotrend'>删除</a></span></div>").show();
 
 			huibaotrendedit=100;
 			//$("#peitaolist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++peitaocount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
