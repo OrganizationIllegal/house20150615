@@ -95,8 +95,8 @@ body{
 <select data-placeholder="请选择..." class="chosen-select" id="project_type" name="project_type" style="width:220px;" tabindex="4">
  	 <option value=""></option>
   	 <option value="公寓">公寓</option>
-     <option value="別墅">别墅</option>
-     <option value="聯排別墅">联排别墅</option>
+     <option value="别墅">别墅</option>
+     <option value="联排别墅">联排别墅</option>
  </select>
 </span>
 </div>
@@ -619,7 +619,7 @@ $(function(){
 		});
 	$("#peitaolist").on("click",".editpeitao",function(){
 		
-		var index=$(this).parent().parent().children().eq(0).text()-1;
+		var index=$(this).parent().parent().prevAll().length;
 		//alert(index);
 		edititem=peitaolist[index];
 		$(this).parent().parent().hide();

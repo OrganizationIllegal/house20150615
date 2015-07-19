@@ -15,6 +15,8 @@ public class SchoolInfo {
 	private int not_en_stu_bili;
 	private String school_image;
 	private String school_desc;
+	private String nation;
+	private String city;
 	public int getId() {
 		return id;
 	}
@@ -86,6 +88,18 @@ public class SchoolInfo {
 	}
 	public void setSchool_desc(String school_desc) {
 		this.school_desc = school_desc;
+	}
+	public String getNation() {
+		return nation;
+	}
+	public void setNation(String nation) {
+		this.nation = nation;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
 	}
 	
 	

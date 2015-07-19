@@ -16,6 +16,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="/js/jquery.min.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/chosen.css">
+<link rel="stylesheet" type="text/css" href="/bootstrap-datepicker-1.4.0-dist/css/bootstrap-datepicker.min.css" />
+  <script src="/bootstrap-datepicker-1.4.0-dist/js/bootstrap-datepicker.min.js"></script>
+<script src="/bootstrap-datepicker-1.4.0-dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
 <style type="text/css">
 body{
 	/* background-color:rgb(232, 233, 234)!important; */
@@ -91,7 +94,7 @@ body{
 <span class="area_span">数据来源</span><span><input type="text" id="family_datasource" name="family_datasource" class="area_input" value="${Family.family_datasource}"></span>
 </div>
 <div class="area_right">
-<span class="area_span">更新日期</span><span><input type="text" id="family_date" name="family_date" class="area_input" value="${Family.family_date}"></span>
+<span class="area_span">更新日期</span><span><input type="text" id="family_date" name="family_date" class="area_input"  value="${Family.family_date.toString().length()>10?Family.family_date.toString().substring(0,10):Family.family_date.toString()}"></span>
 </div>
 <div class="area_left">
 <span class="area_span">家庭1</span><span><input type="text" id="family_one" name="family_one" class="area_input" value="${Family.family_one}"></span>
@@ -186,7 +189,8 @@ body{
 <div class="area_left3"></div>
 <div class="area_right3"><span class="area_span5"><a href="#" class="addmiddleprice">添加</a></span></div>
 <div id="middlepricelist">
-<c:forEach items="${middlepricebackendlist}" var="middleprice" varStatus="status">
+ 
+ <c:forEach items="${middlepricebackendlist}" var="middleprice" varStatus="status">
 <div>
 	<div class='area_left3'>
 	<span style='display:none;'>${status.index + 1}</span>
@@ -200,7 +204,8 @@ body{
 	<span class='area_span5'><a href='#' class='deletemiddleprice'>删除</a></span>
 	</div>
 </div>
-</c:forEach>
+</c:forEach> 
+
 
 <!-- <div>
 <div class="area_left3">
@@ -231,9 +236,9 @@ body{
 </select> -->
 <select data-placeholder="请选择..." class="chosen-select" id="project_type2" name="project_type2" style="width:220px;" tabindex="2">
  	 <option value=""></option>
-  	 <option >公寓</option>
-     <option >别墅</option>
-     <option>联排别墅</option>
+  	 <option value="公寓">公寓</option>
+     <option value="别墅">别墅</option>
+     <option value="联排别墅">联排别墅</option>
  </select>
 </span>
 </div>
@@ -754,6 +759,38 @@ body{
 </div>
 
 <script type="text/javascript">
+$('#touzi_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#family_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#middle_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#middle_zoushi_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#zujin_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#zujin_huibao_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#update_time').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#people_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
 var newstitlelist1='${newsbokelist}';
 var newstitlelist2='${zhiyelist}';
 newstitlelist1=eval("("+newstitlelist1+")");
@@ -890,13 +927,14 @@ $(function(){
 			}
 		});
 	$("#middlepricelist").on("click",".deletemiddleprice",function(){
-		middlepricelist.splice($(this).parent().parent().children().eq(0).eq(0).text()-1,1);
+		middlepricelist.splice($(this).parent().parent().prevAll().length,1);
 		$(this).parent().parent().parent().empty();
 		middlepricecount--;
 		});
 	$("#middlepricelist").on("click",".editmiddleprice",function(){
 		
-		var index=$(this).parent().parent().parent().children().eq(0).children().eq(0).text()-1;
+		/* var index=$(this).parent().parent().parent().children().eq(0).children().eq(0).text()-1; */
+		var index=$(this).parent().parent().parent().prevAll().length;
 		//alert(index);
 		middlepriceedititem=middlepricelist[index];
 		$(this).parent().parent().parent().hide();
@@ -1010,8 +1048,16 @@ $(function(){
 		//$("#projectimage").val(edititem.name+"");
 		//alert(index+"index");
 		middletrendedit=index;
-		$("#project_type2").val(middletrendedititem.project_type2||middletrendedititem.project_type);
-		$("#view_shunxu2").val(middletrendedititem.view_shunxu2||middletrendedititem.view_shunxu);
+		/* $("#project_type2").val(middletrendedititem.project_type2||middletrendedititem.project_type);
+		$("#view_shunxu2").val(middletrendedititem.view_shunxu2||middletrendedititem.view_shunxu); */
+		var selectCount = document.getElementById("project_type2");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==middletrendedititem.project_type2){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#project_type2').trigger('chosen:updated');
+		$("#view_shunxu2").val(middletrendedititem.view_shunxu2);
 		$("#heng2").val(middletrendedititem.heng2||middletrendedititem.heng);
 		$("#zong2").val(middletrendedititem.zong2||middletrendedititem.zong);
 		$("#middle_zoushi_datasource").val(middletrendedititem.middle_zoushi_datasource);

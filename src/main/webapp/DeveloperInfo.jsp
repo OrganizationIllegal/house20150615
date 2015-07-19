@@ -33,6 +33,9 @@ body{
 <div class="area_right">
 <span class="area_span">开发商编号</span><span><input type="text" id="developer_num" name="developer_num" class="area_input" value="${developerInfo.developer_num}"></span>
 </div>
+<div class="area_left">
+<span class="area_span">开发商国家</span><span><input type="text" id="nation" name="nation" class="area_input" value="${developerInfo.nation}"></span>
+</div>
 <%-- <div class="area_right">
 <span class="area_span">开发商logo</span><span><input type="text" id="developer_logo" name="developer_logo" class="area_input" value="${developerInfo.developer_logo}"></span>
 </div> --%>
@@ -77,12 +80,16 @@ $(function(){
    function save(){
 	 var id=$("#id").val();
      var developer_name=$("#developer_name").val();
-     var developer_logo=$("#developer_logo").val();
+    // var developer_logo=$("#developer_logo").val();
      var developer_num=$("#developer_num").val();
      var developer_desc=$("#developer_desc").val();
+     var nation=$("#nation").val();
+     var filenames=$('#developer_logo').val().split("\\");
+	 var developer_logo=filenames[filenames.length-1];
+	 //alert(developer_logo)
      $.ajax({
 	 	   type: "GET",
-	 		data: {id:id, developer_name : developer_name,developer_logo:developer_logo,developer_num:developer_num,developer_desc:developer_desc},
+	 		data: {id:id, developer_name : developer_name,developer_logo:developer_logo,developer_num:developer_num,developer_desc:developer_desc,nation:nation},
 	 		async: false, 
 	 		dataType: "json",
 	 		url: "/EditDeveloperInfo",

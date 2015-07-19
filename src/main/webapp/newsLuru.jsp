@@ -14,10 +14,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="css/areaLuru.css" />
 <link rel="stylesheet" type="text/css" href="/bootstrap-datepicker-1.4.0-dist/css/bootstrap-datepicker.min.css" />
 <script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script>
-<!-- <script src="/js/jquery.min.js"></script> -->
-<!-- <script src="/bootstrap/js/bootstrap.min.js"></script> -->
+<!-- <script src="/js/jquery.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script> -->
 <script src="/bootstrap-datepicker-1.4.0-dist/js/bootstrap-datepicker.min.js"></script>
 <script src="/bootstrap-datepicker-1.4.0-dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+<link rel="stylesheet" href="css/chosen.css">
 <style type="text/css">
 body{
 	/* background-color:rgb(232, 233, 234)!important; */
@@ -41,8 +42,24 @@ body{
 <div class="area_right">
 <span class="area_span">发布时间</span><span><input type="text" id="news_time" name="news_time" class="area_input"></span>
 </div>
-<div class="area_left">
-<span class="area_span">分类</span><span><input type="text" id="news_fenlei" name="news_fenlei" class="area_input"></span>
+<div class="area_left c-fix">
+<span class="area_span">分类</span>
+<!-- <span><input type="text" id="news_fenlei" name="news_fenlei" class="area_input"></span> -->
+<span>
+<select data-placeholder="请选择..." class="chosen-select" id="news_fenlei" name="news_fenlei" style="width:220px;" tabindex="4">
+ <option value=""></option>
+  <c:forEach items="${fenleiList}" var="item">
+                    	<option value="${item}">${item}</option>
+                    </c:forEach>
+                    
+  <!-- <option value ="房屋贷款">房屋贷款</option>
+  <option value ="市场现状">市场现状</option>
+  <option value ="时事新闻">时事新闻</option>
+  <option value ="投资">投资</option>
+  <option value ="攻略">攻略</option>
+  <option value ="贷款">贷款</option> -->
+</select>
+</span>
 </div>
 <div class="area_right">
 <span class="area_span">摘要</span><span><input type="text" id="news_abstract" name="news_abstract" class="area_input"></span>
@@ -130,5 +147,19 @@ $(".uploadimg").click(function(){
 		return false;
 	}
 </script>
+<script src="/js/chosen.jquery.js" type="text/javascript"></script>
+ <script src="/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+ <script type="text/javascript">
+    var config = {
+      '.chosen-select'           : {},
+      '.chosen-select-deselect'  : {allow_single_deselect:true},
+      '.chosen-select-no-single' : {disable_search_threshold:10},
+      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+  </script>
 </body>
 </html>

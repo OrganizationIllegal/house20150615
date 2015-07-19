@@ -23,6 +23,7 @@ import com.kate.app.dao.AjaxDao;
 import com.kate.app.dao.ImageDao;
 import com.kate.app.dao.ProjectInputDao;
 import com.kate.app.dao.SchoolNearDao;
+import com.kate.app.dao.ZhiYeDao;
 import com.kate.app.model.Broker;
 import com.kate.app.model.BrokerType;
 import com.kate.app.model.DeveloperInfo;
@@ -49,6 +50,8 @@ public class ProjectInfoController {
 	private AjaxDao ajaxDao;
 	@Autowired
 	private SchoolNearDao schoolNearDao;
+	@Autowired
+	private ZhiYeDao zhiYeDao;
 	
 	private List <ProjectPeiTao> projectPeiTaoListbefore;
 	private List<FujinPeiTao> fujinPeitaoListbefore;
@@ -641,7 +644,8 @@ public class ProjectInfoController {
 		String school_name=req.getParameter("school_name");
 		String school_ranking=req.getParameter("school_rank");
 		String  school_type=req.getParameter("school_type");
-		
+		 String nation=req.getParameter("nation");
+		 String city=req.getParameter("city");
 		String school_total_str=req.getParameter("school_total");
 		int school_total = school_total_str == "" ? -1 :Integer.parseInt(school_total_str);
 		
@@ -657,7 +661,7 @@ public class ProjectInfoController {
 		
 		String school_image=req.getParameter("schoolimg");
 		String school_desc=req.getParameter("school_intro");
-	    flag=projectInputDao.InsertSchoolInfo(school_name, school_ranking, school_type, school_total, teacher_total, school_position, gps, net_info, not_en_stu_bili, school_image, school_desc);
+	    flag=projectInputDao.InsertSchoolInfo(school_name, school_ranking, school_type, school_total, teacher_total, school_position, gps, net_info, not_en_stu_bili, school_image, school_desc, nation, city);
 		
 	    if(flag==false){
 	    	json.put("flag", "0");
@@ -680,7 +684,8 @@ public class ProjectInfoController {
 		String school_name=req.getParameter("school_name");
 		String school_ranking=req.getParameter("school_rank");
 		String  school_type=req.getParameter("school_type");
-		
+		String nation=req.getParameter("nation");
+		String  city=req.getParameter("city");
 		String school_total_str=req.getParameter("school_total");
 		int school_total = school_total_str == "" ? -1 :Integer.parseInt(school_total_str);
 		
@@ -696,7 +701,7 @@ public class ProjectInfoController {
 		
 		String school_image=req.getParameter("schoolimg");
 		String school_desc=req.getParameter("school_intro");
-	    flag=projectInputDao.UpdateSchoolInfo(id, school_name, school_ranking, school_type, school_total, teacher_total, school_position, gps, net_info, not_en_stu_bili, school_image, school_desc);
+	    flag=projectInputDao.UpdateSchoolInfo(id, school_name, school_ranking, school_type, school_total, teacher_total, school_position, gps, net_info, not_en_stu_bili, school_image, school_desc,nation,city);
 	    if(flag==false){
 	    	json.put("flag", "0");
 	    }
@@ -715,10 +720,10 @@ public class ProjectInfoController {
 		String developer_name=req.getParameter("developer_name");
 		String developer_logo=req.getParameter("developer_logo");
 		String  developer_desc=req.getParameter("developer_desc");
-		
+		String  nation=req.getParameter("nation");
 		String developer_num=req.getParameter("developer_num");
 		
-	   boolean flagbol=projectInputDao.InsertDeveloperInfo(developer_name, developer_logo, developer_desc, developer_num);
+	   boolean flagbol=projectInputDao.InsertDeveloperInfo(developer_name, developer_logo, developer_desc, developer_num, nation);
 	    if(flagbol==false){
 	    	json.put("flag", "0");
 		}
@@ -892,10 +897,10 @@ public class ProjectInfoController {
 		String developer_name=req.getParameter("developer_name");
 		String developer_logo=req.getParameter("developer_logo");
 		String  developer_desc=req.getParameter("developer_desc");
-		
+		String  nation=req.getParameter("nation");
 		String developer_num=req.getParameter("developer_num");
 		
-	   boolean flagbol=projectInputDao.UpdateDeveloperInfo(id, developer_name, developer_logo, developer_desc, developer_num);
+	   boolean flagbol=projectInputDao.UpdateDeveloperInfo(id, developer_name, developer_logo, developer_desc, developer_num, nation);
 	    if(flagbol==false){
 	    	json.put("flag", "0");
 		}
@@ -1072,6 +1077,8 @@ public class ProjectInfoController {
 					int id =Integer.parseInt(req.getParameter("id"));
 					//鏍规嵁椤圭洰id鍙栭」鐩俊鎭�
 					NewsBoke newsBoke=projectInputDao.selectNewsBokeInfo(id);
+					List<String> fenleiList = zhiYeDao.newsBokeFenlei();
+					req.setAttribute("fenleiList",fenleiList);
 					req.setAttribute("newsBoke", newsBoke);
 					return "/newsInfoEdit.jsp";
 				}

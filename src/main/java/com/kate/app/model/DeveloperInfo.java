@@ -6,6 +6,7 @@ public class DeveloperInfo {
 	private String developer_logo;
 	private String developer_desc;
 	private String developer_num;
+	private String nation;
 	
 	public String getDeveloper_num() {
 		return developer_num;
@@ -36,5 +37,11 @@ public class DeveloperInfo {
 	}
 	public void setDeveloper_desc(String developer_desc) {
 		this.developer_desc = developer_desc;
+	}
+	public String getNation() {
+		return nation;
+	}
+	public void setNation(String nation) {
+		this.nation = nation;
 	}
 }
