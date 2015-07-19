@@ -309,7 +309,7 @@ function popInfo(){
 				</div>
 				<div class="f-l p_panel_1">
 					<a class="c-fix f-l f-yahei s-14 p_panel_title2 fw">开发商信息：${HouseProject.developer_id_name}</a>
-					<img class="c-fix f-l p_panel_logo" src="<%=application.getInitParameter("imagedir")%>/${DeveloperInfo.developer_logo }"></img>
+					<img class="c-fix f-l p_panel_logo" src="<%=application.getInitParameter("imagedir")%>/${DeveloperInfo.developer_logo }" style="width:110px;height:50px;"></img>
 					<a class="c-fix f-l p_panel_intro f-yahei s-14">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${DeveloperInfo.developer_desc}</a>
 				</div>
 				<div class="f-l p_panel_2" style="height:390px">

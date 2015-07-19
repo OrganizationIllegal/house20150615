@@ -657,6 +657,8 @@ public class ProjectInputDao extends BaseDao {
 					schoolInfo.setNot_en_stu_bili(rs.getInt("not_en_stu_bili"));
 					schoolInfo.setSchool_image(rs.getString("school_image"));
 					schoolInfo.setSchool_desc(rs.getString("school_desc"));
+					schoolInfo.setNation(rs.getString("nation"));
+					schoolInfo.setCity(rs.getString("city"));
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -678,6 +680,7 @@ public class ProjectInputDao extends BaseDao {
 							developerInfo.setDeveloper_name(rs.getString("developer_name"));
 							developerInfo.setDeveloper_logo(rs.getString("developer_logo"));
 							developerInfo.setDeveloper_desc(rs.getString("developer_desc"));
+							developerInfo.setNation(rs.getString("nation"));
 						}
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
@@ -824,10 +827,10 @@ public class ProjectInputDao extends BaseDao {
 		
 	
 	//瀛︽牎淇℃伅Add
-	public boolean InsertSchoolInfo(String school_name,String school_ranking,String school_type,int school_total,int teacher_total,String school_position,String gps,String net_info,int not_en_stu_bili,String school_image,String school_desc){
+	public boolean InsertSchoolInfo(String school_name,String school_ranking,String school_type,int school_total,int teacher_total,String school_position,String gps,String net_info,int not_en_stu_bili,String school_image,String school_desc,String nation,String city){
 		boolean flag=true;
 		try {
-			String sql = "insert into school_info(school_name,school_ranking,school_type,student_total,teacher_total, school_position,gps,net_info,not_en_stu_bili,school_image,school_desc) values(?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into school_info(school_name,school_ranking,school_type,student_total,teacher_total, school_position,gps,net_info,not_en_stu_bili,school_image,school_desc,nation,city) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, school_name);
 			pstmt.setString(2, school_ranking);
@@ -840,6 +843,8 @@ public class ProjectInputDao extends BaseDao {
 			pstmt.setInt(9, not_en_stu_bili);
 			pstmt.setString(10, school_image);
 			pstmt.setString(11, school_desc);
+			pstmt.setString(12, nation);
+			pstmt.setString(13, city);
 			int exeResult = pstmt.executeUpdate();
 			if(exeResult == 0){
 				flag = false;
@@ -852,10 +857,10 @@ public class ProjectInputDao extends BaseDao {
 		
 	}
 	//瀛︽牎淇℃伅Update
-		public boolean UpdateSchoolInfo(int id,String school_name,String school_ranking,String school_type,int school_total,int teacher_total,String school_position,String gps,String net_info,int not_en_stu_bili,String school_image,String school_desc){
+		public boolean UpdateSchoolInfo(int id,String school_name,String school_ranking,String school_type,int school_total,int teacher_total,String school_position,String gps,String net_info,int not_en_stu_bili,String school_image,String school_desc,String nation,String city){
 			boolean flag=true;
 			try {
-				String sql = "update school_info set school_name=?,school_ranking=?,school_type=?,student_total=?,teacher_total=?, school_position=?,gps=?,net_info=?,not_en_stu_bili=?,school_image=?,school_desc=? where id=?";
+				String sql = "update school_info set school_name=?,school_ranking=?,school_type=?,student_total=?,teacher_total=?, school_position=?,gps=?,net_info=?,not_en_stu_bili=?,school_image=?,school_desc=?,nation=?,city=? where id=?";
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, school_name);
 				pstmt.setString(2, school_ranking);
@@ -868,7 +873,9 @@ public class ProjectInputDao extends BaseDao {
 				pstmt.setInt(9, not_en_stu_bili);
 				pstmt.setString(10, school_image);
 				pstmt.setString(11, school_desc);
-				pstmt.setInt(12, id);
+				pstmt.setString(12, nation);
+				pstmt.setString(13, city);
+				pstmt.setInt(14, id);
 				int exeResult = pstmt.executeUpdate();
 				if(exeResult == 0){
 					flag = false;
@@ -881,15 +888,16 @@ public class ProjectInputDao extends BaseDao {
 			
 		}
 	//寮�鍙戝晢淇℃伅Add
-		public boolean InsertDeveloperInfo(String developer_name,String developer_logo,String developer_desc,String developer_num){
+		public boolean InsertDeveloperInfo(String developer_name,String developer_logo,String developer_desc,String developer_num,String nation){
 			boolean flag=true;
 			try {
-				String sql = "insert into developer_info(developer_name,developer_logo,developer_desc,developer_num) values(?,?,?,?)";
+				String sql = "insert into developer_info(developer_name,developer_logo,developer_desc,developer_num,nation) values(?,?,?,?,?)";
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, developer_name);
 				pstmt.setString(2, developer_logo);
 				pstmt.setString(3, developer_desc);
 				pstmt.setString(4, developer_num);
+				pstmt.setString(5, nation);
 				int exeResult = pstmt.executeUpdate();
 				if(exeResult == 0){
 					flag = false;
@@ -901,16 +909,17 @@ public class ProjectInputDao extends BaseDao {
 			return flag;
 		}
 		//寮�鍙戝晢淇℃伅update
-				public boolean UpdateDeveloperInfo(int id,String developer_name,String developer_logo,String developer_desc,String developer_num){
+				public boolean UpdateDeveloperInfo(int id,String developer_name,String developer_logo,String developer_desc,String developer_num,String nation){
 					boolean flag=true;
 					try {
-						String sql = "update  developer_info  set developer_name=?,developer_logo=?,developer_desc=?,developer_num=? where id=?";
+						String sql = "update  developer_info  set developer_name=?,developer_logo=?,developer_desc=?,developer_num=?,nation=? where id=?";
 						PreparedStatement pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, developer_name);
 						pstmt.setString(2, developer_logo);
 						pstmt.setString(3, developer_desc);
 						pstmt.setString(4, developer_num);
-						pstmt.setInt(5, id);
+						pstmt.setString(5, nation);
+						pstmt.setInt(6, id);
 						int exeResult = pstmt.executeUpdate();
 						if(exeResult == 0){
 							flag = false;
@@ -993,7 +1002,9 @@ public class ProjectInputDao extends BaseDao {
 			}
 		}
 		//缁忕邯浜簎pdate
-				public int UpdateBroker(int id,Broker broker,List<ServiceArea> serviceAreaList,List<ServiceArea> serviceAreaList2,List<BrokerType> brokerTypeList,List<BrokerType> brokerTypeList2){
+				public int UpdateBroker(int id,Broker broker,List<ServiceArea> serviceAreaList,List<ServiceArea> serviceAreaList2,List<BrokerType> brokerTypeList,List<BrokerType> brokerTypeList2
+						,List<ServiceArea> serviceArealistdelete,
+				List<BrokerType> brokerTypelistdelete){
 					String broker_num=broker.getBroker_num();
 					String broker_name=broker.getBroker_name();
 					String broker_language=broker.getBroker_language();
@@ -1024,15 +1035,16 @@ public class ProjectInputDao extends BaseDao {
 						int exeResult = pstmt.executeUpdate();
 						
 						//鏈嶅姟鍖哄煙鏇存柊
-						String sql2 = "update  broker_service_area set area_code=?,view_shunxu=? where broker_num=? ";
+						String sql2 = "update  broker_service_area set area_code=?,view_shunxu=? where id=? ";
 				        pstmt = con.prepareStatement(sql2);
 				        for(int i=0;i<serviceAreaList.size();i++){
 				        	ServiceArea serviceArea=serviceAreaList.get(i);
 				        	String area_code=serviceArea.getArea_code();
+				        	int areaid=serviceArea.getId();
 				        	int  view_shunxu=serviceArea.getView_shunxu(); 
 				            pstmt.setString(1, area_code);
 				            pstmt.setInt(2, view_shunxu);
-				            pstmt.setString(3, broker_num);
+				            pstmt.setInt(3, areaid);
 				            pstmt.addBatch();
 				        }
 						int[] result2list=pstmt.executeBatch();
@@ -1050,15 +1062,16 @@ public class ProjectInputDao extends BaseDao {
 				        }
 						int[] result22list=pstmt.executeBatch();
 						//鎿呴暱绫诲瀷鏇存柊
-						String sql3 = "update broker_interested_type set interested_num=?,view_shunxu=? where broker_num=?";
+						String sql3 = "update broker_interested_type set interested_num=?,view_shunxu=? where id=?";
 				        pstmt = con.prepareStatement(sql3);
 				        for(int i=0;i<brokerTypeList.size();i++){
 				        	BrokerType brokertype=brokerTypeList.get(i);
 				        	String interested_num=brokertype.getInterested_num();
 				        	int  view_shunxu=brokertype.getView_shunxu2();
+				        	int  interid=brokertype.getId();
 				            pstmt.setString(1, interested_num);
 				            pstmt.setInt(2, view_shunxu);
-				            pstmt.setString(3, broker_num);
+				            pstmt.setInt(3, interid);
 				            pstmt.addBatch();
 				        }
 						int[] result3list=pstmt.executeBatch();
@@ -1075,6 +1088,31 @@ public class ProjectInputDao extends BaseDao {
 				            pstmt.addBatch();
 				        }
 						int[] result33list=pstmt.executeBatch();
+						
+						String sqldeleteservice = "delete from broker_service_area where id= ?";
+						pstmt = con.prepareStatement(sqldeleteservice);
+						for(int i=0;i<serviceArealistdelete.size();i++){
+							pstmt.setInt(1, serviceArealistdelete.get(i).getId());
+							pstmt.addBatch();
+						}
+						int[] resultservicedelete=pstmt.executeBatch();
+						System.out.println("resultservicedelete.length:"+resultservicedelete.length);
+						for(int i=0;i<resultservicedelete.length;i++){
+							System.out.println("resultservicedelete"+i+":"+resultservicedelete[i]);
+						}
+						
+						String sqldeleteinterest = "delete from broker_interested_type where id= ?";
+						pstmt = con.prepareStatement(sqldeleteinterest);
+						for(int i=0;i<brokerTypelistdelete.size();i++){
+							pstmt.setInt(1, brokerTypelistdelete.get(i).getId());
+							pstmt.addBatch();
+						}
+						int[] resultinterestdelete=pstmt.executeBatch();
+						System.out.println("resultinterestdelete.length:"+resultinterestdelete.length);
+						for(int i=0;i<resultinterestdelete.length;i++){
+							System.out.println("resultinterestdelete"+i+":"+resultinterestdelete[i]);
+						}
+						
 						//鎻愪氦浜嬬墿
 						con.commit();
 						//鎭㈠JDBC浜嬪姟
@@ -1785,21 +1823,21 @@ public class ProjectInputDao extends BaseDao {
 				//,,,,,
 				//delete from project_desc_image
 				String sqldeleteimage = "delete from project_desc_image where id= ?";
+				pstmt = con.prepareStatement(sqldeleteimage);
 				for(int i=0;i<imagelistdelete.size();i++){
-					pstmt = con.prepareStatement(sqldeleteimage);
 					pstmt.setInt(1, imagelistdelete.get(i).getId());
 					pstmt.addBatch();
 				}
 				int[] resultimagedelete=pstmt.executeBatch();
-				/*System.out.println("resultimagedelete.length:"+resultimagedelete.length);
-				for(int i=0;i<result7list.length;i++){
+				System.out.println("resultimagedelete.length:"+resultimagedelete.length);
+				for(int i=0;i<resultimagedelete.length;i++){
 					System.out.println("resultimagedelete"+i+":"+resultimagedelete[i]);
 				}
-				*/
+				
 				//delete from project_desc_image
-				/*String sqldeletepeitaolist = "delete from project_peitao_image where id= ?";
+				String sqldeletepeitaolist = "delete from project_peitao_image where id= ?";
+				pstmt = con.prepareStatement(sqldeletepeitaolist);
 				for(int i=0;i<peitaolistdelete.size();i++){
-					pstmt = con.prepareStatement(sqldeletepeitaolist);
 					pstmt.setInt(1, peitaolistdelete.get(i).getId());
 					pstmt.addBatch();
 				}
@@ -1807,7 +1845,7 @@ public class ProjectInputDao extends BaseDao {
 				System.out.println("resultpeitaolistdelete.length:"+resultpeitaolistdelete.length);
 				for(int i=0;i<resultpeitaolistdelete.length;i++){
 					System.out.println("resultpeitaolistdelete"+i+":"+resultpeitaolistdelete[i]);
-				}*/
+				}
 				
 				//delete from project_desc_image
 				/*String sqldeleteprojectimage = "delete from project_desc_image where id= ?";
@@ -1818,14 +1856,14 @@ public class ProjectInputDao extends BaseDao {
 				}
 				int[] resultprojectimagedelete=pstmt.executeBatch();
 				System.out.println("resultprojectimagedelete.length:"+resultprojectimagedelete.length);
-				for(int i=0;i<result7list.length;i++){
+				for(int i=0;i<resultprojectimagedelete.length;i++){
 					System.out.println("resultprojectimagedelete"+i+":"+resultprojectimagedelete[i]);
 				}*/
 				
 				//delete from project_desc_image
-				/*String sqldeletefujinpeitao = "delete from near_peitao where id= ?";
+				String sqldeletefujinpeitao = "delete from near_peitao where id= ?";
+				pstmt = con.prepareStatement(sqldeletefujinpeitao);
 				for(int i=0;i<fujinpeitaoListdelete.size();i++){
-					pstmt = con.prepareStatement(sqldeletefujinpeitao);
 					pstmt.setInt(1, fujinpeitaoListdelete.get(i).getId());
 					pstmt.addBatch();
 				}
@@ -1833,12 +1871,12 @@ public class ProjectInputDao extends BaseDao {
 				System.out.println("resultfujinpeitaodelete.length:"+resultfujinpeitaodelete.length);
 				for(int i=0;i<resultfujinpeitaodelete.length;i++){
 					System.out.println("resultfujinpeitaodelete"+i+":"+resultfujinpeitaodelete[i]);
-				}*/
+				}
 				
 				//delete from project_desc_image
-				/*String sqldeletefujinschool = "delete from near_school where id= ?";
+				String sqldeletefujinschool = "delete from near_school where id= ?";
+				pstmt = con.prepareStatement(sqldeletefujinschool);
 				for(int i=0;i<fujinSchoolListdelete.size();i++){
-					pstmt = con.prepareStatement(sqldeletefujinschool);
 					pstmt.setInt(1, fujinSchoolListdelete.get(i).getId());
 					pstmt.addBatch();
 				}
@@ -1847,11 +1885,11 @@ public class ProjectInputDao extends BaseDao {
 				for(int i=0;i<resultfujinschooldelete.length;i++){
 					System.out.println("resultfujinschooldelete"+i+":"+resultfujinschooldelete[i]);
 				}
-				*/
+				
 				//delete from project_desc_image
-				/*String sqldeletehousecost = "delete from holding_finace where id= ?";
+				String sqldeletehousecost = "delete from holding_finace where id= ?";
+				pstmt = con.prepareStatement(sqldeletehousecost);
 				for(int i=0;i<holdCostListdelete.size();i++){
-					pstmt = con.prepareStatement(sqldeletehousecost);
 					pstmt.setInt(1, holdCostListdelete.get(i).getId());
 					pstmt.addBatch();
 				}
@@ -1859,12 +1897,12 @@ public class ProjectInputDao extends BaseDao {
 				System.out.println("resulthousecostdelete.length:"+resulthousecostdelete.length);
 				for(int i=0;i<resulthousecostdelete.length;i++){
 					System.out.println("resulthousecostdelete"+i+":"+resulthousecostdelete[i]);
-				}*/
+				}
 				
 				//delete from project_desc_image
-				/*String sqldeletehousetax = "delete from holding_finace where id= ?";
+				String sqldeletehousetax = "delete from house_tax where id= ?";
+				pstmt = con.prepareStatement(sqldeletehousetax);
 				for(int i=0;i<houseTaxListdelete.size();i++){
-					pstmt = con.prepareStatement(sqldeletehousetax);
 					pstmt.setInt(1, houseTaxListdelete.get(i).getId());
 					pstmt.addBatch();
 				}
@@ -1872,7 +1910,7 @@ public class ProjectInputDao extends BaseDao {
 				System.out.println("resulthousetaxdelete.length:"+resulthousetaxdelete.length);
 				for(int i=0;i<resulthousetaxdelete.length;i++){
 					System.out.println("resulthousetaxdelete"+i+":"+resulthousetaxdelete[i]);
-				}*/
+				}
 				//鎻愪氦浜嬬墿
 				con.commit();
 				//鎭㈠JDBC浜嬪姟

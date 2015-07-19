@@ -32,6 +32,9 @@ body{
 <div class="area_right">
 <span class="area_span">开发商编号</span><span><input type="text" id="developer_num" name="developer_num" class="area_input"></span>
 </div>
+<div class="area_left">
+<span class="area_span">开发商国家</span><span><input type="text" id="nation" name="nation" class="area_input"></span>
+</div>
 <!-- <div class="area_right">
 <span class="area_span">开发商logo</span><span><input type="text" id="developer_logo" name="developer_logo" class="area_input"></span>
 </div> -->
@@ -67,12 +70,14 @@ function addimage(){
   /*    var developer_logo=$("#developer_logo").val(); */
      var developer_num=$("#developer_num").val();
      var developer_desc=$("#developer_desc").val();
-     
+     var nation=$("#nation").val();
+    /*  var logo=$('#developer_logo').val();
+     alert(logo) */
      var filenames=$('#developer_logo').val().split("\\");
 	 var developer_logo=filenames[filenames.length-1];
      $.ajax({
 	 	   type: "GET",
-	 		data: { developer_name : developer_name,developer_logo:developer_logo,developer_num:developer_num,developer_desc:developer_desc},
+	 		data: { developer_name : developer_name,developer_logo:developer_logo,developer_num:developer_num,developer_desc:developer_desc,nation:nation},
 	 		async: false, 
 	 		dataType: "json",
 	 		url: "/AddDeveloperInfo",
