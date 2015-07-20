@@ -1,5 +1,6 @@
 package com.kate.app.dao;
 
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,11 +37,14 @@ import com.kate.app.model.ZhiYeZhiDao;
 public class ProjectInputDao extends BaseDao {
 	//寰楀埌寮�鍙戝晢鐨勭紪鍙峰強鍚嶇О
 	public List<String> getDeveloperCodeName(){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		List<String> codeAndNameSet=new ArrayList<String>();
 		try {
 			String sql ="select t.developer_num,t.developer_name from developer_info t order by developer_name asc ";
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
+			 pstmt = con.prepareStatement(sql);
+			  rs = pstmt.executeQuery();
 			while(rs.next()){
 				//String codeAndName_str=rs.getString("developer_num")+","+rs.getString("developer_name");
 				String codeAndName_str=rs.getString("developer_num");
@@ -49,16 +53,42 @@ public class ProjectInputDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return codeAndNameSet;
 	}
 	//寰楀埌鎵�鏈夊鏍＄殑鍚嶅瓧
 	public List<String> getAllSchoolName(){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		List<String> schoolList=new ArrayList<String>();
 		try {
 			String sql ="select school_name from school_info  order by school_name asc";
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
+			 pstmt = con.prepareStatement(sql);
+			  rs = pstmt.executeQuery();
 			while(rs.next()){
 				String school_name=rs.getString("school_name");
 				schoolList.add(school_name);
@@ -66,33 +96,85 @@ public class ProjectInputDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return schoolList;
 	}
 	//鏍规嵁椤圭洰id寰楀埌椤圭洰缂栧彿
 	public String getProNumById(int id){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		String pronum=null;
 		try {
 			String sql =" select t.project_num  from house_project t WHERE id ="+id;
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
+			 pstmt = con.prepareStatement(sql);
+			  rs = pstmt.executeQuery();
 			while(rs.next()){
 				pronum=rs.getString("project_num");
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return pronum;
 	}
 	//鏍规嵁椤圭洰椤圭洰缂栧彿鑾峰彇鎴峰瀷鍙婁俊鎭�
 	public List<HouseInfo1> getHouseInfoByProNum(String proNum){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		List<HouseInfo1> houseinfoList=new ArrayList<HouseInfo1>();
 		try {
 			String sql ="select * from house_info where project_num =?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,proNum );
-			ResultSet rs = pstmt.executeQuery();
+			  rs = pstmt.executeQuery();
 			while(rs.next()){
 				HouseInfo1 houseInfo1=new HouseInfo1();
 				houseInfo1.setId(Integer.parseInt(rs.getString("id")));
@@ -110,18 +192,43 @@ public class ProjectInputDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return houseinfoList;
 	}
 	
 	//鏍规嵁椤圭洰椤圭洰缂栧彿鑾峰彇椤圭洰閰嶅
 		public List<ProjectPeiTao> getProjectpeiTaoByProNum(String proNum){
-			List<ProjectPeiTao> projectPeiTaoList=new ArrayList<ProjectPeiTao>();
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;			List<ProjectPeiTao> projectPeiTaoList=new ArrayList<ProjectPeiTao>();
 			try {
 				String sql ="select * from project_peitao_image  where project_num =?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				 pstmt = con.prepareStatement(sql);
 				pstmt.setString(1,proNum );
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				while(rs.next()){
 					ProjectPeiTao projectPeiTao=new ProjectPeiTao();
 					projectPeiTao.setId(rs.getInt("id"));
@@ -132,17 +239,43 @@ public class ProjectInputDao extends BaseDao {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
 			return projectPeiTaoList;
 		}
 		//鏍规嵁椤圭洰椤圭洰缂栧彿鑾峰彇椤圭洰鍥剧墖
 				public List<ProjectDescImage> getProjectImageByProNum(String proNum){
+					Statement stmt = null;
+					ResultSet rs = null;
+					PreparedStatement pstmt = null;
 					List<ProjectDescImage> projectImageList=new ArrayList<ProjectDescImage>();
 					try {
 						String sql ="select * from project_desc_image  where project_num =?";
-						PreparedStatement pstmt = con.prepareStatement(sql);
+						 pstmt = con.prepareStatement(sql);
 						pstmt.setString(1,proNum );
-						ResultSet rs = pstmt.executeQuery();
+						  rs = pstmt.executeQuery();
 						while(rs.next()){
 							ProjectDescImage projectImage=new ProjectDescImage();
 							projectImage.setId(rs.getInt("id"));
@@ -153,17 +286,43 @@ public class ProjectInputDao extends BaseDao {
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
+					}finally{
+						if(rs != null){   // 关闭记录集   
+					        try{   
+					            rs.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					          }   
+					      if(stmt != null){   // 关闭声明   
+					        try{   
+					            stmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+					      if(pstmt != null){   // 关闭声明   
+						        try{   
+						            pstmt.close() ;   
+						        }catch(SQLException e){   
+						            e.printStackTrace() ;   
+						        }   
+						     } 
+			        }
 					return projectImageList;
 				}
 		//鏍规嵁椤圭洰椤圭洰缂栧彿鑾峰彇闄勮繎閰嶅
 				public List<FujinPeiTao> getFujinPeiTaoByProNum(String proNum){
+					Statement stmt = null;
+					ResultSet rs = null;
+					PreparedStatement pstmt = null;
+
 					List<FujinPeiTao> fujinPeiTaoList=new ArrayList<FujinPeiTao>();
 					try {
 						String sql ="select * from near_peitao  where project_num =?";
-						PreparedStatement pstmt = con.prepareStatement(sql);
+						 pstmt = con.prepareStatement(sql);
 						pstmt.setString(1,proNum );
-						ResultSet rs = pstmt.executeQuery();
+						  rs = pstmt.executeQuery();
 						while(rs.next()){
 							FujinPeiTao fujinPeiTao=new FujinPeiTao();
 							fujinPeiTao.setId(rs.getInt("id"));
@@ -175,18 +334,45 @@ public class ProjectInputDao extends BaseDao {
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
+					}finally{
+						if(rs != null){   // 关闭记录集   
+					        try{   
+					            rs.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					          }   
+					      if(stmt != null){   // 关闭声明   
+					        try{   
+					            stmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+					      if(pstmt != null){   // 关闭声明   
+						        try{   
+						            pstmt.close() ;   
+						        }catch(SQLException e){   
+						            e.printStackTrace() ;   
+						        }   
+						     } 
+
+			        }
 					return fujinPeiTaoList;
 				}
 		
 				//鏍规嵁椤圭洰椤圭洰缂栧彿鑾峰彇闄勮繎瀛︽牎
 				public List<FujinSchool> getFujinSchoolByProNum(String proNum){
+					Statement stmt = null;
+					ResultSet rs = null;
+					PreparedStatement pstmt = null;
+
 					List<FujinSchool> fujinSchoolList=new ArrayList<FujinSchool>();
 					try {
 						String sql ="select * from near_school  where project_num =?";
-						PreparedStatement pstmt = con.prepareStatement(sql);
+						 pstmt = con.prepareStatement(sql);
 						pstmt.setString(1,proNum );
-						ResultSet rs = pstmt.executeQuery();
+						  rs = pstmt.executeQuery();
 						while(rs.next()){
 							FujinSchool fujinSchool=new FujinSchool();
 							fujinSchool.setId(rs.getInt("id"));
@@ -197,17 +383,43 @@ public class ProjectInputDao extends BaseDao {
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
+					}finally{
+						if(rs != null){   // 关闭记录集   
+					        try{   
+					            rs.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					          }   
+					      if(stmt != null){   // 关闭声明   
+					        try{   
+					            stmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+					      if(pstmt != null){   // 关闭声明   
+						        try{   
+						            pstmt.close() ;   
+						        }catch(SQLException e){   
+						            e.printStackTrace() ;   
+						        }   
+						     } 
+
+			        }
 					return fujinSchoolList;
 				}
 				//鏍规嵁椤圭洰椤圭洰缂栧彿鑾峰彇闄勮繎瀛︽牎
 				public List<HoldCost> getHoldCostByProNum(String proNum){
+					Statement stmt = null;
+					ResultSet rs = null;
+					PreparedStatement pstmt = null;
 					List<HoldCost> holdCostlList=new ArrayList<HoldCost>();
 					try {
 						String sql ="select * from holding_finace  where project_num =?";
-						PreparedStatement pstmt = con.prepareStatement(sql);
+						 pstmt = con.prepareStatement(sql);
 						pstmt.setString(1,proNum );
-						ResultSet rs = pstmt.executeQuery();
+						  rs = pstmt.executeQuery();
 						while(rs.next()){
 							HoldCost holdCost=new HoldCost();
 							holdCost.setId(rs.getInt("id"));
@@ -219,17 +431,43 @@ public class ProjectInputDao extends BaseDao {
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
+					}finally{
+						if(rs != null){   // 关闭记录集   
+					        try{   
+					            rs.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					          }   
+					      if(stmt != null){   // 关闭声明   
+					        try{   
+					            stmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+					      if(pstmt != null){   // 关闭声明   
+						        try{   
+						            pstmt.close() ;   
+						        }catch(SQLException e){   
+						            e.printStackTrace() ;   
+						        }   
+						     } 
+
+			        }
 					return holdCostlList;
 				}
 				//鏍规嵁椤圭洰椤圭洰缂栧彿鑾峰彇闄勮繎瀛︽牎
 				public List<HouseTax> getHouseTaxByProNum(String proNum){
+					Statement stmt = null;
+					ResultSet rs = null;
+					PreparedStatement pstmt = null;
 					List<HouseTax> houseTaxlList=new ArrayList<HouseTax>();
 					try {
 						String sql ="select * from house_tax  where project_num =?";
-						PreparedStatement pstmt = con.prepareStatement(sql);
+						 pstmt = con.prepareStatement(sql);
 						pstmt.setString(1,proNum );
-						ResultSet rs = pstmt.executeQuery();
+						  rs = pstmt.executeQuery();
 						while(rs.next()){
 							HouseTax houseTax=new HouseTax();
 							houseTax.setId(rs.getInt("id"));
@@ -242,16 +480,42 @@ public class ProjectInputDao extends BaseDao {
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
+					}finally{
+						if(rs != null){   // 关闭记录集   
+					        try{   
+					            rs.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					          }   
+					      if(stmt != null){   // 关闭声明   
+					        try{   
+					            stmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+					      if(pstmt != null){   // 关闭声明   
+						        try{   
+						            pstmt.close() ;   
+						        }catch(SQLException e){   
+						            e.printStackTrace() ;   
+						        }   
+						     } 
+
+			        }
 					return houseTaxlList;
 				}
 	//椤圭洰鍒楄〃
 	public JSONArray selectProjectList(){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		JSONArray jsonArray=new JSONArray();
 		try {
 			String sql = " select t.id,t.project_num,t.project_name,t.isSeen from house_project t";
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
 			while(rs.next()){
 				JSONObject obj = new JSONObject();
 				obj.put("id", rs.getInt("id"));
@@ -263,13 +527,39 @@ public class ProjectInputDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return jsonArray;
 	} 
 	//椤圭洰鍒犻櫎
 			public int deleteProjectById(int id,String proNum){
+				Statement stmt = null;
+				ResultSet rs = null;
+				PreparedStatement pstmt = null;
 				boolean flag=true;
-				PreparedStatement pstmt=null;
+				
 				try {
 					con.setAutoCommit(false);
 					//鍒犻櫎椤圭洰
@@ -319,12 +609,38 @@ public class ProjectInputDao extends BaseDao {
 						e1.printStackTrace();
 					}
 					return -1;
-				}
+				}finally{
+					if(rs != null){   // 关闭记录集   
+				        try{   
+				            rs.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				          }   
+				      if(stmt != null){   // 关闭声明   
+				        try{   
+				            stmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				      if(pstmt != null){   // 关闭声明   
+					        try{   
+					            pstmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+
+		        }
 			}
 			//瀛︽牎淇℃伅鍒犻櫎
 			public int deleteSchool(int id){
+				Statement stmt = null;
+				ResultSet rs = null;
+				PreparedStatement pstmt = null;
 				boolean flag=true;
-				PreparedStatement pstmt=null;
+				 
 				try {
 					con.setAutoCommit(false);
 					//鍒犻櫎椤圭洰
@@ -344,12 +660,39 @@ public class ProjectInputDao extends BaseDao {
 						e1.printStackTrace();
 					}
 					return -1;
-				}
+				}finally{
+					if(rs != null){   // 关闭记录集   
+				        try{   
+				            rs.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				          }   
+				      if(stmt != null){   // 关闭声明   
+				        try{   
+				            stmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				      if(pstmt != null){   // 关闭声明   
+					        try{   
+					            pstmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+
+		        }
 			}
 			//寮�鍙戝晢淇℃伅鍒犻櫎
 			public int deleteDeveloper(int id){
+				Statement stmt = null;
+				ResultSet rs = null;
+				PreparedStatement pstmt = null;
+
 				boolean flag=true;
-				PreparedStatement pstmt=null;
+				 
 				try {
 					con.setAutoCommit(false);
 					//鍒犻櫎椤圭洰
@@ -369,12 +712,38 @@ public class ProjectInputDao extends BaseDao {
 						e1.printStackTrace();
 					}
 					return -1;
-				}
+				}finally{
+					if(rs != null){   // 关闭记录集   
+				        try{   
+				            rs.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				          }   
+				      if(stmt != null){   // 关闭声明   
+				        try{   
+				            stmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				      if(pstmt != null){   // 关闭声明   
+					        try{   
+					            pstmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+
+		        }
 			}
 			//鏂伴椈鍗氬鍒犻櫎
 			public int deleteNewsBoke(int id){
+				Statement stmt = null;
+				ResultSet rs = null;
+				PreparedStatement pstmt = null;
 				boolean flag=true;
-				PreparedStatement pstmt=null;
+				 
 				try {
 					con.setAutoCommit(false);
 					String sql1 = "delete from news_boke where id=?";
@@ -393,12 +762,38 @@ public class ProjectInputDao extends BaseDao {
 						e1.printStackTrace();
 					}
 					return -1;
-				}
+				}finally{
+					if(rs != null){   // 关闭记录集   
+				        try{   
+				            rs.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				          }   
+				      if(stmt != null){   // 关闭声明   
+				        try{   
+				            stmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				      if(pstmt != null){   // 关闭声明   
+					        try{   
+					            pstmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+
+		        }
 			}
 			//缃笟鎸囧鍒犻櫎
 			public int deleteZhiye(int id){
+				Statement stmt = null;
+				ResultSet rs = null;
+				PreparedStatement pstmt = null;
 				boolean flag=true;
-				PreparedStatement pstmt=null;
+				 
 				try {
 					con.setAutoCommit(false);
 					String sql1 = "delete from zhiye_zhidao where id=?";
@@ -417,12 +812,39 @@ public class ProjectInputDao extends BaseDao {
 						e1.printStackTrace();
 					}
 					return -1;
-				}
+				}finally{
+					if(rs != null){   // 关闭记录集   
+				        try{   
+				            rs.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				          }   
+				      if(stmt != null){   // 关闭声明   
+				        try{   
+				            stmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				      if(pstmt != null){   // 关闭声明   
+					        try{   
+					            pstmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+
+		        }
+
 			}
 			//缁忕邯浜哄垹闄�
 			public int deleteBroker(int id,String brokerNum){
+				Statement stmt = null;
+				ResultSet rs = null;
+				PreparedStatement pstmt = null;
 				boolean flag=true;
-				PreparedStatement pstmt=null;
+				 
 				try {
 					con.setAutoCommit(false);
 					//鍒犻櫎缁忕邯浜轰俊鎭�
@@ -453,16 +875,42 @@ public class ProjectInputDao extends BaseDao {
 						e1.printStackTrace();
 					}
 					return -1;
-				}
+				}finally{
+					if(rs != null){   // 关闭记录集   
+				        try{   
+				            rs.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				          }   
+				      if(stmt != null){   // 关闭声明   
+				        try{   
+				            stmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				      if(pstmt != null){   // 关闭声明   
+					        try{   
+					            pstmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+
+		        }
 			}
 			
 	//瀛︽牎鍒楄〃
 		public JSONArray selectSchoolList(){
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 			JSONArray jsonArray=new JSONArray();
 			try {
 				String sql = " select * from school_info";
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				while(rs.next()){
 					JSONObject obj = new JSONObject();
 					obj.put("id", rs.getInt("id"));
@@ -472,16 +920,43 @@ public class ProjectInputDao extends BaseDao {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
 			return jsonArray;
 		} 
 		//寮�鍙戝晢鍒楄〃
 				public JSONArray selectDeveloperList(){
+					Statement stmt = null;
+					ResultSet rs = null;
+					PreparedStatement pstmt = null;
+
 					JSONArray jsonArray=new JSONArray();
 					try {
 						String sql = " select * from developer_info";
-						Statement stmt = con.createStatement();
-						ResultSet rs = stmt.executeQuery(sql);
+						  stmt = con.createStatement();
+						  rs = stmt.executeQuery(sql);
 						while(rs.next()){
 							JSONObject obj = new JSONObject();
 							obj.put("id", rs.getInt("id"));
@@ -492,16 +967,44 @@ public class ProjectInputDao extends BaseDao {
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
+					}finally{
+						if(rs != null){   // 关闭记录集   
+					        try{   
+					            rs.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					          }   
+					      if(stmt != null){   // 关闭声明   
+					        try{   
+					            stmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+					      if(pstmt != null){   // 关闭声明   
+						        try{   
+						            pstmt.close() ;   
+						        }catch(SQLException e){   
+						            e.printStackTrace() ;   
+						        }   
+						     } 
+
+			        }
+
 					return jsonArray;
 				} 
 				//鏂伴椈鍗氬鍒楄〃
 				public JSONArray selectnewsList(){
+					Statement stmt = null;
+					ResultSet rs = null;
+					PreparedStatement pstmt = null;
+
 					JSONArray jsonArray=new JSONArray();
 					try {
 						String sql = " select * from news_boke";
-						Statement stmt = con.createStatement();
-						ResultSet rs = stmt.executeQuery(sql);
+						  stmt = con.createStatement();
+						  rs = stmt.executeQuery(sql);
 						while(rs.next()){
 							JSONObject obj = new JSONObject();
 							obj.put("id", rs.getInt("id"));
@@ -512,16 +1015,42 @@ public class ProjectInputDao extends BaseDao {
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
+					}finally{
+						if(rs != null){   // 关闭记录集   
+					        try{   
+					            rs.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					          }   
+					      if(stmt != null){   // 关闭声明   
+					        try{   
+					            stmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+					      if(pstmt != null){   // 关闭声明   
+						        try{   
+						            pstmt.close() ;   
+						        }catch(SQLException e){   
+						            e.printStackTrace() ;   
+						        }   
+						     } 
+
+			        }
 					return jsonArray;
 				} 
 				//缃笟鎸囧鍒楄〃
 				public JSONArray selectzhiyeList(){
+					Statement stmt = null;
+					ResultSet rs = null;
+					PreparedStatement pstmt = null;
 					JSONArray jsonArray=new JSONArray();
 					try {
 						String sql = " select * from zhiye_zhidao";
-						Statement stmt = con.createStatement();
-						ResultSet rs = stmt.executeQuery(sql);
+						  stmt = con.createStatement();
+						  rs = stmt.executeQuery(sql);
 						while(rs.next()){
 							JSONObject obj = new JSONObject();
 							obj.put("id", rs.getInt("id"));
@@ -533,15 +1062,44 @@ public class ProjectInputDao extends BaseDao {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+					finally{
+						if(rs != null){   // 关闭记录集   
+					        try{   
+					            rs.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					          }   
+					      if(stmt != null){   // 关闭声明   
+					        try{   
+					            stmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+					      if(pstmt != null){   // 关闭声明   
+						        try{   
+						            pstmt.close() ;   
+						        }catch(SQLException e){   
+						            e.printStackTrace() ;   
+						        }   
+						     } 
+
+			        }
 					return jsonArray;
 				} 
 				//缁忕邯浜哄垪琛�
 				public JSONArray selectBrokerList(){
+					Statement stmt = null;
+					ResultSet rs = null;
+					PreparedStatement pstmt = null;
+
+
 					JSONArray jsonArray=new JSONArray();
 					try {
 						String sql = " select * from broker_info";
-						Statement stmt = con.createStatement();
-						ResultSet rs = stmt.executeQuery(sql);
+						  stmt = con.createStatement();
+						  rs = stmt.executeQuery(sql);
 						while(rs.next()){
 							JSONObject obj = new JSONObject();
 							obj.put("id", rs.getInt("id"));
@@ -552,17 +1110,43 @@ public class ProjectInputDao extends BaseDao {
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
+					}finally{
+						if(rs != null){   // 关闭记录集   
+					        try{   
+					            rs.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					          }   
+					      if(stmt != null){   // 关闭声明   
+					        try{   
+					            stmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+					      if(pstmt != null){   // 关闭声明   
+						        try{   
+						            pstmt.close() ;   
+						        }catch(SQLException e){   
+						            e.printStackTrace() ;   
+						        }   
+						     } 
+
+			        }
 					return jsonArray;
 				} 
 	//鏍规嵁id鎵鹃」鐩俊鎭�
 	public HouseProject selectProjectInfo(int id){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		JSONArray jsonArray=new JSONArray();
 		HouseProject houseProject=new HouseProject();
 		try {
 			String sql = " select * from house_project  where id="+id;
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
 			while(rs.next()){
 				houseProject.setId(Integer.parseInt(rs.getString("id")));
 				houseProject.setProject_name(rs.getString("project_name"));
@@ -607,43 +1191,123 @@ public class ProjectInputDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return houseProject;
 	} 
 	//上架项目
 			public int ShowProject(int id){
+				Statement stmt = null;
+				ResultSet rs = null;
+				PreparedStatement pstmt = null;
+
 				int exeResult =0;
 				try {
 					String sql = "update house_project set isSeen=1 where id="+id;
-					PreparedStatement pstmt = con.prepareStatement(sql);
+					 pstmt = con.prepareStatement(sql);
 				    exeResult = pstmt.executeUpdate();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				}finally{
+					if(rs != null){   // 关闭记录集   
+				        try{   
+				            rs.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				          }   
+				      if(stmt != null){   // 关闭声明   
+				        try{   
+				            stmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				      if(pstmt != null){   // 关闭声明   
+					        try{   
+					            pstmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+
+		        }
 				return exeResult;
 			}
 	//下架项目
 			public int UnShowProject(int id){
+				Statement stmt = null;
+				ResultSet rs = null;
+				PreparedStatement pstmt = null;
+
 				int exeResult =0;
 				try {
 					String sql = "update house_project set isSeen=0 where id="+id;
-					PreparedStatement pstmt = con.prepareStatement(sql);
+					 pstmt = con.prepareStatement(sql);
 				    exeResult = pstmt.executeUpdate();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				}finally{
+					if(rs != null){   // 关闭记录集   
+				        try{   
+				            rs.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				          }   
+				      if(stmt != null){   // 关闭声明   
+				        try{   
+				            stmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				      if(pstmt != null){   // 关闭声明   
+					        try{   
+					            pstmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+
+		        }
 				return exeResult;
 			}
 	//根据id找学校信息
 		public SchoolInfo selectSchoolInfo(int id){
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 			JSONArray jsonArray=new JSONArray();
 			SchoolInfo schoolInfo=new SchoolInfo();
 			try {
 				String sql = " select * from school_info  where id="+id;
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				while(rs.next()){
 					schoolInfo.setId(rs.getInt("id"));
 					schoolInfo.setSchool_name(rs.getString("school_name"));
@@ -663,17 +1327,43 @@ public class ProjectInputDao extends BaseDao {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
 			return schoolInfo;
 		} 
 		//鏍规嵁id鎵惧紑鍙戝晢
 				public DeveloperInfo selectDeveloperInfo(int id){
+					Statement stmt = null;
+					ResultSet rs = null;
+					PreparedStatement pstmt = null;
 					JSONArray jsonArray=new JSONArray();
 					DeveloperInfo developerInfo=new DeveloperInfo();
 					try {
 						String sql = " select * from developer_info  where id="+id;
-						Statement stmt = con.createStatement();
-						ResultSet rs = stmt.executeQuery(sql);
+						  stmt = con.createStatement();
+						  rs = stmt.executeQuery(sql);
 						while(rs.next()){
 							developerInfo.setId(rs.getInt("id"));
 							developerInfo.setDeveloper_num(rs.getString("developer_num"));
@@ -685,17 +1375,43 @@ public class ProjectInputDao extends BaseDao {
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
+					}finally{
+						if(rs != null){   // 关闭记录集   
+					        try{   
+					            rs.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					          }   
+					      if(stmt != null){   // 关闭声明   
+					        try{   
+					            stmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+					      if(pstmt != null){   // 关闭声明   
+						        try{   
+						            pstmt.close() ;   
+						        }catch(SQLException e){   
+						            e.printStackTrace() ;   
+						        }   
+						     } 
+
+			        }
 					return developerInfo;
 				} 
 				//鏍规嵁id鎵炬柊闂诲崥瀹�
 				public NewsBoke selectNewsBokeInfo(int id){
+					Statement stmt = null;
+					ResultSet rs = null;
+					PreparedStatement pstmt = null;
 					JSONArray jsonArray=new JSONArray();
 					NewsBoke newsBoke=new NewsBoke();
 					try {
 						String sql = " select * from news_boke  where id="+id;
-						Statement stmt = con.createStatement();
-						ResultSet rs = stmt.executeQuery(sql);
+						  stmt = con.createStatement();
+						  rs = stmt.executeQuery(sql);
 						while(rs.next()){
 							newsBoke.setId(rs.getInt("id"));
 							newsBoke.setNews_num(rs.getString("news_num"));
@@ -710,17 +1426,43 @@ public class ProjectInputDao extends BaseDao {
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
+					}finally{
+						if(rs != null){   // 关闭记录集   
+					        try{   
+					            rs.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					          }   
+					      if(stmt != null){   // 关闭声明   
+					        try{   
+					            stmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+					      if(pstmt != null){   // 关闭声明   
+						        try{   
+						            pstmt.close() ;   
+						        }catch(SQLException e){   
+						            e.printStackTrace() ;   
+						        }   
+						     } 
+
+			        }
 					return newsBoke;
 				} 	
 				//鏍规嵁id鎵剧疆涓氭寚瀵�
 				public ZhiYeZhiDao selectZhiyeInfo(int id){
+					Statement stmt = null;
+					ResultSet rs = null;
+					PreparedStatement pstmt = null;
 					JSONArray jsonArray=new JSONArray();
 					ZhiYeZhiDao zhiYeZhiDao=new ZhiYeZhiDao();
 					try {
 						String sql = " select * from zhiye_zhidao  where id="+id;
-						Statement stmt = con.createStatement();
-						ResultSet rs = stmt.executeQuery(sql);
+						  stmt = con.createStatement();
+						  rs = stmt.executeQuery(sql);
 						while(rs.next()){
 							zhiYeZhiDao.setId(rs.getInt("id"));
 							zhiYeZhiDao.setZhiye_num(rs.getString("zhiye_num"));
@@ -735,17 +1477,44 @@ public class ProjectInputDao extends BaseDao {
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
+					}finally{
+						if(rs != null){   // 关闭记录集   
+					        try{   
+					            rs.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					          }   
+					      if(stmt != null){   // 关闭声明   
+					        try{   
+					            stmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+					      if(pstmt != null){   // 关闭声明   
+						        try{   
+						            pstmt.close() ;   
+						        }catch(SQLException e){   
+						            e.printStackTrace() ;   
+						        }   
+						     } 
+
+			        }
 					return zhiYeZhiDao;
 				} 	
 				//鏍规嵁id鎵剧粡绾汉淇℃伅
 				public Broker selectBroker(int id){
+					Statement stmt = null;
+					ResultSet rs = null;
+					PreparedStatement pstmt = null;
+
 					JSONArray jsonArray=new JSONArray();
 					Broker broker=new Broker();
 					try {
 						String sql = " select * from broker_info  where id="+id;
-						Statement stmt = con.createStatement();
-						ResultSet rs = stmt.executeQuery(sql);
+						  stmt = con.createStatement();
+						  rs = stmt.executeQuery(sql);
 						while(rs.next()){
 							broker.setId(rs.getInt("id"));
 							broker.setBroker_num(rs.getString("broker_num"));
@@ -761,34 +1530,86 @@ public class ProjectInputDao extends BaseDao {
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
+					}finally{
+						if(rs != null){   // 关闭记录集   
+					        try{   
+					            rs.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					          }   
+					      if(stmt != null){   // 关闭声明   
+					        try{   
+					            stmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+					      if(pstmt != null){   // 关闭声明   
+						        try{   
+						            pstmt.close() ;   
+						        }catch(SQLException e){   
+						            e.printStackTrace() ;   
+						        }   
+						     } 
+
+			        }
 					return broker;
 				} 	
 				//鏍规嵁id鏌ユ壘缁忕邯浜虹紪鍙�
 				public String findBrokerNumById(int id){
+					Statement stmt = null;
+					ResultSet rs = null;
+					PreparedStatement pstmt = null;
 					JSONArray jsonArray=new JSONArray();
 					String broker_num=null;
 					try {
 						String sql = " select * from broker_info  where id="+id;
-						Statement stmt = con.createStatement();
-						ResultSet rs = stmt.executeQuery(sql);
+						  stmt = con.createStatement();
+						  rs = stmt.executeQuery(sql);
 						while(rs.next()){
 							broker_num=rs.getString("broker_num");
 						}
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
+					}finally{
+						if(rs != null){   // 关闭记录集   
+					        try{   
+					            rs.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					          }   
+					      if(stmt != null){   // 关闭声明   
+					        try{   
+					            stmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+					      if(pstmt != null){   // 关闭声明   
+						        try{   
+						            pstmt.close() ;   
+						        }catch(SQLException e){   
+						            e.printStackTrace() ;   
+						        }   
+						     } 
+
+			        }
 					return broker_num;
 				} 	
 				//鏍规嵁缁忕邯浜虹紪鍙锋煡鎵剧粡绾汉鏈嶅姟鍖哄煙鍒楄〃
 				public List<ServiceArea> findBrokerAreaList(String broker_num){
+					Statement stmt = null;
+					ResultSet rs = null;
+					PreparedStatement pstmt = null;
 					List<ServiceArea> brokerServiceAreaList=new ArrayList<ServiceArea>();
 					try {
 						String sql ="select * from broker_service_area  where broker_num =?";
-						PreparedStatement pstmt = con.prepareStatement(sql);
+						 pstmt = con.prepareStatement(sql);
 						pstmt.setString(1,broker_num);
-						ResultSet rs = pstmt.executeQuery();
+						  rs = pstmt.executeQuery();
 						while(rs.next()){
 							ServiceArea brokerServiceArea=new ServiceArea();
 							brokerServiceArea.setArea_code(rs.getString("area_code"));
@@ -799,17 +1620,43 @@ public class ProjectInputDao extends BaseDao {
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
+					}finally{
+						if(rs != null){   // 关闭记录集   
+					        try{   
+					            rs.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					          }   
+					      if(stmt != null){   // 关闭声明   
+					        try{   
+					            stmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+					      if(pstmt != null){   // 关闭声明   
+						        try{   
+						            pstmt.close() ;   
+						        }catch(SQLException e){   
+						            e.printStackTrace() ;   
+						        }   
+						     } 
+
+			        }
 					return brokerServiceAreaList;
 				} 
 				//鏍规嵁缁忕邯浜虹紪鍙锋煡鎵剧粡绾汉鎿呴暱绫诲瀷
 				public List<BrokerType> findBrokerTypeList(String broker_num){
+					Statement stmt = null;
+					ResultSet rs = null;
+					PreparedStatement pstmt = null;
 					List<BrokerType> brokerIntegerTypeList=new ArrayList<BrokerType>();
 					try {
 						String sql ="select * from broker_interested_type  where broker_num =?";
-						PreparedStatement pstmt = con.prepareStatement(sql);
+						 pstmt = con.prepareStatement(sql);
 						pstmt.setString(1,broker_num);
-						ResultSet rs = pstmt.executeQuery();
+						  rs = pstmt.executeQuery();
 						while(rs.next()){
 							BrokerType brokerIntegerType=new BrokerType();
 							brokerIntegerType.setInterested_num(rs.getString("interested_num"));
@@ -820,7 +1667,30 @@ public class ProjectInputDao extends BaseDao {
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
+					}finally{
+						if(rs != null){   // 关闭记录集   
+					        try{   
+					            rs.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					          }   
+					      if(stmt != null){   // 关闭声明   
+					        try{   
+					            stmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+					      if(pstmt != null){   // 关闭声明   
+						        try{   
+						            pstmt.close() ;   
+						        }catch(SQLException e){   
+						            e.printStackTrace() ;   
+						        }   
+						     } 
+
+			        }
 					return brokerIntegerTypeList;
 				} 	
 		
@@ -828,10 +1698,14 @@ public class ProjectInputDao extends BaseDao {
 	
 	//瀛︽牎淇℃伅Add
 	public boolean InsertSchoolInfo(String school_name,String school_ranking,String school_type,int school_total,int teacher_total,String school_position,String gps,String net_info,int not_en_stu_bili,String school_image,String school_desc,String nation,String city){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		boolean flag=true;
 		try {
 			String sql = "insert into school_info(school_name,school_ranking,school_type,student_total,teacher_total, school_position,gps,net_info,not_en_stu_bili,school_image,school_desc,nation,city) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
+
 			pstmt.setString(1, school_name);
 			pstmt.setString(2, school_ranking);
 			pstmt.setString(3, school_type);
@@ -852,16 +1726,45 @@ public class ProjectInputDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return flag;
 		
 	}
 	//瀛︽牎淇℃伅Update
+
 		public boolean UpdateSchoolInfo(int id,String school_name,String school_ranking,String school_type,int school_total,int teacher_total,String school_position,String gps,String net_info,int not_en_stu_bili,String school_image,String school_desc,String nation,String city){
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+
 			boolean flag=true;
 			try {
 				String sql = "update school_info set school_name=?,school_ranking=?,school_type=?,student_total=?,teacher_total=?, school_position=?,gps=?,net_info=?,not_en_stu_bili=?,school_image=?,school_desc=?,nation=?,city=? where id=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
+
 				pstmt.setString(1, school_name);
 				pstmt.setString(2, school_ranking);
 				pstmt.setString(3, school_type);
@@ -883,16 +1786,44 @@ public class ProjectInputDao extends BaseDao {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
 			return flag;
 			
 		}
 	//寮�鍙戝晢淇℃伅Add
+
 		public boolean InsertDeveloperInfo(String developer_name,String developer_logo,String developer_desc,String developer_num,String nation){
-			boolean flag=true;
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+	boolean flag=true;
 			try {
 				String sql = "insert into developer_info(developer_name,developer_logo,developer_desc,developer_num,nation) values(?,?,?,?,?)";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
+
 				pstmt.setString(1, developer_name);
 				pstmt.setString(2, developer_logo);
 				pstmt.setString(3, developer_desc);
@@ -905,15 +1836,43 @@ public class ProjectInputDao extends BaseDao {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
 			return flag;
 		}
 		//寮�鍙戝晢淇℃伅update
+
 				public boolean UpdateDeveloperInfo(int id,String developer_name,String developer_logo,String developer_desc,String developer_num,String nation){
-					boolean flag=true;
+					Statement stmt = null;
+					ResultSet rs = null;
+					PreparedStatement pstmt = null;	
+	boolean flag=true;
 					try {
 						String sql = "update  developer_info  set developer_name=?,developer_logo=?,developer_desc=?,developer_num=?,nation=? where id=?";
-						PreparedStatement pstmt = con.prepareStatement(sql);
+						pstmt = con.prepareStatement(sql);
+
 						pstmt.setString(1, developer_name);
 						pstmt.setString(2, developer_logo);
 						pstmt.setString(3, developer_desc);
@@ -927,11 +1886,37 @@ public class ProjectInputDao extends BaseDao {
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
+					}finally{
+						if(rs != null){   // 关闭记录集   
+					        try{   
+					            rs.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					          }   
+					      if(stmt != null){   // 关闭声明   
+					        try{   
+					            stmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+					      if(pstmt != null){   // 关闭声明   
+						        try{   
+						            pstmt.close() ;   
+						        }catch(SQLException e){   
+						            e.printStackTrace() ;   
+						        }   
+						     } 
+
+			        }
 					return flag;
 				}
 		//缁忕邯浜篈dd
 		public int InsertBroker(Broker broker,List<ServiceArea> serviceAreaList,List<BrokerType> brokerTypeList){
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 			String broker_num=broker.getBroker_num();
 			String broker_name=broker.getBroker_name();
 			String broker_language=broker.getBroker_language();
@@ -941,7 +1926,7 @@ public class ProjectInputDao extends BaseDao {
 			int broker_experience=broker.getBroker_experience();
 			String broker_img=broker.getBroker_img();
 			String introduction=broker.getIntroduction();
-			PreparedStatement pstmt=null;
+			 
 			boolean flag=true;
 			
 			try {
@@ -999,12 +1984,38 @@ public class ProjectInputDao extends BaseDao {
 				}
 				e.printStackTrace();
 				return -1;
-			}
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
 		}
 		//缁忕邯浜簎pdate
-				public int UpdateBroker(int id,Broker broker,List<ServiceArea> serviceAreaList,List<ServiceArea> serviceAreaList2,List<BrokerType> brokerTypeList,List<BrokerType> brokerTypeList2
+	public int UpdateBroker(int id,Broker broker,List<ServiceArea> serviceAreaList,List<ServiceArea> serviceAreaList2,List<BrokerType> brokerTypeList,List<BrokerType> brokerTypeList2
 						,List<ServiceArea> serviceArealistdelete,
 				List<BrokerType> brokerTypelistdelete){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 					String broker_num=broker.getBroker_num();
 					String broker_name=broker.getBroker_name();
 					String broker_language=broker.getBroker_language();
@@ -1014,7 +2025,7 @@ public class ProjectInputDao extends BaseDao {
 					int broker_experience=broker.getBroker_experience();
 					String broker_img=broker.getBroker_img();
 					String introduction=broker.getIntroduction();
-					PreparedStatement pstmt=null;
+					 
 					boolean flag=true;
 					
 					try {
@@ -1128,16 +2139,42 @@ public class ProjectInputDao extends BaseDao {
 						}
 						e.printStackTrace();
 						return -1;
-					}
+					}finally{
+						if(rs != null){   // 关闭记录集   
+					        try{   
+					            rs.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					          }   
+					      if(stmt != null){   // 关闭声明   
+					        try{   
+					            stmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+					      if(pstmt != null){   // 关闭声明   
+						        try{   
+						            pstmt.close() ;   
+						        }catch(SQLException e){   
+						            e.printStackTrace() ;   
+						        }   
+						     } 
+
+			        }
 				}
 		
 				//鍒ゆ柇鎵�缁欓」鐩紪鍙锋槸鍚﹂噸澶�
 				public int isDuplicateNum(String project_num){
+					Statement stmt = null;
+					ResultSet rs = null;
+					PreparedStatement pstmt = null;
 					HashSet<String> project_numSet=new HashSet<String>();
 					try {
 						String sql = " select project_num from house_project";
-						Statement stmt = con.createStatement();
-						ResultSet rs = stmt.executeQuery(sql);
+						  stmt = con.createStatement();
+						  rs = stmt.executeQuery(sql);
 						while(rs.next()){
 							String num=rs.getString("project_num");
 							project_numSet.add(num);
@@ -1148,11 +2185,36 @@ public class ProjectInputDao extends BaseDao {
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
+					}finally{
+						if(rs != null){   // 关闭记录集   
+					        try{   
+					            rs.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					          }   
+					      if(stmt != null){   // 关闭声明   
+					        try{   
+					            stmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+					      if(pstmt != null){   // 关闭声明   
+						        try{   
+						            pstmt.close() ;   
+						        }catch(SQLException e){   
+						            e.printStackTrace() ;   
+						        }   
+						     }
+			        }
 					return 0;
 				}
 		public int AddProject(List<Project> projectList,List<HouseInfo1>houseInfolist,List<ProjectDescImage>projectimagelist,List<ProjectPeiTao>projectPeitaolist,List<FujinPeiTao> fujinList,List<FujinSchool>fujinSchoolList,List<HoldCost>holdCostList,List<HouseTax>houseTaxList) throws SQLException{
 			//椤圭洰淇℃伅鍙傛暟鎺ユ敹
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 			Project project=projectList.get(0);
 			String project_name=project.getProject_name();
 			String project_nation=project.getProject_nation();
@@ -1214,14 +2276,12 @@ public class ProjectInputDao extends BaseDao {
 	        } catch (Exception e) {   
 	            e.printStackTrace();   
 	        } 
-	        PreparedStatement pstmt=null;
+	       
 			try{
 				con.setAutoCommit(false);
 				//项目添加
 				String sql1= " insert into house_project(project_name, project_nation, project_address, project_price_int_qi, project_type, project_sales_remain,  project_finish_time, project_desc, project_city, project_house_type, project_high, project_lan_cn, project_lan_en, project_num, project_vedio, project_zhou, gps, return_money, walk_num, mianji, project_min_price, project_high_price, tuijiandu, housePrice_update_time,area_num, min_area, max_area,  developer_id_name,isSeen,project_area) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-/*				//椤圭洰娣诲姞
-				String sql1= " insert into house_project(project_name, project_nation, project_address, project_price_qi, project_type, project_sales_remain,  project_finish_time, project_desc, project_city, project_house_type, project_high, project_lan_cn, project_lan_en, project_num, project_vedio, project_zhou, gps, return_money, walk_num, mianji, project_min_price, project_high_price, tuijiandu, housePrice_update_time,area_num, min_area, max_area,  developer_id_name) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
->>>>>>> 3894f8586145be146b64b75856c9dc0cd8779b31*/
+
 			    pstmt = con.prepareStatement(sql1);
 				pstmt.setString(1, project_name);
 				pstmt.setString(2, project_nation);
@@ -1418,11 +2478,36 @@ public class ProjectInputDao extends BaseDao {
 				con.rollback();
 	            e.printStackTrace();
 	            return -1;
+	        }finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
-			
 		}
 		public int EditProject(int id,List<Project> projectList,List<HouseInfo1> houseInfolist,List<HouseInfo1>houseInfolist2,List<ProjectPeiTao>peitaolist,List<ProjectPeiTao>peitaolist2,List<ProjectDescImage>imagelist,List<ProjectDescImage>imagelist2,List<FujinPeiTao>fujinpeitaoList,List<FujinPeiTao>fujinpeitaoList2,List<FujinSchool>fujinSchoolList,List<FujinSchool>fujinSchoolList2,List<HoldCost> holdCostList,List<HoldCost>holdCostList2,List<HouseTax>houseTaxList,List<HouseTax>houseTaxList2,List<ProjectDescImage> imagelistdelete,List<ProjectPeiTao> peitaolistdelete,List<FujinPeiTao> fujinpeitaoListdelete,List<FujinSchool>  fujinSchoolListdelete,List<HoldCost> holdCostListdelete,List<HouseTax> houseTaxListdelete) throws SQLException{
 			//椤圭洰淇℃伅鍙傛暟鎺ユ敹
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 			Project project=projectList.get(0);
 			String project_name=project.getProject_name();
 			String project_nation=project.getProject_nation();
@@ -1483,7 +2568,7 @@ public class ProjectInputDao extends BaseDao {
 //	        } catch (Exception e) {   
 //	            e.printStackTrace();   
 //	        } 
-	        PreparedStatement pstmt=null;
+	       
 			try{
 				con.setAutoCommit(false);
 				//椤圭洰鏇存柊
@@ -1921,18 +3006,46 @@ public class ProjectInputDao extends BaseDao {
 				con.rollback();
 	            e.printStackTrace();
 	            return -1;
+	        }finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
 	        }
 			
 		}
 		
 		//娣诲姞椤圭洰
 		public int addPro(String project_name, String project_img, String project_nation, String project_address, String project_area, String project_price_qi, String project_type, int project_sales_remain, String project_finish_time, String project_desc, String project_city, String project_house_type, String project_high, String project_price, String project_lan_cn, String project_lan_en, String project_num, String project_vedio, String project_zhou, String area_qujian, String gps, String return_money, int walk_num, String mianji, String project_min_price, String project_high_price, int tuijiandu, String housePrice_update_time, String buytaxInfo, String holdInfo, int min_area, int max_area, String area_num, String developer_num,
-				 String peitao_type,String peitao_name,String peitao_distance,
+				
+				String peitao_type,String peitao_name,String peitao_distance,
 				 String house_name,String house_img,String house_price,int house_room_num,String tudi_area,String jianzhu_area,String house_size_in,String house_size_out,int house_toilet_size,
 				 String image_name,
 				 String school_name,String school_distance,
 				 String hold_type,int hold_price,String hold_description,String hold_housename,
 				 String tax_type,int tax_price,String tax_description,String tax_housename) throws SQLException{
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+
 			boolean flag = true;
 			String time = "";
 			Timestamp ts = new Timestamp(System.currentTimeMillis()); 
@@ -1965,7 +3078,7 @@ public class ProjectInputDao extends BaseDao {
 				con.setAutoCommit(false);
 				//椤圭洰娣诲姞
 				String sql1= " insert into house_project(project_name, project_img, project_nation, project_address, project_area, project_price_qi, project_type, project_sales_remain,  project_finish_time, project_desc, project_city, project_house_type, project_high, project_price, project_lan_cn, project_lan_en, project_num, project_vedio, project_zhou, area_qujian, gps, return_money, walk_num, mianji, project_min_price, project_high_price, tuijiandu, housePrice_update_time, buytaxInfo, holdInfo, min_area, max_area, area_num, developer_id_name) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-				PreparedStatement pstmt = con.prepareStatement(sql1);
+				 pstmt = con.prepareStatement(sql1);
 				pstmt.setString(1, project_name);
 				pstmt.setString(2, project_img);
 				pstmt.setString(3, project_nation);
@@ -2077,7 +3190,31 @@ public class ProjectInputDao extends BaseDao {
 	            e.printStackTrace();
 	            return -1;
 	        }
-	        
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
+
 		}
 		
 	

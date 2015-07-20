@@ -2,6 +2,7 @@ package com.kate.app.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,16 +10,18 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.kate.app.model.HouseInfo;
-import com.kate.app.model.HouseProject;
 @Repository 
 public class HouseInfoDao extends BaseDao{
 	public List<HouseInfo> HouseInfoDao(String proNum){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		List<HouseInfo> list=new ArrayList<HouseInfo>();
 		try{
 			String sql = " select * from house_info where project_num=? ";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, proNum);
-			ResultSet rs = pstmt.executeQuery();
+			  rs = pstmt.executeQuery();
 			
 			while(rs.next()){
 				HouseInfo houseInfo = new HouseInfo();
@@ -37,6 +40,30 @@ public class HouseInfoDao extends BaseDao{
 			
 		}catch (Exception e) {
             
+        }
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
         }
 		return list;
 	}

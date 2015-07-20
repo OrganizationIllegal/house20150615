@@ -1,7 +1,9 @@
 package com.kate.app.dao;
 
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -9,18 +11,21 @@ import java.text.SimpleDateFormat;
 import org.springframework.stereotype.Repository;
 
 import com.alibaba.fastjson.JSONArray;
-import com.kate.app.model.AreaFamily;
 import com.alibaba.fastjson.JSONObject;
+import com.kate.app.model.AreaFamily;
 
 @Repository 
 public class AreaFamilyDao extends BaseDao {
 	public AreaFamily getAreaFamily(String area_code){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		AreaFamily data = new AreaFamily();
 		try {
 			String sql = " SELECT * from area_family where area_code=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, area_code);
-			ResultSet rs = pstmt.executeQuery();
+			  rs = pstmt.executeQuery();
 			while(rs.next()){
 				//data.setArea_code(rs.getString("area_code"));
 				data.setArea_id(rs.getInt("area_id"));
@@ -38,16 +43,43 @@ public class AreaFamilyDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return data;
 	}
 	
 	public int getdulirate(){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		int houseProId=1;
 		int dulirate=0;
 		try {
 			String sql = " SELECT rate from area_family t where binary t.family_type='������ʿ'  AND t.house_pro_id="+houseProId;
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
 			while(rs.next()){
 				dulirate=rs.getInt("rate");
 			}
@@ -55,15 +87,42 @@ public class AreaFamilyDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return dulirate;
 	}
 	public int getyoungfamilyrate(){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		int houseProId=1;
 		int youngfamilyrate=0;
 		try {
 			String sql = " SELECT rate from area_family t where binary t.family_type='�����ͥ'  AND t.house_pro_id="+houseProId;
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
 			while(rs.next()){
 				youngfamilyrate=rs.getInt("rate");
 			}
@@ -71,15 +130,43 @@ public class AreaFamilyDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
 		return youngfamilyrate;
 	}
 	public int getoldfamilyrate(){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		int houseProId=1;
 		int oldfamilyrate=0;
 		try {
 			String sql = " SELECT rate from area_family t where binary t.family_type='�����ͥ'  AND t.house_pro_id="+houseProId;
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			 stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
 			while(rs.next()){
 				oldfamilyrate=rs.getInt("rate");
 			}
@@ -87,14 +174,41 @@ public class AreaFamilyDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return oldfamilyrate;
 	}
 	//��
 	public int InsertAreaFamily(String family_one,String family_one_rate,String family_two,String family_two_rate,String family_three,String family_three_rate,String data_source,String update_time,String area_code){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		int exeResult=0;
 		try {
 			String sql = "insert into area_family(family_one,family_one_rate,family_two,family_two_rate,family_three,family_three_rate,data_souce,update_time,area_code) values(?,?,?,?,?,?,?,?,?)";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, family_one);
 			pstmt.setString(2, family_one_rate);
 			pstmt.setString(3, family_two);
@@ -109,29 +223,85 @@ public class AreaFamilyDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return exeResult;
 		
 	}
 	//ɾ
 	public int delAreaFamily(int id){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
 		int exeResult=0;
 		try {
 			String sql = "delete from area_family where id="+id;
-			Statement stmt = con.createStatement();
+			  stmt = con.createStatement();
 			exeResult = stmt.executeUpdate(sql);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return exeResult;
 	}
 	//��
 	public JSONArray listAreaFamily(){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
 		JSONArray jsonArray=new JSONArray();
 		try {
 			String sql = " select * from area_family";
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
 			while(rs.next()){
 				JSONObject obj = new JSONObject();
 				obj.put("id", rs.getInt("id"));
@@ -158,14 +328,41 @@ public class AreaFamilyDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return jsonArray;
 	} 
 	//��
 	public int updateAreaFamily(int id,String family_one,String family_one_rate,String family_two,String family_two_rate,String family_three,String family_three_rate,String data_source,String update_time,String area_code){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		int exeResult=0;
 		try {
 			String sql = "update area_family set family_one=?,family_one_rate=?,family_two=?,family_two_rate=?,family_three=?,family_three_rate=?, data_souce=?,update_time=?,area_code=? where id="+id;
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, family_one);
 			pstmt.setString(2, family_one_rate);
 			pstmt.setString(3, family_two);
@@ -180,15 +377,42 @@ public class AreaFamilyDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return exeResult;
 	}
 	//�����Ŀ��Ʋ�����Ŀid
 	public int findProjectIdByName(String project_name){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		int project_id=0;
 		try {
 			String sql = "select t.id from house_project t where t.project_name="+"'"+project_name+"'";
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
 			while(rs.next()){
 				project_id=rs.getInt("id");
 			}
@@ -196,14 +420,42 @@ public class AreaFamilyDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return project_id;
 	}
 	public int findLatestId(){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
 		int id=0;
 		try {
 			String sql = "SELECT LAST_INSERT_ID();";
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
 			while(rs.next()){
 				id=rs.getInt(0);
 			}
@@ -211,6 +463,30 @@ public class AreaFamilyDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return id;
 	}
 }

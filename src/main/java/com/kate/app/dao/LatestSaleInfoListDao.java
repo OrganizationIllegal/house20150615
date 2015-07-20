@@ -1,8 +1,9 @@
 package com.kate.app.dao;
 
-import java.sql.Date;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +16,16 @@ import com.kate.app.model.LatestSaleInfoVo;
 @Repository 
 public class LatestSaleInfoListDao extends BaseDao {
 	public List<LatestSaleInfoVo> getLatestSaleInfo(){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
 		List<LatestSaleInfoVo> latestSaleList=new ArrayList<LatestSaleInfoVo>();
 		int houseProId=1;
 		try {
 			String sql = " select address,price,sales_type,sales_time,house_type from sucess_info t where  t.house_pro_id="+houseProId;
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
 			String address=null;
 			int price=0;
 			String sales_type=null;
@@ -38,29 +43,82 @@ public class LatestSaleInfoListDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{
+			if(rs != null){   // å…³é—­è®°å½•é›†   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // å…³é—­å£°æ˜Ž   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // å…³é—­å£°æ˜Ž   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return latestSaleList;
 	}
-	//½üÆÚÇøÓò³É½»Çé¿ö List
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É½ï¿½ï¿½ï¿½ï¿½ List
 	public JSONArray listSuccessInfo(){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		JSONArray jsonArray=new JSONArray();
 		try {
 			String sql = "select t.id,t.address,t.price,t.sales_type, t.sales_time,t.house_type,t.house_pro_id,h.project_name from sucess_info t LEFT JOIN house_project h on t.house_pro_id=h.id";
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
 			jsonArray=ResultSetConverter.convert(rs);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{
+			if(rs != null){   // å…³é—­è®°å½•é›†   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // å…³é—­å£°æ˜Ž   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // å…³é—­å£°æ˜Ž   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return jsonArray;
 	} 
-	//½üÆÚÇøÓò³É½»Çé¿ö Add
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É½ï¿½ï¿½ï¿½ï¿½ Add
 	public int InsertSuccessInfo(String address,int price,String sales_type,java.util.Date sales_time,int house_type,int house_pro_id){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
 		int exeResult=0;
 		try {
 			String sql = "insert into sucess_info(address,price,sales_type,sales_time,house_type,house_pro_id) values(?,?,?,?,?,?)";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, address);
 			pstmt.setInt(2, price);
 			pstmt.setString(3, sales_type);
@@ -71,15 +129,41 @@ public class LatestSaleInfoListDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{
+			if(rs != null){   // å…³é—­è®°å½•é›†   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // å…³é—­å£°æ˜Ž   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // å…³é—­å£°æ˜Ž   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return exeResult;
 	}
-	//½üÆÚÇøÓò³É½»Çé¿ö update
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É½ï¿½ï¿½ï¿½ï¿½ update
 	public int updateSuccessInfo(int id,String address,int price,String sales_type,java.util.Date sales_time,int house_type,int house_pro_id){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		int exeResult=0;
 		try {
 			String sql = "update sucess_info set address=?,price=?,sales_type=?,sales_time=?,house_type=? where id=? and house_pro_id=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, address);
 			pstmt.setInt(2, price);
 			pstmt.setString(3, sales_type);
@@ -91,20 +175,70 @@ public class LatestSaleInfoListDao extends BaseDao {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{
+			if(rs != null){   // å…³é—­è®°å½•é›†   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // å…³é—­å£°æ˜Ž   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // å…³é—­å£°æ˜Ž   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return exeResult;
 	}
-	//½üÆÚÇøÓò³É½»Çé¿ö delete
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É½ï¿½ï¿½ï¿½ï¿½ delete
 	public int delSuccessInfo(int id){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
 		int exeResult=0;
 		try {
 			String sql = "delete from sucess_info where id="+id;
-			Statement stmt = con.createStatement();
+			  stmt = con.createStatement();
 			exeResult = stmt.executeUpdate(sql);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}finally{
+			if(rs != null){   // å…³é—­è®°å½•é›†   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // å…³é—­å£°æ˜Ž   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // å…³é—­å£°æ˜Ž   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return exeResult;
 	}
 }

@@ -1,7 +1,9 @@
 package com.kate.app.dao;
 
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -12,16 +14,19 @@ import org.springframework.stereotype.Repository;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.kate.app.model.NearSchool;
 import com.kate.app.model.NewsBoke;
+import com.kate.app.model.ZhiYeZhiDao;
 @Repository 
 public class NewsBokeDao extends BaseDao{
 	 public JSONArray listNewsBoke(){
+		 Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 			JSONArray jsonArray=new JSONArray();
 			try {
 				String sql = "select * from news_boke t;";
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				while(rs.next()){
 					JSONObject obj = new JSONObject();
 					obj.put("id", rs.getInt("id"));
@@ -46,14 +51,40 @@ public class NewsBokeDao extends BaseDao{
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
 			return jsonArray;
 		} 
 	 public int InsertNewsBoke(String  news_num,String news_title,String news_people,String news_time,String news_fenlei,String news_abstract,String news_detail,String news_image){
-			int exeResult=0;
+		 Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+		 int exeResult=0;
 			try {
 				String sql = "insert into news_boke(news_num,news_title,news_people,news_time,news_fenlei,news_abstract,news_detail,news_image) values(?,?,?,?,?,?,?,?)";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				 pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, news_num);
 				pstmt.setString(2, news_title);
 				pstmt.setString(3, news_people);
@@ -66,14 +97,40 @@ public class NewsBokeDao extends BaseDao{
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
 			return exeResult;
 		}  
 	 public int updateNewsBoke(int id,String  news_num,String news_title,String news_people,String news_time,String news_fenlei,String news_abstract,String news_detail,String news_image){
-			int exeResult=0;
+		 Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+		 int exeResult=0;
 			try {
 				String sql = "update news_boke set news_num=?,news_title=?,news_people=?,news_time=?,news_fenlei=?,news_abstract=?,news_detail=?,news_image=? where id=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				 pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, news_num);
 				pstmt.setString(2, news_title);
 				pstmt.setString(3, news_people);
@@ -87,29 +144,81 @@ public class NewsBokeDao extends BaseDao{
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
 			return exeResult;
 		}
 	 public int delNewsBoke(int id){
+		 Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 			int exeResult=0;
 			try {
 				String sql = "delete from news_boke where id="+id;
-				Statement stmt = con.createStatement();
+				  stmt = con.createStatement();
 				exeResult = stmt.executeUpdate(sql);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
 			return exeResult;
 		}
 	 
 	 public List<NewsBoke> getNewsBoke(int  id){
+		 Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 			List<NewsBoke> list=new ArrayList<NewsBoke>();
 			try {
 				String sql = " select * from news_boke where id = ?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				 pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				while(rs.next()){
 					NewsBoke obj = new NewsBoke();
 					obj.setId(rs.getInt("id"));
@@ -128,18 +237,44 @@ public class NewsBokeDao extends BaseDao{
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
 			return list;
 		}
 	 
 	 
 	 public NewsBoke getNewsBokeByNum(String blogNum){
+		 Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 			NewsBoke data=new NewsBoke();
 			try {
 				String sql = " select * from news_boke where news_num = ?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				 pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, blogNum);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				while(rs.next()){
 					data.setId(rs.getInt("id"));
 					data.setNews_abstract(rs.getString("news_abstract"));
@@ -154,20 +289,80 @@ public class NewsBokeDao extends BaseDao{
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
+			return data;
+		}
+	 public NewsBoke getZhiyeZhidaoByNum(String zhiyeNum){
+		 NewsBoke data=new NewsBoke();
+			try {
+				String sql = " select * from zhiye_zhidao where zhiye_num = ?";
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, zhiyeNum);
+				ResultSet rs = pstmt.executeQuery();
+				while(rs.next()){
+					data.setId(rs.getInt("id"));
+					data.setNews_abstract(rs.getString("zhiye_abstract"));
+					data.setNews_detail(rs.getString("detail"));
+					data.setNews_fenlei(rs.getString("fenlei"));
+					data.setNews_image(rs.getString("image"));
+					data.setNews_num(rs.getString("zhiye_num"));
+					data.setNews_people(rs.getString("fabu_people"));
+					data.setNews_time(rs.getTimestamp("fabu_time"));
+					data.setNews_title(rs.getString("title"));
+					/*data.setId(rs.getInt("id"));
+					data.setDetail(rs.getString("detail"));
+					data.setFabu_people(rs.getString("fabu_people"));
+					data.setFabu_time(rs.getTimestamp("fabu_time"));
+					data.setFenlei(rs.getString("fenlei"));
+					data.setImage(rs.getString("image"));
+					data.setTitle(rs.getString("title"));
+					data.setZhiye_abstract(rs.getString("zhiye_abstract"));
+					data.setZhiye_num(rs.getString("zhiye_num"));*/
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			return data;
 		}
 	 
 	 public List<String> getRecoByAreaNum(String areaNum){
+		 Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+
 			List<String> list = new ArrayList<String>();
 			String reco1 = null;
 			String reco2 = null;
 			String reco3 = null;
 			try {
 				String sql = " select * from recommend_news where area_code = ?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				 pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, areaNum);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				while(rs.next()){
 					reco1 = rs.getString("reco_news_num_1");
 					reco2 = rs.getString("reco_news_num_2");
@@ -179,7 +374,30 @@ public class NewsBokeDao extends BaseDao{
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
 			return list;
 		}
 	 

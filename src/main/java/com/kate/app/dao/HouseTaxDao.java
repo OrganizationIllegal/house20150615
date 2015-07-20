@@ -1,7 +1,9 @@
 package com.kate.app.dao;
 
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +17,17 @@ import com.kate.app.model.HouseTaxVo;
 @Repository 
 public class HouseTaxDao extends BaseDao {
 	 public List<HouseTaxVo> getHouseTaxVo(String proNum){
+		 Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+
 		  List<HouseTaxVo> houseTaxVoList=new ArrayList<HouseTaxVo>();
 		  
 		  try {
 				String sql = "select id, type,price,description from house_tax t where t.project_num=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, proNum);
-				ResultSet rs = pstmt.executeQuery();
+				  rs = pstmt.executeQuery();
 				String type=null;
 				int id=0;
 				int price=0;
@@ -38,15 +44,42 @@ public class HouseTaxDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		  finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
 			return houseTaxVoList;
 	  }
 	 public List<HoldingTaxVo> getHoldingTaxVo(String proNum){
+		 Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 		  List<HoldingTaxVo> holdingTaxVoList=new ArrayList<HoldingTaxVo>();
 		 
 		  try {
 				String sql = "select id,type,price,description from holding_finace t where t.project_num='"+proNum+"'";
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				String type=null;
 				int price=0;
 				int id=0;
@@ -63,15 +96,42 @@ public class HouseTaxDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		  finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
 			return holdingTaxVoList;
 	  }
 	 public List<HouseTaxData> getHouseTaxData(String proNum){
+		 Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 		  List<HouseTaxData> holdingTaxVoList=new ArrayList<HouseTaxData>();
 		  
 		  try {
 				String sql = "select type,price,description from house_tax t where t.project_num='"+proNum+"'";
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				String type=null;
 				int price=0;
 				String description=null;
@@ -85,15 +145,42 @@ public class HouseTaxDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		  finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
 			return holdingTaxVoList;
 	  }
 	 public List<HouseTaxData> getHoldingData(String proNum){
+		 Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 		 List<HouseTaxData> holdingTaxVoList=new ArrayList<HouseTaxData>();
 		 
 		  try {
 				String sql = "select type,price,description from holding_finace t where t.project_num='"+proNum+"'";
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				String type=null;
 				int price=0;
 				String description=null;
@@ -107,6 +194,30 @@ public class HouseTaxDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		  finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
 			return holdingTaxVoList;
 	 }
 
@@ -116,24 +227,56 @@ public class HouseTaxDao extends BaseDao {
 	 //锟斤拷锟斤拷税锟斤拷 List
 
 	 public JSONArray listHouseTax(){
+		 Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 			JSONArray jsonArray=new JSONArray();
 			try {
 				String sql = "select * from house_tax";
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				jsonArray=ResultSetConverter.convert(rs);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
+
 			return jsonArray;
 		} 
 	//锟斤拷锟斤拷税锟斤拷 Add
 	 public int InsertHouseTax(String type,int price,String description,String project_num,int view_shunxu,String house_name){
-			int exeResult=0;
+		 Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+
+		 int exeResult=0;
 			try {
 				String sql = "insert into house_tax(type,price,description,project_num,view_shunxu,house_name) values(?,?,?,?,?,?)";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, type);
 				pstmt.setInt(2, price);
 				pstmt.setString(3, description);
@@ -145,14 +288,41 @@ public class HouseTaxDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
 			return exeResult;
 		}  
 	//锟斤拷锟斤拷税锟斤拷 update
 	 public int updateHouseTax(int id,String type,int price,String description,String project_num,int view_shunxu,String house_name){
-			int exeResult=0;
+		 Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+		 int exeResult=0;
 			try {
 				String sql = "update house_tax set type=?,price=?,description=? ,project_num=?,view_shunxu=?,house_name=? where id="+id;
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, type);
 				pstmt.setInt(2, price);
 				pstmt.setString(3, description);
@@ -164,41 +334,122 @@ public class HouseTaxDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
 			return exeResult;
 		}
 	//锟斤拷锟斤拷税锟斤拷 delete
 	 public int delHouseTax(int id){
+		 Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 			int exeResult=0;
 			try {
 				String sql = "delete from house_tax where id="+id;
-				Statement stmt = con.createStatement();
+				  stmt = con.createStatement();
 				exeResult = stmt.executeUpdate(sql);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
+
 			return exeResult;
 		}
 	//锟斤拷锟叫成憋拷 List
 	 public JSONArray listHoldingCost(){
+		 Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+
 			JSONArray jsonArray=new JSONArray();
 			try {
 				String sql = "select * from holding_finace";
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
 				jsonArray=ResultSetConverter.convert(rs);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
 			return jsonArray;
 		} 
 	//锟斤拷锟叫成憋拷 Add
 	 public int InsertHoldingCost(String type,int price,String description,String  project_num,int view_shunxu,String house_name){
-			int exeResult=0;
+		 Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+		 int exeResult=0;
 			try {
 				String sql = "insert into holding_finace(type,price,description,project_num,view_shunxu,house_name) values(?,?,?,?,?,?)";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, type);
 				pstmt.setInt(2, price);
 				pstmt.setString(3, description);
@@ -209,15 +460,42 @@ public class HouseTaxDao extends BaseDao {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
 			return exeResult;
 		}  
 	//锟斤拷锟叫成憋拷 update
 	 public int updateHoldingCost(int id,String type,int price,String description,String project_num,int view_shunxu,String house_name){
-			int exeResult=0;
+		 Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+
+		 int exeResult=0;
 			try {
 				String sql = "update holding_finace set type=?,price=?,description=?,view_shunxu=? ,project_num=?,house_name=? where id=?";
-				PreparedStatement pstmt = con.prepareStatement(sql);
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, type);
 				pstmt.setInt(2, price);
 				pstmt.setString(3, description);
@@ -229,20 +507,70 @@ public class HouseTaxDao extends BaseDao {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
 			return exeResult;
 		}
 	//锟斤拷锟叫成憋拷 delete
 	 public int delHoldingCost(int id){
+		 Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
 			int exeResult=0;
 			try {
 				String sql = "delete from holding_finace where id="+id;
-				Statement stmt = con.createStatement();
+				  stmt = con.createStatement();
 				exeResult = stmt.executeUpdate(sql);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
+
 			return exeResult;
 		}
 }

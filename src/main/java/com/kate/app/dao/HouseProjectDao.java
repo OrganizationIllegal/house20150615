@@ -1,7 +1,9 @@
 package com.kate.app.dao;
 
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,21 +11,23 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.kate.app.model.BrokerInfo;
-
 import com.kate.app.model.DeveloperInfo;
-
 import com.kate.app.model.HouseProject;
 import com.kate.app.model.ProjectImage;
 @Repository 
 public class HouseProjectDao extends BaseDao{
 	public HouseProject HouseProjectDao(int id){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		HouseProject projectInfo = new HouseProject();
 		BrokerInfo brokerInfo = new BrokerInfo();
+		
 		try{
 			String sql = "select * from house_project where id=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, id);
-			ResultSet rs = pstmt.executeQuery();
+			  rs = pstmt.executeQuery();
 			while(rs.next()){
 				projectInfo.setProject_name(rs.getString("project_name"));
 				projectInfo.setArea_num(rs.getString("area_num"));
@@ -70,17 +74,45 @@ public class HouseProjectDao extends BaseDao{
 		}catch (Exception e) {
 			 e.printStackTrace();
         }
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			        	pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return projectInfo;
 	}
 	
 	public HouseProject HouseProjectByNumDao(String pro_num){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
 		HouseProject projectInfo = new HouseProject();
 		BrokerInfo brokerInfo = new BrokerInfo();
 		try{
 			String sql = "select * from house_project where project_num=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, pro_num);
-			ResultSet rs = pstmt.executeQuery();
+			  rs = pstmt.executeQuery();
 			while(rs.next()){
 				projectInfo.setProject_name(rs.getString("project_name"));
 				projectInfo.setArea_num(rs.getString("area_num"));
@@ -126,6 +158,30 @@ public class HouseProjectDao extends BaseDao{
 		}catch (Exception e) {
 			 e.printStackTrace();
         }
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return projectInfo;
 	}
 	
@@ -134,12 +190,15 @@ public class HouseProjectDao extends BaseDao{
 	 * �鿴�����˵���Ϣ
 	 */
 	public BrokerInfo BrokerInfoDao(int id){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		BrokerInfo brokerInfo = new BrokerInfo();
 		try{
 			String sql = "select * from broker_info where id=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, id);
-			ResultSet rs = pstmt.executeQuery();
+			  rs = pstmt.executeQuery();
 			while(rs.next()){
 				brokerInfo.setBroker_num(rs.getString("broker_num"));
 				brokerInfo.setBroker_name(rs.getString("broker_name"));
@@ -155,6 +214,30 @@ public class HouseProjectDao extends BaseDao{
 		}catch (Exception e) {
 			 e.printStackTrace();
         }
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return brokerInfo;
 	}
 	
@@ -165,12 +248,15 @@ public class HouseProjectDao extends BaseDao{
 	 * �鿴�����̵���Ϣ
 	 */
 	public DeveloperInfo DeveloperInfoDao(String developer_num){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		DeveloperInfo developerInfo = new DeveloperInfo();
 		try{
 			String sql = "select * from developer_info where developer_num=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, developer_num);
-			ResultSet rs = pstmt.executeQuery();
+			  rs = pstmt.executeQuery();
 			while(rs.next()){
 				developerInfo.setDeveloper_name(rs.getString("developer_name"));
 				developerInfo.setDeveloper_desc(rs.getString("developer_desc"));
@@ -179,6 +265,30 @@ public class HouseProjectDao extends BaseDao{
 			
 		}catch (Exception e) {
 			 e.printStackTrace();
+        }
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
         }
 		return developerInfo;
 	}
@@ -190,12 +300,15 @@ public class HouseProjectDao extends BaseDao{
 	 * Project Images
 	 */
 	public List<ProjectImage> HouseProjectImageDao(String proNum){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		List<ProjectImage> list = new ArrayList<ProjectImage>();
 		try{
 			String sql = "select * from project_desc_image where project_num=? order by view_shunxu";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, proNum);
-			ResultSet rs = pstmt.executeQuery();
+			  rs = pstmt.executeQuery();
 			while(rs.next()){
 				ProjectImage projectImage = new ProjectImage();
 				projectImage.setId(rs.getInt("id"));
@@ -209,6 +322,31 @@ public class HouseProjectDao extends BaseDao{
 		}catch (Exception e) {
             
         }
+
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return list;
 	}
 	
@@ -216,12 +354,15 @@ public class HouseProjectDao extends BaseDao{
 	 * Project Images
 	 */
 	public List<ProjectImage> HousePeitaoImageDao(String proNum){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		List<ProjectImage> list = new ArrayList<ProjectImage>();
 		try{
 			String sql = "select * from project_peitao_image where project_num=? order by view_shunxu";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, proNum);
-			ResultSet rs = pstmt.executeQuery();
+			  rs = pstmt.executeQuery();
 			while(rs.next()){
 				ProjectImage projectImage = new ProjectImage();
 				projectImage.setId(rs.getInt("id"));
@@ -235,18 +376,45 @@ public class HouseProjectDao extends BaseDao{
 		}catch (Exception e) {
 			 e.printStackTrace();
         }
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return list;
 	}
 	
 	
 	public HouseProject HouseProjectByAreaNumDao(String areaNum){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		HouseProject projectInfo = new HouseProject();
 		BrokerInfo brokerInfo = new BrokerInfo();
 		try{
 			String sql = "select * from house_project where area_num=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, areaNum);
-			ResultSet rs = pstmt.executeQuery();
+			  rs = pstmt.executeQuery();
 			while(rs.next()){
 				projectInfo.setProject_name(rs.getString("project_name"));
 				projectInfo.setProject_img(rs.getString("project_img"));
@@ -289,6 +457,30 @@ public class HouseProjectDao extends BaseDao{
 			
 		}catch (Exception e) {
 			 e.printStackTrace();
+        }
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
         }
 		return projectInfo;
 	}

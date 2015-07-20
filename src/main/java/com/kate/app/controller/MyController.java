@@ -208,7 +208,7 @@ public class MyController {
 		 getPeopleRegion(req,resp,area_num);
 		 getAreaFamily(req,resp,area_num);
 		 GetNewsInfo(req,resp,area_num);
-		 RecommendProject(req,resp,proId,proNum);
+		 RecommendProject(req,resp,proId,proNum,area_num);
 		 listSuoJia(req,resp,username);
 		 messageSubmit(req,resp,username,proId);
 		 //閿熺嫛纭锋嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷�
@@ -707,7 +707,7 @@ public class MyController {
  		NewsBoke tuijianNews1 = null;
  		NewsBoke tuijianNews2 = null;
  		NewsBoke tuijianNews3 = null;
- 		if(null!=newsblogNum1 && !"".equals(newsblogNum1)){
+ 		/*if(null!=newsblogNum1 && !"".equals(newsblogNum1)){
  			tuijianNews1 = newsBokeDao.getNewsBokeByNum(newsblogNum1.trim());
  		}
  		if(newsblogNum2!=null && !"".equals(newsblogNum2)){
@@ -715,6 +715,33 @@ public class MyController {
  		}
  		if(newsblogNum3!=null && !"".equals(newsblogNum3)){
  			tuijianNews3 = newsBokeDao.getNewsBokeByNum(newsblogNum3.trim());
+ 		}
+ 		
+ 		if(tuijianNews1!=null || tuijianNews2!=null || tuijianNews3!=null){
+	 		newsList.add(tuijianNews1);
+	 		newsList.add(tuijianNews2);
+	 		newsList.add(tuijianNews3);
+	    }*/
+ 		if(null!=newsblogNum1 && !"".equals(newsblogNum1)){
+ 			if(newsblogNum1.startsWith("blog")){
+ 				tuijianNews1 = newsBokeDao.getNewsBokeByNum(newsblogNum1.trim());
+ 			}else if(newsblogNum1.startsWith("learn")){
+ 				tuijianNews1 = newsBokeDao.getZhiyeZhidaoByNum(newsblogNum1.trim());
+ 			}
+ 		}
+ 		if(newsblogNum2!=null && !"".equals(newsblogNum2)){
+ 			if(newsblogNum2.startsWith("blog")){
+ 				tuijianNews2 = newsBokeDao.getNewsBokeByNum(newsblogNum2.trim());
+ 			}else if(newsblogNum2.startsWith("learn")){
+ 				tuijianNews2 = newsBokeDao.getZhiyeZhidaoByNum(newsblogNum2.trim());
+ 			}
+ 		}
+ 		if(newsblogNum3!=null && !"".equals(newsblogNum3)){
+ 			if(newsblogNum3.startsWith("blog")){
+ 				tuijianNews3 = newsBokeDao.getNewsBokeByNum(newsblogNum3.trim());
+ 			}else if(newsblogNum3.startsWith("learn")){
+ 				tuijianNews3 = newsBokeDao.getZhiyeZhidaoByNum(newsblogNum3.trim());
+ 			}
  		}
  		
  		if(tuijianNews1!=null || tuijianNews2!=null || tuijianNews3!=null){
@@ -777,8 +804,9 @@ public class MyController {
 	 */
 	
 	@RequestMapping({"/Index/RecommendProject"})    
-	public void  RecommendProject(HttpServletRequest req, HttpServletResponse resp, int proId, String proNum){
-		RecoProject data = recoProjectDao.getRecoProjectDao(proNum);
+	public void  RecommendProject(HttpServletRequest req, HttpServletResponse resp, int proId, String proNum,String area_num){
+		/*RecoProject data = recoProjectDao.getRecoProjectDao(proNum);*/
+		RecoProject data = recoProjectDao.getRecoProjectDao(area_num);
 		HouseProject project = houseProjectService.getHouseProject(proId);
 		HouseProject hp1 = new HouseProject();
 		HouseProject hp2 = new HouseProject();

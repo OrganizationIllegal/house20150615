@@ -899,6 +899,13 @@ $(function(){
 		//$("#projectimage").val(edititem.name+"");
 		//alert(index+"index");
 		schooledit=index;
+		var selectCount = document.getElementById("school_name");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==schooledititem.school_name){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#school_name').trigger('chosen:updated');
 		$("#school_name").val(schooledititem.school_name);
 		$("#school_distance").val(schooledititem.school_distance);
 		}); 

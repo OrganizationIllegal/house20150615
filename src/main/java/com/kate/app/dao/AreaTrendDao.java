@@ -1,7 +1,9 @@
 package com.kate.app.dao;
 
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,14 +18,18 @@ import com.kate.app.model.AreaZujin;
 @Repository 
 public class AreaTrendDao extends BaseDao {
   public List<AreaMiddle> getAreaMiddleTrend(String project_type, String area_code){
+	  Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
 	  List<AreaMiddle> areaMiddleTrendList=new ArrayList<AreaMiddle>();
 	
 	  try {
 			String sql = " select * from area_middle where project_type=? and area_code=? order by heng";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, project_type);
 			pstmt.setString(2, area_code);
-			ResultSet rs = pstmt.executeQuery();
+			  rs = pstmt.executeQuery();
 			while(rs.next()){
 				AreaMiddle data = new AreaMiddle();
 				data.setArea_code(rs.getString("area_code"));
@@ -39,18 +45,47 @@ public class AreaTrendDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	  finally{
+			if(rs != null){   // å…³é—­è®°å½•é›†   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // å…³é—­å£°æ˜Ž   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // å…³é—­å£°æ˜Ž   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+      }
 		return areaMiddleTrendList;
   }
   
   public List<AreaZujin> getAreaZujinTrend(String project_type, String area_code){
+	  Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
+		
 	  List<AreaZujin> areaZujinTrendList=new ArrayList<AreaZujin>();
 	 
 	  try {
 			String sql = " select * from area_zujin where project_type=? and area_code=? order by heng";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, project_type);
 			pstmt.setString(2, area_code);
-			ResultSet rs = pstmt.executeQuery();
+			  rs = pstmt.executeQuery();
 			
 			while(rs.next()){
 				AreaZujin data = new AreaZujin();
@@ -67,18 +102,45 @@ public class AreaTrendDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	  finally{
+			if(rs != null){   // å…³é—­è®°å½•é›†   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // å…³é—­å£°æ˜Ž   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // å…³é—­å£°æ˜Ž   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+      }
 		return areaZujinTrendList;
   }
   
   public List<AreaZhikong> getAreaZhikongTrend(String project_type, String area_code){
+	  Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 	  List<AreaZhikong> areaZhikongeTrendList=new ArrayList<AreaZhikong>();
 	  
 	  try {
 			String sql = " select * from area_kongzhi where project_type=? and area_code=? order by heng"; 
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, project_type);
 			pstmt.setString(2, area_code);
-			ResultSet rs = pstmt.executeQuery();
+			  rs = pstmt.executeQuery();
 			
 			while(rs.next()){
 				AreaZhikong data = new AreaZhikong();
@@ -95,6 +157,30 @@ public class AreaTrendDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	  finally{
+			if(rs != null){   // å…³é—­è®°å½•é›†   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // å…³é—­å£°æ˜Ž   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // å…³é—­å£°æ˜Ž   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+      }
 		return areaZhikongeTrendList;
   }
   
@@ -103,26 +189,57 @@ public class AreaTrendDao extends BaseDao {
   
   
   
-//ÖÐÎ»Êý·¿¼Û×ßÊÆ List
+//ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ List
   public JSONArray listAreaMiddle(){
+	  Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		JSONArray jsonArray=new JSONArray();
 		try {
 			String sql = "select * from area_middle t;";
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
 			jsonArray=ResultSetConverter.convert(rs);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // å…³é—­è®°å½•é›†   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // å…³é—­å£°æ˜Ž   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // å…³é—­å£°æ˜Ž   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return jsonArray;
 	} 
-//ÖÐÎ»Êý·¿¼Û×ßÊÆ Add
+//ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Add
  public int InsertAreaMiddle(int heng, int zong, int view_shunxu,String area_code,String project_type){
-		int exeResult=0;
+	 Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
+	 int exeResult=0;
 		try {
 			String sql = "insert into area_middle(heng,zong,view_shunxu,area_code,project_type) values(?,?,?,?,?)";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, heng);
 			pstmt.setInt(2, zong);
 			pstmt.setInt(3, view_shunxu);
@@ -133,15 +250,42 @@ public class AreaTrendDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // å…³é—­è®°å½•é›†   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // å…³é—­å£°æ˜Ž   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // å…³é—­å£°æ˜Ž   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return exeResult;
 	}  
  
-//ÖÐÎ»Êý·¿¼Û×ßÊÆ update
- public int updateAreaMiddle(int id,int heng, int zong, int view_shunxu,String area_code,String project_type){
-		int exeResult=0;
+//ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ update
+ public int updateAreaMiddle(int id,int heng, int zong, int view_shunxu,String area_code,String project_type){ 	
+	 Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+	 int exeResult=0;
 		try {
 			String sql = "update area_middle set heng=?,zong=?,view_shunxu=?,area_code=?,project_type=? where id=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, heng);
 			pstmt.setInt(2, zong);
 			pstmt.setInt(3, view_shunxu);
@@ -153,41 +297,123 @@ public class AreaTrendDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // å…³é—­è®°å½•é›†   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // å…³é—­å£°æ˜Ž   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // å…³é—­å£°æ˜Ž   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return exeResult;
 	}
-//ÖÐÎ»Êý·¿¼Û×ßÊÆ delete
+//ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ delete
  public int delAreaMiddle(int id){
+	 Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		int exeResult=0;
 		try {
 			String sql = "delete from area_middle where id="+id;
-			Statement stmt = con.createStatement();
+			  stmt = con.createStatement();
 			exeResult = stmt.executeUpdate(sql);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // å…³é—­è®°å½•é›†   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // å…³é—­å£°æ˜Ž   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // å…³é—­å£°æ˜Ž   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return exeResult;
 	}
- //ÇøÓò×â½ð×ßÊÆList
+ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½List
  public JSONArray listAreaZujin(){
+	 Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		JSONArray jsonArray=new JSONArray();
 		try {
 			String sql = "select * from area_zujin t;";
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
 			jsonArray=ResultSetConverter.convert(rs);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // å…³é—­è®°å½•é›†   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // å…³é—­å£°æ˜Ž   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // å…³é—­å£°æ˜Ž   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return jsonArray;
 	} 
- //ÇøÓò×â½ð×ßÊÆAdd
+ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Add
  public int InsertAreaZujin(int heng, int zong, int view_shunxu,String area_code,String project_type){
-		int exeResult=0;
+	 Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
+	 int exeResult=0;
 		try {
 			String sql = "insert into area_zujin(heng,zong,view_shunxu,area_code,project_type) values(?,?,?,?,?)";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, heng);
 			pstmt.setInt(2, zong);
 			pstmt.setInt(3, view_shunxu);
@@ -198,14 +424,41 @@ public class AreaTrendDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // å…³é—­è®°å½•é›†   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // å…³é—­å£°æ˜Ž   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // å…³é—­å£°æ˜Ž   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return exeResult;
 	}  
- //ÇøÓò×â½ð×ßÊÆupdate
+ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½update
  public int updateAreaZujin(int id,int heng, int zong, int view_shunxu,String area_code,String project_type){
-		int exeResult=0;
+	 Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+	 int exeResult=0;
 		try {
 			String sql = "update area_zujin set heng=?,zong=?,view_shunxu=?,area_code=?,project_type=? where id=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, heng);
 			pstmt.setInt(2, zong);
 			pstmt.setInt(3, view_shunxu);
@@ -217,41 +470,125 @@ public class AreaTrendDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // å…³é—­è®°å½•é›†   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // å…³é—­å£°æ˜Ž   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // å…³é—­å£°æ˜Ž   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return exeResult;
 	}
- //ÇøÓò×â½ð×ßÊÆdelete
+ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½delete
  public int delAreaZujin(int id){
+	 Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
+
 		int exeResult=0;
 		try {
 			String sql = "delete from area_zujin where id="+id;
-			Statement stmt = con.createStatement();
+			  stmt = con.createStatement();
 			exeResult = stmt.executeUpdate(sql);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // å…³é—­è®°å½•é›†   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // å…³é—­å£°æ˜Ž   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // å…³é—­å£°æ˜Ž   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return exeResult;
 	}
- //ÇøÓò¿ÕÖÃÂÊ List
+ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ List
  public JSONArray listAreaZhikong(){
+	 Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
 		JSONArray jsonArray=new JSONArray();
 		try {
 			String sql = "select * from area_kongzhi t;";
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
 			jsonArray=ResultSetConverter.convert(rs);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // å…³é—­è®°å½•é›†   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // å…³é—­å£°æ˜Ž   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // å…³é—­å£°æ˜Ž   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return jsonArray;
 	} 
- //ÇøÓò¿ÕÖÃÂÊ Add
+ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Add
  public int InsertAreaZhikong(int heng, int zong, int view_shunxu,String area_code,String project_type){
-		int exeResult=0;
+	 Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+	 int exeResult=0;
 		try {
 			String sql = "insert into area_kongzhi(heng,zong,view_shunxu,area_code,project_type) values(?,?,?,?,?)";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, heng);
 			pstmt.setInt(2, zong);
 			pstmt.setInt(3, view_shunxu);
@@ -262,14 +599,42 @@ public class AreaTrendDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // å…³é—­è®°å½•é›†   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // å…³é—­å£°æ˜Ž   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // å…³é—­å£°æ˜Ž   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return exeResult;
 	}  
- //ÇøÓò¿ÕÖÃÂÊ update
+ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ update
  public int updateAreaZhikong(int id,int heng, int zong, int view_shunxu,String area_code,String project_type){
-		int exeResult=0;
+	 Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
+	 int exeResult=0;
 		try {
 			String sql = "update area_kongzhi set heng=?,zong=?,view_shunxu=?,area_code=?,project_type=? where id=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, heng);
 			pstmt.setInt(2, zong);
 			pstmt.setInt(3, view_shunxu);
@@ -281,28 +646,82 @@ public class AreaTrendDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // å…³é—­è®°å½•é›†   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // å…³é—­å£°æ˜Ž   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // å…³é—­å£°æ˜Ž   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return exeResult;
 	}
- //ÇøÓò¿ÕÖÃÂÊ delete
+ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ delete
  public int delAreaZhikong(int id){
+	 Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		int exeResult=0;
 		try {
 			String sql = "delete from area_kongzhi where id="+id;
-			Statement stmt = con.createStatement();
+			  stmt = con.createStatement();
 			exeResult = stmt.executeUpdate(sql);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // å…³é—­è®°å½•é›†   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // å…³é—­å£°æ˜Ž   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // å…³é—­å£°æ˜Ž   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return exeResult;
 	}
- //¸ù¾Ýarea_id´Óarea_info±íÖÐ²éÕÒarea_id ÊÇ·ñ´æÔÚ
+ //ï¿½ï¿½ï¿½area_idï¿½ï¿½area_infoï¿½ï¿½ï¿½Ð²ï¿½ï¿½ï¿½area_id ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
  public  int findAreaid(int areaid){
+	 Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 	 int area_id=0;
 		try {
 			String sql = "select id from area_info  t  WHERE t.id="+areaid;
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
 			while(rs.next()){
 				area_id=rs.getInt("id");
 			}
@@ -310,6 +729,30 @@ public class AreaTrendDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // å…³é—­è®°å½•é›†   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // å…³é—­å£°æ˜Ž   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // å…³é—­å£°æ˜Ž   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return area_id;
  }
 }

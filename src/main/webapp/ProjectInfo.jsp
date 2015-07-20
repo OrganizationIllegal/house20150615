@@ -925,7 +925,14 @@ $(function(){
 		schooledititem=schoollist[index];
 		$(this).parent().parent().hide();
 		schooledit=index;
-		/* $("#school_name").val(schooledititem.school_name); */
+		var selectCount = document.getElementById("school_name");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==schooledititem.school_name){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#school_name').trigger('chosen:updated');
+		$("#school_name").val(schooledititem.school_name);
 		/*  $("#school_name").find("option[text=schooledititem.school_name]").attr("selected",true); */
 		/*  $('#school_name').trigger('chosen:updated'); */
 		$("#school_distance").val(schooledititem.school_distance);

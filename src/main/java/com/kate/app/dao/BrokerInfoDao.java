@@ -1,7 +1,9 @@
 package com.kate.app.dao;
 
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -15,11 +17,14 @@ import com.kate.app.model.BrokerInfo;
 @Repository 
 public class BrokerInfoDao extends BaseDao {
 	public List<BrokerInfo> listBrokerInfo(){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		List<BrokerInfo> brokerInfoList=new ArrayList<BrokerInfo>();
 		try {
 			String sql = "select * from broker_info t";
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
 		    int id=0;
 		    String broker_img=null;
 		    String broker_language=null;
@@ -56,16 +61,41 @@ public class BrokerInfoDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return brokerInfoList;
 	} 
 	//閸欐垿锟介悾娆掆枅
 	public int InsertMessage(String message_content,String time,int project_id,int viewed,int type,int userid){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		int exeResult=0;
-		
-		
 		try {
 			String sql = "insert into message(message_content,message_time,project_id,viewed,type,userid) values (?,?,?,?,?,?)";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, message_content);
 			pstmt.setString(2, time);
 			pstmt.setInt(3, project_id);
@@ -77,6 +107,30 @@ public class BrokerInfoDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return exeResult;
 		
 	}
@@ -84,12 +138,16 @@ public class BrokerInfoDao extends BaseDao {
 	
 	
 	public List<BrokerInfo> BrokerInfoList(int proId){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
 		List<BrokerInfo> brokerInfoList=new ArrayList<BrokerInfo>();
 		try {
 			String sql = "select * from broker_info where house_pro_id = ?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, proId);
-			ResultSet rs = pstmt.executeQuery();
+			  rs = pstmt.executeQuery();
 			
 		    while(rs.next()){
 		    	BrokerInfo data = new BrokerInfo();
@@ -112,20 +170,45 @@ public class BrokerInfoDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return brokerInfoList;
 	} 
 	
 	
 	public BrokerInfo getBrokerInfo(int id){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		BrokerInfo data = new BrokerInfo();
 		try {
 			String sql = "select * from broker_info where id = ?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, id);
-			ResultSet rs = pstmt.executeQuery();
-			
-		    while(rs.next()){
-		    	
+			  rs = pstmt.executeQuery();
+			 while(rs.next()){
 		    	data.setBroker_experience(rs.getInt("broker_experience"));
 		    	data.setBroker_img(rs.getString("broker_img"));
 		    	data.setBroker_language(rs.getString("broker_language"));
@@ -137,24 +220,48 @@ public class BrokerInfoDao extends BaseDao {
 		    	data.setId(rs.getInt("id"));
 		    	data.setIntroduction(rs.getString("introduction"));
 		    	data.setOffice(rs.getString("office"));
-		    	
-		    }
-		    
-		  
+		    } 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return data;
 	} 
 	//鎺ㄨ崘缁忕邯浜�
 	public List<BrokerInfo> getRecommendBroker(String area_code){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		List<BrokerInfo> recommendbrokerList=new ArrayList<BrokerInfo>();
 		try {
 			String sql = "select * from area_recommend_broker where area_code = ?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, area_code);
-			ResultSet rs = pstmt.executeQuery();
+			  rs = pstmt.executeQuery();
 		    while(rs.next()){
 		    	String broker1=rs.getString("broker_code1");
 		    	String broker2=rs.getString("broker_code2");
@@ -171,30 +278,53 @@ public class BrokerInfoDao extends BaseDao {
 		    		BrokerInfo brokerInfo3=findBrokerbyId(broker3);
 		    		recommendbrokerList.add(brokerInfo3);
 		    	}
-		    	
-		    	
 		    }
-		    
-		  
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return recommendbrokerList;
 		
 	}
 	
 	public BrokerInfo findBrokerbyId(String broker_code){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
 		BrokerInfo brokerInfo=new BrokerInfo();
 		try {
 			String sql = "select * from broker_info where broker_num = ?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, broker_code);
-			ResultSet rs = pstmt.executeQuery();
+			  rs = pstmt.executeQuery();
 			
 		    while(rs.next()){
 		    	brokerInfo.setId(Integer.parseInt(rs.getString("id")));
-
 		    	brokerInfo.setBroker_num(rs.getString("broker_num"));
 		    	brokerInfo.setBroker_name(rs.getString("broker_name"));
 		    	brokerInfo.setBroker_img(rs.getString("broker_img"));
@@ -202,22 +332,48 @@ public class BrokerInfoDao extends BaseDao {
 		    	brokerInfo.setBroker_language(rs.getString("broker_language"));
 		    	brokerInfo.setBroker_region(rs.getString("broker_region"));
 		    }
-		    
-		  
-		} catch (Exception e) {
+		 } catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return brokerInfo;
 		
 	}
 	public String findBrokerbyName(String broker_name){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
 		String brokerNum=null;
 		try {
 			String sql = "select * from broker_info where broker_name = ?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, broker_name);
-			ResultSet rs = pstmt.executeQuery();
+			  rs = pstmt.executeQuery();
 			
 		    while(rs.next()){
 		    	brokerNum = rs.getString("broker_num");
@@ -228,16 +384,43 @@ public class BrokerInfoDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return brokerNum;
 		
 	}
 	//寰楀埌缁忕邯浜虹被鍨�
 	public List<String> getBrokerTypeList(){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		List<String> typeList=new ArrayList<String>();
 		try{
 			String sql="select distinct t.broker_type from broker_info t ";
-			PreparedStatement pstmt=con.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
+			pstmt=con.prepareStatement(sql);
+			  rs = pstmt.executeQuery();
 			while(rs.next()){
 				typeList.add(rs.getString("broker_type"));
 			}
@@ -245,15 +428,42 @@ public class BrokerInfoDao extends BaseDao {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return typeList;
 	}
 	//寰楀埌缁忕邯浜哄尯鍩�
 	public List<String> getBrokerRegionList(){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		List<String> regionList=new ArrayList<String>();
 		try{
 			String sql="select distinct t.broker_region from broker_info t ";
-			PreparedStatement pstmt=con.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
+			pstmt=con.prepareStatement(sql);
+			  rs = pstmt.executeQuery();
 			while(rs.next()){
 				regionList.add(rs.getString("broker_region"));
 			}
@@ -261,15 +471,42 @@ public class BrokerInfoDao extends BaseDao {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return regionList;
 	}
 	//寰楀埌缁忕邯浜鸿瑷�
 	public Set<String> getBrokerLanguageList(){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		Set<String> languageList=new HashSet<String>();
 		try{
 			String sql="select distinct t.broker_language from broker_info t ";
-			PreparedStatement pstmt=con.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
+			pstmt=con.prepareStatement(sql);
+			  rs = pstmt.executeQuery();
 			while(rs.next()){
 				//languageList.add(rs.getString("broker_language"));
 				String language_str=rs.getString("broker_language");
@@ -283,6 +520,30 @@ public class BrokerInfoDao extends BaseDao {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
 		return languageList;
 	}
 	
