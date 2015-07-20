@@ -32,13 +32,15 @@ public class UserInfoDao extends BaseDao {
 				String email=null;
 				String tel=null;
 				int role=0;
+				int flag = 0;
 				while(rs.next()){
 					id = rs.getInt("id");
 					pwd = rs.getString("pwd");
 					email = rs.getString("email");
 					tel = rs.getString("tel");
 					role = rs.getInt("role");
-					User data = new User(username1, pwd, email, tel, role);
+					flag= rs.getInt("flag");
+					User data = new User(username1, pwd, email, tel, role, flag);
 					list.add(data);
 				}
 				
@@ -88,14 +90,16 @@ public class UserInfoDao extends BaseDao {
 				String tel=null;
 				String nick_name = null;
 				int role=0;
+				int flag = 0;
 				while(rs.next()){
 					id = rs.getInt("id");
 					pwd = rs.getString("pwd");
 					email = rs.getString("email");
 					tel = rs.getString("tel");
 					role = rs.getInt("role");
+					flag = rs.getInt("flag");
 					nick_name = rs.getString("nick_name");
-					User data = new User(nick_name, pwd, email, tel, role);
+					User data = new User(nick_name, pwd, email, tel, role,flag);
 					list.add(data);
 				}
 				

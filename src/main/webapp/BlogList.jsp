@@ -106,6 +106,12 @@ function reLoad(){
   
 </head>
 <body style="/* padding-top: 105px; */margin:0 auto;background-color:rgb(232, 233, 234);" onresize="reLoad()">
+<%
+String flag = null;
+if(request.getSession().getAttribute("flag")!=null){
+	flag = request.getSession().getAttribute("flag").toString();
+}
+%>
 <jsp:include page="head4index.jsp" />
 <div id="container" class="" style="width:100%;margin:0 auto; padding-top:10px; background:#fff;">
  <a name="wintop"></a>
@@ -266,6 +272,7 @@ function reLoad(){
     </div>
     </div>
    <script type="text/javascript">
+   var item = <%=flag%>
 	    // init bootpag
 	    var category="";
    		$(function(){

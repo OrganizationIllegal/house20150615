@@ -26,6 +26,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
   
   <body>
+  <%
+String flag = null;
+if(request.getSession().getAttribute("flag")!=null){
+	flag = request.getSession().getAttribute("flag").toString();
+}
+%>
    <div class="container">
     <h1>Broker Info List</h1>
     <div id="toolbar">
@@ -74,6 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 
 <script>
+var item = <%=flag%>
     var $table = $('#table'),
         $remove = $('#remove'),
         $add = $('#add'),
@@ -221,21 +228,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             
         },
         'click .remove': function (e, value, row, index) {
-       
-            var id = row.id;
-             $.ajax({
-		 	    type: "POST",
-		 		data: {id: id},
-		 		dateType: "json",
-		 		url: "/deleteBrokerInfo",
-		 		
-		 		success:function(data){
-		 			alert("删除成功！")
-		 		},
-		 		error:function(){
-		 			alert("error")
-		 		}
-	 	});
+        	if(item!=2){
+        		alert("您没有权限删除！");
+        	}
+        	else{
+        		var id = row.id;
+                $.ajax({
+   		 	    type: "POST",
+   		 		data: {id: id},
+   		 		dateType: "json",
+   		 		url: "/deleteBrokerInfo",
+   		 		
+   		 		success:function(data){
+   		 			alert("删除成功！")
+   		 		},
+   		 		error:function(){
+   		 			alert("error")
+   		 		}
+   	 	});
+        	}
+            
         
            
             

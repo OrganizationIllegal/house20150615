@@ -15,6 +15,14 @@ public class UserInfo {
 	private String newestprice;
 	private String housetype;
 	private int role;
+	private int flag;
+	
+	public int getFlag() {
+		return flag;
+	}
+	public void setFlag(int flag) {
+		this.flag = flag;
+	}
 	public int getId() {
 		return id;
 	}

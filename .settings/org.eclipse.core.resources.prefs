@@ -17,6 +17,7 @@ encoding//src/main/java/com/kate/app/dao/HouseProjectDao.java=UTF-8
 encoding//src/main/java/com/kate/app/dao/HouseTaxDao.java=UTF-8
 encoding//src/main/java/com/kate/app/dao/ProjectInputDao.java=UTF-8
 encoding//src/main/java/com/kate/app/dao/SearchListDao.java=UTF-8
+encoding//src/main/java/com/kate/app/dao/UserDao.java=UTF-8
 encoding//src/main/java/com/kate/app/dao/UserInfoDao.java=UTF-8
 encoding//src/main/java/com/kate/app/model/MailInfo.java=UTF-8
 encoding//src/main/java/com/kate/app/model/SearchList.java=UTF-8
