@@ -128,9 +128,15 @@ body{
 </select>  -->
 <select data-placeholder="请选择..." class="chosen-select" id="project_type" name="project_type" style="width:220px;" tabindex="1">
  	 <option value=""></option>
-  	 <option >公寓</option>
-     <option >别墅</option>
-     <option>联排别墅</option>
+ 	 <option  value="公寓">公寓</option>
+ 	  <option  value="别墅">别墅</option>
+ 	   <option  value="联排别墅">联排别墅</option>
+  	 <!-- <option  value="1居室">1居室</option>
+  	  <option  value="2居室">2居室</option>
+  	   <option  value="3居室">3居室</option>
+  	    <option  value="4居室">4居室</option>
+  	     <option  value="5居室">5居室</option>
+  	      <option  value="6居室">6居室</option> -->
  </select>
 
 </span>
@@ -144,7 +150,19 @@ body{
 <span class="area_span">租赁价格</span><span><input type="text" id="zu_price" name="zu_price" class="area_input"></span>
 </div>
 <div class="area_left">
-<span class="area_span">买一名称</span><span><input type="text" id="buy_one_name" name="buy_one_name" class="area_input"></span>
+<span class="area_span">买一名称</span>
+<span>
+<!-- <input type="text" id="buy_one_name" name="buy_one_name" class="area_input"> -->
+<select data-placeholder="请选择..." class="chosen-select" id="buy_one_name" name="buy_one_name" style="width:220px;" tabindex="1">
+ 	 <option value=""></option>
+  	 <option  value="1居室">1居室</option>
+  	  <option  value="2居室">2居室</option>
+  	   <option  value="3居室">3居室</option>
+  	    <option  value="4居室">4居室</option>
+  	     <option  value="5居室">5居室</option>
+  	      <option  value="6居室">6居室</option> 
+ </select>
+</span>
 </div>
 <div class="area_right">
 <span class="area_span">买一价格</span><span><input type="text" id="buy_one_price" name="buy_one_price" class="area_input"></span>
@@ -954,16 +972,58 @@ $(function(){
 		 $("#project_type").val(middlepriceedititem.project_type); 
 		$("#buy_price").val(middlepriceedititem.buy_price);
 		$("#zu_price").val(middlepriceedititem.zu_price);
+		var selectCount = document.getElementById("buy_one_name");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==middlepriceedititem.buy_one_name){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#buy_one_name').trigger('chosen:updated');
 		$("#buy_one_name").val(middlepriceedititem.buy_one_name);
 		$("#buy_one_price").val(middlepriceedititem.buy_one_price);
+		var selectCount = document.getElementById("buy_two_name");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==middlepriceedititem.buy_two_name){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#buy_two_name').trigger('chosen:updated');
 		$("#buy_two_name").val(middlepriceedititem.buy_two_name);
 		$("#buy_two_price").val(middlepriceedititem.buy_two_price);
+		var selectCount = document.getElementById("buy_three_name");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==middlepriceedititem.buy_three_name){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#buy_three_name').trigger('chosen:updated');
 		$("#buy_three_name").val(middlepriceedititem.buy_three_name);
 		$("#buy_three_price").val(middlepriceedititem.buy_three_price);
+		var selectCount = document.getElementById("zu_one_name");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==middlepriceedititem.zu_one_name){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#zu_one_name').trigger('chosen:updated');
 		$("#zu_one_name").val(middlepriceedititem.zu_one_name);
 		$("#zu_one_price").val(middlepriceedititem.zu_one_price);
+		var selectCount = document.getElementById("zu_two_name");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==middlepriceedititem.zu_two_name){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#zu_two_name').trigger('chosen:updated');
 		$("#zu_two_name").val(middlepriceedititem.zu_tow_name);
 		$("#zu_two_price").val(middlepriceedititem.zu_two_price);
+		var selectCount = document.getElementById("zu_three_name");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==middlepriceedititem.zu_three_name){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#zu_three_name').trigger('chosen:updated');
 		$("#zu_three_name").val(middlepriceedititem.zu_three_name);
 		$("#zu_three_price").val(middlepriceedititem.zu_three_price);
 		$("#middle_datasource").val(middlepriceedititem.middle_datasource);

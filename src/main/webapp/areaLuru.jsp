@@ -126,9 +126,9 @@ body{
 </select> -->
 <select data-placeholder="请选择..." class="chosen-select" id="project_type" name="project_type" style="width:220px;" tabindex="1">
  	 <option value=""></option>
-  	 <option >公寓</option>
-     <option >别墅</option>
-     <option>联排别墅</option>
+  	       <option  value="公寓">公寓</option>
+ 	       <option  value="别墅">别墅</option>
+ 	       <option  value="联排别墅">联排别墅</option>
  </select>
 </span>
 </div>
@@ -138,40 +138,116 @@ body{
 <input type="hidden" id="id" name="id" class="area_input">
 </div>
 <div class="area_right">
-<span class="area_span">租赁价格</span><span><input type="text" id="zu_price" name="zu_price" class="area_input"></span>
+<span class="area_span">租赁价格</span>
+<span>
+<input type="text" id="zu_price" name="zu_price" class="area_input">
+
+</span>
 </div>
 <div class="area_left">
-<span class="area_span">买一名称</span><span><input type="text" id="buy_one_name" name="buy_one_name" class="area_input"></span>
+<span class="area_span">买一名称</span>
+<span>
+<!-- <input type="text" id="buy_one_name" name="buy_one_name" class="area_input"> -->
+<select data-placeholder="请选择..." class="chosen-select" id="buy_one_name" name="buy_one_name" style="width:220px;" tabindex="1">
+ 	 <option value=""></option>
+  	 <option  value="1居室">1居室</option>
+  	  <option  value="2居室">2居室</option>
+  	   <option  value="3居室">3居室</option>
+  	    <option  value="4居室">4居室</option>
+  	     <option  value="5居室">5居室</option>
+  	      <option  value="6居室">6居室</option> 
+ </select>
+</span>
 </div>
 <div class="area_right">
 <span class="area_span">买一价格</span><span><input type="text" id="buy_one_price" name="buy_one_price" class="area_input"></span>
 </div>
 <div class="area_left">
-<span class="area_span">买二名称</span><span><input type="text" id="buy_two_name" name="buy_two_name" class="area_input"></span>
+<span class="area_span">买二名称</span>
+<span>
+<!-- <input type="text" id="buy_two_name" name="buy_two_name" class="area_input"> -->
+<select data-placeholder="请选择..." class="chosen-select" id="buy_two_name" name="buy_two_name" style="width:220px;" tabindex="1">
+ 	 <option value=""></option>
+  	 <option  value="1居室">1居室</option>
+  	  <option  value="2居室">2居室</option>
+  	   <option  value="3居室">3居室</option>
+  	    <option  value="4居室">4居室</option>
+  	     <option  value="5居室">5居室</option>
+  	      <option  value="6居室">6居室</option> 
+ </select>
+</span>
 </div>
 <div class="area_right">
 <span class="area_span">买二价格</span><span><input type="text" id="buy_two_price" name="buy_two_price" class="area_input"></span>
 </div>
 <div class="area_left">
-<span class="area_span">买三名称</span><span><input type="text" id="buy_three_name" name="buy_three_name" class="area_input"></span>
+<span class="area_span">买三名称</span>
+<span>
+<!-- <input type="text" id="buy_three_name" name="buy_three_name" class="area_input"> -->
+<select data-placeholder="请选择..." class="chosen-select" id="buy_three_name" name="buy_three_name" style="width:220px;" tabindex="1">
+ 	 <option value=""></option>
+  	 <option  value="1居室">1居室</option>
+  	  <option  value="2居室">2居室</option>
+  	   <option  value="3居室">3居室</option>
+  	    <option  value="4居室">4居室</option>
+  	     <option  value="5居室">5居室</option>
+  	      <option  value="6居室">6居室</option> 
+ </select>
+</span>
 </div>
 <div class="area_right">
 <span class="area_span">买三价格</span><span><input type="text" id="buy_three_price" name="buy_three_price" class="area_input"></span>
 </div>
 <div class="area_left">
-<span class="area_span">租一名称</span><span><input type="text" id="zu_one_name" name="zu_one_name" class="area_input"></span>
+<span class="area_span">租一名称</span>
+<span>
+<!-- <input type="text" id="zu_one_name" name="zu_one_name" class="area_input"> -->
+<select data-placeholder="请选择..." class="chosen-select" id="zu_one_name" name="zu_one_name" style="width:220px;" tabindex="1">
+ 	 <option value=""></option>
+  	 <option  value="1居室">1居室</option>
+  	  <option  value="2居室">2居室</option>
+  	   <option  value="3居室">3居室</option>
+  	    <option  value="4居室">4居室</option>
+  	     <option  value="5居室">5居室</option>
+  	      <option  value="6居室">6居室</option> 
+ </select>
+</span>
 </div>
 <div class="area_right">
 <span class="area_span">租一价格</span><span><input type="text" id="zu_one_price" name="zu_one_price" class="area_input"></span>
 </div>
 <div class="area_left">
-<span class="area_span">租二名称</span><span><input type="text" id="zu_two_name" name="zu_two_name" class="area_input"></span>
+<span class="area_span">租二名称</span>
+<span>
+<!-- <input type="text" id="zu_two_name" name="zu_two_name" class="area_input"> -->
+<select data-placeholder="请选择..." class="chosen-select" id="zu_two_name" name="zu_two_name" style="width:220px;" tabindex="1">
+ 	 <option value=""></option>
+  	 <option  value="1居室">1居室</option>
+  	  <option  value="2居室">2居室</option>
+  	   <option  value="3居室">3居室</option>
+  	    <option  value="4居室">4居室</option>
+  	     <option  value="5居室">5居室</option>
+  	      <option  value="6居室">6居室</option> 
+ </select>
+</span>
 </div>
 <div class="area_right">
 <span class="area_span">租二价格</span><span><input type="text" id="zu_two_price" name="zu_two_price" class="area_input"></span>
 </div>
 <div class="area_left">
-<span class="area_span">租三名称</span><span><input type="text" id="zu_three_name" name="zu_three_name" class="area_input"></span>
+<span class="area_span">租三名称</span>
+<span>
+<!-- <input type="text" id="zu_three_name" name="zu_three_name" class="area_input"> -->
+<select data-placeholder="请选择..." class="chosen-select" id="zu_three_name" name="zu_three_name" style="width:220px;" tabindex="1">
+ 	 <option value=""></option>
+  	 <option  value="1居室">1居室</option>
+  	  <option  value="2居室">2居室</option>
+  	   <option  value="3居室">3居室</option>
+  	    <option  value="4居室">4居室</option>
+  	     <option  value="5居室">5居室</option>
+  	      <option  value="6居室">6居室</option> 
+ </select>
+</span>
 </div>
 <div class="area_right">
 <span class="area_span">租三价格</span><span><input type="text" id="zu_three_price" name="zu_three_price" class="area_input"></span>

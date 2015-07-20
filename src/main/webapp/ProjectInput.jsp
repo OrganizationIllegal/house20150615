@@ -70,13 +70,47 @@ body{
 <span class="area_span">项目GPS</span><span><input type="text" id="GPS" name="GPS" class="area_input"></span>
 </div>
 <div class="area_left">
-<span class="area_span">项目所在国家</span><span><input type="text" id="project_nation" name="project_nation" class="area_input"></span>
+<span class="area_span">项目所在国家</span>
+<span>
+<!-- <input type="text" id="project_nation" name="project_nation" class="area_input"> -->
+<select data-placeholder="请选择..." class="chosen-select" id="project_nation" name="project_nation" style="width:220px;" tabindex="4">
+ 	 <option value=""></option>
+  	 <option value="Australia 澳大利亚">Australia 澳大利亚</option>
+     <option value="Canada 加拿大">Canada 加拿大</option>
+ </select>
+</span>
 </div>
 <div class="area_right">
-<span class="area_span">项目所在州/省</span><span><input type="text" id="project_zhou" name="project_zhou" class="area_input"></span>
+<span class="area_span">项目所在州/省</span>
+<span>
+<!-- <input type="text" id="project_zhou" name="project_zhou" class="area_input"> -->
+<select data-placeholder="请选择..." class="chosen-select" id="project_zhou" name="project_zhou" style="width:220px;" tabindex="4">
+ 	 <option value=""></option>
+  	 <option value="VIC 维多利亚州">VIC 维多利亚州</option>
+     <option value="QLD 昆士兰州">QLD 昆士兰州</option>
+     <option value="NSW 新南威尔士州">NSW 新南威尔士州</option>
+     <option value="WA 西澳大利亚">WA 西澳大利亚</option>
+     <option value="SA 南澳大利亚">SA 南澳大利亚</option>
+     <option value="TAS 塔斯马尼亚州">TAS 塔斯马尼亚州</option>
+     <option value="CAN 堪培拉">CAN 堪培拉</option>
+ </select>
+</span>
 </div>
 <div class="area_left">
-<span class="area_span">项目所在城市</span><span><input type="text" id="project_city" name="project_city" class="area_input"></span>
+<span class="area_span">项目所在城市</span>
+<span>
+<!-- <input type="text" id="project_city" name="project_city" class="area_input"> -->
+<select data-placeholder="请选择..." class="chosen-select" id="project_city" name="project_city" style="width:220px;" tabindex="4">
+ 	 <option value=""></option>
+  	 <option value="Sydney 悉尼">Sydney 悉尼</option>
+     <option value="Melbourne 墨尔本">Melbourne 墨尔本</option>
+     <option value="Brisbane 布里斯班">Brisbane 布里斯班</option>
+     <option value="Perth 珀斯">Perth 珀斯</option>
+     <option value="Canberra 堪培拉">Canberra 堪培拉</option>
+     <option value="Adelaide 阿德莱得">Adelaide 阿德莱得</option>
+     <option value="Cairns 凯恩斯">Cairns 凯恩斯</option>
+ </select>
+</span>
 </div>
 <div class="area_right">
 <span class="area_span">项目所在地区</span><span><input type="text" id="project_area" name="project_area" class="area_input"></span>
@@ -87,11 +121,6 @@ body{
 <div class="area_right">
 <span class="area_span">项目类型</span>
 <span>
-<!-- <select class="area_select" id="project_type" name="project_type">
-  <option >公寓</option>
-  <option >别墅</option>
-  <option>联排别墅</option>
-</select> -->
 <select data-placeholder="请选择..." class="chosen-select" id="project_type" name="project_type" style="width:220px;" tabindex="4">
  	 <option value=""></option>
   	 <option value="公寓">公寓</option>
@@ -346,7 +375,17 @@ body{
 <div class="area_bkg2" style="clear:both;" id="holdcost">持有成本</div>
 <form id="holdingcost">
 <div class="area_left">
-<span class="area_span">类型</span><span><input type="text" id="holdcosttype" name="holdcosttype" class="area_input"></span>
+<span class="area_span">类型</span>
+<span>
+<!-- <input type="text" id="holdcosttype" name="holdcosttype" class="area_input"> -->
+<select data-placeholder="请选择..." class="chosen-select" id="holdcosttype" name="holdcosttype" style="width:220px;" tabindex="4">
+ 	 <option value=""></option>
+  	 <option value="物业费">物业费</option>
+     <option value="市政费">市政费</option>
+     <option value="污水费">污水费</option>
+      <option value="市政管理费">市政管理费</option>
+ </select>
+</span>
 </div>
 <div class="area_right">
 <span class="area_span">价格</span><span><input type="text" id="holdcostprice" name="holdcostprice" class="area_input"></span>

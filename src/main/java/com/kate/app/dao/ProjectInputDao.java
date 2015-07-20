@@ -129,8 +129,9 @@ public class ProjectInputDao extends BaseDao {
 			PreparedStatement pstmt = null;
 			ProjectKey key=new ProjectKey();
 			try {
-				String sql ="select * from project_key";
+				String sql ="select * from project_key where project_num=?";
 				 pstmt = con.prepareStatement(sql);
+				 pstmt.setString(1,proNum );
 				  rs = pstmt.executeQuery();
 				while(rs.next()){
 					key.setXinkaipan(rs.getString("xinkaipan"));

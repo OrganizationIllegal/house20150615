@@ -64,14 +64,160 @@ body{
 <span class="area_span">项目GPS</span><span><input type="text" id="GPS" name="GPS" class="area_input" value="${houseProject.gps}"></span>
 </div>
 <div class="area_left">
-<span class="area_span">项目所在国家</span><span><input type="text" id="project_nation" name="project_nation" class="area_input" value="${houseProject.project_nation}"></span>
+<span class="area_span">项目所在国家</span>
+<span>
+<%-- <input type="text" id="project_nation" name="project_nation" class="area_input" value="${houseProject.project_nation}"> --%>
+<select data-placeholder="请选择..." class="chosen-select" id="project_nation" name="project_nation" style="width:220px;" tabindex="4">
+ 	 <option value=""></option>
+      <c:choose>
+	    <c:when test="${houseProject.project_nation eq 'Australia 澳大利亚'}">
+	      <option value="Australia 澳大利亚" selected="selected">Australia 澳大利亚</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="Australia 澳大利亚">Australia 澳大利亚</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${houseProject.project_nation eq 'Canada 加拿大'}">
+	      <option value="Canada 加拿大" selected="selected">Canada 加拿大</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="Canada 加拿大">Canada 加拿大</option>
+	   </c:otherwise>
+  	  </c:choose>
+ </select>
+</span>
 </div>
 
 <div class="area_right">
-<span class="area_span">项目所在州/省</span><span><input type="text" id="project_zhou" name="project_zhou" class="area_input" value="${houseProject.project_zhou}"></span>
+<span class="area_span">项目所在州/省</span>
+<span>
+<%-- <input type="text" id="project_zhou" name="project_zhou" class="area_input" value="${houseProject.project_zhou}"> --%>
+<select data-placeholder="请选择..." class="chosen-select" id="project_zhou" name="project_zhou" style="width:220px;" tabindex="4">
+ 	 <option value=""></option>
+      <c:choose>
+	    <c:when test="${houseProject.project_zhou eq 'VIC 维多利亚州'}">
+	      <option value="VIC 维多利亚州" selected="selected">VIC 维多利亚州</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="VIC 维多利亚州">VIC 维多利亚州</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	  <c:choose>
+	    <c:when test="${houseProject.project_zhou eq 'QLD 昆士兰州'}">
+	      <option value="QLD 昆士兰州" selected="selected">QLD 昆士兰州</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="QLD 昆士兰州">QLD 昆士兰州</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${houseProject.project_zhou eq 'NSW 新南威尔士州'}">
+	      <option value="NSW 新南威尔士州" selected="selected">NSW 新南威尔士州</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="NSW 新南威尔士州">NSW 新南威尔士州</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${houseProject.project_zhou eq 'WA 西澳大利亚'}">
+	      <option value="WA 西澳大利亚" selected="selected">WA 西澳大利亚</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="WA 西澳大利亚">WA 西澳大利亚</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${houseProject.project_zhou eq 'SA 南澳大利亚'}">
+	      <option value="SA 南澳大利亚" selected="selected">SA 南澳大利亚</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="SA 南澳大利亚">SA 南澳大利亚</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	    <c:choose>
+	    <c:when test="${houseProject.project_zhou eq 'TAS 塔斯马尼亚州'}">
+	      <option value="TAS 塔斯马尼亚州" selected="selected">TAS 塔斯马尼亚州</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="TAS 塔斯马尼亚州">TAS 塔斯马尼亚州</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${houseProject.project_zhou eq 'CAN 堪培拉'}">
+	      <option value="CAN 堪培拉" selected="selected">CAN 堪培拉</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="CAN 堪培拉">CAN 堪培拉</option>
+	   </c:otherwise>
+  	  </c:choose>
+ </select>
+</span>
 </div>
 <div class="area_left">
-<span class="area_span">项目所在城市</span><span><input type="text" id="project_city" name="project_city" class="area_input" value="${houseProject.project_city}"></span>
+<span class="area_span">项目所在城市</span>
+<span>
+<%-- <input type="text" id="project_city" name="project_city" class="area_input" value="${houseProject.project_city}"> --%>
+<select data-placeholder="请选择..." class="chosen-select" id="project_city" name="project_city" style="width:220px;" tabindex="4">
+ 	 <option value=""></option>
+       <c:choose>
+	    <c:when test="${houseProject.project_city eq 'Sydney 悉尼'}">
+	      <option value="Sydney 悉尼" selected="selected">Sydney 悉尼</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="Sydney 悉尼">Sydney 悉尼</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	    <c:choose>
+	    <c:when test="${houseProject.project_city eq 'Melbourne 墨尔本'}">
+	      <option value="Melbourne 墨尔本" selected="selected">Melbourne 墨尔本</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="Melbourne 墨尔本">Melbourne 墨尔本</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	    <c:choose>
+	    <c:when test="${houseProject.project_city eq 'Brisbane 布里斯班'}">
+	      <option value="Brisbane 布里斯班" selected="selected">Brisbane 布里斯班</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="Brisbane 布里斯班">Brisbane 布里斯班</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${houseProject.project_city eq 'Perth 珀斯'}">
+	      <option value="Perth 珀斯" selected="selected">Perth 珀斯</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="Perth 珀斯">Perth 珀斯</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${houseProject.project_city eq 'Canberra 堪培拉'}">
+	      <option value="Canberra 堪培拉" selected="selected">Canberra 堪培拉</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="Canberra 堪培拉">Canberra 堪培拉</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${houseProject.project_city eq 'Adelaide 阿德莱得'}">
+	      <option value="Adelaide 阿德莱得" selected="selected">Adelaide 阿德莱得</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="Adelaide 阿德莱得">Adelaide 阿德莱得</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${houseProject.project_city eq 'Cairns 凯恩斯'}">
+	      <option value="Cairns 凯恩斯" selected="selected">Cairns 凯恩斯</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="Cairns 凯恩斯">Cairns 凯恩斯</option>
+	   </c:otherwise>
+  	  </c:choose>
+ </select>
+</span>
 </div>
 <div class="area_right">
 <span class="area_span">项目所在地区</span><span><input type="text" id="project_area" name="project_area" class="area_input" value="${houseProject.project_area}"></span>
@@ -420,7 +566,17 @@ body{
 <div class="area_bkg2" style="clear:both;" id="holdcost">持有成本</div>
 <form id="holdingcost">
 <div class="area_left">
-<span class="area_span">类型</span><span><input type="text" id="holdcosttype" name="holdcosttype" class="area_input"></span>
+<span class="area_span">类型</span>
+<span>
+<!-- <input type="text" id="holdcosttype" name="holdcosttype" class="area_input"> -->
+<select data-placeholder="请选择..." class="chosen-select" id="holdcosttype" name="holdcosttype" style="width:220px;" tabindex="4">
+ 	 <option value=""></option>
+  	 <option value="物业费">物业费</option>
+     <option value="市政费">市政费</option>
+     <option value="污水费">污水费</option>
+      <option value="市政管理费">市政管理费</option>
+ </select>
+</span>
 </div>
 <div class="area_right">
 <span class="area_span">价格</span><span><input type="text" id="holdcostprice" name="holdcostprice" class="area_input"></span>
@@ -1117,6 +1273,13 @@ $(function(){
 		//alert(index+"index");
 
 		holdingcostedit=index;
+		var selectCount = document.getElementById("holdcosttype");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==holdingcostedititem.holdcosttype){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#holdcosttype').trigger('chosen:updated');
 		$("#holdcosttype").val(holdingcostedititem.holdcosttype);
 		$("#holdcostprice").val(holdingcostedititem.holdcostprice);
 		$("#holdcostdesc").val(holdingcostedititem.holdcostdesc);
