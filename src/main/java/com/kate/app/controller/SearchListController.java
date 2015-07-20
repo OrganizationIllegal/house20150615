@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kate.app.dao.AjaxDao;
+import com.kate.app.dao.ProjectInputDao;
 import com.kate.app.dao.SearchListDao;
 import com.kate.app.dao.UserDao;
+import com.kate.app.model.ProjectDescImage;
 import com.kate.app.model.SearchList;
 
 @Controller
@@ -27,6 +29,8 @@ public class SearchListController {
 	private AjaxDao ajaxDao;
 	@Autowired
 	private UserDao userDao;
+	@Autowired
+	private ProjectInputDao projectInputDao;
 	
 	//閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熷彨鎲嬫嫹閿熸枻鎷风ず
 	@RequestMapping({"/SearchList"})
@@ -99,6 +103,14 @@ public class SearchListController {
 			List<SearchList> resultList=searchList.subList(start, end);
 			for(SearchList item : resultList){
 				JSONObject obj = new JSONObject();
+				String proNum = item.getProject_num();
+				List<ProjectDescImage> imageList = projectInputDao.getProjectImageByProNum(proNum);
+				if(imageList!=null && imageList.size()>0){
+					obj.put("Project_img", imageList.get(0).getName());
+				}
+				else{
+					obj.put("Project_img", "");
+				}
 				obj.put("id", item.getId());
 				obj.put("Fanxian", item.getFanxian());
 				obj.put("Keshou", item.getKeshou());
@@ -106,7 +118,7 @@ public class SearchListController {
 				obj.put("MaxPrice", item.getMaxPrice());
 				obj.put("MinArea", item.getMinArea());
 				obj.put("MinPrice", item.getMinPrice());
-				obj.put("Project_img", item.getProject_img());
+				
 				obj.put("Project_name", item.getProject_name());
 				obj.put("project_num", item.getProject_num());
 				obj.put("project_address", item.getProject_address());
@@ -189,14 +201,21 @@ public class SearchListController {
 				List<SearchList> resultList=searchList.subList(start, end);
 				for(SearchList item : resultList){
 					JSONObject obj = new JSONObject();
+					String proNum = item.getProject_num();
+					List<ProjectDescImage> imageList = projectInputDao.getProjectImageByProNum(proNum);
+					if(imageList!=null && imageList.size()>0){
+						obj.put("Project_img", imageList.get(0).getName());
+					}
+					else{
+						obj.put("Project_img", "");
+					}
 					obj.put("id", item.getId());
 					obj.put("Fanxian", item.getFanxian());
 					obj.put("Keshou", item.getKeshou());
 					obj.put("MaxArea", item.getMaxArea());
 					obj.put("MaxPrice", item.getMaxPrice()==null?"":item.getMaxPrice());
 					obj.put("MinArea", item.getMinArea());
-					obj.put("MinPrice", item.getMinPrice()==null?"":item.getMinPrice());
-					obj.put("Project_img", item.getProject_img());
+					obj.put("MinPrice", item.getMinPrice()==null?"":item.getMinPrice());	
 					obj.put("Project_name", item.getProject_name());
 					obj.put("project_num", item.getProject_num());
 					obj.put("project_address", item.getProject_address());
@@ -274,6 +293,14 @@ public class SearchListController {
 				List<SearchList> resultList=searchList.subList(start, end);
 				for(SearchList item : resultList){
 					JSONObject obj = new JSONObject();
+					String proNum = item.getProject_num();
+					List<ProjectDescImage> imageList = projectInputDao.getProjectImageByProNum(proNum);
+					if(imageList!=null && imageList.size()>0){
+						obj.put("Project_img", imageList.get(0).getName());
+					}
+					else{
+						obj.put("Project_img", "");
+					}
 					obj.put("id", item.getId());
 					obj.put("Fanxian", item.getFanxian());
 					obj.put("Keshou", item.getKeshou());
@@ -281,7 +308,7 @@ public class SearchListController {
 					obj.put("MaxPrice", item.getMaxPrice()==null?"":item.getMaxPrice());
 					obj.put("MinArea", item.getMinArea());
 					obj.put("MinPrice", item.getMinPrice()==null?"":item.getMinPrice());
-					obj.put("Project_img", item.getProject_img());
+					
 					obj.put("Project_name", item.getProject_name());
 					obj.put("project_num", item.getProject_num());
 					obj.put("project_address", item.getProject_address());
@@ -355,6 +382,14 @@ public class SearchListController {
 				List<SearchList> resultList=searchList.subList(start, end);
 				for(SearchList item : resultList){
 					JSONObject obj = new JSONObject();
+					String proNum = item.getProject_num();
+					List<ProjectDescImage> imageList = projectInputDao.getProjectImageByProNum(proNum);
+					if(imageList!=null && imageList.size()>0){
+						obj.put("Project_img", imageList.get(0).getName());
+					}
+					else{
+						obj.put("Project_img", "");
+					}
 					obj.put("id", item.getId());
 					obj.put("Fanxian", item.getFanxian());
 					obj.put("Keshou", item.getKeshou());
@@ -362,7 +397,7 @@ public class SearchListController {
 					obj.put("MaxPrice", item.getMaxPrice()==null?"":item.getMaxPrice());
 					obj.put("MinArea", item.getMinArea());
 					obj.put("MinPrice", item.getMinPrice()==null?"":item.getMinPrice());
-					obj.put("Project_img", item.getProject_img());
+					
 					obj.put("Project_name", item.getProject_name());
 					obj.put("project_num", item.getProject_num());
 					obj.put("project_address", item.getProject_address());
