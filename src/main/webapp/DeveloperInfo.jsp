@@ -86,6 +86,9 @@ $(function(){
      var nation=$("#nation").val();
      var filenames=$('#developer_logo').val().split("\\");
 	 var developer_logo=filenames[filenames.length-1];
+	 if(developer_logo==""){
+		 developer_logo="${developerInfo.developer_logo}";
+	  }
 	 //alert(developer_logo)
      $.ajax({
 	 	   type: "GET",

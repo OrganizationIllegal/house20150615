@@ -360,9 +360,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		}
 
     function getHtml(items){
+    	
+    
+    	
                 var html="";
+                
                 if(items!=null){
                 	for(var j=0;j<items.length;j++){
+                		var imgUrl = <%=application.getInitParameter("imagedir")%>/+items[j].Project_img; 
+                		alert(imgUrl)
                 		html+="<div class='c-fix f-r list_node' style='margin-top:15px;margin-bottom:15px'>";
                 		html+="<div class='c-fix f-l list_node_header'>";
                 		html+="<a href='/Index?proNum="+items[j].project_num+"' class='c-fix f-l f-arial s-16 list_node_name fw' style='cursor:pointer;'>"+items[j].Project_name+"</a>";
@@ -378,7 +384,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	    html+="<span style='margin-right:-58px;float:right;color:white;font-size:13px;font-family:微软雅黑'>收藏</span>";
                 		html+="</div>";
                 		html+="<div class='c-fix f-l list_node_body'>";
-                		html+="<a href='/Index?proNum="+items[j].project_num+"'><img class='c-fix f-l list_node_img' src='<%=application.getInitParameter("imagedir")%>/"+items[j].Project_img+"'></img></a>";
+                		html+="<a href='/Index?proNum="+items[j].project_num+"'>";
+                		html+="<img class='c-fix f-l list_node_img' src='"+imgUrl+"'></img></a>";
                 		html+="<div class='f-l list_node_middle'>";
                 		html+="<a href='/Index?proNum="+items[j].project_num+"' class='c-fix f-l list_node_inner_name f-yahei s-14'  style='font-weight:bolder;cursor:pointer;'>"+items[j].Project_name+"</a>";
                 		html+="<a href='/Index?proNum="+items[j].project_num+"' class='c-fix f-l list_node_desc f-yahei s-13' style='height:80px;overflow-y:hidden;cursor:pointer;'>"+items[j].project_lan_cn+"</a>";
