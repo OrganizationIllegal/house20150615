@@ -395,7 +395,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        		   $("#showlist").load("userList.jsp");
 	        	   }
 	        	   else{
-	        		   alert("您没有权限查看用户列表！")；
+	        		   alert("您没有权限查看用户列表！");
 	        	   }
 	        	   
 		           
