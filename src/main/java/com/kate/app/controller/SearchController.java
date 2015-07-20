@@ -18,11 +18,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.kate.app.dao.AjaxDao;
 import com.kate.app.dao.AreaInfoDao;
 import com.kate.app.dao.BrokerInfoDao;
+import com.kate.app.dao.ProjectInputDao;
 import com.kate.app.dao.SearchListDao;
 import com.kate.app.dao.UserDao;
 import com.kate.app.model.AreaInfo;
 import com.kate.app.model.BrokerInfo;
 import com.kate.app.model.HouseProject;
+import com.kate.app.model.ProjectDescImage;
 import com.kate.app.model.ProjectKey;
 import com.kate.app.model.SearchList;
 import com.kate.app.model.User;
@@ -39,7 +41,8 @@ public class SearchController {
 	private AreaInfoDao areaInfoDao;
 	@Autowired
 	private BrokerInfoDao brokerInfoDao;
-	
+	@Autowired
+	private ProjectInputDao projectInputDao;
 	private static List<SearchList> seachListResult;
 	
 	private static List<BrokerInfo> seachBrokerListResult;
@@ -249,7 +252,17 @@ public class SearchController {
 			List<SearchList> searchList = new ArrayList<SearchList>();
 			for(HouseProject item : resultList){
 				int id=item.getId();
-		    	String project_img=item.getProject_img();
+				String project_img = null;
+				String proNum = item.getProject_num();
+				List<ProjectDescImage> imageList = projectInputDao.getProjectImageByProNum(proNum);
+				if(imageList!=null && imageList.size()>0){
+					project_img = imageList.get(0).getName();
+				}
+				else{
+					project_img = "";
+				}
+				
+		    
 		    	String project_name=item.getProject_name();
 		    	int project_sales_remain=item.getProject_sales_remain();
 		    	String maxPrice=item.getProject_high_price();
@@ -321,6 +334,14 @@ public class SearchController {
 				List<SearchList> resultList=searchList.subList(start, end);
 				for(SearchList item : resultList){
 					JSONObject obj = new JSONObject();
+					String proNum = item.getProject_num();
+					List<ProjectDescImage> imageList = projectInputDao.getProjectImageByProNum(proNum);
+					if(imageList!=null && imageList.size()>0){
+						obj.put("Project_img", imageList.get(0).getName());
+					}
+					else{
+						obj.put("Project_img", "");
+					}
 					obj.put("id", item.getId());
 					obj.put("Fanxian", item.getFanxian());
 					obj.put("Keshou", item.getKeshou());
@@ -328,7 +349,7 @@ public class SearchController {
 					obj.put("MaxPrice", item.getMaxPrice()==null?"":item.getMaxPrice());
 					obj.put("MinArea", item.getMinArea());
 					obj.put("MinPrice", item.getMinPrice()==null?"":item.getMinPrice());
-					obj.put("Project_img", item.getProject_img());
+					
 					obj.put("Project_name", item.getProject_name());
 					obj.put("project_num", item.getProject_num());
 					obj.put("project_address", item.getProject_address());
