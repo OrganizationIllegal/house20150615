@@ -402,7 +402,10 @@ body{
 <span class="area_span">户型图片</span><span><input type="text" id="houseimg" name="houseimg" class="chang_input2"></span>
 </div> -->
 <div class="area_left"  style="width:900px">
- <input type="file" name="houseimg" id="houseimg" style="width:700px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"/><!-- <a href="#">上传</a> -->
+ <!-- <input type="file" name="houseimg" id="houseimg" style="width:700px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"/><a href="#">上传</a> -->
+	<input type="text" id="file1" style="float:left;width:580px;border:1px solid rgb(239,235,242);"><input type="button" id="file2" value="浏览...">
+	<input type="file" name="houseimg" id="houseimg"  style="width:620px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;display:none;"/><a href="#"  onclick="upload()">上传</a>
+	
 </div>
 <div class="area_left">
 <span class="area_span">卧室数量</span><span><input type="text" id="room_num" name="room_num" class="area_input"></span>
@@ -1031,18 +1034,32 @@ $(function(){
 		huxingcount--;
 
 		});
+	$(function(){
+		$("#file2").click(
+				function(){
+					$("#houseimg").click();
+					$("#houseimg").change(function(){
+						$("#file1").val($("#houseimg").val());
+						});
+				});
+	});
 	$("#huxingjiagelist").on("click",".editpeitao",function(){
 		
 		var index=$(this).parent().parent().prevAll().length;
 		//alert(index);
 		huxingedititem=huxinglist[index];
 		$(this).parent().parent().hide();
+		
+	/*  <input type="text" id="file1" style="float:left;width:580px;border:1px solid rgb(239,235,242);"><input type="button" id="file2" value="浏览...">
+		<input type="file" name="houseimg" id="houseimg"  style="width:620px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;display:none;"/><a href="#"  onclick="upload()">上传</a>
+ */
 		/* alert(huxingedititem.name); */
 		//$("#projectimage").val(edititem.name+"");
 		//alert(index+"index");
 		ishuxingedit=index;
 		$("#housename").val(huxingedititem.housename);
 		 $("#houseimg").val(huxingedititem.houseimg);
+		 $("#file1").val(huxingedititem.houseimg);
 		$("#houseprice").val(huxingedititem.houseprice);
 		$("#room_num").val(huxingedititem.room_num);
 		$("#tudi_mianji").val(huxingedititem.tudi_mianji);
