@@ -248,7 +248,7 @@ body{
   	  </c:choose>
   	  <c:choose>
 	    <c:when test="${houseProject.project_type eq '别墅'}">
-	      <option value="别墅" selected="selected"></option>
+	      <option value="别墅" selected="selected">别墅</option>
 	    </c:when>
 	   <c:otherwise>  
 	      <option value="别墅">别墅</option>
