@@ -56,8 +56,8 @@
 	 	            	        var total=String(items2[j].zhou);
 	 	            	        //alert(typeof(total))
 	 	            	        var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; 
-	 	                  	    var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
-	 	            	        /*var pushpin2= new Microsoft.Maps.Pushpin(LA2, {text:total});*/
+	 	                  	   /* var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);*/
+	 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, {text:total,width: 30, height: 30,icon:'/images/pushpin2.png'});
 	 	                  	    map.entities.push(pushpin2);
 	 	            	    }
 	 	               }

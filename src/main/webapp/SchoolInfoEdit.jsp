@@ -204,7 +204,10 @@ $('#non_en_studen_trate').blur(function() {
      var non_en_studen_trate=$("#non_en_studen_trate").val();
    /*  var  schoolimg=$("#schoolimg").val(); */
     var filenames=$('#schoolimg').val().split("\\");
-	  var schoolimg=filenames[filenames.length-1];
+	var schoolimg=filenames[filenames.length-1];
+	 if(schoolimg==""){
+		 schoolimg="${schoolInfo.school_image}";
+	  }
     var school_intro=$("#school_intro").val();
     var  nation=$("#nation").val();
     var city=$("#city").val();

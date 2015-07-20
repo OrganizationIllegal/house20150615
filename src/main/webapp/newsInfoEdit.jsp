@@ -135,6 +135,7 @@ $(".uploadimg").click(function(){
 			return false;
 		}
 	  //alert("add");
+	  
 	  var id=$("#id").val();
 	  var news_num=$("#news_num").val();
 	  var news_title=$("#news_title").val();
@@ -144,6 +145,9 @@ $(".uploadimg").click(function(){
 	  var news_abstract=$("#news_abstract").val();
 	  var filenames=$('#news_image').val().split("\\");
 	  var news_image=filenames[filenames.length-1];
+	  if(news_image==""){
+		  news_image="${newsBoke.news_image}";
+	  }
 	  var news_detail=CKEDITOR.instances.news_detail.getData();
 	  //alert(news_detail);
 	  $.ajax({

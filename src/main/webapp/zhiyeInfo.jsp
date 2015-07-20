@@ -112,7 +112,7 @@ $(".uploadimg").click(function(){
 			return false;
 		}
 	  var id=$("#id").val();
-	  alert("id"+id);
+	  //alert("id"+id);
 	  var zhiye_num=$("#zhiye_num").val();
 	  var title=$("#title").val();
 	  var fabu_people=$("#fabu_people").val();
@@ -121,6 +121,9 @@ $(".uploadimg").click(function(){
 	  var zhiye_abstract=$("#zhiye_abstract").val();
 	  var filenames=$('#image').val().split("\\");
 	  var image=filenames[filenames.length-1];
+	  if(image==""){
+		  image="${zhiYeZhiDao.image}";
+	  }
 	  var detail=CKEDITOR.instances.detail.getData();
 	  //alert(detail);
 	  $.ajax({
