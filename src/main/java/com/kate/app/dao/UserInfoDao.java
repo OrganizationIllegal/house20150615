@@ -10,6 +10,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.kate.app.model.User;
 
 @Repository 
@@ -182,7 +184,75 @@ public class UserInfoDao extends BaseDao {
 				}
 				
 	
-	
+				//鍖哄煙鍒楄〃
+				public JSONArray selectUserList(){
+					Statement stmt = null;
+					ResultSet rs = null;
+					PreparedStatement pstmt = null;
+					JSONArray jsonArray=new JSONArray();
+					try {
+						String sql = " select * from user";
+						  stmt = con.createStatement();
+						  rs = stmt.executeQuery(sql);
+						while(rs.next()){
+							int role = rs.getInt("role");
+							int flag = rs.getInt("flag");
+							JSONObject obj = new JSONObject();
+							obj.put("id", rs.getInt("id"));
+							obj.put("nick_name", rs.getString("nick_name"));
+							//obj.put("pwd", rs.getString("pwd"));
+							obj.put("email", rs.getString("email"));
+							obj.put("tel", rs.getString("tel"));
+							if(role==0 && flag==1){
+								obj.put("role", "普通管理员");
+							}
+							else if(role==0 && flag==2){
+								obj.put("role", "超级管理员");
+							}
+							else{
+								obj.put("role", "普通用户");
+							}
+							obj.put("account", rs.getString("account"));
+							obj.put("msg", rs.getString("msg"));
+							obj.put("allprice", rs.getString("allprice"));
+							obj.put("need", rs.getString("need"));
+							//obj.put("ask", rs.getString("ask"));
+							obj.put("newestprice", rs.getString("newestprice"));
+							obj.put("housetype", rs.getString("housetype"));
+							//obj.put("repwd", rs.getString("repwd"));
+							obj.put("flag", rs.getInt("flag"));
+							jsonArray.add(obj);
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					finally{
+						if(rs != null){   // 鍏抽棴璁板綍闆�  
+					        try{   
+					            rs.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					          }   
+					      if(stmt != null){   // 鍏抽棴澹版槑   
+					        try{   
+					            stmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+					      if(pstmt != null){   // 鍏抽棴澹版槑   
+						        try{   
+						            pstmt.close() ;   
+						        }catch(SQLException e){   
+						            e.printStackTrace() ;   
+						        }   
+						     } 
+
+			        }
+					return jsonArray;
+				} 
 	
 	//寮�珛璐︽埛
 	public int addAccount(String nick_name,String pwd,String tel,String email,String account,String msg) throws SQLException{

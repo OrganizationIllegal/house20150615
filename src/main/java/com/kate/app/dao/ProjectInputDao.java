@@ -1,6 +1,5 @@
 package com.kate.app.dao;
 
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,6 +27,7 @@ import com.kate.app.model.HouseTax;
 import com.kate.app.model.NewsBoke;
 import com.kate.app.model.Project;
 import com.kate.app.model.ProjectDescImage;
+import com.kate.app.model.ProjectKey;
 import com.kate.app.model.ProjectPeiTao;
 import com.kate.app.model.SchoolInfo;
 import com.kate.app.model.ServiceArea;
@@ -122,6 +122,58 @@ public class ProjectInputDao extends BaseDao {
         }
 		return schoolList;
 	}
+        //根据项目编号拿到项目关键字
+		public ProjectKey getKeyByNum(String proNum){
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+			ProjectKey key=new ProjectKey();
+			try {
+				String sql ="select * from project_key";
+				 pstmt = con.prepareStatement(sql);
+				  rs = pstmt.executeQuery();
+				while(rs.next()){
+					key.setXinkaipan(rs.getString("xinkaipan"));
+					key.setHuaren(rs.getString("huaren"));
+					key.setRemen(rs.getString("remen"));
+					key.setXuequ(rs.getString("xuequ"));
+					key.setBaozu(rs.getString("baozu"));
+					key.setDaxue(rs.getString("daxue"));
+					key.setCenter(rs.getString("center"));
+					key.setTraffic(rs.getString("traffic"));
+					key.setXianfang(rs.getString("xianfang"));
+					key.setMaidi(rs.getString("maidi"));
+					key.setId(rs.getInt("id"));
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
+			return key;
+		}
 	//鏍规嵁椤圭洰id寰楀埌椤圭洰缂栧彿
 	public String getProNumById(int id){
 		Statement stmt = null;
@@ -2210,7 +2262,7 @@ public class ProjectInputDao extends BaseDao {
 			        }
 					return 0;
 				}
-		public int AddProject(List<Project> projectList,List<HouseInfo1>houseInfolist,List<ProjectDescImage>projectimagelist,List<ProjectPeiTao>projectPeitaolist,List<FujinPeiTao> fujinList,List<FujinSchool>fujinSchoolList,List<HoldCost>holdCostList,List<HouseTax>houseTaxList) throws SQLException{
+		public int AddProject(List<Project> projectList,List<HouseInfo1>houseInfolist,List<ProjectDescImage>projectimagelist,List<ProjectPeiTao>projectPeitaolist,List<FujinPeiTao> fujinList,List<FujinSchool>fujinSchoolList,List<HoldCost>holdCostList,List<HouseTax>houseTaxList,List<ProjectKey> keylist) throws SQLException{
 			//椤圭洰淇℃伅鍙傛暟鎺ユ敹
 			Statement stmt = null;
 			ResultSet rs = null;
@@ -2467,6 +2519,40 @@ public class ProjectInputDao extends BaseDao {
 				for(int i=0;i<result7list.length;i++){
 					System.out.println("result7list"+i+":"+result7list[i]);
 				}
+				//项目关键字
+				
+				 String sql9="insert into project_key(xinkaipan,huaren,remen,xuequ,baozu,daxue,center,traffic,xianfang,maidi,project_num) values(?,?,?,?,?,?,?,?,?,?,?) ";
+		         pstmt = con.prepareStatement(sql9);
+		        for(int i=0;i<keylist.size();i++){
+		        	ProjectKey key=keylist.get(i);
+		            String xinkaipan=key.getXinkaipan();
+		            String huaren=key.getHuaren();
+		            String remen=key.getRemen();
+		            String xuequ=key.getXuequ();
+		            String baozu=key.getBaozu();
+		            String daxue=key.getDaxue();
+		            String center=key.getDaxue();
+		            String traffic=key.getTraffic();
+		            String xianfang=key.getXianfang();
+		            String maidi=key.getMaidi();		    
+		            pstmt.setString(1, xinkaipan);
+		            pstmt.setString(2, huaren);
+		            pstmt.setString(3,remen);
+		            pstmt.setString(4,xuequ);
+		            pstmt.setString(5,baozu);
+		            pstmt.setString(6,daxue);
+		            pstmt.setString(7,center);
+		            pstmt.setString(8,traffic);
+		            pstmt.setString(9,xianfang);
+		            pstmt.setString(10,maidi);
+		            pstmt.setString(11,project_num);
+		            pstmt.addBatch();
+		        }
+				int[] result9list=pstmt.executeBatch();
+				System.out.println("result9list.length:"+result9list.length);
+				for(int i=0;i<result9list.length;i++){
+					System.out.println("result9list"+i+":"+result9list[i]);
+				}
 				
 				//鎻愪氦浜嬬墿
 				con.commit();
@@ -2503,7 +2589,7 @@ public class ProjectInputDao extends BaseDao {
 
 	        }
 		}
-		public int EditProject(int id,List<Project> projectList,List<HouseInfo1> houseInfolist,List<HouseInfo1>houseInfolist2,List<ProjectPeiTao>peitaolist,List<ProjectPeiTao>peitaolist2,List<ProjectDescImage>imagelist,List<ProjectDescImage>imagelist2,List<FujinPeiTao>fujinpeitaoList,List<FujinPeiTao>fujinpeitaoList2,List<FujinSchool>fujinSchoolList,List<FujinSchool>fujinSchoolList2,List<HoldCost> holdCostList,List<HoldCost>holdCostList2,List<HouseTax>houseTaxList,List<HouseTax>houseTaxList2,List<ProjectDescImage> imagelistdelete,List<ProjectPeiTao> peitaolistdelete,List<FujinPeiTao> fujinpeitaoListdelete,List<FujinSchool>  fujinSchoolListdelete,List<HoldCost> holdCostListdelete,List<HouseTax> houseTaxListdelete) throws SQLException{
+		public int EditProject(int id,List<Project> projectList,List<HouseInfo1> houseInfolist,List<HouseInfo1>houseInfolist2,List<ProjectPeiTao>peitaolist,List<ProjectPeiTao>peitaolist2,List<ProjectDescImage>imagelist,List<ProjectDescImage>imagelist2,List<FujinPeiTao>fujinpeitaoList,List<FujinPeiTao>fujinpeitaoList2,List<FujinSchool>fujinSchoolList,List<FujinSchool>fujinSchoolList2,List<HoldCost> holdCostList,List<HoldCost>holdCostList2,List<HouseTax>houseTaxList,List<HouseTax>houseTaxList2,List<ProjectDescImage> imagelistdelete,List<ProjectPeiTao> peitaolistdelete,List<FujinPeiTao> fujinpeitaoListdelete,List<FujinSchool>  fujinSchoolListdelete,List<HoldCost> holdCostListdelete,List<HouseTax> houseTaxListdelete,List<ProjectKey>keylist) throws SQLException{
 			//椤圭洰淇℃伅鍙傛暟鎺ユ敹
 			Statement stmt = null;
 			ResultSet rs = null;
@@ -2901,6 +2987,41 @@ public class ProjectInputDao extends BaseDao {
 		            pstmt.addBatch();
 		        }
 				int[] result77list=pstmt.executeBatch();
+				//更新项目关键字
+				 String sql00="update project_key set xinkaipan=?,huaren=?,remen=?,xuequ=?,baozu=?,daxue=?,center=?,traffic=?,xianfang=?,maidi=?,project_num=? where id=? ";
+		         pstmt = con.prepareStatement(sql00);
+		        for(int i=0;i<keylist.size();i++){
+		        	ProjectKey key=keylist.get(i);
+		            String xinkaipan=key.getXinkaipan();
+		            String huaren=key.getHuaren();
+		            String remen=key.getRemen();
+		            String xuequ=key.getXuequ();
+		            String baozu=key.getBaozu();
+		            String daxue=key.getDaxue();
+		            String center=key.getCenter();
+		            String traffic=key.getTraffic();
+		            String xianfang=key.getXianfang();
+		            String maidi=key.getMaidi();
+		            int Id=key.getId();
+		            pstmt.setString(1, xinkaipan);
+		            pstmt.setString(2, huaren);
+		            pstmt.setString(3, remen);
+		            pstmt.setString(4, xuequ);
+		            pstmt.setString(5, baozu);
+		            pstmt.setString(6, daxue);
+		            pstmt.setString(7, center);
+		            pstmt.setString(8, traffic);
+		            pstmt.setString(9, xianfang);
+		            pstmt.setString(10, maidi);
+		            pstmt.setString(11,project_num);
+		            pstmt.setInt(12, Id);
+		            pstmt.addBatch();
+		        }
+				int[] result00list=pstmt.executeBatch();
+				/*System.out.println("result4list.length:"+result4list.length);
+				for(int i=0;i<result4list.length;i++){
+					System.out.println("result4list"+i+":"+result4list[i]);
+				}*/
 				/*System.out.println("result77list.length:"+result77list.length);
 				for(int i=0;i<result7list.length;i++){
 					System.out.println("result77list"+i+":"+result77list[i]);
