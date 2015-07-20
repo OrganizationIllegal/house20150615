@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script>
+<script src="/ckeditor/ckeditor.js"></script>
 <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
      <link href="/bootstrap/css/bootstrap-table.css" rel="stylesheet">
      <link href="/bootstrap/css/bootstrap-editable.css" rel="stylesheet">

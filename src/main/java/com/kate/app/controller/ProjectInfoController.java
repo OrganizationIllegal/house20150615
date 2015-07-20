@@ -1,5 +1,7 @@
 package com.kate.app.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -934,64 +936,34 @@ public class ProjectInfoController {
 		}
 	}
 
-	@RequestMapping(value = "/imageupload")
+	@RequestMapping(value = "/ckimageupload",produces = {"application/html;charset=UTF-8"})
     public void handleFormUpload(
-            @RequestParam("file") MultipartFile file, HttpServletResponse resp) {
+            @RequestParam("upload") MultipartFile file,HttpServletRequest request, HttpServletResponse resp) {
 		JSONObject json = new JSONObject();
 		json.put("total", 1);
 		json.put("rows", 1);
-		
+		PrintWriter out;
+		String callback =request.getParameter("CKEditorFuncNum");
         if (!file.isEmpty()) {
-//            byte[] bytes = file.getBytes();
-            // store the bytes somewhere
-//        	file.
         	try{
-        		/*for(int i=0;i<file.length;i++){*/
         			ImageDao.CopyImage(file,new String(file.getOriginalFilename().getBytes("ISO8859_1"),"utf-8"));
-        		/*}*/
-        		
-        		/*System.out.println(new String(file.getOriginalFilename().getBytes("utf-8"),"utf-8"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes("utf-8"),"GBK"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes("utf-8"),"gb2312"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes("utf-8"),"iso-8859-1"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes("GBK"),"utf-8"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes("GBK"),"GBK"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes("GBK"),"gb2312"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes("GBK"),"iso-8859-1"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes(),"utf-8"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes(),"GBK"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes(),"gb2312"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes(),"iso-8859-1"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes("GBK"),"iso-8859-1"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes()));
-        		System.out.println(new String(file.getOriginalFilename().getBytes()));
-        		System.out.println(new String(file.getOriginalFilename().getBytes()));*/
-//        		System.out.println(new String(file.getOriginalFilename().getBytes("ISO8859_1"),"utf-8"));
-        		/*System.out.println("涓枃");
-
-                System.out.println("涓枃".getBytes());
-
-                System.out.println("涓枃".getBytes("GB2312"));
-
-                System.out.println("涓枃".getBytes("ISO8859_1"));
-
-                System.out.println(new String("涓枃".getBytes()));
-
-                System.out.println(new String("涓枃".getBytes(), "GB2312"));
-
-                System.out.println(new String("涓枃".getBytes(), "ISO8859_1"));
-
-                System.out.println(new String("涓枃".getBytes("GB2312")));
-
-                System.out.println(new String("涓枃".getBytes("GB2312"), "GB2312"));
-
-                System.out.println(new String("涓枃".getBytes("GB2312"), "ISO8859_1"));
-
-                System.out.println(new String("涓枃".getBytes("ISO8859_1")));
-
-                System.out.println(new String("涓枃".getBytes("ISO8859_1"), "GB2312"));
-
-                System.out.println(new String("涓枃".getBytes("ISO8859_1"), "ISO8859_1"));*/
+        			String name=new String(file.getOriginalFilename().getBytes("ISO8859_1"),"utf-8");
+        			String fullPath ="/Uploadimages/"+ File.separator+name;
+        			String s;
+        			if(StringUtils.isNotBlank(callback)){
+        	            s= "<script type='text/javascript'>"
+        	            + "window.parent.CKEDITOR.tools.callFunction(" + callback
+        	            + ",'" + fullPath + "',''" + ")"+"</script>";
+        	        }else{
+        	            s= "{" + file.getOriginalFilename() + "}!Success!";
+        	        }
+        			try {
+        	            out = resp.getWriter();
+        	            out.print(s);
+        	            out.flush();
+        	        } catch (IOException e) {
+        	            e.printStackTrace();
+        	        }
         	}
         	catch(Exception e){
         		e.printStackTrace();
@@ -1001,7 +973,32 @@ public class ProjectInfoController {
     		}catch(Exception e){
     			e.printStackTrace();
     		}
-            //return "redirect:uploadSuccess";
+        }
+		try{
+			writeJson(json.toJSONString(),resp);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+    }
+	@RequestMapping(value = "/imageupload")
+    public void handleFormUpload(
+            @RequestParam("file") MultipartFile file, HttpServletResponse resp) {
+		JSONObject json = new JSONObject();
+		json.put("total", 1);
+		json.put("rows", 1);
+		
+        if (!file.isEmpty()) {
+        	try{
+        			ImageDao.CopyImage(file,new String(file.getOriginalFilename().getBytes("ISO8859_1"),"utf-8"));
+        	}
+        	catch(Exception e){
+        		e.printStackTrace();
+        	}
+        	try{
+    			writeJson(json.toJSONString(),resp);
+    		}catch(Exception e){
+    			e.printStackTrace();
+    		}
         }
         
 		try{
@@ -1009,7 +1006,6 @@ public class ProjectInfoController {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-        //return "redirect:uploadFailure";
     }
 	//鏌ユ壘椤圭洰淇℃伅
 	@RequestMapping({ "/selectProject" })

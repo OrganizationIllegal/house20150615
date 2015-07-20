@@ -8,12 +8,20 @@ public class User {
 	private String email;
 	private String tel;
 	private int role;
-	public User(String nick_name,String pwd,String email,String tel,int role){
+	private int flag;
+	public int getFlag() {
+		return flag;
+	}
+	public void setFlag(int flag) {
+		this.flag = flag;
+	}
+	public User(String nick_name,String pwd,String email,String tel,int role,int flag){
 		this.nick_name=nick_name;
 		this.pwd=pwd;
 		this.email=email;
 		this.tel=tel;
 		this.role=role;
+		this.flag=flag;
 	}
 	public int getId() {
 		return id;

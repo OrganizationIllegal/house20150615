@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kate.app.dao.UserInfoDao;
 import com.kate.app.model.User;
@@ -218,11 +219,14 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		}
 		userList = userInfoDao.judge(tempName);
 		int role = 1;
+		int flag = 0;
 		if(userList.size()>0){
 			role = userList.get(0).getRole();
+			
+			flag = userList.get(0).getFlag();
 		}
-		
 		session.setAttribute("role", role);
+		session.setAttribute("flag", flag);
 		if(role == 0){
 			return "/treeData.jsp";
 		}
@@ -254,7 +258,22 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		return "/index01";
 	}
 	
-	
+	//鍖哄煙鍒楄〃
+		@RequestMapping({ "/UserInfoList" })    
+		public void selectUserList(HttpServletRequest req, HttpServletResponse resp){
+			JSONObject json = new JSONObject();
+			JSONArray array = new JSONArray();
+			array = userInfoDao.selectUserList();
+			int count = array.size();
+			json.put("total", count);
+			json.put("rows", array);
+			
+			try{
+				writeJson(array.toJSONString(),resp);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
 	
 	@RequestMapping({ "/loginPanduan" })
 	public void loginPanduan(HttpServletRequest req, HttpServletResponse resp) throws Exception{

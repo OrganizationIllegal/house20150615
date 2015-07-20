@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
    <!-- <script src="/js/jquery.min.js"></script> -->
    <script src="/bootstrap/js/bootstrap.min.js"></script>
-   <script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script>
+<script src="/ckeditor/ckeditor.js"></script>
   <link rel="stylesheet" href="css/chosen.css">
 
 <style type="text/css">

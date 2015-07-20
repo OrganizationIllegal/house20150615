@@ -26,6 +26,12 @@ body{
 
 </head>
 <body>
+<%
+String flag = null;
+if(request.getSession().getAttribute("flag")!=null){
+	flag = request.getSession().getAttribute("flag").toString();
+}
+%>
 <div style="width:900px;margin:25px auto;">
 <div class="area_bkg1">当前位置:项目列表</div>
  <table id="table" 
@@ -60,6 +66,7 @@ body{
 
 
 <script>
+var item = <%=flag%>
     var $table = $('#table'),
         $remove = $('#remove'),
         $add = $('#add'),
@@ -151,28 +158,34 @@ body{
             window.open ('/selectProject?id='+id);
         },
         'click .remove': function (e, value, row, index) {
-            var id = row.id;
-            if(confirm("是否确认删除？")){
-             $.ajax({
-		 	    type: "POST",
-		 		data: {id: id},
-		 		dateType: "json",
-		 		url: "/deleteProject",
-		 		success:function(data){
-		 			alert("删除成功")
-		 		},
-		 		error:function(){
-		 			alert("error")
-		 		}
-	 		});
-            $table.bootstrapTable('remove', {
-                field: 'id',
-                values: [row.id]
-            });
-            }
-            else{
-            	
-            }
+        	if(item!=2){
+        		alert("您没有权限删除！");
+        	}
+        	else{
+        		var id = row.id;
+                if(confirm("是否确认删除？")){
+                 $.ajax({
+    		 	    type: "POST",
+    		 		data: {id: id},
+    		 		dateType: "json",
+    		 		url: "/deleteProject",
+    		 		success:function(data){
+    		 			alert("删除成功")
+    		 		},
+    		 		error:function(){
+    		 			alert("error")
+    		 		}
+    	 		});
+                $table.bootstrapTable('remove', {
+                    field: 'id',
+                    values: [row.id]
+                });
+                }
+                else{
+                	
+                }
+        	}
+            
         }
     };
     window.operateEvents2 = {
