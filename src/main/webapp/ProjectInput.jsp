@@ -385,6 +385,44 @@ body{
 <div id="housetaxformlist">
 </div>
 <!-- ****************************************************购房税费end***************************************************** -->
+<!-- ****************************************************项目关键字start***************************************************** -->
+
+<div class="area_bkg2" style="clear:both;" id="projectkey11">项目关键字</div>
+<form id="projectkey">
+<div class="area_left" style="margin-left:150px;width:550px">
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="xinkaipan"  />
+<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">新开盘</a>
+
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="remen"  />
+<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">热门项目</a>
+
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="xuequ"  />
+<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">优秀学区</a>
+
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="center"  />
+<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">城市中心</a>
+
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="baozu"  />
+<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">包租项目</a>
+</div>
+<div class="area_left" style="margin-left:150px;width:550px">
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="huaren"  />
+<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">华人区</a>
+
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="maidi"  />
+<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">最新项目</a>
+
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="daxue"  />
+<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">大学附近</a>
+
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="xianfang"  />
+<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">现房项目</a>
+
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="traffic"  />
+<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">轨道交通</a>
+</div>
+</form>
+<!-- ****************************************************项目关键字end***************************************************** -->
 <!-- <div style="width:900px;clear:both;margin:20px auto;text-align:center;">
 <button type="submit" >提交</button>
 <button type="reset" >重置</button>
@@ -1018,51 +1056,21 @@ $(function(){
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
 	});  
 	$(".addhousetaxform").click(function(){
-		//alert(housetaxformedit);
 		if(housetaxformedit==100){
-			/* if($('#houseimg').val()==""){
-				alert("请选择文件！");
-				return false;} */
 			var housetaxform={};
-			/* var filenames=$('#houseimg').val().split("\\");
-			var filename=filenames[filenames.length-1]; */
 			housetaxform=DataDeal.formToJson(data= decodeURIComponent($("#housetaxform").serialize(),true));
 			housetaxform=housetaxform.replace(/\+/g," ");
 			housetaxform=eval("("+housetaxform+")");
-			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
-			/* peitao.shunxu=peitaocount+1; */
-			/* peitao.view= */
-			/* alert($("#huxingjiage").serializeArray()); */
-			/* huxing.housename=$("#housename").val();
-			huxing.houseprice=$("#houseprice").val();
-			huxing.room_num=$("#room_num").val();
-			huxing.tudi_mianji=$("#tudi_mianji").val();
-			huxing.jianzhu_mianji=$("#jianzhu_mianji").val();
-			huxing.shinei_mianji=$("#") */
 			housetaxformlist.push(housetaxform);
 			/* $("#housetaxformlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++housetaxformcount)+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxtype+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxprice+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxdesc+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>"); */
 			$("#housetaxformlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++housetaxformcount)+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxtype+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxprice+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxdesc+"</span>"+"<span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
-			/* UpladFile("houseimg"); */
 			$("#housetaxform input").each(function(){
 				$(this).val("");
 				});
-			/* $("#huxingjiage").reset();  */
-			/* <a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a> */
 			}
 		else{
-			/* if($('#houseimg').val()==""){
-				alert("请选择文件！");
-				return false;} */
-			//alert("edit");
-			/* var huxing={}; */
-			/* var filenames=$('#houseimg').val().split("\\");
-			var filename=filenames[filenames.length-1]; */
 			housetaxformedititem=DataDeal.formToJson(data= decodeURIComponent($("#housetaxform").serialize(),true));
 			housetaxformedititem=eval("("+housetaxformedititem+")");
-			/* housetaxformedititem["houseimg"]=filename; */
-			/* var filenames=$('#projectimage').val().split("\\");
-			var filename=filenames[filenames.length-1]; */
-			/* UpladFile("houseimg"); */
 			$("#housetaxform input").each(function(){
 				$(this).val("");
 				});
@@ -1071,9 +1079,6 @@ $(function(){
 			/* $("#housetaxformlist").children().eq(housetaxformedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(housetaxformedit+1)+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
 			$("#housetaxformlist").children().eq(housetaxformedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(housetaxformedit+1)+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxdesc+"</span>"+"<span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show();
 			housetaxformedit=100;
-			//$("#peitaolist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++peitaocount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
-			/*peitao.view= */
-			
 			}
 		});
 	$("#housetaxformlist").on("click",".deletepeitao",function(){
@@ -1084,12 +1089,8 @@ $(function(){
 	$("#housetaxformlist").on("click",".editpeitao",function(){
 		
 		var index=$(this).parent().parent().children().eq(0).text()-1;
-		//alert(index);
 		housetaxformedititem=housetaxformlist[index];
 		$(this).parent().parent().hide();
-		/* alert(huxingedititem.name); */
-		//$("#projectimage").val(edititem.name+"");
-		//alert(index+"index");
 		housetaxformedit=index;
 		$("#houseTaxtype").val(housetaxformedititem.houseTaxtype);
 		$("#houseTaxprice").val(housetaxformedititem.houseTaxprice);
@@ -1098,6 +1099,56 @@ $(function(){
 		}); 
 	
 });
+//项目关键字
+/* var projectkeylist=[];
+var projectkeyformedit=100;
+var projectkeyformedititem;
+var projectkeyformcount=0;
+$(function(){
+	$.ajaxSetup({  
+	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
+	});  
+	$(".addhousetaxform").click(function(){
+		if(housetaxformedit==100){
+			var housetaxform={};
+			housetaxform=DataDeal.formToJson(data= decodeURIComponent($("#housetaxform").serialize(),true));
+			housetaxform=housetaxform.replace(/\+/g," ");
+			housetaxform=eval("("+housetaxform+")");
+			housetaxformlist.push(housetaxform);
+			
+			$("#housetaxformlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++housetaxformcount)+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxtype+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxprice+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxdesc+"</span>"+"<span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
+			$("#housetaxform input").each(function(){
+				$(this).val("");
+				});
+			}
+		else{
+			housetaxformedititem=DataDeal.formToJson(data= decodeURIComponent($("#housetaxform").serialize(),true));
+			housetaxformedititem=eval("("+housetaxformedititem+")");
+			$("#housetaxform input").each(function(){
+				$(this).val("");
+				});
+			housetaxformlist[housetaxformedit]=housetaxformedititem;
+			$("#housetaxformlist").children().eq(housetaxformedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(housetaxformedit+1)+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformedit].houseTaxdesc+"</span>"+"<span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show();
+			housetaxformedit=100;
+			}
+		});
+	$("#housetaxformlist").on("click",".deletepeitao",function(){
+		housetaxformlist.splice($(this).parent().parent().children().eq(0).text()-1,1);
+		$(this).parent().parent().empty();
+		housetaxformcount--;
+		});
+	$("#housetaxformlist").on("click",".editpeitao",function(){
+		
+		var index=$(this).parent().parent().children().eq(0).text()-1;
+		housetaxformedititem=housetaxformlist[index];
+		$(this).parent().parent().hide();
+		housetaxformedit=index;
+		$("#houseTaxtype").val(housetaxformedititem.houseTaxtype);
+		$("#houseTaxprice").val(housetaxformedititem.houseTaxprice);
+		$("#houseTaxdesc").val(housetaxformedititem.houseTaxdesc);
+		}); 
+	
+}); */
 
 
 window.onload=function(){
@@ -1174,13 +1225,34 @@ function savepro(){
     project.area_num=$("#area_num").val();
 	
 	projectlist.push(project);
-
+	//项目关键字
+	var keylist2=document.getElementsByName('key');
+	 for(var i=0;i<keylist2.length;i++){
+	 	if(keylist2[i].checked==true){
+	 		keylist2[i].value=1;
+	 	}else{
+	 		keylist2[i].value=0;
+	 	}
+	 }
+	var keylist=[];
+	var key = {};
+	key.xinkaipan=$("#xinkaipan").val();
+	key.remen=$("#remen").val();
+	key.maidi=$("#maidi").val();
+	key.center=$("#center").val();
+	key.baozu=$("#baozu").val();
+	key.huaren=$("#huaren").val();
+	key.xuequ=$("#xuequ").val();
+	key.daxue=$("#daxue").val();
+	key.xianfang=$("#xianfang").val();
+	key.traffic=$("#traffic").val();
+	keylist.push(key);
 
     $.ajax({
 	    type: "POST",
  		async:false, 
 		dateType: "json",
-		data:{"project_num":project_num,"project":JSON.stringify(projectlist),"huxinglist":JSON.stringify(huxinglist),"imagelist":JSON.stringify(imagelist),"peitaolist":JSON.stringify(peitaolist),"fujinlist":JSON.stringify(fujinlist),"schoollist":JSON.stringify(schoollist),"holdingcostlist":JSON.stringify(holdingcostlist),"housetaxformlist":JSON.stringify(housetaxformlist)},
+		data:{"project_num":project_num,"keylist":JSON.stringify(keylist),"project":JSON.stringify(projectlist),"huxinglist":JSON.stringify(huxinglist),"imagelist":JSON.stringify(imagelist),"peitaolist":JSON.stringify(peitaolist),"fujinlist":JSON.stringify(fujinlist),"schoollist":JSON.stringify(schoollist),"holdingcostlist":JSON.stringify(holdingcostlist),"housetaxformlist":JSON.stringify(housetaxformlist)},
 		url: "/AddprojectInfo",
 		success:function(data){
 			data=eval("("+data+")");

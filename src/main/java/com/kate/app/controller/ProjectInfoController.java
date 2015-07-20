@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.mail.Flags.Flag;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -36,6 +35,7 @@ import com.kate.app.model.HouseTax;
 import com.kate.app.model.NewsBoke;
 import com.kate.app.model.Project;
 import com.kate.app.model.ProjectDescImage;
+import com.kate.app.model.ProjectKey;
 import com.kate.app.model.ProjectPeiTao;
 import com.kate.app.model.SchoolInfo;
 import com.kate.app.model.ServiceArea;
@@ -196,6 +196,16 @@ public class ProjectInfoController {
 			 projectlist.add(e);
 		}
 		System.out.println("projectlist.length():"+projectlist.size());
+		//项目关键字
+		String projectkey=req.getParameter("keylist");
+		JSONArray keyArray = JSONArray.parseArray(projectkey);
+		List<ProjectKey> keylist=new ArrayList<ProjectKey>();
+		for (int i=0;i<keyArray.size();i++){
+			 JSONObject object = (JSONObject)keyArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+			 ProjectKey e = (ProjectKey) JSONToObj(object.toString(), ProjectKey.class);
+			 keylist.add(e);
+		}
+
 		//鎴峰瀷鍙婁环鏍�
 		String huxing=req.getParameter("huxinglist");
 		JSONArray huxingArray = JSONArray.parseArray(huxing);
@@ -273,7 +283,7 @@ public class ProjectInfoController {
 		else{
 		//娣诲姞
 	    try {
-			int result=projectInputDao.AddProject(projectlist,houseInfolist,projectimagelist,projectPeitaolist,fujinpeitaoList,fujinSchoolList,holdCostList,houseTaxList);
+			int result=projectInputDao.AddProject(projectlist,houseInfolist,projectimagelist,projectPeitaolist,fujinpeitaoList,fujinSchoolList,holdCostList,houseTaxList,keylist);
 			System.out.println("result::"+result);
 			if(result==1){
 				json.put("flag", "1");
@@ -523,6 +533,15 @@ public class ProjectInfoController {
 		}
 		System.out.println("houseTaxList.length():"+houseTaxList.size());
 		System.out.println("houseTaxList2.length():"+houseTaxList2.size());
+		//项目关键字
+				String projectkey=req.getParameter("keylist");
+				JSONArray keyArray = JSONArray.parseArray(projectkey);
+				List<ProjectKey> keylist=new ArrayList<ProjectKey>();
+				for (int i=0;i<keyArray.size();i++){
+					 JSONObject object = (JSONObject)keyArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+					 ProjectKey e = (ProjectKey) JSONToObj(object.toString(), ProjectKey.class);
+					 keylist.add(e);
+				}
 		/*int isDuplicate=projectInputDao.isDuplicateNum(project_num);
 		if(isDuplicate==1){
 			json.put("isDuplicate", "1");
@@ -530,7 +549,7 @@ public class ProjectInfoController {
 		else{*/
 		//鏇存柊
 	    try {
-			int result=projectInputDao.EditProject(id, projectlist,houseInfolist,houseInfolist2,peitaolist,peitaolist2,imagelist,imagelist2,fujinpeitaoList,fujinpeitaoList2,fujinSchoolList,fujinSchoolList2,holdCostList,holdCostList2,houseTaxList,houseTaxList2,imagelistdelete,peitaolistdelete,fujinpeitaoListdelete,fujinSchoolListdelete,holdCostListdelete,houseTaxListdelete);
+			int result=projectInputDao.EditProject(id, projectlist,houseInfolist,houseInfolist2,peitaolist,peitaolist2,imagelist,imagelist2,fujinpeitaoList,fujinpeitaoList2,fujinSchoolList,fujinSchoolList2,holdCostList,holdCostList2,houseTaxList,houseTaxList2,imagelistdelete,peitaolistdelete,fujinpeitaoListdelete,fujinSchoolListdelete,holdCostListdelete,houseTaxListdelete,keylist);
 			System.out.println("result::"+result);
 			if(result==1){
 				json.put("flag", "1");
@@ -1048,6 +1067,9 @@ public class ProjectInfoController {
 		//寰楀埌鎵�鏈夊鏍＄殑鍚嶇О
 		List<String> schoolList=projectInputDao.getAllSchoolName();
 		req.setAttribute("schoolList", schoolList);
+		//根据项目编号获取项目关键字
+		ProjectKey key=projectInputDao.getKeyByNum(pronum);
+		req.setAttribute("key", key);
 		return "/ProjectInfo.jsp";
 	}
 	//鏍规嵁id鍙栧鏍′俊鎭�

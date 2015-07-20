@@ -418,6 +418,7 @@ public class MyController {
  		String temp = data.getYear_increment_rate();
  		String temp_zu = data.getZu_house_rate();
  		String middlePrice = data.getMiddle_price();
+ 		String zu_xuqiu=data.getZu_xuqiu();
  		if(middlePrice!=null && !"".equals(middlePrice)){
  			if(middlePrice.length()>=3){
  				middlePrice = middlePrice.substring(0,middlePrice.length()-3)+"K";
@@ -442,6 +443,8 @@ public class MyController {
  		if(items.length>=2){
  			data.setZu_xuqiu_1(items[0]);
  	 		data.setZu_xuqiu_2(items[1]);
+ 		}else{
+ 			data.setZu_xuqiu_1(items[0]);
  		}
  		
 		req.setAttribute("areaName", areaName);
