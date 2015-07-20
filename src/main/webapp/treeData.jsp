@@ -14,7 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <link rel="stylesheet" type="text/css" href="css/main.css" />
    <script src="/js/jquery-2.1.4.js"></script>
    <script src="/bootstrap/js/bootstrap.js"></script>
-   <script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script>
+   <script src="/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 <%
@@ -32,6 +32,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 }
        		
+       		String flag = null;
+       		if(request.getSession().getAttribute("flag")!=null){
+       			flag = request.getSession().getAttribute("flag").toString();
+       		}
+       		
+  
+       		
 %>
 <input type="hidden" id="top"/>
 <jsp:include page="head4index.jsp" />
@@ -47,6 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  </div>
  <script src="/bootstrap/js/bootstrap-treeview.js"></script>
  <script type="text/javascript">
+ var item = <%=flag%>;
  $(function() {
  
 	        var defaultData = [
@@ -310,7 +318,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						              },
 						              
 						            ]
-						          }
+						          },
+						          {
+							            text: '用户列表',	
+							            color: '#ffffff', 
+							            backColor:'rgb(59,94,132)',   
+							            href:'#title',          
+							            nodes: [
+							              {
+							                text: '用户列表',
+								            href:'#title'	                
+							              },
+							              
+							            ]
+							          }
 	        ];
 	      /*   $("#showlist").load("areaLuru.jsp"); */
 	        $("#showlist").load("/ProjectInput");
@@ -365,6 +386,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	           else if(node.text=="区域列表"){
 		           $("#showlist").load("areaList.jsp");
 		           }
+	           else if(node.text=="区域列表"){
+		           $("#showlist").load("areaList.jsp");
+		       }
+	           
+	           else if(node.text=="用户列表"){
+	        	   if(item==2){
+	        		   $("#showlist").load("userList.jsp");
+	        	   }
+	        	   else{
+	        		   alert("您没有权限查看用户列表！");
+	        	   }
+	        	   
+		           
+		        }
 	          } 
 	        });
  });

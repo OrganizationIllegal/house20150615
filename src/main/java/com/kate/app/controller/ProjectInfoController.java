@@ -1,11 +1,12 @@
 package com.kate.app.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.mail.Flags.Flag;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -36,6 +37,7 @@ import com.kate.app.model.HouseTax;
 import com.kate.app.model.NewsBoke;
 import com.kate.app.model.Project;
 import com.kate.app.model.ProjectDescImage;
+import com.kate.app.model.ProjectKey;
 import com.kate.app.model.ProjectPeiTao;
 import com.kate.app.model.SchoolInfo;
 import com.kate.app.model.ServiceArea;
@@ -196,6 +198,16 @@ public class ProjectInfoController {
 			 projectlist.add(e);
 		}
 		System.out.println("projectlist.length():"+projectlist.size());
+		//项目关键字
+		String projectkey=req.getParameter("keylist");
+		JSONArray keyArray = JSONArray.parseArray(projectkey);
+		List<ProjectKey> keylist=new ArrayList<ProjectKey>();
+		for (int i=0;i<keyArray.size();i++){
+			 JSONObject object = (JSONObject)keyArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+			 ProjectKey e = (ProjectKey) JSONToObj(object.toString(), ProjectKey.class);
+			 keylist.add(e);
+		}
+
 		//鎴峰瀷鍙婁环鏍�
 		String huxing=req.getParameter("huxinglist");
 		JSONArray huxingArray = JSONArray.parseArray(huxing);
@@ -273,7 +285,7 @@ public class ProjectInfoController {
 		else{
 		//娣诲姞
 	    try {
-			int result=projectInputDao.AddProject(projectlist,houseInfolist,projectimagelist,projectPeitaolist,fujinpeitaoList,fujinSchoolList,holdCostList,houseTaxList);
+			int result=projectInputDao.AddProject(projectlist,houseInfolist,projectimagelist,projectPeitaolist,fujinpeitaoList,fujinSchoolList,holdCostList,houseTaxList,keylist);
 			System.out.println("result::"+result);
 			if(result==1){
 				json.put("flag", "1");
@@ -523,6 +535,15 @@ public class ProjectInfoController {
 		}
 		System.out.println("houseTaxList.length():"+houseTaxList.size());
 		System.out.println("houseTaxList2.length():"+houseTaxList2.size());
+		//项目关键字
+				String projectkey=req.getParameter("keylist");
+				JSONArray keyArray = JSONArray.parseArray(projectkey);
+				List<ProjectKey> keylist=new ArrayList<ProjectKey>();
+				for (int i=0;i<keyArray.size();i++){
+					 JSONObject object = (JSONObject)keyArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+					 ProjectKey e = (ProjectKey) JSONToObj(object.toString(), ProjectKey.class);
+					 keylist.add(e);
+				}
 		/*int isDuplicate=projectInputDao.isDuplicateNum(project_num);
 		if(isDuplicate==1){
 			json.put("isDuplicate", "1");
@@ -530,7 +551,7 @@ public class ProjectInfoController {
 		else{*/
 		//鏇存柊
 	    try {
-			int result=projectInputDao.EditProject(id, projectlist,houseInfolist,houseInfolist2,peitaolist,peitaolist2,imagelist,imagelist2,fujinpeitaoList,fujinpeitaoList2,fujinSchoolList,fujinSchoolList2,holdCostList,holdCostList2,houseTaxList,houseTaxList2,imagelistdelete,peitaolistdelete,fujinpeitaoListdelete,fujinSchoolListdelete,holdCostListdelete,houseTaxListdelete);
+			int result=projectInputDao.EditProject(id, projectlist,houseInfolist,houseInfolist2,peitaolist,peitaolist2,imagelist,imagelist2,fujinpeitaoList,fujinpeitaoList2,fujinSchoolList,fujinSchoolList2,holdCostList,holdCostList2,houseTaxList,houseTaxList2,imagelistdelete,peitaolistdelete,fujinpeitaoListdelete,fujinSchoolListdelete,holdCostListdelete,houseTaxListdelete,keylist);
 			System.out.println("result::"+result);
 			if(result==1){
 				json.put("flag", "1");
@@ -915,64 +936,34 @@ public class ProjectInfoController {
 		}
 	}
 
-	@RequestMapping(value = "/imageupload")
+	@RequestMapping(value = "/ckimageupload",produces = {"application/html;charset=UTF-8"})
     public void handleFormUpload(
-            @RequestParam("file") MultipartFile file, HttpServletResponse resp) {
+            @RequestParam("upload") MultipartFile file,HttpServletRequest request, HttpServletResponse resp) {
 		JSONObject json = new JSONObject();
 		json.put("total", 1);
 		json.put("rows", 1);
-		
+		PrintWriter out;
+		String callback =request.getParameter("CKEditorFuncNum");
         if (!file.isEmpty()) {
-//            byte[] bytes = file.getBytes();
-            // store the bytes somewhere
-//        	file.
         	try{
-        		/*for(int i=0;i<file.length;i++){*/
         			ImageDao.CopyImage(file,new String(file.getOriginalFilename().getBytes("ISO8859_1"),"utf-8"));
-        		/*}*/
-        		
-        		/*System.out.println(new String(file.getOriginalFilename().getBytes("utf-8"),"utf-8"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes("utf-8"),"GBK"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes("utf-8"),"gb2312"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes("utf-8"),"iso-8859-1"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes("GBK"),"utf-8"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes("GBK"),"GBK"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes("GBK"),"gb2312"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes("GBK"),"iso-8859-1"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes(),"utf-8"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes(),"GBK"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes(),"gb2312"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes(),"iso-8859-1"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes("GBK"),"iso-8859-1"));
-        		System.out.println(new String(file.getOriginalFilename().getBytes()));
-        		System.out.println(new String(file.getOriginalFilename().getBytes()));
-        		System.out.println(new String(file.getOriginalFilename().getBytes()));*/
-//        		System.out.println(new String(file.getOriginalFilename().getBytes("ISO8859_1"),"utf-8"));
-        		/*System.out.println("涓枃");
-
-                System.out.println("涓枃".getBytes());
-
-                System.out.println("涓枃".getBytes("GB2312"));
-
-                System.out.println("涓枃".getBytes("ISO8859_1"));
-
-                System.out.println(new String("涓枃".getBytes()));
-
-                System.out.println(new String("涓枃".getBytes(), "GB2312"));
-
-                System.out.println(new String("涓枃".getBytes(), "ISO8859_1"));
-
-                System.out.println(new String("涓枃".getBytes("GB2312")));
-
-                System.out.println(new String("涓枃".getBytes("GB2312"), "GB2312"));
-
-                System.out.println(new String("涓枃".getBytes("GB2312"), "ISO8859_1"));
-
-                System.out.println(new String("涓枃".getBytes("ISO8859_1")));
-
-                System.out.println(new String("涓枃".getBytes("ISO8859_1"), "GB2312"));
-
-                System.out.println(new String("涓枃".getBytes("ISO8859_1"), "ISO8859_1"));*/
+        			String name=new String(file.getOriginalFilename().getBytes("ISO8859_1"),"utf-8");
+        			String fullPath ="/Uploadimages/"+ File.separator+name;
+        			String s;
+        			if(StringUtils.isNotBlank(callback)){
+        	            s= "<script type='text/javascript'>"
+        	            + "window.parent.CKEDITOR.tools.callFunction(" + callback
+        	            + ",'" + fullPath + "',''" + ")"+"</script>";
+        	        }else{
+        	            s= "{" + file.getOriginalFilename() + "}!Success!";
+        	        }
+        			try {
+        	            out = resp.getWriter();
+        	            out.print(s);
+        	            out.flush();
+        	        } catch (IOException e) {
+        	            e.printStackTrace();
+        	        }
         	}
         	catch(Exception e){
         		e.printStackTrace();
@@ -982,7 +973,32 @@ public class ProjectInfoController {
     		}catch(Exception e){
     			e.printStackTrace();
     		}
-            //return "redirect:uploadSuccess";
+        }
+		try{
+			writeJson(json.toJSONString(),resp);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+    }
+	@RequestMapping(value = "/imageupload")
+    public void handleFormUpload(
+            @RequestParam("file") MultipartFile file, HttpServletResponse resp) {
+		JSONObject json = new JSONObject();
+		json.put("total", 1);
+		json.put("rows", 1);
+		
+        if (!file.isEmpty()) {
+        	try{
+        			ImageDao.CopyImage(file,new String(file.getOriginalFilename().getBytes("ISO8859_1"),"utf-8"));
+        	}
+        	catch(Exception e){
+        		e.printStackTrace();
+        	}
+        	try{
+    			writeJson(json.toJSONString(),resp);
+    		}catch(Exception e){
+    			e.printStackTrace();
+    		}
         }
         
 		try{
@@ -990,7 +1006,6 @@ public class ProjectInfoController {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-        //return "redirect:uploadFailure";
     }
 	//鏌ユ壘椤圭洰淇℃伅
 	@RequestMapping({ "/selectProject" })
@@ -1048,6 +1063,9 @@ public class ProjectInfoController {
 		//寰楀埌鎵�鏈夊鏍＄殑鍚嶇О
 		List<String> schoolList=projectInputDao.getAllSchoolName();
 		req.setAttribute("schoolList", schoolList);
+		//根据项目编号获取项目关键字
+		ProjectKey key=projectInputDao.getKeyByNum(pronum);
+		req.setAttribute("key", key);
 		return "/ProjectInfo.jsp";
 	}
 	//鏍规嵁id鍙栧鏍′俊鎭�

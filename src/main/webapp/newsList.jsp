@@ -26,6 +26,15 @@ body{
 
 </head>
 <body>
+<%
+String flag = null;
+if(request.getSession().getAttribute("flag")!=null){
+	flag = request.getSession().getAttribute("flag").toString();
+}
+%>
+
+	
+	
 <div style="width:900px;margin:25px auto;">
 <div class="area_bkg1">当前位置:新闻博客列表</div>
  <table id="table"
@@ -57,6 +66,7 @@ body{
 
 
 <script>
+var item = <%=flag%>
     var $table = $('#table'),
         $remove = $('#remove'),
         $add = $('#add'),
@@ -80,6 +90,7 @@ body{
         });
   
         $remove.click(function () {
+        	
         	var ids = getIdSelections();
             ids = '"'+ids+'"';
             alert(ids);
@@ -143,76 +154,50 @@ body{
         ].join('');
     }
     
-  /*   window.operateEvents = {
-            'click .like': function (e, value, row, index) {
-                var id=row.id;
-                alert("id"+id);
-                window.open ('/Area/editNewsInfo?id='+id)
-                
-            }},
- */
-    window.operateEvents = {
+
+ window.operateEvents = {
         'click .like': function (e, value, row, index) {
-           // alert('You click like action, row: ' + JSON.stringify(row));
             var id=row.id;
             window.open ('/selectNewsBokeInfo?id='+id);
-	        /*  $.ajax({
-		 	    type: "POST",
-		 		//data: {id:row.id,project_num: row.project_num,recommend_project_num1: row.recommend_project_num1, recommend_project_num2: row.recommend_project_num2,recommend_project_num3: row.recommend_project_num3},
-		 		dateType: "json",
-		 		url: "/editRecoProject",
-		 		
-		 		success:function(data){
-	 			data=$.parseJSON(data);
-	 			if(data.result==0){
-	 				alert("项目编号不能为空！")
-	 			}
-	 			else if(data.result==-1){
-	 				alert("项目编号不存在！")
-	 			}else if(data.result==-2){
-	 				alert("修改失败")
-	 			}
-	 			else{
-	 				alert("修改成功")
-	 			}
-	 		},
-		 		error:function(){
-		 			alert("error")
-		 		}
-	 		});
-      */
-            
-            
         },
         'click .remove': function (e, value, row, index) {
-            var id = row.id;
-        	if (confirm("是否确认删除？")){
-        		  $.ajax({
-      		 	    type: "POST",
-      		 		data: {id: id},
-      		 		dateType: "json",
-      		 		url: "/deleteNewsBoke",
-      		 		
-      		 		success:function(data){
-      		 			data=eval("("+data+")");
-      		 			if(data.flag==0){
-      		 				alert("删除成功");
-      		 			}else{
-      		 				alert("删除失败");
-      		 			}
-      		 			
-      		 		},
-      		 		error:function(){
-      		 			alert("error");
-      		 		}
-      	 	});
-        		  $table.bootstrapTable('remove', {
-                      field: 'id',
-                      values: [row.id]
-                  });
-        	} else {
-        	    /* alert("您选择了不删除"); */
+        	
+        	if(item!=2){
+        		alert("您没有权限删除！");
         	}
+        	else{
+        		var id = row.id;
+            	if (confirm("是否确认删除？")){
+            		  $.ajax({
+          		 	    type: "POST",
+          		 		data: {id: id},
+          		 		dateType: "json",
+          		 		url: "/deleteNewsBoke",
+          		 		
+          		 		success:function(data){
+          		 			data=eval("("+data+")");
+          		 			if(data.flag==0){
+          		 				alert("删除成功");
+          		 			}else{
+          		 				alert("删除失败");
+          		 			}
+          		 			
+          		 		},
+          		 		error:function(){
+          		 			alert("error");
+          		 		}
+          	 	});
+            		  $table.bootstrapTable('remove', {
+                          field: 'id',
+                          values: [row.id]
+                      });
+            	} else {
+            	   
+            	}
+        		
+        		
+        	}
+            
            
         }
     };

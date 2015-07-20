@@ -26,6 +26,13 @@ body{
 
 </head>
 <body>
+<%
+String flag = null;
+if(request.getSession().getAttribute("flag")!=null){
+	flag = request.getSession().getAttribute("flag").toString();
+}
+%>
+
 <div style="width:900px;margin:25px auto;">
 <div class="area_bkg1">当前位置:开发商列表</div>
  <table id="table"
@@ -58,6 +65,7 @@ body{
 
 
 <script>
+var item = <%=flag%>
     var $table = $('#table'),
         $remove = $('#remove'),
         $add = $('#add'),

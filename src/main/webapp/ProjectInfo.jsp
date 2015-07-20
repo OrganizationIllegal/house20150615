@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
    <!-- <script src="/js/jquery.min.js"></script> -->
    <script src="/bootstrap/js/bootstrap.min.js"></script>
-   <script src="//cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script>
+<script src="/ckeditor/ckeditor.js"></script>
   <link rel="stylesheet" href="css/chosen.css">
 
 <style type="text/css">
@@ -488,6 +488,95 @@ body{
 </c:forEach>
 
 </div>
+<!-- ****************************************************项目关键字start***************************************************** -->
+
+<div class="area_bkg2" style="clear:both;" id="projectkey11">项目关键字</div>
+<form id="projectkey">
+<div class="area_left" style="margin-left:150px;width:550px">
+<input type="hidden" id="keyid" value="${key.id}"/>
+<c:if test="${key.xinkaipan=='1'}">
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="xinkaipan"  checked="true"/>
+</c:if>
+<c:if test="${key.xinkaipan=='0'}">
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="xinkaipan" />
+</c:if>
+<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">新开盘</a>
+
+<c:if test="${key.remen=='1'}">
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="remen"  checked="true"/>
+</c:if>
+<c:if test="${key.remen=='0'}">
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="remen" />
+</c:if>
+<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">热门项目</a>
+
+<c:if test="${key.xuequ=='1'}">
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="xuequ"  checked="true"/>
+</c:if>
+<c:if test="${key.xuequ=='0'}">
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="xuequ"/>
+</c:if>
+<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">优秀学区</a>
+
+<c:if test="${key.center=='1'}">
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="center" checked="true" />
+</c:if>
+<c:if test="${key.center=='0'}">
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="center"  />
+</c:if>
+<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">城市中心</a>
+
+<c:if test="${key.baozu=='1'}">
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="baozu"  checked="true"/>
+</c:if>
+<c:if test="${key.baozu=='0'}">
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="baozu"  />
+</c:if>
+<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">包租项目</a>
+</div>
+<div class="area_left" style="margin-left:150px;width:550px">
+<c:if test="${key.huaren=='1'}">
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="huaren"  checked="true"/>
+</c:if>
+<c:if test="${key.huaren=='0'}">
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="huaren" />
+</c:if>
+<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">华人区</a>
+
+<c:if test="${key.maidi=='1'}">
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="maidi"   checked="true"/>
+</c:if>
+<c:if test="${key.maidi=='0'}">
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="maidi"/>
+</c:if>
+<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">最新项目</a>
+
+<c:if test="${key.daxue=='1'}">
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="daxue"  checked="true"/>
+</c:if>
+<c:if test="${key.daxue=='0'}">
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="daxue"  />
+</c:if>
+<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">大学附近</a>
+
+<c:if test="${key.xianfang=='1'}">
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="xianfang"  checked="true"/>
+</c:if>
+<c:if test="${key.xianfang=='0'}">
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="xianfang"  />
+</c:if>
+<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">现房项目</a>
+
+<c:if test="${key.traffic=='1'}">
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="traffic"  checked="true"/>
+</c:if>
+<c:if test="${key.traffic=='0'}">
+<input style="display:block;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="traffic"/>
+</c:if>
+<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">轨道交通</a>
+</div>
+</form>
+<!-- ****************************************************项目关键字end***************************************************** -->
 <!-- ****************************************************购房税费end***************************************************** -->
 <!-- <div style="width:900px;clear:both;margin:20px auto;text-align:center;">
 <button type="submit" >提交</button>
@@ -572,6 +661,7 @@ $('#houseTaxprice').blur(function() {
 		return false;
 	}
 	});
+
 $(function(){
 	$.ajaxSetup({  
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
@@ -1206,12 +1296,35 @@ function savepro(){
 	projectlist.push(project);
     //接收项目编号
     var project_num=$("#project_code").val();
+    
+	var keylist2=document.getElementsByName('key');
+	 for(var i=0;i<keylist2.length;i++){
+	 	if(keylist2[i].checked==true){
+	 		keylist2[i].value=1;
+	 	}else{
+	 		keylist2[i].value=0;
+	 	}
+	 }
+	var keylist=[];
+	var key = {};
+	key.id=$("#keyid").val();
+	key.xinkaipan=$("#xinkaipan").val();
+	key.remen=$("#remen").val();
+	key.maidi=$("#maidi").val();
+	key.center=$("#center").val();
+	key.baozu=$("#baozu").val();
+	key.huaren=$("#huaren").val();
+	key.xuequ=$("#xuequ").val();
+	key.daxue=$("#daxue").val();
+	key.xianfang=$("#xianfang").val();
+	key.traffic=$("#traffic").val();
+	keylist.push(key);
 
     $.ajax({
 	    type: "POST",
  		async:false, 
 		dateType: "json",
-		data:{id:id,"project":JSON.stringify(projectlist),"huxinglist":JSON.stringify(huxinglist),"imagelist":JSON.stringify(imagelist),"peitaolist":JSON.stringify(peitaolist),"fujinlist":JSON.stringify(fujinlist),"schoollist":JSON.stringify(schoollist),"holdingcostlist":JSON.stringify(holdingcostlist),"housetaxformlist":JSON.stringify(housetaxformlist)},
+		data:{id:id,"project":JSON.stringify(projectlist),"keylist":JSON.stringify(keylist),"huxinglist":JSON.stringify(huxinglist),"imagelist":JSON.stringify(imagelist),"peitaolist":JSON.stringify(peitaolist),"fujinlist":JSON.stringify(fujinlist),"schoollist":JSON.stringify(schoollist),"holdingcostlist":JSON.stringify(holdingcostlist),"housetaxformlist":JSON.stringify(housetaxformlist)},
 		url: "/EditProject",
 		success:function(data){
 			data=eval("("+data+")");
