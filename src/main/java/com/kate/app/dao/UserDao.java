@@ -30,13 +30,15 @@ public class UserDao extends BaseDao {
 		    String email=null;
 		    String tel=null;
 		    int role=0;
+		    int flag = 0;
 		    while(rs.next()){
 		    	nick_name=username1;
 		    	pwd=rs.getString("pwd");
 		    	email=rs.getString("email");
 		    	tel=rs.getString("tel");
 		    	role=Integer.parseInt(rs.getString("role"));
-		    	User user=new User(nick_name, pwd,email, tel, role);
+		    	flag=rs.getInt("flag");
+		    	User user=new User(nick_name, pwd,email, tel, role,flag);
 		    	userList.add(user);
 		    }
 		    
@@ -45,21 +47,21 @@ public class UserDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
+			if(rs != null){   // 鍏抽棴璁板綍闆�  
 		        try{   
 		            rs.close() ;   
 		        }catch(SQLException e){   
 		            e.printStackTrace() ;   
 		        }   
 		          }   
-		      if(stmt != null){   // 关闭声明   
+		      if(stmt != null){   // 鍏抽棴澹版槑   
 		        try{   
 		            stmt.close() ;   
 		        }catch(SQLException e){   
 		            e.printStackTrace() ;   
 		        }   
 		     } 
-		      if(pstmt != null){   // 关闭声明   
+		      if(pstmt != null){   // 鍏抽棴澹版槑   
 			        try{   
 			            pstmt.close() ;   
 			        }catch(SQLException e){   
@@ -96,21 +98,21 @@ public class UserDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
+			if(rs != null){   // 鍏抽棴璁板綍闆�  
 		        try{   
 		            rs.close() ;   
 		        }catch(SQLException e){   
 		            e.printStackTrace() ;   
 		        }   
 		          }   
-		      if(stmt != null){   // 关闭声明   
+		      if(stmt != null){   // 鍏抽棴澹版槑   
 		        try{   
 		            stmt.close() ;   
 		        }catch(SQLException e){   
 		            e.printStackTrace() ;   
 		        }   
 		     } 
-		      if(pstmt != null){   // 关闭声明   
+		      if(pstmt != null){   // 鍏抽棴澹版槑   
 			        try{   
 			            pstmt.close() ;   
 			        }catch(SQLException e){   

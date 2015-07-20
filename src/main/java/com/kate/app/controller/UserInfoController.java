@@ -218,11 +218,14 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		}
 		userList = userInfoDao.judge(tempName);
 		int role = 1;
+		int flag = 0;
 		if(userList.size()>0){
 			role = userList.get(0).getRole();
+			
+			flag = userList.get(0).getFlag();
 		}
-		
 		session.setAttribute("role", role);
+		session.setAttribute("flag", flag);
 		if(role == 0){
 			return "/treeData.jsp";
 		}
