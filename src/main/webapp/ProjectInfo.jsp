@@ -403,8 +403,8 @@ body{
 </div> -->
 <div class="area_left"  style="width:900px">
  <!-- <input type="file" name="houseimg" id="houseimg" style="width:700px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"/><a href="#">上传</a> -->
-	<input type="text" id="file1" style="float:left;width:580px;border:1px solid rgb(239,235,242);"><input type="button" id="file2" value="浏览...">
-	<input type="file" name="houseimg" id="houseimg"  style="width:620px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;display:none;"/><a href="#"  onclick="upload()">上传</a>
+	<input type="text" id="file1" style="float:left;width:580px;border:1px solid rgb(239,235,242);"><input type="button" id="file2" value="浏览">
+	<input type="file" name="houseimg" id="houseimg"  style="width:620px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;display:none;"/><!-- <a href="#"  onclick="upload()">上传</a> -->
 	
 </div>
 <div class="area_left">
@@ -1006,20 +1006,22 @@ $(function(){
 			$("#huxingjiage input").each(function(){
 				$(this).val("");
 				});
+			$("#file2").val("浏览");
 			}
 		else{
-			if($('#houseimg').val()==""){
+			if($('#file1').val()==""){
 				alert("请选择文件！");
 				return false;}
 			var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1];
 			huxingedititem=DataDeal.formToJson(data= decodeURIComponent($("#huxingjiage").serialize(),true));
 			huxingedititem=eval("("+huxingedititem+")");
-			huxingedititem["houseimg"]=filename;
+			huxingedititem["houseimg"]=$('#file1').val();
 			UpladFile("houseimg");
 			$("#huxingjiage input").each(function(){
 				$(this).val("");
 				});
+			$("#file2").val("浏览");
 			huxingedititem.id=huxinglist[ishuxingedit].id;
 			huxinglist[ishuxingedit]=huxingedititem;
 			$("#huxingjiagelist").children().eq(ishuxingedit).html("<span style='padding-right:10px;'>"+(ishuxingedit+1)+"</span><span style='padding-right:10px;'>"+huxinglist[ishuxingedit].houseimg+"</span><span style='padding-right:10px;'>"+huxinglist[ishuxingedit].housename+"</span><span style='padding-right:10px;'>"+huxinglist[ishuxingedit].houseprice+"</span>"+"<span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span>").show();
@@ -1058,7 +1060,7 @@ $(function(){
 		//alert(index+"index");
 		ishuxingedit=index;
 		$("#housename").val(huxingedititem.housename);
-		 $("#houseimg").val(huxingedititem.houseimg);
+		 /* $("#houseimg").val(huxingedititem.houseimg); */
 		 $("#file1").val(huxingedititem.houseimg);
 		$("#houseprice").val(huxingedititem.houseprice);
 		$("#room_num").val(huxingedititem.room_num);
