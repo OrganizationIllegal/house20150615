@@ -152,6 +152,7 @@ public class HouseProjectDao extends BaseDao{
 				projectInfo.setRecommend_id_2(rs.getString("recommend_id_2"));
 				projectInfo.setRecommend_id_3(rs.getString("recommend_id_3"));
 				projectInfo.setWuyefei(rs.getString("wuyefei"));
+				projectInfo.setWalk_num(rs.getInt("walk_num"));
 
 			}
 			

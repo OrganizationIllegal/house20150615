@@ -23,7 +23,7 @@
 	 	        Microsoft.Maps.Events.addHandler(map, 'viewchangeend', function(){
 	 	        	if(lastZoomLevel != map.getZoom()){
 	 	               lastZoomLevel = map.getZoom();
-	 	               if(lastZoomLevel>5){
+	 	               if(lastZoomLevel>9){
 	 	            	  map.entities.clear();
 	 	            	  for(var i=0;i<items.length;i++){
 	 	 	 		        var arr=new Array();
@@ -38,9 +38,9 @@
 	 	 	 		        var zhou=items[i].project_zhou;
 	 	 	 		        var price="$"+minprice+"-$"+maxprice;
 	 	 	 		        var name=items[i].project_name;
-	 	 	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:10px;color:red;font-size:12px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin.png' style='width:60px;'/>"}; 
+	 	 	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:-45px;left:-15px;'><div style='color:red;font-size:12px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin2.png' style='width:20px;height:20px;'/></div>"}; 
 	 	 	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
-	 	 	 		       /* var pushpin= new Microsoft.Maps.Pushpin(LA,null);*/
+	 	 	 		        /*var pushpin= new Microsoft.Maps.Pushpin(LA,null);*/
 	 	 				    add(name,img,price,num,pushpin,LA);
 	 	 				    map.entities.push(pushpin);	
 	 	 	 		    }	 	            	   
@@ -57,7 +57,7 @@
 	 	            	        //alert(typeof(total))
 	 	            	        var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; 
 	 	                  	   /* var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);*/
-	 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, {text:total,width: 30, height: 30,icon:'/images/pushpin2.png'});
+	 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, {text:total,width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'});
 	 	                  	    map.entities.push(pushpin2);
 	 	            	    }
 	 	               }

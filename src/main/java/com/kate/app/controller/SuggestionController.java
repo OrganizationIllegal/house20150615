@@ -96,7 +96,26 @@ public class SuggestionController {
 		}
 	}
 	
-	
+	@RequestMapping({"/getSuggestionMap"})
+	public void  getSuggestionMap(HttpServletRequest req,HttpServletResponse resp) throws IOException{
+		String query = req.getParameter("query");
+		JSONObject json = new JSONObject();
+		List <String> array = new ArrayList<String>();
+		suggestionService.writeFileByMap();
+		array = suggestionService.getSuggestionMap(query);
+		if(array.size()<=0 || array==null){
+			array = null;
+		}else if(array.size()>10){
+			array = array.subList(0, 10);
+		}
+		json.put("list", array);
+		json.put("success", true);
+		try{
+			writeJson(json.toJSONString(),resp);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	
 	public void writeJson(String json, HttpServletResponse response)throws Exception{
 	    response.setContentType("text/html");

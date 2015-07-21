@@ -103,6 +103,51 @@ public class SuggestionDao extends BaseDao {
 		return zhouList;
 	}
 	
+	
+	public List<String> getProjectAdd(){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		List<String> addList = new ArrayList<String>();
+		try{
+			String sql = "select distinct  project_address from house_project";
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				String data = new String();
+				data = rs.getString("project_address");
+				addList.add(data);
+			}
+			
+		}catch (Exception e) {
+			 e.printStackTrace();
+        }finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return addList;
+	}
+	
 	public List<String> getProjectCity(){
 		Statement stmt = null;
 		ResultSet rs = null;

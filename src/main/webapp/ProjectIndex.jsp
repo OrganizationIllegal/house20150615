@@ -487,7 +487,7 @@ function popInfo(){
 				<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:930px;">学校和周边</a>
 				<div class="c-fix f-l p_left">
 					<img src="images/walk_score.jpg" class="c-fix f-l icon_walk"></img>
-					<a class="c-fix f-l walk_lab f-yahei s-14" style="margin-top:20px;">步行指数：99</a>
+					<a class="c-fix f-l walk_lab f-yahei s-14" style="margin-top:20px;">步行指数：${HouseProject.walk_num }</a>
 					<a class="c-fix f-l walk_lab f-arial s-14">Walk Score</a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:445px;margin-left:0px;">附近学校</a>
 					<c:forEach items="${nearSchoolList}" var="item" begin="0" end="2" step="1" varStatus="var">
