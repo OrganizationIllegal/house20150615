@@ -679,10 +679,10 @@ body{
 <div>
 	<div class='area_left3'>
 	<span style='display:none;'>${status.index + 1}</span>
-	<span class='area_span'>${project.project_name}</span>
+	<span class='area_span' style='width: 340px;'>${project.project_name}</span>
 	<span class='area_span'>${project.project_area}</span>
 	<span class='area_span'>${project.project_price_qi}</span>
-	<span class='area_span'>${project.project_type}</span>
+	<span class='area_span' style='width: 40px;'>${project.project_type}</span>
 	</div>
 	<div class='area_right3'><span class='area_span5'>
 	<a href='#' class='deleteproject'>删除</a>
@@ -1630,7 +1630,7 @@ $(function(){
 				  dataType: "json",
 				  success:function (data,textStatus,jqXHR){
 					  projectlist.push(data);
-					  $('#projectlist').append("<div><div class='area_left3'><span style='display:none;'>"+(++projectcount)+"</span><span class='area_span'>"+projectlist[projectcount-1].project_name+"</span><span class='area_span'>"+projectlist[projectcount-1].project_area+"</span><span class='area_span'>"+projectlist[projectcount-1].project_price_qi+"</span><span class='area_span'>"+projectlist[projectcount-1].project_type+"</span></div><div class='area_right3'><span class='area_span5'><a href='#' class='deleteproject'>删除</a></span></div></div>");
+					  $('#projectlist').append("<div><div class='area_left3'><span style='display:none;'>"+(++projectcount)+"</span><span class='area_span' style='width: 167px;'>"+projectlist[projectcount-1].project_name+"</span><span class='area_span'>"+projectlist[projectcount-1].project_area+"</span><span class='area_span'>"+projectlist[projectcount-1].project_price_qi+"</span><span class='area_span'>"+projectlist[projectcount-1].project_type+"</span></div><div class='area_right3'><span class='area_span5'><a href='#' class='deleteproject'>删除</a></span></div></div>");
 					  }
 				});
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;

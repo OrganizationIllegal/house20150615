@@ -1356,7 +1356,7 @@ function popInfo(){
 
  </script>
  <!-- <script src="/js/familyStatus.js" charset="GBK"></script> -->
- <script src="/js/trend.js" charset="GBK"></script>
+ <script src="/js/trend.js" charset="utf-8"></script>
  <script src="/js/cost.js" charset="GBK"></script>
  <script src="/js/news.js"></script>
  <script type="text/javascript">
@@ -1370,7 +1370,7 @@ function popInfo(){
 		player = new YKU.Player('youkuplayer',{
 			styleid: '0',
 			client_id: '6e97509b4cd3378b',
-			vid: 'XOTUxNDk2NDQ0',
+			vid: ${}||'XOTUxNDk2NDQ0',
 			events:{
 			onPlayStart: function(){ alert("kaishi") },
 			onPlayEnd: function(){ alert("jieshu") }
