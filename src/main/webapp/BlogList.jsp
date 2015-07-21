@@ -136,7 +136,7 @@ if(request.getSession().getAttribute("flag")!=null){
                         	<c:if test="${status.index < 10}">
                         		<li class="media" >
                              <div class="media-left">
-                                <a href="/Detail?id=${item.id}&type=0">
+                                <a href="/Detail?id=${item.id}&type=1">
                                   <img class="media-object" src="<%=application.getInitParameter("imagedir")%>/${item.news_image}" alt="" width="180px" height="134px">
                                 </a>
                               </div>

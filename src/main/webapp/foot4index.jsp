@@ -28,7 +28,7 @@
 			</div>
 		</div> 
 </div>
-<script type="text/javascript">
+<script>
    $().ready(function() {
    $("#weixin").click(function(){
    		$('#weixinmodal').modal('show');

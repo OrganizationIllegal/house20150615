@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
+<%-- <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fun"%> --%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -13,28 +15,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 			<link rel="stylesheet" type="text/css" href="css/base.css" />
 		<link rel="stylesheet" type="text/css" href="css/project.css" />
-		<link type="text/css" rel="stylesheet" href="/css/sli-style.css">
+		<!-- <link type="text/css" rel="stylesheet" href="/css/sli-style.css"> -->
 		<!-- <script type="text/javascript" src="js/jquery.js"></script> -->
 	    <script type="text/javascript" src="/js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/project.js"></script>
 		<script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
 		 <script src="/js/bingMapIndex.js"></script>
-		 <script src="/js/slides-1.1.1-min.js" type="text/javascript"></script>
+		 <!-- <script src="/js/slides-1.1.1-min.js" type="text/javascript"></script> -->
 		 <link href="css/style.css" rel="stylesheet" type="text/css" />
    <link href="css/style_project.css" rel="stylesheet" type="text/css" /> 
-    <link href="/css/sli-style.css" rel="stylesheet" type="text/css" /> 
+    <!-- <link href="/css/sli-style.css" rel="stylesheet" type="text/css" />  -->
    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-   <link href="css/examples.css" rel="stylesheet" type="text/css" media="screen"/>
-   <link href="css/slider-pro.min.css" rel="stylesheet" type="text/css" media="screen"/>
+   <!-- <link href="css/examples.css" rel="stylesheet" type="text/css" media="screen"/> -->
+   <!-- <link href="css/slider-pro.min.css" rel="stylesheet" type="text/css" media="screen"/> -->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
    <script src="/bootstrap/js/bootstrap.min.js"></script>
-   <script src="/js/jquery.sliderPro.min.js"></script>
+   <!-- <script src="/js/jquery.sliderPro.min.js"></script> -->
   <link href="/css/index.css" rel="stylesheet">
-   <script src="http://echarts.baidu.com/build/dist/echarts-all.js" charset="utf-8"></script>
+   <!-- <script src="http://echarts.baidu.com/build/dist/echarts-all.js" charset="utf-8"></script> -->
    <link href="/css/List-Grid-View.css" rel="stylesheet">
    <script src="/echarts/echarts-all.js"></script>
    <!-- <link href="./bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet"> -->
-<link href="/css/pgwslider.min.css" rel="stylesheet">
+<!-- <link href="/css/pgwslider.min.css" rel="stylesheet"> -->
 <link href="/css/video-js.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript" src="js/script_p.js"></script>
@@ -686,7 +688,7 @@ function popInfo(){
 			</div>
 		</div>
 		
-		<c:if test="${!empty areaMiddleList && !empty areaZujinList && !empty areaZhikongList}">
+		<c:if test="${fn:length(areaMiddleList) > 0 && fn:length(areaZujinList) > 0 && fn:length(areaZhikongList) > 0}">
 		<div class="c-fix  bkg3"  style="margin:0 auto;height:450px;width:990px">
 			<div class="c-fix p_panel_4">
 			
@@ -723,11 +725,12 @@ function popInfo(){
 </div>
 			</div>
 	</c:if>
+	<c:if test="${fn:length(featureList) > 0}">
 		<div class="c-fix  bkg3"  style="margin:0 auto;height:188px;width:990px">
 			<div class="c-fix p_panel_4" style="padding-top:0px;">
 				
 
-				<c:if test="${!empty featureList}">
+				
 					<div class="c-fix f-l p_left2">
 						<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:690px;margin-bottom:10px;">${area_name} 地区特点</a>
 						<c:forEach items="${featureList}" var="item" varStatus="var" begin="0" end="9" step="5">
@@ -1363,7 +1366,9 @@ function popInfo(){
 
  </script>
  <!-- <script src="/js/familyStatus.js" charset="GBK"></script> -->
+ <c:if test="${fn:length(areaMiddleList) > 0 && fn:length(areaZujinList) > 0 && fn:length(areaZhikongList) > 0}">
  <script src="/js/trend.js" charset="utf-8"></script>
+ </c:if>
  <script src="/js/cost.js" charset="GBK"></script>
  <script src="/js/news.js"></script>
  <script type="text/javascript">
@@ -1377,7 +1382,7 @@ function popInfo(){
 		player = new YKU.Player('youkuplayer',{
 			styleid: '0',
 			client_id: '6e97509b4cd3378b',
-			vid: ${}||'XOTUxNDk2NDQ0',
+			vid: 'XOTUxNDk2NDQ0',
 			events:{
 			onPlayStart: function(){ alert("kaishi") },
 			onPlayEnd: function(){ alert("jieshu") }
