@@ -195,37 +195,43 @@ var item = <%=flag%>
         },
         'click .remove': function (e, value, row, index) {
             //alert(row.id);
-            var id = row.id;
-            if(confirm("是否确认删除？")){
-             $.ajax({
-		 	    type: "POST",
-		 		data: {id: id},
-		 		dateType: "json",
-		 		url: "/deleteDeveloper",
-		 		
-		 		success:function(data){
-		 			data=eval("("+data+")");
-		 			if(data.flag==0){
-		 				alert("删除成功");
-		 			}else{
-		 				alert("删除失败");
-		 			}
-		 			
-		 		},
-		 		error:function(){
-		 			alert("error")
-		 		}
-	 	});
-           
-           
+        	if(item!=2){
+        		alert("您没有权限删除！");
+        	}
+        	else{
+        		var id = row.id;
+                if(confirm("是否确认删除？")){
+                 $.ajax({
+    		 	    type: "POST",
+    		 		data: {id: id},
+    		 		dateType: "json",
+    		 		url: "/deleteDeveloper",
+    		 		
+    		 		success:function(data){
+    		 			data=eval("("+data+")");
+    		 			if(data.flag==0){
+    		 				alert("删除成功");
+    		 			}else{
+    		 				alert("删除失败");
+    		 			}
+    		 			
+    		 		},
+    		 		error:function(){
+    		 			alert("error")
+    		 		}
+    	 		});
+               
+               
+                
+                $table.bootstrapTable('remove', {
+                    field: 'id',
+                    values: [row.id]
+                });
+                }else{
+                	
+                }
+        	}
             
-            $table.bootstrapTable('remove', {
-                field: 'id',
-                values: [row.id]
-            });
-            }else{
-            	
-            }
         }
     };
 
