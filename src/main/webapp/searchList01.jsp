@@ -372,7 +372,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         if(items!=null){
         	for(var j=0;j<items.length;j++){
         		var imgUrl = <%=application.getInitParameter("imagedir")%>/+items[j].Project_img; 
-        		alert(imgUrl)
         		html+="<div class='c-fix f-r list_node' style='margin-top:15px;margin-bottom:15px'>";
         		html+="<div class='c-fix f-l list_node_header'>";
         		html+="<a href='/Index?proNum="+items[j].project_num+"' class='c-fix f-l f-arial s-16 list_node_name fw' style='cursor:pointer;'>"+items[j].Project_name+"</a>";
