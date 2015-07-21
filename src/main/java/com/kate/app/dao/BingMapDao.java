@@ -34,7 +34,7 @@ public class BingMapDao extends BaseDao {
 		    int minarea=0;
 		    String project_min_price=null;
 		    String project_high_price=null;
-		    String mianji="平米";
+		    String mianji="骞崇背";
 		    String house_type=null;
 		    String project_price=null;
 		    String return_money=null; 
@@ -49,7 +49,7 @@ public class BingMapDao extends BaseDao {
 		    	project_sales_remain=rs.getInt("project_sales_remain");
 		    	maxarea=rs.getInt("maxarea");
 		    	minarea=rs.getInt("minarea");
-		    	//project_price=rs.getInt("project_price_qi");//�˴���Ŀ�۸�Ŀǰ�������Ŀƽ��۸�
+		    	//project_price=rs.getInt("project_price_qi");//锟剿达拷锟斤拷目锟桔革拷目前锟斤拷锟斤拷锟斤拷锟侥科斤拷锟桔革拷
 		    	project_price_qi=rs.getString("project_price_qi");
 		    	project_min_price=rs.getString("project_min_price");
 		    	project_high_price=rs.getString("project_high_price");
@@ -72,21 +72,21 @@ public class BingMapDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
+			if(rs != null){   // 鍏抽棴璁板綍闆�   
 		        try{   
 		            rs.close() ;   
 		        }catch(SQLException e){   
 		            e.printStackTrace() ;   
 		        }   
 		          }   
-		      if(stmt != null){   // 关闭声明   
+		      if(stmt != null){   // 鍏抽棴澹版槑   
 		        try{   
 		            stmt.close() ;   
 		        }catch(SQLException e){   
 		            e.printStackTrace() ;   
 		        }   
 		     } 
-		      if(pstmt != null){   // 关闭声明   
+		      if(pstmt != null){   // 鍏抽棴澹版槑   
 			        try{   
 			            pstmt.close() ;   
 			        }catch(SQLException e){   
@@ -105,13 +105,13 @@ public class BingMapDao extends BaseDao {
 		switch(type)
 		{
 		case 1:
-			housetype="公寓";
+			housetype="鍏瘬";
 			break;
 		case 2:
-			housetype="别墅";
+			housetype="鍒";
 			break;
 		case 3:
-			housetype="联排别墅";
+			housetype="鑱旀帓鍒";
 			break;
 		}
 		List<BingMapVo> bingMapList=new ArrayList<BingMapVo>();
@@ -125,11 +125,11 @@ public class BingMapDao extends BaseDao {
 		    String project_address=null;
 		    String project_name=null;
 		    int project_sales_remain=0;
-		    String project_price=null;//��Ҫ�Ķ�
+		    String project_price=null;//锟斤拷要锟侥讹拷
 		    String project_price_qi=null;
 		    String project_min_price=null;
 		    String project_high_price=null;
-		    String mianji="平米";
+		    String mianji="骞崇背";
 		    int maxarea=0;
 		    int minarea=0;
 		    String house_type=null;
@@ -144,7 +144,7 @@ public class BingMapDao extends BaseDao {
 		    	project_sales_remain=rs.getInt("project_sales_remain");
 		    	maxarea=rs.getInt("maxarea");
 		    	minarea=rs.getInt("minarea");
-		    	project_price=rs.getString("project_price_qi");//�˴���Ŀ�۸�Ŀǰ�������Ŀƽ��۸�
+		    	project_price=rs.getString("project_price_qi");//锟剿达拷锟斤拷目锟桔革拷目前锟斤拷锟斤拷锟斤拷锟侥科斤拷锟桔革拷
 		    	project_price_qi=rs.getString("project_price_qi");
 		    	house_type=rs.getString("project_type");
 		    	project_min_price=rs.getString("project_min_price");
@@ -165,21 +165,21 @@ public class BingMapDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
+			if(rs != null){   // 鍏抽棴璁板綍闆�   
 		        try{   
 		            rs.close() ;   
 		        }catch(SQLException e){   
 		            e.printStackTrace() ;   
 		        }   
 		          }   
-		      if(stmt != null){   // 关闭声明   
+		      if(stmt != null){   // 鍏抽棴澹版槑   
 		        try{   
 		            stmt.close() ;   
 		        }catch(SQLException e){   
 		            e.printStackTrace() ;   
 		        }   
 		     } 
-		      if(pstmt != null){   // 关闭声明   
+		      if(pstmt != null){   // 鍏抽棴澹版槑   
 			        try{   
 			            pstmt.close() ;   
 			        }catch(SQLException e){   
@@ -215,11 +215,11 @@ public class BingMapDao extends BaseDao {
 		    String project_address=null;
 		    String project_name=null;
 		    int project_sales_remain=0;
-		    String project_price=null;//��Ҫ�Ķ�
+		    String project_price=null;//锟斤拷要锟侥讹拷
 		    String project_price_qi=null;
 		    String project_min_price=null;
 		    String project_high_price=null;
-		    String mianji="平米";
+		    String mianji="骞崇背";
 		    int maxarea=0;
 		    int minarea=0;
 		    String house_type=null;
@@ -234,7 +234,7 @@ public class BingMapDao extends BaseDao {
 		    	project_sales_remain=rs.getInt("project_sales_remain");
 		    	maxarea=rs.getInt("maxarea");
 		    	minarea=rs.getInt("minarea");
-		    	project_price=rs.getString("project_price_qi");//�˴���Ŀ�۸�Ŀǰ�������Ŀƽ��۸�
+		    	project_price=rs.getString("project_price_qi");//锟剿达拷锟斤拷目锟桔革拷目前锟斤拷锟斤拷锟斤拷锟侥科斤拷锟桔革拷
 		    	project_price_qi=rs.getString("project_price_qi");
 		    	house_type=rs.getString("project_type");
 		    	project_min_price=rs.getString("project_min_price");
@@ -255,21 +255,21 @@ public class BingMapDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
+			if(rs != null){   // 鍏抽棴璁板綍闆�   
 		        try{   
 		            rs.close() ;   
 		        }catch(SQLException e){   
 		            e.printStackTrace() ;   
 		        }   
 		          }   
-		      if(stmt != null){   // 关闭声明   
+		      if(stmt != null){   // 鍏抽棴澹版槑   
 		        try{   
 		            stmt.close() ;   
 		        }catch(SQLException e){   
 		            e.printStackTrace() ;   
 		        }   
 		     } 
-		      if(pstmt != null){   // 关闭声明   
+		      if(pstmt != null){   // 鍏抽棴澹版槑   
 			        try{   
 			            pstmt.close() ;   
 			        }catch(SQLException e){   
@@ -280,7 +280,7 @@ public class BingMapDao extends BaseDao {
         }
 		return bingMapList;
 	}
-	//经纬度及其相关信息
+	//缁忕含搴﹀強鍏剁浉鍏充俊鎭�
 	public List<HouseProject> listMap(){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -312,21 +312,21 @@ public class BingMapDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
+			if(rs != null){   // 鍏抽棴璁板綍闆�   
 		        try{   
 		            rs.close() ;   
 		        }catch(SQLException e){   
 		            e.printStackTrace() ;   
 		        }   
 		          }   
-		      if(stmt != null){   // 关闭声明   
+		      if(stmt != null){   // 鍏抽棴澹版槑   
 		        try{   
 		            stmt.close() ;   
 		        }catch(SQLException e){   
 		            e.printStackTrace() ;   
 		        }   
 		     } 
-		      if(pstmt != null){   // 关闭声明   
+		      if(pstmt != null){   // 鍏抽棴澹版槑   
 			        try{   
 			            pstmt.close() ;   
 			        }catch(SQLException e){   
@@ -348,19 +348,19 @@ public class BingMapDao extends BaseDao {
 			switch(type)
 			{
 			case 1:
-				housetype="%1房%";
+				housetype="公寓";
 				break;
 			case 2:
-				housetype="%2房%";
+				housetype="别墅";
 				break;
 			case 3:
-				housetype="%3房%";
+				housetype="联排别墅";
 				break;
-			case 4:
-				housetype="%4房%";
-				break;
+			/*case 4:
+				housetype="%4鎴�%";
+				break;*/
 			}
-			String sql = "SELECT * FROM `house_project` WHERE gps!='' and project_house_type like '"+housetype+"'";
+			String sql = "SELECT * FROM `house_project` WHERE gps!='' and project_type = '"+housetype+"'";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
 			while(rs.next()){
@@ -383,21 +383,21 @@ public class BingMapDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
+			if(rs != null){   // 鍏抽棴璁板綍闆�   
 		        try{   
 		            rs.close() ;   
 		        }catch(SQLException e){   
 		            e.printStackTrace() ;   
 		        }   
 		          }   
-		      if(stmt != null){   // 关闭声明   
+		      if(stmt != null){   // 鍏抽棴澹版槑   
 		        try{   
 		            stmt.close() ;   
 		        }catch(SQLException e){   
 		            e.printStackTrace() ;   
 		        }   
 		     } 
-		      if(pstmt != null){   // 关闭声明   
+		      if(pstmt != null){   // 鍏抽棴澹版槑   
 			        try{   
 			            pstmt.close() ;   
 			        }catch(SQLException e){   
@@ -438,21 +438,21 @@ public class BingMapDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
+			if(rs != null){   // 鍏抽棴璁板綍闆�   
 		        try{   
 		            rs.close() ;   
 		        }catch(SQLException e){   
 		            e.printStackTrace() ;   
 		        }   
 		          }   
-		      if(stmt != null){   // 关闭声明   
+		      if(stmt != null){   // 鍏抽棴澹版槑   
 		        try{   
 		            stmt.close() ;   
 		        }catch(SQLException e){   
 		            e.printStackTrace() ;   
 		        }   
 		     } 
-		      if(pstmt != null){   // 关闭声明   
+		      if(pstmt != null){   // 鍏抽棴澹版槑   
 			        try{   
 			            pstmt.close() ;   
 			        }catch(SQLException e){   
@@ -491,21 +491,21 @@ public class BingMapDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
+			if(rs != null){   // 鍏抽棴璁板綍闆�   
 		        try{   
 		            rs.close() ;   
 		        }catch(SQLException e){   
 		            e.printStackTrace() ;   
 		        }   
 		          }   
-		      if(stmt != null){   // 关闭声明   
+		      if(stmt != null){   // 鍏抽棴澹版槑   
 		        try{   
 		            stmt.close() ;   
 		        }catch(SQLException e){   
 		            e.printStackTrace() ;   
 		        }   
 		     } 
-		      if(pstmt != null){   // 关闭声明   
+		      if(pstmt != null){   // 鍏抽棴澹版槑   
 			        try{   
 			            pstmt.close() ;   
 			        }catch(SQLException e){   

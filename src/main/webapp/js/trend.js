@@ -3,15 +3,16 @@
 	        
 	        var option = {
 //	        	title:{
-//	        		text:"×îÐÂ¸üÐÂÊ±¼ä:2015-04-25",
+//	        		text:"ï¿½ï¿½ï¿½Â¸ï¿½ï¿½ï¿½Ê±ï¿½ï¿½:2015-04-25",
 //	        		x:"right"
 //	        		
 //	        	},
 			    tooltip : {
-			        trigger: 'axis'
+			        trigger: 'axis',
+			        formatter:'{b}<br/>æˆ¿ä»·:{c}$'
 			    },
 			    legend: {
-			        data:['·¿¼Û'],
+			        data:['ï¿½ï¿½ï¿½ï¿½'],
 			        show:false
 
 			    },
@@ -31,9 +32,9 @@
 			    ],
 			    series : [
 			        {
-			            name:'·¿¼Û',
+			            name:'ï¿½ï¿½ï¿½ï¿½',
 			            type:'line',
-			            stack: '¼Û¸ñ',
+			            stack: 'ï¿½Û¸ï¿½',
 			            data:[120, 12, 101, 104, 190, 230, 210]
 			        }
 			    ]
@@ -42,7 +43,7 @@
                     
 	        option.xAxis[0].data=eval(trend_areamiddle_year);
 	        option.series[0].data=eval(trend_areamiddle_rate);
-	        // Îªecharts¶ÔÏó¼ÓÔØÊý¾Ý 
+	        // Îªechartsï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	        myChart.setOption(option); 
 
 
@@ -58,15 +59,16 @@ $('#trendTabs a').click(function (e) {
 	        
 	        var option1 = {
 //	        	title:{
-//	        		text:"×îÐÂ¸üÐÂÊ±¼ä:2015-04-26",
+//	        		text:"ï¿½ï¿½ï¿½Â¸ï¿½ï¿½ï¿½Ê±ï¿½ï¿½:2015-04-26",
 //	        		x:"right"
 //	        		
 //	        	},
 			    tooltip : {
-			        trigger: 'axis'
+			        trigger: 'axis',
+			        formatter:'{b}<br/>ç§Ÿé‡‘:{c}$'
 			    },
 			    legend: {
-			        data:['×â½ð'],
+			        data:['ï¿½ï¿½ï¿½'],
 			        show:false
 
 			    },
@@ -86,30 +88,31 @@ $('#trendTabs a').click(function (e) {
 			    ],
 			    series : [
 			        {
-			            name:'×â½ð',
+			            name:'ï¿½ï¿½ï¿½',
 			            type:'line',
-			            stack: '¼Û¸ñ',
+			            stack: 'ï¿½Û¸ï¿½',
 			            data:[120, 132, 101, 134, 90, 230, 210]
 			        }
 			    ]
 			};
             option1.xAxis[0].data=eval(areaZujinYeatList);
 	        option1.series[0].data=eval(areaZujinRateList);
-	        // Îªecharts¶ÔÏó¼ÓÔØÊý¾Ý 
+	        // Îªechartsï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	        myChart1.setOption(option1);
 
 	        var myChart2 = echarts.init(document.getElementById('emptypercent_line')); 
 	        var option2 = {
 //	        	title:{
-//	        		text:"×îÐÂ¸üÐÂÊ±¼ä:2015-04-27",
+//	        		text:"ï¿½ï¿½ï¿½Â¸ï¿½ï¿½ï¿½Ê±ï¿½ï¿½:2015-04-27",
 //	        		x:"right"
 //	        		
 //	        	},
 			    tooltip : {
-			        trigger: 'axis'
+			        trigger: 'axis',
+			        formatter:'{b}<br/>å›žæŠ¥çŽ‡:{c}%'
 			    },
 			    legend: {
-			        data:['¿ÕÖÃÂÊ'],
+			        data:['ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'],
 			        show:false
 
 			    },
@@ -129,16 +132,16 @@ $('#trendTabs a').click(function (e) {
 			    ],
 			    series : [
 			        {
-			            name:'¿ÕÖÃÂÊ',
+			            name:'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',
 			            type:'line',
-			            stack: '°Ù·Ö±È',
+			            stack: 'ï¿½Ù·Ö±ï¿½',
 			            data:[10, 32, 101, 134, 90, 30, 210]
 			        }
 			    ]
 			};
             option2.xAxis[0].data=eval(areaZhikongYeatList);
 	        option2.series[0].data=eval(areaZhikongRateList);
-	        // Îªecharts¶ÔÏó¼ÓÔØÊý¾Ý 
+	        // Îªechartsï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	        myChart2.setOption(option2);
     });
     

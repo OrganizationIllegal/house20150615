@@ -34,4 +34,4 @@ body{margin:0 auto;}
 .node_title{display:block;color:#000;height:18px;line-height:18px;}
 .node_val{display:block;color:#000;height:18px;line-height:18px;margin-right:40px;text-align:right;}
 
-.div4{display:block;min-height:840px;width:840px;background-color:#999;}
+.div4{display:block;-min-height:840px;width:840px;background-color:#999;}

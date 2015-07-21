@@ -457,7 +457,7 @@ public class ProjectInfoController {
 						 }
 		   }
 
-		for (int i=0;i<fujinSchoolListbefore .size();i++){
+		for (int i=0;i<fujinSchoolListbefore.size();i++){
 			boolean flag=false;
 			for(int j=0;j<fujinSchoolList.size();j++){
 				if(fujinSchoolListbefore.get(i).getId()==fujinSchoolList.get(j).getId()){
@@ -466,7 +466,7 @@ public class ProjectInfoController {
 				}
 			}
 
-			if(flag==true){
+			if(flag==false){
 				fujinSchoolListdelete.add(fujinSchoolListbefore.get(i));
 			}
 		}

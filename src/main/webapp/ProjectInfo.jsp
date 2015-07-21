@@ -1041,7 +1041,9 @@ $(function(){
 				function(){
 					$("#houseimg").click();
 					$("#houseimg").change(function(){
-						$("#file1").val($("#houseimg").val());
+						var filenames=$('#houseimg').val().split("\\");
+						var filename=filenames[filenames.length-1];
+						$("#file1").val(filename);
 						});
 				});
 	});
