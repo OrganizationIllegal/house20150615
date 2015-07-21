@@ -51,14 +51,162 @@ body{
 <span class="area_span">区域名称</span><span><input type="text" id="area_name" name="area_name" class="area_input" value="${AreaInfo.area_name}"></span>
 </div>
 <div class="area_left">
-<span class="area_span">城市名称</span><span><input type="text" id="area_city" name="area_city" class="area_input" value="${AreaInfo.area_city}"></span>
+<span class="area_span">国家</span>
+<span>
+<%-- <input type="text" id="area_nation" name="area_nation" class="area_input" value="${AreaInfo.area_nation}"> --%>
+<select data-placeholder="请选择..." class="chosen-select" id="area_nation" name="area_nation" style="width:220px;" tabindex="4">
+ 	 <option value=""></option>
+      <c:choose>
+	    <c:when test="${AreaInfo.area_nation eq 'Australia 澳大利亚'}">
+	      <option value="Australia 澳大利亚" selected="selected">Australia 澳大利亚</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="Australia 澳大利亚">Australia 澳大利亚</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${AreaInfo.area_nation eq 'Canada 加拿大'}">
+	      <option value="Canada 加拿大" selected="selected">Canada 加拿大</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="Canada 加拿大">Canada 加拿大</option>
+	   </c:otherwise>
+  	  </c:choose>
+ </select>
+</span>
 </div>
 <div class="area_right">
-<span class="area_span">州/省</span><span><input type="text" id="area_zhou" name="area_zhou" class="area_input" value="${AreaInfo.area_zhou}"></span>
+<span class="area_span">州/省</span>
+<span>
+<%-- <input type="text" id="area_zhou" name="area_zhou" class="area_input" value="${AreaInfo.area_zhou}"> --%>
+<select data-placeholder="请选择..." class="chosen-select" id="area_zhou" name="area_zhou" style="width:220px;" tabindex="4">
+ 	 <option value=""></option>
+      <c:choose>
+	    <c:when test="${AreaInfo.area_zhou eq 'VIC 维多利亚州'}">
+	      <option value="VIC 维多利亚州" selected="selected">VIC 维多利亚州</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="VIC 维多利亚州">VIC 维多利亚州</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	  <c:choose>
+	    <c:when test="${AreaInfo.area_zhou eq 'QLD 昆士兰州'}">
+	      <option value="QLD 昆士兰州" selected="selected">QLD 昆士兰州</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="QLD 昆士兰州">QLD 昆士兰州</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${AreaInfo.area_zhou eq 'NSW 新南威尔士州'}">
+	      <option value="NSW 新南威尔士州" selected="selected">NSW 新南威尔士州</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="NSW 新南威尔士州">NSW 新南威尔士州</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${AreaInfo.area_zhou eq 'WA 西澳大利亚'}">
+	      <option value="WA 西澳大利亚" selected="selected">WA 西澳大利亚</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="WA 西澳大利亚">WA 西澳大利亚</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${AreaInfo.area_zhou eq 'SA 南澳大利亚'}">
+	      <option value="SA 南澳大利亚" selected="selected">SA 南澳大利亚</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="SA 南澳大利亚">SA 南澳大利亚</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	    <c:choose>
+	    <c:when test="${AreaInfo.area_zhou eq 'TAS 塔斯马尼亚州'}">
+	      <option value="TAS 塔斯马尼亚州" selected="selected">TAS 塔斯马尼亚州</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="TAS 塔斯马尼亚州">TAS 塔斯马尼亚州</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${AreaInfo.area_zhou eq 'CAN 堪培拉'}">
+	      <option value="CAN 堪培拉" selected="selected">CAN 堪培拉</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="CAN 堪培拉">CAN 堪培拉</option>
+	   </c:otherwise>
+  	  </c:choose>
+ </select>
+</span>
 </div>
 <div class="area_left">
-<span class="area_span">国家</span><span><input type="text" id="area_nation" name="area_nation" class="area_input" value="${AreaInfo.area_nation}"></span>
+<span class="area_span">城市名称</span>
+<span>
+<%-- <input type="text" id="area_city" name="area_city" class="area_input" value="${AreaInfo.area_city}"> --%>
+<select data-placeholder="请选择..." class="chosen-select" id="area_city" name="area_city" style="width:220px;" tabindex="4">
+ 	 <option value=""></option>
+       <c:choose>
+	    <c:when test="${AreaInfo.area_city eq 'Sydney 悉尼'}">
+	      <option value="Sydney 悉尼" selected="selected">Sydney 悉尼</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="Sydney 悉尼">Sydney 悉尼</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	    <c:choose>
+	    <c:when test="${AreaInfo.area_city eq 'Melbourne 墨尔本'}">
+	      <option value="Melbourne 墨尔本" selected="selected">Melbourne 墨尔本</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="Melbourne 墨尔本">Melbourne 墨尔本</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	    <c:choose>
+	    <c:when test="${AreaInfo.area_city eq 'Brisbane 布里斯班'}">
+	      <option value="Brisbane 布里斯班" selected="selected">Brisbane 布里斯班</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="Brisbane 布里斯班">Brisbane 布里斯班</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${AreaInfo.area_city eq 'Perth 珀斯'}">
+	      <option value="Perth 珀斯" selected="selected">Perth 珀斯</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="Perth 珀斯">Perth 珀斯</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${AreaInfo.area_city eq 'Canberra 堪培拉'}">
+	      <option value="Canberra 堪培拉" selected="selected">Canberra 堪培拉</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="Canberra 堪培拉">Canberra 堪培拉</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${AreaInfo.area_city eq 'Adelaide 阿德莱得'}">
+	      <option value="Adelaide 阿德莱得" selected="selected">Adelaide 阿德莱得</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="Adelaide 阿德莱得">Adelaide 阿德莱得</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${AreaInfo.area_city eq 'Cairns 凯恩斯'}">
+	      <option value="Cairns 凯恩斯" selected="selected">Cairns 凯恩斯</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="Cairns 凯恩斯">Cairns 凯恩斯</option>
+	   </c:otherwise>
+  	  </c:choose>
+ </select>
+</span>
 </div>
+
+
 <div class="area_right">
 <span class="area_span">邮政编码</span><span><input type="text" id="area_postcode" name="area_postcode" class="area_input" value="${AreaInfo.area_postcode}"></span>
 </div>

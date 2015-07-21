@@ -1,6 +1,7 @@
 ﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -301,7 +302,10 @@ function popInfo(){
 					<a class="c-fix f-l f-yahei s-14 p_panel_con">城市：${HouseProject.project_city}</a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_con">区域：${HouseProject.project_area}</a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_con">面积：${HouseProject.min_area}${HouseProject.mianji}-${HouseProject.max_area}${HouseProject.mianji}</a>
-					<a class="c-fix f-l f-yahei s-14 p_panel_con">起价：$${HouseProject.project_price_int_qi}</a>
+					<!-- <a class="c-fix f-l f-yahei s-14 p_panel_con" id="qimoney">起价：$${HouseProject.project_price_int_qi}</a>  -->
+					<a class="c-fix f-l f-yahei s-14 p_panel_con" id="qimoney">起价：$<f:formatNumber value="${HouseProject.project_price_int_qi}" pattern="#,#00.#"/> </a> 
+					
+					
 					<a class="c-fix f-l f-yahei s-14 p_panel_con">户型：${HouseProject.project_house_type}</a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_con">层数：${HouseProject.project_high}</a>
 					<%-- <a class="c-fix f-l f-yahei s-14 p_panel_con">预计交房期：${timeResule}</a> --%>
@@ -1336,6 +1340,9 @@ function popInfo(){
 	</body>
 </html>
 <script type="text/javascript">
+/*   var qimoney=$("#qimoney").val();
+  var value=$.formatNumber(qimoney,{format:"#,###", locale:"cn"});
+  $("#qimoney").val(value); */
 
   var houseTaxStr=${houseTaxStr};
   var housetaxdata=${housetaxdata};
@@ -1366,7 +1373,7 @@ function popInfo(){
 	
  </script>
  <script type="text/javascript" src="http://player.youku.com/jsapi">
-		
+
 		player = new YKU.Player('youkuplayer',{
 			styleid: '0',
 			client_id: '6e97509b4cd3378b',
