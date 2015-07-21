@@ -14,8 +14,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="css/areaLuru.css" />
 <link rel="stylesheet" type="text/css" href="/bootstrap-datepicker-1.4.0-dist/css/bootstrap-datepicker.min.css" />
 <script src="/ckeditor/ckeditor.js"></script>
-<script src="/js/jquery.min.js"></script>
-<script src="/bootstrap/js/bootstrap.min.js"></script>
+<!-- <script src="/js/jquery.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script> -->
 <script src="/bootstrap-datepicker-1.4.0-dist/js/bootstrap-datepicker.min.js"></script>
 <script src="/bootstrap-datepicker-1.4.0-dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
 <link rel="stylesheet" href="css/chosen.css">
@@ -156,7 +156,11 @@ $(".uploadimg").click(function(){
 	 		dataType: "json",
 	 		url: "/EditNewsBoke",
 	 		success:function(data){
-	 			if(data.flag == 1){
+	 			/* data=eval("("+data+")"); */
+	 			if(data.isDuplicate==1){
+					alert("新闻博客编号已存在！");
+				}
+	 			else if(data.flag == 1){
 	 				alert("更新成功！");
 	 			}else if(data.flag == 0){
 	 				alert("更新失败！");

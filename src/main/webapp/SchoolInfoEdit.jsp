@@ -221,12 +221,17 @@ $('#non_en_studen_trate').blur(function() {
 	 			//window.location.reload();
 	 			//alert(data);
 	 			//alert(data.flag);
-	 			if(data.flag==1){
+	 			/* data=eval("("+data+")"); */
+	 			if(data.isDuplicate==1){
+					alert("学校已存在！");
+				}
+	 			else if(data.flag==1){
 	 				alert("更新成功");
 	 			}
-	 			if(data.flag==0){
+	 			else if(data.flag==0){
 	 				alert("更新失败");
 	 			}
+	 			
 	 		},
 	 		error:function(){
 	 			alert("error")

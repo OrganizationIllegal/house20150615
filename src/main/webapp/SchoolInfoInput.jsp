@@ -137,7 +137,11 @@ $('#non_en_studen_trate').blur(function() {
 	 			//window.location.reload();
 	 			//alert(data);
 	 			//alert(data.flag);
-	 			if(data.flag==1){
+	 			/* data=eval("("+data+")"); */
+	 			if(data.isDuplicate==1){
+					alert("学校已存在！");
+				}
+	 			else if(data.flag==1){
 	 				alert("添加成功");
 	 			}
 	 			if(data.flag==0){

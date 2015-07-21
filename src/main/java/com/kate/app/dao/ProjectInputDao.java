@@ -35,6 +35,53 @@ import com.kate.app.model.ZhiYeZhiDao;
 
 @Repository 
 public class ProjectInputDao extends BaseDao {
+	public int isDeveloperDuplicate(String developername,String nationname){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		int isexist=0;
+		try {
+			String sql = " SELECT count(*) num from developer_info where developername=? and nation=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, developername);
+			pstmt.setString(2, nationname);
+			  rs = pstmt.executeQuery();
+			if(rs.next()){
+				isexist=rs.getInt(1);
+			}
+			if(isexist>0){
+				return 1;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return 0;
+	}
 	//寰楀埌寮�鍙戝晢鐨勭紪鍙峰強鍚嶇О
 	public List<String> getDeveloperCodeName(){
 		Statement stmt = null;

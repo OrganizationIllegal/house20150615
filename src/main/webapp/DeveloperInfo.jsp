@@ -97,12 +97,21 @@ $(function(){
 	 		dataType: "json",
 	 		url: "/EditDeveloperInfo",
 	 		success:function(data){
+	 			/* data=eval("("+data+")"); */
+	 			if(data.isDuplicate==1){
+					alert("开发商编号已存在！");
+				}
+	 			else if(data.flag == 1){
+	 				alert("添加成功！");
+	 			}else if(data.flag == 0){
+	 				alert("添加失败！");
+	 			}/* 
 	 			if(data.flag == 1){
 	 				alert("更新成功");
 	 			}
 	 			else{
 	 				alert("更新失败");
-	 			}
+	 			} */
 	 		},
 	 		error:function(){
 	 			alert("error")

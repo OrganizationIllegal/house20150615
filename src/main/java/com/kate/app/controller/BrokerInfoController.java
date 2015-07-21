@@ -175,18 +175,24 @@ public class BrokerInfoController {
 				 BrokerType e = (BrokerType) JSONToObj(object.toString(), BrokerType.class);
 				 BrokerTypelist.add(e);
 			}
-		    try {
-				int result=projectInputDao.InsertBroker(broker,BrokerServicelist,BrokerTypelist);
-				if(result==1){
-					json.put("flag", "1");
+			int isDuplicate=brokerInfoDao.isDuplicate(broker.getBroker_num());
+			if (isDuplicate==1) {
+				json.put("isDuplicate", "1");
+			}
+			else{
+				try {
+					int result=projectInputDao.InsertBroker(broker,BrokerServicelist,BrokerTypelist);
+					if(result==1){
+						json.put("flag", "1");
+					}
+					else{
+						json.put("flag", "0");
+					}
+					System.out.println("result::"+result);
+			    } catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
-				else{
-					json.put("flag", "0");
-				}
-				System.out.println("result::"+result);
-		    } catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
 			}
 		    try{
 				writeJson(json.toJSONString(),resp);
