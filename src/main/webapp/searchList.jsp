@@ -1,5 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8" contentType="text/html;charset=UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -172,7 +173,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 		<a class="f-l list_node_title fw f-yahei s-12 c-fix">面积：</a>
                 		<a class="f-r list_node_val f-yahei s-12">${item.minArea}<span>-</span>${items.maxArea}</a>
                 		<a class="f-l list_node_title fw f-yahei s-12 c-fix">起价：</a>
-                		<a class="f-r list_node_val f-yahei s-12">$${items.project_price_int_qi}</a>
+                		<a class="f-r list_node_val f-yahei s-12"><span>$</span><f:formatNumber value="${items.project_price_int_qi}"  pattern="#,#00.#"/></a>
                 		<a class="f-l list_node_title fw f-yahei s-12 c-fix">返现：</a>
 						<a class="f-r list_node_val f-yahei s-12">${item.fanxian}</a>
                 		</div>
@@ -188,7 +189,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<jsp:include page="foot4index.jsp" />
 	<script src="/js/jquery.pagination.js"></script> 
    <script type="text/javascript">
-
+   /*  var qimoney=$("#qimoney").val();
+     alert(qimoney); */
+     /*  var value=$.formatNumber(qimoney,{format:"#,###", locale:"cn"});
+         $("#qimoney").val(qimoney); */
+        
      	$("#zongjia").ionRangeSlider({
    			 type: "double",
    			 min: 100000,
@@ -436,7 +441,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 		html+="<a class='f-l list_node_title fw f-yahei s-12 c-fix'>面积(M<sup><span style='font-size:8px'>2</span></sup>)：</a>";
                 		html+="<a class='f-r list_node_val f-yahei s-12'>"+items[j].MinArea+"<span>-</span>"+items[j].MaxArea+"</a>";
                 		html+="<a class='f-l list_node_title fw f-yahei s-12 c-fix'>起价：</a>";
-                		html+="<a class='f-r list_node_val f-yahei s-12'>"+"<span>$</span>"+items[j].project_price_int_qi+"</a>";
+                		html+="<a class='f-r list_node_val f-yahei s-12' id='qimoney'>"+"<span>$</span>"+items[j].project_price_int_qi+"</a>";
                 		html+="<a class='f-l list_node_title fw f-yahei s-12 c-fix'>返现：</a>";
                 		html+="<a class='f-r list_node_val f-yahei s-12'>"+items[j].Fanxian+"</a>";
                 		html+="</div>";

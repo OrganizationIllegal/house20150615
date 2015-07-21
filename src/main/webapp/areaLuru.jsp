@@ -51,14 +51,50 @@ body{
 <span class="area_span">区域名称</span><span><input type="text" id="area_name" name="area_name" class="area_input"></span>
 </div>
 <div class="area_left">
-<span class="area_span">城市名称</span><span><input type="text" id="area_city" name="area_city" class="area_input"></span>
+<span class="area_span">国家</span>
+<span>
+<!-- <input type="text" id="area_nation" name="area_nation" class="area_input"> -->
+<select data-placeholder="请选择..." class="chosen-select" id="area_nation" name="area_nation" style="width:220px;" tabindex="4">
+ 	 <option value=""></option>
+  	 <option value="Australia 澳大利亚">Australia 澳大利亚</option>
+     <option value="Canada 加拿大">Canada 加拿大</option>
+ </select>
+</span>
 </div>
 <div class="area_right">
-<span class="area_span">州/省</span><span><input type="text" id="area_zhou" name="area_zhou" class="area_input"></span>
+<span class="area_span">州/省</span>
+<span>
+<!-- <input type="text" id="area_zhou" name="area_zhou" class="area_input"> -->
+<select data-placeholder="请选择..." class="chosen-select" id="area_zhou" name="area_zhou" style="width:220px;" tabindex="4">
+ 	 <option value=""></option>
+  	 <option value="VIC 维多利亚州">VIC 维多利亚州</option>
+     <option value="QLD 昆士兰州">QLD 昆士兰州</option>
+     <option value="NSW 新南威尔士州">NSW 新南威尔士州</option>
+     <option value="WA 西澳大利亚">WA 西澳大利亚</option>
+     <option value="SA 南澳大利亚">SA 南澳大利亚</option>
+     <option value="TAS 塔斯马尼亚州">TAS 塔斯马尼亚州</option>
+     <option value="CAN 堪培拉">CAN 堪培拉</option>
+ </select>
+</span>
 </div>
 <div class="area_left">
-<span class="area_span">国家</span><span><input type="text" id="area_nation" name="area_nation" class="area_input"></span>
+<span class="area_span">城市名称</span>
+<span>
+<!-- <input type="text" id="area_city" name="area_city" class="area_input"> -->
+<select data-placeholder="请选择..." class="chosen-select" id="area_city" name="area_city" style="width:220px;" tabindex="4">
+ 	 <option value=""></option>
+  	 <option value="Sydney 悉尼">Sydney 悉尼</option>
+     <option value="Melbourne 墨尔本">Melbourne 墨尔本</option>
+     <option value="Brisbane 布里斯班">Brisbane 布里斯班</option>
+     <option value="Perth 珀斯">Perth 珀斯</option>
+     <option value="Canberra 堪培拉">Canberra 堪培拉</option>
+     <option value="Adelaide 阿德莱得">Adelaide 阿德莱得</option>
+     <option value="Cairns 凯恩斯">Cairns 凯恩斯</option>
+ </select>
+</span>
 </div>
+
+
 <div class="area_right">
 <span class="area_span">邮政编码</span><span><input type="text" id="area_postcode" name="area_postcode" class="area_input"></span>
 </div>
@@ -1757,6 +1793,7 @@ function savepro(){
 	} */
 	var area;
 	area=DataDeal.formToJson(data= decodeURIComponent($("#area").serialize(),true));
+	area=area.replace(/\+/g," ");
 	area=eval("("+area+")");
 	//alert("ff1")
     $.ajax({

@@ -20,7 +20,7 @@ public class UserDao extends BaseDao {
 		PreparedStatement pstmt = null;
 		List<User> userList=new ArrayList<User>();
 		try {
-			String sql = "select t.pwd,t.email,t.tel,t.role from user t where t.email=? or t.tel=?";
+			String sql = "select t.pwd,t.email,t.tel,t.role,t.flag from user t where t.email=? or t.tel=?";
 			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, username1);
 			pstmt.setString(2, username1);

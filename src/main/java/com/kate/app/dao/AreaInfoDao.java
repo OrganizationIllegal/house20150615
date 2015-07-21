@@ -1415,8 +1415,11 @@ public class AreaInfoDao extends BaseDao {
 			
 			//鎶曡祫鏁版嵁
 			boolean flagtouzi = true;
-			String time_strtouzi = "";
-			Timestamp tstouzi = new Timestamp(System.currentTimeMillis()); 
+			String time_strtouzi="";
+			if(touzi_date != null){
+				time_strtouzi = touzi_date.toString(); 
+			}
+/*			Timestamp tstouzi = new Timestamp(System.currentTimeMillis()); 
 			if(touzi_date==null||"".equals(touzi_date)){
 				touzi_date = "2015-05-09";
 				//(new SimpleDateFormat("yyyy-MM-dd"))銆俧ormat(new Date())
@@ -1427,7 +1430,7 @@ public class AreaInfoDao extends BaseDao {
 	            System.out.println(tstouzi);   
 	        } catch (Exception e) {   
 	            e.printStackTrace();   
-	        }
+	        }*/
 	        String sqltouzi = " insert into investment_data(year_increment_rate, middle_price, middle_zu_price, zu_house_rate, zu_xuqiu, price_review, data_exam, area_num, area_name, touzi_datasource, touzi_date) values(?,?,?,?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sqltouzi);
 			pstmt.setString(1, year_increment_rate);
@@ -1447,8 +1450,11 @@ public class AreaInfoDao extends BaseDao {
 			}
 	        //areafamily
 			boolean flagfamily = true;
-			String time_strfamily = "";
-			Timestamp tsfamily = new Timestamp(System.currentTimeMillis()); 
+			String family_date_str="";
+			if(family_date != null){
+				family_date_str = family_date.toString(); 
+			}
+			/*Timestamp tsfamily = new Timestamp(System.currentTimeMillis()); 
 			if(family_date==null||"".equals(family_date)){
 				family_date = "2015-05-09";
 			}
@@ -1458,7 +1464,7 @@ public class AreaInfoDao extends BaseDao {
 	            System.out.println(tsfamily);   
 	        } catch (Exception e) {   
 	            e.printStackTrace();   
-	        }  
+	        }  */
 	        String sqlfamily = " insert into area_family(family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, area_code, family_datasource, family_date) values(?,?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sqlfamily);
 			pstmt.setString(1, family_one);
@@ -1469,7 +1475,7 @@ public class AreaInfoDao extends BaseDao {
 			pstmt.setString(6, family_three_rate);
 			pstmt.setString(7, area_num);
 			pstmt.setString(8, family_datasource);
-			pstmt.setString(9, family_date);
+			pstmt.setString(9, family_date_str);
 			
 			
 			int result = pstmt.executeUpdate();
