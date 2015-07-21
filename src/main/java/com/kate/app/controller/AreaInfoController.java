@@ -321,7 +321,7 @@ public class AreaInfoController extends BaseDao {
 		String news_abstract  = req.getParameter("news_abstract");
 		int flag = 0;
 		JSONObject json = new JSONObject();
-		int isDuplicate=newsBokeDao.isDuplicate(news_num);
+		int isDuplicate=0;//newsBokeDao.isDuplicate(news_num);
 		if (isDuplicate==1) {
 			json.put("isDuplicate", "1");
 		}
@@ -377,7 +377,7 @@ public class AreaInfoController extends BaseDao {
 			String detail  = req.getParameter("detail");
 			int flag = 0;
 			JSONObject json = new JSONObject();
-			int isDuplicate=zhiYeDao.isDuplicate(zhiye_num);
+			int isDuplicate=0;//zhiYeDao.isDuplicate(zhiye_num);
 			if (isDuplicate==1) {
 				json.put("isDuplicate", "1");
 			}

@@ -653,7 +653,7 @@ public class ProjectInfoController {
 			/*brokerIntegertypeListbefore.removeAll(brokerTypelist);
 			brokerTypelistdelete=brokerIntegertypeListbefore;*/
 			//鏇存柊
-			int isDuplicate=brokerInfoDao.isDuplicate(broker.getBroker_num());
+			int isDuplicate=0;//brokerInfoDao.isDuplicate(broker.getBroker_num());
 			if (isDuplicate==1) {
 				json.put("isDuplicate", "1");
 			}
@@ -745,7 +745,7 @@ public class ProjectInfoController {
 		
 		String school_image=req.getParameter("schoolimg");
 		String school_desc=req.getParameter("school_intro");
-		int isDuplicate=schoolinfodao.isDuplicate(school_name,nation,city);
+		int isDuplicate=0;//schoolinfodao.isDuplicate(school_name,nation,city);
 		if (isDuplicate==1) {
 			json.put("isDuplicate", "1");
 		}
@@ -954,7 +954,7 @@ public class ProjectInfoController {
 		String  developer_desc=req.getParameter("developer_desc");
 		String  nation=req.getParameter("nation");
 		String developer_num=req.getParameter("developer_num");
-		int isDuplicate=projectInputDao.isDeveloperDuplicate(developer_name,nation);
+		int isDuplicate=0;//projectInputDao.isDeveloperDuplicate(developer_name,nation);
 		if (isDuplicate==1) {
 			json.put("isDuplicate", "1");
 		}
