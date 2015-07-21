@@ -249,7 +249,10 @@ body{
 <span class="area_span">户型图片</span><span><input type="text" id="houseimg" name="houseimg" class="chang_input2"></span>
 </div> -->
 <div class="area_left"  style="width:900px">
- <input type="file" name="houseimg" id="houseimg" style="width:700px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"/><!-- <a href="#">上传</a> -->
+ <!-- <input type="file" name="houseimg" id="houseimg" style="width:700px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"/><a href="#">上传</a> -->
+	<input type="text" id="file1" style="float:left;width:580px;border:1px solid rgb(239,235,242);"><input type="button" id="file2" value="浏览">
+	<input type="file" name="houseimg" id="houseimg"  style="width:620px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;display:none;"/><!-- <a href="#"  onclick="upload()">上传</a> -->
+	
 </div>
 <div class="area_left">
 <span class="area_span">卧室数量</span><span><input type="text" id="room_num" name="room_num" class="area_input"></span>
@@ -728,6 +731,7 @@ $(function(){
 			huxing=huxing.replace(/\+/g," ");
 			huxing=eval("("+huxing+")");
 			huxing["houseimg"]=filename/* $('#projectimage').val() */;
+			huxing["houseimg"]=$('#file1').val();
 			/* peitao.shunxu=peitaocount+1; */
 			/* peitao.view= */
 			/* alert($("#huxingjiage").serializeArray()); */
@@ -744,11 +748,12 @@ $(function(){
 			$("#huxingjiage input").each(function(){
 				$(this).val("");
 				});
+			$("#file2").val("浏览");
 			/* $("#huxingjiage").reset(); */
 			/* <a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a> */
 			}
 		else{
-			if($('#houseimg').val()==""){
+			if($('#file1').val()==""){
 				alert("请选择文件！");
 				return false;}
 			//alert("edit");
@@ -757,13 +762,14 @@ $(function(){
 			var filename=filenames[filenames.length-1];
 			huxingedititem=DataDeal.formToJson(data= decodeURIComponent($("#huxingjiage").serialize(),true));
 			huxingedititem=eval("("+huxingedititem+")");
-			huxingedititem["houseimg"]=filename;
+			huxingedititem["houseimg"]=$('#file1').val();
 			/* var filenames=$('#projectimage').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			UpladFile("houseimg");
 			$("#huxingjiage input").each(function(){
 				$(this).val("");
 				});
+			$("#file2").val("浏览");
 			huxinglist[ishuxingedit]=huxingedititem;
 			//alert($("#huxingjiagelist").children().eq(isedit));
 			$("#huxingjiagelist").children().eq(ishuxingedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(ishuxingedit+1)+"</span><span style='padding-right:10px;'>"+huxinglist[ishuxingedit].houseimg+"</span><span style='padding-right:10px;'>"+huxinglist[ishuxingedit].housename+"</span><span style='padding-right:10px;'>"+huxinglist[ishuxingedit].houseprice+"</span><span >"+huxinglist[ishuxingedit].room_num+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show();
@@ -780,6 +786,17 @@ $(function(){
 		huxingcount--;
 
 		});
+	$(function(){
+		$("#file2").click(
+				function(){
+					$("#houseimg").click();
+					$("#houseimg").change(function(){
+						var filenames=$('#houseimg').val().split("\\");
+						var filename=filenames[filenames.length-1];
+						$("#file1").val(filename);
+						});
+				});
+	});
 	$("#huxingjiagelist").on("click",".editpeitao",function(){
 		
 		var index=$(this).parent().parent().children().eq(0).text()-1;
@@ -793,6 +810,7 @@ $(function(){
 		$("#housename").val(huxingedititem.housename);
 		$("#houseprice").val(huxingedititem.houseprice);
 		$("#room_num").val(huxingedititem.room_num);
+		$("#file1").val(huxingedititem.houseimg);
 		$("#tudi_mianji").val(huxingedititem.tudi_mianji);
 		$("#jianzhu_mianji").val(huxingedititem.jianzhu_mianji);
 		$("#shinei_mianji").val(huxingedititem.shinei_mianji);
