@@ -18,6 +18,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <script type="text/javascript" src="js/map.js"></script>
    <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&mkt=zh-cn"></script> 
    <script type="text/javascript" src="/js/bingMap.js"></script>
+   <style style="text/css">		
+	.suglist {
+	width:233px;
+	list-style:none;
+	font-size:14px;
+	padding:4px 0;
+	float:left;
+	margin:0px;
+}
+.suglist li {
+	padding:0 9px;
+	cursor:pointer;
+	zoom:1;
+	height:27px;
+	line-height:27px;
+}
+
+.suglist li.cur, .slhover {
+	background:#F3F3F3;
+	color:#1E8D00;
+}
+
+.nobg , .suginner{background:#fff;}
+.nobg , .suglist{width:434px;}   /*宽度修改*/
+
+.suginner_nobg {
+	background:none;
+}
+.suginner:after {
+	clear:both;
+	content:" ";
+	visibility:hidden;
+	overflow:hidden;
+	height:0;
+	display:block;
+}
+
+</style>
+
    <script type="text/javascript">
    var imgdir="<%=application.getInitParameter("imagedir")%>";
    function housetype(v){
@@ -162,7 +201,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           }  
           function InitTable(pageIndex) { 
           	//alert("ppppp");
-          	pageIndex = pageIndex+1;   
+          	pageIndex = pageIndex+1;
           	var count = 0;   
           	//alert(type);
               $.ajax({   
@@ -269,8 +308,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			</div>
 			<div class="f-l div2" id="right1">
-				<input type="text" class="c-fix f-l inp" id="keyWord" value="Melbourne,墨尔本" style="color:rgb(213,213,213);font-family:微软雅黑;height:28px;"></input>	
+				<input type="text" class="c-fix f-l inp" id="keyWord" value="Melbourne,墨尔本" style="color:rgb(213,213,213);font-family:微软雅黑;height:28px;width:434px;"></input>	
 				<a class="f-l f-yahei s-14 cp btn_search" onclick="addPushpinsearch()">搜索</a>
+				<div id="_suggestion" class="suggestion nobg" style="position:absolute;left: 375px; top: 33px; display: none; z-index:999;">			              
+				  <div class="suginner">
+			                    <ul class="suglist"></ul>
+			                </div>
+                		</div>
 				<a class="f-r f-yahei s-14 btn cp hover" style="padding:4px 6px;border:2px solid rgb(245,161,27)" href="/SearchList">列表找房</a>
 				<a class="f-r f-yahei s-14 btn btn_sel cp hover" style="padding:4px 6px"  href="#">地图找房</a>
 				<!-- <select class="f-r sel" style=" background: none;border: none;font-family: 微软雅黑;">
@@ -429,3 +473,207 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<%-- <jsp:include page="foot4index.jsp" /> --%>
 	</body>
 </html>
+<script>
+		var value = $("#keyWord").val();
+  		 
+   		
+   		$(document).ready(function(){
+	   		$('.carousel').carousel({
+	     		interval: 2000
+	    	})
+	    	//alert(value)
+		    if($('#keyWord').val()==""){
+		    	$('#keyWord').focus();
+		    	$("#_suggestion").hide();
+		    }
+
+
+})
+
+
+//IE和firefox
+if(navigator.userAgent.toLowerCase().indexOf('msie')>0 || navigator.userAgent.toLowerCase().indexOf('firefox')>0){
+    $('#keyWord').bind('keyup',function(event){
+        if(event.keyCode != "9" && event.keyCode != "38" && event.keyCode!='40') {
+            input_suggest();
+        }
+    });
+}else{
+    $("#keyWord").on('input',function(e){
+        input_suggest();
+    });
+}
+
+$("#keyWord").on('focus',function(e){
+	 if($('#searchTerritory').val()==""){
+		 $("#_suggestion").hide();
+		 
+	 }
+	 else{
+	 	input_suggest();
+	 }
+    
+});
+
+$("#keyWord").on('blur',function(e){      //焦点 
+    if(e.target.id!='query' && e.target.className.indexOf("slide")<0){
+        //$("#_suggestion").hide();
+    }
+});
+
+var input_suggest = function(){
+	value = $('#keyWord').val();
+	
+    $.ajax({
+        type:"get",
+        url:"/getSuggestionMap",
+        dataType:"json",
+        async:true,
+        data:{query:value},
+        success:function(data){
+       
+            if(data.success && data.list.length>0){
+           
+                var _html = "";
+                 
+                for(var i = 0 ; i<10 && i < data.list.length;i++){
+                    var _text = data.list[i];
+                    if(_text=='' || _text==undefined){
+                        continue;
+                    }
+                    if(_text.length>30){
+                        _text = _text.substring(0,30);
+                    }
+                    var _text = data.list[i];
+                    _html += "<li>";
+                   if(_text.indexOf(value)==0){
+                	   
+                        _text = _text.substring(value.length,_text.length);
+                        _html += value+"<strong>"+_text+"</strong>";
+                   }
+                   else{
+                        _html += _text;
+                   }
+                    _html += "</li>"; 
+                }
+                $("#_suggestion div ul").html(_html);
+                
+				
+                $("#_suggestion div ul li").each(function(){
+                
+					$(this).on('click',function(event){
+						var info = $(this).text();
+						$('#keyWord').val(info);
+						//window.open("/IndexSearch?searchcity="+encodeURIComponent($(this).text()),"_blank");
+					});
+                }); 
+                $("#_suggestion").show();
+               
+                suggLis = $("#_suggestion div ul li");
+                highlight_li = -1;
+                hoverFunc('#_suggestion div ul li', 'cur');
+            }else{
+                $("#_suggestion").hide();
+            }
+        },
+        error:function(){}
+    });
+};
+
+function stopEvent(evt){
+    if(evt.preventDefault){
+        evt.preventDefault()
+    }
+    evt.cancelBubble=true;
+    return evt.returnValue=false
+}
+//keydown的处理
+function keydown(evt){
+    evt = evt||window.event;
+    if (evt.keyCode == 27){ //Esc
+       $("#_suggestion").hide();
+        return stopEvent(evt);
+    }else if(evt.keyCode==0x1){
+    	alert("zuojian");
+    }
+    else if(evt.keyCode == 13){ //Enter
+    }else{
+        if($("#_suggestion").css("display")=="block"){
+            if (evt.keyCode == 38){
+                upKey();
+                return stopEvent(evt);
+            }else if (evt.keyCode == 9 || evt.keyCode == 40){
+                downKey();
+                return stopEvent(evt);
+            }
+        }else{
+            if ((evt.keyCode == 38)||(evt.keyCode == 40)){
+                highlight_li = -1;
+                clearHighlight();
+                $("#_suggestion").show();
+            }
+        }
+    }
+}
+$(document).click(function(e){
+    if(e.target.id!='searchTerritory' && e.target.className.indexOf("slide")<0){
+        $("#_suggestion").hide();
+    }
+});
+$(document).bind('keydown',function(event){
+    keydown(event);
+});
+
+
+function highlight(){
+    clearHighlight();
+    if(highlight_li>=0){
+        suggLis[highlight_li].className="cur";
+        $("#keyWord").val($(suggLis[highlight_li]).text());
+        $("#w").val("2042")
+    }else{
+        $("#keyWord").val(default_query);
+    }
+}
+function clearHighlight(){
+    for(var i=0;i<suggLis.length;i++){
+    	suggLis[i].className="";
+    }
+}
+
+function upKey(){
+    clearHighlight();
+    highlight_li--;
+    if(highlight_li==-2){
+        highlight_li=Math.min(suggLis.length,10)-1
+    }
+    highlight()
+}
+
+function downKey(){
+    clearHighlight();
+    highlight_li++;
+    if(highlight_li==Math.min(suggLis.length,10)){
+        highlight_li=-1
+    }
+    highlight()
+}
+function hoverFunc(select, css){
+    $(select).hover(
+        function(){
+            $(this).addClass(css);
+        },
+        function(){
+            $(this).removeClass(css);
+        }
+    )
+}
+
+    function checkForm(){
+        var _input=$("#keyWord").val();
+        if(_input.length>40){
+            _input = _input.substring(0,40);
+            $("#keyWord").val(_input);
+        }
+    }
+</script>

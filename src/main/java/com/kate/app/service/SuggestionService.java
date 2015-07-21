@@ -2,9 +2,9 @@ package com.kate.app.service;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
@@ -30,6 +30,7 @@ public class SuggestionService {
 	
 	private  final static String SUGGESTION = "data1.txt";
 	private  final static String SUGGESTIONRECO = "dataReco.txt";
+	private  final static String SUGGESTIONMap = "dataMap.txt";
 	private final static String URL = "D:/";
 	
 	public List<String>  getSuggestion(String query) throws IOException{
@@ -201,6 +202,47 @@ public class SuggestionService {
 			return resultList;
 	}
 	
+	public List<String>  getSuggestionMap(String query) throws IOException{
+		List<String[]> list = new ArrayList<String[]>();
+		String path = URL + SUGGESTIONMap;
+		
+		List<String> resultList = new ArrayList<String>();
+		List<String> listLast = new ArrayList<String>();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(path), "gbk"));
+		//BufferedReader reader = new BufferedReader(new FileReader(path));
+		while (reader.ready()) {
+			String line = reader.readLine();
+			resultList.add(line);
+		}
+		reader.close();
+		for(String e: resultList){
+			if(e.trim().toUpperCase().startsWith(query.toUpperCase())){
+				listLast.add(e);
+				System.out.println(e);
+			}
+		}
+			return listLast;
+	}
+	
+	public void writeFileByMap() {
+		File docFile = new File("D:/dataMap.txt");
+		try {
+			docFile.createNewFile();
+			FileOutputStream txtfile = new FileOutputStream(docFile);
+			PrintStream p = new PrintStream(txtfile);
+			
+			List<String> addList = suggestionDao.getProjectAdd();
+
+			for(String add : addList){
+				p.append(add+"\r\n");
+			}
+
+			txtfile.close();
+			p.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 }
