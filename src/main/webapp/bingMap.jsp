@@ -56,7 +56,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 }
 
 </style>
-
+   <script type="text/javascript">
+   $(function(){
+	   $("#keyWord").trigger("click");
+   });
+   </script>
    <script type="text/javascript">
    var imgdir="<%=application.getInitParameter("imagedir")%>";
    function housetype(v){
@@ -79,7 +83,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   }
    </script>
    <script>
-   $(function(){	   
+   $(function(){
 	 	 $('#orderasc').click(function () {
 	 	       //alert("升序");
 	 	      var pageIndex = 0;     //页面索引初始值   
@@ -308,7 +312,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			</div>
 			<div class="f-l div2" id="right1">
-				<input type="text" class="c-fix f-l inp" id="keyWord" value="Melbourne,墨尔本" style="color:rgb(213,213,213);font-family:微软雅黑;height:28px;width:434px;"></input>	
+				<input type="text" class="c-fix f-l inp" id="keyWord" placeholder="项目地址" style="color:rgb(213,213,213);font-family:微软雅黑;height:28px;width:434px;" autocomplete="off"></input>	
 				<a class="f-l f-yahei s-14 cp btn_search" onclick="addPushpinsearch()">搜索</a>
 				<div id="_suggestion" class="suggestion nobg" style="position:absolute;left: 375px; top: 33px; display: none; z-index:999;">			              
 				  <div class="suginner">
@@ -325,10 +329,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</select> -->
 				<select class="f-r sel" id="house" onchange="housetype(this)"  style=" background: none;border: none;font-family: 微软雅黑;">
 					<option value="0">房屋类型</option>
-					<option value="1">一居室</option>
-					<option value="2">二居室</option>
-					<option value="3">三居室</option>
-					<option value="4">四居室</option>
+					<option value="1">公寓</option>
+					<option value="2">别墅</option>
+					<option value="3">联排别墅</option>
 				</select>
 			</div>
 			<div class="c-fix f-l div3" style="height:840px;overflow-y:auto;overflow-x:hidden;">
