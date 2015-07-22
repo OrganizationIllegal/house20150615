@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.kate.app.model.AreaTuijianBroker;
 import com.kate.app.model.Broker;
 import com.kate.app.model.BrokerInfo;
 import com.kate.app.model.BrokerType;
@@ -613,12 +614,13 @@ public class ProjectInputDao extends BaseDao {
 				ResultSet rs = null;
 				PreparedStatement pstmt = null;
 				List<BrokerInfo> brokerList=new ArrayList<BrokerInfo>();
+				AreaTuijianBroker areaInfo = new AreaTuijianBroker();
 				try {
 					String sql ="select * from area_recommend_broker  where project_num =?";
 					 pstmt = con.prepareStatement(sql);
 					pstmt.setString(1,proNum );
 					  rs = pstmt.executeQuery();
-					while(rs.next()){
+					/*while(rs.next()){
 						BrokerInfo brokerInfo=new BrokerInfo();
 						brokerInfo.setId(rs.getInt("id"));
 						brokerInfo.setBroker_experience(rs.getInt("broker_experience"));
@@ -629,7 +631,14 @@ public class ProjectInputDao extends BaseDao {
 						brokerInfo.setBroker_type(rs.getString("broker_type"));
 						brokerInfo.setBroker_zizhi(rs.getString("broker_zizhi"));
 						brokerList.add(brokerInfo);
-					}
+					}*/
+					  while(rs.next()){
+							areaInfo.setId(rs.getInt("id"));
+							areaInfo.setBroker_code1(rs.getString("broker_code1"));
+							areaInfo.setBroker_code2(rs.getString("broker_code2"));
+							areaInfo.setBroker_code3(rs.getString("broker_code3"));
+							
+						}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -657,8 +666,68 @@ public class ProjectInputDao extends BaseDao {
 					     } 
 
 		        }
+				String broker1=areaInfo.getBroker_code1();
+				String broker2=areaInfo.getBroker_code2();
+				String broker3=areaInfo.getBroker_code3();
+				BrokerInfo brokerInfo1=new BrokerInfo();
+				brokerInfo1=getBrokerList(broker1);
+				brokerList.add(brokerInfo1);
+				BrokerInfo brokerInfo2=new BrokerInfo();
+				brokerInfo2=getBrokerList(broker2);
+				brokerList.add(brokerInfo2);
+				BrokerInfo brokerInfo3=new BrokerInfo();
+				brokerInfo3=getBrokerList(broker3);
+				brokerList.add(brokerInfo3);
 				return brokerList;
 			}
+
+		public BrokerInfo getBrokerList(String broker_num){
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+			BrokerInfo brokerInfo = new BrokerInfo();
+			try {
+				String sql = " SELECT * from broker_info where broker_num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1,broker_num);
+				  rs = pstmt.executeQuery();
+				while(rs.next()){
+					brokerInfo.setId(rs.getInt("id"));
+					brokerInfo.setBroker_name(rs.getString("broker_name"));
+					brokerInfo.setBroker_type(rs.getString("broker_type"));
+					brokerInfo.setBroker_language(rs.getString("broker_language"));
+					brokerInfo.setBroker_region(rs.getString("broker_region"));						
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
+			return brokerInfo;
+		}
 	//椤圭洰鍒楄〃
 	public JSONArray selectProjectList(){
 		Statement stmt = null;

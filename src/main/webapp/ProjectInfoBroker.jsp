@@ -737,10 +737,32 @@ body{
 </form>
 <!-- ****************************************************项目关键字end***************************************************** -->
 <!-- ****************************************************购房税费end***************************************************** -->
-<!-- <div style="width:900px;clear:both;margin:20px auto;text-align:center;">
-<button type="submit" >提交</button>
-<button type="reset" >重置</button>
-</div> -->
+
+<form id="broker">
+<div class="area_bkg2" style="clear:both;" id="housetax">推荐经纪人</div>
+<div class="area_left">
+<span class="area_span">经纪人姓名</span>
+<span>
+	<select data-placeholder="请选择..." class="chosen-select" id="broker_name" name="broker_name" style="width:220px;" tabindex="5">
+	 	 <option value=""></option>
+	  	 <c:forEach items="${brokerSet}" var="item">
+	        		 <option value="${item.id}">${item.broker_name}</option>
+	    </c:forEach>
+	 </select>
+ </span>
+</div>
+</form>
+<div class="area_right">
+
+<div style="clear: both;float: right;padding-right: 55px;"><a href="#" class="addbroker">添加</a></div>
+
+</div>
+<div id="brokerlist">
+</div>
+
+
+
+
 <div style="float:left;">
 
 <div class="area_left4"><button  class="btn" onClick="savepro()">提交</button></div>
@@ -1404,6 +1426,7 @@ $(function(){
 
 
 var brokerlist='${brokerlistJson}';
+brokerlist=eval("("+brokerlist+")");
 var brokeredit=100;
 var brokeredititem;
 var brokercount=brokerlist.length;
@@ -1559,8 +1582,8 @@ function savepro(){
 	    type: "POST",
  		async:false, 
 		dateType: "json",
-		data:{id:id,"project":JSON.stringify(projectlist),"keylist":JSON.stringify(keylist),"huxinglist":JSON.stringify(huxinglist),"imagelist":JSON.stringify(imagelist),"peitaolist":JSON.stringify(peitaolist),"fujinlist":JSON.stringify(fujinlist),"schoollist":JSON.stringify(schoollist),"holdingcostlist":JSON.stringify(holdingcostlist),"housetaxformlist":JSON.stringify(housetaxformlist)},
-		url: "/EditProject",
+		data:{id:id,"project":JSON.stringify(projectlist),"keylist":JSON.stringify(keylist),"huxinglist":JSON.stringify(huxinglist),"imagelist":JSON.stringify(imagelist),"peitaolist":JSON.stringify(peitaolist),"fujinlist":JSON.stringify(fujinlist),"schoollist":JSON.stringify(schoollist),"holdingcostlist":JSON.stringify(holdingcostlist),"housetaxformlist":JSON.stringify(housetaxformlist),"brokerlist":JSON.stringify(brokerlist)},
+		url: "/EditProject2",
 		success:function(data){
 			data=eval("("+data+")");
 		/* 	if(data.isDuplicate==1){

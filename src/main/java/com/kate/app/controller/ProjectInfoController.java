@@ -1001,7 +1001,7 @@ public class ProjectInfoController {
 		}
 	   // }
 		 try{
-				writeJson(json.toJSONString(),resp);
+				writeJson(json.toJSONString(),resp); 
 			}catch(Exception e){
 				e.printStackTrace();
 			}
@@ -1541,7 +1541,17 @@ public class ProjectInfoController {
 		//根据项目编号获取项目关键字
 		ProjectKey key=projectInputDao.getKeyByNum(pronum);
 		req.setAttribute("key", key);
-		return "/ProjectInfo.jsp";
+		//不包含推荐经纪人的返回页
+		//return "/ProjectInfo.jsp";
+		
+		//包含推荐经纪人的代码如下
+		getBrokerName1(req,resp);
+		return "/ProjectInfoBroker.jsp";
+	}
+	@RequestMapping({"/selectProject/Broker"})
+	public void getBrokerName1(HttpServletRequest req,HttpServletResponse resp){
+		List<BrokerInfo> brokerSet=areaInputDao.getBrokers();
+		req.setAttribute("brokerSet", brokerSet);
 	}
 	//鏍规嵁id鍙栧鏍′俊鎭�
 	@RequestMapping({ "/selectSchoolInfo" })

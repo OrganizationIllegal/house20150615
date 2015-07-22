@@ -482,13 +482,13 @@ body{
 	 </select>
  </span>
 </div>
-<div class="area_right">
 </form>
-</div>
+<div class="area_right">
+
 <div style="clear: both;float: right;padding-right: 55px;"><a href="#" class="addbroker">添加</a></div>
 <div id="brokerlist">
 </div>
-
+</div>
 <div style="float:left;">
 
 <div class="area_left4"><button  class="btn" onclick="savepro()">提交</button></div>
@@ -1383,7 +1383,7 @@ function savepro(){
  		async:false, 
 		dateType: "json",
 		data:{"project_num":project_num,"keylist":JSON.stringify(keylist),"project":JSON.stringify(projectlist),"huxinglist":JSON.stringify(huxinglist),"imagelist":JSON.stringify(imagelist),"peitaolist":JSON.stringify(peitaolist),"fujinlist":JSON.stringify(fujinlist),"schoollist":JSON.stringify(schoollist),"holdingcostlist":JSON.stringify(holdingcostlist),"housetaxformlist":JSON.stringify(housetaxformlist),"brokerlist":JSON.stringify(brokerlist)},
-		url: "/AddprojectInfo",
+		url: "/AddprojectInfo2",
 		success:function(data){
 			data=eval("("+data+")");
 			if(data.duplicate==1){
