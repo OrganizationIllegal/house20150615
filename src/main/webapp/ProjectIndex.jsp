@@ -897,6 +897,7 @@ function popInfo(){
 			</div>
 		</div>
 		</c:if>
+		<!-- 通过项目推荐经纪人 -->
 		<c:if test="${!empty recommendBroker}">
 		<div class="c-fix bkg3" style="margin:0 auto;height:222px;width:990px">
 			<div class="c-fix f-l p_panel_5" style="padding-bottom:0px">
@@ -919,16 +920,6 @@ function popInfo(){
 							<div class="f-l icon3 cp"></div>
 						</div>
 						</c:forEach>
-						<!-- <div class="c-fix f-l agent_node" style="margin-top:10px;">
-							<img src="images/round1.jpg" class="c-fix f-l agent_avatar"></img>
-							<a class="f-l agent_name f-yahei s-16 fw">张女士</a>
-							<a class="f-l agent_lab f-yahei s-14" style="margin-top:15px;">从业经验：8年</a>
-							<a class="f-l agent_lab f-yahei s-14">语言：普通话、英文、粤语</a>
-							<a class="f-l agent_lab f-yahei s-14">区域：South Melbourne</a>
-							<div class="f-l icon1 cp"></div>
-							<div class="f-l icon2 cp"></div>
-							<div class="f-l icon3 cp"></div>
-						</div> -->
 					</div>
 				</div>
 			</div>
