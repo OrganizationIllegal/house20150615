@@ -377,7 +377,10 @@ function saveBroker(){
 		url: "/AddBrokerInfo",
 		success:function(data){
 			data=eval("("+data+")");
-			if(data.flag==1){
+			if(data.isDuplicate==1){
+				alert("经纪人编号已存在！");
+			}
+			else if(data.flag==1){
 				alert("添加成功");
 			}else{
 				alert("添加失败");

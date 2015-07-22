@@ -11,6 +11,55 @@ import org.springframework.stereotype.Repository;
 import com.alibaba.fastjson.JSONArray;
 @Repository 
 public class SchoolInfoDao extends BaseDao{
+	public int isDuplicate(String schoolname,String nationname,String cityname){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		int isexist=0;
+		try {
+			String sql = " SELECT count(*) num from school_info where school_name=? and nation=? and city=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, schoolname);
+			pstmt.setString(2, nationname);
+			pstmt.setString(3, cityname);
+			  rs = pstmt.executeQuery();
+			if(rs.next()){
+				isexist=rs.getInt(1);
+			}
+			if(isexist>0){
+				return 1;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return 0;
+	}
+	
 	 public JSONArray listSchoolInfo(){
 		 Statement stmt = null;
 			ResultSet rs = null;

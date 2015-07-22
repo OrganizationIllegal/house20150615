@@ -14,8 +14,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="css/areaLuru.css" />
 <link rel="stylesheet" type="text/css" href="/bootstrap-datepicker-1.4.0-dist/css/bootstrap-datepicker.min.css" />
 <script src="/ckeditor/ckeditor.js"></script>
-<!-- <script src="/js/jquery.min.js"></script>
-<script src="/bootstrap/js/bootstrap.min.js"></script> -->
+<script src="/js/jquery.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script> 
 <script src="/bootstrap-datepicker-1.4.0-dist/js/bootstrap-datepicker.min.js"></script>
 <script src="/bootstrap-datepicker-1.4.0-dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
 <link rel="stylesheet" href="css/chosen.css">
@@ -130,6 +130,10 @@ $(".uploadimg").click(function(){
 	 		dataType: "json",
 	 		url: "/inputNewsBoke",
 	 		success:function(data){
+	 			/* data=eval("("+data+")"); */
+	 			if(data.isDuplicate==1){
+					alert("新闻博客编号已存在！");
+				}
 	 			if(data.flag == 1){
 	 				alert("添加成功！");
 	 			}else if(data.flag == 0){
@@ -155,7 +159,7 @@ $(".uploadimg").click(function(){
       '.chosen-select-deselect'  : {allow_single_deselect:true},
       '.chosen-select-no-single' : {disable_search_threshold:10},
       '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
-      '.chosen-select-width'     : {width:"95%"}
+      '.chosen-select-width'     : {width:'95%'}
     }
     for (var selector in config) {
       $(selector).chosen(config[selector]);

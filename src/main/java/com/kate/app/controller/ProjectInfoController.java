@@ -21,8 +21,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kate.app.dao.AjaxDao;
+import com.kate.app.dao.BrokerInfoDao;
 import com.kate.app.dao.ImageDao;
 import com.kate.app.dao.ProjectInputDao;
+import com.kate.app.dao.SchoolInfoDao;
 import com.kate.app.dao.SchoolNearDao;
 import com.kate.app.dao.ZhiYeDao;
 import com.kate.app.model.Broker;
@@ -55,6 +57,10 @@ public class ProjectInfoController {
 	private SchoolNearDao schoolNearDao;
 	@Autowired
 	private ZhiYeDao zhiYeDao;
+	@Autowired
+	private SchoolInfoDao schoolinfodao;
+	@Autowired
+	private BrokerInfoDao brokerInfoDao;
 	
 	private List <ProjectPeiTao> projectPeiTaoListbefore;
 	private List<FujinPeiTao> fujinPeitaoListbefore;
@@ -993,6 +999,7 @@ public class ProjectInfoController {
 		@RequestMapping({ "/EditBrokerInfo" })
 		public void  EditBroker(HttpServletRequest req,HttpServletResponse resp){
 			//鎺ユ敹缁忕邯浜篿d
+			JSONObject json=new JSONObject();
 			String idstr=req.getParameter("id");
 			int id=Integer.parseInt(req.getParameter("id"));
 			
@@ -1064,14 +1071,25 @@ public class ProjectInfoController {
 			/*brokerIntegertypeListbefore.removeAll(brokerTypelist);
 			brokerTypelistdelete=brokerIntegertypeListbefore;*/
 			//鏇存柊
-		  try {
-				int result=projectInputDao.UpdateBroker(id, broker, serviceArealist,serviceArealist2, brokerTypelist,brokerTypelist2,serviceArealistdelete,brokerTypelistdelete);
-				System.out.println("result::"+result);
-		    } catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			int isDuplicate=0;//brokerInfoDao.isDuplicate(broker.getBroker_num());
+			if (isDuplicate==1) {
+				json.put("isDuplicate", "1");
 			}
-			
+			else{
+				try {
+					int result=projectInputDao.UpdateBroker(id, broker, serviceArealist,serviceArealist2, brokerTypelist,brokerTypelist2,serviceArealistdelete,brokerTypelistdelete);
+					if(result==1){
+						json.put("flag", "1");
+					}
+					else{
+						json.put("flag", "0");
+					}
+					System.out.println("result::"+result);
+			    } catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
 		}
 		
 	
@@ -1100,14 +1118,19 @@ public class ProjectInfoController {
 		
 		String school_image=req.getParameter("schoolimg");
 		String school_desc=req.getParameter("school_intro");
-	    flag=projectInputDao.InsertSchoolInfo(school_name, school_ranking, school_type, school_total, teacher_total, school_position, gps, net_info, not_en_stu_bili, school_image, school_desc, nation, city);
-		
-	    if(flag==false){
-	    	json.put("flag", "0");
-	    }
-	    else{
-	    	json.put("flag", "1");
-	    }
+		int isDuplicate=schoolinfodao.isDuplicate(school_name,nation,city);
+		if (isDuplicate==1) {
+			json.put("isDuplicate", "1");
+		}
+		else{
+			flag=projectInputDao.InsertSchoolInfo(school_name, school_ranking, school_type, school_total, teacher_total, school_position, gps, net_info, not_en_stu_bili, school_image, school_desc, nation, city);
+			if(flag==false){
+		    	json.put("flag", "0");
+		    }
+		    else{
+		    	json.put("flag", "1");
+		    }
+		}
 	    try{
 			writeJson(json.toJSONString(),resp);
 		}catch(Exception e){
@@ -1140,13 +1163,19 @@ public class ProjectInfoController {
 		
 		String school_image=req.getParameter("schoolimg");
 		String school_desc=req.getParameter("school_intro");
-	    flag=projectInputDao.UpdateSchoolInfo(id, school_name, school_ranking, school_type, school_total, teacher_total, school_position, gps, net_info, not_en_stu_bili, school_image, school_desc,nation,city);
-	    if(flag==false){
-	    	json.put("flag", "0");
-	    }
-	    else{
-	    	json.put("flag", "1");
-	    }
+		int isDuplicate=0;//schoolinfodao.isDuplicate(school_name,nation,city);
+		if (isDuplicate==1) {
+			json.put("isDuplicate", "1");
+		}
+		else {
+			flag=projectInputDao.UpdateSchoolInfo(id, school_name, school_ranking, school_type, school_total, teacher_total, school_position, gps, net_info, not_en_stu_bili, school_image, school_desc,nation,city);
+		    if(flag==false){
+		    	json.put("flag", "0");
+		    }
+		    else{
+		    	json.put("flag", "1");
+		    }
+		}
 	    try{
 			writeJson(json.toJSONString(),resp);
 		}catch(Exception e){
@@ -1161,14 +1190,19 @@ public class ProjectInfoController {
 		String  developer_desc=req.getParameter("developer_desc");
 		String  nation=req.getParameter("nation");
 		String developer_num=req.getParameter("developer_num");
-		
-	   boolean flagbol=projectInputDao.InsertDeveloperInfo(developer_name, developer_logo, developer_desc, developer_num, nation);
-	    if(flagbol==false){
-	    	json.put("flag", "0");
+		int isDuplicate=projectInputDao.isDeveloperDuplicate(developer_name,nation);
+		if (isDuplicate==1) {
+			json.put("isDuplicate", "1");
 		}
-	    else{
-	    	json.put("flag", "1");
-	    }
+		else {
+			boolean flagbol=projectInputDao.InsertDeveloperInfo(developer_name, developer_logo, developer_desc, developer_num, nation);
+		    if(flagbol==false){
+		    	json.put("flag", "0");
+			}
+		    else{
+		    	json.put("flag", "1");
+		    }
+		}
 		try{
 			 PrintWriter out = resp.getWriter();
 			 out.print(json);
@@ -1338,14 +1372,19 @@ public class ProjectInfoController {
 		String  developer_desc=req.getParameter("developer_desc");
 		String  nation=req.getParameter("nation");
 		String developer_num=req.getParameter("developer_num");
-		
-	   boolean flagbol=projectInputDao.UpdateDeveloperInfo(id, developer_name, developer_logo, developer_desc, developer_num, nation);
-	    if(flagbol==false){
-	    	json.put("flag", "0");
+		int isDuplicate=0;//projectInputDao.isDeveloperDuplicate(developer_name,nation);
+		if (isDuplicate==1) {
+			json.put("isDuplicate", "1");
 		}
-	    else{
-	    	json.put("flag", "1");
-	    }
+		else {
+			 boolean flagbol=projectInputDao.UpdateDeveloperInfo(id, developer_name, developer_logo, developer_desc, developer_num, nation);
+			    if(flagbol==false){
+			    	json.put("flag", "0");
+				}
+			    else{
+			    	json.put("flag", "1");
+			    }
+		}
 		try{
 			 PrintWriter out = resp.getWriter();
 			 out.print(json);

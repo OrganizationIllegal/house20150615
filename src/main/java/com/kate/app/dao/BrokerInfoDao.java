@@ -16,6 +16,53 @@ import com.kate.app.model.BrokerInfo;
 
 @Repository 
 public class BrokerInfoDao extends BaseDao {
+	
+	public int isDuplicate(String broker_num){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		int isexist=0;
+		try {
+			String sql = " SELECT count(*) num from broker_info where broker_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, broker_num);
+			  rs = pstmt.executeQuery();
+			if(rs.next()){
+				isexist=rs.getInt(1);
+			}
+			if(isexist>0){
+				return 1;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return 0;
+	}
 	public List<BrokerInfo> listBrokerInfo(){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -251,16 +298,16 @@ public class BrokerInfoDao extends BaseDao {
         }
 		return data;
 	} 
-	//鎺ㄨ崘缁忕邯浜�
-	public List<BrokerInfo> getRecommendBroker(String area_code){
+	//根据项目推荐经纪人
+	public List<BrokerInfo> getRecommendBroker(String project_num){
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<BrokerInfo> recommendbrokerList=new ArrayList<BrokerInfo>();
 		try {
-			String sql = "select * from area_recommend_broker where area_code = ?";
+			String sql = "select * from area_recommend_broker where project_num = ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, area_code);
+			pstmt.setString(1, project_num);
 			  rs = pstmt.executeQuery();
 		    while(rs.next()){
 		    	String broker1=rs.getString("broker_code1");
@@ -311,6 +358,65 @@ public class BrokerInfoDao extends BaseDao {
 		
 	}
 	
+	//根据区域推荐经纪人
+		/*public List<BrokerInfo> getRecommendBroker(String area_code){
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+			List<BrokerInfo> recommendbrokerList=new ArrayList<BrokerInfo>();
+			try {
+				String sql = "select * from area_recommend_broker where area_code = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, area_code);
+				  rs = pstmt.executeQuery();
+			    while(rs.next()){
+			    	String broker1=rs.getString("broker_code1");
+			    	String broker2=rs.getString("broker_code2");
+			    	String broker3=rs.getString("broker_code3");
+			    	if(broker1!=null){
+			    		BrokerInfo brokerInfo1=findBrokerbyId(broker1);
+			    		recommendbrokerList.add(brokerInfo1);
+			    	}
+			    	if(broker2!=null){
+			    		BrokerInfo brokerInfo2=findBrokerbyId(broker2);
+			    		recommendbrokerList.add(brokerInfo2);
+			    	}
+			    	if(broker3!=null){
+			    		BrokerInfo brokerInfo3=findBrokerbyId(broker3);
+			    		recommendbrokerList.add(brokerInfo3);
+			    	}
+			    }
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
+			return recommendbrokerList;
+			
+		}*/
 	public BrokerInfo findBrokerbyId(String broker_code){
 		Statement stmt = null;
 		ResultSet rs = null;

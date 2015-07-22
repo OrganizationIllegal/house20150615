@@ -132,7 +132,11 @@ $(".uploadimg").click(function(){
 	 		dataType: "json",
 	 		url: "/EditZhiYe",
 	 		success:function(data){
-	 			if(data.flag == 1){
+	 			/* data=eval("("+data+")"); */
+	 			if(data.isDuplicate==1){
+					alert("置业指导编号已存在！");
+				}
+	 			else if(data.flag == 1){
 	 				alert("更新成功！");
 	 			}else if(data.flag == 0){
 	 				alert("更新失败！");

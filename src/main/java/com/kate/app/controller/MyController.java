@@ -211,8 +211,10 @@ public class MyController {
 		 RecommendProject(req,resp,proId,proNum,area_num);
 		 listSuoJia(req,resp,username);
 		 messageSubmit(req,resp,username,proId);
-		 //閿熺嫛纭锋嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷�
-		 getRecommendBroker(req,resp,area_num);
+		 //通过项目推荐经纪人
+		 getRecommendBroker(req,resp,proNum);
+		//通过区域推荐经纪人
+		/* getRecommendBroker(req,resp,area_num);*/
 		 req.setAttribute("area_name", area_name);
 		 req.setAttribute("areaInfo", areaInfo);
 		 return "/ProjectIndex.jsp";
@@ -893,14 +895,21 @@ public class MyController {
 			req.setAttribute("userList", userList);
 			//return "/index.jsp";
 		}
-	//閿熺嫛纭锋嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷�
+	//通过项目推荐经纪人
 		@RequestMapping({"/recommendBroker"})
-		public void getRecommendBroker(HttpServletRequest req,HttpServletResponse resp, String area_num){
+		public void getRecommendBroker(HttpServletRequest req,HttpServletResponse resp, String project_num){
 			List<BrokerInfo> recommendBroker=new ArrayList<BrokerInfo>();
-			recommendBroker=brokerInfoDao.getRecommendBroker(area_num);
+			recommendBroker=brokerInfoDao.getRecommendBroker(project_num);
 			req.setAttribute("recommendBroker", recommendBroker);
 		}
 	
+		//通过区域推荐经纪人
+				/*@RequestMapping({"/recommendBroker"})
+				public void getRecommendBroker(HttpServletRequest req,HttpServletResponse resp, String area_code){
+					List<BrokerInfo> recommendBroker=new ArrayList<BrokerInfo>();
+					recommendBroker=brokerInfoDao.getRecommendBroker(area_code);
+					req.setAttribute("recommendBroker", recommendBroker);
+				}*/
 	public void writeJson(String json, HttpServletResponse response)throws Exception{
 	    response.setContentType("text/html");
 	    response.setCharacterEncoding("UTF-8");

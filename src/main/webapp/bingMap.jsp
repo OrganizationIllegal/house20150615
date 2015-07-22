@@ -490,19 +490,16 @@ body{
 </html>
 <script>
 		var value = $("#keyWord").val();
-  		 
+  		
    		
    		$(document).ready(function(){
 	   		$('.carousel').carousel({
 	     		interval: 2000
 	    	})
-	    	//alert(value)
-		    if($('#keyWord').val()==""){
+		    if(value=="" || value == null){
 		    	$('#keyWord').focus();
 		    	$("#_suggestion").hide();
 		    }
-
-
 })
 
 
@@ -520,7 +517,7 @@ if(navigator.userAgent.toLowerCase().indexOf('msie')>0 || navigator.userAgent.to
 }
 
 $("#keyWord").on('focus',function(e){
-	 if($('#searchTerritory').val()==""){
+	 if($('#keyWord').val()==""){
 		 $("#_suggestion").hide();
 		 
 	 }

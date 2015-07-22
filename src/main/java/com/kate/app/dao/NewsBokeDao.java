@@ -18,6 +18,54 @@ import com.kate.app.model.NewsBoke;
 import com.kate.app.model.ZhiYeZhiDao;
 @Repository 
 public class NewsBokeDao extends BaseDao{
+	
+	public int isDuplicate(String news_num){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		int isexist=0;
+		try {
+			String sql = " SELECT count(*) num from news_boke where news_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, news_num);
+			  rs = pstmt.executeQuery();
+			if(rs.next()){
+				isexist=rs.getInt(1);
+			}
+			if(isexist>0){
+				return 1;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return 0;
+	}
+	
 	 public JSONArray listNewsBoke(){
 		 Statement stmt = null;
 			ResultSet rs = null;
