@@ -26,6 +26,7 @@ import com.kate.app.dao.ProjectInputDao;
 import com.kate.app.dao.SchoolNearDao;
 import com.kate.app.dao.ZhiYeDao;
 import com.kate.app.model.Broker;
+import com.kate.app.model.BrokerInfo;
 import com.kate.app.model.BrokerType;
 import com.kate.app.model.DeveloperInfo;
 import com.kate.app.model.FujinPeiTao;
@@ -63,6 +64,8 @@ public class ProjectInfoController {
 	private List <ProjectDescImage> projectImageListbefore;
 	private List<ServiceArea> brokerServiceAreaListbefore;
 	private List<BrokerType> brokerIntegertypeListbefore;
+	private List <BrokerInfo> brokerlistbefore;
+	//
 	//鏄剧ず寮�鍙戝晢淇℃伅
 	@RequestMapping({"/ProjectInput"})
 	public String getProjectCodeAndName(HttpServletRequest req,HttpServletResponse resp){
@@ -182,7 +185,7 @@ public class ProjectInfoController {
 	        }
 	        return t;
 	    }
-	//娣诲姞椤圭洰
+	//添加项目  经纪人按区域进行推荐
 	@RequestMapping({ "/AddprojectInfo" })
 	public void InsertProjectInfo(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -286,6 +289,142 @@ public class ProjectInfoController {
 		//娣诲姞
 	    try {
 			int result=projectInputDao.AddProject(projectlist,houseInfolist,projectimagelist,projectPeitaolist,fujinpeitaoList,fujinSchoolList,holdCostList,houseTaxList,keylist);
+			System.out.println("result::"+result);
+			if(result==1){
+				json.put("flag", "1");
+			}
+			else{
+				json.put("flag", "0");
+			}
+			
+	    } catch (SQLException e1) {
+	    
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	 }
+		  try {
+				writeJson(json.toJSONString(),resp);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    
+		
+	}
+	//添加项目  经纪人按项目进行推荐
+	@RequestMapping({ "/AddprojectInfo2" })
+	public void InsertProjectInfo2(HttpServletRequest req, HttpServletResponse resp){
+		JSONObject json = new JSONObject();
+		//鎺ユ敹椤圭洰缂栧彿
+		String project_num=req.getParameter("project_num");
+		//椤圭洰淇℃伅
+		String project=req.getParameter("project");
+		JSONArray projectArray = JSONArray.parseArray(project);
+		List<Project> projectlist=new ArrayList<Project>();
+		for (int i=0;i<projectArray.size();i++){
+			 JSONObject object = (JSONObject)projectArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+			 Project e = (Project) JSONToObj(object.toString(), Project.class);
+			 projectlist.add(e);
+		}
+		System.out.println("projectlist.length():"+projectlist.size());
+		//项目关键字
+		String projectkey=req.getParameter("keylist");
+		JSONArray keyArray = JSONArray.parseArray(projectkey);
+		List<ProjectKey> keylist=new ArrayList<ProjectKey>();
+		for (int i=0;i<keyArray.size();i++){
+			 JSONObject object = (JSONObject)keyArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+			 ProjectKey e = (ProjectKey) JSONToObj(object.toString(), ProjectKey.class);
+			 keylist.add(e);
+		}
+
+		//鎴峰瀷鍙婁环鏍�
+		String huxing=req.getParameter("huxinglist");
+		JSONArray huxingArray = JSONArray.parseArray(huxing);
+		List<HouseInfo1> houseInfolist=new ArrayList<HouseInfo1>();
+		for (int i=0;i<huxingArray.size();i++){
+			 JSONObject object = (JSONObject)huxingArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+			 HouseInfo1 e = (HouseInfo1) JSONToObj(object.toString(), HouseInfo1.class);
+			 houseInfolist.add(e);
+		}
+		System.out.println("houseInfolist.length():"+houseInfolist.size());
+		//椤圭洰鍥剧墖
+		    String images=req.getParameter("imagelist");
+			JSONArray imageArray = JSONArray.parseArray(images);
+			List<ProjectDescImage> projectimagelist=new ArrayList<ProjectDescImage>();
+			for (int i=0;i<imageArray.size();i++){
+				 JSONObject object = (JSONObject)imageArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+				 ProjectDescImage e = (ProjectDescImage) JSONToObj(object.toString(), ProjectDescImage.class);
+				 projectimagelist.add(e);
+			}
+	    //椤圭洰閰嶅
+	    String peitao=req.getParameter("peitaolist");
+		JSONArray peitaoArray = JSONArray.parseArray(peitao);
+		List<ProjectPeiTao> projectPeitaolist=new ArrayList<ProjectPeiTao>();
+		for (int i=0;i<peitaoArray.size();i++){
+			 JSONObject object = (JSONObject)peitaoArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+			 ProjectPeiTao e = (ProjectPeiTao) JSONToObj(object.toString(), ProjectPeiTao.class);
+			 projectPeitaolist.add(e);
+		}
+		System.out.println("projectPeitaolist.length():"+projectPeitaolist.size());
+		//闄勮繎閰嶅
+		String fujinpeitao=req.getParameter("fujinlist");
+		JSONArray fujinArray = JSONArray.parseArray(fujinpeitao);
+	    List<FujinPeiTao> fujinpeitaoList=new ArrayList<FujinPeiTao>();
+		for (int i=0;i<fujinArray.size();i++){
+				 JSONObject object = (JSONObject)fujinArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+				 FujinPeiTao e = (FujinPeiTao) JSONToObj(object.toString(), FujinPeiTao.class);
+				 fujinpeitaoList.add(e);
+		}
+		System.out.println("fujinpeitaoList.length():"+fujinpeitaoList.size());
+		//闄勮繎瀛︽牎
+		String schoolInfo=req.getParameter("schoollist");
+		JSONArray schoolArray = JSONArray.parseArray(schoolInfo);
+	    List<FujinSchool> fujinSchoolList=new ArrayList<FujinSchool>();
+		for (int i=0;i<schoolArray.size();i++){
+				 JSONObject object = (JSONObject)schoolArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+				 FujinSchool e = (FujinSchool) JSONToObj(object.toString(), FujinSchool.class);
+				 fujinSchoolList.add(e);
+		}
+		System.out.println("fujinSchoolList.length():"+fujinSchoolList.size());
+		//鎸佹湁鎴愭湰
+		String holdingcost=req.getParameter("holdingcostlist");
+		JSONArray holdCostArray = JSONArray.parseArray(holdingcost);
+	    List<HoldCost> holdCostList=new ArrayList<HoldCost>();
+		for (int i=0;i<holdCostArray.size();i++){
+				 JSONObject object = (JSONObject)holdCostArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+				 HoldCost e = (HoldCost) JSONToObj(object.toString(), HoldCost.class);
+				 holdCostList.add(e);
+		}
+		System.out.println("holdCostList.length():"+holdCostList.size());
+		//璐埧绋庤垂
+		String houseTax=req.getParameter("housetaxformlist");
+		JSONArray houseTaxArray = JSONArray.parseArray(houseTax);
+		List<HouseTax> houseTaxList=new ArrayList<HouseTax>();
+		for (int i=0;i<houseTaxArray.size();i++){
+				 JSONObject object = (JSONObject)houseTaxArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+				 HouseTax e = (HouseTax) JSONToObj(object.toString(), HouseTax.class);
+				 houseTaxList.add(e);
+		}
+		System.out.println("houseTaxList.length():"+houseTaxList.size());
+		//推荐经纪人   按项目进行推荐
+				String broker=req.getParameter("brokerlist");
+				JSONArray brokerArray = JSONArray.parseArray(broker);
+				List<BrokerInfo> brokerList=new ArrayList<BrokerInfo>();
+				for (int i=0;i<brokerArray.size();i++){
+						 JSONObject object = (JSONObject)brokerArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+						 BrokerInfo e = (BrokerInfo) JSONToObj(object.toString(), BrokerInfo.class);
+						 brokerList.add(e);
+				}
+		//鍒ゆ柇椤圭洰缂栧彿涓嶈兘閲嶅
+		int isDuplicate=projectInputDao.isDuplicateNum(project_num);//1琛ㄧず姝ょ紪鍙峰凡瀛樺湪,0琛ㄧず姝ょ紪鍙蜂笉瀛樺湪
+		if(isDuplicate==1){
+			json.put("duplicate", "1");
+		}
+		else{
+		//娣诲姞
+	    try {
+			int result=projectInputDao.AddProject2(projectlist,houseInfolist,projectimagelist,projectPeitaolist,fujinpeitaoList,fujinSchoolList,holdCostList,houseTaxList,keylist,brokerList);
 			System.out.println("result::"+result);
 			if(result==1){
 				json.put("flag", "1");
@@ -552,6 +691,285 @@ public class ProjectInfoController {
 		//鏇存柊
 	    try {
 			int result=projectInputDao.EditProject(id, projectlist,houseInfolist,houseInfolist2,peitaolist,peitaolist2,imagelist,imagelist2,fujinpeitaoList,fujinpeitaoList2,fujinSchoolList,fujinSchoolList2,holdCostList,holdCostList2,houseTaxList,houseTaxList2,imagelistdelete,peitaolistdelete,fujinpeitaoListdelete,fujinSchoolListdelete,holdCostListdelete,houseTaxListdelete,keylist);
+			System.out.println("result::"+result);
+			if(result==1){
+				json.put("flag", "1");
+			}else{
+				json.put("flag", "0");
+			}
+	    } catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	   // }
+		 try{
+				writeJson(json.toJSONString(),resp);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		
+	}
+	//项目编辑   经纪人按项目进行推荐
+	@RequestMapping({ "/EditProject2" })
+	public void  EditProject2(HttpServletRequest req,HttpServletResponse resp){
+		//鎺ユ敹椤圭洰缂栧彿鍙傛暟
+		//String project_num=req.getParameter("project_num");
+		JSONObject json=new JSONObject();
+		//鎺ユ敹椤圭洰id
+		int id=Integer.parseInt(req.getParameter("id"));
+		//椤圭洰淇℃伅
+		String project=req.getParameter("project");
+		JSONArray projectArray = JSONArray.parseArray(project);
+		List<Project> projectlist=new ArrayList<Project>();
+		for (int i=0;i<projectArray.size();i++){
+				JSONObject object = (JSONObject)projectArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+				Project e = (Project) JSONToObj(object.toString(), Project.class);
+			    projectlist.add(e);
+		  }
+		System.out.println("projectlist.length():"+projectlist.size());
+		//鎴峰瀷鍙婁环鏍�
+	    String huxing=req.getParameter("huxinglist");
+		JSONArray huxingArray = JSONArray.parseArray(huxing);
+		List<HouseInfo1> houseInfolist=new ArrayList<HouseInfo1>();//瀛樻斁瑕佺紪杈戠殑椤�
+		List<HouseInfo1> houseInfolist2=new ArrayList<HouseInfo1>();//瀛樻斁鏂版坊鍔犵殑椤�
+		for (int i=0;i<huxingArray.size();i++){
+				JSONObject object = (JSONObject)huxingArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+			    HouseInfo1 e = (HouseInfo1) JSONToObj(object.toString(), HouseInfo1.class);
+			    if(e.getId()==0){
+			    	houseInfolist2.add(e);
+			    }
+			    else{
+			    	houseInfolist.add(e);
+			    }
+			}
+		System.out.println("houseInfolist.length():"+houseInfolist.size());
+		System.out.println("houseInfolist2.length():"+houseInfolist2.size());
+
+		//项目图片
+	    String projectImage=req.getParameter("imagelist");
+		JSONArray imageArray = JSONArray.parseArray(projectImage);
+		List<ProjectDescImage> imagelist=new ArrayList<ProjectDescImage>();//存放要编辑的项
+		List<ProjectDescImage> imagelist2=new ArrayList<ProjectDescImage>();//存放新添加的项
+		List<ProjectDescImage> imagelistdelete=new ArrayList<ProjectDescImage>();//存放新添加的项
+		for (int i=0;i<imageArray.size();i++){
+				JSONObject object = (JSONObject)imageArray.get(i); //对于每个json对象
+				ProjectDescImage e = (ProjectDescImage) JSONToObj(object.toString(), ProjectDescImage.class);
+			    if(e.getId()==0){
+			    	imagelist2.add(e);//添加
+			    }
+			    else{
+			    	imagelist.add(e);
+			    }
+			}
+
+		for (int i=0;i<projectImageListbefore.size();i++){
+			boolean flag=false;
+
+			for(int j=0;j<imagelist.size();j++){
+				if(projectImageListbefore.get(i).getId()==imagelist.get(j).getId()){
+					flag=true;
+					break;
+				}
+			}
+			if (flag==false) {
+				imagelistdelete.add(projectImageListbefore.get(i));
+			}
+		}
+		
+		//项目配套
+		    String projectpeitao=req.getParameter("peitaolist");
+			JSONArray peitaoArray = JSONArray.parseArray(projectpeitao);
+			List<ProjectPeiTao> peitaolist=new ArrayList<ProjectPeiTao>();//存放要编辑的项
+			List<ProjectPeiTao> peitaolist2=new ArrayList<ProjectPeiTao>();//存放新添加的项
+			List<ProjectPeiTao> peitaolistdelete=new ArrayList<ProjectPeiTao>();//存放新添加的项
+			for (int i=0;i<peitaoArray.size();i++){
+					JSONObject object = (JSONObject)peitaoArray.get(i); //对于每个json对象
+					ProjectPeiTao e = (ProjectPeiTao) JSONToObj(object.toString(), ProjectPeiTao.class);
+				    if(e.getId()==0){
+				    	peitaolist2.add(e);//添加
+				    }
+				    else{
+				    	peitaolist.add(e);
+				    }
+				}
+
+			for (int i=0;i<projectPeiTaoListbefore.size();i++){
+				boolean flag=false;
+
+				for(int j=0;j<peitaolist.size();j++){
+					if(projectPeiTaoListbefore.get(i).getId()==peitaolist.get(j).getId()){
+						flag=true;
+						break;
+					}
+				}
+				if (flag==false) {
+					peitaolistdelete.add(projectPeiTaoListbefore.get(i));
+				}
+			}
+
+		//附近配套
+
+		String fujinpeitao=req.getParameter("fujinlist");
+		JSONArray fujinArray = JSONArray.parseArray(fujinpeitao);
+	    List<FujinPeiTao> fujinpeitaoList=new ArrayList<FujinPeiTao>();//鐢ㄤ簬缂栬緫鐨勯」
+	    List<FujinPeiTao> fujinpeitaoList2=new ArrayList<FujinPeiTao>();//鐢ㄤ簬娣诲姞鐨勯」
+	    List<FujinPeiTao> fujinpeitaoListdelete=new ArrayList<FujinPeiTao>();
+		for (int i=0;i<fujinArray.size();i++){
+				 JSONObject object = (JSONObject)fujinArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+				 FujinPeiTao e = (FujinPeiTao) JSONToObj(object.toString(), FujinPeiTao.class);
+				 if(e.getId()==0){
+					 fujinpeitaoList2.add(e);//id涓�0锛屾坊鍔�
+				 }
+				 else{
+					 fujinpeitaoList.add(e);//鍚﹀垯锛岀紪杈�
+				 }
+		}
+
+		for (int i=0;i<fujinPeitaoListbefore.size();i++){
+			boolean flag=false;
+			for(int j=0;j<fujinpeitaoList.size();j++){
+				if(fujinPeitaoListbefore.get(i).getId()==fujinpeitaoList.get(j).getId()){
+					flag=true;
+					break;
+				}
+			}
+			if(flag==false){
+				fujinpeitaoListdelete.add(fujinPeitaoListbefore.get(i));
+			}
+		}
+
+		System.out.println("fujinpeitaoList.length():"+fujinpeitaoList.size());
+		System.out.println("fujinpeitaoList2.length():"+fujinpeitaoList2.size());
+		//闄勮繎瀛︽牎
+		String schoolInfo=req.getParameter("schoollist");
+		JSONArray schoolArray = JSONArray.parseArray(schoolInfo);
+		List<FujinSchool> fujinSchoolList=new ArrayList<FujinSchool>();//鐢ㄤ簬缂栬緫鐨勯」
+		List<FujinSchool> fujinSchoolList2=new ArrayList<FujinSchool>();//鐢ㄤ簬娣诲姞鐨勯」
+		List<FujinSchool> fujinSchoolListdelete=new ArrayList<FujinSchool>();//鐢ㄤ簬娣诲姞鐨勯」
+		for (int i=0;i<schoolArray.size();i++){
+						 JSONObject object = (JSONObject)schoolArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+						 FujinSchool e = (FujinSchool) JSONToObj(object.toString(), FujinSchool.class);
+						 if(e.getId()==0){
+							 fujinSchoolList2.add(e);
+						 }
+						 else{
+							 fujinSchoolList.add(e);
+						 }
+		   }
+
+		for (int i=0;i<fujinSchoolListbefore.size();i++){
+			boolean flag=false;
+			for(int j=0;j<fujinSchoolList.size();j++){
+				if(fujinSchoolListbefore.get(i).getId()==fujinSchoolList.get(j).getId()){
+					flag=true;
+					break;
+				}
+			}
+
+			if(flag==false){
+				fujinSchoolListdelete.add(fujinSchoolListbefore.get(i));
+			}
+		}
+		System.out.println("fujinSchoolList.length():"+fujinSchoolList.size());
+		System.out.println("fujinSchoolList2.length():"+fujinSchoolList2.size());
+		//鎸佹湁鎴愭湰
+		String holdingcost=req.getParameter("holdingcostlist");
+		JSONArray holdCostArray = JSONArray.parseArray(holdingcost);
+		List<HoldCost> holdCostList=new ArrayList<HoldCost>();//鐢ㄤ簬缂栬緫鐨勯」
+		List<HoldCost> holdCostList2=new ArrayList<HoldCost>();//鐢ㄤ簬娣诲姞鐨勯」
+		List<HoldCost> holdCostListdelete=new ArrayList<HoldCost>();//鐢ㄤ簬娣诲姞鐨勯」
+		for (int i=0;i<holdCostArray.size();i++){
+				JSONObject object = (JSONObject)holdCostArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+			    HoldCost e = (HoldCost) JSONToObj(object.toString(), HoldCost.class);
+			    if(e.getId()==0){
+			    	holdCostList2.add(e);//缂栬緫鐨勯」
+			    }
+			    else{
+			    	holdCostList.add(e);//娣诲姞鐨勯」
+			    }
+			}
+
+		for (int i=0;i<holdCostListbefore.size();i++){
+			boolean flag=false;
+			for(int j=0;j<holdCostList.size();j++){
+				if(holdCostListbefore.get(i).getId()==holdCostList.get(j).getId()){
+					flag=true;
+					break;
+				}
+			}
+			if(flag==false){
+				holdCostListdelete.add(holdCostListbefore.get(i));
+			}
+		}
+
+		System.out.println("holdCostList.length():"+holdCostList.size());
+		System.out.println("holdCostList2.length():"+holdCostList2.size());
+		//璐埧绋庤垂
+		String houseTax=req.getParameter("housetaxformlist");
+		JSONArray houseTaxArray = JSONArray.parseArray(houseTax);
+		List<HouseTax> houseTaxList=new ArrayList<HouseTax>();//鐢ㄤ簬缂栬緫
+		List<HouseTax> houseTaxList2=new ArrayList<HouseTax>();//鐢ㄤ簬娣诲姞
+		List<HouseTax> houseTaxListdelete=new ArrayList<HouseTax>();//鐢ㄤ簬娣诲姞
+		for (int i=0;i<houseTaxArray.size();i++){
+					JSONObject object = (JSONObject)houseTaxArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+					HouseTax e = (HouseTax) JSONToObj(object.toString(), HouseTax.class);
+					if(e.getId()==0){
+						 houseTaxList2.add(e);//鐢ㄤ簬娣诲姞
+					}
+					else{
+						 houseTaxList.add(e);//鐢ㄤ簬缂栬緫
+					}
+		}
+		for (int i=0;i<houseTaxListbefore.size();i++){
+			boolean flag=false;
+
+			for(int j=0;j<houseTaxList.size();j++){
+				if(houseTaxListbefore.get(i).getId()==houseTaxList.get(j).getId()){
+					flag=true;
+					break;
+				}
+			}
+			if(flag==false){
+				houseTaxListdelete.add(houseTaxListbefore.get(i));
+			}
+		}
+		System.out.println("houseTaxList.length():"+houseTaxList.size());
+		System.out.println("houseTaxList2.length():"+houseTaxList2.size());
+		//项目关键字
+				String projectkey=req.getParameter("keylist");
+				JSONArray keyArray = JSONArray.parseArray(projectkey);
+				List<ProjectKey> keylist=new ArrayList<ProjectKey>();
+				for (int i=0;i<keyArray.size();i++){
+					 JSONObject object = (JSONObject)keyArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+					 ProjectKey e = (ProjectKey) JSONToObj(object.toString(), ProjectKey.class);
+					 keylist.add(e);
+				}
+				//推荐经纪人 经纪人按项目进行推荐
+				String brokerlist=req.getParameter("brokerlist");
+				JSONArray brokerlistArray = JSONArray.parseArray(brokerlist);
+				int length = brokerlistArray.size() >= 3 ? 3: brokerlistArray.size();
+				
+				List<BrokerInfo> brokerlistList=new ArrayList<BrokerInfo>();
+				List<BrokerInfo> brokerlistList2=new ArrayList<BrokerInfo>();
+				/*List<BrokerInfo> brokerlistListdelete=new ArrayList<BrokerInfo>();*/
+				for (int i = 0; i < length; i++){
+					 JSONObject object = (JSONObject)brokerlistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
+					 BrokerInfo e = (BrokerInfo) JSONToObj(object.toString(), BrokerInfo.class);
+					 if(e.getId()==0){
+						 brokerlistList2.add(e);//用于添加
+					 }else{
+						 brokerlistList.add(e);//用于编辑
+					 }
+					 /*brokerlistList.add(e);*/
+				}
+		/*int isDuplicate=projectInputDao.isDuplicateNum(project_num);
+		if(isDuplicate==1){
+			json.put("isDuplicate", "1");
+		}
+		else{*/
+		//鏇存柊
+	    try {
+			int result=projectInputDao.EditProject(id, projectlist,houseInfolist,houseInfolist2,peitaolist,peitaolist2,imagelist,imagelist2,fujinpeitaoList,fujinpeitaoList2,fujinSchoolList,fujinSchoolList2,holdCostList,holdCostList2,houseTaxList,houseTaxList2,imagelistdelete,peitaolistdelete,fujinpeitaoListdelete,fujinSchoolListdelete,holdCostListdelete,houseTaxListdelete,keylist,brokerlistList2,brokerlistList);
 			System.out.println("result::"+result);
 			if(result==1){
 				json.put("flag", "1");
@@ -1055,7 +1473,12 @@ public class ProjectInfoController {
 		houseTaxListbefore=projectInputDao.getHouseTaxByProNum(pronum);
 		req.setAttribute("houseTaxList",houseTaxList );
 		req.setAttribute("houseTaxListJson", ConvertJson.list2json(houseTaxList));
-		
+		//推荐经纪人    按项目进行推荐
+		List<BrokerInfo> brokerlist=projectInputDao.getBrokerInfoByProNum(pronum);
+		brokerlistbefore=projectInputDao.getBrokerInfoByProNum(pronum);
+		req.setAttribute("brokerlist",brokerlist );
+		req.setAttribute("brokerlistJson", ConvertJson.list2json(brokerlist));
+		//推荐经纪人    按项目进行推荐
 		
 		//寰楀埌寮�鍙戝晢鐨勭紪鍙峰拰鍚嶇О
 		List<String> codeAndNameSet=projectInputDao.getDeveloperCodeName();
