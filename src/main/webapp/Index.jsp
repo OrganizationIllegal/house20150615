@@ -454,9 +454,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<c:forEach var="item" items="${newsList}" varStatus="stat">
 						<div class="f-l main_node" <c:if test="${stat.index != 0}">style="margin-left:30px;"</c:if>>
 							<img src="<%=application.getInitParameter("imagedir")%>/${item.news_image}" class="c-fix f-l main_node_img" style="width:360px;height:225px"></img>
-							<a href="/Detail?id=${item.id}&type=1" style="text-decoration:none" class="c-fix f-l main_node_article f-yahei s-14">
-							<c:if test="${fn:length(item.news_abstract) > 30}">
-								${fn:substring(item.news_abstract, 0, 30)}...</a>
+							<a href="/Detail?id=${item.id}&type=1" style="text-decoration:none;width:360px;" class="c-fix f-l main_node_article f-yahei s-14">
+							<c:if test="${fn:length(item.news_abstract) > 50}">
+								${fn:substring(item.news_abstract, 0, 50)}...</a>
 							</c:if>
 						</div>
 						</c:forEach>

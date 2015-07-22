@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kate.app.dao.AjaxDao;
+import com.kate.app.dao.AreaInputDao;
 import com.kate.app.dao.BrokerInfoDao;
 import com.kate.app.dao.ImageDao;
 import com.kate.app.dao.ProjectInputDao;
@@ -61,6 +62,8 @@ public class ProjectInfoController {
 	private SchoolInfoDao schoolinfodao;
 	@Autowired
 	private BrokerInfoDao brokerInfoDao;
+	@Autowired
+	private AreaInputDao areaInputDao;
 	
 	private List <ProjectPeiTao> projectPeiTaoListbefore;
 	private List<FujinPeiTao> fujinPeitaoListbefore;
@@ -81,8 +84,18 @@ public class ProjectInfoController {
 		//寰楀埌鎵�鏈夊鏍＄殑鍚嶇О
 		List<String> schoolList=projectInputDao.getAllSchoolName();
 		req.setAttribute("schoolList", schoolList);
-		return "/ProjectInput.jsp";
+		//不包含推荐经纪人的ProjectInput.jsp
+		//return "/ProjectInput.jsp";
+		//包含推荐经纪人的ProjectInputBroker.jsp
+		getBrokerName(req,resp);
+		return "/ProjectInputBroker.jsp";
 	}
+	//寰楀埌缁忕邯浜虹殑濮撳悕
+		@RequestMapping({"/ProjectInput/Broker"})
+		public void getBrokerName(HttpServletRequest req,HttpServletResponse resp){
+			List<BrokerInfo> brokerSet=areaInputDao.getBrokers();
+			req.setAttribute("brokerSet", brokerSet);
+		}
 	//瀛︽牎鍒楄〃
 	@RequestMapping({ "/SchoolInfoList" })    
 	public void selectSchoolList(HttpServletRequest req, HttpServletResponse resp){
@@ -988,7 +1001,7 @@ public class ProjectInfoController {
 		}
 	   // }
 		 try{
-				writeJson(json.toJSONString(),resp);
+				writeJson(json.toJSONString(),resp); 
 			}catch(Exception e){
 				e.printStackTrace();
 			}
@@ -1528,7 +1541,17 @@ public class ProjectInfoController {
 		//根据项目编号获取项目关键字
 		ProjectKey key=projectInputDao.getKeyByNum(pronum);
 		req.setAttribute("key", key);
-		return "/ProjectInfo.jsp";
+		//不包含推荐经纪人的返回页
+		//return "/ProjectInfo.jsp";
+		
+		//包含推荐经纪人的代码如下
+		getBrokerName1(req,resp);
+		return "/ProjectInfoBroker.jsp";
+	}
+	@RequestMapping({"/selectProject/Broker"})
+	public void getBrokerName1(HttpServletRequest req,HttpServletResponse resp){
+		List<BrokerInfo> brokerSet=areaInputDao.getBrokers();
+		req.setAttribute("brokerSet", brokerSet);
 	}
 	//鏍规嵁id鍙栧鏍′俊鎭�
 	@RequestMapping({ "/selectSchoolInfo" })
