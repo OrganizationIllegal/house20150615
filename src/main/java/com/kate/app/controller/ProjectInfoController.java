@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kate.app.dao.AjaxDao;
+import com.kate.app.dao.AreaInputDao;
 import com.kate.app.dao.BrokerInfoDao;
 import com.kate.app.dao.ImageDao;
 import com.kate.app.dao.ProjectInputDao;
@@ -28,6 +29,7 @@ import com.kate.app.dao.SchoolInfoDao;
 import com.kate.app.dao.SchoolNearDao;
 import com.kate.app.dao.ZhiYeDao;
 import com.kate.app.model.Broker;
+import com.kate.app.model.BrokerInfo;
 import com.kate.app.model.BrokerType;
 import com.kate.app.model.DeveloperInfo;
 import com.kate.app.model.FujinPeiTao;
@@ -60,6 +62,8 @@ public class ProjectInfoController {
 	private SchoolInfoDao schoolinfodao;
 	@Autowired
 	private BrokerInfoDao brokerInfoDao;
+	@Autowired
+	private AreaInputDao areaInputDao;
 	
 	private List <ProjectPeiTao> projectPeiTaoListbefore;
 	private List<FujinPeiTao> fujinPeitaoListbefore;
@@ -78,8 +82,18 @@ public class ProjectInfoController {
 		//寰楀埌鎵�鏈夊鏍＄殑鍚嶇О
 		List<String> schoolList=projectInputDao.getAllSchoolName();
 		req.setAttribute("schoolList", schoolList);
-		return "/ProjectInput.jsp";
+		//不包含推荐经纪人的ProjectInput.jsp
+		//return "/ProjectInput.jsp";
+		//包含推荐经纪人的ProjectInputBroker.jsp
+		getBrokerName(req,resp);
+		return "/ProjectInputBroker.jsp";
 	}
+	//寰楀埌缁忕邯浜虹殑濮撳悕
+		@RequestMapping({"/ProjectInput/Broker"})
+		public void getBrokerName(HttpServletRequest req,HttpServletResponse resp){
+			List<BrokerInfo> brokerSet=areaInputDao.getBrokers();
+			req.setAttribute("brokerSet", brokerSet);
+		}
 	//瀛︽牎鍒楄〃
 	@RequestMapping({ "/SchoolInfoList" })    
 	public void selectSchoolList(HttpServletRequest req, HttpServletResponse resp){

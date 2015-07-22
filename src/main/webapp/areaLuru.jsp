@@ -1534,41 +1534,17 @@ $(function(){
 					  $('#brokerlist').append("<div><div class='area_left3'><span style='display:none;'>"+(++brokercount)+"</span><span class='area_span'>"+brokerlist[brokercount-1].broker_name+"</span><span class='area_span'>"+brokerlist[brokercount-1].broker_type+"</span><span class='area_span'>"+brokerlist[brokercount-1].broker_language+"</span><span class='area_span'>"+brokerlist[brokercount-1].broker_region+"</span></div><div class='area_right3'><span class='area_span5'><a href='#' class='deletebroker'>删除</a></span></div></div>");
 					  }
 				});
-			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
-			/* peitao.shunxu=peitaocount+1; */
-			/* peitao.view= */
-			/* alert($("#huxingjiage").serializeArray()); */
-			/* huxing.housename=$("#housename").val();
-			huxing.houseprice=$("#houseprice").val();
-			huxing.room_num=$("#room_num").val();
-			huxing.tudi_mianji=$("#tudi_mianji").val();
-			huxing.jianzhu_mianji=$("#jianzhu_mianji").val();
-			huxing.shinei_mianji=$("#") */
-			/* brokerlist.push(broker); */
-			/* $("#brokerlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++brokercount)+"</span><span style='padding-right:10px;'>"+brokerlist[brokercount-1].houseTaxtype+"</span><span style='padding-right:10px;'>"+brokerlist[brokercount-1].houseTaxprice+"</span><span style='padding-right:10px;'>"+brokerlist[brokercount-1].houseTaxdesc+"</span><span style='padding-right:10px;'>"+brokerlist[brokercount-1].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>"); */
-			/* $('#brokerlist').append("<div><div class='area_left3'><span style='display:none;'>"+(++brokercount)+"</span><span class='area_span'>"+brokerlist[brokercount-1].column1+"</span><span class='area_span'>"+brokerlist[brokercount-1].column2+"</span><span class='area_span'>"+brokerlist[brokercount-1].column3+"</span><span class='area_span'>"+brokerlist[brokercount-1].view_shunxu_broker+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editbroker'>编辑</a></span><span class='area_span5'><a href='#' class='deletebroker'>删除</a></span></div></div>"); */
-			/* UpladFile("houseimg"); */
+			
 			$("#broker input").each(function(){
 				$(this).val("");
 				});
-			/* $("#huxingjiage").reset();  */
-			/* <a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a> */
+			
 			}
 		else{
-			/* if($('#houseimg').val()==""){
-				alert("请选择文件！");
-				return false;} */
-			//alert("edit");
-			/* var huxing={}; */
-			/* var filenames=$('#houseimg').val().split("\\");
-			var filename=filenames[filenames.length-1]; */
+			
 			brokeredititem=DataDeal.formToJson(data= decodeURIComponent($("#broker").serialize(),true));
 			 brokeredititem=brokeredititem.replace(/\+/g," "); 
 			 brokeredititem=eval("("+brokeredititem+")");
-			/* brokeredititem["houseimg"]=filename; */
-			/* var filenames=$('#projectimage').val().split("\\");
-			var filename=filenames[filenames.length-1]; */
-			/* UpladFile("houseimg"); */
 			$("#broker input").each(function(){
 				$(this).val("");
 				});
@@ -1578,8 +1554,7 @@ $(function(){
 			$("#brokerlist").children().eq(brokeredit).html("<div class='area_left3'><span style='display:none;'>"+(brokeredit+1)+"</span><span class='area_span'>"+brokerlist[brokeredit].column1+"</span><span class='area_span'>"+brokerlist[brokeredit].column2+"</span><span class='area_span'>"+brokerlist[brokeredit].column3+"</span><span class='area_span'>"+brokerlist[brokeredit].view_shunxu_broker+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editbroker'>编辑</a></span><span class='area_span5'><a href='#' class='deletebroker'>删除</a></span></div>").show();
 
 			brokeredit=100;
-			//$("#peitaolist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++peitaocount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
-			/*peitao.view= */
+			
 			
 			}
 		});
