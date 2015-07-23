@@ -274,9 +274,9 @@ body{
 <div class="area_left">
 <span class="area_span">项目完成时间</span>
 <span>
-<c:if test="${empty houseProject.project_finish_time }"> <input type="text" id="finish_time" name="finish_time" class="area_input"  value="待定"></c:if>
-<c:if test="${not empty houseProject.project_finish_time}"><input type="text" id="finish_time" name="finish_time" class="area_input"  value="${houseProject.project_finish_time.length()>7?houseProject.project_finish_time.toString().substring(0,7):Invest.touzi_date.toString()}"></c:if>
-
+<%-- <c:if test="${empty houseProject.project_finish_time }"> <input type="text" id="finish_time" name="finish_time" class="area_input"  value="待定"></c:if>
+<c:if test="${not empty houseProject.project_finish_time}"><input type="text" id="finish_time" name="finish_time" class="area_input"  value="${houseProject.project_finish_time.length()>7?houseProject.project_finish_time.toString().substring(0,7):Invest.touzi_date.toString()}"></c:if> --%>
+<input type="text" id="finish_time" name="finish_time" class="area_input"  value="${houseProject.project_finish_time}">
 </span>
 </div>
 <div class="area_right">
@@ -787,9 +787,9 @@ body{
 <script type="text/javascript">
 $("#finish_time").datepicker({
     language: "zh-CN",
-    format: "yyyy-mm-dd"/* ,
+    format: "yyyy-mm" ,
     startView: 1,
-    minViewMode: 1 */
+    minViewMode: 1 
 });
 $('#danjia').blur(function() {
 	if(isNaN($('#danjia').val())){

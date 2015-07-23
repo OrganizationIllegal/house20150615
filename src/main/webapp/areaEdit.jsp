@@ -1421,7 +1421,7 @@ $(function(){
 			}
 		});
 	$("#zujintrendlist").on("click",".deletezujintrend",function(){
-		zujintrendlist.splice($(this).parent().parent().prevAll().length,1);
+		zujintrendlist.splice($(this).parent().parent().parent().prevAll().length,1);
 		$(this).parent().parent().parent().remove();
 		zujintrendcount--;
 		});
@@ -1525,7 +1525,7 @@ $(function(){
 			}
 		});
 	$("#huibaotrendlist").on("click",".deletehuibaotrend",function(){
-		huibaotrendlist.splice($(this).parent().parent().prevAll().length,1);
+		huibaotrendlist.splice($(this).parent().parent().parent().prevAll().length,1);
 		$(this).parent().parent().parent().remove();
 		huibaotrendcount--;
 		});

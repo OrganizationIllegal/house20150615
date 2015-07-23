@@ -1437,6 +1437,7 @@ public class ProjectInputDao extends BaseDao {
 			     } 
 
         }
+		
 		return houseProject;
 	} 
 	//上架项目
@@ -2541,7 +2542,7 @@ public class ProjectInputDao extends BaseDao {
 				int result1 = pstmt.executeUpdate();
 				System.out.println("result1:"+result1);
 			     //鎴峰瀷鍙婁环鏍�
-				 String sql2="insert into house_info(house_name,house_img,house_price,house_room_num,tudi_area,jianzhu_area,house_size_in,house_size_out,house_toilet_size,project_num) values(?,?,?,?,?,?,?,?,?,?) ";
+				 String sql2="insert into house_info(house_name,house_img,house_price,house_room_num,tudi_area,jianzhu_area,house_size_in,house_size_out,house_toilet_num,project_num) values(?,?,?,?,?,?,?,?,?,?) ";
 		         pstmt = con.prepareStatement(sql2);
 		        for(int i=0;i<houseInfolist.size();i++){
 		        	HouseInfo1 houseinfo=houseInfolist.get(i);
@@ -2869,7 +2870,7 @@ public class ProjectInputDao extends BaseDao {
 				int result1 = pstmt.executeUpdate();
 				System.out.println("result1:"+result1);
 			     //鎴峰瀷鍙婁环鏍�
-				 String sql2="insert into house_info(house_name,house_img,house_price,house_room_num,tudi_area,jianzhu_area,house_size_in,house_size_out,house_toilet_size,project_num) values(?,?,?,?,?,?,?,?,?,?) ";
+				 String sql2="insert into house_info(house_name,house_img,house_price,house_room_num,tudi_area,jianzhu_area,house_size_in,house_size_out,house_toilet_num,project_num) values(?,?,?,?,?,?,?,?,?,?) ";
 		         pstmt = con.prepareStatement(sql2);
 		        for(int i=0;i<houseInfolist.size();i++){
 		        	HouseInfo1 houseinfo=houseInfolist.get(i);
@@ -3230,7 +3231,7 @@ public class ProjectInputDao extends BaseDao {
 				int result1 = pstmt.executeUpdate();
 				System.out.println("result1:"+result1);
 				//鎴峰瀷鍙婁环鏍兼洿鏂�
-				String sql2="update house_info set house_name=?,house_img=?,house_price=?,house_room_num=?,tudi_area=?,jianzhu_area=?,house_size_in=?,house_size_out=?,house_toilet_size=? ,project_num=? where id=?";
+				String sql2="update house_info set house_name=?,house_img=?,house_price=?,house_room_num=?,tudi_area=?,jianzhu_area=?,house_size_in=?,house_size_out=?,house_toilet_num=? ,project_num=? where id=?";
 		        pstmt = con.prepareStatement(sql2);
 		        for(int i=0;i<houseInfolist.size();i++){
 		        	HouseInfo1 houseinfo=houseInfolist.get(i);
@@ -3263,7 +3264,7 @@ public class ProjectInputDao extends BaseDao {
 					System.out.println("result2list"+i+":"+result2list[i]);
 				}
 				//鎴峰瀷鍙婁环鏍兼坊鍔�
-				String sql22="insert into house_info(house_name,house_img,house_price,house_room_num,tudi_area,jianzhu_area,house_size_in,house_size_out,house_toilet_size,project_num) values(?,?,?,?,?,?,?,?,?,?) ";
+				String sql22="insert into house_info(house_name,house_img,house_price,house_room_num,tudi_area,jianzhu_area,house_size_in,house_size_out,house_toilet_num,project_num) values(?,?,?,?,?,?,?,?,?,?) ";
 		        pstmt = con.prepareStatement(sql22);
 		        for(int i=0;i<houseInfolist2.size();i++){
 		        	HouseInfo1 houseinfo=houseInfolist2.get(i);
@@ -3828,7 +3829,7 @@ public class ProjectInputDao extends BaseDao {
 					System.out.println("result2list"+i+":"+result2list[i]);
 				}
 				//鎴峰瀷鍙婁环鏍兼坊鍔�
-				String sql22="insert into house_info(house_name,house_img,house_price,house_room_num,tudi_area,jianzhu_area,house_size_in,house_size_out,house_toilet_size,project_num) values(?,?,?,?,?,?,?,?,?,?) ";
+				String sql22="insert into house_info(house_name,house_img,house_price,house_room_num,tudi_area,jianzhu_area,house_size_in,house_size_out,house_toilet_num,project_num) values(?,?,?,?,?,?,?,?,?,?) ";
 		        pstmt = con.prepareStatement(sql22);
 		        for(int i=0;i<houseInfolist2.size();i++){
 		        	HouseInfo1 houseinfo=houseInfolist2.get(i);
@@ -4345,7 +4346,7 @@ public class ProjectInputDao extends BaseDao {
 		public int addPro(String project_name, String project_img, String project_nation, String project_address, String project_area, String project_price_qi, String project_type, int project_sales_remain, String project_finish_time, String project_desc, String project_city, String project_house_type, String project_high, String project_price, String project_lan_cn, String project_lan_en, String project_num, String project_vedio, String project_zhou, String area_qujian, String gps, String return_money, int walk_num, String mianji, String project_min_price, String project_high_price, int tuijiandu, String housePrice_update_time, String buytaxInfo, String holdInfo, int min_area, int max_area, String area_num, String developer_num,
 				
 				String peitao_type,String peitao_name,String peitao_distance,
-				 String house_name,String house_img,String house_price,int house_room_num,String tudi_area,String jianzhu_area,String house_size_in,String house_size_out,int house_toilet_size,
+				 String house_name,String house_img,String house_price,int house_room_num,String tudi_area,String jianzhu_area,String house_size_in,String house_size_out,int house_toilet_num,
 				 String image_name,
 				 String school_name,String school_distance,
 				 String hold_type,int hold_price,String hold_description,String hold_housename,
@@ -4424,7 +4425,7 @@ public class ProjectInputDao extends BaseDao {
 				int result1 = pstmt.executeUpdate();
 				System.out.println("result1:"+result1);
 				//鎴峰瀷鍙婁环鏍兼坊鍔�
-				String sql2="insert into house_info(house_name,house_img,house_price,house_room_num,tudi_area,jianzhu_area,house_size_in,house_size_out,house_toilet_size,project_num) values (?,?,?,?,?,?,?,?,?,?)";
+				String sql2="insert into house_info(house_name,house_img,house_price,house_room_num,tudi_area,jianzhu_area,house_size_in,house_size_out,house_toilet_num,project_num) values (?,?,?,?,?,?,?,?,?,?)";
 				pstmt = con.prepareStatement(sql2);
 				pstmt.setString(1, house_name);
 				pstmt.setString(2, house_img);
@@ -4434,7 +4435,7 @@ public class ProjectInputDao extends BaseDao {
 				pstmt.setString(6, jianzhu_area);
 				pstmt.setString(7, house_size_in);
 				pstmt.setString(8, house_size_out);
-				pstmt.setInt(9, house_toilet_size);
+				pstmt.setInt(9, house_toilet_num);
 				pstmt.setString(10, project_num);
 				int result2 = pstmt.executeUpdate();
 				System.out.println("result2:"+result2);
