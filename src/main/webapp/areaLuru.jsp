@@ -80,8 +80,8 @@ body{
 <div class="area_left">
 <span class="area_span">城市名称</span>
 <span>
-<!-- <input type="text" id="area_city" name="area_city" class="area_input"> -->
-<select data-placeholder="请选择..." class="chosen-select" id="area_city" name="area_city" style="width:220px;" tabindex="4">
+<input type="text" id="area_city" name="area_city" class="area_input">
+<!-- <select data-placeholder="请选择..." class="chosen-select" id="area_city" name="area_city" style="width:220px;" tabindex="4">
  	 <option value=""></option>
   	 <option value="Sydney 悉尼">Sydney 悉尼</option>
      <option value="Melbourne 墨尔本">Melbourne 墨尔本</option>
@@ -90,7 +90,7 @@ body{
      <option value="Canberra 堪培拉">Canberra 堪培拉</option>
      <option value="Adelaide 阿德莱得">Adelaide 阿德莱得</option>
      <option value="Cairns 凯恩斯">Cairns 凯恩斯</option>
- </select>
+ </select> -->
 </span>
 </div>
 
@@ -969,6 +969,7 @@ $(function(){
 		//$("#projectimage").val(edititem.name+"");
 		//alert(index+"index");
 		middlepriceedit=index;
+		
 		var selectCount = document.getElementById("project_type");
 		for(var i = 0 ; i<selectCount.length;i++){
 			if(selectCount.options[i].value==middlepriceedititem.project_type){			
@@ -976,7 +977,65 @@ $(function(){
 			}
 		}
 		$('#project_type').trigger('chosen:updated');
-		$("#project_type").val(middlepriceedititem.project_type);
+		 $("#project_type").val(middlepriceedititem.project_type); 
+		$("#buy_price").val(middlepriceedititem.buy_price);
+		$("#zu_price").val(middlepriceedititem.zu_price);
+		var selectCount = document.getElementById("buy_one_name");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==middlepriceedititem.buy_one_name){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#buy_one_name').trigger('chosen:updated');
+		$("#buy_one_name").val(middlepriceedititem.buy_one_name);
+		$("#buy_one_price").val(middlepriceedititem.buy_one_price);
+		var selectCount = document.getElementById("buy_two_name");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==middlepriceedititem.buy_two_name){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#buy_two_name').trigger('chosen:updated');
+		$("#buy_two_name").val(middlepriceedititem.buy_two_name);
+		$("#buy_two_price").val(middlepriceedititem.buy_two_price);
+		var selectCount = document.getElementById("buy_three_name");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==middlepriceedititem.buy_three_name){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#buy_three_name').trigger('chosen:updated');
+		$("#buy_three_name").val(middlepriceedititem.buy_three_name);
+		$("#buy_three_price").val(middlepriceedititem.buy_three_price);
+		var selectCount = document.getElementById("zu_one_name");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==middlepriceedititem.zu_one_name){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#zu_one_name').trigger('chosen:updated');
+		$("#zu_one_name").val(middlepriceedititem.zu_one_name);
+		$("#zu_one_price").val(middlepriceedititem.zu_one_price);
+		var selectCount = document.getElementById("zu_two_name");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==middlepriceedititem.zu_two_name){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#zu_two_name').trigger('chosen:updated');
+		$("#zu_two_name").val(middlepriceedititem.zu_tow_name);
+		$("#zu_two_price").val(middlepriceedititem.zu_two_price);
+		var selectCount = document.getElementById("zu_three_name");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==middlepriceedititem.zu_three_name){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#zu_three_name').trigger('chosen:updated');
+		$("#zu_three_name").val(middlepriceedititem.zu_three_name);
+		
+		
+		/* $("#project_type").val(middlepriceedititem.project_type);
 		$("#buy_price").val(middlepriceedititem.buy_price);
 		$("#zu_price").val(middlepriceedititem.zu_price);
 		$("#buy_one_name").val(middlepriceedititem.buy_one_name);
@@ -990,7 +1049,7 @@ $(function(){
 		$("#zu_two_name").val(middlepriceedititem.zu_two_name);
 		$("#zu_two_price").val(middlepriceedititem.zu_two_price);
 		$("#zu_three_name").val(middlepriceedititem.zu_three_name);
-		$("#zu_three_price").val(middlepriceedititem.zu_three_price);
+		$("#zu_three_price").val(middlepriceedititem.zu_three_price); */
 		$("#middle_datasource").val(middlepriceedititem.middle_datasource);
 		$("#middle_date").val(middlepriceedititem.middle_date);
 		}); 

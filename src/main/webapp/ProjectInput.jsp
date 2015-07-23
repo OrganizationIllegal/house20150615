@@ -478,6 +478,12 @@ body{
 </div>
 </div>
 <script type="text/javascript">
+$("#finish_time").datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm",
+    startView: 1,
+    minViewMode: 1
+});
 $('#danjia').blur(function() {
 	if(isNaN($('#danjia').val())){
 		alert("请输入数字！");

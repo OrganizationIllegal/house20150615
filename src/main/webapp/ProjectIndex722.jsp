@@ -38,10 +38,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <!-- <link href="./bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet"> -->
 <!-- <link href="/css/pgwslider.min.css" rel="stylesheet"> -->
 <link href="/css/video-js.css" rel="stylesheet" type="text/css">
-<!-- <script type="text/javascript" src="js/script.js"></script> -->
+<script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript" src="js/script_p.js"></script>
 <script src="js/video.js"></script>
-<script type="text/javascript" src="http://player.youku.com/jsapi"></script>
 <script>videojs.options.flash.swf = "/js/video-js.swf";</script>
 		<style type="text/css">
 			.active a{
@@ -88,157 +87,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 		</style>
 <script type="text/javascript">
-function lunbo(){
-	var animate_time=200;//锟斤拷锟斤拷时锟戒：0.3锟斤拷
-	var interval_time=5000;//锟斤拷锟脚硷拷锟绞憋拷洌�锟斤拷
-	var ad_size=jQuery(".ad_position .limit .ad_small_box ul li").size()-1;//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
-	var ad_huandeng_click_i = 0;//锟斤拷始锟斤拷
-	
-	//循锟斤拷锟斤拷锟斤拷
-	function ad_huandeng_play(){
-		
-		ad_huandeng_click_i++;
-
-		if(ad_huandeng_click_i<=ad_size)
-			{jQuery(".ad_small_box ul li").eq(ad_huandeng_click_i).trigger("dblclick");}
-		else
-			{jQuery(".ad_small_box ul li").eq(0).trigger("dblclick");ad_huandeng_click_i = 0}
-	}
-	//锟斤拷锟斤拷循锟斤拷时锟戒，锟皆讹拷锟斤拷始循锟斤拷
-	var ad_huandeng_setInterval = setInterval(ad_huandeng_play,interval_time);
-	
-	//锟斤拷停锟斤拷锟斤拷锟斤拷锟绞憋拷锟斤拷锟酵Ｖ�
-	jQuery(".ad_position").hover(function(){clearInterval(ad_huandeng_setInterval);}, function(){ad_huandeng_setInterval = setInterval(ad_huandeng_play,interval_time);});
-	//小图锟斤拷锟绞憋拷锟斤拷锟绞硷拷锟斤拷锟�
-	jQuery(".ad_position .limit .ad_small_box ul li").dblclick(function(){
-		ad_huandeng_click_i=jQuery(".ad_position .limit .ad_small_box ul li").index(jQuery(this));		
-		jQuery(".ad_position .limit .ad_left_big").animate({"margin-top":ad_huandeng_click_i*-474},{duration:animate_time,queue:false});//锟斤拷图锟斤拷锟斤拷
-		if(ad_huandeng_click_i<ad_size)//锟斤拷小图锟斤拷锟斤拷锟斤拷锟斤拷锟绞撅拷锟斤拷锟绞憋拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
-			{
-				if(ad_huandeng_click_i==0||ad_huandeng_click_i==1)
-					{jQuery(".ad_position .limit .ad_small_box ul").animate({"margin-top":"0px"},{duration:animate_time,queue:false});}
-				else
-					{
-						jQuery(".ad_position .limit .ad_small_box ul").animate({"margin-top":(ad_huandeng_click_i-1)*-138},{duration:animate_time,queue:false});
-					}
-			}		
-		if(ad_huandeng_click_i==0)//锟斤拷始锟叫讹拷指示锟斤拷图片锟斤拷位锟斤拷
-			{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","0px");}
-		else if(ad_huandeng_click_i==ad_size)
-			{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","288px");}
-		else
-			{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","144px");}
-		//jQuery(".ad_position .limit .ad_small_box ul li").css("opacity","0.5");
-		//jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).css("opacity","1");
-		//锟叫讹拷锟斤拷锟铰帮拷钮锟角凤拷傻锟斤拷
-		if(ad_huandeng_click_i==0)
-			{
-				jQuery(".ad_small_box .top_button").addClass("off");
-//				jQuery(".ad_small_box .bottom_button").removeClass("off");
-			}
-		else if(ad_huandeng_click_i==ad_size)
-			{
-//				jQuery(".ad_small_box .top_button").removeClass("off");
-				jQuery(".ad_small_box .bottom_button").addClass("off");
-			}
-		else 
-			{
-//				jQuery(".ad_small_box .top_button").removeClass("off");
-//				jQuery(".ad_small_box .bottom_button").removeClass("off");
-			}
-	});
-	
-	//锟斤拷锟斤拷锟叫⊥硷拷锟斤拷锟酵Ｊ憋拷锟斤拷锟斤拷锟狡讹拷
-	jQuery(".ad_position .limit .ad_small_box ul li").mouseover(function(){		
-		var small_ad_hover_i = jQuery(".ad_position .limit .ad_small_box ul li").index(jQuery(this));
-		var this_ad_top=jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top");
-		this_ad_top=parseInt(this_ad_top);
-		jQuery(".ad_position .limit .ad_left_big").animate({"margin-top":small_ad_hover_i*-474},{duration:animate_time,queue:false});if(small_ad_hover_i!=ad_huandeng_click_i);
-		if(small_ad_hover_i==0)
-			{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","3px");}
-		else if(small_ad_hover_i<ad_huandeng_click_i)
-			{
-				if(ad_huandeng_click_i-small_ad_hover_i==1)
-					{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top-144);}
-				else
-					{{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top-288);}}
-			}
-		else if(small_ad_hover_i>ad_huandeng_click_i)
-			{
-				if(small_ad_hover_i-ad_huandeng_click_i==1)
-					{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top+144);}
-				else
-					{{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top+288);}}
-			}
-		ad_huandeng_click_i=small_ad_hover_i;
-		//锟叫讹拷锟斤拷锟铰帮拷钮锟角凤拷傻锟斤拷
-		if(ad_huandeng_click_i==0)
-			{
-				jQuery(".ad_small_box .top_button").addClass("off");
-//				jQuery(".ad_small_box .bottom_button").removeClass("off");
-			}
-		else if(ad_huandeng_click_i==ad_size)
-			{
-//				jQuery(".ad_small_box .top_button").removeClass("off");
-				jQuery(".ad_small_box .bottom_button").addClass("off");
-			}
-		else
-			{
-//				jQuery(".ad_small_box .top_button").removeClass("off");
-//				jQuery(".ad_small_box .bottom_button").removeClass("off");
-			}
-		//jQuery(".ad_position .limit .ad_small_box ul li").css("opacity","0.5");
-		//jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).css("opacity","1");
-	});	
-	
-	//锟斤拷锟斤拷锟斤拷习锟脚ナ�
-	jQuery(".ad_small_box .top_button").click(function(){
-		ad_huandeng_click_i=ad_huandeng_click_i-1;
-		if(ad_huandeng_click_i<0)
-			{ad_huandeng_click_i=0;}		
-		jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).trigger("mouseover");
-	});
-	//锟斤拷锟斤拷锟斤拷掳锟脚ナ�
-	jQuery(".ad_small_box .bottom_button").click(function(){
-		ad_huandeng_click_i=ad_huandeng_click_i+1;
-		if(ad_huandeng_click_i>=ad_size)
-			{
-				ad_huandeng_click_i=ad_size;
-				jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).trigger("dblclick");
-				jQuery(".ad_position .limit .ad_small_box ul").animate({"margin-top":(ad_huandeng_click_i-2)*-138},{duration:animate_time,queue:false});
-			}
-		
-		jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).trigger("mouseover");
-	});
-}
-$(function(){
-	player = new YKU.Player('youkuplayer',{
-		styleid: '0',
-		client_id: '6e97509b4cd3378b',
-		vid: 'XOTUxNDk2NDQ0',
-		events:{
-		/* onPlayerReady: function(){ 
-			alert("zhunbei");
-		}, */
-		onPlayStart: function(){
-			playVideo();
-		},
-		onPlayEnd: function(){ lunbo(); }
-		}
-		});
-		function playVideo(){
-		player.playVideo();
-			alert("kaishi");
-		}
-		function pauseVideo(){
-		player.pauseVideo();
-			alert("zanting")
-		}
-	/* lunbo(); */
-	
-	//锟矫碉拷片锟斤拷娌ワ拷锟�
-});
-
 var imgdir="<%=application.getInitParameter("imagedir")%>";
 function compute(){
 var a=$('#select1').find("option:selected").val();
@@ -290,10 +138,24 @@ function popInfo(){
 		
 	</head>
 	<body onload="getIndexMap();" style="background:rgb(232, 233, 234);">
-	<% int Control = 0; %>
-	
-	
 		<jsp:include page="head4index.jsp" />
+		<!-- <div class="c-fix f-l main_header">
+			<div class="c-fix f-l main_header_div">
+				<img src="images/logo.jpg" class="c-fix f-l main_logo"></img>
+				<a class="f-l f-yahei s-14 main_nav cp fw main_nav_sel">首页</a>
+				<a class="f-l f-yahei s-14 main_nav cp fw">海外购房</a>
+				<a class="f-l f-yahei s-14 main_nav cp fw">服务团队</a>
+				<a class="f-l f-yahei s-14 main_nav cp fw">置业指导</a>
+				<a class="f-l f-yahei s-14 main_nav cp fw">海外新闻</a>
+				<a class="f-l f-yahei s-14 main_nav cp fw">关于我们</a>
+				<a class="f-r s-14 f-yahei main_login fw cp">登录</a>
+				<a class="f-r s-14 f-yahei main_sep fw cp">/</a>
+				<a class="f-r s-14 f-yahei main_reg fw cp">注册</a>
+				<div class="f-r nav_icon2"></div>
+				<a class="f-r s-14 f-arial fw main_phone">400 810 9685</a>
+				<div class="f-r nav_icon1"></div>
+			</div>	
+		</div> -->
 		<div class="c-fix f-l bkg" style="background-image:url(images/header_bkg.jpg)">
 			<img src="images/header.jpg" class="c-fix f-l p_header"></img>
 		</div>
@@ -311,6 +173,36 @@ function popInfo(){
 				<a href="#loc_tz" class="f-l p_nav_btn f-yahei s-14 cp">投资分析</a>
 			</div>
 		</div>
+		
+		
+				
+<!-- 		 <div class="succesny">
+            <div class="control">
+                <ul class="change">
+                </ul>
+            </div>
+            <div class="thumbWrap">
+                <div class="thumbCont">
+                    <ul>
+                        img属性, url=url, text=描述, bigimg=大图, alt=标题 
+                       <li>
+                            <div><img src="images/s1.jpg" url="url" bigImg="images/1.jpg" alt="标题1"></div>
+                        </li>
+                        <li>
+                            <div><img src="images/s2.jpg" url="url"  bigImg="images/2.jpg" alt="标题2"></div>
+                        </li>
+                        <li>
+                            <div><img src="images/s3.jpg" url="url"  bigImg="images/3.jpg" alt="标题3"></div>
+                        </li>
+                        <li>
+                            <div><img src="images/s4.jpg" url="url"  bigImg="images/4.jpg" alt="标题4"></div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div> -->
+        
         
  		<div class="c-fix f-l bkg2" style="height: 477px;">
 			<div class="c-fix p_intro">
@@ -325,7 +217,7 @@ function popInfo(){
 
         <div class="limit" style="height:474px;width:1100px;margin-left:-40px;">
             <div style="float:left;width:750px;display:inline;">
-				<input type="hidden" id="Control" value='0'>
+
                 <table class="ad_left_big" width="750" border="0" cellpadding="0" cellspacing="0" style="margin-top: 0px;">
                      <tr><td><div id="youkuplayer" style="width:750px;height:474px"></div>
                     </td>
@@ -335,7 +227,13 @@ function popInfo(){
                     	<tr><td><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="750" height="474" /></a></td></tr>
                     </c:if>
                     </c:forEach>
-                 </table>
+                   <%-- <c:forEach var="item"  items="${vedioList}"   varStatus="status">
+                   <c:if test="${status.index<3 }"> --%>
+                   	
+                     <%-- </c:if>
+                   </c:forEach> --%>
+                   
+                </table>
             </div>
 
             <div class="ad_small_box" style="width:224px;height:474px;margin-left:20px;">
@@ -620,7 +518,7 @@ function popInfo(){
 							<a class="c-fix f-l p_school_lab f-yahei s-14">${item.market_type}</a>	
 							<a class="f-r p_school_lab f-yahei s-14" style="margin-right:20px;">${item.market_name}</a>	
 						</div>
-						<a class="c-fix f-r p_school_distance f-yahei s-14" style="margin-right:20px;">${item.market_distance}米</a>	
+						<a class="c-fix f-r p_school_distance f-yahei s-14" style="margin-right:20px;">${item.market_distance}</a>	
 					</div>
 				</c:forEach>
 					
@@ -1432,44 +1330,9 @@ function popInfo(){
 </div>
 </div>
 <!-- 项目位置模态框end -->
-<input type="hidden" id="Control" value='0'>
-	</body>
-	<script>
-	
-	 var t = document.getElementById("Control").value();
-	 alert(t);
-	</script>
-	
-	 <script type="text/javascript" src="http://player.youku.com/jsapi">
-		flag=0;
-		player = new YKU.Player('youkuplayer',{
-			styleid: '0',
-			client_id: '6e97509b4cd3378b',
-			vid: 'XOTUxNDk2NDQ0',
-			events:{
-				onPlayerReady: function(document){
-					alert(flag);
-					alert("kaishi") ;
-					alert("zhunbei");
-                    alert(t+"aaaaaaaaaaaaaaaaaaaaaaaaaa");
-					alert("kaishi") ;
-					alert("zhunbei") },
-			onPlayStart: function(){ alert("kaishi");alert("flag"+flag); },
-			onPlayEnd: function(){ alert("jieshu") }
-			}
-			});
-			function playVideo(){
-			player.playVideo();
-				alert("kaishi");
-			}
-			function pauseVideo(){
-			player.pauseVideo();
-				alert("zanting")
-			}
-	</script>
-		
-</html>
 
+	</body>
+</html>
 <script type="text/javascript">
 /*   var qimoney=$("#qimoney").val();
   var value=$.formatNumber(qimoney,{format:"#,###", locale:"cn"});
@@ -1505,24 +1368,16 @@ function popInfo(){
 	});
 	
  </script>
- <!-- <script type="text/javascript" src="http://player.youku.com/jsapi"></script>
-<script type="text/javascript">
-$(function () {
-var t =$("#Control").val();
-var flag=0;
+ <script type="text/javascript" src="http://player.youku.com/jsapi">
+
 		player = new YKU.Player('youkuplayer',{
 			styleid: '0',
 			client_id: '6e97509b4cd3378b',
 			vid: 'XOTUxNDk2NDQ0',
 			events:{
-			onPlayerReady: function(){ 
-				ad_huandeng_click_i==0;
-				alert(flag);
-			},
-			onPlayStart: function(){
-				playVideo();
-			}
-			//onPlayEnd: function(){ alert("jieshu") }
+				onPlayerReady: function(){ alert("zhunbei") },
+			onPlayStart: function(){ alert("kaishi") },
+			onPlayEnd: function(){ alert("jieshu") }
 			}
 			});
 			function playVideo(){
@@ -1533,146 +1388,4 @@ var flag=0;
 			player.pauseVideo();
 				alert("zanting")
 			}
-});
-			</script>		 -->				
- 
- <!-- <script type="text/javascript">
- $(function(){
-	 var temp = $("#Control").val();
-	 alert(temp+"ffff")
-	var animate_time=200;//锟斤拷锟斤拷时锟戒：0.3锟斤拷
-	var interval_time=5000;//锟斤拷锟脚硷拷锟绞憋拷洌�锟斤拷
-	var ad_size=jQuery(".ad_position .limit .ad_small_box ul li").size()-1;//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
-	var ad_huandeng_click_i = 0;//锟斤拷始锟斤拷
-	
-	//循锟斤拷锟斤拷锟斤拷
-	function ad_huandeng_play(){
-		
-		ad_huandeng_click_i++;
-
-		if(ad_huandeng_click_i<=ad_size)
-			{jQuery(".ad_small_box ul li").eq(ad_huandeng_click_i).trigger("dblclick");}
-		else
-			{jQuery(".ad_small_box ul li").eq(0).trigger("dblclick");ad_huandeng_click_i = 0}
-	}
-	//锟斤拷锟斤拷循锟斤拷时锟戒，锟皆讹拷锟斤拷始循锟斤拷
-	var ad_huandeng_setInterval = setInterval(ad_huandeng_play,interval_time);
-	
-	//锟斤拷停锟斤拷锟斤拷锟斤拷锟绞憋拷锟斤拷锟酵Ｖ�
-	jQuery(".ad_position").hover(function(){clearInterval(ad_huandeng_setInterval);}, function(){ad_huandeng_setInterval = setInterval(ad_huandeng_play,interval_time);});
-	function videoplay(){
-		alert("jdskfj");
-		clearInterval(ad_huandeng_setInterval);
-	}
-	function videopause(){
-	alert("jdskfj");
-		ad_huandeng_setInterval = setInterval(ad_huandeng_play,interval_time);
-	}
-	function videoend(){
-	alert("jdskfj");
-		clearInterval(ad_huandeng_setInterval);
-	}
-	//小图锟斤拷锟绞憋拷锟斤拷锟绞硷拷锟斤拷锟�
-	jQuery(".ad_position .limit .ad_small_box ul li").dblclick(function(){
-		ad_huandeng_click_i=jQuery(".ad_position .limit .ad_small_box ul li").index(jQuery(this));		
-		jQuery(".ad_position .limit .ad_left_big").animate({"margin-top":ad_huandeng_click_i*-474},{duration:animate_time,queue:false});//锟斤拷图锟斤拷锟斤拷
-		if(ad_huandeng_click_i<ad_size)//锟斤拷小图锟斤拷锟斤拷锟斤拷锟斤拷锟绞撅拷锟斤拷锟绞憋拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
-			{
-				if(ad_huandeng_click_i==0||ad_huandeng_click_i==1)
-					{jQuery(".ad_position .limit .ad_small_box ul").animate({"margin-top":"0px"},{duration:animate_time,queue:false});}
-				else
-					{
-						jQuery(".ad_position .limit .ad_small_box ul").animate({"margin-top":(ad_huandeng_click_i-1)*-138},{duration:animate_time,queue:false});
-					}
-			}		
-		if(ad_huandeng_click_i==0)//锟斤拷始锟叫讹拷指示锟斤拷图片锟斤拷位锟斤拷
-			{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","0px");}
-		else if(ad_huandeng_click_i==ad_size)
-			{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","288px");}
-		else
-			{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","144px");}
-		//jQuery(".ad_position .limit .ad_small_box ul li").css("opacity","0.5");
-		//jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).css("opacity","1");
-		//锟叫讹拷锟斤拷锟铰帮拷钮锟角凤拷傻锟斤拷
-		if(ad_huandeng_click_i==0)
-			{
-				jQuery(".ad_small_box .top_button").addClass("off");
-//				jQuery(".ad_small_box .bottom_button").removeClass("off");
-			}
-		else if(ad_huandeng_click_i==ad_size)
-			{
-//				jQuery(".ad_small_box .top_button").removeClass("off");
-				jQuery(".ad_small_box .bottom_button").addClass("off");
-			}
-		else 
-			{
-//				jQuery(".ad_small_box .top_button").removeClass("off");
-//				jQuery(".ad_small_box .bottom_button").removeClass("off");
-			}
-	});
-	
-	//锟斤拷锟斤拷锟叫⊥硷拷锟斤拷锟酵Ｊ憋拷锟斤拷锟斤拷锟狡讹拷
-	jQuery(".ad_position .limit .ad_small_box ul li").mouseover(function(){		
-		var small_ad_hover_i = jQuery(".ad_position .limit .ad_small_box ul li").index(jQuery(this));
-		var this_ad_top=jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top");
-		this_ad_top=parseInt(this_ad_top);
-		jQuery(".ad_position .limit .ad_left_big").animate({"margin-top":small_ad_hover_i*-474},{duration:animate_time,queue:false});if(small_ad_hover_i!=ad_huandeng_click_i);
-		if(small_ad_hover_i==0)
-			{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","3px");}
-		else if(small_ad_hover_i<ad_huandeng_click_i)
-			{
-				if(ad_huandeng_click_i-small_ad_hover_i==1)
-					{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top-144);}
-				else
-					{{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top-288);}}
-			}
-		else if(small_ad_hover_i>ad_huandeng_click_i)
-			{
-				if(small_ad_hover_i-ad_huandeng_click_i==1)
-					{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top+144);}
-				else
-					{{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top+288);}}
-			}
-		ad_huandeng_click_i=small_ad_hover_i;
-		//锟叫讹拷锟斤拷锟铰帮拷钮锟角凤拷傻锟斤拷
-		if(ad_huandeng_click_i==0)
-			{
-				jQuery(".ad_small_box .top_button").addClass("off");
-//				jQuery(".ad_small_box .bottom_button").removeClass("off");
-			}
-		else if(ad_huandeng_click_i==ad_size)
-			{
-//				jQuery(".ad_small_box .top_button").removeClass("off");
-				jQuery(".ad_small_box .bottom_button").addClass("off");
-			}
-		else
-			{
-//				jQuery(".ad_small_box .top_button").removeClass("off");
-//				jQuery(".ad_small_box .bottom_button").removeClass("off");
-			}
-		//jQuery(".ad_position .limit .ad_small_box ul li").css("opacity","0.5");
-		//jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).css("opacity","1");
-	});	
-	
-	//锟斤拷锟斤拷锟斤拷习锟脚ナ�
-	jQuery(".ad_small_box .top_button").click(function(){
-		ad_huandeng_click_i=ad_huandeng_click_i-1;
-		if(ad_huandeng_click_i<0)
-			{ad_huandeng_click_i=0;}		
-		jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).trigger("mouseover");
-	});
-	//锟斤拷锟斤拷锟斤拷掳锟脚ナ�
-	jQuery(".ad_small_box .bottom_button").click(function(){
-		ad_huandeng_click_i=ad_huandeng_click_i+1;
-		if(ad_huandeng_click_i>=ad_size)
-			{
-				ad_huandeng_click_i=ad_size;
-				jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).trigger("dblclick");
-				jQuery(".ad_position .limit .ad_small_box ul").animate({"margin-top":(ad_huandeng_click_i-2)*-138},{duration:animate_time,queue:false});
-			}
-		
-		jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).trigger("mouseover");
-	});
-	//锟矫碉拷片锟斤拷娌ワ拷锟�
-});
- </script> -->
+	</script>						
