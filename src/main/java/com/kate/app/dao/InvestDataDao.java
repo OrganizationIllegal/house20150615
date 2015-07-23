@@ -92,6 +92,9 @@ import com.kate.app.model.InvestmentData;
 					invest.setZu_house_rate(rs.getString("zu_house_rate"));
 					invest.setZu_xuqiu(rs.getString("zu_xuqiu"));
 					invest.setArea_num(rs.getString("area_name"));
+					invest.setArea_type(rs.getString("area_type"));
+					invest.setTouzi_datasource(rs.getString("touzi_datasource"));
+					invest.setTouzi_date(rs.getTimestamp("touzi_date"));
 				}
 			}catch (Exception e) {
 	            e.printStackTrace();

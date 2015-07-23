@@ -1,5 +1,7 @@
 package com.kate.app.model;
 
+import java.sql.Timestamp;
+
 public class InvestmentData {
 	private int id;
 	private String year_increment_rate;
@@ -15,6 +17,27 @@ public class InvestmentData {
 	private String area_name;
 	private String zu_xuqiu_1;
 	private String zu_xuqiu_2;
+	private String area_type;
+	private String touzi_datasource;
+	private Timestamp touzi_date;
+	public String getArea_type() {
+		return area_type;
+	}
+	public void setArea_type(String area_type) {
+		this.area_type = area_type;
+	}
+	public String getTouzi_datasource() {
+		return touzi_datasource;
+	}
+	public void setTouzi_datasource(String touzi_datasource) {
+		this.touzi_datasource = touzi_datasource;
+	}
+	public Timestamp getTouzi_date() {
+		return touzi_date;
+	}
+	public void setTouzi_date(Timestamp touzi_date) {
+		this.touzi_date = touzi_date;
+	}
 	public String getZu_xuqiu_1() {
 		return zu_xuqiu_1;
 	}

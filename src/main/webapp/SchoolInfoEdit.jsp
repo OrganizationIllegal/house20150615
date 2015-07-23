@@ -149,7 +149,10 @@ $(function(){
 			function(){
 				$("#schoolimg").click();
 				$("#schoolimg").change(function(){
-					$("#file1").val($("#schoolimg").val());
+					var filenames=$('#schoolimg').val().split("\\");
+					var filename=filenames[filenames.length-1];
+					$("#file1").val(filename);
+					//$("#file1").val($("#schoolimg").val());
 					});
 			});
 });

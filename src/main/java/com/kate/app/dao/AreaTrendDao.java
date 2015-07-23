@@ -36,7 +36,8 @@ public class AreaTrendDao extends BaseDao {
 				data.setArea_id(rs.getInt("area_id"));
 				data.setHeng(rs.getString("heng"));
 				data.setId(rs.getInt("id"));
-				
+				data.setMiddle_zoushi_datasource(rs.getString("middle_zoushi_datasource"));
+				data.setMiddle_zoushi_date(rs.getTimestamp("middle_zoushi_date"));
 				data.setView_shunxu(rs.getInt("view_shunxu"));
 				data.setZong(rs.getInt("zong"));
 				areaMiddleTrendList.add(data);
@@ -96,6 +97,8 @@ public class AreaTrendDao extends BaseDao {
 				
 				data.setView_shunxu(rs.getInt("view_shunxu"));
 				data.setZong(rs.getInt("zong"));
+				data.setZujin_datasource(rs.getString("zujin_datasource"));
+				data.setZujin_date(rs.getTimestamp("zujin_date"));
 				areaZujinTrendList.add(data);
 			}
 		} catch (Exception e) {
@@ -151,6 +154,8 @@ public class AreaTrendDao extends BaseDao {
 				
 				data.setView_shunxu(rs.getInt("view_shunxu"));
 				data.setZong(rs.getInt("zong"));
+				data.setZujin_huibao_datasource(rs.getString("zujin_huibao_datasource"));
+				data.setZujin_huibao_date(rs.getTimestamp("zujin_huibao_date"));
 				areaZhikongeTrendList.add(data);
 			}
 		} catch (Exception e) {

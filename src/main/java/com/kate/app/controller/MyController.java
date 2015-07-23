@@ -490,6 +490,15 @@ public class MyController {
 		areaMiddleList=areaTrendService.getAreaMiddleTrend(project_type,area_num);
 		List<String> areaMiddleYeatList=new ArrayList<String>();
 		List<Integer> areaMiddleRateList=new ArrayList<Integer>();
+		String middle_zoushi_datasource = "";
+		Timestamp middle_zoushi_date = null;
+		if(areaMiddleList!=null && areaMiddleList.size()>0){
+			middle_zoushi_datasource = areaMiddleList.get(0).getMiddle_zoushi_datasource();
+			middle_zoushi_date = areaMiddleList.get(0).getMiddle_zoushi_date();
+			
+		}
+		req.setAttribute("middle_zoushi_datasource", middle_zoushi_datasource);
+		req.setAttribute("middle_zoushi_date", middle_zoushi_date);
 		for(AreaMiddle areaMiddle:areaMiddleList){
 			String year=areaMiddle.getHeng();
 			int rate=areaMiddle.getZong();
@@ -503,6 +512,15 @@ public class MyController {
 		//閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓锟�
 		List<AreaZujin> areaZujinList=new ArrayList<AreaZujin>();
 		areaZujinList=areaTrendService.getAreaZujinTrend(project_type,area_num);
+		String zujin_datasource = "";
+		Timestamp zujin_date = null;
+		if(areaZujinList!=null && areaZujinList.size()>0){
+			zujin_datasource = areaZujinList.get(0).getZujin_datasource();
+			zujin_date = areaZujinList.get(0).getZujin_date();
+		}
+		req.setAttribute("zujin_datasource", zujin_datasource);
+		req.setAttribute("zujin_date", zujin_date);
+		
 		List<String> areaZujinYeatList=new ArrayList<String>();
 		List<Integer> areaZujinRateList=new ArrayList<Integer>();
 		for(AreaZujin areaZujin:areaZujinList){
@@ -518,6 +536,16 @@ public class MyController {
 		//閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿燂拷
 		List<AreaZhikong> areaZhikongList=new ArrayList<AreaZhikong>();
 		areaZhikongList=areaTrendService.getAreaZhikongTrend(project_type,area_num);
+		String zujin_huibao_datasource = "";
+		Timestamp zujin_huibao_date = null;
+		if(areaZhikongList!=null && areaZhikongList.size()>0){
+			zujin_huibao_datasource = areaZhikongList.get(0).getZujin_huibao_datasource();
+			zujin_huibao_date = areaZhikongList.get(0).getZujin_huibao_date();
+		}
+		req.setAttribute("zujin_huibao_datasource", zujin_huibao_datasource);
+		req.setAttribute("zujin_huibao_date", zujin_huibao_date);
+		
+		
 		List<String> areaZhikongYeatList=new ArrayList<String>();
 		List<Float> areaZhikongRateList=new ArrayList<Float>();
 		for(AreaZhikong areaZhikong:areaZhikongList){
@@ -557,6 +585,14 @@ public class MyController {
 	@RequestMapping({"/Index/PeopleRegion"})
 	public void getPeopleRegion(HttpServletRequest req, HttpServletResponse resp,String area_code){
 		List<AreaPeopleInfo> list=peopleInfoService.getAreaPeopleInfo(area_code);
+		String people_datasource = "";
+		Timestamp people_date = null;
+		if(list!=null && list.size()>0){
+			people_datasource = list.get(0).getPeople_datasource();
+			people_date = list.get(0).getPeople_date();
+		}
+		req.setAttribute("people_datasource",people_datasource);
+		req.setAttribute("people_date",people_date);
 		req.setAttribute("list",list);
 		//閿熷壙鍖℃嫹閿熸枻鎷烽敓鏂ゆ嫹
 		List<PeopleInfo> peopleInfoList=peopleInfoService.getPeopleInfo();
@@ -584,6 +620,13 @@ public class MyController {
 	public void  getAreaFamily(HttpServletRequest req, HttpServletResponse resp,String area_code){
 		//閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鐤ュ閿熸枻鎷�
 		AreaFamily data = areaFamilyService.getAreaFamily(area_code);
+		String family_datasource = "";
+		Timestamp family_date = null;
+		if(data!=null){
+			family_datasource = data.getFamily_datasource();
+			family_date = data.getFamily_date();
+		}
+		
 		Integer dulirate = 0;
 		String dulirateStr = "";
 		String dulirateVo = "";
@@ -605,8 +648,8 @@ public class MyController {
 			 oldfamilyVo=oldfamilystr;*/
 		}
 		
-		
-		
+		req.setAttribute("family_datasource", family_datasource);
+		req.setAttribute("family_date", family_date);
 		req.setAttribute("dulirateVo", dulirateVo);
 		req.setAttribute("youngfamilyVo", youngfamilyVo);
 		req.setAttribute("oldfamilyVo", oldfamilyVo);

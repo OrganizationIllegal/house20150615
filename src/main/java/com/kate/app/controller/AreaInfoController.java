@@ -1191,7 +1191,9 @@ public class AreaInfoController extends BaseDao {
 				else{*/
 				//添加
 			    try {
-					int result=areaInfoDao.EditArea(id,id2,id21,id3,area_num, area_name, area_city, area_zhou, area_nation, area_postcode,touzi_datasource, touzi_datasource1, touzi_date,touzi_date1, middle_price, middle_price1,middle_zu_price, middle_zu_price1,price_review, price_review1, year_increment_rate, year_increment_rate1, zu_house_rate, zu_house_rate1, zu_xuqiu, zu_xuqiu1, pro_type, pro_type1, data_exam, data_exam1,family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, family_datasource, family_date,middlepriceList,middlepriceList2,middletrendList,middletrendList2,zujintrendlistList,zujintrendlistList2,huibaotrendlistList,huibaotrendlistList2,tedianlistList,tedianlistList2,peoplelistList,peoplelistList2,brokerlistList,projectlistList,newslistList,list,middlepriceListdelete,middletrendListdelete,zujintrendlistListdelete,huibaotrendlistListdelete,tedianlistListdelete,peoplelistListdelete);
+
+					int result=areaInfoDao.EditArea(id,id2,id21,id3,area_num, area_name, area_city, area_zhou, area_nation, area_postcode,touzi_datasource, touzi_datasource1, touzi_date,touzi_date1, middle_price, middle_price1,middle_zu_price, middle_zu_price1,price_review, price_review1, year_increment_rate, year_increment_rate1, zu_house_rate, zu_house_rate1, zu_xuqiu, zu_xuqiu1, pro_type, pro_type1, data_exam, data_exam,family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, family_datasource, family_date,middlepriceList,middlepriceList2,middletrendList,middletrendList2,zujintrendlistList,zujintrendlistList2,huibaotrendlistList,huibaotrendlistList2,tedianlistList,tedianlistList2,peoplelistList,peoplelistList2,brokerlistList,projectlistList,newslistList,list,middlepriceListdelete,middletrendListdelete,zujintrendlistListdelete,huibaotrendlistListdelete,tedianlistListdelete,peoplelistListdelete);
+
 					System.out.println("result::"+result);
 					if(result==1){
 						ajson.put("flag", "1");

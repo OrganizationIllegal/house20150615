@@ -39,6 +39,8 @@ public class MiddlePriceDao extends BaseDao {
 				middlePrice.setZu_three_name(rs.getString("zu_three_name"));
 				middlePrice.setZu_three_price(rs.getInt("zu_three_price"));
 				middlePrice.setHouse_pro_id(rs.getInt("house_pro_id"));
+				middlePrice.setMiddle_datasource(rs.getString("middle_datasource"));
+				middlePrice.setMiddle_date(rs.getTimestamp("middle_date"));
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
