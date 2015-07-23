@@ -1,10 +1,12 @@
 package com.kate.app.dao;
 
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -203,6 +205,17 @@ public class UserInfoDao extends BaseDao {
 							//obj.put("pwd", rs.getString("pwd"));
 							obj.put("email", rs.getString("email"));
 							obj.put("tel", rs.getString("tel"));
+							Timestamp registerTime = rs.getTimestamp("time");
+							String registerTime_str="";
+							String tsStr = "";  
+							DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+					        try {   
+					        	registerTime_str = sdf.format(registerTime);
+					        	
+					            System.out.println(registerTime_str);   
+					        } catch (Exception e) {   
+					            e.printStackTrace();   
+					        }
 							if(role==0 && flag==1){
 								obj.put("role", "普通管理员");
 							}
@@ -219,8 +232,10 @@ public class UserInfoDao extends BaseDao {
 							//obj.put("ask", rs.getString("ask"));
 							obj.put("newestprice", rs.getString("newestprice"));
 							obj.put("housetype", rs.getString("housetype"));
+							obj.put("registerTime", registerTime_str);
 							//obj.put("repwd", rs.getString("repwd"));
 							obj.put("flag", rs.getInt("flag"));
+							
 							jsonArray.add(obj);
 						}
 					} catch (Exception e) {
@@ -534,8 +549,20 @@ public class UserInfoDao extends BaseDao {
 					ResultSet rs = null;
 					PreparedStatement pstmt = null;
 					int exeResult=0;
+					String registerTime_str="";
+					long currentTime = System.currentTimeMillis();
+					
+					Timestamp registerTime = new Timestamp(System.currentTimeMillis()); 
+					DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+			        try {   
+			        	registerTime_str = sdf.format(registerTime);
+			        	
+			            System.out.println(registerTime_str);   
+			        } catch (Exception e) {   
+			            e.printStackTrace();   
+			        }
 					try{
-						String sql = " insert into user(nick_name, pwd, repwd, tel, email,role) values(?,?,?,?,?,?)";
+						String sql = " insert into user(nick_name, pwd, repwd, tel, email,role,time) values(?,?,?,?,?,?,?)";
 						 pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, nick_name);
 						pstmt.setString(2, pwd);
@@ -543,6 +570,7 @@ public class UserInfoDao extends BaseDao {
 						pstmt.setString(4, tel);
 						pstmt.setString(5, email);
 						pstmt.setInt(6, 1);
+						pstmt.setString(5, registerTime_str);
 						exeResult = pstmt.executeUpdate();
 					}catch (Exception e) {
 			            e.printStackTrace();
@@ -580,12 +608,25 @@ public class UserInfoDao extends BaseDao {
 					ResultSet rs = null;
 					PreparedStatement pstmt = null;
 					int exeResult=0;
+					String registerTime_str="";
+					long currentTime = System.currentTimeMillis();
+					
+					Timestamp registerTime = new Timestamp(System.currentTimeMillis()); 
+					DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+			        try {   
+			        	registerTime_str = sdf.format(registerTime);
+			        	
+			            System.out.println(registerTime_str);   
+			        } catch (Exception e) {   
+			            e.printStackTrace();   
+			        }
 					try{
-						String sql = " insert into user(tel,pwd,role) values(?,?,?)";
+						String sql = " insert into user(tel,pwd,role,time) values(?,?,?,?)";
 						 pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, tel);
 						pstmt.setString(2, pwd);
 						pstmt.setInt(3, 1);
+						pstmt.setString(4, registerTime_str);
 						exeResult = pstmt.executeUpdate();
 					}catch (Exception e) {
 			            e.printStackTrace();
@@ -623,12 +664,25 @@ public class UserInfoDao extends BaseDao {
 					ResultSet rs = null;
 					PreparedStatement pstmt = null;
 					int exeResult=0;
+					String registerTime_str="";
+					long currentTime = System.currentTimeMillis();
+					
+					Timestamp registerTime = new Timestamp(System.currentTimeMillis()); 
+					DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+			        try {   
+			        	registerTime_str = sdf.format(registerTime);
+			        	
+			            System.out.println(registerTime_str);   
+			        } catch (Exception e) {   
+			            e.printStackTrace();   
+			        }
 					try{
-						String sql = " insert into user(email,pwd,role) values(?,?,?)";
+						String sql = " insert into user(email,pwd,role,time) values(?,?,?,?)";
 						 pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, email);
 						pstmt.setString(2, pwd);
 						pstmt.setInt(3, 1);
+						pstmt.setString(4, registerTime_str);
 						exeResult = pstmt.executeUpdate();
 					}catch (Exception e) {
 			            e.printStackTrace();
