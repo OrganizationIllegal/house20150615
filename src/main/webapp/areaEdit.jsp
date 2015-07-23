@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
+﻿aaa<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
@@ -236,6 +236,41 @@ body{
 <div class="area_right">
 <span class="area_span">租赁需求</span><span><input type="text" id="zu_xuqiu" name="zu_xuqiu" class="area_input"  value="${Invest.zu_xuqiu}"></span>
 </div>
+<div class="area_left">
+<span class="area_span">项目类型</span><span><input type="text" id="pro_type" name="zu_xuqiu" class="area_input"  value="${Invest.pro_type}"></span>
+</div>
+
+<div class="area_bkg2 c-fix" id="invest">投资数据</div>
+<div class="area_left">
+<input type="text" id="id21" name="id21" style="display:none;" value="${Invest1.id}">
+<span class="area_span">数据来源</span><span><input type="text" id="touzi_datasource1" name="touzi_datasource1" class="area_input" value="${Invest.touzi_datasource}"></span>
+</div>
+<div class="area_right">
+<span class="area_span">更新日期</span><span><input type="text" id="touzi_date1" name="touzi_date1" class="area_input" value="${Invest1.touzi_date.toString().length()>10?Invest1.touzi_date.toString().substring(0,10):Invest1.touzi_date.toString()}"></span>
+</div>
+<div class="area_left">
+<span class="area_span">年增长率</span><span><input type="text" id="year_increment_rate1" name="year_increment_rate1" class="area_input"  value="${Invest.year_increment_rate1}"></span>
+</div>
+<div class="area_right">
+<span class="area_span">中位数价格</span><span><input type="text" id="middle_price1" name="middle_price1" class="area_input"  value="${Invest.middle_price1}"></span>
+</div>
+<div class="area_left">
+<span class="area_span">中位数租金</span><span><input type="text" id="middle_zu_price1" name="middle_zu_price1" class="area_input" value="${Invest.middle_zu_price1}"></span>
+</div>
+<div class="area_right">
+<span class="area_span">租金回报率</span><span><input type="text" id="zu_house_rate1" name="zu_house_rate1" class="area_input" value="${Invest.zu_house_rate1}"></span>
+</div>
+<div class="area_left">
+<span class="area_span">现金回报</span><span><input type="text" id="price_review1" name="price_review1" class="area_input"  value="${Invest.price_review1}"></span>
+</div>
+<div class="area_right">
+<span class="area_span">租赁需求</span><span><input type="text" id="zu_xuqiu1" name="zu_xuqiu1" class="area_input"  value="${Invest.zu_xuqiu1}"></span>
+</div>
+<div class="area_left">
+<span class="area_span">项目类型</span><span><input type="text" id="pro_type1" name="pro_type1" class="area_input"  value="${Invest.pro_type1}"></span>
+</div>
+
+
 <div class="area_bkg2 c-fix" id="family">区域家庭构成</div>
 <div class="area_left">
 <input type="text" id="id3" name="id3" style="display:none;" value="${Family.id}">
@@ -983,6 +1018,10 @@ $('#touzi_date').datepicker({
     language: "zh-CN",
     format: "yyyy-mm-dd"
 });
+$('#touzi_date1').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
 $('#family_date').datepicker({
     language: "zh-CN",
     format: "yyyy-mm-dd"
@@ -1707,7 +1746,7 @@ $(function(){
 		$("#column3").val(peopleedititem.column3);
 		$("#view_shunxu_people").val(peopleedititem.view_shunxu_people);
 		$("#people_datasource").val(peopleedititem.people_datasource);
-		$("#people_date").val(peopleedititem.people_date);
+		$("#people_date").val(peopleedititem.people_date.length>=10?peopleedititem.people_date.substr(0,10):peopleedititem.people_date);
 		}); 
 	
 });

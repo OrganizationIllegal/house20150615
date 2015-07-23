@@ -38,6 +38,8 @@ public class AreaFamilyDao extends BaseDao {
 				data.setFamily_three_rate(rs.getString("family_three_rate"));
 				data.setId(rs.getInt("id"));
 				data.setUpdate_time(rs.getTimestamp("update_time"));
+				data.setFamily_datasource(rs.getString("family_datasource"));
+				data.setFamily_date(rs.getTimestamp("family_date"));
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

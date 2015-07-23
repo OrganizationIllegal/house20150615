@@ -1,4 +1,4 @@
-package com.kate.app.controller;
+﻿package com.kate.app.controller;
 
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -111,7 +111,10 @@ public class AreaInfoController extends BaseDao {
 		ai=areaInfoDao.getAreaInfoBackEnd(Integer.parseInt(id));
 		//投资数据
 		InvestmentDataBackEnd invest=new InvestmentDataBackEnd();
-		invest=areaInfoDao.getInvestInfo(ai.getArea_num());
+		invest=areaInfoDao.getInvestInfo(ai.getArea_num(),"公寓");
+		//投资数据
+		InvestmentDataBackEnd invest1=new InvestmentDataBackEnd();
+		invest1=areaInfoDao.getInvestInfo(ai.getArea_num(),"别墅");
 		//区域家庭构成
 		AreaFamilyBackEnd family=new AreaFamilyBackEnd();
 		family=areaInfoDao.getFamilyBackEnd(ai.getArea_num());
@@ -654,6 +657,18 @@ public class AreaInfoController extends BaseDao {
 					String zu_house_rate = json.getString("zu_house_rate");
 					String price_review = json.getString("price_review");
 					String zu_xuqiu = json.getString("zu_xuqiu");
+					String pro_type = json.getString("pro_type");
+					
+					String touzi_datasource1 = json.getString("touzi_datasource1");
+					String touzi_date1 = json.getString("touzi_date1");
+					String year_increment_rate1 = json.getString("year_increment_rate1");
+					String middle_price1 = json.getString("middle_price1");
+					String middle_zu_price1 = json.getString("middle_zu_price1");
+					String zu_house_rate1 = json.getString("zu_house_rate1");
+					String price_review1 = json.getString("price_review1");
+					String zu_xuqiu1 = json.getString("zu_xuqiu1");
+					String pro_type1 = json.getString("pro_type1");
+					
 					String data_exam = null;
 					
 					/*boolean result1 = areaInfoDao.addTouziData(touzi_datasource, touzi_date, middle_price, middle_zu_price, price_review, year_increment_rate, zu_house_rate, zu_xuqiu, data_exam, area_num, area_name);*/
@@ -796,7 +811,7 @@ public class AreaInfoController extends BaseDao {
 					else{
 					//添加
 				    try {
-						int result=areaInfoDao.AddArea(area_num, area_name, area_city, area_zhou, area_nation, area_postcode,touzi_datasource, touzi_date, middle_price, middle_zu_price, price_review, year_increment_rate, zu_house_rate, zu_xuqiu, data_exam, family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, family_datasource, family_date,middlepriceList,middletrendList,zujintrendlistList,huibaotrendlistList,tedianlistList,peoplelistList,brokerlistList,projectlistList,newslistList,list);
+						int result=areaInfoDao.AddArea(area_num, area_name, area_city, area_zhou, area_nation, area_postcode,touzi_datasource, touzi_datasource1, touzi_date, touzi_date1, middle_price, middle_price1, middle_zu_price, middle_zu_price1, price_review, price_review1, year_increment_rate, year_increment_rate1, zu_house_rate, zu_house_rate1, zu_xuqiu, zu_xuqiu1, pro_type, pro_type1, data_exam, data_exam, family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, family_datasource, family_date,middlepriceList,middletrendList,zujintrendlistList,huibaotrendlistList,tedianlistList,peoplelistList,brokerlistList,projectlistList,newslistList,list);
 						if(result==1){
 							ajson.put("flag", "1");
 						}
@@ -823,6 +838,7 @@ public class AreaInfoController extends BaseDao {
 				JSONObject ajson=new JSONObject();
 				int id=Integer.parseInt(req.getParameter("id"));
 				int id2=Integer.parseInt(req.getParameter("id2"));
+				int id21=Integer.parseInt(req.getParameter("id21"));
 				int id3=Integer.parseInt(req.getParameter("id3"));
 				String area = req.getParameter("area");//区域信息
 				String middleprice = req.getParameter("middleprice");
@@ -858,7 +874,21 @@ public class AreaInfoController extends BaseDao {
 				String zu_house_rate = json.getString("zu_house_rate");
 				String price_review = json.getString("price_review");
 				String zu_xuqiu = json.getString("zu_xuqiu");
+				String pro_type = json.getString("pro_type");
+
+				String touzi_datasource1 = json.getString("touzi_datasource1");
+				String touzi_date1 = json.getString("touzi_date1");
+				String year_increment_rate1 = json.getString("year_increment_rate1");
+				String middle_price1 = json.getString("middle_price1");
+				String middle_zu_price1 = json.getString("middle_zu_price1");
+				String zu_house_rate1 = json.getString("zu_house_rate1");
+				String price_review1 = json.getString("price_review1");
+				String zu_xuqiu1 = json.getString("zu_xuqiu1");
+				String pro_type1= json.getString("pro_type1");
+
+
 				String data_exam = null;
+				String data_exam1 = null;
 				
 				/*boolean result1 = areaInfoDao.addTouziData(touzi_datasource, touzi_date, middle_price, middle_zu_price, price_review, year_increment_rate, zu_house_rate, zu_xuqiu, data_exam, area_num, area_name);*/
 				//区域家庭构成
@@ -1160,7 +1190,7 @@ public class AreaInfoController extends BaseDao {
 				else{*/
 				//添加
 			    try {
-					int result=areaInfoDao.EditArea(id,id2,id3,area_num, area_name, area_city, area_zhou, area_nation, area_postcode,touzi_datasource, touzi_date, middle_price, middle_zu_price, price_review, year_increment_rate, zu_house_rate, zu_xuqiu, data_exam, family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, family_datasource, family_date,middlepriceList,middlepriceList2,middletrendList,middletrendList2,zujintrendlistList,zujintrendlistList2,huibaotrendlistList,huibaotrendlistList2,tedianlistList,tedianlistList2,peoplelistList,peoplelistList2,brokerlistList,projectlistList,newslistList,list,middlepriceListdelete,middletrendListdelete,zujintrendlistListdelete,huibaotrendlistListdelete,tedianlistListdelete,peoplelistListdelete);
+					int result=areaInfoDao.EditArea(id,id2,id21,id3,area_num, area_name, area_city, area_zhou, area_nation, area_postcode,touzi_datasource, touzi_datasource1, touzi_date,touzi_date1, middle_price, middle_price1,middle_zu_price, middle_zu_price1,price_review, price_review1, year_increment_rate, year_increment_rate1, zu_house_rate, zu_house_rate1, zu_xuqiu, zu_xuqiu1, pro_type, pro_type1, data_exam, data_exam,family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, family_datasource, family_date,middlepriceList,middlepriceList2,middletrendList,middletrendList2,zujintrendlistList,zujintrendlistList2,huibaotrendlistList,huibaotrendlistList2,tedianlistList,tedianlistList2,peoplelistList,peoplelistList2,brokerlistList,projectlistList,newslistList,list,middlepriceListdelete,middletrendListdelete,zujintrendlistListdelete,huibaotrendlistListdelete,tedianlistListdelete,peoplelistListdelete);
 					System.out.println("result::"+result);
 					if(result==1){
 						ajson.put("flag", "1");

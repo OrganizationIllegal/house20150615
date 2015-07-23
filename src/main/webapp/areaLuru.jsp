@@ -98,7 +98,9 @@ body{
 <div class="area_right">
 <span class="area_span">邮政编码</span><span><input type="text" id="area_postcode" name="area_postcode" class="area_input"></span>
 </div>
-<div class="area_bkg2 c-fix" id="invest">投资数据</div>
+<div class="area_bkg2 c-fix" id="invest"> 
+
+投资数据</div>
 <div class="area_left">
 <span class="area_span">数据来源</span><span><input type="text" id="touzi_datasource" name="touzi_datasource" class="area_input"></span>
 </div>
@@ -123,6 +125,44 @@ body{
 <div class="area_right">
 <span class="area_span">租赁需求</span><span><input type="text" id="zu_xuqiu" name="zu_xuqiu" class="area_input"></span>
 </div>
+<div class="area_left">
+<span class="area_span">项目类型</span><span><input type="text" id="pro_type" name="pro_type" class="area_input" value="公寓" readonly="readonly"></span>
+</div>
+
+
+<div class="area_bkg2 c-fix" id="invest"> 
+
+投资数据</div>
+<div class="area_left">
+<span class="area_span">数据来源</span><span><input type="text" id="touzi_datasource1" name="touzi_datasource1" class="area_input"></span>
+</div>
+<div class="area_right">
+<span class="area_span">更新日期</span><span><input type="text" id="touzi_date1" name="touzi_date1" class="area_input"></span>
+</div>
+<div class="area_left">
+<span class="area_span">年增长率</span><span><input type="text" id="year_increment_rate1" name="year_increment_rate1" class="area_input"></span>
+</div>
+<div class="area_right">
+<span class="area_span">中位数价格</span><span><input type="text" id="middle_price1" name="middle_price1" class="area_input"></span>
+</div>
+<div class="area_left">
+<span class="area_span">中位数租金</span><span><input type="text" id="middle_zu_price1" name="middle_zu_price1" class="area_input"></span>
+</div>
+<div class="area_right">
+<span class="area_span">租金回报率</span><span><input type="text" id="zu_house_rate1" name="zu_house_rate1" class="area_input"></span>
+</div>
+<div class="area_left">
+<span class="area_span">现金回报</span><span><input type="text" id="price_review1" name="price_review1" class="area_input"></span>
+</div>
+<div class="area_right">
+<span class="area_span">租赁需求</span><span><input type="text" id="zu_xuqiu1" name="zu_xuqiu1" class="area_input"></span>
+</div>
+<div class="area_left">
+<span class="area_span">项目类型</span><span><input type="text" id="pro_type1" name="pro_type1" class="area_input" value="别墅" readonly="readonly"></span>
+</div>
+
+
+
 <div class="area_bkg2 c-fix" id="family">区域家庭构成</div>
 <div class="area_left">
 <span class="area_span">数据来源</span><span><input type="text" id="family_datasource" name="family_datasource" class="area_input"></span>
@@ -747,6 +787,10 @@ body{
 
 <script type="text/javascript">
 $('#touzi_date').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
+$('#touzi_date1').datepicker({
     language: "zh-CN",
     format: "yyyy-mm-dd"
 });

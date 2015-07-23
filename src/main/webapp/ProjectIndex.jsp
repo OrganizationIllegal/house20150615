@@ -769,7 +769,7 @@ function popInfo(){
 					<a class="c-fix f-l p_inves_lab f-yahei s-14 fw">现金回报</a>
 					<a class="c-fix f-l p_inves_lab f-yahei s-18" style="color:rgb(21,63,101);margin-top:10px;">${data.price_review}</a>
 				</div>
-				<a class="c-fix f-r p_inves_source f-yahei s-12">数据来源：${areaInfo.touzi_datasource }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;更新日期：${fn:substring(areaInfo.touzi_date, 0, 10)}</a>
+				<a class="c-fix f-r p_inves_source f-yahei s-12">数据来源：${data.touzi_datasource }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;更新日期：${fn:substring(data.touzi_date, 0, 10)}</a>
 			</div>
 		</div>
  		<div class="c-fix  bkg3"  style="margin:0 auto;height:426px;width:990px">
@@ -803,7 +803,7 @@ function popInfo(){
 					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:rgb(21,63,101)">${middlePrice.zu_three_name}</a>
 					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${middlePrice.zu_three_price}</a>
 				</div>
-				<a class="c-fix f-r p_inves_source f-yahei s-12">数据来源：${areaInfo.middle_datasource }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;更新日期${fn:substring(areaInfo.middle_date,0,10) }</a>
+				<a class="c-fix f-r p_inves_source f-yahei s-12">数据来源：${middlePrice.middle_datasource }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;更新日期${fn:substring(middlePrice.middle_date,0,10) }</a>
 			</div>
 		</div>
 		
@@ -823,21 +823,21 @@ function popInfo(){
       <div class="tab-pane active" id="price">
       	<div>
       		<div id="price_line" style="height:350px"></div>
-      		<div style="width:100%;padding-left:30px;padding-right:30px;"><font size="1">投资数据参考：2卧室房产</font><span style="float:right;"><font size="1">数据来源：${areaInfo.middle_zoushi_datasource } 更新日期：${fn:substring(areaInfo.middle_zoushi_date,0,10)} </font></span></div>
+      		<div style="width:100%;padding-left:30px;padding-right:30px;"><font size="1">投资数据参考：2卧室房产</font><span style="float:right;"><font size="1">数据来源：${middle_zoushi_datasource } 更新日期：${fn:substring(middle_zoushi_date,0,10)} </font></span></div>
       	</div>
       </div> 
       <div class="tab-pane" id="rent">
       	<div>
       		<div id="rent_line" style="height:350px">
       			</div>
-      		<div style="width:100%;padding-left:30px;padding-right:30px;"><font size="1">投资数据参考：2卧室房产</font><span style="float:right;"><font size="1">数据来源：${areaInfo.zujin_datasource }  更新日期：${fn:substring(areaInfo.zujin_date,0,10)} </font></span></div>
+      		<div style="width:100%;padding-left:30px;padding-right:30px;"><font size="1">投资数据参考：2卧室房产</font><span style="float:right;"><font size="1">数据来源：${zujin_datasource }  更新日期：${fn:substring(zujin_date,0,10)} </font></span></div>
       	</div>
       </div> 
       <div class="tab-pane" id="emptypercent">
       	<div>
       		<div id="emptypercent_line" style="height:350px">
       			</div>
-      		<div style="width:100%;padding-left:30px;padding-right:30px;"><font size="1">投资数据参考：2卧室房产</font><span style="float:right;"><font size="1">数据来源：${areaInfo.zujin_huibao_datasource } 更新日期：${fn:substring(areaInfo.zujin_huibao_date,0,10)}</font></span></div>
+      		<div style="width:100%;padding-left:30px;padding-right:30px;"><font size="1">投资数据参考：2卧室房产</font><span style="float:right;"><font size="1">数据来源：${zujin_huibao_datasource } 更新日期：${fn:substring(zujin_huibao_date,0,10)}</font></span></div>
       	</div>
       </div> 
   	</div>
@@ -872,7 +872,7 @@ function popInfo(){
 						<a class="f-l f-yahei s-14 p_spec">${item}</a>
 						
 						</c:forEach>
-						<a class="c-fix f-l p_header3 f-yahei s-16 fw" style="width:721px">${area_name} 区域人口分布<span style="float:right;padding-right:20px;" class="s-12">数据来源：${areaInfo.people_datasource } 更新日期：${fn:substring(areaInfo.people_date,0,10)}</span></a>
+						<a class="c-fix f-l p_header3 f-yahei s-16 fw" style="width:721px">${area_name} 区域人口分布<span style="float:right;padding-right:20px;" class="s-12">数据来源：${people_datasource } 更新日期：${fn:substring(people_date,0,10)}</span></a>
 						<div class="c-fix f-l p_tab2" style="width:721px">
 						<table class="table table-striped">
 						 <tbody style="font-size:12px;">
@@ -978,7 +978,7 @@ function popInfo(){
 					<a class="c-fix f-l family_lab f-yahei s-14 fw">${100 * oldfamilyVo}%</a>
 				</div>
 				<div class="c-" style="margin-right:20px;float:rgiht;height:20px">
-					<span class="c-fix f-yahei s-12 fw f-r">数据来源：${areaInfo.family_datasource }&nbsp;&nbsp; 更新日期：${fn:substring(areaInfo.family_date,0,10)}</span>
+					<span class="c-fix f-yahei s-12 fw f-r">数据来源：${family_datasource }&nbsp;&nbsp; 更新日期：${fn:substring(family_date,0,10)}</span>
 				</div>
 				</div>
 				</c:if>

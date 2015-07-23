@@ -37,6 +37,8 @@ public class RegionPeopleDao extends BaseDao {
 				data.setHouse_pro_id(rs.getInt("house_pro_id"));
 				data.setId(rs.getInt("id"));
 				data.setView_shunxu(rs.getInt("view_shunxu"));
+				data.setPeople_datasource(rs.getString("people_datasource"));
+				data.setPeople_date(rs.getTimestamp("people_date"));
 				list.add(data);
 			}
 		} catch (Exception e) {

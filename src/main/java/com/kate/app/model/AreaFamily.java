@@ -15,6 +15,20 @@ public class AreaFamily {
 	private int area_id;
 	private int house_pro_id;
 	private Timestamp update_time;
+	private String family_datasource;
+	private Timestamp family_date;
+	public String getFamily_datasource() {
+		return family_datasource;
+	}
+	public void setFamily_datasource(String family_datasource) {
+		this.family_datasource = family_datasource;
+	}
+	public Timestamp getFamily_date() {
+		return family_date;
+	}
+	public void setFamily_date(Timestamp family_date) {
+		this.family_date = family_date;
+	}
 	public int getId() {
 		return id;
 	}
