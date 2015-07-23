@@ -1509,7 +1509,7 @@ public class ProjectInfoController {
 		List<FujinPeiTao> fujinPeitaoList=projectInputDao.getFujinPeiTaoByProNum(pronum);
 		fujinPeitaoListbefore=projectInputDao.getFujinPeiTaoByProNum(pronum);
 		req.setAttribute("fujinPeitaoList",fujinPeitaoList );
-		req.setAttribute("fujinPeitaoListJson", ConvertJson.list2json(fujinPeitaoList));
+		req.setAttribute("fujinPeitaoListJson", ConvertJson.list2json(fujinPeitaoList).replace(" ", "&nbsp;"));
 		//鏍规嵁椤圭洰缂栧彿鑾峰彇闄勮繎瀛︽牎
 		List<FujinSchool> fujinSchoolList=projectInputDao.getFujinSchoolByProNum(pronum);
 		fujinSchoolListbefore=projectInputDao.getFujinSchoolByProNum(pronum);

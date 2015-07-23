@@ -629,7 +629,7 @@ function popInfo(){
 							<a class="c-fix f-l p_school_lab f-yahei s-14">${item.market_type}</a>	
 							<a class="f-r p_school_lab f-yahei s-14" style="margin-right:20px;">${item.market_name}</a>	
 						</div>
-						<a class="c-fix f-r p_school_distance f-yahei s-14" style="margin-right:20px;">${item.market_distance}</a>	
+						<a class="c-fix f-r p_school_distance f-yahei s-14" style="margin-right:20px;">${item.market_distance}米</a>	
 					</div>
 				</c:forEach>
 					

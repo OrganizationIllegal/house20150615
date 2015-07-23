@@ -25,10 +25,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <link rel="stylesheet" type="text/css" href="css/base.css" />
    <link rel="stylesheet" type="text/css" href="css/main.css" />
   
-   <!-- <script src="/js/jquery.min.js"></script> -->
-   <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <!-- <script src="/js/jquery.min.js"></script>
+   <script src="/bootstrap/js/bootstrap.min.js"></script> -->
 <script src="/ckeditor/ckeditor.js"></script>
   <link rel="stylesheet" href="css/chosen.css">
+  <link rel="stylesheet" type="text/css" href="/bootstrap-datepicker-1.4.0-dist/css/bootstrap-datepicker.min.css" />
+  <script src="/bootstrap-datepicker-1.4.0-dist/js/bootstrap-datepicker.min.js"></script>
+  <script src="/bootstrap-datepicker-1.4.0-dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
 
 <style type="text/css">
 body{
@@ -157,8 +160,8 @@ body{
 <div class="area_left">
 <span class="area_span">项目所在城市</span>
 <span>
-<%-- <input type="text" id="project_city" name="project_city" class="area_input" value="${houseProject.project_city}"> --%>
-<select data-placeholder="请选择..." class="chosen-select" id="project_city" name="project_city" style="width:220px;" tabindex="4">
+ <input type="text" id="project_city" name="project_city" class="area_input" value="${houseProject.project_city}"> 
+<%-- <select data-placeholder="请选择..." class="chosen-select" id="project_city" name="project_city" style="width:220px;" tabindex="4">
  	 <option value=""></option>
        <c:choose>
 	    <c:when test="${houseProject.project_city eq 'Sydney 悉尼'}">
@@ -216,7 +219,7 @@ body{
 	      <option value="Cairns 凯恩斯">Cairns 凯恩斯</option>
 	   </c:otherwise>
   	  </c:choose>
- </select>
+ </select> --%>
 </span>
 </div>
 <div class="area_right">
@@ -272,7 +275,7 @@ body{
 <span class="area_span">项目完成时间</span>
 <span>
 <c:if test="${empty houseProject.project_finish_time }"> <input type="text" id="finish_time" name="finish_time" class="area_input"  value="待定"></c:if>
-<c:if test="${not empty houseProject.project_finish_time}"><input type="text" id="finish_time" name="finish_time" class="area_input"  value="${houseProject.project_finish_time}"></c:if>
+<c:if test="${not empty houseProject.project_finish_time}"><input type="text" id="finish_time" name="finish_time" class="area_input"  value="${houseProject.project_finish_time.length()>7?houseProject.project_finish_time.toString().substring(0,7):Invest.touzi_date.toString()}"></c:if>
 
 </span>
 </div>
@@ -511,7 +514,7 @@ body{
 <span style='padding-right:10px;'>${status.index + 1}</span>
 <input type="hidden" value="${fujinPeiTao.id} "/>
 <span style='padding-right:10px;'>${fujinPeiTao.peitao_type}</span>
-<span style='padding-right:10px;'>${fujinPeiTao.peitao_name}</span>
+<span style='padding-right:10px;'>${fujinPeiTao.peitao_name.toString().replace("+"," ")}</span>
 <span style='padding-right:10px;'>${fujinPeiTao.peitao_distance}</span>
 <span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span>
 </div>
@@ -526,9 +529,10 @@ body{
 <span class="area_span">学校名称</span>
 <span>
 <select data-placeholder="请选择..." class="chosen-select"  style="width:220px;" tabindex="4" id="school_name" name="school_name">
+	<option value=""></option>
  	  <c:forEach items="${schoolList}" var="item">
         		 <option value="${item}">${item}</option>
-       	 </c:forEach> 
+      </c:forEach> 
 </select> 
 </span>
 <!-- <span><input type="text" id="school_name" name="school_name" class="area_input"></span> -->
@@ -618,7 +622,16 @@ body{
 <div class="area_bkg2" style="clear:both;" id="housetax">购房税费</div>
 <form id="housetaxform">
 <div class="area_left">
-<span class="area_span">类型</span><span><input type="text" id="houseTaxtype" name="houseTaxtype" class="area_input"></span>
+<span class="area_span">类型</span><span><!-- <input type="text" id="houseTaxtype" name="houseTaxtype" class="area_input"> -->
+<select data-placeholder="请选择..." class="chosen-select" id="houseTaxtype" name="houseTaxtype" style="width:220px;" tabindex="4">
+ 	 <option value=""></option>
+  	 <option value="印花税">印花税</option>
+     <option value="律师费">律师费</option>
+     <option value="交割费">交割费</option>
+     <option value="保险费">保险费</option>
+     <option value="土地税">土地税</option>
+ </select>
+</span>
 </div>
 <div class="area_right">
 <span class="area_span">价格</span><span><input type="text" id="houseTaxprice" name="houseTaxprice" class="area_input"></span>
@@ -772,6 +785,12 @@ body{
 </div>
 </div>
 <script type="text/javascript">
+$("#finish_time").datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"/* ,
+    startView: 1,
+    minViewMode: 1 */
+});
 $('#danjia').blur(function() {
 	if(isNaN($('#danjia').val())){
 		alert("请输入数字！");
@@ -1221,7 +1240,7 @@ $(function(){
 			}
 		}
 		$('#school_name').trigger('chosen:updated');
-		$("#school_name").val(schooledititem.school_name);
+		/* $("#school_name").val(schooledititem.school_name); */
 		/*  $("#school_name").find("option[text=schooledititem.school_name]").attr("selected",true); */
 		/*  $('#school_name').trigger('chosen:updated'); */
 		$("#school_distance").val(schooledititem.school_distance);
@@ -1402,13 +1421,13 @@ $(function(){
 			}
 		});
 	$("#housetaxformlist").on("click",".deletepeitao",function(){
-		housetaxformlist.splice($(this).parent().parent().children().eq(0).text()-1,1);
+		housetaxformlist.splice($(this).parent().parent().prevAll().length,1);
 		$(this).parent().parent().empty();
 		housetaxformcount--;
 		});
 	$("#housetaxformlist").on("click",".editpeitao",function(){
 		
-		var index=$(this).parent().parent().children().eq(0).text()-1;
+		var index=$(this).parent().parent().prevAll().length;
 		//alert(index);
 		housetaxformedititem=housetaxformlist[index];
 		$(this).parent().parent().hide();
@@ -1416,7 +1435,14 @@ $(function(){
 		//$("#projectimage").val(edititem.name+"");
 		//alert(index+"index");
 		housetaxformedit=index;
-		$("#houseTaxtype").val(housetaxformedititem.houseTaxtype);
+		var selectCount = document.getElementById("houseTaxtype");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==housetaxformedititem.houseTaxtype){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#houseTaxtype').trigger('chosen:updated');
+		/* $("#houseTaxtype").val(housetaxformedititem.houseTaxtype); */
 		$("#houseTaxprice").val(housetaxformedititem.houseTaxprice);
 		$("#houseTaxdesc").val(housetaxformedititem.houseTaxdesc);
 	/* 	$("#houseTax_housename").val(housetaxformedititem.houseTax_housename); */
