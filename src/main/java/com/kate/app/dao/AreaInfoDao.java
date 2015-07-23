@@ -2933,6 +2933,23 @@ public class AreaInfoDao extends BaseDao {
 				areaInfo.setArea_zhou(rs.getString("area_zhou"));
 				areaInfo.setHouse_pro_id(rs.getInt("house_pro_id"));
 				areaInfo.setArea_type(rs.getString("area_type"));
+				areaInfo.setArea_feature_datasource(rs.getString("area_feature_datasource"));
+				areaInfo.setArea_feature_date(rs.getTimestamp("area_feature_date"));
+				areaInfo.setFamily_datasource(rs.getString("family_datasource"));
+				areaInfo.setFamily_date(rs.getTimestamp("family_date"));
+				areaInfo.setTouzi_datasource(rs.getString("touzi_datasource"));
+				areaInfo.setTouzi_date(rs.getTimestamp("touzi_date"));
+				areaInfo.setMiddle_datasource(rs.getString("middle_datasource"));
+				areaInfo.setMiddle_date(rs.getTimestamp("middle_date"));;
+				areaInfo.setMiddle_zoushi_datasource(rs.getString("middle_zoushi_datasource"));
+				areaInfo.setMiddle_zoushi_date(rs.getTimestamp("middle_zoushi_date"));
+				areaInfo.setZujin_datasource(rs.getString("zujin_datasource"));
+				areaInfo.setZujin_date(rs.getTimestamp("zujin_date"));
+				areaInfo.setZujin_huibao_datasource(rs.getString("zujin_huibao_datasource"));
+				areaInfo.setZujin_huibao_date(rs.getTimestamp("zujin_huibao_date"));
+				areaInfo.setPeople_datasource(rs.getString("people_datasource"));
+				areaInfo.setPeople_date(rs.getTimestamp("people_date"));
+				
 				
 			}
 		} catch (Exception e) {

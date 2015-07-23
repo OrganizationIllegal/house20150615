@@ -42,21 +42,21 @@ import com.kate.app.model.InvestmentData;
 	            e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
+				if(rs != null){   // 鍏抽棴璁板綍闆�  
 			        try{   
 			            rs.close() ;   
 			        }catch(SQLException e){   
 			            e.printStackTrace() ;   
 			        }   
 			          }   
-			      if(stmt != null){   // 关闭声明   
+			      if(stmt != null){   // 鍏抽棴澹版槑   
 			        try{   
 			            stmt.close() ;   
 			        }catch(SQLException e){   
 			            e.printStackTrace() ;   
 			        }   
 			     } 
-			      if(pstmt != null){   // 关闭声明   
+			      if(pstmt != null){   // 鍏抽棴澹版槑   
 				        try{   
 				            pstmt.close() ;   
 				        }catch(SQLException e){   
@@ -69,15 +69,16 @@ import com.kate.app.model.InvestmentData;
 	        
 		}
 		
-		public InvestmentData getInvestmentDateNum(String area_num){
+		public InvestmentData getInvestmentDateNum(String area_num,String type){
 			Statement stmt = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			InvestmentData invest = new InvestmentData();
 			try{
-				String sql = " select * from investment_data where area_num=?";
+				String sql = " select * from investment_data where area_num=? and area_type=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, area_num);
+				pstmt.setString(2, type);
 				  rs = pstmt.executeQuery();
 				
 				while(rs.next()){
@@ -95,21 +96,21 @@ import com.kate.app.model.InvestmentData;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
+				if(rs != null){   // 鍏抽棴璁板綍闆�  
 			        try{   
 			            rs.close() ;   
 			        }catch(SQLException e){   
 			            e.printStackTrace() ;   
 			        }   
 			          }   
-			      if(stmt != null){   // 关闭声明   
+			      if(stmt != null){   // 鍏抽棴澹版槑   
 			        try{   
 			            stmt.close() ;   
 			        }catch(SQLException e){   
 			            e.printStackTrace() ;   
 			        }   
 			     } 
-			      if(pstmt != null){   // 关闭声明   
+			      if(pstmt != null){   // 鍏抽棴澹版槑   
 				        try{   
 				            pstmt.close() ;   
 				        }catch(SQLException e){   

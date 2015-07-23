@@ -207,15 +207,21 @@ public class UserInfoDao extends BaseDao {
 							obj.put("tel", rs.getString("tel"));
 							Timestamp registerTime = rs.getTimestamp("time");
 							String registerTime_str="";
-							String tsStr = "";  
+							
 							DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
-					        try {   
-					        	registerTime_str = sdf.format(registerTime);
-					        	
-					            System.out.println(registerTime_str);   
-					        } catch (Exception e) {   
-					            e.printStackTrace();   
-					        }
+							if(registerTime==null || registerTime.equals(null)){
+								registerTime_str="";
+							}
+							else{
+								try {   
+						        	registerTime_str = sdf.format(registerTime);
+						        	
+						            System.out.println(registerTime_str);   
+						        } catch (Exception e) {   
+						            e.printStackTrace();   
+						        }
+							}
+					        
 							if(role==0 && flag==1){
 								obj.put("role", "普通管理员");
 							}

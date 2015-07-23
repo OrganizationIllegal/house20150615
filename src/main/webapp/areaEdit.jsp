@@ -794,21 +794,7 @@ body{
 <div class="area_left">
 <span class="area_span">项目名称</span>
 <span>
-<%-- <select class="area_select" id="project_name" name="project_name">
- <!--  <option value ="pro1">The Atrium</option>
-  <option value ="pro2">Thrive Parkside</option>
-  <option value ="pro3">The Moreland</option>
-  <option value ="pro4">Regent Residences</option>
-  <option value ="pro5">Amber</option>
-  <option value ="pro6">Hamilton 853</option>
-  <option value ="pro7">Forest Ridge</option>
-  <option value ="pro8">Claremont Manor</option>
-  <option value ="pro9">Kornhill Gardens</option>
-  <option value ="pro10">Evergreen</option> -->
-  <c:forEach items="${projectSet}" var="item">
-        		 <option value="${item.id}">${item.project_name}</option>
-   </c:forEach>
-</select> --%>
+
 <select data-placeholder="请选择..." class="chosen-select" id="project_name" name="project_name" style="width:220px;" tabindex="6">
  	 <option value=""></option>
   	 <c:forEach items="${projectSet}" var="item">
