@@ -1313,6 +1313,7 @@ public class AreaInfoDao extends BaseDao {
 				
 				areaInfo.setTouzi_datasource(rs.getString("touzi_datasource"));
 				areaInfo.setTouzi_date(rs.getTimestamp("touzi_date"));
+				areaInfo.setArea_type(rs.getString("area_type"));
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

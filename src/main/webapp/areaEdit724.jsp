@@ -82,59 +82,59 @@ body{
 <select data-placeholder="请选择..." class="chosen-select" id="area_zhou" name="area_zhou" style="width:220px;" tabindex="4">
  	 <option value=""></option>
       <c:choose>
-	    <c:when test="${AreaInfo.area_zhou eq 'VIC 维多利亚州'}">
-	      <option value="VIC 维多利亚州" selected="selected">VIC 维多利亚州</option>
+	    <c:when test="${AreaInfo.area_zhou eq 'Vic 维多利亚州'}">
+	      <option value="Vic 维多利亚州" selected="selected">Vic 维多利亚州</option>
 	    </c:when>
 	   <c:otherwise>  
-	      <option value="VIC 维多利亚州">VIC 维多利亚州</option>
+	      <option value="Vic 维多利亚州">Vic 维多利亚州</option>
 	   </c:otherwise>
   	  </c:choose>
   	  <c:choose>
-	    <c:when test="${AreaInfo.area_zhou eq 'QLD 昆士兰州'}">
-	      <option value="QLD 昆士兰州" selected="selected">QLD 昆士兰州</option>
+	    <c:when test="${AreaInfo.area_zhou eq 'Qld 昆士兰州'}">
+	      <option value="Qld 昆士兰州" selected="selected">Qld 昆士兰州</option>
 	    </c:when>
 	   <c:otherwise>  
-	      <option value="QLD 昆士兰州">QLD 昆士兰州</option>
+	      <option value="Qld 昆士兰州">Qld 昆士兰州</option>
 	   </c:otherwise>
   	  </c:choose>
   	   <c:choose>
-	    <c:when test="${AreaInfo.area_zhou eq 'NSW 新南威尔士州'}">
-	      <option value="NSW 新南威尔士州" selected="selected">NSW 新南威尔士州</option>
+	    <c:when test="${AreaInfo.area_zhou eq 'Nsw 新南威尔士州'}">
+	      <option value="Nsw 新南威尔士州" selected="selected">Nsw 新南威尔士州</option>
 	    </c:when>
 	   <c:otherwise>  
-	      <option value="NSW 新南威尔士州">NSW 新南威尔士州</option>
+	      <option value="Nsw 新南威尔士州">Nsw 新南威尔士州</option>
 	   </c:otherwise>
   	  </c:choose>
   	   <c:choose>
-	    <c:when test="${AreaInfo.area_zhou eq 'WA 西澳大利亚'}">
-	      <option value="WA 西澳大利亚" selected="selected">WA 西澳大利亚</option>
+	    <c:when test="${AreaInfo.area_zhou eq 'Wa 西澳大利亚'}">
+	      <option value="Wa 西澳大利亚" selected="selected">Wa 西澳大利亚</option>
 	    </c:when>
 	   <c:otherwise>  
-	      <option value="WA 西澳大利亚">WA 西澳大利亚</option>
+	      <option value="Wa 西澳大利亚">Wa 西澳大利亚</option>
 	   </c:otherwise>
   	  </c:choose>
   	   <c:choose>
-	    <c:when test="${AreaInfo.area_zhou eq 'SA 南澳大利亚'}">
-	      <option value="SA 南澳大利亚" selected="selected">SA 南澳大利亚</option>
+	    <c:when test="${AreaInfo.area_zhou eq 'Sa 南澳大利亚'}">
+	      <option value="Sa 南澳大利亚" selected="selected">Sa 南澳大利亚</option>
 	    </c:when>
 	   <c:otherwise>  
-	      <option value="SA 南澳大利亚">SA 南澳大利亚</option>
+	      <option value="Sa 南澳大利亚">Sa 南澳大利亚</option>
 	   </c:otherwise>
   	  </c:choose>
   	    <c:choose>
-	    <c:when test="${AreaInfo.area_zhou eq 'TAS 塔斯马尼亚州'}">
-	      <option value="TAS 塔斯马尼亚州" selected="selected">TAS 塔斯马尼亚州</option>
+	    <c:when test="${AreaInfo.area_zhou eq 'Tas 塔斯马尼亚州'}">
+	      <option value="Tas 塔斯马尼亚州" selected="selected">Tas 塔斯马尼亚州</option>
 	    </c:when>
 	   <c:otherwise>  
-	      <option value="TAS 塔斯马尼亚州">TAS 塔斯马尼亚州</option>
+	      <option value="Tas 塔斯马尼亚州">Tas 塔斯马尼亚州</option>
 	   </c:otherwise>
   	  </c:choose>
   	   <c:choose>
-	    <c:when test="${AreaInfo.area_zhou eq 'CAN 堪培拉'}">
-	      <option value="CAN 堪培拉" selected="selected">CAN 堪培拉</option>
+	    <c:when test="${AreaInfo.area_zhou eq 'Can 堪培拉'}">
+	      <option value="Can 堪培拉" selected="selected">Can 堪培拉</option>
 	    </c:when>
 	   <c:otherwise>  
-	      <option value="CAN 堪培拉">CAN 堪培拉</option>
+	      <option value="Can 堪培拉">Can 堪培拉</option>
 	   </c:otherwise>
   	  </c:choose>
  </select>
@@ -236,71 +236,6 @@ body{
 <div class="area_right">
 <span class="area_span">租赁需求</span><span><input type="text" id="zu_xuqiu" name="zu_xuqiu" class="area_input"  value="${Invest.zu_xuqiu}"></span>
 </div>
-<div class="area_left">
-<<<<<<< HEAD
-<span class="area_span">项目类型</span><span><input type="text" id="pro_type" name="zu_xuqiu" class="area_input"  value="${Invest.pro_type}"></span>
-=======
-<span class="area_span">项目类型</span><span><input type="text" id="pro_type" name="pro_type" class="area_input"  value="${Invest.area_type}"></span>
->>>>>>> 8c9cdaaccc79128dbbd64bde3bc6cc2e3d581450
-</div>
-
-<div class="area_bkg2 c-fix" id="invest">投资数据</div>
-<div class="area_left">
-<input type="text" id="id21" name="id21" style="display:none;" value="${Invest1.id}">
-<<<<<<< HEAD
-<span class="area_span">数据来源</span><span><input type="text" id="touzi_datasource1" name="touzi_datasource1" class="area_input" value="${Invest.touzi_datasource}"></span>
-=======
-<span class="area_span">数据来源</span><span><input type="text" id="touzi_datasource1" name="touzi_datasource1" class="area_input" value="${Invest1.touzi_datasource}"></span>
->>>>>>> 8c9cdaaccc79128dbbd64bde3bc6cc2e3d581450
-</div>
-<div class="area_right">
-<span class="area_span">更新日期</span><span><input type="text" id="touzi_date1" name="touzi_date1" class="area_input" value="${Invest1.touzi_date.toString().length()>10?Invest1.touzi_date.toString().substring(0,10):Invest1.touzi_date.toString()}"></span>
-</div>
-<div class="area_left">
-<<<<<<< HEAD
-<span class="area_span">年增长率</span><span><input type="text" id="year_increment_rate1" name="year_increment_rate1" class="area_input"  value="${Invest.year_increment_rate1}"></span>
-</div>
-<div class="area_right">
-<span class="area_span">中位数价格</span><span><input type="text" id="middle_price1" name="middle_price1" class="area_input"  value="${Invest.middle_price1}"></span>
-</div>
-<div class="area_left">
-<span class="area_span">中位数租金</span><span><input type="text" id="middle_zu_price1" name="middle_zu_price1" class="area_input" value="${Invest.middle_zu_price1}"></span>
-</div>
-<div class="area_right">
-<span class="area_span">租金回报率</span><span><input type="text" id="zu_house_rate1" name="zu_house_rate1" class="area_input" value="${Invest.zu_house_rate1}"></span>
-</div>
-<div class="area_left">
-<span class="area_span">现金回报</span><span><input type="text" id="price_review1" name="price_review1" class="area_input"  value="${Invest.price_review1}"></span>
-</div>
-<div class="area_right">
-<span class="area_span">租赁需求</span><span><input type="text" id="zu_xuqiu1" name="zu_xuqiu1" class="area_input"  value="${Invest.zu_xuqiu1}"></span>
-</div>
-<div class="area_left">
-<span class="area_span">项目类型</span><span><input type="text" id="pro_type1" name="pro_type1" class="area_input"  value="${Invest.pro_type1}"></span>
-=======
-<span class="area_span">年增长率</span><span><input type="text" id="year_increment_rate1" name="year_increment_rate1" class="area_input"  value="${Invest1.year_increment_rate}"></span>
-</div>
-<div class="area_right">
-<span class="area_span">中位数价格</span><span><input type="text" id="middle_price1" name="middle_price1" class="area_input"  value="${Invest1.middle_price}"></span>
-</div>
-<div class="area_left">
-<span class="area_span">中位数租金</span><span><input type="text" id="middle_zu_price1" name="middle_zu_price1" class="area_input" value="${Invest1.middle_zu_price}"></span>
-</div>
-<div class="area_right">
-<span class="area_span">租金回报率</span><span><input type="text" id="zu_house_rate1" name="zu_house_rate1" class="area_input" value="${Invest1.zu_house_rate}"></span>
-</div>
-<div class="area_left">
-<span class="area_span">现金回报</span><span><input type="text" id="price_review1" name="price_review1" class="area_input"  value="${Invest1.price_review}"></span>
-</div>
-<div class="area_right">
-<span class="area_span">租赁需求</span><span><input type="text" id="zu_xuqiu1" name="zu_xuqiu1" class="area_input"  value="${Invest1.zu_xuqiu}"></span>
-</div>
-<div class="area_left">
-<span class="area_span">项目类型</span><span><input type="text" id="pro_type1" name="pro_type1" class="area_input"  value="${Invest1.area_type}"></span>
->>>>>>> 8c9cdaaccc79128dbbd64bde3bc6cc2e3d581450
-</div>
-
-
 <div class="area_bkg2 c-fix" id="family">区域家庭构成</div>
 <div class="area_left">
 <input type="text" id="id3" name="id3" style="display:none;" value="${Family.id}">
@@ -1045,10 +980,6 @@ body{
 
 <script type="text/javascript">
 $('#touzi_date').datepicker({
-    language: "zh-CN",
-    format: "yyyy-mm-dd"
-});
-$('#touzi_date1').datepicker({
     language: "zh-CN",
     format: "yyyy-mm-dd"
 });
@@ -2080,12 +2011,11 @@ function savepro(){
 	var id1=$("#id1").val();
 	var id2=$("#id2").val();
 	var id3=$("#id3").val();
-	var id21=$("#id21").val();
     $.ajax({
 	    type: "POST",
  		async:false, 
 		dateType: "json",
-		data:{"id":id1.toString(),"id2":id2.toString(),"id21":id21.toString(),"id3":id3.toString(),"area":JSON.stringify(area),"middleprice":JSON.stringify(middlepricelist),"middletrend":JSON.stringify(middletrendlist),"zujintrendlist":JSON.stringify(zujintrendlist),"huibaotrendlist":JSON.stringify(huibaotrendlist),"tedianlist":JSON.stringify(tedianlist),"peoplelist":JSON.stringify(peoplelist),"brokerlist":JSON.stringify(brokerlist),"projectlist":JSON.stringify(projectlist),"newslist":JSON.stringify(newslist)},
+		data:{"id":id1.toString(),"id2":id2.toString(),"id3":id3.toString(),"area":JSON.stringify(area),"middleprice":JSON.stringify(middlepricelist),"middletrend":JSON.stringify(middletrendlist),"zujintrendlist":JSON.stringify(zujintrendlist),"huibaotrendlist":JSON.stringify(huibaotrendlist),"tedianlist":JSON.stringify(tedianlist),"peoplelist":JSON.stringify(peoplelist),"brokerlist":JSON.stringify(brokerlist),"projectlist":JSON.stringify(projectlist),"newslist":JSON.stringify(newslist)},
 		url: "/EditAreaInfo",
 		success:function(data){
 			data=eval("("+data+")");

@@ -1118,6 +1118,12 @@ public class ProjectInfoController {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				
+			}
+			try{
+				writeJson(json.toJSONString(),resp);
+			}catch(Exception e){
+				e.printStackTrace();
 			}
 		}
 		
