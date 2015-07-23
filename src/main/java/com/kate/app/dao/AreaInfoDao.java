@@ -1419,10 +1419,9 @@ public class AreaInfoDao extends BaseDao {
 			if(touzi_date != null){
 				time_strtouzi = touzi_date.toString(); 
 			}
-/*			Timestamp tstouzi = new Timestamp(System.currentTimeMillis()); 
+			Timestamp tstouzi = new Timestamp(System.currentTimeMillis()); 
 			if(touzi_date==null||"".equals(touzi_date)){
 				touzi_date = "2015-05-09";
-				//(new SimpleDateFormat("yyyy-MM-dd"))銆俧ormat(new Date())
 			}
 	        try {   
 	        	time_strtouzi = touzi_date+" "+"00:00:00";
@@ -1430,7 +1429,8 @@ public class AreaInfoDao extends BaseDao {
 	            System.out.println(tstouzi);   
 	        } catch (Exception e) {   
 	            e.printStackTrace();   
-	        }*/
+	        }
+	        
 	        String sqltouzi = " insert into investment_data(year_increment_rate, middle_price, middle_zu_price, zu_house_rate, zu_xuqiu, price_review, data_exam, area_num, area_name, touzi_datasource, touzi_date) values(?,?,?,?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sqltouzi);
 			pstmt.setString(1, year_increment_rate);
@@ -1454,17 +1454,17 @@ public class AreaInfoDao extends BaseDao {
 			if(family_date != null){
 				family_date_str = family_date.toString(); 
 			}
-			/*Timestamp tsfamily = new Timestamp(System.currentTimeMillis()); 
+			Timestamp tsfamily = new Timestamp(System.currentTimeMillis()); 
 			if(family_date==null||"".equals(family_date)){
 				family_date = "2015-05-09";
 			}
 	        try {   
-	        	time_strfamily = family_date+" "+"00:00:00";
-	        	tsfamily = Timestamp.valueOf(time_strfamily);   
+	        	family_date_str = family_date+" "+"00:00:00";
+	        	tsfamily = Timestamp.valueOf(family_date_str);   
 	            System.out.println(tsfamily);   
 	        } catch (Exception e) {   
 	            e.printStackTrace();   
-	        }  */
+	        } 
 	        String sqlfamily = " insert into area_family(family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, area_code, family_datasource, family_date) values(?,?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sqlfamily);
 			pstmt.setString(1, family_one);
@@ -1508,7 +1508,17 @@ public class AreaInfoDao extends BaseDao {
 				if(middle_date != null){
 					time_str = middle_date.toString(); 
 				}
-				
+				Timestamp middleDate = new Timestamp(System.currentTimeMillis()); 
+				if(middle_date==null||"".equals(middle_date)){
+					middle_date = "2015-05-09";
+				}
+		        try {   
+		        	time_str = middle_date+" "+"00:00:00";
+		        	middleDate = Timestamp.valueOf(time_str);   
+		            System.out.println(middleDate);   
+		        } catch (Exception e) {   
+		            e.printStackTrace();   
+		        }
 		        
 				
 					String sqlmiddleprice = " insert into area_middle_price(buy_price, zu_price, " +
@@ -1559,7 +1569,17 @@ public class AreaInfoDao extends BaseDao {
 				if(middle_zoushi_date != null){
 					time_str = middle_zoushi_date.toString(); 
 				}
-				
+				Timestamp middle_zoushi_date1 = new Timestamp(System.currentTimeMillis()); 
+				if(middle_zoushi_date==null||"".equals(middle_zoushi_date)){
+					middle_zoushi_date = "2015-05-09";
+				}
+		        try {   
+		        	time_str = middle_zoushi_date+" "+"00:00:00";
+		        	middle_zoushi_date1 = Timestamp.valueOf(time_str);   
+		            System.out.println(middle_zoushi_date1);   
+		        } catch (Exception e) {   
+		            e.printStackTrace();   
+		        }
 		        
 				
 					String sqlareamiddle = " insert into area_middle(heng, zong, " +
@@ -1597,7 +1617,17 @@ public class AreaInfoDao extends BaseDao {
 				if(zujin_dates != null){
 					time_str = zujin_dates.toString(); 
 				}
-				
+				Timestamp zujin_dates1 = new Timestamp(System.currentTimeMillis()); 
+				if(zujin_dates==null||"".equals(zujin_dates)){
+					zujin_dates = "2015-05-09";
+				}
+		        try {   
+		        	time_str = zujin_dates+" "+"00:00:00";
+		        	zujin_dates1 = Timestamp.valueOf(time_str);   
+		            System.out.println(zujin_dates);   
+		        } catch (Exception e) {   
+		            e.printStackTrace();   
+		        }
 		        
 				
 					String sqlzuijin = " insert into area_zujin(heng, zong, " +
@@ -1635,7 +1665,17 @@ public class AreaInfoDao extends BaseDao {
 				if(zujin_huibao_date != null){
 					time_str = zujin_huibao_date.toString(); 
 				}
-				
+				Timestamp zujin_huibao_date1 = new Timestamp(System.currentTimeMillis()); 
+				if(zujin_huibao_date==null||"".equals(zujin_huibao_date)){
+					zujin_huibao_date = "2015-05-09";
+				}
+		        try {   
+		        	time_str = zujin_huibao_date+" "+"00:00:00";
+		        	zujin_huibao_date1 = Timestamp.valueOf(time_str);   
+		            System.out.println(zujin_huibao_date1);   
+		        } catch (Exception e) {   
+		            e.printStackTrace();   
+		        }
 		        
 				
 					String sqlhuibao = " insert into area_kongzhi(heng, zong, " +
@@ -1672,7 +1712,17 @@ public class AreaInfoDao extends BaseDao {
 				if(update_time != null){
 					time_str = update_time.toString(); 
 				}
-				
+				Timestamp update_time1 = new Timestamp(System.currentTimeMillis()); 
+				if(update_time==null||"".equals(update_time)){
+					update_time = "2015-05-09";
+				}
+		        try {   
+		        	time_str = update_time+" "+"00:00:00";
+		        	update_time1 = Timestamp.valueOf(time_str);   
+		            System.out.println(update_time1);   
+		        } catch (Exception e) {   
+		            e.printStackTrace();   
+		        }
 		        
 				
 					String sqltedian = " insert into area_features(area_character, view_shunxu, " +
@@ -1708,7 +1758,17 @@ public class AreaInfoDao extends BaseDao {
 				if(people_date != null){
 					time_str = people_date.toString(); 
 				}
-				
+				Timestamp people_date1 = new Timestamp(System.currentTimeMillis()); 
+				if(people_date==null||"".equals(people_date)){
+					people_date = "2015-05-09";
+				}
+		        try {   
+		        	time_str = people_date+" "+"00:00:00";
+		        	people_date1 = Timestamp.valueOf(time_str);   
+		            System.out.println(people_date1);   
+		        } catch (Exception e) {   
+		            e.printStackTrace();   
+		        }
 		        
 				
 					String sqlpeople = " insert into area_people(column1, column2, " +
