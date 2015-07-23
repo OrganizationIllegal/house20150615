@@ -13,8 +13,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="css/main.css" />
 <link rel="stylesheet" type="text/css" href="css/areaLuru.css" />
 <script src="/ckeditor/ckeditor.js"></script>
-<!-- <script src="/js/jquery.min.js"></script> -->
-<!-- <script src="/bootstrap/js/bootstrap.min.js"></script> -->
+<script src="/js/jquery.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/chosen.css">
 <style type="text/css">
 body{
@@ -325,7 +325,14 @@ $(function(){
 		$(this).parent().parent().parent().hide();
 		//alert(index+"index");
 		typeedit=index;
-		$("#interested_num").val(typeedititem.interested_num);
+		/* $("#interested_num").val(typeedititem.interested_num); */
+		var selectCount = document.getElementById("interested_num");
+		for(var i = 0 ; i<selectCount.length;i++){
+			if(selectCount.options[i].value==typeedititem.interested_num){			
+				selectCount.options[i].selected=true;				
+			}
+		}
+		$('#interested_num').trigger('chosen:updated');
 		$("#view_shunxu2").val(typeedititem.view_shunxu2);
 		}); 
 	

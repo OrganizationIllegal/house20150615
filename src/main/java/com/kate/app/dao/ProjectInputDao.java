@@ -288,7 +288,7 @@ public class ProjectInputDao extends BaseDao {
 				houseInfo1.setRoom_num(rs.getInt("house_room_num"));
 				houseInfo1.setShinei_mianji(rs.getString("house_size_in"));
 				houseInfo1.setShiwai_mianji(rs.getString("house_size_out"));
-				houseInfo1.setWc_num(rs.getInt("house_toilet_size"));
+				houseInfo1.setWc_num(rs.getInt("house_toilet_num"));
 				houseinfoList.add(houseInfo1);
 			}
 		} catch (Exception e) {
@@ -3795,7 +3795,7 @@ public class ProjectInputDao extends BaseDao {
 				int result1 = pstmt.executeUpdate();
 				System.out.println("result1:"+result1);
 				//鎴峰瀷鍙婁环鏍兼洿鏂�
-				String sql2="update house_info set house_name=?,house_img=?,house_price=?,house_room_num=?,tudi_area=?,jianzhu_area=?,house_size_in=?,house_size_out=?,house_toilet_size=? ,project_num=? where id=?";
+				String sql2="update house_info set house_name=?,house_img=?,house_price=?,house_room_num=?,tudi_area=?,jianzhu_area=?,house_size_in=?,house_size_out=?,house_toilet_num=? ,project_num=? where id=?";
 		        pstmt = con.prepareStatement(sql2);
 		        for(int i=0;i<houseInfolist.size();i++){
 		        	HouseInfo1 houseinfo=houseInfolist.get(i);

@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class AreaZhikong2 {
 	private int id;//
 	private int heng4;//
-	private int zong4;//
+	private float zong4;//
 	private String project_type4;//
 	private int view_shunxu4;//
 	private String zujin_huibao_datasource;//
@@ -22,12 +22,6 @@ public class AreaZhikong2 {
 	}
 	public void setHeng4(int heng4) {
 		this.heng4 = heng4;
-	}
-	public int getZong4() {
-		return zong4;
-	}
-	public void setZong4(int zong4) {
-		this.zong4 = zong4;
 	}
 	public String getProject_type4() {
 		return project_type4;
@@ -52,6 +46,12 @@ public class AreaZhikong2 {
 	}
 	public void setZujin_huibao_date(String zujin_huibao_date) {
 		this.zujin_huibao_date = zujin_huibao_date;
+	}
+	public float getZong4() {
+		return zong4;
+	}
+	public void setZong4(float zong4) {
+		this.zong4 = zong4;
 	}
 	
 	

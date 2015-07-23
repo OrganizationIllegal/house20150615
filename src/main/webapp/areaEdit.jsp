@@ -1483,7 +1483,7 @@ $(function(){
 		$("#project_type4").val(huibaotrendedititem.project_type4||huibaotrendedititem.project_type);
 		$("#view_shunxu4").val(huibaotrendedititem.view_shunxu4||huibaotrendedititem.view_shunxu);
 		$("#heng4").val(huibaotrendedititem.heng4||huibaotrendedititem.heng);
-		$("#zong4").val(huibaotrendedititem.zong4||huibaotrendedititem.zong);
+		$("#zong4").val(huibaotrendedititem.zong4||huibaotrendedititem.zong); 
 		$("#zujin_huibao_datasource").val(huibaotrendedititem.zujin_huibao_datasource||huibaotrendedititem.zujin_huibao_datasource);
 		$("#zujin_huibao_date").val(huibaotrendedititem.zujin_huibao_date.length>=10?huibaotrendedititem.zujin_huibao_date.substr(0,10):huibaotrendedititem.zujin_huibao_date);
 		}); 

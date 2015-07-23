@@ -41,6 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- <script type="text/javascript" src="js/script.js"></script> -->
 <script type="text/javascript" src="js/script_p.js"></script>
 <script src="js/video.js"></script>
+<script type="text/javascript" src="http://player.youku.com/jsapi"></script>
 <script>videojs.options.flash.swf = "/js/video-js.swf";</script>
 		<style type="text/css">
 			.active a{
@@ -87,7 +88,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 		</style>
 <script type="text/javascript">
-
 function lunbo(){
 	var animate_time=200;//锟斤拷锟斤拷时锟戒：0.3锟斤拷
 	var interval_time=5000;//锟斤拷锟脚硷拷锟绞憋拷洌�锟斤拷
@@ -109,18 +109,6 @@ function lunbo(){
 	
 	//锟斤拷停锟斤拷锟斤拷锟斤拷锟绞憋拷锟斤拷锟酵Ｖ�
 	jQuery(".ad_position").hover(function(){clearInterval(ad_huandeng_setInterval);}, function(){ad_huandeng_setInterval = setInterval(ad_huandeng_play,interval_time);});
-	function videoplay(){
-		alert("jdskfj");
-		clearInterval(ad_huandeng_setInterval);
-	}
-	function videopause(){
-	alert("jdskfj");
-		ad_huandeng_setInterval = setInterval(ad_huandeng_play,interval_time);
-	}
-	function videoend(){
-	alert("jdskfj");
-		clearInterval(ad_huandeng_setInterval);
-	}
 	//小图锟斤拷锟绞憋拷锟斤拷锟绞硷拷锟斤拷锟�
 	jQuery(".ad_position .limit .ad_small_box ul li").dblclick(function(){
 		ad_huandeng_click_i=jQuery(".ad_position .limit .ad_small_box ul li").index(jQuery(this));		
@@ -224,7 +212,29 @@ function lunbo(){
 	});
 }
 $(function(){
-	lunbo();
+	player = new YKU.Player('youkuplayer',{
+		styleid: '0',
+		client_id: '6e97509b4cd3378b',
+		vid: 'XOTUxNDk2NDQ0',
+		events:{
+		/* onPlayerReady: function(){ 
+			alert("zhunbei");
+		}, */
+		onPlayStart: function(){
+			playVideo();
+		},
+		onPlayEnd: function(){ lunbo(); }
+		}
+		});
+		function playVideo(){
+		player.playVideo();
+			alert("kaishi");
+		}
+		function pauseVideo(){
+		player.pauseVideo();
+			alert("zanting")
+		}
+	/* lunbo(); */
 	
 	//锟矫碉拷片锟斤拷娌ワ拷锟�
 });
@@ -318,21 +328,6 @@ function popInfo(){
 				<input type="hidden" id="Control" value='0'>
                 <table class="ad_left_big" width="750" border="0" cellpadding="0" cellspacing="0" style="margin-top: 0px;">
                      <tr><td><div id="youkuplayer" style="width:750px;height:474px"></div>
-                     <script type="text/javascript" src="http://player.youku.com/jsapi">
-                    temp=1;
-		player = new YKU.Player('youkuplayer',{
-			styleid: '0',
-			client_id: '6e97509b4cd3378b',
-			vid: 'XOTUxNDk2NDQ0',
-			events:{
-				
-				onPlayerReady: function(){ temp = 0;alert(temp)}
-			}
-			
-			});
-                     
-		
-	</script>	
                     </td>
                     </tr>
                     <c:forEach var="item"  items="${imageList}"   varStatus="status">
@@ -1475,42 +1470,33 @@ function popInfo(){
 	});
 	
  </script>
- <script type="text/javascript" src="http://player.youku.com/jsapi"></script>
+ <!-- <script type="text/javascript" src="http://player.youku.com/jsapi"></script>
 <script type="text/javascript">
 $(function () {
-/* var t = document.getElementById("Control").value(); */
 var t =$("#Control").val();
-//alert(t)
 var flag=0;
 		player = new YKU.Player('youkuplayer',{
 			styleid: '0',
 			client_id: '6e97509b4cd3378b',
 			vid: 'XOTUxNDk2NDQ0',
 			events:{
-			onPlayerReady: function(){
-				alert(t);
-				window.name=1;
-				alert(window.name);
-				//playVideo();
-				/* flag=1;
-				if(flag){
-					alert("hehe")
-				}
-				alert(flag) */
-				
-				},
-			onPlayStart: function(){ alert("kaishi") },
-			onPlayEnd: function(){ alert("jieshu") }
+			onPlayerReady: function(){ 
+				ad_huandeng_click_i==0;
+				alert(flag);
+			},
+			onPlayStart: function(){
+				playVideo();
+			}
+			//onPlayEnd: function(){ alert("jieshu") }
 			}
 			});
 			function playVideo(){
 			player.playVideo();
 				alert("kaishi");
-				flag=1;
 			}
 			function pauseVideo(){
 			player.pauseVideo();
 				alert("zanting")
 			}
 });
-			</script>						
+			</script>		 -->				

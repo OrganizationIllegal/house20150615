@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class AreaZhikong {
 	private int id;
 	private String heng;
-	private int zong;
+	private float zong;
 	private String project_type;
 	private String area_code;
 	private int house_pro_id;
@@ -40,12 +40,6 @@ public class AreaZhikong {
 	public void setHeng(String heng) {
 		this.heng = heng;
 	}
-	public int getZong() {
-		return zong;
-	}
-	public void setZong(int zong) {
-		this.zong = zong;
-	}
 	public String getProject_type() {
 		return project_type;
 	}
@@ -75,6 +69,12 @@ public class AreaZhikong {
 	}
 	public void setView_shunxu(int view_shunxu) {
 		this.view_shunxu = view_shunxu;
+	}
+	public float getZong() {
+		return zong;
+	}
+	public void setZong(float zong) {
+		this.zong = zong;
 	}
 	
 	
