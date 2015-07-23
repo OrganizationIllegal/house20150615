@@ -30,7 +30,7 @@ body{
 <div class="area_bkg1">当前位置:置业指导录入</div>
 <div class="area_bkg2" id="brokerinfo">置业指导</div>
 <div class="area_left">
-<span class="area_span">编号</span><span><input type="text" id="zhiye_num" name="zhiye_num" class="area_input" value="${zhiYeZhiDao.zhiye_num}"></span>
+<span class="area_span">编号</span><span><input type="text" id="zhiye_num" name="zhiye_num" class="area_input" value="${zhiYeZhiDao.zhiye_num}"  readonly="readonly"></span>
 <input type="hidden" id="id" name="id" class="area_input" value="${zhiYeZhiDao.id}">
 </div>
 <div class="area_right">

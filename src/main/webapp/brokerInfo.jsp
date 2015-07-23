@@ -36,7 +36,7 @@ body{
 <div class="area_bkg2" >经纪人信息</div>
 <form id="brokerinfo">
 <div class="area_left">
-<span class="area_span">经纪人编号</span><span><input type="text" id="broker_num" name="broker_num" class="area_input" value="${broker.broker_num}"></span>
+<span class="area_span">经纪人编号</span><span><input type="text" id="broker_num" name="broker_num" class="area_input" value="${broker.broker_num}" readonly="readonly"></span>
 <input type="hidden" id="id" name="id" class="area_input" value="${broker.id}">
 </div>
 <div class="area_right">
@@ -140,7 +140,10 @@ $(function(){
 			function(){
 				$("#broker_img").click();
 				$("#broker_img").change(function(){
-					$("#file1").val($("#broker_img").val());
+					var filenames=$('#broker_img').val().split("\\");
+					var filename=filenames[filenames.length-1];
+					$("#file1").val(filename);
+					//$("#file1").val($("#broker_img").val());
 					});
 			});
 });
@@ -457,6 +460,10 @@ var DataDeal = {
 <script>
 
 function saveBroker(){
+	if($("#file1").val()==""){
+		alert("请选择图片！");
+		return false;
+	}
 	var id=$("#id").val();
 	//alert("id"+id);
 	var broker;
@@ -465,6 +472,7 @@ function saveBroker(){
 	var filenames=$('#broker_img').val().split("\\");
 	var filename=filenames[filenames.length-1];
 	broker.broker_img=filename;
+	broker.broker_img=$("#file1").val();
 	//alert(CKEDITOR.instances.introduction.getData());
 	broker.introduction=CKEDITOR.instances.introduction.getData();
 	//alert(JSON.stringify(broker));

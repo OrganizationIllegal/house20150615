@@ -45,7 +45,7 @@ body{
 <div class="area_bkg2" id="areainfo">区域信息</div>
 <div class="area_left">
 <input type="text" id="id1" name="id1" style="display:none;" value="${AreaInfo.id}">
-<span class="area_span">区域编号</span><span><input type="text" id="area_num" name="area_num" class="area_input" value="${AreaInfo.area_num}"></span>
+<span class="area_span">区域编号</span><span><input type="text" id="area_num" name="area_num" class="area_input" value="${AreaInfo.area_num}"  readonly="readonly"></span>
 </div>
 <div class="area_right">
 <span class="area_span">区域名称</span><span><input type="text" id="area_name" name="area_name" class="area_input" value="${AreaInfo.area_name}"></span>
@@ -237,47 +237,23 @@ body{
 <span class="area_span">租赁需求</span><span><input type="text" id="zu_xuqiu" name="zu_xuqiu" class="area_input"  value="${Invest.zu_xuqiu}"></span>
 </div>
 <div class="area_left">
-<<<<<<< HEAD
-<span class="area_span">项目类型</span><span><input type="text" id="pro_type" name="zu_xuqiu" class="area_input"  value="${Invest.pro_type}"></span>
-=======
+
 <span class="area_span">项目类型</span><span><input type="text" id="pro_type" name="pro_type" class="area_input"  value="${Invest.area_type}"></span>
->>>>>>> 8c9cdaaccc79128dbbd64bde3bc6cc2e3d581450
+
 </div>
 
 <div class="area_bkg2 c-fix" id="invest">投资数据</div>
 <div class="area_left">
 <input type="text" id="id21" name="id21" style="display:none;" value="${Invest1.id}">
-<<<<<<< HEAD
-<span class="area_span">数据来源</span><span><input type="text" id="touzi_datasource1" name="touzi_datasource1" class="area_input" value="${Invest.touzi_datasource}"></span>
-=======
+
 <span class="area_span">数据来源</span><span><input type="text" id="touzi_datasource1" name="touzi_datasource1" class="area_input" value="${Invest1.touzi_datasource}"></span>
->>>>>>> 8c9cdaaccc79128dbbd64bde3bc6cc2e3d581450
+
 </div>
 <div class="area_right">
 <span class="area_span">更新日期</span><span><input type="text" id="touzi_date1" name="touzi_date1" class="area_input" value="${Invest1.touzi_date.toString().length()>10?Invest1.touzi_date.toString().substring(0,10):Invest1.touzi_date.toString()}"></span>
 </div>
 <div class="area_left">
-<<<<<<< HEAD
-<span class="area_span">年增长率</span><span><input type="text" id="year_increment_rate1" name="year_increment_rate1" class="area_input"  value="${Invest.year_increment_rate1}"></span>
-</div>
-<div class="area_right">
-<span class="area_span">中位数价格</span><span><input type="text" id="middle_price1" name="middle_price1" class="area_input"  value="${Invest.middle_price1}"></span>
-</div>
-<div class="area_left">
-<span class="area_span">中位数租金</span><span><input type="text" id="middle_zu_price1" name="middle_zu_price1" class="area_input" value="${Invest.middle_zu_price1}"></span>
-</div>
-<div class="area_right">
-<span class="area_span">租金回报率</span><span><input type="text" id="zu_house_rate1" name="zu_house_rate1" class="area_input" value="${Invest.zu_house_rate1}"></span>
-</div>
-<div class="area_left">
-<span class="area_span">现金回报</span><span><input type="text" id="price_review1" name="price_review1" class="area_input"  value="${Invest.price_review1}"></span>
-</div>
-<div class="area_right">
-<span class="area_span">租赁需求</span><span><input type="text" id="zu_xuqiu1" name="zu_xuqiu1" class="area_input"  value="${Invest.zu_xuqiu1}"></span>
-</div>
-<div class="area_left">
-<span class="area_span">项目类型</span><span><input type="text" id="pro_type1" name="pro_type1" class="area_input"  value="${Invest.pro_type1}"></span>
-=======
+
 <span class="area_span">年增长率</span><span><input type="text" id="year_increment_rate1" name="year_increment_rate1" class="area_input"  value="${Invest1.year_increment_rate}"></span>
 </div>
 <div class="area_right">
@@ -297,7 +273,7 @@ body{
 </div>
 <div class="area_left">
 <span class="area_span">项目类型</span><span><input type="text" id="pro_type1" name="pro_type1" class="area_input"  value="${Invest1.area_type}"></span>
->>>>>>> 8c9cdaaccc79128dbbd64bde3bc6cc2e3d581450
+
 </div>
 
 
@@ -1813,25 +1789,11 @@ $(function(){
 					  $('#brokerlist').append("<div><div class='area_left3'><span style='display:none;'>"+(++brokercount)+"</span><span class='area_span'>"+brokerlist[brokercount-1].broker_name+"</span><span class='area_span'>"+brokerlist[brokercount-1].broker_type+"</span><span class='area_span'>"+brokerlist[brokercount-1].broker_language+"</span><span class='area_span'>"+brokerlist[brokercount-1].broker_region+"</span></div><div class='area_right3'><span class='area_span5'><a href='#' class='deletebroker'>删除</a></span></div></div>");
 					  }
 				});
-			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
-			/* peitao.shunxu=peitaocount+1; */
-			/* peitao.view= */
-			/* alert($("#huxingjiage").serializeArray()); */
-			/* huxing.housename=$("#housename").val();
-			huxing.houseprice=$("#houseprice").val();
-			huxing.room_num=$("#room_num").val();
-			huxing.tudi_mianji=$("#tudi_mianji").val();
-			huxing.jianzhu_mianji=$("#jianzhu_mianji").val();
-			huxing.shinei_mianji=$("#") */
-			/* brokerlist.push(broker); */
-			/* $("#brokerlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++brokercount)+"</span><span style='padding-right:10px;'>"+brokerlist[brokercount-1].houseTaxtype+"</span><span style='padding-right:10px;'>"+brokerlist[brokercount-1].houseTaxprice+"</span><span style='padding-right:10px;'>"+brokerlist[brokercount-1].houseTaxdesc+"</span><span style='padding-right:10px;'>"+brokerlist[brokercount-1].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>"); */
-			/* $('#brokerlist').append("<div><div class='area_left3'><span style='display:none;'>"+(++brokercount)+"</span><span class='area_span'>"+brokerlist[brokercount-1].column1+"</span><span class='area_span'>"+brokerlist[brokercount-1].column2+"</span><span class='area_span'>"+brokerlist[brokercount-1].column3+"</span><span class='area_span'>"+brokerlist[brokercount-1].view_shunxu_broker+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editbroker'>编辑</a></span><span class='area_span5'><a href='#' class='deletebroker'>删除</a></span></div></div>"); */
-			/* UpladFile("houseimg"); */
+			
 			$("#broker input").each(function(){
 				$(this).val("");
 				});
-			/* $("#huxingjiage").reset();  */
-			/* <a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a> */
+			
 			}
 		else{
 			/* if($('#houseimg').val()==""){
@@ -1863,7 +1825,7 @@ $(function(){
 			}
 		});
 	$("#brokerlist").on("click",".deletebroker",function(){
-		brokerlist.splice($(this).parent().parent().prevAll().length,1);
+		brokerlist.splice($(this).parent().parent().parent().prevAll().length,1);
 		$(this).parent().parent().parent().remove();
 		brokercount--;
 		});
@@ -1952,7 +1914,7 @@ $(function(){
 			}
 		});
 	$("#projectlist").on("click",".deleteproject",function(){
-		projectlist.splice($(this).parent().parent().prevAll().length,1);
+		projectlist.splice($(this).parent().parent().parent().prevAll().length,1);
 		$(this).parent().parent().parent().remove();
 		projectcount--;
 		});
@@ -2045,7 +2007,7 @@ $(function(){
 			}
 		});
 	$("#newslist").on("click",".deletenews",function(){
-		newslist.splice($(this).parent().parent().prevAll().length,1);
+		newslist.splice($(this).parent().parent().parent().prevAll().length,1);
 		$(this).parent().parent().parent().remove();
 		newscount--;
 		});

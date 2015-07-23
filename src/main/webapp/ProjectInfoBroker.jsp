@@ -54,7 +54,7 @@ body{
 <form id="project">
 <div class="area_bkg2" id="projectinfo">项目信息</div>
 <div class="area_left">
-<span class="area_span">项目编号</span><span><input type="text" id="project_code" name="project_code" class="area_input" value="${houseProject.project_num}">
+<span class="area_span">项目编号</span><span><input type="text" id="project_code" name="project_code" class="area_input" value="${houseProject.project_num}"  readonly="readonly">
 <input type="hidden" id="id" name="id" class="area_input" value="${houseProject.id}"></span>
 </div>
 <div class="area_right">

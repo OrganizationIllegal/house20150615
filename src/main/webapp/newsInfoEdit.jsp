@@ -31,7 +31,7 @@ body{
 <div class="area_bkg1">当前位置:新闻录入</div>
 <div class="area_bkg2" id="brokerinfo">新闻博客</div>
 <div class="area_left">
-<span class="area_span">新闻编号</span><span><input type="text" id="news_num" name="news_num" class="area_input" value="${newsBoke.news_num}"></span>
+<span class="area_span">新闻编号</span><span><input type="text" id="news_num" name="news_num" class="area_input" value="${newsBoke.news_num}"  readonly="readonly"></span>
 <input type="hidden" id="id" name="id" class="area_input" value="${newsBoke.id}">
 </div>
 <div class="area_right">
