@@ -771,6 +771,33 @@ body{
 
 </div>
 <div id="brokerlist">
+<c:forEach items="${brokerlist}" var="broker" varStatus="status">
+<%-- <div>
+	<div class='area_left3'>
+	<span style='display:none;'>${status.index + 1}</span>
+	<span class='area_span'>${broker.broker_name}</span>
+	<span class='area_span'>${broker.broker_type}</span>
+	<span class='area_span'>${broker.broker_language}</span>
+	<span class='area_span'>${broker.broker_region}</span>
+	</div>
+	<div class='area_right3'>
+	<span class='area_span5'>
+	<a href='#' class='deletebroker'>删除</a>
+	</span>
+	</div>
+</div> --%>
+<div style='float:left;padding-left:40px;'>
+<span style='padding-right:10px;'>${status.index + 1}</span>
+<input type="hidden" value="${houseTax.id} "/>
+<span style='padding-right:10px;'>${broker.broker_name}</span>
+<span style='padding-right:10px;'>${broker.broker_type}</span>
+<span style='padding-right:10px;'>${broker.broker_language}</span>
+<span style='padding-right:10px;'>${broker.broker_region}</span>
+<span style='padding-left: 30px;padding-right: 40px;'>
+<a href='#' class='deletebroker'>删除</a>
+</span>
+</div>
+</c:forEach>
 </div>
 
 

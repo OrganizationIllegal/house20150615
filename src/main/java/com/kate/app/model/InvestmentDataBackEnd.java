@@ -19,7 +19,7 @@ public class InvestmentDataBackEnd {
 	private Timestamp update_time;
 	private String touzi_datasource;
 	private Timestamp touzi_date;
-	private String aera_type;
+	private String area_type;
 	
 	
 	public String getZuijin_review() {
@@ -46,11 +46,12 @@ public class InvestmentDataBackEnd {
 	public void setTouzi_date(Timestamp touzi_date) {
 		this.touzi_date = touzi_date;
 	}
-	public String getAera_type() {
-		return aera_type;
+	
+	public String getArea_type() {
+		return area_type;
 	}
-	public void setAera_type(String aera_type) {
-		this.aera_type = aera_type;
+	public void setArea_type(String area_type) {
+		this.area_type = area_type;
 	}
 	public int getId() {
 		return id;

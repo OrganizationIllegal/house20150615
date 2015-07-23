@@ -233,7 +233,7 @@
          </div>
          <div class="modal-body">
   <div style="text-align:center;margin-top:5px;"><div style="font-size:20px;font-weight:bold;">用户注册</div>
-  <form method="post" action="/Register" name="fm1">
+  <form method="post" action="/Register" name="fm2">
   <div  style="padding-top:15px;">
          <input type="text"  id="telemail" name="telemail" style="background-image:url(images/0.png);background-repeat:no-repeat;background-position:left;padding-left:35px;width:270px;height:34px;background-color:rgba(246, 245, 245, 1);" placeholder="手机号/邮箱" autocomplete="off">
    
@@ -329,7 +329,7 @@ var role;
                   	temp = judgeRe(user,pass);
                    
                   	if(temp==true){	                	
-  	                    document.fm1.submit();  //fm为form表单name
+  	                    document.fm2.submit();  //fm为form表单name
                   	}
                   	else{               	
                   		return false;
