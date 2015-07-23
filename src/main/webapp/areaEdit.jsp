@@ -1716,7 +1716,7 @@ $(function(){
 				$(this).val("");
 				});
 			peoplelist[peopleedit]=peopleedititem;
-			alert($("#peoplelist").children().eq(peopleedit));
+			//alert($("#peoplelist").children().eq(peopleedit));
 			/* $("#peoplelist").children().eq(peopleedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(peopleedit+1)+"</span><span style='padding-right:10px;'>"+peoplelist[peopleedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+peoplelist[peopleedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+peoplelist[peopleedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+peoplelist[peopleedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
 			$("#peoplelist").children().eq(peopleedit).html("<div class='area_left3'><span style='display:none;'>"+(peopleedit+1)+"</span><span class='area_span'>"+peoplelist[peopleedit].column1+"</span><span class='area_span'>"+peoplelist[peopleedit].column2+"</span><span class='area_span'>"+peoplelist[peopleedit].column3+"</span><span class='area_span'>"+peoplelist[peopleedit].view_shunxu_people+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editpeople'>编辑</a></span><span class='area_span5'><a href='#' class='deletepeople'>删除</a></span></div>").show();
 
@@ -2040,7 +2040,7 @@ function savepro(){
 
 	var area;
 	area=DataDeal.formToJson(data= decodeURIComponent($("#area").serialize(),true));
-	area=area.replace(/\+\"\,\"\+/, " & ").replace(/\+/," ");
+	area=area.replace(/\+\"\,\"\+/, " & ").replace(/\+/g," ");
 	/* area=area; */
 	/* alert(area); */
 	area=eval("("+area+")");
