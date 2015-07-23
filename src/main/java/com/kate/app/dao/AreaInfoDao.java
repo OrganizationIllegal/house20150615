@@ -1020,7 +1020,7 @@ public class AreaInfoDao extends BaseDao {
 						AreaZhikong2 areaInfo = new AreaZhikong2();
 						areaInfo.setId(rs.getInt("id"));
 						areaInfo.setHeng4(rs.getInt("heng"));
-						areaInfo.setZong4(rs.getInt("zong"));
+						areaInfo.setZong4(rs.getFloat("zong"));
 						areaInfo.setView_shunxu4(rs.getInt("view_shunxu"));
 						areaInfo.setProject_type4(rs.getString("project_type"));
 						//areaInfo.setArea_code(rs.getString("area_code"));
@@ -1655,7 +1655,7 @@ public class AreaInfoDao extends BaseDao {
 				/*boolean resultZujin = areaInfoDao.addAreaZhikong(item, area_num);*/
 				boolean flag = true;
 				int heng = item.getHeng4();
-				int zong = item.getZong4();
+				float zong = item.getZong4();
 				int view_shunxu =item.getView_shunxu4();
 				String project_type = item.getProject_type4();
 				
@@ -1683,7 +1683,7 @@ public class AreaInfoDao extends BaseDao {
 							"zujin_huibao_date) values(?,?,?,?,?,?,?)";
 					pstmt = con.prepareStatement(sqlhuibao);
 					pstmt.setInt(1, heng);
-					pstmt.setInt(2, zong);
+					pstmt.setFloat(2, zong);
 					pstmt.setInt(3, view_shunxu);
 					pstmt.setString(4, project_type);
 					pstmt.setString(5, area_num);
@@ -2345,7 +2345,7 @@ public class AreaInfoDao extends BaseDao {
 					boolean flag = true;
 					int id=item.getId();
 					int heng = item.getHeng4();
-					int zong = item.getZong4();
+					float zong = item.getZong4();
 					int view_shunxu =item.getView_shunxu4();
 					String project_type = item.getProject_type4();
 					
@@ -2367,7 +2367,7 @@ public class AreaInfoDao extends BaseDao {
 								"zujin_huibao_date=? where id=?";
 						pstmt = con.prepareStatement(sqlhuibao);
 						pstmt.setInt(1, heng);
-						pstmt.setInt(2, zong);
+						pstmt.setFloat(2, zong);
 						pstmt.setInt(3, view_shunxu);
 						pstmt.setString(4, project_type);
 						pstmt.setString(5, area_num);
@@ -2388,7 +2388,7 @@ public class AreaInfoDao extends BaseDao {
 					/*boolean resultZujin = areaInfoDao.addAreaZhikong(item, area_num);*/
 					boolean flag = true;
 					int heng = item.getHeng4();
-					int zong = item.getZong4();
+					float zong = item.getZong4();
 					int view_shunxu =item.getView_shunxu4();
 					String project_type = item.getProject_type4();
 					
@@ -2409,7 +2409,7 @@ public class AreaInfoDao extends BaseDao {
 								"zujin_huibao_date) values(?,?,?,?,?,?,?)";
 						pstmt = con.prepareStatement(sqlhuibao);
 						pstmt.setInt(1, heng);
-						pstmt.setInt(2, zong);
+						pstmt.setFloat(2, zong);
 						pstmt.setInt(3, view_shunxu);
 						pstmt.setString(4, project_type);
 						pstmt.setString(5, area_num);
@@ -2933,6 +2933,23 @@ public class AreaInfoDao extends BaseDao {
 				areaInfo.setArea_zhou(rs.getString("area_zhou"));
 				areaInfo.setHouse_pro_id(rs.getInt("house_pro_id"));
 				areaInfo.setArea_type(rs.getString("area_type"));
+				areaInfo.setArea_feature_datasource(rs.getString("area_feature_datasource"));
+				areaInfo.setArea_feature_date(rs.getTimestamp("area_feature_date"));
+				areaInfo.setFamily_datasource(rs.getString("family_datasource"));
+				areaInfo.setFamily_date(rs.getTimestamp("family_date"));
+				areaInfo.setTouzi_datasource(rs.getString("touzi_datasource"));
+				areaInfo.setTouzi_date(rs.getTimestamp("touzi_date"));
+				areaInfo.setMiddle_datasource(rs.getString("middle_datasource"));
+				areaInfo.setMiddle_date(rs.getTimestamp("middle_date"));;
+				areaInfo.setMiddle_zoushi_datasource(rs.getString("middle_zoushi_datasource"));
+				areaInfo.setMiddle_zoushi_date(rs.getTimestamp("middle_zoushi_date"));
+				areaInfo.setZujin_datasource(rs.getString("zujin_datasource"));
+				areaInfo.setZujin_date(rs.getTimestamp("zujin_date"));
+				areaInfo.setZujin_huibao_datasource(rs.getString("zujin_huibao_datasource"));
+				areaInfo.setZujin_huibao_date(rs.getTimestamp("zujin_huibao_date"));
+				areaInfo.setPeople_datasource(rs.getString("people_datasource"));
+				areaInfo.setPeople_date(rs.getTimestamp("people_date"));
+				
 				
 			}
 		} catch (Exception e) {
@@ -3426,7 +3443,7 @@ public class AreaInfoDao extends BaseDao {
 		PreparedStatement pstmt = null;
 		boolean flag = true;
 		int heng = obj.getHeng4();
-		int zong = obj.getZong4();
+		float zong = obj.getZong4();
 		int view_shunxu =obj.getView_shunxu4();
 		String project_type = obj.getProject_type4();
 		
@@ -3444,7 +3461,7 @@ public class AreaInfoDao extends BaseDao {
 					"zujin_huibao_date) values(?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, heng);
-			pstmt.setInt(2, zong);
+			pstmt.setFloat(2, zong);
 			pstmt.setInt(3, view_shunxu);
 			pstmt.setString(4, project_type);
 			pstmt.setString(5, area_code);

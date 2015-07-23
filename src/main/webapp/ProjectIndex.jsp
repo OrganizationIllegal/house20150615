@@ -41,6 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- <script type="text/javascript" src="js/script.js"></script> -->
 <script type="text/javascript" src="js/script_p.js"></script>
 <script src="js/video.js"></script>
+<script type="text/javascript" src="http://player.youku.com/jsapi"></script>
 <script>videojs.options.flash.swf = "/js/video-js.swf";</script>
 		<style type="text/css">
 			.active a{
@@ -87,7 +88,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 		</style>
 <script type="text/javascript">
-
 function lunbo(){
 	var animate_time=200;//锟斤拷锟斤拷时锟戒：0.3锟斤拷
 	var interval_time=5000;//锟斤拷锟脚硷拷锟绞憋拷洌�锟斤拷
@@ -109,18 +109,6 @@ function lunbo(){
 	
 	//锟斤拷停锟斤拷锟斤拷锟斤拷锟绞憋拷锟斤拷锟酵Ｖ�
 	jQuery(".ad_position").hover(function(){clearInterval(ad_huandeng_setInterval);}, function(){ad_huandeng_setInterval = setInterval(ad_huandeng_play,interval_time);});
-	function videoplay(){
-		alert("jdskfj");
-		clearInterval(ad_huandeng_setInterval);
-	}
-	function videopause(){
-	alert("jdskfj");
-		ad_huandeng_setInterval = setInterval(ad_huandeng_play,interval_time);
-	}
-	function videoend(){
-	alert("jdskfj");
-		clearInterval(ad_huandeng_setInterval);
-	}
 	//小图锟斤拷锟绞憋拷锟斤拷锟绞硷拷锟斤拷锟�
 	jQuery(".ad_position .limit .ad_small_box ul li").dblclick(function(){
 		ad_huandeng_click_i=jQuery(".ad_position .limit .ad_small_box ul li").index(jQuery(this));		
@@ -224,7 +212,29 @@ function lunbo(){
 	});
 }
 $(function(){
-	lunbo();
+	player = new YKU.Player('youkuplayer',{
+		styleid: '0',
+		client_id: '6e97509b4cd3378b',
+		vid: 'XOTUxNDk2NDQ0',
+		events:{
+		/* onPlayerReady: function(){ 
+			alert("zhunbei");
+		}, */
+		onPlayStart: function(){
+			playVideo();
+		},
+		onPlayEnd: function(){ lunbo(); }
+		}
+		});
+		function playVideo(){
+		player.playVideo();
+			alert("kaishi");
+		}
+		function pauseVideo(){
+		player.pauseVideo();
+			alert("zanting")
+		}
+	/* lunbo(); */
 	
 	//锟矫碉拷片锟斤拷娌ワ拷锟�
 });
@@ -318,9 +328,7 @@ function popInfo(){
 				<input type="hidden" id="Control" value='0'>
                 <table class="ad_left_big" width="750" border="0" cellpadding="0" cellspacing="0" style="margin-top: 0px;">
                      <tr><td><div id="youkuplayer" style="width:750px;height:474px"></div>
-<<<<<<< HEAD
-                
-=======
+
                      <script type="text/javascript" src="http://player.youku.com/jsapi">
                     temp=1;
 		player = new YKU.Player('youkuplayer',{
@@ -329,14 +337,14 @@ function popInfo(){
 			vid: 'XOTUxNDk2NDQ0',
 			events:{
 				
-				onPlayerReady: function(){ temp = 0;alert(temp)}
+				onPlayerReady: function(){ temp = 0;}
 			}
 			
 			});
                      
 		
 	</script>	
->>>>>>> 943387154450897d7702b0fd01da1909a380b0cc
+
                     </td>
                     </tr>
                     <c:forEach var="item"  items="${imageList}"   varStatus="status">
@@ -505,7 +513,7 @@ function popInfo(){
 				</c:forEach>
 				<div class="c-fix f-r btn_full cp" onclick="pop2()"></div>
 				<div class="f-r btn_price cp" onclick="pop1()"></div>
-				<a class="c-fix f-r p_update f-yahei">最近更新时间:${timeResule }</a>
+				<a class="c-fix f-r p_update f-yahei">最近更新时间:${fn:substring(timeResule,0,10)}</a>
 			</div>
 		</div>
 		</c:if>
@@ -761,7 +769,7 @@ function popInfo(){
 					<a class="c-fix f-l p_inves_lab f-yahei s-14 fw">现金回报</a>
 					<a class="c-fix f-l p_inves_lab f-yahei s-18" style="color:rgb(21,63,101);margin-top:10px;">${data.price_review}</a>
 				</div>
-				<a class="c-fix f-r p_inves_source f-yahei s-12">数据来源：RPData <%-- ${areaInfo.touzi_datasource } --%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;更新日期：2015.02.02<%-- ${fn:substring(areaInfo.touzi_date, 0, 10)} --%></a>
+				<a class="c-fix f-r p_inves_source f-yahei s-12">数据来源：${areaInfo.touzi_datasource }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;更新日期：${fn:substring(areaInfo.touzi_date, 0, 10)}</a>
 			</div>
 		</div>
  		<div class="c-fix  bkg3"  style="margin:0 auto;height:426px;width:990px">
@@ -795,7 +803,7 @@ function popInfo(){
 					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:rgb(21,63,101)">${middlePrice.zu_three_name}</a>
 					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${middlePrice.zu_three_price}</a>
 				</div>
-				<a class="c-fix f-r p_inves_source f-yahei s-12">数据来源：RPData&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;更新日期2015.02.02</a>
+				<a class="c-fix f-r p_inves_source f-yahei s-12">数据来源：${areaInfo.middle_datasource }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;更新日期${fn:substring(areaInfo.middle_date,0,10) }</a>
 			</div>
 		</div>
 		
@@ -815,21 +823,21 @@ function popInfo(){
       <div class="tab-pane active" id="price">
       	<div>
       		<div id="price_line" style="height:350px"></div>
-      		<div style="width:100%;padding-left:30px;padding-right:30px;"><font size="1">投资数据参考：2卧室房产</font><span style="float:right;"><font size="1">数据来源：RPData 更新日期：2015.02.02</font></span></div>
+      		<div style="width:100%;padding-left:30px;padding-right:30px;"><font size="1">投资数据参考：2卧室房产</font><span style="float:right;"><font size="1">数据来源：${areaInfo.middle_zoushi_datasource } 更新日期：${fn:substring(areaInfo.middle_zoushi_date,0,10)} </font></span></div>
       	</div>
       </div> 
       <div class="tab-pane" id="rent">
       	<div>
       		<div id="rent_line" style="height:350px">
       			</div>
-      		<div style="width:100%;padding-left:30px;padding-right:30px;"><font size="1">投资数据参考：2卧室房产</font><span style="float:right;"><font size="1">数据来源：RPData 更新日期：2015.02.02</font></span></div>
+      		<div style="width:100%;padding-left:30px;padding-right:30px;"><font size="1">投资数据参考：2卧室房产</font><span style="float:right;"><font size="1">数据来源：${areaInfo.zujin_datasource }  更新日期：${fn:substring(areaInfo.zujin_date,0,10)} </font></span></div>
       	</div>
       </div> 
       <div class="tab-pane" id="emptypercent">
       	<div>
       		<div id="emptypercent_line" style="height:350px">
       			</div>
-      		<div style="width:100%;padding-left:30px;padding-right:30px;"><font size="1">投资数据参考：2卧室房产</font><span style="float:right;"><font size="1">数据来源：RPData 更新日期：2015.02.02</font></span></div>
+      		<div style="width:100%;padding-left:30px;padding-right:30px;"><font size="1">投资数据参考：2卧室房产</font><span style="float:right;"><font size="1">数据来源：${areaInfo.zujin_huibao_datasource } 更新日期：${fn:substring(areaInfo.zujin_huibao_date,0,10)}</font></span></div>
       	</div>
       </div> 
   	</div>
@@ -864,7 +872,7 @@ function popInfo(){
 						<a class="f-l f-yahei s-14 p_spec">${item}</a>
 						
 						</c:forEach>
-						<a class="c-fix f-l p_header3 f-yahei s-16 fw" style="width:721px">${area_name} 区域人口分布<span style="float:right;padding-right:20px;" class="s-12">数据来源：RPData 更新日期：2015.05.02</span></a>
+						<a class="c-fix f-l p_header3 f-yahei s-16 fw" style="width:721px">${area_name} 区域人口分布<span style="float:right;padding-right:20px;" class="s-12">数据来源：${areaInfo.people_datasource } 更新日期：${fn:substring(areaInfo.people_date,0,10)}</span></a>
 						<div class="c-fix f-l p_tab2" style="width:721px">
 						<table class="table table-striped">
 						 <tbody style="font-size:12px;">
@@ -970,7 +978,7 @@ function popInfo(){
 					<a class="c-fix f-l family_lab f-yahei s-14 fw">${100 * oldfamilyVo}%</a>
 				</div>
 				<div class="c-" style="margin-right:20px;float:rgiht;height:20px">
-					<span class="c-fix f-yahei s-12 fw f-r">数据来源：RPData&nbsp;&nbsp; 更新日期：2015.05.02</span>
+					<span class="c-fix f-yahei s-12 fw f-r">数据来源：${areaInfo.family_datasource }&nbsp;&nbsp; 更新日期：${fn:substring(areaInfo.family_date,0,10)}</span>
 				</div>
 				</div>
 				</c:if>
@@ -1441,7 +1449,7 @@ function popInfo(){
 </div>
 </div>
 <!-- 项目位置模态框end -->
-
+<input type="hidden" id="Control" value='0'>
 	</body>
 	<script>
 	
@@ -1514,8 +1522,38 @@ function popInfo(){
 	});
 	
  </script>
+ <!-- <script type="text/javascript" src="http://player.youku.com/jsapi"></script>
+<script type="text/javascript">
+$(function () {
+var t =$("#Control").val();
+var flag=0;
+		player = new YKU.Player('youkuplayer',{
+			styleid: '0',
+			client_id: '6e97509b4cd3378b',
+			vid: 'XOTUxNDk2NDQ0',
+			events:{
+			onPlayerReady: function(){ 
+				ad_huandeng_click_i==0;
+				alert(flag);
+			},
+			onPlayStart: function(){
+				playVideo();
+			}
+			//onPlayEnd: function(){ alert("jieshu") }
+			}
+			});
+			function playVideo(){
+			player.playVideo();
+				alert("kaishi");
+			}
+			function pauseVideo(){
+			player.pauseVideo();
+				alert("zanting")
+			}
+});
+			</script>		 -->				
  
- <script type="text/javascript">
+ <!-- <script type="text/javascript">
  $(function(){
 	 var temp = $("#Control").val();
 	 alert(temp+"ffff")
@@ -1654,7 +1692,4 @@ function popInfo(){
 	});
 	//锟矫碉拷片锟斤拷娌ワ拷锟�
 });
- </script>
-
-		
-
+ </script> -->

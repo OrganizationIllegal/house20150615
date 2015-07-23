@@ -26,6 +26,11 @@ body{
 </head>
 <body>
 <%
+String username = null;
+	if(request.getSession().getAttribute("username")==null){
+		out.print("<script>alert('用户请登录。');window.location.href='/index01'</script>");
+}
+	
 String flag = null;
 if(request.getSession().getAttribute("flag")!=null){
 	flag = request.getSession().getAttribute("flag").toString();

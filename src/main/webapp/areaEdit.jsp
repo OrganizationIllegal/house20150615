@@ -849,21 +849,7 @@ body{
 <div class="area_left">
 <span class="area_span">项目名称</span>
 <span>
-<%-- <select class="area_select" id="project_name" name="project_name">
- <!--  <option value ="pro1">The Atrium</option>
-  <option value ="pro2">Thrive Parkside</option>
-  <option value ="pro3">The Moreland</option>
-  <option value ="pro4">Regent Residences</option>
-  <option value ="pro5">Amber</option>
-  <option value ="pro6">Hamilton 853</option>
-  <option value ="pro7">Forest Ridge</option>
-  <option value ="pro8">Claremont Manor</option>
-  <option value ="pro9">Kornhill Gardens</option>
-  <option value ="pro10">Evergreen</option> -->
-  <c:forEach items="${projectSet}" var="item">
-        		 <option value="${item.id}">${item.project_name}</option>
-   </c:forEach>
-</select> --%>
+
 <select data-placeholder="请选择..." class="chosen-select" id="project_name" name="project_name" style="width:220px;" tabindex="6">
  	 <option value=""></option>
   	 <c:forEach items="${projectSet}" var="item">
@@ -1549,7 +1535,7 @@ $(function(){
 		$("#project_type4").val(huibaotrendedititem.project_type4||huibaotrendedititem.project_type);
 		$("#view_shunxu4").val(huibaotrendedititem.view_shunxu4||huibaotrendedititem.view_shunxu);
 		$("#heng4").val(huibaotrendedititem.heng4||huibaotrendedititem.heng);
-		$("#zong4").val(huibaotrendedititem.zong4||huibaotrendedititem.zong);
+		$("#zong4").val(huibaotrendedititem.zong4||huibaotrendedititem.zong); 
 		$("#zujin_huibao_datasource").val(huibaotrendedititem.zujin_huibao_datasource||huibaotrendedititem.zujin_huibao_datasource);
 		$("#zujin_huibao_date").val(huibaotrendedititem.zujin_huibao_date.length>=10?huibaotrendedititem.zujin_huibao_date.substr(0,10):huibaotrendedititem.zujin_huibao_date);
 		}); 

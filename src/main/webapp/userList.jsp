@@ -61,6 +61,8 @@ if(request.getSession().getAttribute("flag")!=null){
             <th data-field="role" data-sortable="true">用户角色</th>
             <th data-field="account" data-sortable="true">用户账户</th>
             <th data-field="msg" data-sortable="true">用户信息</th>
+            <th data-field="registerTime" data-sortable="true">用户注册时间</th>
+            
             <!-- <th data-field="allprice" data-sortable="true">区域名称</th>
             <th data-field="ask" data-sortable="true">区域名称</th>
             <th data-field="newestprice" data-sortable="true">区域名称</th>

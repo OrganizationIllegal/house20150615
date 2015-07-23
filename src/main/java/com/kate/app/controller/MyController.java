@@ -201,7 +201,7 @@ public class MyController {
 		 getHouseInfo(req,resp,proNum);    //閿熸枻鎷烽敓閰电》鎷烽敓妗旈潻鎷�
 		 getSchoolAndNear(req,resp,proNum);   //瀛︽牎閿熸枻鎷烽敓鏉版唻鎷�
 		 getHouseTax(req,resp,proNum);
-		 InvestData(req,resp,area_num);
+		 InvestData(req,resp,area_num,project_type);
 		 MiddlePriceInfo(req,resp,proId,area_num);
 		 getAreaTrend(req,resp,project_type,area_num);
 		 getAreaFeature(req,resp,area_num);    //閿熸枻鎷烽敓鏂ゆ嫹閿熸埅纰夋嫹
@@ -410,8 +410,8 @@ public class MyController {
 	 */
 	
 	@RequestMapping({"/Index/InvestData"})
-	public void  InvestData(HttpServletRequest req, HttpServletResponse resp,String area_num){
- 		InvestmentData data = investDataDao.getInvestmentDateNum(area_num);
+	public void  InvestData(HttpServletRequest req, HttpServletResponse resp,String area_num, String project_type){
+ 		InvestmentData data = investDataDao.getInvestmentDateNum(area_num,project_type);
  		String areaName = data.getArea_name();
  		String zulin = data.getZu_xuqiu();
  		String [] items = new String[10];
@@ -519,11 +519,11 @@ public class MyController {
 		List<AreaZhikong> areaZhikongList=new ArrayList<AreaZhikong>();
 		areaZhikongList=areaTrendService.getAreaZhikongTrend(project_type,area_num);
 		List<String> areaZhikongYeatList=new ArrayList<String>();
-		List<Integer> areaZhikongRateList=new ArrayList<Integer>();
+		List<Float> areaZhikongRateList=new ArrayList<Float>();
 		for(AreaZhikong areaZhikong:areaZhikongList){
 			String year=areaZhikong.getHeng();
 			//int rate=areaZhikong.getZong()/1000;
-			int rate=areaZhikong.getZong();
+			float rate=areaZhikong.getZong();
 			if(year!=null && rate>=0){
 				areaZhikongYeatList.add(year);
 				areaZhikongRateList.add(rate);
