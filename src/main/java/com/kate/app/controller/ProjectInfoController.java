@@ -65,6 +65,7 @@ public class ProjectInfoController {
 	@Autowired
 	private AreaInputDao areaInputDao;
 	
+	private List<HouseInfo1> houseInfoListbefore;
 	private List <ProjectPeiTao> projectPeiTaoListbefore;
 	private List<FujinPeiTao> fujinPeitaoListbefore;
 	private List<FujinSchool> fujinSchoolListbefore;
@@ -751,6 +752,7 @@ public class ProjectInfoController {
 		JSONArray huxingArray = JSONArray.parseArray(huxing);
 		List<HouseInfo1> houseInfolist=new ArrayList<HouseInfo1>();//瀛樻斁瑕佺紪杈戠殑椤�
 		List<HouseInfo1> houseInfolist2=new ArrayList<HouseInfo1>();//瀛樻斁鏂版坊鍔犵殑椤�
+		List<HouseInfo1> houseInfolistdelete=new ArrayList<HouseInfo1>();
 		for (int i=0;i<huxingArray.size();i++){
 				JSONObject object = (JSONObject)huxingArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
 			    HouseInfo1 e = (HouseInfo1) JSONToObj(object.toString(), HouseInfo1.class);
@@ -761,6 +763,20 @@ public class ProjectInfoController {
 			    	houseInfolist.add(e);
 			    }
 			}
+
+		for (int i=0;i<houseInfoListbefore.size();i++){
+			boolean flag=false;
+
+			for(int j=0;j<houseInfolist.size();j++){
+				if(houseInfoListbefore.get(i).getId()==houseInfolist.get(j).getId()){
+					flag=true;
+					break;
+				}
+			}
+			if (flag==false) {
+				houseInfolistdelete.add(houseInfoListbefore.get(i));
+			}
+		}
 		System.out.println("houseInfolist.length():"+houseInfolist.size());
 		System.out.println("houseInfolist2.length():"+houseInfolist2.size());
 
@@ -988,7 +1004,7 @@ public class ProjectInfoController {
 		else{*/
 		//鏇存柊
 	    try {
-			int result=projectInputDao.EditProject(id, projectlist,houseInfolist,houseInfolist2,peitaolist,peitaolist2,imagelist,imagelist2,fujinpeitaoList,fujinpeitaoList2,fujinSchoolList,fujinSchoolList2,holdCostList,holdCostList2,houseTaxList,houseTaxList2,imagelistdelete,peitaolistdelete,fujinpeitaoListdelete,fujinSchoolListdelete,holdCostListdelete,houseTaxListdelete,keylist,brokerlistList2,brokerlistList);
+			int result=projectInputDao.EditProject(id, projectlist,houseInfolist,houseInfolist2,peitaolist,peitaolist2,imagelist,imagelist2,fujinpeitaoList,fujinpeitaoList2,fujinSchoolList,fujinSchoolList2,holdCostList,holdCostList2,houseTaxList,houseTaxList2,houseInfolistdelete,imagelistdelete,peitaolistdelete,fujinpeitaoListdelete,fujinSchoolListdelete,holdCostListdelete,houseTaxListdelete,keylist,brokerlistList2,brokerlistList);
 			System.out.println("result::"+result);
 			if(result==1){
 				json.put("flag", "1");
@@ -1489,6 +1505,7 @@ public class ProjectInfoController {
 		String pronum=projectInputDao.getProNumById(id);
 		//鏍规嵁椤圭洰缂栧彿鑾峰彇鎴峰瀷鍙婁环鏍�
 		List<HouseInfo1> houseInfoList=projectInputDao.getHouseInfoByProNum(pronum);
+		houseInfoListbefore=projectInputDao.getHouseInfoByProNum(pronum);
 		req.setAttribute("houseInfoList", houseInfoList);
 		req.setAttribute("houseInfoListJson", ConvertJson.list2json(houseInfoList));
 

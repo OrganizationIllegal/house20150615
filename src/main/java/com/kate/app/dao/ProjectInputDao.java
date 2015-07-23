@@ -3689,7 +3689,7 @@ public class ProjectInputDao extends BaseDao {
 			
 		}
 		//
-		public int EditProject(int id,List<Project> projectList,List<HouseInfo1> houseInfolist,List<HouseInfo1>houseInfolist2,List<ProjectPeiTao>peitaolist,List<ProjectPeiTao>peitaolist2,List<ProjectDescImage>imagelist,List<ProjectDescImage>imagelist2,List<FujinPeiTao>fujinpeitaoList,List<FujinPeiTao>fujinpeitaoList2,List<FujinSchool>fujinSchoolList,List<FujinSchool>fujinSchoolList2,List<HoldCost> holdCostList,List<HoldCost>holdCostList2,List<HouseTax>houseTaxList,List<HouseTax>houseTaxList2,List<ProjectDescImage> imagelistdelete,List<ProjectPeiTao> peitaolistdelete,List<FujinPeiTao> fujinpeitaoListdelete,List<FujinSchool>  fujinSchoolListdelete,List<HoldCost> holdCostListdelete,List<HouseTax> houseTaxListdelete,List<ProjectKey>keylist,List<BrokerInfo>brokerlistList2,List<BrokerInfo>brokerlistList) throws SQLException{
+		public int EditProject(int id,List<Project> projectList,List<HouseInfo1> houseInfolist,List<HouseInfo1>houseInfolist2,List<ProjectPeiTao>peitaolist,List<ProjectPeiTao>peitaolist2,List<ProjectDescImage>imagelist,List<ProjectDescImage>imagelist2,List<FujinPeiTao>fujinpeitaoList,List<FujinPeiTao>fujinpeitaoList2,List<FujinSchool>fujinSchoolList,List<FujinSchool>fujinSchoolList2,List<HoldCost> holdCostList,List<HoldCost>holdCostList2,List<HouseTax>houseTaxList,List<HouseTax>houseTaxList2,List<HouseInfo1> houseInfolistdelete,List<ProjectDescImage> imagelistdelete,List<ProjectPeiTao> peitaolistdelete,List<FujinPeiTao> fujinpeitaoListdelete,List<FujinSchool>  fujinSchoolListdelete,List<HoldCost> holdCostListdelete,List<HouseTax> houseTaxListdelete,List<ProjectKey>keylist,List<BrokerInfo>brokerlistList2,List<BrokerInfo>brokerlistList) throws SQLException{
 			//椤圭洰淇℃伅鍙傛暟鎺ユ敹
 			Statement stmt = null;
 			ResultSet rs = null;
@@ -4166,7 +4166,18 @@ public class ProjectInputDao extends BaseDao {
 				for(int i=0;i<result7list.length;i++){
 					System.out.println("result77list"+i+":"+result77list[i]);
 				}*/
-				//,,,,,
+				//delete from 户型及价格 
+				String sqldeletehouseinfo = "delete from house_info where id= ?";
+				pstmt = con.prepareStatement(sqldeletehouseinfo);
+				for(int i=0;i<houseInfolistdelete.size();i++){
+					pstmt.setInt(1, houseInfolistdelete.get(i).getId());
+					pstmt.addBatch();
+				}
+				int[] resulthouseinfodelete=pstmt.executeBatch();
+				System.out.println("resulthouseinfodelete.length:"+resulthouseinfodelete.length);
+				for(int i=0;i<resulthouseinfodelete.length;i++){
+					System.out.println("resulthouseinfodelete"+i+":"+resulthouseinfodelete[i]);
+				}
 				//delete from project_desc_image
 				String sqldeleteimage = "delete from project_desc_image where id= ?";
 				pstmt = con.prepareStatement(sqldeleteimage);
