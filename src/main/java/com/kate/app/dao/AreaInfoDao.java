@@ -1,4 +1,4 @@
-package com.kate.app.dao;
+﻿package com.kate.app.dao;
 
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -1289,15 +1289,16 @@ public class AreaInfoDao extends BaseDao {
 			return areaInfo;
 		}
 	//閫氳繃鍖哄煙id鑾峰彇鎶曡祫鏁版嵁淇℃伅
-	public InvestmentDataBackEnd getInvestInfo(String area_num){
+	public InvestmentDataBackEnd getInvestInfo(String area_num,String area_type){
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		InvestmentDataBackEnd areaInfo = new InvestmentDataBackEnd();
 		try {
-			String sql = " SELECT * from investment_data where area_num=?";
+			String sql = " SELECT * from investment_data where area_num=? and area_type=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,area_num);
+			pstmt.setString(2,area_type);
 			  rs = pstmt.executeQuery();
 			while(rs.next()){
 				areaInfo.setId(rs.getInt("id"));
@@ -1312,6 +1313,7 @@ public class AreaInfoDao extends BaseDao {
 				
 				areaInfo.setTouzi_datasource(rs.getString("touzi_datasource"));
 				areaInfo.setTouzi_date(rs.getTimestamp("touzi_date"));
+				areaInfo.setArea_type(rs.getString("area_type"));
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -1391,7 +1393,7 @@ public class AreaInfoDao extends BaseDao {
 		return 0;
 	}
 	//鍖哄煙褰曞叆
-	public int AddArea(String area_num,String area_name,String area_city,String area_zhou,String area_nation,String area_postcode,String touzi_datasource,String touzi_date,String middle_price,String middle_zu_price,String price_review,String year_increment_rate,String zu_house_rate,String zu_xuqiu,String data_exam,String family_one,String family_one_rate,String family_two,String family_two_rate,String family_three,String family_three_rate,String family_datasource,String family_date,List<MiddlePrice2> middlepriceList,List<AreaMiddle2> middletrendList,List<AreaZujin2> zujintrendlistList,List<AreaZhikong2> huibaotrendlistList,List<AreaTeDian2> tedianlistList,List<AreaPeopleInfo2> peoplelistList,List<BrokerInfo> brokerlistList,List<String> projectlistList,List<String> newslistList,List<String> list) throws SQLException{
+	public int AddArea(String area_num,String area_name,String area_city,String area_zhou,String area_nation,String area_postcode,String touzi_datasource,String touzi_datasource1,String touzi_date,String touzi_date1,String middle_price,String middle_price1,String middle_zu_price,String middle_zu_price1, String price_review, String price_review1, String year_increment_rate, String year_increment_rate1, String zu_house_rate,String zu_house_rate1, String zu_xuqiu,String zu_xuqiu1,String pro_type, String pro_type1, String data_exam,String data_exam1,String family_one,String family_one_rate,String family_two,String family_two_rate,String family_three,String family_three_rate,String family_datasource,String family_date,List<MiddlePrice2> middlepriceList,List<AreaMiddle2> middletrendList,List<AreaZujin2> zujintrendlistList,List<AreaZhikong2> huibaotrendlistList,List<AreaTeDian2> tedianlistList,List<AreaPeopleInfo2> peoplelistList,List<BrokerInfo> brokerlistList,List<String> projectlistList,List<String> newslistList,List<String> list) throws SQLException{
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
@@ -1431,7 +1433,7 @@ public class AreaInfoDao extends BaseDao {
 	            e.printStackTrace();   
 	        }
 	        
-	        String sqltouzi = " insert into investment_data(year_increment_rate, middle_price, middle_zu_price, zu_house_rate, zu_xuqiu, price_review, data_exam, area_num, area_name, touzi_datasource, touzi_date) values(?,?,?,?,?,?,?,?,?,?,?)";
+	        String sqltouzi = " insert into investment_data(year_increment_rate, middle_price, middle_zu_price, zu_house_rate, zu_xuqiu, price_review, data_exam, area_num, area_name, touzi_datasource, touzi_date, area_type) values(?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sqltouzi);
 			pstmt.setString(1, year_increment_rate);
 			pstmt.setString(2, middle_price);
@@ -1444,10 +1446,49 @@ public class AreaInfoDao extends BaseDao {
 			pstmt.setString(9, area_name);
 			pstmt.setString(10, touzi_datasource);
 			pstmt.setString(11, time_strtouzi);
+			pstmt.setString(12, pro_type);
 			int resulttouzi = pstmt.executeUpdate();
 			if(resulttouzi == 0){
 				flagtouzi = false;
 			}
+			
+			boolean flagtouzi1 = true;
+			String time_strtouzi1="";
+			if(touzi_date1 != null){
+				time_strtouzi1 = touzi_date1.toString(); 
+			}
+			Timestamp tstouzi1 = new Timestamp(System.currentTimeMillis()); 
+			if(touzi_date1==null||"".equals(touzi_date1)){
+				touzi_date1 = "2015-05-09";
+			}
+	        try {   
+	        	time_strtouzi1 = touzi_date1+" "+"00:00:00";
+	        	tstouzi1 = Timestamp.valueOf(time_strtouzi1);   
+	            System.out.println(tstouzi1);   
+	        } catch (Exception e) {   
+	            e.printStackTrace();   
+	        }
+	        
+	        String sqltouzi1 = " insert into investment_data(year_increment_rate, middle_price, middle_zu_price, zu_house_rate, zu_xuqiu, price_review, data_exam, area_num, area_name, touzi_datasource, touzi_date, area_type) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+			pstmt = con.prepareStatement(sqltouzi1);
+			pstmt.setString(1, year_increment_rate1);
+			pstmt.setString(2, middle_price1);
+			pstmt.setString(3, middle_zu_price1);
+			pstmt.setString(4, zu_house_rate1);
+			pstmt.setString(5, zu_xuqiu1);
+			pstmt.setString(6, price_review1);
+			pstmt.setString(7, data_exam1);
+			pstmt.setString(8, area_num);
+			pstmt.setString(9, area_name);
+			pstmt.setString(10, touzi_datasource1);
+			pstmt.setString(11, time_strtouzi1);
+			pstmt.setString(12, pro_type1);
+			int resulttouzi1 = pstmt.executeUpdate();
+			if(resulttouzi1 == 0){
+				flagtouzi = false;
+			}
+			
+			
 	        //areafamily
 			boolean flagfamily = true;
 			String family_date_str="";
@@ -1952,7 +1993,7 @@ public class AreaInfoDao extends BaseDao {
 
 	//区域编辑
 
-		public int EditArea(int Id,int Id2,int Id3,String area_num,String area_name,String area_city,String area_zhou,String area_nation,String area_postcode,String touzi_datasource,String touzi_date,String middle_price,String middle_zu_price,String price_review,String year_increment_rate,String zu_house_rate,String zu_xuqiu,String data_exam,String family_one,String family_one_rate,String family_two,String family_two_rate,String family_three,String family_three_rate,String family_datasource,String family_date,List<MiddlePrice2> middlepriceList,List<MiddlePrice2> middlepriceList2,List<AreaMiddle2> middletrendList,List<AreaMiddle2> middletrendList2,List<AreaZujin2> zujintrendlistList,List<AreaZujin2> zujintrendlistList2,List<AreaZhikong2> huibaotrendlistList,List<AreaZhikong2> huibaotrendlistList2,List<AreaTeDian2> tedianlistList,List<AreaTeDian2> tedianlistList2,List<AreaPeopleInfo2> peoplelistList,List<AreaPeopleInfo2> peoplelistList2,List<BrokerInfo> brokerlistList,List<String> projectlistList,List<String> newslistList,List<String> list
+		public int EditArea(int Id,int Id2,int Id21, int Id3,String area_num,String area_name,String area_city,String area_zhou,String area_nation,String area_postcode,String touzi_datasource,String touzi_datasource1, String touzi_date,String touzi_date1, String middle_price,String middle_price1, String middle_zu_price,String middle_zu_price1, String price_review,String price_review1, String year_increment_rate,String year_increment_rate1, String zu_house_rate, String zu_house_rate1, String zu_xuqiu,String zu_xuqiu1, String pro_type, String pro_type1, String data_exam, String data_exam1, String family_one,String family_one_rate,String family_two,String family_two_rate,String family_three,String family_three_rate,String family_datasource,String family_date,List<MiddlePrice2> middlepriceList,List<MiddlePrice2> middlepriceList2,List<AreaMiddle2> middletrendList,List<AreaMiddle2> middletrendList2,List<AreaZujin2> zujintrendlistList,List<AreaZujin2> zujintrendlistList2,List<AreaZhikong2> huibaotrendlistList,List<AreaZhikong2> huibaotrendlistList2,List<AreaTeDian2> tedianlistList,List<AreaTeDian2> tedianlistList2,List<AreaPeopleInfo2> peoplelistList,List<AreaPeopleInfo2> peoplelistList2,List<BrokerInfo> brokerlistList,List<String> projectlistList,List<String> newslistList,List<String> list
 
 				,List<MiddlePrice2> middlepriceListdelete,List<AreaMiddle2> middletrendListdelete,List<AreaZujin2> zujintrendlistListdelete
 				,List<AreaZhikong2> huibaotrendlistListdelete,List<AreaTeDian2> tedianlistListdelete,List<AreaPeopleInfo2> peoplelistListdelete) throws SQLException{
@@ -1998,7 +2039,7 @@ public class AreaInfoDao extends BaseDao {
 		        } catch (Exception e) {   
 		            e.printStackTrace();   
 		        }*/
-		        String sqltouzi = " update investment_data set year_increment_rate=?, middle_price=?, middle_zu_price=?, zu_house_rate=?, zu_xuqiu=?, price_review=?, data_exam=?, area_num=?, area_name=?, touzi_datasource=?, touzi_date=? where id=?";
+		        String sqltouzi = " update investment_data set year_increment_rate=?, middle_price=?, middle_zu_price=?, zu_house_rate=?, zu_xuqiu=?, price_review=?, data_exam=?, area_num=?, area_name=?, touzi_datasource=?, touzi_date=?, area_type=? where id=?";
 				pstmt = con.prepareStatement(sqltouzi);
 				pstmt.setString(1, year_increment_rate);
 				pstmt.setString(2, middle_price);
@@ -2011,11 +2052,55 @@ public class AreaInfoDao extends BaseDao {
 				pstmt.setString(9, area_name);
 				pstmt.setString(10, touzi_datasource);
 				pstmt.setString(11, touzi_date);
-				pstmt.setInt(12, Id2);
+				pstmt.setString(12, pro_type);
+				pstmt.setInt(13, Id2);
 				int resulttouzi = pstmt.executeUpdate();
 				if(resulttouzi == 0){
 					flagtouzi = false;
 				}
+				
+				
+				//鎶曡祫鏁版嵁
+				boolean flagtouzi1 = true;
+				String time_strtouzi1 = "";
+				if("".equals(touzi_date1)){
+					touzi_date1=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//
+				}
+				/*Timestamp tstouzi1 = new Timestamp(System.currentTimeMillis()); 
+				if(touzi_date1==null||"".equals(touzi_date1)){
+					touzi_date1 = "2015-05-09";
+					//(new SimpleDateFormat("yyyy-MM-dd"))銆俧ormat(new Date())
+				 	time_strtouzi1 = touzi_date1+" "+"00:00:00";
+				}
+		        try {   
+		       
+		        	tstouzi1 = Timestamp.valueOf(time_strtouzi1);   
+		            System.out.println(tstouzi1);   
+		        } catch (Exception e) {   
+		            e.printStackTrace();   
+		        }*/
+		        String sqltouzi1 = " update investment_data set year_increment_rate=?, middle_price=?, middle_zu_price=?, zu_house_rate=?, zu_xuqiu=?, price_review=?, data_exam=?, area_num=?, area_name=?, touzi_datasource=?, touzi_date=?, area_type=? where id=?";
+				pstmt = con.prepareStatement(sqltouzi1);
+				pstmt.setString(1, year_increment_rate1);
+				pstmt.setString(2, middle_price1);
+				pstmt.setString(3, middle_zu_price1);
+				pstmt.setString(4, zu_house_rate1);
+				pstmt.setString(5, zu_xuqiu1);
+				pstmt.setString(6, price_review1);
+				pstmt.setString(7, data_exam1);
+				pstmt.setString(8, area_num);
+				pstmt.setString(9, area_name);
+				pstmt.setString(10, touzi_datasource1);
+				pstmt.setString(11, touzi_date1);
+				pstmt.setString(12, pro_type1);
+				pstmt.setInt(13, Id21);
+				
+				int resulttouzi1 = pstmt.executeUpdate();
+				if(resulttouzi1 == 0){
+					flagtouzi1 = false;
+				}
+				
+				
 		        //areafamily鍖哄煙瀹跺涵鏋勬垚
 				boolean flagfamily = true;
 				/*String time_strfamily = "";

@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String path = request.getContextPath();
@@ -236,6 +236,41 @@ body{
 <div class="area_right">
 <span class="area_span">租赁需求</span><span><input type="text" id="zu_xuqiu" name="zu_xuqiu" class="area_input"  value="${Invest.zu_xuqiu}"></span>
 </div>
+<div class="area_left">
+<span class="area_span">项目类型</span><span><input type="text" id="pro_type" name="pro_type" class="area_input"  value="${Invest.area_type}"></span>
+</div>
+
+<div class="area_bkg2 c-fix" id="invest">投资数据</div>
+<div class="area_left">
+<input type="text" id="id21" name="id21" style="display:none;" value="${Invest1.id}">
+<span class="area_span">数据来源</span><span><input type="text" id="touzi_datasource1" name="touzi_datasource1" class="area_input" value="${Invest1.touzi_datasource}"></span>
+</div>
+<div class="area_right">
+<span class="area_span">更新日期</span><span><input type="text" id="touzi_date1" name="touzi_date1" class="area_input" value="${Invest1.touzi_date.toString().length()>10?Invest1.touzi_date.toString().substring(0,10):Invest1.touzi_date.toString()}"></span>
+</div>
+<div class="area_left">
+<span class="area_span">年增长率</span><span><input type="text" id="year_increment_rate1" name="year_increment_rate1" class="area_input"  value="${Invest1.year_increment_rate}"></span>
+</div>
+<div class="area_right">
+<span class="area_span">中位数价格</span><span><input type="text" id="middle_price1" name="middle_price1" class="area_input"  value="${Invest1.middle_price}"></span>
+</div>
+<div class="area_left">
+<span class="area_span">中位数租金</span><span><input type="text" id="middle_zu_price1" name="middle_zu_price1" class="area_input" value="${Invest1.middle_zu_price}"></span>
+</div>
+<div class="area_right">
+<span class="area_span">租金回报率</span><span><input type="text" id="zu_house_rate1" name="zu_house_rate1" class="area_input" value="${Invest1.zu_house_rate}"></span>
+</div>
+<div class="area_left">
+<span class="area_span">现金回报</span><span><input type="text" id="price_review1" name="price_review1" class="area_input"  value="${Invest1.price_review}"></span>
+</div>
+<div class="area_right">
+<span class="area_span">租赁需求</span><span><input type="text" id="zu_xuqiu1" name="zu_xuqiu1" class="area_input"  value="${Invest1.zu_xuqiu}"></span>
+</div>
+<div class="area_left">
+<span class="area_span">项目类型</span><span><input type="text" id="pro_type1" name="pro_type1" class="area_input"  value="${Invest1.area_type}"></span>
+</div>
+
+
 <div class="area_bkg2 c-fix" id="family">区域家庭构成</div>
 <div class="area_left">
 <input type="text" id="id3" name="id3" style="display:none;" value="${Family.id}">
@@ -983,6 +1018,10 @@ $('#touzi_date').datepicker({
     language: "zh-CN",
     format: "yyyy-mm-dd"
 });
+$('#touzi_date1').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
 $('#family_date').datepicker({
     language: "zh-CN",
     format: "yyyy-mm-dd"
@@ -1707,7 +1746,7 @@ $(function(){
 		$("#column3").val(peopleedititem.column3);
 		$("#view_shunxu_people").val(peopleedititem.view_shunxu_people);
 		$("#people_datasource").val(peopleedititem.people_datasource);
-		$("#people_date").val(peopleedititem.people_date);
+		$("#people_date").val(peopleedititem.people_date.length>=10?peopleedititem.people_date.substr(0,10):peopleedititem.people_date);
 		}); 
 	
 });
@@ -2011,11 +2050,12 @@ function savepro(){
 	var id1=$("#id1").val();
 	var id2=$("#id2").val();
 	var id3=$("#id3").val();
+	var id21=$("#id21").val();
     $.ajax({
 	    type: "POST",
  		async:false, 
 		dateType: "json",
-		data:{"id":id1.toString(),"id2":id2.toString(),"id3":id3.toString(),"area":JSON.stringify(area),"middleprice":JSON.stringify(middlepricelist),"middletrend":JSON.stringify(middletrendlist),"zujintrendlist":JSON.stringify(zujintrendlist),"huibaotrendlist":JSON.stringify(huibaotrendlist),"tedianlist":JSON.stringify(tedianlist),"peoplelist":JSON.stringify(peoplelist),"brokerlist":JSON.stringify(brokerlist),"projectlist":JSON.stringify(projectlist),"newslist":JSON.stringify(newslist)},
+		data:{"id":id1.toString(),"id2":id2.toString(),"id21":id21.toString(),"id3":id3.toString(),"area":JSON.stringify(area),"middleprice":JSON.stringify(middlepricelist),"middletrend":JSON.stringify(middletrendlist),"zujintrendlist":JSON.stringify(zujintrendlist),"huibaotrendlist":JSON.stringify(huibaotrendlist),"tedianlist":JSON.stringify(tedianlist),"peoplelist":JSON.stringify(peoplelist),"brokerlist":JSON.stringify(brokerlist),"projectlist":JSON.stringify(projectlist),"newslist":JSON.stringify(newslist)},
 		url: "/EditAreaInfo",
 		success:function(data){
 			data=eval("("+data+")");
