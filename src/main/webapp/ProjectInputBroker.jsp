@@ -99,8 +99,8 @@ body{
 <div class="area_left">
 <span class="area_span">项目所在城市</span>
 <span>
-<!-- <input type="text" id="project_city" name="project_city" class="area_input"> -->
-<select data-placeholder="请选择..." class="chosen-select" id="project_city" name="project_city" style="width:220px;" tabindex="4">
+<input type="text" id="project_city" name="project_city" class="area_input"> 
+<!-- <select data-placeholder="请选择..." class="chosen-select" id="project_city" name="project_city" style="width:220px;" tabindex="4">
  	 <option value=""></option>
   	 <option value="Sydney 悉尼">Sydney 悉尼</option>
      <option value="Melbourne 墨尔本">Melbourne 墨尔本</option>
@@ -109,7 +109,7 @@ body{
      <option value="Canberra 堪培拉">Canberra 堪培拉</option>
      <option value="Adelaide 阿德莱得">Adelaide 阿德莱得</option>
      <option value="Cairns 凯恩斯">Cairns 凯恩斯</option>
- </select>
+ </select> -->
 </span>
 </div>
 <div class="area_right">
@@ -411,7 +411,16 @@ body{
 <div class="area_bkg2" style="clear:both;" id="housetax">购房税费</div>
 <form id="housetaxform">
 <div class="area_left">
-<span class="area_span">类型</span><span><input type="text" id="houseTaxtype" name="houseTaxtype" class="area_input"></span>
+<span class="area_span">类型</span><span><!-- <input type="text" id="houseTaxtype" name="houseTaxtype" class="area_input"> -->
+<select data-placeholder="请选择..." class="chosen-select" id="houseTaxtype" name="houseTaxtype" style="width:220px;" tabindex="4">
+ 	 <option value=""></option>
+  	 <option value="印花税">印花税</option>
+     <option value="律师费">律师费</option>
+     <option value="交割费">交割费</option>
+     <option value="保险费">保险费</option>
+     <option value="土地税">土地税</option>
+ </select>
+</span>
 </div>
 <div class="area_right">
 <span class="area_span">价格</span><span><input type="text" id="houseTaxprice" name="houseTaxprice" class="area_input"></span>
@@ -479,7 +488,7 @@ body{
 	  	 <c:forEach items="${brokerSet}" var="item">
 	        		 <option value="${item.id}">${item.broker_name}</option>
 	    </c:forEach>
-	 </select>
+	 </select> 
  </span>
 </div>
 </form>
@@ -498,6 +507,12 @@ body{
 </div>
 </div>
 <script type="text/javascript">
+$("#finish_time").datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm",
+    startView: 1,
+    minViewMode: 1 
+});
 $('#danjia').blur(function() {
 	if(isNaN($('#danjia').val())){
 		alert("请输入数字！");

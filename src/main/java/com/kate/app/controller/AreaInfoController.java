@@ -973,7 +973,7 @@ public class AreaInfoController extends BaseDao {
 							break;
 						}
 					}
-					if(flag==true){
+					if(flag==false){
 						zujintrendlistListdelete.add(zujinlistbefore.get(i));
 					}
 				}

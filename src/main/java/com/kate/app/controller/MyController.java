@@ -519,11 +519,11 @@ public class MyController {
 		List<AreaZhikong> areaZhikongList=new ArrayList<AreaZhikong>();
 		areaZhikongList=areaTrendService.getAreaZhikongTrend(project_type,area_num);
 		List<String> areaZhikongYeatList=new ArrayList<String>();
-		List<Integer> areaZhikongRateList=new ArrayList<Integer>();
+		List<Float> areaZhikongRateList=new ArrayList<Float>();
 		for(AreaZhikong areaZhikong:areaZhikongList){
 			String year=areaZhikong.getHeng();
 			//int rate=areaZhikong.getZong()/1000;
-			int rate=areaZhikong.getZong();
+			float rate=areaZhikong.getZong();
 			if(year!=null && rate>=0){
 				areaZhikongYeatList.add(year);
 				areaZhikongRateList.add(rate);

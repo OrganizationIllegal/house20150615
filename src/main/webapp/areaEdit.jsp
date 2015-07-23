@@ -143,8 +143,8 @@ body{
 <div class="area_left">
 <span class="area_span">城市名称</span>
 <span>
-<%-- <input type="text" id="area_city" name="area_city" class="area_input" value="${AreaInfo.area_city}"> --%>
-<select data-placeholder="请选择..." class="chosen-select" id="area_city" name="area_city" style="width:220px;" tabindex="4">
+<input type="text" id="area_city" name="area_city" class="area_input" value="${AreaInfo.area_city}">
+<%-- <select data-placeholder="请选择..." class="chosen-select" id="area_city" name="area_city" style="width:220px;" tabindex="4">
  	 <option value=""></option>
        <c:choose>
 	    <c:when test="${AreaInfo.area_city eq 'Sydney 悉尼'}">
@@ -202,7 +202,7 @@ body{
 	      <option value="Cairns 凯恩斯">Cairns 凯恩斯</option>
 	   </c:otherwise>
   	  </c:choose>
- </select>
+ </select> --%>
 </span>
 </div>
 
@@ -316,31 +316,86 @@ body{
 <span class="area_span">买一价格</span><span><input type="text" id="buy_one_price" name="buy_one_price" class="area_input"></span>
 </div>
 <div class="area_left">
-<span class="area_span">买二名称</span><span><input type="text" id="buy_two_name" name="buy_two_name" class="area_input"></span>
+<span class="area_span">买二名称</span><span>
+<!-- <input type="text" id="buy_two_name" name="buy_two_name" class="area_input"> -->
+<select data-placeholder="请选择..." class="chosen-select" id="buy_two_name" name="buy_two_name" style="width:220px;" tabindex="1">
+ 	 <option value=""></option>
+  	 <option  value="1居室">1居室</option>
+  	  <option  value="2居室">2居室</option>
+  	   <option  value="3居室">3居室</option>
+  	    <option  value="4居室">4居室</option>
+  	     <option  value="5居室">5居室</option>
+  	      <option  value="6居室">6居室</option> 
+ </select>
+</span>
 </div>
 <div class="area_right">
 <span class="area_span">买二价格</span><span><input type="text" id="buy_two_price" name="buy_two_price" class="area_input"></span>
 </div>
 <div class="area_left">
-<span class="area_span">买三名称</span><span><input type="text" id="buy_three_name" name="buy_three_name" class="area_input"></span>
+<span class="area_span">买三名称</span><span>
+<!-- <input type="text" id="buy_three_name" name="buy_three_name" class="area_input"> -->
+<select data-placeholder="请选择..." class="chosen-select" id="buy_three_name" name="buy_three_name" style="width:220px;" tabindex="1">
+ 	 <option value=""></option>
+  	 <option  value="1居室">1居室</option>
+  	  <option  value="2居室">2居室</option>
+  	   <option  value="3居室">3居室</option>
+  	    <option  value="4居室">4居室</option>
+  	     <option  value="5居室">5居室</option>
+  	      <option  value="6居室">6居室</option> 
+ </select>
+</span>
 </div>
 <div class="area_right">
 <span class="area_span">买三价格</span><span><input type="text" id="buy_three_price" name="buy_three_price" class="area_input"></span>
 </div>
 <div class="area_left">
-<span class="area_span">租一名称</span><span><input type="text" id="zu_one_name" name="zu_one_name" class="area_input"></span>
+<span class="area_span">租一名称</span><span>
+<!-- <input type="text" id="zu_one_name" name="zu_one_name" class="area_input"> -->
+<select data-placeholder="请选择..." class="chosen-select" id="zu_one_name" name="zu_one_name" style="width:220px;" tabindex="1">
+ 	 <option value=""></option>
+  	 <option  value="1居室">1居室</option>
+  	  <option  value="2居室">2居室</option>
+  	   <option  value="3居室">3居室</option>
+  	    <option  value="4居室">4居室</option>
+  	     <option  value="5居室">5居室</option>
+  	      <option  value="6居室">6居室</option> 
+ </select>
+</span>
 </div>
 <div class="area_right">
 <span class="area_span">租一价格</span><span><input type="text" id="zu_one_price" name="zu_one_price" class="area_input"></span>
 </div>
 <div class="area_left">
-<span class="area_span">租二名称</span><span><input type="text" id="zu_two_name" name="zu_two_name" class="area_input"></span>
+<span class="area_span">租二名称</span><span>
+<!-- <input type="text" id="zu_two_name" name="zu_two_name" class="area_input"> -->
+<select data-placeholder="请选择..." class="chosen-select" id="zu_two_name" name="zu_two_name" style="width:220px;" tabindex="1">
+ 	 <option value=""></option>
+  	 <option  value="1居室">1居室</option>
+  	  <option  value="2居室">2居室</option>
+  	   <option  value="3居室">3居室</option>
+  	    <option  value="4居室">4居室</option>
+  	     <option  value="5居室">5居室</option>
+  	      <option  value="6居室">6居室</option> 
+ </select>
+</span>
 </div>
 <div class="area_right">
 <span class="area_span">租二价格</span><span><input type="text" id="zu_two_price" name="zu_two_price" class="area_input"></span>
 </div>
 <div class="area_left">
-<span class="area_span">租三名称</span><span><input type="text" id="zu_three_name" name="zu_three_name" class="area_input"></span>
+<span class="area_span">租三名称</span><span>
+<!-- <input type="text" id="zu_three_name" name="zu_three_name" class="area_input"> -->
+<select data-placeholder="请选择..." class="chosen-select" id="zu_three_name" name="zu_three_name" style="width:220px;" tabindex="1">
+ 	 <option value=""></option>
+  	 <option  value="1居室">1居室</option>
+  	  <option  value="2居室">2居室</option>
+  	   <option  value="3居室">3居室</option>
+  	    <option  value="4居室">4居室</option>
+  	     <option  value="5居室">5居室</option>
+  	      <option  value="6居室">6居室</option> 
+ </select>
+</span>
 </div>
 <div class="area_right">
 <span class="area_span">租三价格</span><span><input type="text" id="zu_three_price" name="zu_three_price" class="area_input"></span>
@@ -810,19 +865,30 @@ body{
 
 <div id="projectlist">
 <c:forEach items="${projectlist}" var="project" varStatus="status">
-<div>
-	<div class='area_left3'>
+<!-- <div> -->
+	<%-- <div class='area_left3'>
 	<span style='display:none;'>${status.index + 1}</span>
 	<span class='area_span' style='width: 340px;'>${project.project_name}</span>
 	<span class='area_span'>${project.project_area}</span>
 	<span class='area_span'>${project.project_price_qi}</span>
 	<span class='area_span' style='width: 40px;'>${project.project_type}</span>
 	</div>
-	<div class='area_right3'><span class='area_span5'>
-	<a href='#' class='deleteproject'>删除</a>
+	<div class='area_right3'>
+	<span class='area_span5'><a href='#' class='deleteproject'>删除</a>
 	</span>
+	</div> --%>
+	<div><div class='area_left3'>
+	<span style='display:none;'>${status.index + 1}</span>
+	<span class='area_span'  style='width: 336px;'>${project.project_name}</span>
+	<span class='area_span'>${project.project_area}</span>
+	<span class='area_span'>${project.project_price_qi}</span>
+	<span class='area_span'  style='width: 40px;'>${project.project_type}</span>
 	</div>
-</div>
+	<div class='area_right3'>
+	<span class='area_span5'><a href='#' class='deleteproject'>删除</a></span>
+	</div>
+	</div>
+<!-- </div> -->
 </c:forEach>
 <!-- <div>
 <div class="area_left3">
@@ -1469,7 +1535,7 @@ $(function(){
 		$("#project_type4").val(huibaotrendedititem.project_type4||huibaotrendedititem.project_type);
 		$("#view_shunxu4").val(huibaotrendedititem.view_shunxu4||huibaotrendedititem.view_shunxu);
 		$("#heng4").val(huibaotrendedititem.heng4||huibaotrendedititem.heng);
-		$("#zong4").val(huibaotrendedititem.zong4||huibaotrendedititem.zong);
+		$("#zong4").val(huibaotrendedititem.zong4||huibaotrendedititem.zong); 
 		$("#zujin_huibao_datasource").val(huibaotrendedititem.zujin_huibao_datasource||huibaotrendedititem.zujin_huibao_datasource);
 		$("#zujin_huibao_date").val(huibaotrendedititem.zujin_huibao_date.length>=10?huibaotrendedititem.zujin_huibao_date.substr(0,10):huibaotrendedititem.zujin_huibao_date);
 		}); 
@@ -1764,7 +1830,7 @@ $(function(){
 				  dataType: "json",
 				  success:function (data,textStatus,jqXHR){
 					  projectlist.push(data);
-					  $('#projectlist').append("<div><div class='area_left3'><span style='display:none;'>"+(++projectcount)+"</span><span class='area_span' style='width: 167px;'>"+projectlist[projectcount-1].project_name+"</span><span class='area_span'>"+projectlist[projectcount-1].project_area+"</span><span class='area_span'>"+projectlist[projectcount-1].project_price_qi+"</span><span class='area_span'>"+projectlist[projectcount-1].project_type+"</span></div><div class='area_right3'><span class='area_span5'><a href='#' class='deleteproject'>删除</a></span></div></div>");
+					  $('#projectlist').append("<div><div class='area_left3'><span style='display:none;'>"+(++projectcount)+"</span><span class='area_span'  style='width: 340px;'>"+projectlist[projectcount-1].project_name+"</span><span class='area_span'>"+projectlist[projectcount-1].project_area+"</span><span class='area_span'>"+projectlist[projectcount-1].project_price_qi+"</span><span class='area_span'  style='width: 40px;'>"+projectlist[projectcount-1].project_type+"</span></div><div class='area_right3'><span class='area_span5'><a href='#' class='deleteproject'>删除</a></span></div></div>");
 					  }
 				});
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
