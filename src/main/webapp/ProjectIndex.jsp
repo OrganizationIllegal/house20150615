@@ -1330,7 +1330,7 @@ function popInfo(){
 </div>
 </div>
 <!-- 项目位置模态框end -->
-
+<input type="hidden" id="Control" value='0'>
 	</body>
 </html>
 <script type="text/javascript">
@@ -1368,13 +1368,30 @@ function popInfo(){
 	});
 	
  </script>
- <script type="text/javascript" src="http://player.youku.com/jsapi">
-
+ <script type="text/javascript" src="http://player.youku.com/jsapi"></script>
+<script type="text/javascript">
+$(function () {
+/* var t = document.getElementById("Control").value(); */
+var t =$("#Control").val();
+//alert(t)
+var flag=0;
 		player = new YKU.Player('youkuplayer',{
 			styleid: '0',
 			client_id: '6e97509b4cd3378b',
 			vid: 'XOTUxNDk2NDQ0',
 			events:{
+			onPlayerReady: function(){
+				alert(t);
+				window.name=1;
+				alert(window.name);
+				//playVideo();
+				/* flag=1;
+				if(flag){
+					alert("hehe")
+				}
+				alert(flag) */
+				
+				},
 			onPlayStart: function(){ alert("kaishi") },
 			onPlayEnd: function(){ alert("jieshu") }
 			}
@@ -1382,9 +1399,11 @@ function popInfo(){
 			function playVideo(){
 			player.playVideo();
 				alert("kaishi");
+				flag=1;
 			}
 			function pauseVideo(){
 			player.pauseVideo();
 				alert("zanting")
 			}
-	</script>						
+});
+			</script>						
