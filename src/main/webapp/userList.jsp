@@ -69,9 +69,9 @@ if(request.getSession().getAttribute("flag")!=null){
             <th data-field="housetype" data-sortable="true">区域名称</th>
             <th data-field="flag" data-sortable="true">区域名称</th> -->
            
-            <th data-field="operate"
+            <!-- <th data-field="operate"
                 data-formatter="operateFormatter"
-                data-events="operateEvents">Item Operate</th>
+                data-events="operateEvents">Item Operate</th> -->
         </tr>
         </thead>
     </table>
