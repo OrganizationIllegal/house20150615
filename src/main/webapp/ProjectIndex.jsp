@@ -982,8 +982,7 @@ function popInfo(){
 				</div>
 				</div>
 				</c:if>
-			</div>
-		</div>
+		
 		
 		<c:if test="${not empty newsList}">
 		<div class="c-fix bkg3" style="margin:0 auto;height:350px;width:990px">

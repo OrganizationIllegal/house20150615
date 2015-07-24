@@ -16,7 +16,7 @@ public class RecoProjectDao extends BaseDao{
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 
-		RecoProject data = new RecoProject();
+		RecoProject data = null;
 		try{
 
 			String sql = "select * from recommend_project where area_code=?";
