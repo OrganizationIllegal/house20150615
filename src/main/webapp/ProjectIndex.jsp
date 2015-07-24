@@ -969,13 +969,13 @@ function popInfo(){
 				<div class="c-fix bkg3" style="margin:0 auto;height:265px;width:990px">
 				<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:950px;margin-bottom:10px;">${area_name} 区域家庭情况构成</a>
 				<div class="c-fix f-l p_family" style="margin-left:72px;-margin-top:20px;height:184px">
-					<a class="c-fix f-l family_lab f-yahei s-14 fw">${100 * dulirateVo}%</a>
+					<a class="c-fix f-l family_lab f-yahei s-14 fw">${dulirateVo}</a>
 				</div>
 				<div class=" f-l p_family2" style="margin-left:144px;-margin-top:20px;height:184px">
-					<a class="c-fix f-l family_lab f-yahei s-14 fw">${100 * youngfamilyVo}%</a>
+					<a class="c-fix f-l family_lab f-yahei s-14 fw">${youngfamilyVo}</a>
 				</div>
 				<div class="f-l  p_family3" style="margin-left:144px;-margin-top:20px;height:184px">
-					<a class="c-fix f-l family_lab f-yahei s-14 fw">${100 * oldfamilyVo}%</a>
+					<a class="c-fix f-l family_lab f-yahei s-14 fw">${oldfamilyVo}</a>
 				</div>
 				<div class="c-" style="margin-right:20px;float:rgiht;height:20px">
 					<span class="c-fix f-yahei s-12 fw f-r">数据来源：${family_datasource }&nbsp;&nbsp; 更新日期：${fn:substring(family_date,0,10)}</span>

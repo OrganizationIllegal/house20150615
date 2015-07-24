@@ -636,23 +636,50 @@ public class MyController {
 		String oldfamilyVo= "";
 		Integer youngfamilyrate = 0;
 		Integer oldfamilyrate = 0;
+		String dulirateVo_str = null;
+		String youngfamilyVo_str = null;
+		String oldfamilyVo_str = null;
 		if(data!=null){
-			 dulirateVo = data.getFamily_one_rate();
+			 dulirateVo = data.getFamily_one_rate();                    //独立青年
+			 Double dulirateVoDo = Double.parseDouble(dulirateVo);
+			 DecimalFormat df = new DecimalFormat("0.0%");
+			 dulirateVo_str = df.format(dulirateVoDo);
+			 
+			 youngfamilyVo = data.getFamily_two_rate();        //青年家庭
+			 Double youngfamilyVoDo = Double.parseDouble(youngfamilyVo);
+			 DecimalFormat df1 = new DecimalFormat("0.0%");
+			 youngfamilyVo_str = df.format(youngfamilyVoDo);
+			 
+			 
+			 oldfamilyVo = data.getFamily_three_rate();       //老年家庭
+			 Double oldfamilyVoDo = Double.parseDouble(oldfamilyVo);
+			 DecimalFormat df2 = new DecimalFormat("0.0%");
+			 oldfamilyVo_str = df.format(oldfamilyVoDo);
+			 
+			 /*String duliqingnian = String.valueOf(dulirateVoDo);
+			 String tempDuLi = "";
+			 if(duliqingnian.length()>2){
+				 tempDuLi = duliqingnian.substring(0,4);
+			 }
+			 else{
+				 tempDuLi = duliqingnian+".0";
+			 }*/
+			 
 			/* dulirateStr=dulirate.toString();
 			 dulirateVo=dulirateStr;*/
-			 youngfamilyVo = data.getFamily_two_rate();
+			 //youngfamilyVo = data.getFamily_two_rate();
 			 /*youngfamilystr=youngfamilyrate.toString();
 			 youngfamilyVo=youngfamilystr;*/
-			 oldfamilyVo = data.getFamily_three_rate();
+			 //oldfamilyVo = data.getFamily_three_rate();
 			 /*oldfamilystr=oldfamilyrate.toString();
 			 oldfamilyVo=oldfamilystr;*/
 		}
 		
 		req.setAttribute("family_datasource", family_datasource);
 		req.setAttribute("family_date", family_date);
-		req.setAttribute("dulirateVo", dulirateVo);
-		req.setAttribute("youngfamilyVo", youngfamilyVo);
-		req.setAttribute("oldfamilyVo", oldfamilyVo);
+		req.setAttribute("dulirateVo", dulirateVo_str);
+		req.setAttribute("youngfamilyVo", youngfamilyVo_str);
+		req.setAttribute("oldfamilyVo", oldfamilyVo_str);
 	}
 	
 	
