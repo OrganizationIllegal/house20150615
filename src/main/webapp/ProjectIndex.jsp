@@ -455,7 +455,7 @@ function popInfo(){
 				<div class="c-fix f-l p_panel_3">
 					<a class="c-fix f-l f-yahei s-14 p_panel_title3 fw">项目详情</a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_name fw">${HouseProject.project_name}</a>
-					<a class="c-fix f-l f-yahei s-14 p_panel_content">${HouseProject.project_desc}</a>
+					<a class="c-fix f-l f-yahei s-14 p_panel_content" style="  word-break: break-all;">${HouseProject.project_desc}</a>
 					<div class="f-l p_btn_get my_center" onclick="popInfo()"><img src="images/index/proinfobtn.png"></img></div>
 				</div>
 				<!-- <img class="f-r p_adv" src="images/ad1.png"></img> -->
