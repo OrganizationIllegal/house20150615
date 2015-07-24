@@ -1594,12 +1594,31 @@ function popInfo(){
      	var temp;
      	temp = judgeRe(user,pass);
      	//alert(temp)             	
-     	if(temp==true){	                	
-             document.fm1.submit();  //fm为form表单name
+     	 if(temp==true){	                	
+             //document.fm1.submit();  //fm为form表单name
+     		$.ajax({
+    			type:'post',
+    			url:'/Register2',
+    			dateType:'json',
+    			data:{"telemail":user,"pwd":pass},
+    			success:function(data){
+    				if(data.flag == 1){
+    					alert("注册成功！");
+    					window.location.href = '/index01';
+    				}
+    				else{
+    					alert("注册失败！");    					
+    				}
+
+    			},
+    			error:function(){
+      			}
+    		});
      	}
      	else{               	
      		return false;
-     	} 
+     	}  
+     	
      });
 
      $("#cancelnew").click(function() {
