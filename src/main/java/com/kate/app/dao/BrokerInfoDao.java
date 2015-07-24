@@ -359,7 +359,7 @@ public class BrokerInfoDao extends BaseDao {
 	}
 	
 	//根据区域推荐经纪人
-		/*public List<BrokerInfo> getRecommendBroker(String area_code){
+		public List<BrokerInfo> getRecommendBrokerByArea(String area_code){
 			Statement stmt = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
@@ -416,7 +416,7 @@ public class BrokerInfoDao extends BaseDao {
 	        }
 			return recommendbrokerList;
 			
-		}*/
+		}
 	public BrokerInfo findBrokerbyId(String broker_code){
 		Statement stmt = null;
 		ResultSet rs = null;

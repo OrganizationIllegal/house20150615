@@ -3077,7 +3077,7 @@ public class AreaInfoDao extends BaseDao {
 			String sql = " SELECT * from area_info where area_name=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, area_name);
-			  rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			while(rs.next()){
 				areaInfo.setArea_city(rs.getString("area_city"));
 				areaInfo.setArea_num(rs.getString("area_num"));
@@ -3109,7 +3109,7 @@ public class AreaInfoDao extends BaseDao {
 		     } 
 		      if(pstmt != null){   // 关闭声明   
 			        try{   
-			            stmt.close() ;   
+			            pstmt.close() ;   
 			        }catch(SQLException e){   
 			            e.printStackTrace() ;   
 			        }   
