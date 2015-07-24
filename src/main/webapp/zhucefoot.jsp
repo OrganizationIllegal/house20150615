@@ -6,6 +6,11 @@ $("#register2new").click(function(){
    	$('#registernew').modal('show');
   })
 
+   $("#login2ReFooter").click(function(){
+   	$('#login').modal('show');
+   	$('#registernew').modal('hide');
+  })
+  
   $("#regnew").click(function() {
     	var user = $("#telemailnew").val();
     	var pass = $("#pwdnew").val();
@@ -103,7 +108,7 @@ $("#register2new").click(function(){
    <img src="images/register.png" id="regnew" style="width:120px;height:30px;cursor:pointer;"><span style="padding-left:20px;"><a id="cancelnew" href="#">取消</a></span>
    </div>
 </form>
-<div style="float:left;margin-top:60px;margin-left:-165px;font-size:12px;"><span>已有账户？<a href="#">登录</a></span></div>
+<div style="float:left;margin-top:60px;margin-left:-165px;font-size:12px;"><span>已有账户？<a href="javascript:void(0);" id="login2ReFooter">登录</a></span></div>
 <div style="float:left;margin-top:85px;margin-left:-165px;font-size:12px;font-weight:bold;"><span><input type="checkbox" checked="true">我已阅读并接受<a href="/ServiceProtocol.jsp" style="color:black;">《用户服务协议》</a></span></div>
 </div>
    
