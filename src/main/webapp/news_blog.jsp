@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -102,11 +103,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <c:choose>
             	<c:when test="${type==0}">
             		<div style="font-family:微软雅黑; font-size:22px;color:black;font-weight:normal; ">${zhiYeDetail.title }</div>
-            		<div style="padding-left: 0px;font-size:12px;color:grey;width:300px;padding-top:5px;">添加时间：${zhiYeDetail.fabu_time }</div>
+            		<div style="padding-left: 0px;font-size:12px;color:grey;width:300px;padding-top:5px;">添加时间：${fn:substring(zhiYeDetail.fabu_time,0,10)}</div>
             	</c:when>
             	<c:otherwise>
             		<div style="font-family:微软雅黑; font-size:22px;color:black;font-weight:normal; ">${newsBokeDetail.news_title }</div>
-            		<div style="padding-left: 0px;font-size:12px;color:grey;width:300px;padding-top:5px;">添加时间：${newsBokeDetail.news_time }</div>
+            		<div style="padding-left: 0px;font-size:12px;color:grey;width:300px;padding-top:5px;">添加时间：${fn:substring(newsBokeDetail.news_time,0,10)}</div>
             	</c:otherwise>
             </c:choose>
             </div>
