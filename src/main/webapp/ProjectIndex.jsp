@@ -504,7 +504,7 @@ function popInfo(){
 						</c:otherwise>
 					</c:choose>
 					<div class="f-l p_struct_attr2">
-						<a class="c-fix f-l attr3 f-yahei s-14 fw">${obj.house_price}</a>
+						<a class="c-fix f-l attr3 f-yahei s-14 fw">$${obj.house_price}</a>
 						<a class="c-fix f-l attr4 f-yahei s-12 fw">房价</a>
 					</div>
 					<img src="images/btn_get_struct.jpg" class="f-l btn_get_struct cp" onclick="pop6('${obj.house_type}','<%=application.getInitParameter("imagedir")%>/${obj.house_img}')"></img>
