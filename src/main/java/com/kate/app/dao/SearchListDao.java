@@ -1,6 +1,5 @@
 package com.kate.app.dao;
 
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +11,7 @@ import java.util.Set;
 
 import org.springframework.stereotype.Repository;
 
+import com.kate.app.model.AreaInfo;
 import com.kate.app.model.BrokerInfo;
 import com.kate.app.model.HouseProject;
 import com.kate.app.model.ProjectKey;
@@ -832,6 +832,55 @@ public class SearchListDao extends BaseDao {
         }
 		return houseProjectList;
 	} 
+	
+	
+	public String searchIndexList1(String city1){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		String area_num = null;
+		try {
+			String sql = "select * from area_info where area_name like '%" +city1+ "%' or area_zhou like '%" +city1+ "%' or area_city like '%" +city1+ "%'";
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
+		    while(rs.next()){
+		    	area_num = rs.getString("area_num");
+
+
+				}
+		  
+			}
+			catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return area_num;
+	}
+	
+	
 	
 	public List<HouseProject> indexSericeList(String city, String type, String minimumprice, String maximumprice, String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue,String center,String traffic,String xianfang,String maidi){
 		Statement stmt = null;
@@ -1752,7 +1801,88 @@ public class SearchListDao extends BaseDao {
 	} 
 	
 	
-	
+	public List<HouseProject> searchIndexProjectByPro(String proName){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
+		List<HouseProject> houseProjectList=new ArrayList<HouseProject>();
+		try {
+			String sql = "select * from house_project where project_name=?";
+			 pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, proName);
+			  rs = pstmt.executeQuery();
+		    while(rs.next()){
+		    	HouseProject projectInfo = new HouseProject();
+				projectInfo.setProject_name(rs.getString("project_name"));
+				projectInfo.setProject_img(rs.getString("project_img"));
+				projectInfo.setProject_logo(rs.getString("project_logo"));
+				projectInfo.setProject_nation(rs.getString("project_nation"));
+				projectInfo.setProject_address(rs.getString("project_address"));
+				projectInfo.setProject_area(rs.getString("project_area"));
+				projectInfo.setProject_price_qi(rs.getString("project_price_qi"));
+				projectInfo.setProject_price_int_qi(rs.getInt("project_price_int_qi"));
+				projectInfo.setProject_type(rs.getString("project_type"));
+				projectInfo.setProject_sales_remain(rs.getInt("project_sales_remain"));
+				//projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));
+				projectInfo.setProject_desc(rs.getString("project_desc"));
+				projectInfo.setProject_city(rs.getString("project_city"));
+				projectInfo.setProject_house_type(rs.getString("project_house_type"));
+				projectInfo.setProject_high(rs.getString("project_high"));
+				projectInfo.setProject_price(rs.getString("project_price"));
+				projectInfo.setProject_lan_cn(rs.getString("project_lan_cn"));
+				projectInfo.setProject_lan_en(rs.getString("project_lan_en"));
+				projectInfo.setProject_num(rs.getString("project_num"));
+				projectInfo.setProject_vedio(rs.getString("project_vedio"));
+				projectInfo.setProject_zhou(rs.getString("project_zhou"));
+				projectInfo.setArea_qujian(rs.getString("area_qujian"));
+				projectInfo.setGps(rs.getString("gps"));
+				projectInfo.setReturn_money(rs.getString("return_money"));
+				projectInfo.setDeveloper_id(rs.getInt("developer_id"));
+				projectInfo.setProject_high_price(rs.getString("project_high_price"));
+				projectInfo.setProject_min_price(rs.getString("project_min_price"));
+				projectInfo.setMax_area(rs.getInt("max_area"));
+				projectInfo.setMin_area(rs.getInt("min_area"));
+				projectInfo.setArea_id(rs.getInt("area_id"));
+				projectInfo.setMianji(rs.getString("mianji"));
+				projectInfo.setRecommend_id_1(rs.getString("recommend_id_1"));
+				projectInfo.setRecommend_id_2(rs.getString("recommend_id_2"));
+				projectInfo.setRecommend_id_3(rs.getString("recommend_id_3"));
+				projectInfo.setWuyefei(rs.getString("wuyefei"));
+				houseProjectList.add(projectInfo);
+
+				}
+		  
+			}
+			catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return houseProjectList;
+	} 
 	
 	public ProjectKey searchProjectKey(String proNum){
 		Statement stmt = null;

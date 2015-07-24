@@ -212,7 +212,7 @@ public class MyController {
 		 listSuoJia(req,resp,username);
 		 messageSubmit(req,resp,username,proId);
 		 //通过项目推荐经纪人
-		 getRecommendBroker(req,resp,proNum);
+		 getRecommendBroker(req,resp,proNum,area_num);
 		//通过区域推荐经纪人
 		/* getRecommendBroker(req,resp,area_num);*/
 		 req.setAttribute("area_name", area_name);
@@ -639,22 +639,38 @@ public class MyController {
 		String dulirateVo_str = null;
 		String youngfamilyVo_str = null;
 		String oldfamilyVo_str = null;
+		DecimalFormat df = new DecimalFormat("0.0%");
 		if(data!=null){
 			 dulirateVo = data.getFamily_one_rate();                    //独立青年
-			 Double dulirateVoDo = Double.parseDouble(dulirateVo);
-			 DecimalFormat df = new DecimalFormat("0.0%");
-			 dulirateVo_str = df.format(dulirateVoDo);
+			 if(dulirateVo == null || "".equals(dulirateVo)){
+				 dulirateVo_str = "0.0%";
+			 }
+			 else{
+				 Double dulirateVoDo = Double.parseDouble(dulirateVo);
+				 dulirateVo_str = df.format(dulirateVoDo);
+			 }
+			 
 			 
 			 youngfamilyVo = data.getFamily_two_rate();        //青年家庭
-			 Double youngfamilyVoDo = Double.parseDouble(youngfamilyVo);
-			 DecimalFormat df1 = new DecimalFormat("0.0%");
-			 youngfamilyVo_str = df.format(youngfamilyVoDo);
+			 if(youngfamilyVo==null || "".equals(youngfamilyVo)){
+				 youngfamilyVo_str = "0.0%";
+			 }
+			 else{
+				 Double youngfamilyVoDo = Double.parseDouble(youngfamilyVo);
+				 youngfamilyVo_str = df.format(youngfamilyVoDo);
+			 }
+			 
 			 
 			 
 			 oldfamilyVo = data.getFamily_three_rate();       //老年家庭
-			 Double oldfamilyVoDo = Double.parseDouble(oldfamilyVo);
-			 DecimalFormat df2 = new DecimalFormat("0.0%");
-			 oldfamilyVo_str = df.format(oldfamilyVoDo);
+			 if(oldfamilyVo == null || "".equals(oldfamilyVo)){
+				 oldfamilyVo_str = "0.0%";
+			 }
+			 else{
+				 Double oldfamilyVoDo = Double.parseDouble(oldfamilyVo);
+				 oldfamilyVo_str = df.format(oldfamilyVoDo);
+			 }
+			 
 			 
 			 /*String duliqingnian = String.valueOf(dulirateVoDo);
 			 String tempDuLi = "";
@@ -967,9 +983,12 @@ public class MyController {
 		}
 	//通过项目推荐经纪人
 		@RequestMapping({"/recommendBroker"})
-		public void getRecommendBroker(HttpServletRequest req,HttpServletResponse resp, String project_num){
-			List<BrokerInfo> recommendBroker=new ArrayList<BrokerInfo>();
-			recommendBroker=brokerInfoDao.getRecommendBroker(project_num);
+		public void getRecommendBroker(HttpServletRequest req,HttpServletResponse resp, String project_num, String area_num){
+			List<BrokerInfo> recommendBroker = null;
+			recommendBroker = brokerInfoDao.getRecommendBroker(project_num);
+			if(recommendBroker == null){
+				recommendBroker = brokerInfoDao.getRecommendBrokerByArea(area_num);
+			}
 			req.setAttribute("recommendBroker", recommendBroker);
 		}
 	

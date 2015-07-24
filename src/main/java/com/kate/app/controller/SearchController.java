@@ -209,7 +209,18 @@ public class SearchController {
 					}
 				}
 				else{
-					list1 = searchListDao.searchIndexList(searchcity);
+					if(searchcity.indexOf("项目名称")>0){
+						int weizhi = searchcity.indexOf("(");
+						String projectName = searchcity.substring(0,weizhi-1).trim();
+						
+						list1 = searchListDao.searchIndexProjectByPro(projectName);
+						
+					}
+					else{
+						String area_num = searchListDao.searchIndexList1(searchcity);
+						list1 = searchListDao.searchIndexProject(areaNum);
+					}
+					
 				}
 			}
 			if(city2!=null && !"".equals(city2)){

@@ -20,7 +20,7 @@ public class AreaFamilyDao extends BaseDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		AreaFamily data = new AreaFamily();
+		AreaFamily data = null;
 		try {
 			String sql = " SELECT * from area_family where area_code=?";
 			pstmt = con.prepareStatement(sql);

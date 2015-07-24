@@ -147,7 +147,7 @@ public class SuggestionService {
 			/*for(SuggestionProject item : projectList){
 				p.append(item.getProject_name()+"\r\n");
 			}*/
-			for(Suggestion item : list){
+			for(Suggestion item : list){     //区域名称
 				p.append(item.getArea_name()+"\r\n");
 			}
 			for(String zhou : zhouList){

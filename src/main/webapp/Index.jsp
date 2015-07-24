@@ -511,6 +511,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    	//alert(value)
 		    if($('#searchTerritory').val()==""){
 		    	$('#searchTerritory').focus();
+		    	//$("#_suggestion").hide();
 		    	$("#_suggestion").hide();
 		    }
 
@@ -533,6 +534,7 @@ if(navigator.userAgent.toLowerCase().indexOf('msie')>0 || navigator.userAgent.to
 
 $("#searchTerritory").on('focus',function(e){
 	 if($('#searchTerritory').val()==""){
+	 	
 		 $("#_suggestion").hide();
 		 
 	 }
