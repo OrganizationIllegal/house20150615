@@ -171,7 +171,7 @@ if(request.getSession().getAttribute("flag")!=null){
             <div class="" style="padding-left: 10px;font-size:13px;font-family:'微软雅黑';">
               
                <div class=""> 
-              	<div style="padding-bottom: 5px;font-size:13px;font-family:'微软雅黑';">置业<span style="width: 230px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;margin-left:30px;"></span></div>
+              	<div style="padding-bottom: 5px;font-size:13px;font-family:'微软雅黑';">置业<span style="width:283px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;/* margin-left:30px; */"></span></div>
 	               	<div style="padding-bottom: 5px;font-size:13px;font-family:'微软雅黑';padding-top:5px;"><a href="/ZhiYeInfo" style="display:block;">置业指导</a></div>
 	                <div style="font-size:13px;font-family:'微软雅黑';"><a href="/BlogList">新闻博客</a></div>
               </div>
@@ -179,7 +179,7 @@ if(request.getSession().getAttribute("flag")!=null){
             <div class="" style="padding-left: 10px;padding-top: 30px;font-size:13px;font-family:'微软雅黑';">
               
               <div class=""> 
-				<div style="padding-bottom: 9px;padding-top: 9px;">分类浏览&nbsp;<span style="width: 230px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
+				<div style="padding-bottom: 9px;padding-top: 9px;">分类浏览&nbsp;<span style="width: 253px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
                 <select id="type" style="  width: 283px;height: 30px;">
                     <option>请选择一个类别</option>
                     <c:forEach items="${fenleiList}" var="item">
@@ -192,7 +192,7 @@ if(request.getSession().getAttribute("flag")!=null){
             <div class="" style="padding-top: 58px;padding-left: 9px;font-size:13px;font-family:'微软雅黑';">
               
               <div class=""> 
-              	<div style="padding-bottom: 11px;">最新博客文章&nbsp;<span style="width: 205px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
+              	<div style="padding-bottom: 11px;">最新博客文章&nbsp;<span style="width: 228px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
                 <ul class="media-list">
 
                 <c:forEach items="${newslastestList}" var="item" varStatus="status">
@@ -219,7 +219,7 @@ if(request.getSession().getAttribute("flag")!=null){
         	<div class="" style="  padding-top: 41px;padding-left: 9px;font-size:13px;font-family:'微软雅黑';">
               
               <div class=""> 
-              	<div style="padding-bottom: 11px;">置业指导&nbsp;<span style="width: 259px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
+              	<div style="padding-bottom: 11px;">置业指导&nbsp;<span style="width: 252px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
                 <ul class="media-list">
 
                 	 <c:forEach items="${lastestList}" var="item" varStatus="status">
@@ -241,7 +241,7 @@ if(request.getSession().getAttribute("flag")!=null){
                         </ul>
               </div>
             </div>
-            <div class="" style="  padding-top: 41px;padding-left: 9px;font-size:13px;font-family:'微软雅黑';">
+            <%-- <div class="" style="  padding-top: 41px;padding-left: 9px;font-size:13px;font-family:'微软雅黑';">
               
               <div class=""> 
              <div style="padding-bottom: 11px;">置业指导&nbsp;<span style="width: 259px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
@@ -265,7 +265,7 @@ if(request.getSession().getAttribute("flag")!=null){
                         
                         </ul>
               </div>
-            </div>
+            </div> --%>
         </div>
         
     </div>

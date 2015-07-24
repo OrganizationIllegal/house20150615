@@ -504,7 +504,7 @@ function popInfo(){
 						</c:otherwise>
 					</c:choose>
 					<div class="f-l p_struct_attr2">
-						<a class="c-fix f-l attr3 f-yahei s-14 fw">${obj.house_price}</a>
+						<a class="c-fix f-l attr3 f-yahei s-14 fw">$${obj.house_price}</a>
 						<a class="c-fix f-l attr4 f-yahei s-12 fw">房价</a>
 					</div>
 					<img src="images/btn_get_struct.jpg" class="f-l btn_get_struct cp" onclick="pop6('${obj.house_type}','<%=application.getInitParameter("imagedir")%>/${obj.house_img}')"></img>
@@ -637,7 +637,7 @@ function popInfo(){
 							<a class="c-fix f-l p_school_lab f-yahei s-14">${item.market_type}</a>	
 							<a class="f-r p_school_lab f-yahei s-14" style="margin-right:20px;">${item.market_name}</a>	
 						</div>
-						<a class="c-fix f-r p_school_distance f-yahei s-14" style="margin-right:20px;">${item.market_distance}米</a>	
+						<a class="c-fix f-r p_school_distance f-yahei s-14" style="margin-right:20px;">${item.market_distance}m</a>	
 					</div>
 				</c:forEach>
 					
