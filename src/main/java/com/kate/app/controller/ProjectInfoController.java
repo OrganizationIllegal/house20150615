@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.constraints.Null;
 
 import org.apache.commons.lang3.StringUtils;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -1139,17 +1140,38 @@ public class ProjectInfoController {
 		 String nation=req.getParameter("nation");
 		 String city=req.getParameter("city");
 		String school_total_str=req.getParameter("school_total");
-		int school_total = school_total_str == "" ? -1 :Integer.parseInt(school_total_str);
+		int school_total = 0;
+		if(school_total_str == null || "".equals(school_total_str)){
+			school_total = 0;
+		}
+		else{
+			school_total = Integer.parseInt(school_total_str);
+		}
+		//int school_total = school_total_str == "" ? -1 :Integer.parseInt(school_total_str);
 		
 		String teacher_total_str=req.getParameter("teacher_num");
-		int teacher_total = teacher_total_str == "" ? -1 :Integer.parseInt(teacher_total_str);
+		int teacher_total = 0;
+		if(teacher_total_str == null || "".equals(teacher_total_str)){
+			teacher_total = 0;
+		}
+		else{
+			teacher_total = Integer.parseInt(teacher_total_str);
+		}
+		//int teacher_total = teacher_total_str == "" ? -1 :Integer.parseInt(teacher_total_str);
 		
 		String school_position=req.getParameter("school_position");
 		String gps=req.getParameter("school_gps");
 		String net_info=req.getParameter("school_url");
 		
 		String  not_en_stu_bili_str=req.getParameter("non_en_studen_trate");
-		int not_en_stu_bili = not_en_stu_bili_str == "" ? -1 :Integer.parseInt(not_en_stu_bili_str);
+		int not_en_stu_bili = 0;
+		if(not_en_stu_bili_str == null || "".equals(not_en_stu_bili_str)){
+			not_en_stu_bili = 0;
+		}
+		else{
+			not_en_stu_bili = Integer.parseInt(not_en_stu_bili_str);
+		}
+		//int not_en_stu_bili = not_en_stu_bili_str == "" ? -1 :Integer.parseInt(not_en_stu_bili_str);
 		
 		String school_image=req.getParameter("schoolimg");
 		String school_desc=req.getParameter("school_intro");
@@ -1184,17 +1206,38 @@ public class ProjectInfoController {
 		String nation=req.getParameter("nation");
 		String  city=req.getParameter("city");
 		String school_total_str=req.getParameter("school_total");
-		int school_total = school_total_str == "" ? -1 :Integer.parseInt(school_total_str);
+		int school_total = 0;
+		if(school_total_str == null || "".equals(school_total_str)){
+			school_total = 0;
+		}
+		else{
+			school_total = Integer.parseInt(school_total_str);
+		}
+		//int school_total = school_total_str == "" ? -1 :Integer.parseInt(school_total_str);
 		
 		String teacher_total_str=req.getParameter("teacher_num");
-		int teacher_total = teacher_total_str == "" ? -1 :Integer.parseInt(teacher_total_str);
+		int teacher_total = 0;
+		if(teacher_total_str == null || "".equals(teacher_total_str)){
+			teacher_total = 0;
+		}
+		else{
+			teacher_total = Integer.parseInt(teacher_total_str);
+		}
+		//int teacher_total = teacher_total_str == "" ? -1 :Integer.parseInt(teacher_total_str);
 		
 		String school_position=req.getParameter("school_position");
 		String gps=req.getParameter("school_gps");
 		String net_info=req.getParameter("school_url");
 		
 		String  not_en_stu_bili_str=req.getParameter("non_en_studen_trate");
-		int not_en_stu_bili = not_en_stu_bili_str == "" ? -1 :Integer.parseInt(not_en_stu_bili_str);
+		int not_en_stu_bili = 0;
+		if(not_en_stu_bili_str == null || "".equals(not_en_stu_bili_str)){
+			not_en_stu_bili = 0;
+		}
+		else{
+			not_en_stu_bili = Integer.parseInt(not_en_stu_bili_str);
+		}
+		//int not_en_stu_bili = not_en_stu_bili_str == "" ? -1 :Integer.parseInt(not_en_stu_bili_str);
 		
 		String school_image=req.getParameter("schoolimg");
 		String school_desc=req.getParameter("school_intro");
