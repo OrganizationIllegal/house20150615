@@ -199,7 +199,7 @@ public class SearchController {
 			int flag = 0;
 			if(searchcity!=null && !"".equals(searchcity)){
 				flag = 1;
-				if(searchcity.indexOf(",") >= 0){
+				if(searchcity.indexOf(",") >= 0){      //包含逗号的情况
 					String[] strs = searchcity.split(",");
 					String areaName = strs[0];
 					AreaInfo areaInfo = areaInfoDao.getAreaInfo(areaName);
@@ -217,8 +217,12 @@ public class SearchController {
 						
 					}
 					else{
-						String area_num = searchListDao.searchIndexList1(searchcity);
-						list1 = searchListDao.searchIndexProject(areaNum);
+						list1 = searchListDao.searchIndexList(searchcity);
+						if(list1==null || list1.size()<=0){
+							String area_num = searchListDao.searchIndexList1(searchcity);
+							list1 = searchListDao.searchIndexProject(area_num);
+						}
+						
 					}
 					
 				}

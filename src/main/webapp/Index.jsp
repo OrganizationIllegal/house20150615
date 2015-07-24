@@ -452,19 +452,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				 <c:if test="${!empty newsList }">
 					<a class="c-fix f-l f-yahei s-20 main_title fw" style="margin:0 auto">最新博客</a>
 						<c:forEach var="item" items="${newsList}" varStatus="stat">
-						<div class="f-l main_node" <c:if test="${stat.index != 0}">style="margin-left:30px;"</c:if>>
-							<a href="/Detail?id=${item.id}&type=1">
-								<img src="<%=application.getInitParameter("imagedir")%>/${item.news_image}" class="c-fix f-l main_node_img" style="width:360px;height:225px"></img>
-							</a>
-							<a href="/Detail?id=${item.id}&type=1" style="text-decoration:none;width:360px;" class="c-fix f-l main_node_article f-yahei s-14">
-							<c:if test="${fn:length(item.news_abstract) > 50}">
-								${fn:substring(item.news_abstract, 0, 50)}...</a>
-							</c:if>
-						</div>
-						</c:forEach>
-					</c:if> 
-				</div>
-			</div> 
+							<div class="f-l main_node" <c:if test="${stat.index != 0}">style="margin-left:30px;"</c:if>>
+								<a href="/Detail?id=${item.id}&type=1">
+									<img src="<%=application.getInitParameter("imagedir")%>/${item.news_image}" class="c-fix f-l main_node_img" style="width:360px;height:225px"></img>
+								</a>
+								<a href="/Detail?id=${item.id}&type=1" style="text-decoration:none;width:360px;" class="c-fix f-l main_node_article f-yahei s-14">
+									<c:choose>
+										<c:when test="${fn:length(item.news_abstract) > 50}">
+											${fn:substring(item.news_abstract, 0, 50)}...
+										</c:when>
+										<c:otherwise>
+											${item.news_abstract}
+										</c:otherwise>
+									</c:choose>
+									
+								</a>
+									</div>
+									</c:forEach>
+								</c:if>
+							</div>
+						
+					</div>
+			
+			
 	
 	<jsp:include page="foot4index.jsp" /> 
 		

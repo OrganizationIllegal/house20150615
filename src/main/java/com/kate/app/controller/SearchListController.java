@@ -54,7 +54,9 @@ public class SearchListController {
 			case 3:
 				projecttype="联排别墅";
 				break;
-				
+			default:
+				projecttype="";
+				break;
 		}
 			
 		String zongjiatemp=req.getParameter("zongjia");

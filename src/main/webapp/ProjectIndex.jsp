@@ -969,13 +969,13 @@ function popInfo(){
 				<div class="c-fix bkg3" style="margin:0 auto;height:265px;width:990px">
 				<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:950px;margin-bottom:10px;">${area_name} 区域家庭情况构成</a>
 				<div class="c-fix f-l p_family" style="margin-left:72px;-margin-top:20px;height:184px">
-					<a class="c-fix f-l family_lab f-yahei s-14 fw">${100 * dulirateVo}%</a>
+					<a class="c-fix f-l family_lab f-yahei s-14 fw">${dulirateVo}</a>
 				</div>
 				<div class=" f-l p_family2" style="margin-left:144px;-margin-top:20px;height:184px">
-					<a class="c-fix f-l family_lab f-yahei s-14 fw">${100 * youngfamilyVo}%</a>
+					<a class="c-fix f-l family_lab f-yahei s-14 fw">${youngfamilyVo}</a>
 				</div>
 				<div class="f-l  p_family3" style="margin-left:144px;-margin-top:20px;height:184px">
-					<a class="c-fix f-l family_lab f-yahei s-14 fw">${100 * oldfamilyVo}%</a>
+					<a class="c-fix f-l family_lab f-yahei s-14 fw">${oldfamilyVo}</a>
 				</div>
 				<div class="c-" style="margin-right:20px;float:rgiht;height:20px">
 					<span class="c-fix f-yahei s-12 fw f-r">数据来源：${family_datasource }&nbsp;&nbsp; 更新日期：${fn:substring(family_date,0,10)}</span>
@@ -1018,9 +1018,23 @@ function popInfo(){
 		</c:if>
 		<!-- 通过项目推荐经纪人 -->
 		<c:if test="${!empty recommendBroker}">
+		
 		<div class="c-fix bkg3" style="margin:0 auto;height:222px;width:990px">
 			<div class="c-fix f-l p_panel_5" style="padding-bottom:0px">
-				<div class="c-fix p_inner" style="height:530px;">
+				<c:choose>
+					<c:when test="${fn:length(recommendBroker)==1}">
+						<div class="c-fix p_inner" style="height:191px;">
+					</c:when>
+					<c:when test="${fn:length(recommendBroker)==2}">
+						<div class="c-fix p_inner" style="height:350px;">
+					</c:when>
+					<c:otherwise>
+						<div class="c-fix p_inner" style="height:530px;">
+					</c:otherwise>
+					
+				</c:choose>
+				
+				
 					<div class="c-fix f-l p_left3">
 						<a class="c-fix f-l p_ask f-yahei fw">你是否需要房产经纪人</a>
 						<a class="f-l p_ask fw f-yahei" style="font-size:65px;height:70px;line-height:70px;">?</a>
@@ -1053,15 +1067,15 @@ function popInfo(){
 				<div class="c-fix p_inner bgc" style="padding-bottom:30px;">
 					<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:950px;margin-bottom:10px;">推荐项目</a>
 					<div class="c-fix f-l p_project_node">
-						<a href="Index?proNum=${RecommendProject1.project_num}"><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject1.project_img}" class="c-fix f-l project_img"></img></a>
+						<a href="Index?proNum=${RecommendProject1.project_num}"><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject1.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
 						<a class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject1.project_name}<br/>${RecommendProject1.project_desc}</a>
 					</div>
 					<div class="f-l p_project_node" style="margin-left:25px;">
-						<a href="Index?proNum=${RecommendProject2.project_num}"><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject2.project_img}" class="c-fix f-l project_img"></img></a>
+						<a href="Index?proNum=${RecommendProject2.project_num}"><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject2.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
 						<a class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject2.project_name}<br/>${RecommendProject2.project_desc}</a>
 					</div>
 					<div class="f-l p_project_node" style="margin-left:25px;">
-						<a href="Index?proNum=${RecommendProject3.project_num}"><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject3.project_img}" class="c-fix f-l project_img"></img></a>
+						<a href="Index?proNum=${RecommendProject3.project_num}"><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject3.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
 						<a class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject3.project_name}<br/>${RecommendProject3.project_desc}</a>
 					</div>
 				</div>

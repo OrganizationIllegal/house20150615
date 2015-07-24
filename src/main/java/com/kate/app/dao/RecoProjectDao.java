@@ -19,7 +19,7 @@ public class RecoProjectDao extends BaseDao{
 		RecoProject data = null;
 		try{
 
-			String sql = "select * from recommend_project where area_code=?";
+			String sql = "select * from recommend_project where area_code = ? ";
 		    pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, area_num);
 
@@ -27,10 +27,8 @@ public class RecoProjectDao extends BaseDao{
 
 			
 			while(rs.next()){
+				data = new RecoProject();
 				data.setId(rs.getInt("id"));
-				data.setRecommend_id_1(rs.getInt("recommend_id_1"));
-				data.setRecommend_id_2(rs.getInt("recommend_id_2"));
-				data.setRecommend_id_3(rs.getInt("recommend_id_3"));
 				data.setRecommend_num_1(rs.getString("recommend_num_1"));
 				data.setRecommend_num_2(rs.getString("recommend_num_2"));
 				data.setRecommend_num_3(rs.getString("recommend_num_3"));

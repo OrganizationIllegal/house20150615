@@ -27,7 +27,7 @@ public class AreaFamilyDao extends BaseDao {
 			pstmt.setString(1, area_code);
 			  rs = pstmt.executeQuery();
 			while(rs.next()){
-				//data.setArea_code(rs.getString("area_code"));
+				data = new AreaFamily();
 				data.setArea_id(rs.getInt("area_id"));
 				data.setData_souce(rs.getString("data_souce"));
 				data.setFamily_one(rs.getString("family_one"));
