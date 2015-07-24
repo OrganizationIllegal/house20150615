@@ -484,21 +484,21 @@ function popInfo(){
 					<c:choose>
 						<c:when test="${HouseProject.project_type =='公寓'}">
 							<div class="f-l p_struct_attr">
-								<a class="c-fix f-l attr1 f-yahei s-14 fw">${fn:substring(obj.house_size_in, 0, fn:length(obj.house_size_in)-2)}</a>
+								<a class="c-fix f-l attr1 f-yahei s-14 fw">${obj.house_size_in}</a>
 								<a class="c-fix f-l attr2 f-yahei s-12 fw">室内面积</a>
 							</div>
 							<div class="f-l p_struct_attr">
-								<a class="c-fix f-l attr1 f-yahei s-14 fw">${fn:substring(obj.house_size_out, 0, fn:length(obj.house_size_out)-2)}</a>
+								<a class="c-fix f-l attr1 f-yahei s-14 fw">${obj.house_size_out}</a>
 								<a class="c-fix f-l attr2 f-yahei s-12 fw">室外面积</a>
 							</div>
 						</c:when>
 						<c:otherwise>
 							<div class="f-l p_struct_attr">
-								<a class="c-fix f-l attr1 f-yahei s-14 fw">>${fn:substring(obj.tudi_area, 0, fn:length(obj.tudi_area)-2)}</a>
+								<a class="c-fix f-l attr1 f-yahei s-14 fw">>${obj.tudi_area}</a>
 								<a class="c-fix f-l attr2 f-yahei s-12 fw">土地面积</a>
 							</div>
 							<div class="f-l p_struct_attr">
-								<a class="c-fix f-l attr1 f-yahei s-14 fw">${fn:substring(obj.jianzhu_area, 0, fn:length(obj.jianzhu_area)-2)}</a>
+								<a class="c-fix f-l attr1 f-yahei s-14 fw">${obj.jianzhu_area}</a>
 								<a class="c-fix f-l attr2 f-yahei s-12 fw">建筑面积</a>
 							</div>
 						</c:otherwise>

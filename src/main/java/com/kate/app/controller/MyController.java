@@ -907,19 +907,34 @@ public class MyController {
 			hp1 = houseProjectService.getHouseProjectByNum(data.getRecommend_num_1());
 			String desc1 = hp1.getProject_desc();
 			if(desc1!=null&&!"".equals(desc1)){
-				hp1.setProject_desc(desc1.substring(0, 10)+"...");
+				if(desc1.length() >= 10){
+		    		hp1.setProject_desc(desc1.substring(0, 10)+"...");
+		    	}
+		    	else{
+		    		hp1.setProject_desc(desc1);
+		    	}
 			}
 			
 			hp2 = houseProjectService.getHouseProjectByNum(data.getRecommend_num_2());
 			String desc2 = hp2.getProject_desc();
 			if(desc2!=null&&!"".equals(desc2)){
-				hp2.setProject_desc(desc2.substring(0, 10)+"...");
+				if(desc2.length() >= 10){
+					hp2.setProject_desc(desc2.substring(0, 10)+"...");
+				}
+				else{
+					hp2.setProject_desc(desc2);
+				}
 			}
 			
 			hp3 = houseProjectService.getHouseProjectByNum(data.getRecommend_num_3());
 			String desc3 = hp3.getProject_desc();
 			if(desc3!=null&&!"".equals(desc3)){
-				hp3.setProject_desc(desc3.substring(0, 10)+"...");
+				if(desc3.length() >= 10){
+					hp3.setProject_desc(desc3.substring(0, 10)+"...");
+				}
+				else{
+					hp3.setProject_desc(desc3);
+				}
 			}
 			
 		}
@@ -927,17 +942,33 @@ public class MyController {
 			hp1 = houseProjectService.getHouseProjectByNum(project.getRecommend_id_1());
 		    String desc1 = hp1.getProject_desc();
 		    if(desc1!=null&&!"".equals(desc1)){
-				hp1.setProject_desc(desc1.substring(0, 10)+"...");
+		    	if(desc1.length() >= 10){
+		    		hp1.setProject_desc(desc1.substring(0, 10)+"...");
+		    	}
+		    	else{
+		    		hp1.setProject_desc(desc1);
+		    	}
+				
 			}
 			hp2 = houseProjectService.getHouseProjectByNum(project.getRecommend_id_2());
 			String desc2 = hp2.getProject_desc();
 			if(desc2!=null&&!"".equals(desc2)){
-				hp2.setProject_desc(desc2.substring(0, 10)+"...");
+				if(desc2.length() >= 10){
+					hp2.setProject_desc(desc2.substring(0, 10)+"...");
+				}
+				else{
+					hp2.setProject_desc(desc2);
+				}
 			}
 			hp3 = houseProjectService.getHouseProjectByNum(project.getRecommend_id_3());
 			String desc3 = hp3.getProject_desc();
 			if(desc3!=null&&!"".equals(desc3)){
-				hp3.setProject_desc(desc3.substring(0, 10)+"...");
+				if(desc3.length() >= 10){
+					hp3.setProject_desc(desc3.substring(0, 10)+"...");
+				}
+				else{
+					hp3.setProject_desc(desc3);
+				}
 			}
 		}
 		System.out.println(hp1.getProject_num());

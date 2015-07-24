@@ -25,7 +25,8 @@ public class HouseInfoDao extends BaseDao{
 			
 			while(rs.next()){
 				HouseInfo houseInfo = new HouseInfo();
-				houseInfo.setHouse_type("house_type");
+				//houseInfo.setHouse_type("house_type");
+				houseInfo.setHouse_type(rs.getString("house_type"));
 				houseInfo.setHouse_name(rs.getString("house_name"));
 				houseInfo.setHouse_room_num(rs.getInt("house_room_num"));
 				houseInfo.setHouse_toilet_num(rs.getInt("house_toilet_num"));
