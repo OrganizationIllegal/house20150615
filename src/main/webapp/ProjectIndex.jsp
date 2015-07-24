@@ -88,6 +88,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 		</style>
 <script type="text/javascript">
+$(function() {
+	$("#xiangmuZhuce").click(function(){
+		$('#registernewPro').modal('show');
+	})
+
+	 $("#login2RePro").click(function(){
+		   	$('#login').modal('show');
+		   	$('#registernewPro').modal('hide');
+  })   
+})
+
+
 function lunbo(){
 	var animate_time=200;//锟斤拷锟斤拷时锟戒：0.3锟斤拷
 	var interval_time=5000;//锟斤拷锟脚硷拷锟绞憋拷洌�锟斤拷
@@ -484,21 +496,21 @@ function popInfo(){
 					<c:choose>
 						<c:when test="${HouseProject.project_type =='公寓'}">
 							<div class="f-l p_struct_attr">
-								<a class="c-fix f-l attr1 f-yahei s-14 fw">${fn:substring(obj.house_size_in, 0, fn:length(obj.house_size_in)-2)}</a>
+								<a class="c-fix f-l attr1 f-yahei s-14 fw">${obj.house_size_in}</a>
 								<a class="c-fix f-l attr2 f-yahei s-12 fw">室内面积</a>
 							</div>
 							<div class="f-l p_struct_attr">
-								<a class="c-fix f-l attr1 f-yahei s-14 fw">${fn:substring(obj.house_size_out, 0, fn:length(obj.house_size_out)-2)}</a>
+								<a class="c-fix f-l attr1 f-yahei s-14 fw">${obj.house_size_out}</a>
 								<a class="c-fix f-l attr2 f-yahei s-12 fw">室外面积</a>
 							</div>
 						</c:when>
 						<c:otherwise>
 							<div class="f-l p_struct_attr">
-								<a class="c-fix f-l attr1 f-yahei s-14 fw">>${fn:substring(obj.tudi_area, 0, fn:length(obj.tudi_area)-2)}</a>
+								<a class="c-fix f-l attr1 f-yahei s-14 fw">>${obj.tudi_area}</a>
 								<a class="c-fix f-l attr2 f-yahei s-12 fw">土地面积</a>
 							</div>
 							<div class="f-l p_struct_attr">
-								<a class="c-fix f-l attr1 f-yahei s-14 fw">${fn:substring(obj.jianzhu_area, 0, fn:length(obj.jianzhu_area)-2)}</a>
+								<a class="c-fix f-l attr1 f-yahei s-14 fw">${obj.jianzhu_area}</a>
 								<a class="c-fix f-l attr2 f-yahei s-12 fw">建筑面积</a>
 							</div>
 						</c:otherwise>
@@ -1087,7 +1099,7 @@ function popInfo(){
 		<div class="c-fix f-l bottom_bkg">
 			<div class="c-fix f-l triangle"></div>
 			<a class="c-fix f-l bottom_lab f-yahei fw">为您提供最好的海外购房服务</a>
-			<a class="c-fix f-l bottom_reg f-yahei cp">注册</a>
+			<a id="xiangmuZhuce" class="c-fix f-l bottom_reg f-yahei cp">注册</a>
 		</div>
 		<jsp:include page="foot4index.jsp" />
 		<!-- <div style="display:block;width:100%;min-height:40px;background-color:rgb(228,229,231);float:left;clear:both">
@@ -1467,12 +1479,48 @@ function popInfo(){
 </div>
 </div>
 <!-- 项目位置模态框end -->
+
+<!-- register start -->
+<div class="modal fade" id="registernewPro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content" style="margin-left:100px;height:270px;width:355px;">
+         <div class="modal-header" style="background-color:rgb(55,52,67);padding:0px 10px;height:10px;">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true" style="font-size:18px;color:white;">
+                  &times;
+            </button>
+         </div>
+         <div class="modal-body">
+  <div style="text-align:center;margin-top:5px;"><div style="font-size:20px;font-weight:bold;">用户注册</div>
+  <form method="post" action="/Register" name="fm1">
+  <div  style="padding-top:15px;">
+         <input type="text"  id="telemailnew" name="telemailnew" style="background-image:url(images/0.png);background-repeat:no-repeat;background-position:left;padding-left:35px;width:270px;height:34px;background-color:rgba(246, 245, 245, 1);" placeholder="手机号/邮箱" autocomplete="off">
+   
+   </div>
+   <div>
+         <input type="password" id="pwdnew" name="pwdnew" style="background-image:url(images/2.png);background-repeat:no-repeat;background-position:left;padding-left:35px;width:270px;height:34px;background-color:rgba(246, 245, 245, 1);" placeholder="密码" autocomplete="off">
+   </div>
+   <div style="padding-top:15px;padding-left:26px;float:left;font-size:12px;">
+   
+   <img src="images/register.png" id="regnew" style="width:120px;height:30px;cursor:pointer;"><span style="padding-left:20px;"><a id="cancelnew" href="#">取消</a></span>
+   </div>
+</form>
+<div style="float:left;margin-top:60px;margin-left:-165px;font-size:12px;"><span>已有账户？<a href="javascript:void(0);" id="login2RePro">登录</a></span></div>
+<div style="float:left;margin-top:85px;margin-left:-165px;font-size:12px;font-weight:bold;"><span><input type="checkbox" checked="true">我已阅读并接受<a href="/ServiceProtocol.jsp" style="color:black;">《用户服务协议》</a></span></div>
+</div>
+   
+      </div>
+</div>
+</div>
+</div>
+<!-- register end -->
+
+
 <input type="hidden" id="Control" value='0'>
 	</body>
 	<script>
 	
-	 var t = document.getElementById("Control").value();
-	 alert(t);
+	 
 	</script>
 	
 	 <script type="text/javascript" src="http://player.youku.com/jsapi">
@@ -1539,175 +1587,66 @@ function popInfo(){
   		$('[data-toggle="popover"]').popover()
 	});
 	
- </script>
- <!-- <script type="text/javascript" src="http://player.youku.com/jsapi"></script>
-<script type="text/javascript">
-$(function () {
-var t =$("#Control").val();
-var flag=0;
-		player = new YKU.Player('youkuplayer',{
-			styleid: '0',
-			client_id: '6e97509b4cd3378b',
-			vid: 'XOTUxNDk2NDQ0',
-			events:{
-			onPlayerReady: function(){ 
-				ad_huandeng_click_i==0;
-				alert(flag);
-			},
-			onPlayStart: function(){
-				playVideo();
-			}
-			//onPlayEnd: function(){ alert("jieshu") }
-			}
-			});
-			function playVideo(){
-			player.playVideo();
-				alert("kaishi");
-			}
-			function pauseVideo(){
-			player.pauseVideo();
-				alert("zanting")
-			}
-});
-			</script>		 -->				
- 
- <!-- <script type="text/javascript">
- $(function(){
-	 var temp = $("#Control").val();
-	 alert(temp+"ffff")
-	var animate_time=200;//锟斤拷锟斤拷时锟戒：0.3锟斤拷
-	var interval_time=5000;//锟斤拷锟脚硷拷锟绞憋拷洌�锟斤拷
-	var ad_size=jQuery(".ad_position .limit .ad_small_box ul li").size()-1;//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
-	var ad_huandeng_click_i = 0;//锟斤拷始锟斤拷
-	
-	//循锟斤拷锟斤拷锟斤拷
-	function ad_huandeng_play(){
-		
-		ad_huandeng_click_i++;
+ 	
+ 	 $("#regnew").click(function() {
+     	var user = $("#telemailnew").val();
+     	var pass = $("#pwdnew").val();
+     	var temp;
+     	temp = judgeRe(user,pass);
+     	//alert(temp)             	
+     	if(temp==true){	                	
+             document.fm1.submit();  //fm为form表单name
+     	}
+     	else{               	
+     		return false;
+     	} 
+     });
 
-		if(ad_huandeng_click_i<=ad_size)
-			{jQuery(".ad_small_box ul li").eq(ad_huandeng_click_i).trigger("dblclick");}
-		else
-			{jQuery(".ad_small_box ul li").eq(0).trigger("dblclick");ad_huandeng_click_i = 0}
-	}
-	//锟斤拷锟斤拷循锟斤拷时锟戒，锟皆讹拷锟斤拷始循锟斤拷
-	var ad_huandeng_setInterval = setInterval(ad_huandeng_play,interval_time);
-	
-	//锟斤拷停锟斤拷锟斤拷锟斤拷锟绞憋拷锟斤拷锟酵Ｖ�
-	jQuery(".ad_position").hover(function(){clearInterval(ad_huandeng_setInterval);}, function(){ad_huandeng_setInterval = setInterval(ad_huandeng_play,interval_time);});
-	function videoplay(){
-		alert("jdskfj");
-		clearInterval(ad_huandeng_setInterval);
-	}
-	function videopause(){
-	alert("jdskfj");
-		ad_huandeng_setInterval = setInterval(ad_huandeng_play,interval_time);
-	}
-	function videoend(){
-	alert("jdskfj");
-		clearInterval(ad_huandeng_setInterval);
-	}
-	//小图锟斤拷锟绞憋拷锟斤拷锟绞硷拷锟斤拷锟�
-	jQuery(".ad_position .limit .ad_small_box ul li").dblclick(function(){
-		ad_huandeng_click_i=jQuery(".ad_position .limit .ad_small_box ul li").index(jQuery(this));		
-		jQuery(".ad_position .limit .ad_left_big").animate({"margin-top":ad_huandeng_click_i*-474},{duration:animate_time,queue:false});//锟斤拷图锟斤拷锟斤拷
-		if(ad_huandeng_click_i<ad_size)//锟斤拷小图锟斤拷锟斤拷锟斤拷锟斤拷锟绞撅拷锟斤拷锟绞憋拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
-			{
-				if(ad_huandeng_click_i==0||ad_huandeng_click_i==1)
-					{jQuery(".ad_position .limit .ad_small_box ul").animate({"margin-top":"0px"},{duration:animate_time,queue:false});}
-				else
-					{
-						jQuery(".ad_position .limit .ad_small_box ul").animate({"margin-top":(ad_huandeng_click_i-1)*-138},{duration:animate_time,queue:false});
-					}
-			}		
-		if(ad_huandeng_click_i==0)//锟斤拷始锟叫讹拷指示锟斤拷图片锟斤拷位锟斤拷
-			{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","0px");}
-		else if(ad_huandeng_click_i==ad_size)
-			{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","288px");}
-		else
-			{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","144px");}
-		//jQuery(".ad_position .limit .ad_small_box ul li").css("opacity","0.5");
-		//jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).css("opacity","1");
-		//锟叫讹拷锟斤拷锟铰帮拷钮锟角凤拷傻锟斤拷
-		if(ad_huandeng_click_i==0)
-			{
-				jQuery(".ad_small_box .top_button").addClass("off");
-//				jQuery(".ad_small_box .bottom_button").removeClass("off");
-			}
-		else if(ad_huandeng_click_i==ad_size)
-			{
-//				jQuery(".ad_small_box .top_button").removeClass("off");
-				jQuery(".ad_small_box .bottom_button").addClass("off");
-			}
-		else 
-			{
-//				jQuery(".ad_small_box .top_button").removeClass("off");
-//				jQuery(".ad_small_box .bottom_button").removeClass("off");
-			}
-	});
-	
-	//锟斤拷锟斤拷锟叫⊥硷拷锟斤拷锟酵Ｊ憋拷锟斤拷锟斤拷锟狡讹拷
-	jQuery(".ad_position .limit .ad_small_box ul li").mouseover(function(){		
-		var small_ad_hover_i = jQuery(".ad_position .limit .ad_small_box ul li").index(jQuery(this));
-		var this_ad_top=jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top");
-		this_ad_top=parseInt(this_ad_top);
-		jQuery(".ad_position .limit .ad_left_big").animate({"margin-top":small_ad_hover_i*-474},{duration:animate_time,queue:false});if(small_ad_hover_i!=ad_huandeng_click_i);
-		if(small_ad_hover_i==0)
-			{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","3px");}
-		else if(small_ad_hover_i<ad_huandeng_click_i)
-			{
-				if(ad_huandeng_click_i-small_ad_hover_i==1)
-					{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top-144);}
-				else
-					{{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top-288);}}
-			}
-		else if(small_ad_hover_i>ad_huandeng_click_i)
-			{
-				if(small_ad_hover_i-ad_huandeng_click_i==1)
-					{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top+144);}
-				else
-					{{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top+288);}}
-			}
-		ad_huandeng_click_i=small_ad_hover_i;
-		//锟叫讹拷锟斤拷锟铰帮拷钮锟角凤拷傻锟斤拷
-		if(ad_huandeng_click_i==0)
-			{
-				jQuery(".ad_small_box .top_button").addClass("off");
-//				jQuery(".ad_small_box .bottom_button").removeClass("off");
-			}
-		else if(ad_huandeng_click_i==ad_size)
-			{
-//				jQuery(".ad_small_box .top_button").removeClass("off");
-				jQuery(".ad_small_box .bottom_button").addClass("off");
-			}
-		else
-			{
-//				jQuery(".ad_small_box .top_button").removeClass("off");
-//				jQuery(".ad_small_box .bottom_button").removeClass("off");
-			}
-		//jQuery(".ad_position .limit .ad_small_box ul li").css("opacity","0.5");
-		//jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).css("opacity","1");
-	});	
-	
-	//锟斤拷锟斤拷锟斤拷习锟脚ナ�
-	jQuery(".ad_small_box .top_button").click(function(){
-		ad_huandeng_click_i=ad_huandeng_click_i-1;
-		if(ad_huandeng_click_i<0)
-			{ad_huandeng_click_i=0;}		
-		jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).trigger("mouseover");
-	});
-	//锟斤拷锟斤拷锟斤拷掳锟脚ナ�
-	jQuery(".ad_small_box .bottom_button").click(function(){
-		ad_huandeng_click_i=ad_huandeng_click_i+1;
-		if(ad_huandeng_click_i>=ad_size)
-			{
-				ad_huandeng_click_i=ad_size;
-				jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).trigger("dblclick");
-				jQuery(".ad_position .limit .ad_small_box ul").animate({"margin-top":(ad_huandeng_click_i-2)*-138},{duration:animate_time,queue:false});
-			}
-		
-		jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).trigger("mouseover");
-	});
-	//锟矫碉拷片锟斤拷娌ワ拷锟�
-});
- </script> -->
+     $("#cancelnew").click(function() {
+       	$("#telemailnew").val("").focus();
+       	$("#pwdnew").val("");
+       }); 
+
+     function judgeRe(username, password){
+      	 var result = false;
+      	 if(username==""){
+      	 alert("请输入用户名");
+      		 return false;
+      	 }
+      	 else if(username!=""&&password==""){
+      	 alert("请输入密码");
+      		 return false;
+      	 }
+      	else{
+       		$.ajax({
+       			type:'GET',
+       			url:'/registerPanduan?username='+username+'&password='+password,
+       			dataType:'json',
+       			async: false, 
+       			success:function(data){
+       	  		  	if(data.user==0){
+       				  alert("用户名已存在，请直接登录！");
+       				}
+       				
+       				else if(data.user==-1){
+       				   alert("请输入正确格式！");
+       	  			}
+       	  			else{
+       					result=true;
+       				}
+       	  				
+       			},
+       			error:function(){
+       			}
+       		});
+        
+       	 }
+       if(result == true){
+      	 return true;
+       }
+     }
+
+ 	
+ 	
+ </script>
+

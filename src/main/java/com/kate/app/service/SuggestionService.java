@@ -144,9 +144,7 @@ public class SuggestionService {
 				data.setProNum(proNum);
 				list.add(data);
 			}
-			/*for(SuggestionProject item : projectList){
-				p.append(item.getProject_name()+"\r\n");
-			}*/
+			
 			for(Suggestion item : list){     //区域名称
 				p.append(item.getArea_name()+"\r\n");
 			}
@@ -156,7 +154,9 @@ public class SuggestionService {
 			for(String city : cityList){
 				p.append(city+"\r\n");
 			}
-			
+			for(SuggestionProject item : projectList){
+				p.append(item.getProject_name()+"\r\n");
+			}
 			for(Suggestion item : list){
 				String post = item.getArea_postcode();
 				String code = "";

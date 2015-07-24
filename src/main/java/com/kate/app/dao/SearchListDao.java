@@ -804,6 +804,7 @@ public class SearchListDao extends BaseDao {
 				projectInfo.setRecommend_id_2(rs.getString("recommend_id_2"));
 				projectInfo.setRecommend_id_3(rs.getString("recommend_id_3"));
 				projectInfo.setWuyefei(rs.getString("wuyefei"));
+				projectInfo.setDeveloper_id_name(rs.getString("developer_id_name"));
 				houseProjectList.add(projectInfo);
 
 
@@ -1692,6 +1693,7 @@ public class SearchListDao extends BaseDao {
 				projectInfo.setRecommend_id_2(rs.getString("recommend_id_2"));
 				projectInfo.setRecommend_id_3(rs.getString("recommend_id_3"));
 				projectInfo.setWuyefei(rs.getString("wuyefei"));
+				projectInfo.setDeveloper_id_name(rs.getString("developer_id_name"));
 				houseProjectList.add(projectInfo);
 
 				}
@@ -1765,6 +1767,7 @@ public class SearchListDao extends BaseDao {
 				projectInfo.setGps(rs.getString("gps"));
 				projectInfo.setReturn_money(rs.getString("return_money"));
 				projectInfo.setDeveloper_id(rs.getInt("developer_id"));
+				projectInfo.setDeveloper_id_name(rs.getString("developer_id_name"));
 				projectInfo.setProject_high_price(rs.getString("project_high_price"));
 				projectInfo.setProject_min_price(rs.getString("project_min_price"));
 				projectInfo.setMax_area(rs.getInt("max_area"));
@@ -1775,6 +1778,7 @@ public class SearchListDao extends BaseDao {
 				projectInfo.setRecommend_id_2(rs.getString("recommend_id_2"));
 				projectInfo.setRecommend_id_3(rs.getString("recommend_id_3"));
 				projectInfo.setWuyefei(rs.getString("wuyefei"));
+				projectInfo.setDeveloper_id_name(rs.getString("developer_id_name"));
 				houseProjectList.add(projectInfo);
 
 				}
@@ -1859,6 +1863,7 @@ public class SearchListDao extends BaseDao {
 				projectInfo.setRecommend_id_2(rs.getString("recommend_id_2"));
 				projectInfo.setRecommend_id_3(rs.getString("recommend_id_3"));
 				projectInfo.setWuyefei(rs.getString("wuyefei"));
+				projectInfo.setDeveloper_id_name(rs.getString("developer_id_name"));
 				houseProjectList.add(projectInfo);
 
 				}

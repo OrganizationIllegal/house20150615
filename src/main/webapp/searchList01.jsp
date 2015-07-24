@@ -72,6 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="c-fix f-l" style="color:#617c97;font-size:16px;font-weight:bold;margin-bottom:10px;margin-top:45px;font-family:微软雅黑;">进一步搜索</div>
 				<a class="c-fix f-l f-yahei s-14" style="color:#333;margin-top:10px;">类型</a>
 				<select style="width:100%;height:30px;line-height:30px;margin-top:3px;font-family:微软雅黑" id="projecttype" name="projecttype">
+					<option value="0">请选择</option>
 					<option value="1">公寓</option>
 					<option value="2">别墅</option>
 					<option value="3">联排别墅</option>
@@ -154,14 +155,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 		<a href="/Index?proNum=${item.project_num}"><img class="c-fix f-l list_node_img" src="<%=application.getInitParameter("imagedir")%>/${item.project_img}"></img></a>
                 		<div class="f-l list_node_middle">
                 		<a href="/Index?proNum=${items[j].project_num}" class="c-fix f-l list_node_inner_name f-yahei s-14"  style="font-weight:bolder;cursor:pointer;">${item.project_name}</a>
-                		<a href="/Index?proNum=${items[j].project_num}" class="c-fix f-l list_node_desc f-yahei s-13;"  style="height:80px;overflow-y:hidden;cursor:pointer;">${item.project_lan_cn}</a>
-                		<div class="c-fix f-l list_node_tag_div" style="margin-bottom:10px;margin-top:10px;">
+                		<a href="/Index?proNum=${items[j].project_num}" class="c-fix f-l list_node_desc f-yahei s-13;"  style="height:60px;overflow-y:hidden;cursor:pointer;">${item.project_lan_cn}</a>
+                		<div class="c-fix f-l list_node_tag_div" style="margin-bottom:10px;margin-top:10px;height:40px;">
 						<div style="border:1px solid rgb(254,254,230); text-align:center;margin-left:5px;margin-right:5px;margin-bottom:10px;font-size:10px;width:54px;float:left;"  >热门项目</div>
                 		
                 		</div>
                 	
                 	
-   	       				<span style="margin-top:20px;font-family:微软雅黑;color:rgb(170,16,25);font-style:italic;font-size:20px">${item.developer_id_name}</span>
+   	       				<span style="margin-top:20px;font-family:微软雅黑;color:rgb(170,16,25);font-style:italic;font-size:20px;float:left;height: 30px;width:320px;">${item.developer_id_name}</span>
    	       				
                 		</div>
                 		<div class="f-l list_node_right">
@@ -196,7 +197,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
      	$("#zongjia").ionRangeSlider({
    			 type: "double",
-   			 min: 100000,
+   			 min: 0,
     		 max: 2000000,
     		 step: 100000
    			 //grid: true
@@ -259,6 +260,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            }); 
        $("#filter").submit(function(e){
  						 var projecttype=$("#projecttype").val();
+ 						 
  						var zongjia=$("#zongjia").val();
  						 var danjia=$("#danjia").val();
  						 var keylist=document.getElementsByName('key');
@@ -393,8 +395,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 		html+="<img class='c-fix f-l list_node_img' src='"+imgUrl+"'></img></a>";
                 		html+="<div class='f-l list_node_middle'>";
                 		html+="<a href='/Index?proNum="+items[j].project_num+"' class='c-fix f-l list_node_inner_name f-yahei s-14'  style='font-weight:bolder;cursor:pointer;'>"+items[j].Project_name+"</a>";
-                		html+="<a href='/Index?proNum="+items[j].project_num+"' class='c-fix f-l list_node_desc f-yahei s-13' style='height:80px;overflow-y:hidden;cursor:pointer;'>"+items[j].project_lan_cn+"</a>";
-                		html+="<div class='c-fix f-l list_node_tag_div' style='margin-bottom:10px;margin-top:10px;height:58px'>";
+                		html+="<a href='/Index?proNum="+items[j].project_num+"' class='c-fix f-l list_node_desc f-yahei s-13' style='height:60px;overflow-y:hidden;cursor:pointer;'>"+items[j].project_lan_cn+"</a>";
+                		html+="<div class='c-fix f-l list_node_tag_div' style='margin-bottom:20px;margin-top:10px;height:40px'>";
                 		if(items[j].remen==1){
                 			html+="<div style='border:1px solid rgb(254,254,230); text-align:center;margin-left:5px;margin-right:5px;margin-bottom:10px;font-size:10px;width:54px;float:left;'  >热门项目</div>";
                 		}
@@ -429,7 +431,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 		//html+="<img class='c-fix f-l list_node_logo' src='res/images/node_img.jpg'></img>";
                 		if(items[j].developer_id_name!=null)
    	       				{
-   	       					html+="<span style='margin-top:20px;font-family:微软雅黑;color:rgb(170,16,25);font-style:italic;font-size:20px;height:30px'>"+items[j].developer_id_name+"</span>";
+   	       					html+="<span style='font-family:微软雅黑;color:rgb(170,16,25);font-style:italic;font-size:20px;height:50px;float:left;width:320px;'>"+items[j].developer_id_name+"</span>";
    	       				}
                 		html+="</div>";
                 		html+="<div class='f-l list_node_right'>";
