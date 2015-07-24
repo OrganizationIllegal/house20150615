@@ -303,7 +303,7 @@ public class BrokerInfoDao extends BaseDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		List<BrokerInfo> recommendbrokerList=new ArrayList<BrokerInfo>();
+		List<BrokerInfo> recommendbrokerList = new ArrayList<BrokerInfo>();
 		try {
 			String sql = "select * from area_recommend_broker where project_num = ?";
 			pstmt = con.prepareStatement(sql);
@@ -313,15 +313,15 @@ public class BrokerInfoDao extends BaseDao {
 		    	String broker1=rs.getString("broker_code1");
 		    	String broker2=rs.getString("broker_code2");
 		    	String broker3=rs.getString("broker_code3");
-		    	if(broker1!=null){
+		    	if(broker1!=null && !"".equals(broker1)){
 		    		BrokerInfo brokerInfo1=findBrokerbyId(broker1);
 		    		recommendbrokerList.add(brokerInfo1);
 		    	}
-		    	if(broker2!=null){
+		    	if(broker2!=null && !"".equals(broker2)){
 		    		BrokerInfo brokerInfo2=findBrokerbyId(broker2);
 		    		recommendbrokerList.add(brokerInfo2);
 		    	}
-		    	if(broker3!=null){
+		    	if(broker3!=null && !"".equals(broker3)){
 		    		BrokerInfo brokerInfo3=findBrokerbyId(broker3);
 		    		recommendbrokerList.add(brokerInfo3);
 		    	}

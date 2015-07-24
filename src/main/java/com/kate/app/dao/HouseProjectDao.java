@@ -106,14 +106,16 @@ public class HouseProjectDao extends BaseDao{
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 
-		HouseProject projectInfo = new HouseProject();
-		BrokerInfo brokerInfo = new BrokerInfo();
+		HouseProject projectInfo = null;
+		BrokerInfo brokerInfo = null;
 		try{
 			String sql = "select * from house_project where project_num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, pro_num);
 			  rs = pstmt.executeQuery();
 			while(rs.next()){
+				projectInfo = new HouseProject();
+				brokerInfo = new BrokerInfo();
 				projectInfo.setProject_name(rs.getString("project_name"));
 				projectInfo.setArea_num(rs.getString("area_num"));
 				projectInfo.setProject_img(rs.getString("project_img"));

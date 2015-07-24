@@ -72,6 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="c-fix f-l" style="color:#617c97;font-size:16px;font-weight:bold;margin-bottom:10px;margin-top:45px;font-family:微软雅黑;">进一步搜索</div>
 				<a class="c-fix f-l f-yahei s-14" style="color:#333;margin-top:10px;">类型</a>
 				<select style="width:100%;height:30px;line-height:30px;margin-top:3px;font-family:微软雅黑" id="projecttype" name="projecttype">
+					<option value="0">请选择</option>
 					<option value="1">公寓</option>
 					<option value="2">别墅</option>
 					<option value="3">联排别墅</option>
@@ -196,7 +197,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
      	$("#zongjia").ionRangeSlider({
    			 type: "double",
-   			 min: 100000,
+   			 min: 0,
     		 max: 2000000,
     		 step: 100000
    			 //grid: true
@@ -259,6 +260,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            }); 
        $("#filter").submit(function(e){
  						 var projecttype=$("#projecttype").val();
+ 						 
  						var zongjia=$("#zongjia").val();
  						 var danjia=$("#danjia").val();
  						 var keylist=document.getElementsByName('key');
