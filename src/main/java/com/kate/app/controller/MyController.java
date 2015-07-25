@@ -19,6 +19,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.kate.app.dao.AjaxDao;
 import com.kate.app.dao.AreaInfoDao;
 import com.kate.app.dao.BrokerInfoDao;
+import com.kate.app.dao.HouseProjectDao;
 import com.kate.app.dao.InvestDataDao;
 import com.kate.app.dao.MiddlePriceDao;
 import com.kate.app.dao.NewsBokeDao;
@@ -229,8 +230,9 @@ public class MyController {
 	@RequestMapping({"/Index/ProjectImage"})
 	public void  ProjectImage(HttpServletRequest req, HttpServletResponse resp,String proNum){
 		List<ProjectImage> list = houseProjectService.getHouseProjectImage(proNum);
-		List<ProjectImage> imageList = new ArrayList<ProjectImage>();
-		List<ProjectImage> vedioList = new ArrayList<ProjectImage>();
+		String vedio=houseProjectService.getHouseVedioImage(proNum);
+		/*List<ProjectImage> imageList = new ArrayList<ProjectImage>();
+		List<ProjectImage> vedioList = new ArrayList<ProjectImage>();*/
 		System.out.println(list.size());
 		/*for(ProjectImage image : list){
 			if(image.getImage_type().equals("图片")){
@@ -242,7 +244,7 @@ public class MyController {
 		}*/
 		//System.out.println(list.get(0).getImage_name());
 		req.setAttribute("imageList", list);
-		req.setAttribute("vedioList", vedioList);
+		req.setAttribute("vedio", vedio);
 	}
 	
 	

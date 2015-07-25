@@ -52,6 +52,12 @@ public class HouseProjectService {
 		list = houseProjectDao.HouseProjectImageDao(proNum);
 		return list;
 	}
+	//项目视频
+	public String getHouseVedioImage(String proNum){
+		String vedio;
+		vedio = houseProjectDao.HouseProjectVedioDao(proNum);
+		return vedio;
+	}
 	
 	public List<ProjectImage> HousePeitaoImageDao(String proNum){
 		List<ProjectImage> list = new ArrayList<ProjectImage>();

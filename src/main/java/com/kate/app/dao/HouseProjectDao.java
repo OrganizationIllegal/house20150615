@@ -1,6 +1,5 @@
 package com.kate.app.dao;
 
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.kate.app.model.BrokerInfo;
 import com.kate.app.model.DeveloperInfo;
 import com.kate.app.model.HouseProject;
+import com.kate.app.model.Project;
 import com.kate.app.model.ProjectImage;
 @Repository 
 public class HouseProjectDao extends BaseDao{
@@ -351,6 +351,51 @@ public class HouseProjectDao extends BaseDao{
 
         }
 		return list;
+	}
+	
+	/*
+	 * Project vedio
+	 */
+	public String HouseProjectVedioDao(String proNum){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		String vedio=null;
+		try{
+			String sql = "select project_vedio from house_project where project_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, proNum);
+			rs = pstmt.executeQuery();
+			vedio=rs.getString("project_vedio");			
+		}catch (Exception e) {
+            
+        }
+
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return vedio;
 	}
 	
 	/*
