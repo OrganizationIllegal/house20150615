@@ -101,6 +101,7 @@ $(function() {
 
 
 function lunbo(){
+	//alert("lunbo")
 	var animate_time=200;//锟斤拷锟斤拷时锟戒：0.3锟斤拷
 	var interval_time=5000;//锟斤拷锟脚硷拷锟绞憋拷洌�锟斤拷
 	var ad_size=jQuery(".ad_position .limit .ad_small_box ul li").size()-1;//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
@@ -223,24 +224,157 @@ function lunbo(){
 		jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).trigger("mouseover");
 	});
 }
+function lunbo1(){
+	//alert("bulunbo")
+	var animate_time=200;//锟斤拷锟斤拷时锟戒：0.3锟斤拷
+	var interval_time=5000;//锟斤拷锟脚硷拷锟绞憋拷洌�锟斤拷
+	var ad_size=jQuery(".ad_position .limit .ad_small_box ul li").size()-1;//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
+	var ad_huandeng_click_i = 0;//锟斤拷始锟斤拷
+	
+	//循锟斤拷锟斤拷锟斤拷
+	function ad_huandeng_play(){
+		
+		ad_huandeng_click_i++;
+
+		if(ad_huandeng_click_i<=ad_size)
+			{jQuery(".ad_small_box ul li").eq(ad_huandeng_click_i).trigger("dblclick");}
+		else
+			{jQuery(".ad_small_box ul li").eq(0).trigger("dblclick");ad_huandeng_click_i = 0}
+	}
+	//锟斤拷锟斤拷循锟斤拷时锟戒，锟皆讹拷锟斤拷始循锟斤拷
+	var ad_huandeng_setInterval = setInterval(ad_huandeng_play,interval_time); 
+	
+	//锟斤拷停锟斤拷锟斤拷锟斤拷锟绞憋拷锟斤拷锟酵Ｖ�
+	jQuery(".ad_position").hover(function(){clearInterval(ad_huandeng_setInterval);}, function(){ad_huandeng_setInterval = setInterval(ad_huandeng_play,interval_time);});
+	//小图锟斤拷锟绞憋拷锟斤拷锟绞硷拷锟斤拷锟�
+	jQuery(".ad_position .limit .ad_small_box ul li").dblclick(function(){
+		ad_huandeng_click_i=jQuery(".ad_position .limit .ad_small_box ul li").index(jQuery(this));
+		jQuery(".ad_position .limit .ad_left_big").animate({"margin-top":0},{duration:animate_time,queue:false});
+		/* jQuery(".ad_position .limit .ad_left_big").animate({"margin-top":ad_huandeng_click_i*-474},{duration:animate_time,queue:false}); *///锟斤拷图锟斤拷锟斤拷
+		if(ad_huandeng_click_i<ad_size)//锟斤拷小图锟斤拷锟斤拷锟斤拷锟斤拷锟绞撅拷锟斤拷锟绞憋拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
+			{
+				if(ad_huandeng_click_i==0||ad_huandeng_click_i==1)
+					{jQuery(".ad_position .limit .ad_small_box ul").animate({"margin-top":"0px"},{duration:animate_time,queue:false});}
+				else
+					{
+						/* jQuery(".ad_position .limit .ad_small_box ul").animate({"margin-top":(ad_huandeng_click_i-1)*-138},{duration:animate_time,queue:false}); */
+					    jQuery(".ad_position .limit .ad_small_box ul").animate({"margin-top":"0px"},{duration:animate_time,queue:false});
+					}
+			}		
+		if(ad_huandeng_click_i==0)//锟斤拷始锟叫讹拷指示锟斤拷图片锟斤拷位锟斤拷
+			{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","0px");}
+		else if(ad_huandeng_click_i==ad_size)
+			{/* jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","288px"); */
+			jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","0px");
+			}
+		else
+			{/* jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","144px"); */
+			jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","0px");
+			}
+		//jQuery(".ad_position .limit .ad_small_box ul li").css("opacity","0.5");
+		//jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).css("opacity","1");
+		//锟叫讹拷锟斤拷锟铰帮拷钮锟角凤拷傻锟斤拷
+		if(ad_huandeng_click_i==0)
+			{
+				jQuery(".ad_small_box .top_button").addClass("off");
+//				jQuery(".ad_small_box .bottom_button").removeClass("off");
+			}
+		else if(ad_huandeng_click_i==ad_size)
+			{
+//				jQuery(".ad_small_box .top_button").removeClass("off");
+				jQuery(".ad_small_box .bottom_button").addClass("off");
+			}
+		else 
+			{
+//				jQuery(".ad_small_box .top_button").removeClass("off");
+//				jQuery(".ad_small_box .bottom_button").removeClass("off");
+			}
+	});
+	
+	//锟斤拷锟斤拷锟叫⊥硷拷锟斤拷锟酵Ｊ憋拷锟斤拷锟斤拷锟狡讹拷
+	jQuery(".ad_position .limit .ad_small_box ul li").mouseover(function(){		
+		var small_ad_hover_i = jQuery(".ad_position .limit .ad_small_box ul li").index(jQuery(this));
+		var this_ad_top=jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top");
+		this_ad_top=parseInt(this_ad_top);
+		jQuery(".ad_position .limit .ad_left_big").animate({"margin-top":small_ad_hover_i*-474},{duration:animate_time,queue:false});if(small_ad_hover_i!=ad_huandeng_click_i); 
+		if(small_ad_hover_i==0)
+			{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","3px");}
+		else if(small_ad_hover_i<ad_huandeng_click_i)
+			{
+				if(ad_huandeng_click_i-small_ad_hover_i==1)
+					{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top-144);}
+				else
+					{{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top-288);}}
+			}
+		else if(small_ad_hover_i>ad_huandeng_click_i)
+			{
+				if(small_ad_hover_i-ad_huandeng_click_i==1)
+					{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top+144);}
+				else
+					{{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top+288);}}
+			}
+		ad_huandeng_click_i=small_ad_hover_i;
+		//锟叫讹拷锟斤拷锟铰帮拷钮锟角凤拷傻锟斤拷
+		if(ad_huandeng_click_i==0)
+			{
+				jQuery(".ad_small_box .top_button").addClass("off");
+//				jQuery(".ad_small_box .bottom_button").removeClass("off");
+			}
+		else if(ad_huandeng_click_i==ad_size)
+			{
+//				jQuery(".ad_small_box .top_button").removeClass("off");
+				jQuery(".ad_small_box .bottom_button").addClass("off");
+			}
+		else
+			{
+//				jQuery(".ad_small_box .top_button").removeClass("off");
+//				jQuery(".ad_small_box .bottom_button").removeClass("off");
+			}
+		//jQuery(".ad_position .limit .ad_small_box ul li").css("opacity","0.5");
+		//jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).css("opacity","1");
+	});	
+	
+	//锟斤拷锟斤拷锟斤拷习锟脚ナ�
+	jQuery(".ad_small_box .top_button").click(function(){
+		ad_huandeng_click_i=ad_huandeng_click_i-1;
+		if(ad_huandeng_click_i<0)
+			{ad_huandeng_click_i=0;}		
+		jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).trigger("mouseover");
+	});
+	//锟斤拷锟斤拷锟斤拷掳锟脚ナ�
+	jQuery(".ad_small_box .bottom_button").click(function(){
+		ad_huandeng_click_i=ad_huandeng_click_i+1;
+		if(ad_huandeng_click_i>=ad_size)
+			{
+				ad_huandeng_click_i=ad_size;
+				jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).trigger("dblclick");
+				jQuery(".ad_position .limit .ad_small_box ul").animate({"margin-top":(ad_huandeng_click_i-2)*-138},{duration:animate_time,queue:false}); 
+			}
+		
+		jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).trigger("mouseover");
+	});
+}
 $(function(){
+	//lunbo();
 	player = new YKU.Player('youkuplayer',{
 		styleid: '0',
 		client_id: '6e97509b4cd3378b',
 		vid: 'XOTUxNDk2NDQ0',
 		events:{
-		/* onPlayerReady: function(){ 
-			alert("zhunbei");
-		}, */
+		onPlayerReady: function(){ 
+			//alert("zhunbei");
+			lunbo();
+		},    
 		onPlayStart: function(){
 			playVideo();
+			lunbo1();
 		},
 		onPlayEnd: function(){ lunbo(); }
 		}
 		});
 		function playVideo(){
 		player.playVideo();
-			alert("kaishi");
+		alert("kaishi");
 		}
 		function pauseVideo(){
 		player.pauseVideo();
@@ -594,7 +728,6 @@ function popInfo(){
                     
                 </table>
             </div>
-
             <div class="ad_small_box_p" style="width:224px;height:487px;margin-left:20px;">
                 <div class="top_button off"></div>
                 <div class="small_right_limit_p">
