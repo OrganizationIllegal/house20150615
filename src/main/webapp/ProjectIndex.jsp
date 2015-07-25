@@ -698,11 +698,9 @@ function popInfo(){
             <div style="float:left;width:720px;display:inline;">
                 <table class="ad_left_big_p" width="720" border="0" cellpadding="0" cellspacing="0" style="margin-top: 0px;">
                     <c:forEach items="${ProjectPeitaoImage}" var="item" varStatus="status">
-                  <c:if test="${status.index>0 }">
                    <%--  <c:if test="${status.index<3 }"> --%>
                     	<tr><td><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="720" height="487" /></a></td></tr>
                   <%--  </c:if> --%>
-                  </c:if> 
                     </c:forEach>
                     
                 </table>
