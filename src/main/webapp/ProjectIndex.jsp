@@ -487,11 +487,21 @@ function popInfo(){
                 <div class="top_button off"></div>
                 <div class="small_right_limit">
                     <ul style="margin-top: 0px;">
-                    <li style="margin-top:6px"><img src="<%=application.getInitParameter("imagedir")%>/The Atrium_Project_01.jpg" width="210" height="140"/></li>
+                    <c:forEach var="item"  items="${imageList}"   varStatus="status">
+			            <c:if test="${status.index==0}">
+			            	<li style="margin-top:6px"><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="210" height="140"/></li>
+			            </c:if>
+			         </c:forEach>
+			         
+                    <li style="margin-top:6px">
+                    	<img src="<%=application.getInitParameter("imagedir")%>/The Atrium_Project_01.jpg" width="210" height="140"/>
+                    </li>
 			            <c:forEach var="item"  items="${imageList}"   varStatus="status">
 			           <%--  <c:if test="${status.index<2}"> --%>
+			            <c:if test="${status.index>0}">
 			            	<li style="margin-top:6px"><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="210" height="140"/></li>
-			           <%--  </c:if>  --%>                 		
+			           <%--  </c:if>  --%>   
+			           </c:if>              		
                     	</c:forEach>
                         <%-- <c:forEach var="item"  items="${vedioList}"   varStatus="status">
                         <c:if test="${status.index<3}">
@@ -688,9 +698,11 @@ function popInfo(){
             <div style="float:left;width:720px;display:inline;">
                 <table class="ad_left_big_p" width="720" border="0" cellpadding="0" cellspacing="0" style="margin-top: 0px;">
                     <c:forEach items="${ProjectPeitaoImage}" var="item" varStatus="status">
+                  <c:if test="${status.index>0 }">
                    <%--  <c:if test="${status.index<3 }"> --%>
                     	<tr><td><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="720" height="487" /></a></td></tr>
                   <%--  </c:if> --%>
+                  </c:if> 
                     </c:forEach>
                     
                 </table>

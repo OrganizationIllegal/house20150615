@@ -652,42 +652,51 @@ public class SearchListDao extends BaseDao {
 		return exeResult;
 	}
 	
-	public List<BrokerInfo> searchSericeList(String name, String type, String area, String lang){
+	public List<BrokerInfo> searchSericeList(String name, String type, String suozaiarea, String area_code, String lang){
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<BrokerInfo> brokerInfoList=new ArrayList<BrokerInfo>();
 			try {
-				String sql = "select * from broker_info where ";
+				String sql = "select * from broker_info a, broker_service_area b where a.broker_num = b.broker_num and ";
 				int i=0;
 				if(name!=null && !"".equals(name)){
-					sql+="broker_name like '%"+name+"%'";
+					sql+="a.broker_name like '%"+name+"%'";
 					i=1;
 				}
 				if(type!=null &&!"".equals(type)){
 					if(i==1){
-						sql+="and broker_type like '%"+type+"%'";
+						sql+="and a.broker_type like '%"+type+"%'";
 					}
 					else{
-						sql+="broker_type like '%"+type+"%'";
+						sql+="a.broker_type like '%"+type+"%'";
 						i=1;
 					}
 				}
-				if(area!=null &&!"".equals(area)){
+				if(suozaiarea!=null &&!"".equals(suozaiarea)){
 					if(i==1){
-						sql+="and broker_region like '%"+area+"%'";
+						sql+="and a.broker_region like '%"+suozaiarea+"%'";
 					}
 					else{
-						sql+="broker_region like '%"+area+"%'";
+						sql+="a.broker_region like '%"+suozaiarea+"%'";
+						i=1;
+					}
+				}
+				if(area_code!=null &&!"".equals(area_code)){
+					if(i==1){
+						sql+="and b.area_code like '%"+area_code+"%'";
+					}
+					else{
+						sql+="b.area_code like '%"+area_code+"%'";
 						i=1;
 					}
 				}
 				if(lang!=null && !"".equals(lang)){
 					if(i==1){
-						sql+="and broker_language like '%"+lang+"%'";
+						sql+="and a.broker_language like '%"+lang+"%'";
 					}
 					else{
-						sql+="broker_language like '%"+lang+"%'";
+						sql+="a.broker_language like '%"+lang+"%'";
 						i=1;
 					}
 				}
@@ -711,6 +720,10 @@ public class SearchListDao extends BaseDao {
 			    	id=rs.getInt("id");
 			    	broker_img=rs.getString("broker_img");
 			    	broker_language=rs.getString("broker_language");
+			    	if(broker_language!=null && !"".equals(broker_language)){
+			    		broker_language = broker_language.replace("+", " ");
+			    	}
+			    	
 			    	broker_name=rs.getString("broker_name");
 			    	broker_region=rs.getString("broker_region");
 			    	office=rs.getString("office");

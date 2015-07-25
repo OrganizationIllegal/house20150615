@@ -34,9 +34,24 @@ public class ServiceController {
 			brokerId = Integer.parseInt(brokerId_str);
 		}
 		BrokerInfo data = brokerInfoDao.getBrokerInfo(brokerId);
+		String broker_num = brokerInfoDao.findBrokerInfo(brokerId);
 		
+		List<String> areaList = data.getAreaList();
+		if(broker_num!=null && !"".equals(broker_num)){
+			areaList = brokerInfoDao.fuwuArea(broker_num);
+		}
+//		List<String> areaList = data.getAreaList();
+//		String result = "";
+//		if(areaList!=null && areaList.size()>0){
+//			for(String item : areaList){
+//				
+//			}
+//		}
+		
+
 		req.setAttribute("brokerInfo", data);
-	
+		req.setAttribute("areaList", areaList);
+		
 		return "/Service.jsp";
 	}
 	

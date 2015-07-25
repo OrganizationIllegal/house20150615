@@ -18,6 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="/bootstrap/js/bootstrap.min.js"></script>
 <script src="/bootstrap-datepicker-1.4.0-dist/js/bootstrap-datepicker.min.js"></script>
 <script src="/bootstrap-datepicker-1.4.0-dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+<link rel="stylesheet" href="css/chosen.css">
 <style type="text/css">
 body{
 	/* background-color:rgb(232, 233, 234)!important; */
@@ -43,7 +44,109 @@ body{
 <span class="area_span">发布时间</span><span><input type="text" id="fabu_time" name="fabu_time" class="area_input" value="${zhiYeZhiDao.fabu_time.toString().length()>10?zhiYeZhiDao.fabu_time.toString().substring(0,10):zhiYeZhiDao.fabu_time.toString()}"></span>
 </div>
 <div class="area_left">
-<span class="area_span">分类</span><span><input type="text" id="fenlei" name="fenlei" class="area_input" value="${zhiYeZhiDao.fenlei}"></span>
+<span class="area_span">分类</span>
+<span>
+<%-- <input type="text" id="fenlei" name="fenlei" class="area_input" value="${zhiYeZhiDao.fenlei}"> --%>
+<select data-placeholder="请选择..." class="chosen-select"  id="fenlei" name="fenlei" style="width:220px;" tabindex="4">
+     <option value=""></option>
+     <c:choose>
+	    <c:when test="${zhiYeZhiDao.fenlei eq '购房政策'}">
+	      <option value="购房政策" selected="selected">购房政策</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="购房政策">购房政策</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	  <c:choose>
+	    <c:when test="${zhiYeZhiDao.fenlei eq '购房常识'}">
+	      <option value="购房常识" selected="selected">购房常识</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="购房常识" >购房常识</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${zhiYeZhiDao.fenlei eq '购房成本' }">
+	      <option value="购房成本" selected="selected">购房成本</option>
+	    </c:when>
+	   <c:otherwise>  
+	       <option value="购房成本">购房成本</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${zhiYeZhiDao.fenlei eq '交易流程' }">
+	      <option value="交易流程" selected="selected">交易流程</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="交易流程">交易流程</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${zhiYeZhiDao.fenlei eq '看房技巧' }">
+	      <option value="看房技巧" selected="selected">看房技巧</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="看房技巧">看房技巧</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${zhiYeZhiDao.fenlei eq '合同讲解' }">
+	      <option value="合同讲解" selected="selected">合同讲解</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="合同讲解">合同讲解</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${zhiYeZhiDao.fenlei eq '定金原则' }">
+	      <option value="定金原则" selected="selected">定金原则</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="定金原则">定金原则</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${zhiYeZhiDao.fenlei eq '签约事宜' }">
+	      <option value="签约事宜" selected="selected">签约事宜</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="签约事宜">签约事宜</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${zhiYeZhiDao.fenlei eq '信贷政策' }">
+	      <option value="信贷政策" selected="selected">信贷政策</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="信贷政策">信贷政策</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${zhiYeZhiDao.fenlei eq '交易税费' }">
+	      <option value="交易税费" selected="selected">交易税费</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="交易税费">交易税费</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${zhiYeZhiDao.fenlei eq '持有税费' }">
+	      <option value="持有税费" selected="selected">持有税费</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="持有税费">持有税费</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	   <c:choose>
+	    <c:when test="${zhiYeZhiDao.fenlei eq '交割须知' }">
+	      <option value="交割须知" selected="selected">交割须知</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="交割须知">交割须知</option>
+	   </c:otherwise>
+  	  </c:choose>
+ </select>
+</span>
 </div>
 <div class="area_right">
 <span class="area_span">摘要</span><span><input type="text" id="zhiye_abstract" name="zhiye_abstract" class="area_input" value="${zhiYeZhiDao.zhiye_abstract}"></span>
@@ -145,6 +248,7 @@ $(".uploadimg").click(function(){
 	 		},
 	 		error:function(){
 	 			alert("error")
+	 			window.close();
 	 		}
 	 	});
 	  }
@@ -156,5 +260,19 @@ $(".uploadimg").click(function(){
 		return false;
 	}
 </script>
+<script src="/js/chosen.jquery.js" type="text/javascript"></script>
+ <script src="/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+ <script type="text/javascript">
+    var config = {
+      '.chosen-select'           : {},
+      '.chosen-select-deselect'  : {allow_single_deselect:true},
+      '.chosen-select-no-single' : {disable_search_threshold:10},
+      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+  </script>
 </body>
 </html>

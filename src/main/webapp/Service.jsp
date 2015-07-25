@@ -46,17 +46,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 </div>
 </div>
-<div style="width:205px;height:100px;margin-top:30px;margin-left:15px;">
-<div style="font-size:20px;font-weight:bold;">服务区域</div>
-<div style="width:190px;height:30px;background-color:rgba(246, 241, 238, 1);margin-top:10px;padding-left:15px;">
-<img alt="shu" src="images/service/pic1.png" style="float:left;">
-<div style="float:left;font-size:13px;margin-top:5px;margin-left:5px;">${brokerInfo.broker_region}</div>
-</div>
-<!-- <div style="width:190px;height:30px;background-color:rgba(246, 241, 238, 1);margin-top:10px;padding-left:15px;">
-<img alt="shu" src="images/service/pic1.png" style="float:left;">
-<div style="float:left;font-size:13px;margin-top:5px;margin-left:5px;">Bulswisk</div>
-</div> -->
-</div>
+<%-- <c:if test="${! empty  brokerInfo.areaList}"> --%>
+	<div style="width:205px;height:100px;margin-top:30px;margin-left:15px;">
+	<div style="font-size:20px;font-weight:bold;">服务区域</div>
+	<c:forEach var="item" items="${areaList}" varStatus="stat">
+	<div style="width:190px;height:30px;background-color:rgba(246, 241, 238, 1);margin-top:10px;padding-left:15px;">
+	
+		<img alt="shu" src="images/service/pic1.png" style="float:left;">
+		<div style="float:left;font-size:13px;margin-top:5px;margin-left:5px;">${item}</div>
+		
+	
+	
+	</div>
+	</c:forEach>
+	
+	</div>
+<%-- </c:if> --%>
 <c:if test="${! empty  brokerInfo.leixingInfo}">
 <div style="width:470px;height:70px;margin-left:250px;margin-top:-20px;">
 <div style="font-size:20px;font-weight:bold;float:left;margin-top:-78px;">擅长类型</div>

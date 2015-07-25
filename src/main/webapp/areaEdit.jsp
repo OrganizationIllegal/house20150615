@@ -2080,7 +2080,7 @@ function savepro(){
 
 	var area;
 	area=DataDeal.formToJson(data= decodeURIComponent($("#area").serialize(),true));
-	area=area.replace(/\+\"\,\"\+/, " & ").replace(/\+/g," ");
+	area=area.replace(/\+\"\,\"\+/g, " & ").replace(/\+/g," ");
 	/* area=area; */
 	/* alert(area); */
 	area=eval("("+area+")");

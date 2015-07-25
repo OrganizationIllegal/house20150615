@@ -1417,11 +1417,11 @@ public class AreaInfoDao extends BaseDao {
 			
 			//鎶曡祫鏁版嵁
 			boolean flagtouzi = true;
-			String time_strtouzi="";
+		/*	String time_strtouzi="";
 			if(touzi_date != null){
 				time_strtouzi = touzi_date.toString(); 
-			}
-			Timestamp tstouzi = new Timestamp(System.currentTimeMillis()); 
+			}*/
+			/*Timestamp tstouzi = new Timestamp(System.currentTimeMillis()); 
 			if(touzi_date==null||"".equals(touzi_date)){
 				touzi_date = "2015-05-09";
 			}
@@ -1431,8 +1431,27 @@ public class AreaInfoDao extends BaseDao {
 	            System.out.println(tstouzi);   
 	        } catch (Exception e) {   
 	            e.printStackTrace();   
-	        }
-	        
+	        }*/
+			     String time_strtouzi=null;
+			     if(touzi_date==null || "".equals(touzi_date)){
+			    	 time_strtouzi=null;
+			     }else{
+			    	 time_strtouzi=touzi_date.toString();
+			     }
+			     
+			 /*   String time_strtouzi=""; 
+				Timestamp ts1 = new Timestamp(System.currentTimeMillis()); 
+				if(touzi_date==null||"".equals(touzi_date)){
+					touzi_date =new SimpleDateFormat("yyyy-MM-dd").format(new Date());// "2015-05-09";
+				}
+		        try {  
+		        	time_strtouzi = touzi_date+" "+"00:00:00";
+		            ts1 = Timestamp.valueOf(time_strtouzi);   
+		            
+		        } catch (Exception e) {   
+		            e.printStackTrace();   
+		        } */
+		
 	        String sqltouzi = " insert into investment_data(year_increment_rate, middle_price, middle_zu_price, zu_house_rate, zu_xuqiu, price_review, data_exam, area_num, area_name, touzi_datasource, touzi_date, area_type) values(?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sqltouzi);
 			pstmt.setString(1, year_increment_rate);
@@ -1453,7 +1472,7 @@ public class AreaInfoDao extends BaseDao {
 			}
 			
 			boolean flagtouzi1 = true;
-			String time_strtouzi1="";
+			/*String time_strtouzi1="";
 			if(touzi_date1 != null){
 				time_strtouzi1 = touzi_date1.toString(); 
 			}
@@ -1467,7 +1486,13 @@ public class AreaInfoDao extends BaseDao {
 	            System.out.println(tstouzi1);   
 	        } catch (Exception e) {   
 	            e.printStackTrace();   
-	        }
+	        }*/
+			  String time_strtouzi1=null;
+			     if(touzi_date1==null || "".equals(touzi_date1)){
+			    	 time_strtouzi1=null;
+			     }else{
+			    	 time_strtouzi1=touzi_date1.toString();
+			     }
 	        
 	        String sqltouzi1 = " insert into investment_data(year_increment_rate, middle_price, middle_zu_price, zu_house_rate, zu_xuqiu, price_review, data_exam, area_num, area_name, touzi_datasource, touzi_date, area_type) values(?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sqltouzi1);
@@ -1491,7 +1516,7 @@ public class AreaInfoDao extends BaseDao {
 			
 	        //areafamily
 			boolean flagfamily = true;
-			String family_date_str="";
+			/*String family_date_str="";
 			if(family_date != null){
 				family_date_str = family_date.toString(); 
 			}
@@ -1505,7 +1530,13 @@ public class AreaInfoDao extends BaseDao {
 	            System.out.println(tsfamily);   
 	        } catch (Exception e) {   
 	            e.printStackTrace();   
-	        } 
+	        } */
+			 String family_date_str=null;
+		     if(family_date==null || "".equals(family_date)){
+		    	 family_date_str=null;
+		     }else{
+		    	 family_date_str=family_date.toString();
+		     }
 	        String sqlfamily = " insert into area_family(family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, area_code, family_datasource, family_date) values(?,?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sqlfamily);
 			pstmt.setString(1, family_one);
@@ -1545,7 +1576,7 @@ public class AreaInfoDao extends BaseDao {
 				
 				
 				String middle_date = item.getMiddle_date();
-				String time_str = "";
+				/*String time_str = "";
 				if(middle_date != null){
 					time_str = middle_date.toString(); 
 				}
@@ -1559,7 +1590,13 @@ public class AreaInfoDao extends BaseDao {
 		            System.out.println(middleDate);   
 		        } catch (Exception e) {   
 		            e.printStackTrace();   
-		        }
+		        }*/
+				 String time_str=null;
+			     if(middle_date==null || "".equals(middle_date)){
+			    	 time_str=null;
+			     }else{
+			    	 time_str=middle_date.toString();
+			     }
 		        
 				
 					String sqlmiddleprice = " insert into area_middle_price(buy_price, zu_price, " +
@@ -1606,7 +1643,7 @@ public class AreaInfoDao extends BaseDao {
 				
 				String middle_zoushi_datasource = item.getMiddle_zoushi_datasource();
 				String middle_zoushi_date = item.getMiddle_zoushi_date();
-				String time_str = "";
+				/*String time_str = "";
 				if(middle_zoushi_date != null){
 					time_str = middle_zoushi_date.toString(); 
 				}
@@ -1622,7 +1659,13 @@ public class AreaInfoDao extends BaseDao {
 		            e.printStackTrace();   
 		        }
 		        
-				
+				*/
+				 String time_str=null;
+			     if(middle_zoushi_date==null || "".equals(middle_zoushi_date)){
+			    	 time_str=null;
+			     }else{
+			    	 time_str=middle_zoushi_date.toString();
+			     }
 					String sqlareamiddle = " insert into area_middle(heng, zong, " +
 							"view_shunxu, project_type, area_code, middle_zoushi_datasource, " +
 							"middle_zoushi_date) values(?,?,?,?,?,?,?)";
@@ -1654,7 +1697,7 @@ public class AreaInfoDao extends BaseDao {
 				
 				String zujin_datasource = item.getZujin_datasource();
 				String zujin_dates = item.getZujin_date();
-				String time_str = "";
+				/*String time_str = "";
 				if(zujin_dates != null){
 					time_str = zujin_dates.toString(); 
 				}
@@ -1668,7 +1711,13 @@ public class AreaInfoDao extends BaseDao {
 		            System.out.println(zujin_dates);   
 		        } catch (Exception e) {   
 		            e.printStackTrace();   
-		        }
+		        }*/
+				 String time_str=null;
+			     if(zujin_dates==null || "".equals(zujin_dates)){
+			    	 time_str=null;
+			     }else{
+			    	 time_str=zujin_dates.toString();
+			     }
 		        
 				
 					String sqlzuijin = " insert into area_zujin(heng, zong, " +
@@ -1702,7 +1751,7 @@ public class AreaInfoDao extends BaseDao {
 				
 				String zujin_huibao_datasource = item.getZujin_huibao_datasource();
 				String zujin_huibao_date = item.getZujin_huibao_date();
-				String time_str = "";
+				/*String time_str = "";
 				if(zujin_huibao_date != null){
 					time_str = zujin_huibao_date.toString(); 
 				}
@@ -1716,7 +1765,13 @@ public class AreaInfoDao extends BaseDao {
 		            System.out.println(zujin_huibao_date1);   
 		        } catch (Exception e) {   
 		            e.printStackTrace();   
-		        }
+		        }*/
+				 String time_str=null;
+			     if(zujin_huibao_date==null || "".equals(zujin_huibao_date)){
+			    	 time_str=null;
+			     }else{
+			    	 time_str=zujin_huibao_date.toString();
+			     }
 		        
 				
 					String sqlhuibao = " insert into area_kongzhi(heng, zong, " +
@@ -1749,7 +1804,7 @@ public class AreaInfoDao extends BaseDao {
 				
 				String data_source = item.getData_source();
 				String update_time = item.getUpdate_time();
-				String time_str = "";
+				/*String time_str = "";
 				if(update_time != null){
 					time_str = update_time.toString(); 
 				}
@@ -1763,7 +1818,13 @@ public class AreaInfoDao extends BaseDao {
 		            System.out.println(update_time1);   
 		        } catch (Exception e) {   
 		            e.printStackTrace();   
-		        }
+		        }*/
+				 String time_str=null;
+			     if(update_time==null || "".equals(update_time)){
+			    	 time_str=null;
+			     }else{
+			    	 time_str=update_time.toString();
+			     }
 		        
 				
 					String sqltedian = " insert into area_features(area_character, view_shunxu, " +
@@ -1795,7 +1856,7 @@ public class AreaInfoDao extends BaseDao {
 				int view_shunxu = item.getView_shunxu_people();
 				String people_datasource = item.getPeople_datasource();
 				String people_date = item.getPeople_date();
-				String time_str = "";
+				/*String time_str = "";
 				if(people_date != null){
 					time_str = people_date.toString(); 
 				}
@@ -1810,7 +1871,13 @@ public class AreaInfoDao extends BaseDao {
 		        } catch (Exception e) {   
 		            e.printStackTrace();   
 		        }
-		        
+		        */
+				 String time_str=null;
+			     if(people_date==null || "".equals(people_date)){
+			    	 time_str=null;
+			     }else{
+			    	 time_str=people_date.toString();
+			     }
 				
 					String sqlpeople = " insert into area_people(column1, column2, " +
 							"column3, view_shunxu, area_code, people_datasource, people_date) values(?,?,?,?,?,?,?)";
@@ -3118,6 +3185,102 @@ public class AreaInfoDao extends BaseDao {
         }
 		return areaInfo;
 	}
+	
+	
+	
+	public String getAreaNum(String area_name){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		String area_code = "";
+		try {
+			String sql = " SELECT * from area_info where area_name=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, area_name);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+			
+				area_code =  rs.getString("area_num");
+				
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return area_code;
+	}
+	
+	
+	public String getAreaName(String area_num){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		String area_code = "";
+		try {
+			String sql = " SELECT * from area_info where area_name=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, area_num);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+			
+				area_code =  rs.getString("area_name");
+				
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return area_code;
+	}
+	
 	
 	public boolean addAreaInfo(String area_num,String area_name,String area_city,String area_zhou,String area_nation,String area_postcode){
 		Statement stmt = null;
