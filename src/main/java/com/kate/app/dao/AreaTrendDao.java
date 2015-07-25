@@ -153,7 +153,7 @@ public class AreaTrendDao extends BaseDao {
 				data.setId(rs.getInt("id"));
 				
 				data.setView_shunxu(rs.getInt("view_shunxu"));
-				data.setZong(rs.getInt("zong"));
+				data.setZong(rs.getFloat("zong"));
 				data.setZujin_huibao_datasource(rs.getString("zujin_huibao_datasource"));
 				data.setZujin_huibao_date(rs.getTimestamp("zujin_huibao_date"));
 				areaZhikongeTrendList.add(data);

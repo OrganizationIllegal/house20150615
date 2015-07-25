@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -17,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <body style="font-family:Microsoft YaHei;background-color:rgb(232, 233, 234);">
 	<jsp:include page="head4index.jsp" />
-<div style="width:1190px;height:740px;padding:20px 50px;margin:0px auto;background-color:white;">
+<div style="width:1190px;height:1000px;padding:20px 50px;margin:0px auto;background-color:white;">
 <div style="width:1060px;height:200px;padding:15px;background-color:rgba(245, 244, 244, 1);margin:0px auto;">
 <div style="width:168px;height:168px;-border:5px solid white;float:left;"><img alt="经纪人图片" src="<%=application.getInitParameter("imagedir")%>/${brokerInfo.broker_img}" style="width:168px;height:168px;"></div>
 <div style="width:180px;height:110px;float:left;margin-left:20px;margin-top:40px;">
@@ -56,28 +57,83 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div style="float:left;font-size:13px;margin-top:5px;margin-left:5px;">Bulswisk</div>
 </div> -->
 </div>
+<c:if test="${! empty  brokerInfo.leixingInfo}">
 <div style="width:470px;height:70px;margin-left:250px;margin-top:-20px;">
 <div style="font-size:20px;font-weight:bold;float:left;margin-top:-78px;">擅长类型</div>
 <img alt="jiantou" src="images/service/pic2.png" style="float:left;margin-top:-75px;margin-left:80px;">
-<img alt="house1" src="images/service/h1.png" style="float:left;margin-top:-40px;">
-<div style="font-size:15px;float:left;margin-top:-35px;margin-left:30px;">独立别墅</div>
-<img alt="house2" src="images/service/h2.png" style="float:left;margin-top:-40px;margin-left:150px;">
-<div style="font-size:15px;float:left;margin-top:-35px;margin-left:200px;">联排别墅</div>
-<img alt="house3" src="images/service/h3.png" style="float:left;margin-top:-50px;margin-left:310px;">
-<div style="font-size:15px;float:left;margin-top:-35px;margin-left:365px;">城市公寓</div>
+<c:forEach items="${ brokerInfo.leixingInfo}" var="item" varStatus="stat">
+<c:if test="${fn:length(brokerInfo.leixingInfo)==1}">
+          <img alt="house1" src="images/service/h1.png" style="float:left;margin-top:-40px;">
+			<div style="font-size:15px;float:left;margin-top:-35px;margin-left:30px;">${item.leixing }</div>
+
+
+</c:if>
+<c:if test="${fn:length(brokerInfo.leixingInfo)==1}">
+          <img alt="house1" src="<%=application.getInitParameter("imagedir")%>/${item.leixingImg }" width="26px" height="30px" style="float:left;margin-top:-40px;">
+		 <div style="font-size:15px;float:left;margin-top:-35px;margin-left:30px;">${item.leixing }</div>
+</c:if>
+<c:if test="${fn:length(brokerInfo.leixingInfo)==2}">
+<c:choose>
+		<c:when test="${stat.index==0 }">
+			<img alt="house1" src="<%=application.getInitParameter("imagedir")%>/${item.leixingImg }" width="26px" height="30px" style="float:left;margin-top:-40px;">
+			<div style="font-size:15px;float:left;margin-top:-35px;margin-left:30px;">${item.leixing }</div>
+		</c:when>
+		
+		<c:otherwise>
+			<img alt="house2" src="<%=application.getInitParameter("imagedir")%>/${item.leixingImg }" width="26px" height="30px" style="float:left;margin-top:-40px;margin-left:150px;">
+	        <div style="font-size:15px;float:left;margin-top:-35px;margin-left:200px;">${item.leixing }</div>
+		</c:otherwise>
+	
+	
+	</c:choose>
+</c:if>
+<c:if test="${fn:length(brokerInfo.leixingInfo)==3}">
+
+		<c:choose>
+		<c:when test="${stat.index==0 }">
+			<img alt="house1" src="<%=application.getInitParameter("imagedir")%>/${item.leixingImg }" width="26px" height="30px" style="float:left;margin-top:-40px;">
+			<div style="font-size:15px;float:left;margin-top:-35px;margin-left:30px;">${item.leixing }</div>
+		</c:when>
+		<c:when test="${stat.index==1 }">
+			<img alt="house2" src="<%=application.getInitParameter("imagedir")%>/${item.leixingImg }" width="26px" height="30px" style="float:left;margin-top:-40px;margin-left:150px;">
+	        <div style="font-size:15px;float:left;margin-top:-35px;margin-left:200px;">${item.leixing }</div>
+		</c:when>
+		<c:otherwise>
+			<img alt="house3" src="<%=application.getInitParameter("imagedir")%>/${item.leixingImg }" width="26px" height="30px" style="float:left;margin-top:-50px;margin-left:310px;">
+	        <div style="font-size:15px;float:left;margin-top:-35px;margin-left:365px;">${item.leixing }</div>
+		</c:otherwise>
+	
+	
+	</c:choose>
+</c:if>
+
+
+	
+</c:forEach>
+
+
+	
+	
+	
+	
 </div>
+</c:if>
+
+
+
+
 <div style="width:470px;height:70px;margin-left:250px;margin-top:-40px;">
 <div style="font-size:20px;font-weight:bold;float:left;margin-top:0px;">专业资质</div>
 <img alt="jiantou" src="images/service/pic2.png" style="float:left;margin-top:5px;">
 <div style="font-size:15px;float:left;margin-top:40px;margin-left:-114px;">${brokerInfo.broker_zizhi}</div>
 <div style="font-size:15px;float:left;margin-top:40px;margin-left:80px;">${brokerInfo.office}</div>
 </div>
-<div style="width:470px;height:160px;margin-left:250px;margin-top:40px;">
+<div style="width:470px;-height:160px;margin-left:250px;margin-top:40px;">
 	<div style="font-size:20px;font-weight:bold;float:left;margin-top:0px;">自我描述</div>
 	<img alt="jiantou" src="images/service/pic2.png" style="float:left;margin-top:5px;">
 	<div style="font-size:15px;float:left;margin-top:20px;">${brokerInfo.introduction}</div>
 </div>
-<div style="width:240px;height:375px; float:right; margin-top:-380px; margin-right:15px;">
+<div style="width:240px;height:375px; float:right; margin-top:-160px; margin-right:15px;">
 	<div style="width:240px;height:100px;background-color:rgba(88, 79, 63, 1);text-align:center;font-size:18px;color:white;">
 	<div style="padding-top:30px;">让我们推荐一个最适合</div>
 	<div>您的房产经纪</div>

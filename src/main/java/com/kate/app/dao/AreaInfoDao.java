@@ -3186,6 +3186,56 @@ public class AreaInfoDao extends BaseDao {
 		return areaInfo;
 	}
 	
+	
+	
+	public String getAreaNum(String area_name){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		String area_code = "";
+		try {
+			String sql = " SELECT * from area_info where area_name=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, area_name);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+			
+				area_code =  rs.getString("area_num");
+				
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return area_code;
+	}
+	
+	
+	
 	public boolean addAreaInfo(String area_num,String area_name,String area_city,String area_zhou,String area_nation,String area_postcode){
 		Statement stmt = null;
 		ResultSet rs = null;

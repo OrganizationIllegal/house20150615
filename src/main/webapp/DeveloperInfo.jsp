@@ -14,6 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="css/projectLuru.css" />
 <script src="/js/jquery.min.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/chosen.css">
 <style type="text/css">
 body{
 	/* background-color:rgb(232, 233, 234)!important; */
@@ -34,7 +35,28 @@ body{
 <span class="area_span">开发商编号</span><span><input type="text" id="developer_num" name="developer_num" class="area_input" value="${developerInfo.developer_num}"></span>
 </div>
 <div class="area_left">
-<span class="area_span">开发商国家</span><span><input type="text" id="nation" name="nation" class="area_input" value="${developerInfo.nation}"></span>
+<span class="area_span">开发商国家</span><span>
+<%-- <input type="text" id="nation" name="nation" class="area_input" value="${developerInfo.nation}"> --%>
+<select data-placeholder="请选择..." class="chosen-select" id="nation" name="nation" style="width:220px;" tabindex="1">
+ 	 <option value=""></option>
+ 	 <c:choose>
+	    <c:when test="${developerInfo.nation eq 'Australia 澳大利亚'}">
+	      <option value="Australia 澳大利亚" selected="selected">Australia 澳大利亚</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="Australia 澳大利亚">Australia 澳大利亚</option>
+	   </c:otherwise>
+  	  </c:choose>
+  	  <c:choose>
+	    <c:when test="${developerInfo.nation eq 'Canada 加拿大'}">
+	      <option value="Canada 加拿大" selected="selected">Canada 加拿大</option>
+	    </c:when>
+	   <c:otherwise>  
+	      <option value="Canada 加拿大">Canada 加拿大</option>
+	   </c:otherwise>
+  	  </c:choose>
+ </select>
+</span>
 </div>
 <%-- <div class="area_right">
 <span class="area_span">开发商logo</span><span><input type="text" id="developer_logo" name="developer_logo" class="area_input" value="${developerInfo.developer_logo}"></span>
@@ -105,7 +127,9 @@ $(function(){
 	 				alert("添加成功！");
 	 			}else if(data.flag == 0){
 	 				alert("添加失败！");
-	 			}/* 
+	 			}
+	 			window.close();
+	 			/* 
 	 			if(data.flag == 1){
 	 				alert("更新成功");
 	 			}
@@ -114,7 +138,8 @@ $(function(){
 	 			} */
 	 		},
 	 		error:function(){
-	 			alert("error")
+	 			alert("error");
+	 			window.close();
 	 		}
 	 	});
     }
@@ -157,3 +182,17 @@ $(function(){
        xhr.send(form);
    }
 </script>
+<script src="/js/chosen.jquery.js" type="text/javascript"></script>
+ <script src="/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+ <script type="text/javascript">
+    var config = {
+      '.chosen-select'           : {},
+      '.chosen-select-deselect'  : {allow_single_deselect:true},
+      '.chosen-select-no-single' : {disable_search_threshold:10},
+      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+  </script> 

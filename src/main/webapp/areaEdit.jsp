@@ -319,7 +319,7 @@ body{
  	 <option value=""></option>
  	 <option  value="公寓">公寓</option>
  	  <option  value="别墅">别墅</option>
- 	   <option  value="联排别墅">联排别墅</option>
+ 	  <!--  <option  value="联排别墅">联排别墅</option> -->
   	 <!-- <option  value="1居室">1居室</option>
   	  <option  value="2居室">2居室</option>
   	   <option  value="3居室">3居室</option>
@@ -500,7 +500,7 @@ body{
  	 <option value=""></option>
   	 <option value="公寓">公寓</option>
      <option value="别墅">别墅</option>
-     <option value="联排别墅">联排别墅</option>
+    <!--  <option value="联排别墅">联排别墅</option> -->
  </select>
 </span>
 </div>
@@ -572,9 +572,9 @@ body{
 </select> -->
 <select data-placeholder="请选择..." class="chosen-select" id="project_type3" name="project_type3" style="width:220px;" tabindex="3">
  	 <option value=""></option>
-  	 <option >公寓</option>
-     <option >别墅</option>
-     <option>联排别墅</option>
+  	 <option value="公寓">公寓</option>
+     <option value="别墅">别墅</option>
+    <!--  <option>联排别墅</option> -->
  </select>
 </span>
 </div>
@@ -647,9 +647,9 @@ body{
 </select> -->
 <select data-placeholder="请选择..." class="chosen-select" id="project_type4" name="project_type4" style="width:220px;" tabindex="4">
  	 <option value=""></option>
-  	 <option >公寓</option>
-     <option >别墅</option>
-     <option>联排别墅</option>
+  	 <option value ="公寓">公寓</option>
+  	 <option value ="别墅">别墅</option>
+     <!-- <option>联排别墅</option> -->
  </select>
 </span>
 </div>
@@ -1155,9 +1155,13 @@ $(function(){
 			/* $("#middlepricelist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++middlepricecount)+"</span><span style='padding-right:10px;'>"+middlepricelist[middlepricecount-1].houseTaxtype+"</span><span style='padding-right:10px;'>"+middlepricelist[middlepricecount-1].houseTaxprice+"</span><span style='padding-right:10px;'>"+middlepricelist[middlepricecount-1].houseTaxdesc+"</span><span style='padding-right:10px;'>"+middlepricelist[middlepricecount-1].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>"); */
 			$('#middlepricelist').append("<div><div class='area_left3'><span style='display:none;'>"+(++middlepricecount)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+middlepricelist[middlepricecount-1].project_type+"</span><span class='area_span'>"+middlepricelist[middlepricecount-1].zu_price+"</span><span class='area_span'>"+middlepricelist[middlepricecount-1].buy_price+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editmiddleprice'>编辑</a></span><span class='area_span5'><a href='#' class='deletemiddleprice'>删除</a></span></div></div>");
 			/* UpladFile("houseimg"); */
+			var date=$("#middle_date").val();
+			var source=$("#middle_datasource").val();
 			$("#middleprice input").each(function(){
 				$(this).val("");
 				});
+			$("#middle_date").val(date);
+			$("#middle_datasource").val(source);
 			/* $("#huxingjiage").reset();  */
 			/* <a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a> */
 			}
@@ -1176,9 +1180,13 @@ $(function(){
 			/* var filenames=$('#projectimage').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			/* UpladFile("houseimg"); */
+			var date=$("#middle_date").val();
+			var source=$("#middle_datasource").val();
 			$("#middleprice input").each(function(){
 				$(this).val("");
 				});
+			$("#middle_date").val(date);
+			$("#middle_datasource").val(source);
 			middlepriceedititem.id=middlepricelist[middlepriceedit].id;
 			middlepricelist[middlepriceedit]=middlepriceedititem;
 			//alert($("#middlepricelist").children().eq(middlepriceedit));
@@ -1312,9 +1320,13 @@ $(function(){
 			/* $("#middletrendlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++middletrendcount)+"</span><span style='padding-right:10px;'>"+middletrendlist[middletrendcount-1].houseTaxtype+"</span><span style='padding-right:10px;'>"+middletrendlist[middletrendcount-1].houseTaxprice+"</span><span style='padding-right:10px;'>"+middletrendlist[middletrendcount-1].houseTaxdesc+"</span><span style='padding-right:10px;'>"+middletrendlist[middletrendcount-1].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>"); */
 			$('#middletrendlist').append("<div><div class='area_left3'><span style='display:none;'>"+(++middletrendcount)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+middletrendlist[middletrendcount-1].project_type2+"</span><span class='area_span'>"+middletrendlist[middletrendcount-1].view_shunxu2+"</span><span class='area_span'>"+middletrendlist[middletrendcount-1].heng2+"</span><span class='area_span6'>"+middletrendlist[middletrendcount-1].zong2+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editmiddletrend'>编辑</a></span><span class='area_span5'><a href='#' class='deletemiddletrend'>删除</a></span></div></div>");
 			/* UpladFile("houseimg"); */
+			var date=$("#middle_zoushi_date").val();
+			var source=$("#middle_zoushi_datasource").val();
 			$("#middletrend input").each(function(){
 				$(this).val("");
 				});
+			$("#middle_zoushi_date").val(date);
+			$("#middle_zoushi_datasource").val(source);
 			/* $("#huxingjiage").reset();  */
 			/* <a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a> */
 			}
@@ -1333,9 +1345,13 @@ $(function(){
 			/* var filenames=$('#projectimage').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			/* UpladFile("houseimg"); */
+			var date=$("#middle_zoushi_date").val();
+			var source=$("#middle_zoushi_datasource").val();
 			$("#middletrend input").each(function(){
 				$(this).val("");
 				});
+			$("#middle_zoushi_date").val(date);
+			$("#middle_zoushi_datasource").val(source);
 			middletrendlist[middletrendedit]=middletrendedititem;
 			//alert($("#middletrendlist").children().eq(middletrendedit));
 			/* $("#middletrendlist").children().eq(middletrendedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(middletrendedit+1)+"</span><span style='padding-right:10px;'>"+middletrendlist[middletrendedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+middletrendlist[middletrendedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+middletrendlist[middletrendedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+middletrendlist[middletrendedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
@@ -1416,9 +1432,13 @@ $(function(){
 			/* $("#zujintrendlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++zujintrendcount)+"</span><span style='padding-right:10px;'>"+zujintrendlist[zujintrendcount-1].houseTaxtype+"</span><span style='padding-right:10px;'>"+zujintrendlist[zujintrendcount-1].houseTaxprice+"</span><span style='padding-right:10px;'>"+zujintrendlist[zujintrendcount-1].houseTaxdesc+"</span><span style='padding-right:10px;'>"+zujintrendlist[zujintrendcount-1].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>"); */
 			$('#zujintrendlist').append("<div><div class='area_left3'><span style='display:none;'>"+(++zujintrendcount)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+zujintrendlist[zujintrendcount-1].project_type3+"</span><span class='area_span'>"+zujintrendlist[zujintrendcount-1].view_shunxu3+"</span><span class='area_span'>"+zujintrendlist[zujintrendcount-1].heng3+"</span><span class='area_span6'>"+zujintrendlist[zujintrendcount-1].zong3+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editzujintrend'>编辑</a></span><span class='area_span5'><a href='#' class='deletezujintrend'>删除</a></span></div></div>");
 			/* UpladFile("houseimg"); */
+			var date=$("#zujin_date").val();
+			var source=$("#zujin_datasource").val();
 			$("#zujintrend input").each(function(){
 				$(this).val("");
 				});
+			$("#zujin_date").val(date);
+			$("#zujin_datasource").val(source);
 			/* $("#huxingjiage").reset();  */
 			/* <a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a> */
 			}
@@ -1437,9 +1457,13 @@ $(function(){
 			/* var filenames=$('#projectimage').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			/* UpladFile("houseimg"); */
+			var date=$("#zujin_date").val();
+			var source=$("#zujin_datasource").val();
 			$("#zujintrend input").each(function(){
 				$(this).val("");
 				});
+			$("#zujin_date").val(date);
+			$("#zujin_datasource").val(source);
 			zujintrendlist[zujintrendedit]=zujintrendedititem;
 			//alert($("#zujintrendlist").children().eq(zujintrendedit));
 			/* $("#zujintrendlist").children().eq(zujintrendedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(zujintrendedit+1)+"</span><span style='padding-right:10px;'>"+zujintrendlist[zujintrendedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+zujintrendlist[zujintrendedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+zujintrendlist[zujintrendedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+zujintrendlist[zujintrendedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
@@ -1520,9 +1544,13 @@ $(function(){
 			/* $("#huibaotrendlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++huibaotrendcount)+"</span><span style='padding-right:10px;'>"+huibaotrendlist[huibaotrendcount-1].houseTaxtype+"</span><span style='padding-right:10px;'>"+huibaotrendlist[huibaotrendcount-1].houseTaxprice+"</span><span style='padding-right:10px;'>"+huibaotrendlist[huibaotrendcount-1].houseTaxdesc+"</span><span style='padding-right:10px;'>"+huibaotrendlist[huibaotrendcount-1].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>"); */
 			$('#huibaotrendlist').append("<div><div class='area_left3'><span style='display:none;'>"+(++huibaotrendcount)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+huibaotrendlist[huibaotrendcount-1].project_type4+"</span><span class='area_span'>"+huibaotrendlist[huibaotrendcount-1].view_shunxu4+"</span><span class='area_span'>"+huibaotrendlist[huibaotrendcount-1].heng4+"</span><span class='area_span6'>"+huibaotrendlist[huibaotrendcount-1].zong4+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edithuibaotrend'>编辑</a></span><span class='area_span5'><a href='#' class='deletehuibaotrend'>删除</a></span></div></div>");
 			/* UpladFile("houseimg"); */
+			var date=$("#zujin_huibao_date").val();
+			var source=$("#zujin_huibao_datasource").val();
 			$("#huibaotrend input").each(function(){
 				$(this).val("");
 				});
+			$("#zujin_huibao_date").val(date);
+			$("#zujin_huibao_datasource").val(source);
 			/* $("#huxingjiage").reset();  */
 			/* <a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a> */
 			}
@@ -1541,9 +1569,13 @@ $(function(){
 			/* var filenames=$('#projectimage').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			/* UpladFile("houseimg"); */
+			var date=$("#zujin_huibao_date").val();
+			var source=$("#zujin_huibao_datasource").val();
 			$("#huibaotrend input").each(function(){
 				$(this).val("");
 				});
+			$("#zujin_huibao_date").val(date);
+			$("#zujin_huibao_datasource").val(source);
 			huibaotrendlist[huibaotrendedit]=huibaotrendedititem;
 			//alert($("#huibaotrendlist").children().eq(huibaotrendedit));
 			/* $("#huibaotrendlist").children().eq(huibaotrendedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(huibaotrendedit+1)+"</span><span style='padding-right:10px;'>"+huibaotrendlist[huibaotrendedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+huibaotrendlist[huibaotrendedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+huibaotrendlist[huibaotrendedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+huibaotrendlist[huibaotrendedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
@@ -1613,9 +1645,13 @@ $(function(){
 			/* $("#tedianlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++tediancount)+"</span><span style='padding-right:10px;'>"+tedianlist[tediancount-1].houseTaxtype+"</span><span style='padding-right:10px;'>"+tedianlist[tediancount-1].houseTaxprice+"</span><span style='padding-right:10px;'>"+tedianlist[tediancount-1].houseTaxdesc+"</span><span style='padding-right:10px;'>"+tedianlist[tediancount-1].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>"); */
 			$('#tedianlist').append("<div><div class='area_left3'><span style='display:none;'>"+(++tediancount)+"</span><span class='area_span'>"+tedianlist[tediancount-1].view_shunxu+"</span><span class='area_input'>"+tedianlist[tediancount-1].area_character+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edittedian'>编辑</a></span><span class='area_span5'><a href='#' class='deletetedian'>删除</a></span></div></div>");
 			/* UpladFile("houseimg"); */
+			var date=$("#update_time").val();
+			var source=$("#data_source").val();
 			$("#tedian input").each(function(){
 				$(this).val("");
 				});
+			$("#update_time").val(date);
+			$("#data_source").val(source);
 			/* $("#huxingjiage").reset();  */
 			/* <a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a> */
 			}
@@ -1623,9 +1659,13 @@ $(function(){
 			tedianedititem=DataDeal.formToJson(data= decodeURIComponent($("#tedian").serialize(),true));
 			tedianedititem=tedianedititem.replace(/\+/g," ");
 			tedianedititem=eval("("+tedianedititem+")");
+			var date=$("#update_time").val();
+			var source=$("#data_source").val();
 			$("#tedian input").each(function(){
 				$(this).val("");
 				});
+			$("#update_time").val(date);
+			$("#data_source").val(source);
 			tedianlist[tedianedit]=tedianedititem;
 			//alert($("#tedianlist").children().eq(tedianedit));
 			/* $("#tedianlist").children().eq(tedianedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(tedianedit+1)+"</span><span style='padding-right:10px;'>"+tedianlist[tedianedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+tedianlist[tedianedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+tedianlist[tedianedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+tedianlist[tedianedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
@@ -1697,9 +1737,13 @@ $(function(){
 			/* $("#peoplelist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++peoplecount)+"</span><span style='padding-right:10px;'>"+peoplelist[peoplecount-1].houseTaxtype+"</span><span style='padding-right:10px;'>"+peoplelist[peoplecount-1].houseTaxprice+"</span><span style='padding-right:10px;'>"+peoplelist[peoplecount-1].houseTaxdesc+"</span><span style='padding-right:10px;'>"+peoplelist[peoplecount-1].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>"); */
 			$('#peoplelist').append("<div><div class='area_left3'><span style='display:none;'>"+(++peoplecount)+"</span><span class='area_span'>"+peoplelist[peoplecount-1].column1+"</span><span class='area_span'>"+peoplelist[peoplecount-1].column2+"</span><span class='area_span'>"+peoplelist[peoplecount-1].column3+"</span><span class='area_span'>"+peoplelist[peoplecount-1].view_shunxu_people+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editpeople'>编辑</a></span><span class='area_span5'><a href='#' class='deletepeople'>删除</a></span></div></div>");
 			/* UpladFile("houseimg"); */
+			var date=$("#people_date").val();
+			var source=$("#people_datasource").val();
 			$("#people input").each(function(){
 				$(this).val("");
 				});
+			$("#people_date").val(date);
+			$("#people_datasource").val(source);
 			/* $("#huxingjiage").reset();  */
 			/* <a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a> */
 			}
@@ -1718,9 +1762,13 @@ $(function(){
 			/* var filenames=$('#projectimage').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			/* UpladFile("houseimg"); */
+			var date=$("#people_date").val();
+			var source=$("#people_datasource").val();
 			$("#people input").each(function(){
 				$(this).val("");
 				});
+			$("#people_date").val(date);
+			$("#people_datasource").val(source);
 			peoplelist[peopleedit]=peopleedititem;
 			//alert($("#peoplelist").children().eq(peopleedit));
 			/* $("#peoplelist").children().eq(peopleedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(peopleedit+1)+"</span><span style='padding-right:10px;'>"+peoplelist[peopleedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+peoplelist[peopleedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+peoplelist[peopleedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+peoplelist[peopleedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
@@ -2061,12 +2109,14 @@ function savepro(){
 			else if(data.flag==0){
 				alert("更新失败");
 			}
+			window.close();
 		},
 		error:function(a,b,c){
 			/* alert(a);
 			alert(b);
 			alert(c); */
 			alert("error");
+			window.close();
 		}
     });
 }
@@ -2174,9 +2224,11 @@ function addHuibaoTrend(){
 	 			}else if(data.flag == 0){
 	 				alert("添加失败！");
 	 			}
+	 			
 	 		},
 	 		error:function(){
-	 			alert("error")
+	 			alert("error");
+	 			window.close();
 	 		}
 	 	});
 	  }
