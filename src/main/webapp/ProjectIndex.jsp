@@ -762,7 +762,7 @@ function popInfo(){
 				</div>
 				<div class="f-l p_inves_div">
 					<a class="c-fix f-l p_inves_lab f-yahei s-14 fw">中位数价格</a>
-					<a class="c-fix f-l p_inves_lab f-yahei s-18" style="color:rgb(21,63,101);margin-top:10px;">$${data.middle_price}</a>
+					<a class="c-fix f-l p_inves_lab f-yahei s-18" style="color:rgb(21,63,101);margin-top:10px;">${data.middle_price}</a>
 				</div>
 				<div class="f-l p_inves_div">
 					<a class="c-fix f-l p_inves_lab f-yahei s-14 fw">中位数租金</a>
@@ -788,32 +788,32 @@ function popInfo(){
 			<div class="c-fix p_panel_4">
 				<a class="c-fix f-l p_inves_name f-yahei s-18 fw">${HouseProject.project_area} ${HouseProject.project_type}中位数房价</a>
 				<div class="c-fix f-l middle_bkg">
-					<a class="c-fix f-l f-yahei fw middle_lab1">$${middlePrice.buy_price}</a>
-					<a class="f-l f-yahei fw middle_lab2">$${middlePrice.zu_price}/周</a>
+					<a class="c-fix f-l f-yahei fw middle_lab1">$${buy_price}</a>
+					<a class="f-l f-yahei fw middle_lab2">$${zu_price}/周</a>
 				</div>
 				<div class="c-fix f-l middle_inner" style="margin-left:80px;">
 					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw">${middlePrice.buy_one_name}</a>
-					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${middlePrice.buy_one_price}</a>
+					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${buy_one_price}</a>
 				</div>
 				<div class="f-l middle_inner" style="margin-left:25px">
 					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw">${middlePrice.buy_two_name}</a>
-					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${middlePrice.buy_two_price}</a>
+					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${buy_two_price}</a>
 				</div>
 				<div class="f-l middle_inner" style="margin-left:20px;">
 					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw">${middlePrice.buy_three_name}</a>
-					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${middlePrice.buy_three_price}</a>
+					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${buy_three_price}</a>
 				</div>
 				<div class="f-l middle_inner" style="margin-left:27px;">
 					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:rgb(21,63,101)">${middlePrice.zu_one_name}</a>
-					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${middlePrice.zu_one_price}</a>
+					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${zu_one_price}</a>
 				</div>
 				<div class="f-l middle_inner" style="margin-left:25px">
 					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:rgb(21,63,101)">${middlePrice.zu_two_name}</a>
-					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${middlePrice.zu_two_price}</a>
+					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${zu_two_price}</a>
 				</div>
 				<div class="f-l middle_inner" style="margin-left:20px;">
 					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:rgb(21,63,101)">${middlePrice.zu_three_name}</a>
-					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${middlePrice.zu_three_price}</a>
+					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${zu_three_price}</a>
 				</div>
 				<a class="c-fix f-r p_inves_source f-yahei s-12">数据来源：${middlePrice.middle_datasource }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;更新日期${fn:substring(middlePrice.middle_date,0,10) }</a>
 			</div>

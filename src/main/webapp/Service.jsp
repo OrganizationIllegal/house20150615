@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -56,16 +57,71 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div style="float:left;font-size:13px;margin-top:5px;margin-left:5px;">Bulswisk</div>
 </div> -->
 </div>
+<c:if test="${! empty  brokerInfo.leixingInfo}">
 <div style="width:470px;height:70px;margin-left:250px;margin-top:-20px;">
 <div style="font-size:20px;font-weight:bold;float:left;margin-top:-78px;">擅长类型</div>
 <img alt="jiantou" src="images/service/pic2.png" style="float:left;margin-top:-75px;margin-left:80px;">
-<img alt="house1" src="images/service/h1.png" style="float:left;margin-top:-40px;">
-<div style="font-size:15px;float:left;margin-top:-35px;margin-left:30px;">独立别墅</div>
-<img alt="house2" src="images/service/h2.png" style="float:left;margin-top:-40px;margin-left:150px;">
-<div style="font-size:15px;float:left;margin-top:-35px;margin-left:200px;">联排别墅</div>
-<img alt="house3" src="images/service/h3.png" style="float:left;margin-top:-50px;margin-left:310px;">
-<div style="font-size:15px;float:left;margin-top:-35px;margin-left:365px;">城市公寓</div>
+<c:forEach items="${ brokerInfo.leixingInfo}" var="item" varStatus="stat">
+<c:if test="${fn:length(brokerInfo.leixingInfo)==1}">
+          <img alt="house1" src="images/service/h1.png" style="float:left;margin-top:-40px;">
+			<div style="font-size:15px;float:left;margin-top:-35px;margin-left:30px;">${item.leixing }</div>
+
+
+</c:if>
+<c:if test="${fn:length(brokerInfo.leixingInfo)==1}">
+          <img alt="house1" src="<%=application.getInitParameter("imagedir")%>/${item.leixingImg }" width="26px" height="30px" style="float:left;margin-top:-40px;">
+		 <div style="font-size:15px;float:left;margin-top:-35px;margin-left:30px;">${item.leixing }</div>
+</c:if>
+<c:if test="${fn:length(brokerInfo.leixingInfo)==2}">
+<c:choose>
+		<c:when test="${stat.index==0 }">
+			<img alt="house1" src="<%=application.getInitParameter("imagedir")%>/${item.leixingImg }" width="26px" height="30px" style="float:left;margin-top:-40px;">
+			<div style="font-size:15px;float:left;margin-top:-35px;margin-left:30px;">${item.leixing }</div>
+		</c:when>
+		
+		<c:otherwise>
+			<img alt="house2" src="<%=application.getInitParameter("imagedir")%>/${item.leixingImg }" width="26px" height="30px" style="float:left;margin-top:-40px;margin-left:150px;">
+	        <div style="font-size:15px;float:left;margin-top:-35px;margin-left:200px;">${item.leixing }</div>
+		</c:otherwise>
+	
+	
+	</c:choose>
+</c:if>
+<c:if test="${fn:length(brokerInfo.leixingInfo)==3}">
+
+		<c:choose>
+		<c:when test="${stat.index==0 }">
+			<img alt="house1" src="<%=application.getInitParameter("imagedir")%>/${item.leixingImg }" width="26px" height="30px" style="float:left;margin-top:-40px;">
+			<div style="font-size:15px;float:left;margin-top:-35px;margin-left:30px;">${item.leixing }</div>
+		</c:when>
+		<c:when test="${stat.index==1 }">
+			<img alt="house2" src="<%=application.getInitParameter("imagedir")%>/${item.leixingImg }" width="26px" height="30px" style="float:left;margin-top:-40px;margin-left:150px;">
+	        <div style="font-size:15px;float:left;margin-top:-35px;margin-left:200px;">${item.leixing }</div>
+		</c:when>
+		<c:otherwise>
+			<img alt="house3" src="<%=application.getInitParameter("imagedir")%>/${item.leixingImg }" width="26px" height="30px" style="float:left;margin-top:-50px;margin-left:310px;">
+	        <div style="font-size:15px;float:left;margin-top:-35px;margin-left:365px;">${item.leixing }</div>
+		</c:otherwise>
+	
+	
+	</c:choose>
+</c:if>
+
+
+	
+</c:forEach>
+
+
+	
+	
+	
+	
 </div>
+</c:if>
+
+
+
+
 <div style="width:470px;height:70px;margin-left:250px;margin-top:-40px;">
 <div style="font-size:20px;font-weight:bold;float:left;margin-top:0px;">专业资质</div>
 <img alt="jiantou" src="images/service/pic2.png" style="float:left;margin-top:5px;">
