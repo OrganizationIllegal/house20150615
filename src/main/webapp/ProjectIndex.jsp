@@ -339,6 +339,12 @@ function popInfo(){
             <div style="float:left;width:750px;display:inline;">
 				<input type="hidden" id="Control" value='0'>
                 <table class="ad_left_big" width="750" border="0" cellpadding="0" cellspacing="0" style="margin-top: 0px;">
+                <c:forEach var="item"  items="${imageList}"   varStatus="status">
+                    <c:if test="${status.index==0}">
+                    	<tr><td><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="750" height="474" /></a></td></tr>
+                    </c:if>
+                </c:forEach>
+                    
                      <tr><td><div id="youkuplayer" style="width:750px;height:474px"></div>
 
                      <script type="text/javascript" src="http://player.youku.com/jsapi">
@@ -360,9 +366,9 @@ function popInfo(){
                     </td>
                     </tr>
                     <c:forEach var="item"  items="${imageList}"   varStatus="status">
-                    <c:if test="${status.index<2 }">
-                    	<tr><td><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="750" height="474" /></a></td></tr>
-                    </c:if>
+	                     <c:if test="${status.index>0 }"> 
+	                    	<tr><td><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="750" height="474" /></a></td></tr>
+	                     </c:if>
                     </c:forEach>
                  </table>
             </div>
@@ -371,9 +377,17 @@ function popInfo(){
                 <div class="top_button off"></div>
                 <div class="small_right_limit">
                     <ul style="margin-top: 0px;">
-                    <li style="margin-top:6px"><img src="<%=application.getInitParameter("imagedir")%>/The Atrium_Project_01.jpg" width="210" height="140"/></li>
+                    <c:forEach var="item"  items="${imageList}"   varStatus="status">
+			            <c:if test="${status.index==0}">
+			            	<li style="margin-top:6px"><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="210" height="140"/></li>
+			            </c:if>
+			         </c:forEach>
+			         
+                    <li style="margin-top:6px">
+                    	<img src="<%=application.getInitParameter("imagedir")%>/The Atrium_Project_01.jpg" width="210" height="140"/>
+                    </li>
 			            <c:forEach var="item"  items="${imageList}"   varStatus="status">
-			            <c:if test="${status.index<2}">
+			            <c:if test="${status.index>0}">
 			            	<li style="margin-top:6px"><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="210" height="140"/></li>
 			            </c:if>
                     		
@@ -573,9 +587,9 @@ function popInfo(){
             <div style="float:left;width:720px;display:inline;">
                 <table class="ad_left_big_p" width="720" border="0" cellpadding="0" cellspacing="0" style="margin-top: 0px;">
                     <c:forEach items="${ProjectPeitaoImage}" var="item" varStatus="status">
-                    <c:if test="${status.index<3 }">
+                   ${fn:length(ProjectPeitaoImage)}
                     	<tr><td><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="720" height="487" /></a></td></tr>
-                   </c:if>
+                 
                     </c:forEach>
                     
                 </table>

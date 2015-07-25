@@ -60,7 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- <form class="form-horizontal" role="form" action="/SearchService">	 -->
 		 <form class="form-horizontal" role="form" action="/SearchService">		
 			 <div class="form-group">
-			 	 <div style="margin-left:80px;margin-right:10px;width:300px;height:32px;float:left"><input type="text" class="form-control" name="brokerName" placeholder="经纪姓名"></div>
+			 	 <div style="margin-left:21px;margin-right:10px;width:200px;height:32px;float:left"><input type="text" class="form-control" name="brokerName" placeholder="经纪姓名"></div>
 			 	 <div style="width:200px;height:32px;float:left;margin-right:10px;">
 			 	    <!--<input type="text" class="form-control" name="type" placeholder="类型">-->
 			 	   
@@ -72,7 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</select>
 			 	 </div>
 			 	 <div style="width:200px;height:32px;float:left;margin-right:10px;" >
-			 	 	<input type="text" class="form-control" name="area" placeholder="区域">
+			 	 	<input type="text" class="form-control" name="suozaiarea" placeholder="所在区域">
 			 	 	 <!-- <select id="type" style="  width: 200px;height: 32px; " class="form-control">
          					<option>区域</option>
         					 <c:forEach items="${regionList}" var="item">
@@ -80,6 +80,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        					   </c:forEach>
                      </select> -->
 			 	 </div>
+			 	 
+			 	 <div style="width:200px;height:32px;float:left;margin-right:10px;" >
+			 	 	<input type="text" class="form-control" name="fuwuarea" placeholder="服务区域">
+			 	 	 <!-- <select id="type" style="  width: 200px;height: 32px; " class="form-control">
+         					<option>区域</option>
+        					 <c:forEach items="${regionList}" var="item">
+        					<option>${item}</option>
+       					   </c:forEach>
+                     </select> -->
+			 	 </div>
+			 	 
+			 	 
 			 	 <div style="width:210px;height:32px;float:left;margin-right:10px;">
 			 	 		<!--<input type="text" class="form-control" name="lang" placeholder="语言">-->
 			 	 		 <select id="type" name="lang" value="" class="form-control" style="height:32px;">

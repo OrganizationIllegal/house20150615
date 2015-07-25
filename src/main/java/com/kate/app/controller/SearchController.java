@@ -53,15 +53,20 @@ public class SearchController {
 		String username = (String)req.getSession().getAttribute("username");
 		String brokerName = req.getParameter("brokerName");
 		String type = req.getParameter("type");
-		String area = req.getParameter("area");
+		String suozaiarea = req.getParameter("suozaiarea");
+		String fuwuarea = req.getParameter("fuwuarea");
 		String lang = req.getParameter("lang");
+		String area_code = null;
 		if(type!=null && !"".endsWith(type) && type.equals("类型")){
 			type = "";
 		}
 		if(lang!=null && !"".endsWith(lang) && lang.equals("语言")){
 			lang = "";
 		}
-		List<BrokerInfo> brokerInfoList = searchListDao.searchSericeList(brokerName, type, area, lang);
+		if(fuwuarea!=null && !"".equals(fuwuarea)){
+			area_code = areaInfoDao.getAreaNum(fuwuarea);
+		}
+		List<BrokerInfo> brokerInfoList = searchListDao.searchSericeList(brokerName, type, suozaiarea, area_code, lang);
 		seachBrokerListResult = brokerInfoList;
 		int count = brokerInfoList.size();
 		List<BrokerInfo> resultList = new ArrayList<BrokerInfo>();

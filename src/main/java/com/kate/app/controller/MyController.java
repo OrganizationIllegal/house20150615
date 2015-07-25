@@ -232,14 +232,14 @@ public class MyController {
 		List<ProjectImage> imageList = new ArrayList<ProjectImage>();
 		List<ProjectImage> vedioList = new ArrayList<ProjectImage>();
 		System.out.println(list.size());
-		/*for(ProjectImage image : list){
+		for(ProjectImage image : list){
 			if(image.getImage_type().equals("图片")){
 				imageList.add(image);
 			}
 			else{
 				vedioList.add(image);
 			}
-		}*/
+		}
 		//System.out.println(list.get(0).getImage_name());
 		req.setAttribute("imageList", list);
 		req.setAttribute("vedioList", vedioList);
@@ -263,6 +263,32 @@ public class MyController {
 	@RequestMapping({"/Index/TheElement"})    
 	public void  TheElement(HttpServletRequest req, HttpServletResponse resp, int proId){
 		HouseProject project = houseProjectService.getHouseProject(proId);
+		String min = "";
+		String high = "";
+		if(project!=null){
+			min = project.getProject_min_price();
+			high = project.getProject_high_price();
+		}
+		DecimalFormat df1 = new DecimalFormat("#,###,###");
+		if(min!=null && !"".equals(min)){
+ 			int priceTemp = Integer.parseInt(min);
+ 			min = df1.format(priceTemp);
+ 		}
+ 		else{
+ 			min = "0,000,000";
+ 		}
+		project.setProject_min_price(min);
+		
+		if(high!=null && !"".equals(high)){
+ 			int priceTemp = Integer.parseInt(high);
+ 			high = df1.format(priceTemp);
+ 		}
+ 		else{
+ 			high = "0,000,000";
+ 		}
+		project.setProject_high_price(high);
+		
+	
        /* String timeResule = null;*/
 		
 		/*if(project!=null){
@@ -334,6 +360,19 @@ public class MyController {
 		HouseProject pro = houseProjectService.getHouseProjectByNum(proNum);
 		//String type = pro.getProject_type();
 		List<HouseInfo> houseInfoList=houseInfoService.getHouseInfoList(proNum);
+		DecimalFormat df1 = new DecimalFormat("#,###,###");
+		for(HouseInfo item : houseInfoList){
+			String price = item.getHouse_price();
+			if(price!=null && !"".equals(price)){
+	 			int priceTemp = Integer.parseInt(price);
+	 			price = df1.format(priceTemp);
+	 		}
+	 		else{
+	 			price = "0,000,000";
+	 		}
+			item.setHouse_price(price);
+		}
+		
 		req.setAttribute("HouseInfoList", houseInfoList);
 	}
 		/*String timeResule = null;

@@ -127,7 +127,9 @@ $(function(){
 	 				alert("添加成功！");
 	 			}else if(data.flag == 0){
 	 				alert("添加失败！");
-	 			}/* 
+	 			}
+	 			window.close();
+	 			/* 
 	 			if(data.flag == 1){
 	 				alert("更新成功");
 	 			}
@@ -136,7 +138,8 @@ $(function(){
 	 			} */
 	 		},
 	 		error:function(){
-	 			alert("error")
+	 			alert("error");
+	 			window.close();
 	 		}
 	 	});
     }
