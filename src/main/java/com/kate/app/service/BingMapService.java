@@ -68,6 +68,12 @@ public class BingMapService {
 			obj.put("project_zhou", data.getProject_zhou()==null?"":data.getProject_zhou());
 			obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
 			obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
+			obj.put("project_address", data.getProject_address()==null?"":data.getProject_address());
+			obj.put("minArea", data.getMin_area()==0?0:data.getMin_area());
+			obj.put("maxArea", data.getMax_area()==0?0:data.getMax_area());
+			obj.put("return_money", data.getReturn_money()==null?"":data.getReturn_money());
+			obj.put("project_price_int_qi", data.getProject_price_int_qi()==0?0:data.getReturn_money());
+			
 			array.add(obj);
 		}
 		return array;

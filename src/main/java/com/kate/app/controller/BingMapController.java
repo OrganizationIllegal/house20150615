@@ -19,12 +19,16 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.kate.app.dao.BingMapDao;
 import com.kate.app.model.BingMapVo;
 import com.kate.app.service.BingMapService;
 @Controller
 public class BingMapController {
 	@Autowired
 	private BingMapService bingMapService;
+	@Autowired
+	private BingMapDao bingMapDao;
+	
 	@RequestMapping({"/BingMap"})
 	public String listBingMap(HttpServletRequest req,HttpServletResponse resp){
 		List<BingMapVo> bingMapList=bingMapService.listBingMap();
@@ -148,6 +152,37 @@ public class BingMapController {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	@RequestMapping({"/OrderByTypeLeft"})
+	public String OrderByTypeLeft(HttpServletRequest req,HttpServletResponse resp){
+		String type = req.getParameter("type");
+		int typeFlag = 0;
+		if(type!=null && !"".equals(type)){
+			typeFlag = Integer.parseInt(type);
+		}
+		String projecttype=null;
+		switch(typeFlag){
+			case 1:
+				projecttype="公寓";
+				break;
+			case 2:
+				projecttype="别墅";
+				break;
+			case 3:
+				projecttype="联排别墅";
+				break;
+			default:
+				projecttype="";
+				break;
+		}
+
+		List<BingMapVo> bingMapList = bingMapDao.orderByTypeLeft(projecttype);
+		req.setAttribute("bingMapList", bingMapList);
+		return "/bingMap.jsp";
+	}
+	
+	
 	@RequestMapping({"/OrderByPrice"})
 	public String OrderByPrice(HttpServletRequest req,HttpServletResponse resp){
 		int order=Integer.parseInt(req.getParameter("order"));
@@ -155,6 +190,8 @@ public class BingMapController {
 		req.setAttribute("bingMapList", bingMapList);
 		return "/bingMap.jsp";
 	}
+	
+	
 	@RequestMapping({"/BingMapOrderPageList"})
 	public void BingMapOrderPageList(HttpServletRequest req,HttpServletResponse resp){
 		int order=Integer.parseInt(req.getParameter("order"));

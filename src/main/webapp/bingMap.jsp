@@ -68,8 +68,27 @@ body{
    });
    </script>
    <script type="text/javascript">
-   var imgdir="<%=application.getInitParameter("imagedir")%>";
+   imgdir="<%=application.getInitParameter("imagedir")%>";
    function housetype(v){
+	   var selectedOption=v.options[v.selectedIndex];  
+	   switch(selectedOption.value){
+	   case "1":
+		   addPushpin1();
+		   break;
+	   case "2":
+		   addPushpin2();
+		   break;
+	   case "3":  
+		   addPushpin3();
+		   break;
+	 /*  default:
+		  addPushpin1();
+	   	  break; */
+
+	   }
+   }
+   
+   function housetype1(v){
 	   var selectedOption=v.options[v.selectedIndex];  
 	   switch(selectedOption.value){
 	   case "1":
@@ -81,13 +100,14 @@ body{
 	   case "3":
 		   addPushpin3();
 		   break;
-	  /*  case "4":
-		   addPushpin4();
-		   break; */
+	  default:
+		  addPushpin();
+	  	  break;
 	   }
 	   
 	   }
    </script>
+   
    <script>
    $(function(){
 	 	 $('#orderasc').click(function () {
@@ -267,6 +287,43 @@ body{
 	                	
 	                	return html;
 	                }
+	   
+	   function getHtml1(items){
+           var html="";
+           if(items!=null){
+           	for(var j=0;j<items.length;j++){
+           		var imgUrl = <%=application.getInitParameter("imagedir")%>/+items[j].project_img; 
+               	html+=" <div class='c-fix f-l div_node'><a class='c-fix f-l f-yahei s-12 node_address'>"+items[j].project_address+"</a>";
+               	html+="<a href='/Index?proNum="+items[j].project_num+"'"+" target='_parent'>";
+           		
+               	html+="<img class='c-fix f-l node_img'  src='"+imgUrl+"' style='width:160px;height:100px' ></img></a>";
+               	html+="<div class='f-l node_right' style='width:167px'>";
+               	html+="<a class='c-fix f-l f-arial s-12 fw node_name'>"+items[j].project_name+"</a>";
+               	html+="<a class='c-fix f-l f-yahei s-12 node_title' style='margin-top:1px'>最多</a>";
+               	html+="<a class='f-r f-yahei s-12 node_val' style='margin-top:1px'>$"+items[j].project_high_price+"</a>";
+               	html+="<a class='c-fix f-l f-yahei s-12 node_title'>最少</a>";
+               	html+="<a class='f-r f-yahei s-12 node_val'>$"+items[j].project_min_price+"</a>";
+               	html+="<a class='c-fix f-l f-yahei s-12 node_title'>面积</a>";
+               	html+="<a class='f-r f-yahei s-12 node_val'>"+items[j].minArea+"+"+items[j].maxArea+"</a>";
+               	html+="<a class='c-fix f-l f-yahei s-12 node_title'>返利</a>";
+               	html+="<a class='f-r f-yahei s-12 node_val'>"+items[j].return_money+"</a>";
+               	html+="<a class='c-fix f-l f-yahei s-12 node_title'>起价</a>";
+               	html+="<a class='f-r f-yahei s-12 node_val'>$"+items[j].project_price_int_qi+"</a>";
+               	html+="</div></div>";
+               	
+           	}
+           }
+           else{
+           	html="";
+           }
+               
+           	
+           	return html;
+           }
+
+	
+	
+	
 	 	 
    </script>
  <script type="text/javascript">
@@ -306,23 +363,23 @@ body{
 <jsp:include page="head4index.jsp" />
 	
 		<div class="c-fix map_bkg" style="margin:0 auto;width:100%;">
+		
 			<div class="c-fix f-l div1">
-				<select class="c-fix f-l sel_type" style="background:none;border:none;font-family:微软雅黑;padding-left:10px">
-					<option>房屋类型</option>
-					<!-- <option value="1">一居室</option>
-					<option value="2">二居室</option>
-					<option value="3">三居室</option>
-					<option value="4">四居室</option> -->
+			
+				<select id="house1" onchange="housetype1(this)" class="c-fix f-l sel_type" style="background:none;border:none;font-family:微软雅黑;padding-left:10px">
+					<option value="0">房屋类型</option>
 					<option value="1">公寓</option>
 					<option value="2">别墅</option>
 				    <option value="3">联排别墅</option>
 				</select>
+				
 				<!-- <a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" href="/BingMap/OrderByPrice?order=1">价格从低到高</a>
 				<a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" href="/BingMap/OrderByPrice?order=2">价格从高到低</a> -->
 				<a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" href="/OrderByPrice?order=1">价格从低到高</a>
 				<a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" href="/OrderByPrice?order=2">价格从高到低</a>
 			
 			</div>
+	
 			<div class="f-l div2" id="right1">
 				<input type="text" class="c-fix f-l inp" id="keyWord" placeholder="项目地址" style="color:rgb(213,213,213);font-family:微软雅黑;height:28px;width:434px;" autocomplete="off"></input>	
 				<a class="f-l f-yahei s-14 cp btn_search" onclick="addPushpinsearch()">搜索</a>
@@ -368,124 +425,13 @@ body{
 					</div>
 				</div>
 			 </c:forEach> 
-				<!-- <div class="c-fix f-l div_node">
-					<a class="c-fix f-l f-yahei s-12 node_address">38-40 Claremont Street.</a>
-					<img class="c-fix f-l node_img" src="res/images/tmp_img3.png"></img>
-					<div class="f-l node_right">
-						<a class="c-fix f-l f-arial s-12 fw node_name">The Elfin</a>
-						<a class="c-fix f-l f-yahei s-12 node_title" style="margin-top:1px">最多</a>
-						<a class="f-r f-yahei s-12 node_val" style="margin-top:1px">$550,000</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">最少</a>
-						<a class="f-r f-yahei s-12 node_val">$350,000</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">面积</a>
-						<a class="f-r f-yahei s-12 node_val">47-85</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">返利</a>
-						<a class="f-r f-yahei s-12 node_val">$550,000</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">均价</a>
-						<a class="f-r f-yahei s-12 node_val">$550,000</a>
-					</div>
-				</div>
-				<div class="c-fix f-l div_node">
-					<a class="c-fix f-l f-yahei s-12 node_address">38-40 Claremont Street.</a>
-					<img class="c-fix f-l node_img" src="res/images/tmp_img3.png"></img>
-					<div class="f-l node_right">
-						<a class="c-fix f-l f-arial s-12 fw node_name">The Elfin</a>
-						<a class="c-fix f-l f-yahei s-12 node_title" style="margin-top:1px">最多</a>
-						<a class="f-r f-yahei s-12 node_val" style="margin-top:1px">$550,000</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">最少</a>
-						<a class="f-r f-yahei s-12 node_val">$350,000</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">面积</a>
-						<a class="f-r f-yahei s-12 node_val">47-85</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">返利</a>
-						<a class="f-r f-yahei s-12 node_val">$550,000</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">均价</a>
-						<a class="f-r f-yahei s-12 node_val">$550,000</a>
-					</div>
-				</div>
-				<div class="c-fix f-l div_node">
-					<a class="c-fix f-l f-yahei s-12 node_address">38-40 Claremont Street.</a>
-					<img class="c-fix f-l node_img" src="res/images/tmp_img3.png"></img>
-					<div class="f-l node_right">
-						<a class="c-fix f-l f-arial s-12 fw node_name">The Elfin</a>
-						<a class="c-fix f-l f-yahei s-12 node_title" style="margin-top:1px">最多</a>
-						<a class="f-r f-yahei s-12 node_val" style="margin-top:1px">$550,000</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">最少</a>
-						<a class="f-r f-yahei s-12 node_val">$350,000</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">面积</a>
-						<a class="f-r f-yahei s-12 node_val">47-85</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">返利</a>
-						<a class="f-r f-yahei s-12 node_val">$550,000</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">均价</a>
-						<a class="f-r f-yahei s-12 node_val">$550,000</a>
-					</div>
-				</div>
-				<div class="c-fix f-l div_node">
-					<a class="c-fix f-l f-yahei s-12 node_address">38-40 Claremont Street.</a>
-					<img class="c-fix f-l node_img" src="res/images/tmp_img3.png"></img>
-					<div class="f-l node_right">
-						<a class="c-fix f-l f-arial s-12 fw node_name">The Elfin</a>
-						<a class="c-fix f-l f-yahei s-12 node_title" style="margin-top:1px">最多</a>
-						<a class="f-r f-yahei s-12 node_val" style="margin-top:1px">$550,000</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">最少</a>
-						<a class="f-r f-yahei s-12 node_val">$350,000</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">面积</a>
-						<a class="f-r f-yahei s-12 node_val">47-85</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">返利</a>
-						<a class="f-r f-yahei s-12 node_val">$550,000</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">均价</a>
-						<a class="f-r f-yahei s-12 node_val">$550,000</a>
-					</div>
-				</div>
-				<div class="c-fix f-l div_node">
-					<a class="c-fix f-l f-yahei s-12 node_address">38-40 Claremont Street.</a>
-					<img class="c-fix f-l node_img" src="res/images/tmp_img3.png"></img>
-					<div class="f-l node_right">
-						<a class="c-fix f-l f-arial s-12 fw node_name">The Elfin</a>
-						<a class="c-fix f-l f-yahei s-12 node_title" style="margin-top:1px">最多</a>
-						<a class="f-r f-yahei s-12 node_val" style="margin-top:1px">$550,000</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">最少</a>
-						<a class="f-r f-yahei s-12 node_val">$350,000</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">面积</a>
-						<a class="f-r f-yahei s-12 node_val">47-85</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">返利</a>
-						<a class="f-r f-yahei s-12 node_val">$550,000</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">均价</a>
-						<a class="f-r f-yahei s-12 node_val">$550,000</a>
-					</div>
-				</div> -->
+				<
 			</div>
 			<div class="f-l div4" id="right2">
 				<div  id="myMap" style="position:relative;width:100%;height:100%;"></div>
 			</div>
 		</div>
-		<!-- <div style="display:block;width:100%;min-height:40px;background-color:rgb(228,229,231);float:left;clear:both">
-			<div class="row" style="background-color:rgb(228,229,231);min-height:20px;width:1000px;position:relative;left:50%;margin-left:-455px;">
-				<div style="display:block;width:810px;float:left;min-height:40px;margin-top:30px;">
-					<img src="res/images/footer_icon.png" style="display:block;width:200px;float:left"></img>
-					<div style="display:block;height:50px;float:left">
-						<a style="display:block;width:110px;height:50px;line-height:50px;text-align:center;color:#666;font-size:12px;cursor:pointer;float:left">关于我们</a>
-						<a style="display:block;width:110px;height:50px;line-height:50px;text-align:center;color:#666;font-size:12px;cursor:pointer;float:left">商务合作</a>
-						<a style="display:block;width:110px;height:50px;line-height:50px;text-align:center;color:#666;font-size:12px;cursor:pointer;float:left">服务协议</a>
-						<a style="display:block;width:110px;height:50px;line-height:50px;text-align:center;color:#666;font-size:12px;cursor:pointer;float:left">隐私条款&隐私政策</a>
-						<a style="display:block;width:110px;height:50px;line-height:50px;text-align:center;color:#666;font-size:12px;cursor:pointer;float:left">加入我们</a>
-					</div>
-					<div style="display:block;width:98%;height:1px;background-color:#333;clear:both"></div>
-					<div style="display:block;width:660px;min-height:20px;float:left;clear:both">
-						<a style="display:block;width:100%;text-align:center;line-height:40px;color:#666;">热线：400-810-9685&nbsp;&nbsp;邮箱：Business@5zfang.com</a>
-						<a style="display:block;width:100%;text-align:center;line-height:40px;color:#666;">c2014-2015北京胜义行有限公司 . All rights reserved. 京ICP备1234567</a>
-					</div>
-					<div style="display:block;width:150px;float:right;min-height:30px;position:relative;left:-80px;"> 
-						<div style="display:block;width:20px;height:26px;background-image:url(res/images/footer_mini.png);float:left;margin-top:10px;cursor:pointer;"></div>
-						<div style="display:block;width:33px;height:26px;background-image:url(res/images/footer_mini.png);background-position:-20px 0px;float:left;margin-top:10px;margin-left:10px;cursor:pointer"></div>
-						<div style="display:block;width:26px;height:26px;background-image:url(res/images/footer_mini.png);background-position:-53px 0px;float:left;margin-top:10px;margin-left:10px;cursor:pointer"></div>
-					</div>
-				</div>
-				<div style="display:block;width:90px;float:left;margin-top:30px;">
-					<img src="res/images/footer_qr.png" style="display:block;width:90px;"></img>
-				</div>
-			</div>
-		</div> -->
-		<%-- <jsp:include page="foot4index.jsp" /> --%>
+		
 	</body>
 </html>
 <script>
@@ -681,11 +627,12 @@ function hoverFunc(select, css){
     )
 }
 
-    function checkForm(){
-        var _input=$("#keyWord").val();
-        if(_input.length>40){
-            _input = _input.substring(0,40);
-            $("#keyWord").val(_input);
-        }
+function checkForm(){
+    var _input=$("#keyWord").val();
+    if(_input.length>40){
+        _input = _input.substring(0,40);
+        $("#keyWord").val(_input);
     }
+}
+   
 </script>
