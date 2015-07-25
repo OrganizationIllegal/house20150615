@@ -18,6 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- <script src="/bootstrap/js/bootstrap.min.js"></script> -->
 <script src="/bootstrap-datepicker-1.4.0-dist/js/bootstrap-datepicker.min.js"></script>
 <script src="/bootstrap-datepicker-1.4.0-dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+<link rel="stylesheet" href="css/chosen.css">
 <style type="text/css">
 body{
 	/* background-color:rgb(232, 233, 234)!important; */
@@ -42,7 +43,26 @@ body{
 <span class="area_span">发布时间</span><span><input type="text" id="fabu_time" name="fabu_time" class="area_input"></span>
 </div>
 <div class="area_left">
-<span class="area_span">分类</span><span><input type="text" id="fenlei" name="fenlei" class="area_input"></span>
+<span class="area_span">分类</span>
+<span>
+<!-- <input type="text" id="fenlei" name="fenlei" class="area_input"> -->
+<select data-placeholder="请选择..." class="chosen-select" id="fenlei" name="fenlei" style="width:220px;" tabindex="4">
+ 	 <option value=""></option>
+  	 <option value="购房政策">购房政策</option>
+     <option value="购房常识">购房常识</option>
+      <option value="购房成本">购房成本</option>
+      <option value="交易流程">交易流程</option>
+      <option value="看房技巧">看房技巧</option>
+      <option value="合同讲解">合同讲解</option>
+      <option value="定金原则">定金原则</option>
+      <option value="签约事宜">签约事宜</option>
+      <option value="信贷政策">信贷政策</option>
+      <option value="交易税费">交易税费</option>
+      <option value="持有税费">持有税费</option>
+      <option value="交割须知">交割须知</option>
+      
+ </select>
+</span>
 </div>
 <div class="area_right">
 <span class="area_span">摘要</span><span><input type="text" id="zhiye_abstract" name="zhiye_abstract" class="area_input"></span>
@@ -132,5 +152,19 @@ $(".uploadimg").click(function(){
 		return false;
 	}
 </script>
+<script src="/js/chosen.jquery.js" type="text/javascript"></script>
+ <script src="/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+ <script type="text/javascript">
+    var config = {
+      '.chosen-select'           : {},
+      '.chosen-select-deselect'  : {allow_single_deselect:true},
+      '.chosen-select-no-single' : {disable_search_threshold:10},
+      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+  </script>
 </body>
 </html>

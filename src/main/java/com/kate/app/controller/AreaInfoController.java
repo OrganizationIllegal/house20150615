@@ -2,7 +2,10 @@
 
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -651,7 +654,28 @@ public class AreaInfoController extends BaseDao {
 					
 					/*boolean flag = areaInfoDao.addAreaInfo(area_num, area_name, area_city, area_zhou, area_nation, area_postcode);*/
 					String touzi_datasource = json.getString("touzi_datasource");
+					
 					String touzi_date = json.getString("touzi_date");
+					
+			       /* String time1 = "";
+					Timestamp ts1 = new Timestamp(System.currentTimeMillis()); 
+					if(touzi_date==null||"".equals(touzi_date)){
+						touzi_date =new SimpleDateFormat("yyyy-MM-dd").format(new Date());// "2015-05-09";
+					}
+			        try {  
+			        	time1 = touzi_date+" "+"00:00:00";
+			            ts1 = Timestamp.valueOf(time1);   
+			            
+			        } catch (Exception e) {   
+			            e.printStackTrace();   
+			        } */
+			       
+					
+					
+					
+					
+					
+					
 					String year_increment_rate = json.getString("year_increment_rate");
 					String middle_price = json.getString("middle_price");
 					String middle_zu_price = json.getString("middle_zu_price");
