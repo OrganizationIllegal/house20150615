@@ -164,6 +164,26 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		return "/index01";
 	}
 	
+	@RequestMapping({ "/Register2" })
+	public void register2(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+		int flag=0;
+		String telemail = req.getParameter("telemail");
+		String pwd = req.getParameter("pwd");
+		JSONObject json = new JSONObject();
+		if(isEmail(telemail)){
+			flag=userInfoDao.register2(telemail, pwd);
+		}else if(isPhoneNumberValid(telemail)){
+			flag=userInfoDao.register1(telemail, pwd);
+		}
+		json.put("flag", flag);
+		try{
+			writeJson(json.toJSONString(),resp);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+	
 	@RequestMapping({ "/login" })
 	public String login(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		HttpSession session = req.getSession();

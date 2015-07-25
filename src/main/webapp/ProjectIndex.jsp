@@ -410,7 +410,7 @@ function popInfo(){
 					<a class="c-fix f-l p_lab f-yahei s-14">价格区间：$${project.project_min_price}-$${project.project_high_price}</a>
 					<div class="f-l p_btn_get cp" onclick="pop3()"></div>
 				</div>
-				<div class="f-r p_btn_return">返现金额：${project.return_money}</div>
+				<div class="f-r p_btn_return">返现金额：$${project.return_money}</div>
 			</div>
 		</div>
 		<div class="c-fix  bkg3" style="margin:0 auto;height:405px;width:990px">
@@ -1004,8 +1004,10 @@ function popInfo(){
 				<div class="c-fix p_inner bgc" style="padding-bottom:30px;">
 					<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:950px;margin-bottom:10px;">新闻报道</a>
 					<div class="c-fix f-l p_news_node" style="margin-left:15px;">
+					    <a href="/Detail?id=${item.id}&type=1">
 						<img src="<%=application.getInitParameter("imagedir")%>/${newsInfo_one.news_image}" class="c-fix f-l news_img" style="width:315px;height:200px"></img>
-						<a class="c-fix f-l f-yahei s-16 fw news_title">新闻标题：${newsInfo_one.news_title}</a>
+						</a>
+						<a href="/Detail?id=${item.id}&type=1" class="c-fix f-l f-yahei s-16 fw news_title">新闻标题：${newsInfo_one.news_title}</a>
 						<div class="p_foot">
 						<a class="c-fix f-l f-yahei s-14 news_type">分类：${newsInfo_one.news_fenlei}</a>
 						<a class="f-l f-yahei s-14 news_time">时间：${timeResuleOne}</a>
@@ -1592,12 +1594,31 @@ function popInfo(){
      	var temp;
      	temp = judgeRe(user,pass);
      	//alert(temp)             	
-     	if(temp==true){	                	
-             document.fm1.submit();  //fm为form表单name
+     	 if(temp==true){	                	
+             //document.fm1.submit();  //fm为form表单name
+     		$.ajax({
+    			type:'post',
+    			url:'/Register2',
+    			dateType:'json',
+    			data:{"telemail":user,"pwd":pass},
+    			success:function(data){
+    				if(data.flag == 1){
+    					alert("注册成功！");
+    					window.location.href = '/index01';
+    				}
+    				else{
+    					alert("注册失败！");    					
+    				}
+
+    			},
+    			error:function(){
+      			}
+    		});
      	}
      	else{               	
      		return false;
-     	} 
+     	}  
+     	
      });
 
      $("#cancelnew").click(function() {
