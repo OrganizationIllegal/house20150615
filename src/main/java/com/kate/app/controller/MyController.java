@@ -332,7 +332,7 @@ public class MyController {
 	@RequestMapping({"/Index/HouseInfo"})
 	public void getHouseInfo(HttpServletRequest req, HttpServletResponse resp,String proNum){
 		HouseProject pro = houseProjectService.getHouseProjectByNum(proNum);
-		String type = pro.getProject_type();
+		//String type = pro.getProject_type();
 		List<HouseInfo> houseInfoList=houseInfoService.getHouseInfoList(proNum);
 		req.setAttribute("HouseInfoList", houseInfoList);
 	}
@@ -420,13 +420,24 @@ public class MyController {
  		String temp = data.getYear_increment_rate();
  		String temp_zu = data.getZu_house_rate();
  		String middlePrice = data.getMiddle_price();
+ 		
  		String zu_xuqiu=data.getZu_xuqiu();
+ 		
+ 		DecimalFormat df1 = new DecimalFormat("#,###,###");
+		
+			
  		if(middlePrice!=null && !"".equals(middlePrice)){
- 			if(middlePrice.length()>=3){
+ 			int middleTemp = Integer.parseInt(middlePrice);
+ 			middlePrice = "$"+df1.format(middleTemp)+"K";
+ 			/*if(middlePrice.length()>=3){
  				middlePrice = middlePrice.substring(0,middlePrice.length()-3)+"K";
  				data.setMiddle_price(middlePrice);
- 			}
+ 			}*/
  		}
+ 		else{
+ 			middlePrice = "$"+"0,000,000K";
+ 		}
+ 		
  		double result=0.00;
  		DecimalFormat df = new DecimalFormat("0.0%");
  		if(temp!=null && !"".equals(temp)){
@@ -437,8 +448,35 @@ public class MyController {
  			result = Double.parseDouble(temp_zu);
  			zu_house_rate_info = df.format(result);
  		}
+ 		String middle_zu_price = data.getMiddle_zu_price();
+ 		if(middle_zu_price!=null && !"".equals(middle_zu_price)){
+ 			int zuTemp = Integer.parseInt(middle_zu_price);
+ 			middle_zu_price = "$"+ df1.format(zuTemp)  +"/周";
+ 		}
+ 		else{
+ 			middle_zu_price = "$"+0+"/周";
+ 		}
+ 		String price_review = data.getPrice_review();
+ 		if(price_review!=null && !"".equals(price_review)){
+ 			if(price_review.indexOf("-") >= 0){
+ 				price_review = price_review.substring(price_review.indexOf("-")+1, price_review.length());
+ 				int priceTemp = Integer.parseInt(price_review);
+ 				price_review = "-$"+ df1.format(priceTemp) +"/月";
+ 			}
+ 			else{
+ 				price_review = "$"+price_review+"/月";
+ 			}
+ 		}
+ 		else{
+ 			middle_zu_price = "$"+0+"/月";
+ 		}
+ 			
  		data.setYear_increment_rate(increment);
  		data.setZu_house_rate(zu_house_rate_info);
+ 		data.setPrice_review(price_review);
+ 		data.setMiddle_zu_price(middle_zu_price);
+ 		data.setMiddle_price(middlePrice);
+ 		
  		if(zulin!=null && !"".equals(zulin)){
  			 items = zulin.split("/");
  		}
@@ -469,11 +507,74 @@ public class MyController {
 		if(pro!=null){
 			proType = pro.getProject_type();
 		}
+		DecimalFormat df = new DecimalFormat("#,###,###");
 		middlePrice = middlePriceDao.getMiddlePrice(proType, areaNum);
+		String zu_price = "";
+		String zu_one_price = "";
+		String zu_two_price = "";
+		String zu_three_price = "";
+		String buy_price = "";
+		String buy_one_price = "";
+		String buy_two_price = "";
+		String buy_three_price = "";
+		
+		if(middlePrice!=null){
+			int price = middlePrice.getZu_one_price();
+			if(price!=0){
+				zu_price =  df.format(price);
+			}
+			
+			int price1 = middlePrice.getZu_one_price();
+			if(price1!=0){
+				zu_one_price =  df.format(price1);
+			}
+			
+			int price2 = middlePrice.getZu_two_price();
+			if(price2!=0){
+				zu_two_price =  df.format(price2);
+			}
+			
+			int price3 = middlePrice.getZu_three_price();
+			if(price3!=0){
+				zu_three_price =  df.format(price3);
+			}
+			
+			int price4 = middlePrice.getBuy_price();
+			if(price4!=0){
+				buy_price =  df.format(price4);
+			}
+			
+			int price5 = middlePrice.getBuy_one_price();
+			if(price5!=0){
+				buy_one_price =  df.format(price5);
+			}
+			
+			int price6 = middlePrice.getBuy_two_price();
+			if(price6!=0){
+				buy_two_price =  df.format(price6);
+			}
+			
+			int price7 = middlePrice.getBuy_three_price();
+			if(price7!=0){
+				buy_three_price =  df.format(price7);
+			}
+			
+			
+		}
+		
 		
 		req.setAttribute("areaName", areaName);
 		req.setAttribute("proType", proType);
 		req.setAttribute("middlePrice", middlePrice);
+		
+		req.setAttribute("zu_price", zu_price);
+		req.setAttribute("zu_one_price", zu_one_price);
+		req.setAttribute("zu_two_price", zu_two_price);
+		req.setAttribute("zu_three_price", zu_three_price);
+		req.setAttribute("buy_price", buy_price);
+		req.setAttribute("buy_one_price", buy_one_price);
+		req.setAttribute("buy_two_price", buy_two_price);
+		req.setAttribute("buy_three_price ", buy_three_price );
 	}
 	
 	/**
@@ -547,14 +648,18 @@ public class MyController {
 		
 		
 		List<String> areaZhikongYeatList=new ArrayList<String>();
-		List<Float> areaZhikongRateList=new ArrayList<Float>();
+		List<String> areaZhikongRateList=new ArrayList<String>();
 		for(AreaZhikong areaZhikong:areaZhikongList){
 			String year=areaZhikong.getHeng();
 			//int rate=areaZhikong.getZong()/1000;
+			DecimalFormat df =new DecimalFormat("#####0.0");
 			float rate=areaZhikong.getZong();
+			double rate_double = rate;
+			String rate_str = df.format(rate_double);
+			
 			if(year!=null && rate>=0){
 				areaZhikongYeatList.add(year);
-				areaZhikongRateList.add(rate);
+				areaZhikongRateList.add(rate_str);
 			}
 		}
 		req.setAttribute("areaZhikongYeatList", areaZhikongYeatList);

@@ -127,7 +127,11 @@ $('#trendTabs a').click(function (e) {
 			    ],
 			    yAxis : [
 			        {
-			            type : 'value'
+			            type : 'value',
+			            precision: 2,
+			            splitNumber: 9,
+			            boundaryGap: [0.01, 0.01], 
+		                splitArea: { show: true } 
 			        }
 			    ],
 			    series : [
