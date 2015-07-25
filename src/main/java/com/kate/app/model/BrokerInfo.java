@@ -14,22 +14,9 @@ public class BrokerInfo {
 	private int broker_experience;
 	private String broker_type;
 	private String broker_zizhi;
-	private List<LeiXing> leixingInfo;
-	private List<String> areaList;
 	
 	
-	public List<String> getAreaList() {
-		return areaList;
-	}
-	public void setAreaList(List<String> areaList) {
-		this.areaList = areaList;
-	}
-	public List<LeiXing> getLeixingInfo() {
-		return leixingInfo;
-	}
-	public void setLeixingInfo(List<LeiXing> leixingInfo) {
-		this.leixingInfo = leixingInfo;
-	}
+	
 	public String getBroker_num() {
 		return broker_num;
 	}

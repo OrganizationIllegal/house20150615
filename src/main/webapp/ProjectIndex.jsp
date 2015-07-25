@@ -355,8 +355,9 @@ function lunbo1(){
 	});
 }
 $(function(){
-	//lunbo();
-	player = new YKU.Player('youkuplayer',{
+	var vedioUrl = "${vedio}";
+	lunbo();
+	player = new YKU.Player('youkuplayer1',{
 		styleid: '0',
 		client_id: '6e97509b4cd3378b',
 		vid: 'XOTUxNDk2NDQ0',
@@ -473,13 +474,34 @@ function popInfo(){
             <div style="float:left;width:750px;display:inline;">
 				<input type="hidden" id="Control" value='0'>
                 <table class="ad_left_big" width="750" border="0" cellpadding="0" cellspacing="0" style="margin-top: 0px;">
-                     <tr><td><div id="youkuplayer" style="width:750px;height:474px"></div></td>
-                    </tr>
-                    <c:forEach var="item"  items="${imageList}"   varStatus="status">
-                    <%-- <c:if test="${status.index<2 }"> --%>
-                    	<tr><td><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="750" height="474" /></a></td></tr>
-                   <%--  </c:if> --%>
-                    </c:forEach>
+                    <!--  <tr><td><div id="youkuplayer" style="width:750px;height:474px"></div></td>
+                    </tr> -->
+                    <c:choose>
+	                    <c:when test="${empty vedio}">
+		                    <c:forEach var="item"  items="${imageList}"   varStatus="status">
+		                    <%-- <c:if test="${status.index<2 }"> --%>
+		                    	<tr><td><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="750" height="474" /></td></tr>
+		                   <%--  </c:if> --%>
+		                    </c:forEach>
+	                    </c:when>
+	                    <c:otherwise>
+	                    	 
+		                    <c:forEach var="item"  items="${imageList}"   varStatus="status">
+			                     <c:if test="${status.index==0}">
+			                    	<tr><td><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="750" height="474" /></td></tr>
+			                     </c:if>
+			                 </c:forEach>
+			                 	<%-- <tr><td><img src="<%=application.getInitParameter("imagedir")%>/" width="750" height="474" /></td></tr> --%>
+			                 	<tr><td><div id="youkuplayer1" style="width:750px;height:474px"></div></td> </tr>
+                   
+                    			 <c:forEach var="item"  items="${imageList}"   varStatus="status">
+			                     <c:if test="${status.index>0}">
+			                    	<tr><td><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="750" height="474" /></td></tr>
+			                     </c:if>
+			                 </c:forEach>
+	                    </c:otherwise>
+	                   
+		            </c:choose>
                  </table>
             </div>
 
@@ -487,30 +509,40 @@ function popInfo(){
                 <div class="top_button off"></div>
                 <div class="small_right_limit">
                     <ul style="margin-top: 0px;">
-                    <c:forEach var="item"  items="${imageList}"   varStatus="status">
-			            <c:if test="${status.index==0}">
-			            	<li style="margin-top:6px"><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="210" height="140"/></li>
-			            </c:if>
-			         </c:forEach>
-			         
-                    <li style="margin-top:6px">
-                    	<img src="<%=application.getInitParameter("imagedir")%>/The Atrium_Project_01.jpg" width="210" height="140"/>
-                    </li>
-			            <c:forEach var="item"  items="${imageList}"   varStatus="status">
-			           <%--  <c:if test="${status.index<2}"> --%>
-			            <c:if test="${status.index>0}">
-			            	<li style="margin-top:6px"><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="210" height="140"/></li>
-			           <%--  </c:if>  --%>   
-			           </c:if>              		
-                    	</c:forEach>
-                        <%-- <c:forEach var="item"  items="${vedioList}"   varStatus="status">
+                    <c:choose>
+                    	<c:when test="${empty vedio}">
+		                    <c:forEach var="item"  items="${imageList}"   varStatus="status">
+		                    
+				            	<li style="margin-top:6px"><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="210" height="140"/></li>
+				             </c:forEach>
+		                    
+	                    </c:when>
+                    
+                    	
+                    	<c:otherwise>
+                    		<c:forEach var="item"  items="${imageList}"   varStatus="status">
+			            		<c:if test="${status.index==0}">
+			            			<li style="margin-top:6px"><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="210" height="140"/></li>
+			            		</c:if>
+			         		</c:forEach>
+			         		<li style="margin-top:6px"><img src="<%=application.getInitParameter("imagedir")%>/au3000_xm_1.jpg" width="210" height="140"/></li>
+                     		<c:forEach var="item"  items="${imageList}"   varStatus="status">
+			            		<c:if test="${status.index>0}">
+			            			<li style="margin-top:6px"><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="210" height="140"/></li>
+			            		</c:if>
+			         		</c:forEach>
+                    
+                    
+                    	</c:otherwise>
+                    	</c:choose>
+                        <%-- <c:forEach var="item"  items="${imageList}"   varStatus="status">
                         <c:if test="${status.index<3}">
                     		<li><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="210" height="140"/></li>
                     	</c:if>
                     	</c:forEach> --%>
                        
                     </ul>
-                    <div class="this_ad" style="top:0px;"><img style="border:blue 2px solid;width:211px;height:146px;margin-left:9px;margin-top:6px;"/></div>
+                    <!-- <div class="this_ad" style="top:0px;"><img style="border:blue 2px solid;width:211px;height:146px;margin-left:9px;margin-top:6px;"/></div> -->
                 </div>
                 <div class="bottom_button off"></div>
             </div>
@@ -1647,7 +1679,7 @@ function popInfo(){
 	 
 	</script>
 	
-	 <script type="text/javascript" src="http://player.youku.com/jsapi">
+	<!--  <script type="text/javascript" src="http://player.youku.com/jsapi">
 		flag=0;
 		player = new YKU.Player('youkuplayer',{
 			styleid: '0',
@@ -1673,7 +1705,7 @@ function popInfo(){
 			player.pauseVideo();
 				alert("zanting")
 			}
-	</script>
+	</script> -->
 		
 </html>
 

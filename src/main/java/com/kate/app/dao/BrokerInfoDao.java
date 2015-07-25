@@ -1,6 +1,5 @@
 package com.kate.app.dao;
 
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +12,7 @@ import java.util.Set;
 import org.springframework.stereotype.Repository;
 
 import com.kate.app.model.BrokerInfo;
+import com.kate.app.model.BrokerInfoQuyu;
 import com.kate.app.model.LeiXing;
 
 @Repository 
@@ -246,11 +246,11 @@ public class BrokerInfoDao extends BaseDao {
 	} 
 	
 	
-	public BrokerInfo getBrokerInfo(int id){
+	public BrokerInfoQuyu getBrokerInfo(int id){
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		BrokerInfo data = new BrokerInfo();
+		BrokerInfoQuyu data = new BrokerInfoQuyu();
 		List<LeiXing> leixingList = new ArrayList<LeiXing>();
 		List<String> areaList = new ArrayList<String>();
 		LeiXing temp = null;

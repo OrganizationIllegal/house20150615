@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.kate.app.dao.BrokerInfoDao;
 import com.kate.app.dao.HouseProjectDao;
 import com.kate.app.model.BrokerInfo;
-import com.kate.app.model.User;
+import com.kate.app.model.BrokerInfoQuyu;
 
 @Controller
 public class ServiceController {
@@ -33,7 +33,7 @@ public class ServiceController {
 		if(brokerId_str!=null && !"".equals(brokerId_str)){
 			brokerId = Integer.parseInt(brokerId_str);
 		}
-		BrokerInfo data = brokerInfoDao.getBrokerInfo(brokerId);
+		BrokerInfoQuyu data = brokerInfoDao.getBrokerInfo(brokerId);
 		String broker_num = brokerInfoDao.findBrokerInfo(brokerId);
 		
 		List<String> areaList = data.getAreaList();
