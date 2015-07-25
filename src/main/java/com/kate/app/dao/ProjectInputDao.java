@@ -2464,7 +2464,7 @@ public class ProjectInputDao extends BaseDao {
 			String project_min_price=project.getProject_min_price();
 			String project_high_price=project.getProject_high_price();
 			int tuijiandu=project.getTuijiandu();
-			String housePrice_update_time=project.getHousePrice_update_time().toString();
+			String housePrice_update_time=project.getHousePrice_update_time();
 			/*String buytaxInfo=project.getBuytaxInfo();
 			String holdInfo=project.getHoldInfo();*/
 			String area_num=project.getArea_num();
@@ -2473,7 +2473,7 @@ public class ProjectInputDao extends BaseDao {
 			String developer_num=project.getDeveloper_id_name();
 			
 			
-			/*String time = "";
+			String time = "";
 			Timestamp ts = new Timestamp(System.currentTimeMillis()); 
 			if(project_finish_time==null||"".equals(project_finish_time)){
 				project_finish_time = new SimpleDateFormat("yyyy-MM-dd").format(new Date());//"2015-05-09";
@@ -2485,8 +2485,8 @@ public class ProjectInputDao extends BaseDao {
 	            
 	        } catch (Exception e) {   
 	            e.printStackTrace();   
-	        }  */
-			String time=project.getProject_finish_time();
+	        } 
+			/*String time=project.getProject_finish_time();
 	        String time1 = "";
 			Timestamp ts1 = new Timestamp(System.currentTimeMillis()); 
 			if(housePrice_update_time==null||"".equals(housePrice_update_time)){
@@ -2499,8 +2499,13 @@ public class ProjectInputDao extends BaseDao {
 	            
 	        } catch (Exception e) {   
 	            e.printStackTrace();   
-	        } 
-	       
+	        } */
+			 String time1=null;
+		     if(housePrice_update_time==null || "".equals(housePrice_update_time)){
+		    	 time1=null;
+		     }else{
+		    	 time1=housePrice_update_time.toString();
+		     }
 			try{
 				con.setAutoCommit(false);
 				//项目添加
@@ -2815,7 +2820,7 @@ public class ProjectInputDao extends BaseDao {
 	            e.printStackTrace();   
 	        }  */
 			String time=project.getProject_finish_time();
-	        String time1 = "";
+	       /* String time1 = "";
 			Timestamp ts1 = new Timestamp(System.currentTimeMillis()); 
 			if(housePrice_update_time==null||"".equals(housePrice_update_time)){
 				housePrice_update_time =new SimpleDateFormat("yyyy-MM-dd").format(new Date());// "2015-05-09";
@@ -2827,7 +2832,13 @@ public class ProjectInputDao extends BaseDao {
 	            
 	        } catch (Exception e) {   
 	            e.printStackTrace();   
-	        } 
+	        } */
+			 String time1 = null;
+			 if(time==null || "".equals(time)){
+				 time1=null;
+			 }else{
+				 time1=time.toString();
+			 }
 	       
 			try{
 				con.setAutoCommit(false);
@@ -3720,7 +3731,7 @@ public class ProjectInputDao extends BaseDao {
 			String project_min_price=project.getProject_min_price();
 			String project_high_price=project.getProject_high_price();
 			int tuijiandu=project.getTuijiandu();
-			String housePrice_update_time=project.getHousePrice_update_time().toString();
+			String housePrice_update_time=project.getHousePrice_update_time();
 			/*String buytaxInfo=project.getBuytaxInfo();
 			String holdInfo=project.getHoldInfo();*/
 			String area_num=project.getArea_num();
@@ -3755,6 +3766,12 @@ public class ProjectInputDao extends BaseDao {
 //	        } catch (Exception e) {   
 //	            e.printStackTrace();   
 //	        } 
+			 String time1 = null;
+			 if(housePrice_update_time==null||"".equals(housePrice_update_time)){
+				    time1 = null;
+				}else{
+					time1=housePrice_update_time.toString();
+				}
 	       
 			try{
 				con.setAutoCommit(false);
@@ -3786,7 +3803,7 @@ public class ProjectInputDao extends BaseDao {
 				pstmt.setString(22, project_high_price);
 				pstmt.setInt(23, tuijiandu);
 				//pstmt.setString(24, time1);
-				pstmt.setString(24, housePrice_update_time);
+				pstmt.setString(24, time1);
 				/*pstmt.setString(25, buytaxInfo);
 				pstmt.setString(26, holdInfo);*/
 				pstmt.setString(25, area_num);
