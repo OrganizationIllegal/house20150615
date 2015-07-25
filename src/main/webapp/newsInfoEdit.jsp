@@ -165,9 +165,11 @@ $(".uploadimg").click(function(){
 	 			}else if(data.flag == 0){
 	 				alert("更新失败！");
 	 			}
+	 			window.close();
 	 		},
 	 		error:function(){
-	 			alert("error")
+	 			alert("error");
+	 			window.close();
 	 		}
 	 	});
 	  }
