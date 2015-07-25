@@ -15,6 +15,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <script src="/js/jquery-2.1.4.js"></script>
    <script src="/bootstrap/js/bootstrap.js"></script>
    <script src="/ckeditor/ckeditor.js"></script>
+   <!-- <script src="/bootstrap/js/bootstrap-table.js"></script> -->
+
+
 </head>
 <body>
 <%
@@ -392,7 +395,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	           
 	           else if(node.text=="用户列表"){
 	        	   if(item==2){
-	        		   $("#showlist").load("userList.jsp");
+	        		   //$("#showlist").load("userList.jsp");
+	        		   window.open("userList.jsp","用户列表");
 	        	   }
 	        	   else{
 	        		   alert("您没有权限查看用户列表！");

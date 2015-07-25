@@ -15,8 +15,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="css/projectLuru.css" />
 <!-- <link rel="stylesheet" type="text/css" href="uploadify/uploadify.css" /> -->
 <!-- <link rel="stylesheet" type="text/css" href="/webuploader-0.1.5/webuploader.css"/>  -->
-<script src="/js/jquery.min.js"></script> 
-<script src="/bootstrap/js/bootstrap.min.js"></script> 
+<!-- <script src="/js/jquery.min.js"></script> 
+<script src="/bootstrap/js/bootstrap.min.js"></script>  -->
 <!-- <script src="uploadify/jquery.uploadify.js"></script> -->
 <!-- <script src="/webuploader-0.1.5/webuploader.min.js"></script> -->
 

@@ -11,16 +11,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="/bootstrap/css/bootstrap-table.css" rel="stylesheet">
 
- <script src="/js/jquery.min.js"></script> 
- <script src="/bootstrap/js/bootstrap.min.js"></script> 
-<!-- <script src="/bootstrap/js/jquery.base64.js"></script> -->
-
-<!-- 
-<script src="/bootstrap/js/bootstrap-table-export.js"></script> -->
+<!-- <script src="/js/jquery.min.js"></script> -->
+<!-- <script src="/bootstrap/js/bootstrap.min.js"></script> -->
 <script src="/bootstrap/js/bootstrap-table.js"></script>
 
-<script src="/js/bootstrap-table-export.js"></script>
-<script src="/js/tableExport.js"></script> 
+
+
 
 <style type="text/css">
 body{
@@ -40,11 +36,9 @@ if(request.getSession().getAttribute("flag")!=null){
 %>
 <div style="width:900px;margin:25px auto;">
 <div class="area_bkg1">当前位置:用户列表</div>
- <!-- data-export-types:"['json', 'xml', 'txt', 'excel']" -->
- <!-- data-toggle='table' -->
  <table id="table"          
 
-        data-toggle='table'
+           data-toggle='table'
  		data-url="/UserInfoList"
  		data-striped='true'
  		data-search="true"
@@ -55,8 +49,7 @@ if(request.getSession().getAttribute("flag")!=null){
            data-side-pagination="client"
            data-page-size="20"
            data-page-number=1
-           data-show-export="true"
-          
+           
            >
         <thead>
         <tr>
@@ -86,7 +79,6 @@ if(request.getSession().getAttribute("flag")!=null){
 
 
 <script>
-
 var item = <%=flag%>
     var $table = $('#table'),
         $remove = $('#remove'),
@@ -94,32 +86,13 @@ var item = <%=flag%>
         selections = [];
 	var i=0;
 	var count=0;
-	/* $(function(){
-    	$table.bootstrapTable('refreshOptions', {
-                exportDataType: 'all',
-                exportTypes:['json', 'xml', 'txt', 'excel']
-            });
-    }) */
     $(function () {
         $('#add').click(function () {
             $table.bootstrapTable('insertRow', {index: 0, row:{id:'x'+(i++)} });
         });
         $table.bootstrapTable({
-            height: 500,
-            /* 'exportOptions':{
-            	exportDataType:"all",
-            	exportTypes:['excel'] 
-            } */
-            /* exportDataType:"all",
-            exportTypes:['json', 'xml', 'txt', 'excel'] */
+            height: 500
         });
-        /* $table.bootstrapTable('exportOptions',{
-            exportDataType:"all",
-            exportTypes:['json', 'xml', 'txt', 'excel'] 
-        }); */
-        /* $table.tableExport({exportDataType:"all",
-            exportTypes:['json', 'xml', 'txt', 'excel']
-                       }); */
         $table.on('check.bs.table uncheck.bs.table ' +
                 'check-all.bs.table uncheck-all.bs.table', function () {
             $remove.prop('disabled', !$table.bootstrapTable('getSelections').length);
@@ -248,11 +221,11 @@ var item = <%=flag%>
         }
     };
 
+    
+
     function getHeight() {
-    	return $(window).height() - $('h1').outerHeight(true);
+        return 500;
     }
-    
-    
 </script>
 </body>
 </html>
