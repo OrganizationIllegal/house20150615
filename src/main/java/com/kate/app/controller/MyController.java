@@ -234,14 +234,14 @@ public class MyController {
 		/*List<ProjectImage> imageList = new ArrayList<ProjectImage>();
 		List<ProjectImage> vedioList = new ArrayList<ProjectImage>();*/
 		System.out.println(list.size());
-		for(ProjectImage image : list){
+		/*for(ProjectImage image : list){
 			if(image.getImage_type().equals("图片")){
 				imageList.add(image);
 			}
 			else{
 				vedioList.add(image);
 			}
-		}
+		}*/
 		//System.out.println(list.get(0).getImage_name());
 		req.setAttribute("imageList", list);
 		req.setAttribute("vedio", vedio);
