@@ -541,9 +541,11 @@ function add(){
 	 			}else if(data.flag <2){
 	 				alert("更新失败！");
 	 			}
+	 			window.close();
 	 		},
 	 		error:function(){
-	 			alert("error")
+	 			alert("error");
+	 			window.close();
 	 		}
 	 	});
 	  }
@@ -585,9 +587,11 @@ function add(){
 	 			}else if(data.flag == 0){
 	 				alert("添加失败！");
 	 			}
+	 			window.close();
 	 		},
 	 		error:function(){
-	 			alert("error")
+	 			alert("error");
+	 			window.close();
 	 		}
 	 	});
 	  }

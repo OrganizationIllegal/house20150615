@@ -9,7 +9,7 @@
 //	        	},
 			    tooltip : {
 			        trigger: 'axis',
-			        formatter:'{b}<br/>房价:{c}$'
+			        formatter:'{b}<br/>房价:${c}'
 			    },
 			    legend: {
 			        data:['����'],
@@ -65,7 +65,7 @@ $('#trendTabs a').click(function (e) {
 //	        	},
 			    tooltip : {
 			        trigger: 'axis',
-			        formatter:'{b}<br/>租金:{c}$'
+			        formatter:'{b}<br/>租金:${c}'
 			    },
 			    legend: {
 			        data:['���'],
@@ -127,7 +127,11 @@ $('#trendTabs a').click(function (e) {
 			    ],
 			    yAxis : [
 			        {
-			            type : 'value'
+			            type : 'value',
+			            precision: 2,
+			            splitNumber: 9,
+			            boundaryGap: [0.01, 0.01], 
+		                splitArea: { show: true } 
 			        }
 			    ],
 			    series : [

@@ -1,5 +1,7 @@
 package com.kate.app.model;
 
+import java.util.List;
+
 public class BrokerInfo {
 	private int id;
 	private String broker_name;
@@ -12,7 +14,16 @@ public class BrokerInfo {
 	private int broker_experience;
 	private String broker_type;
 	private String broker_zizhi;
+	private List<LeiXing> leixingInfo;
 	
+	
+	
+	public List<LeiXing> getLeixingInfo() {
+		return leixingInfo;
+	}
+	public void setLeixingInfo(List<LeiXing> leixingInfo) {
+		this.leixingInfo = leixingInfo;
+	}
 	public String getBroker_num() {
 		return broker_num;
 	}

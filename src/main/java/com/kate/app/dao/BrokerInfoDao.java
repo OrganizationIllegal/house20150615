@@ -13,6 +13,7 @@ import java.util.Set;
 import org.springframework.stereotype.Repository;
 
 import com.kate.app.model.BrokerInfo;
+import com.kate.app.model.LeiXing;
 
 @Repository 
 public class BrokerInfoDao extends BaseDao {
@@ -250,11 +251,15 @@ public class BrokerInfoDao extends BaseDao {
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		BrokerInfo data = new BrokerInfo();
+		List<LeiXing> leixingList = new ArrayList<LeiXing>();
+		LeiXing temp = null;
 		try {
-			String sql = "select * from broker_info where id = ?";
-			pstmt = con.prepareStatement(sql);
+			String sql = "select * from broker_info a, broker_interested_type b, interest_type c where a.id = "+id+" and a.broker_num=b.broker_num and b.interested_num=c.type_num";
+			/*pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, id);
-			  rs = pstmt.executeQuery();
+			  rs = pstmt.executeQuery();*/
+			 stmt = con.createStatement();
+			 rs = stmt.executeQuery(sql);
 			 while(rs.next()){
 		    	data.setBroker_experience(rs.getInt("broker_experience"));
 		    	data.setBroker_img(rs.getString("broker_img"));
@@ -267,6 +272,15 @@ public class BrokerInfoDao extends BaseDao {
 		    	data.setId(rs.getInt("id"));
 		    	data.setIntroduction(rs.getString("introduction"));
 		    	data.setOffice(rs.getString("office"));
+		    	String leixing = rs.getString("type_name");
+		    	String leixingImg = rs.getString("type_image");
+		    	if((leixing!=null && !"".equals(leixing)) || (leixingImg!=null && !"".equals(leixingImg))){
+		    		temp = new LeiXing();
+			    	temp.setLeixing(leixing);
+			    	temp.setLeixingImg(leixingImg);
+			    	leixingList.add(temp);
+		    	}
+		    	data.setLeixingInfo(leixingList);
 		    } 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
