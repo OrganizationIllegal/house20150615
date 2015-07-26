@@ -1156,8 +1156,11 @@ $(function(){
 		//alert(fujinedit);
 		if(fujinedit==100){
 			var fujin={};
-			fujin=DataDeal.formToJson(data= decodeURIComponent($("#fujin").serialize(),true));
-			fujin=eval("("+fujin+")");
+			//fujin=DataDeal.formToJson(data= decodeURIComponent($("#fujin").serialize(),true));
+			fujin.peitao_type=$("#peitao_type").val();
+			fujin.peitao_name=$("#peitao_name").val();
+			fujin.peitao_distance=$("#peitao_distance").val();
+			/* fujin=eval("("+fujin+")"); */
 			fujinlist.push(fujin);
 			$("#fujinlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++fujincount)+"</span><span style='padding-right:10px;'>"+fujinlist[fujincount-1].peitao_type+"</span><span style='padding-right:10px;'>"+fujinlist[fujincount-1].peitao_name+"</span><span style='padding-right:10px;'>"+fujinlist[fujincount-1].peitao_distance+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
 			
@@ -1169,9 +1172,11 @@ $(function(){
 			}
 		else{
 			
-			fujinedititem=DataDeal.formToJson(data= decodeURIComponent($("#fujin").serialize(),true));
-
-			fujinedititem=eval("("+fujinedititem+")");
+			//fujinedititem=DataDeal.formToJson(data= decodeURIComponent($("#fujin").serialize(),true));
+			fujinedititem.peitao_type=$("#peitao_type").val();
+			fujinedititem.peitao_name=$("#peitao_name").val();
+			fujinedititem.peitao_distance=$("#peitao_distance").val();
+			//fujinedititem=eval("("+fujinedititem+")");
 
 			$("#fujin input").each(function(){
 				$(this).val("");
@@ -1202,7 +1207,7 @@ $(function(){
 		//alert(index+"index");
 		fujinedit=index;
 		$("#peitao_type").val(fujinedititem.peitao_type);
-		$("#peitao_name").val(fujinedititem.peitao_name);
+		$("#peitao_name").val(fujinedititem.peitao_name.replace(/\$nbsp;/g," "));
 		$("#peitao_distance").val(fujinedititem.peitao_distance);
 		}); 
 	
@@ -1223,9 +1228,11 @@ $(function(){
 		if(schooledit==100){
 
 			var school={};
-			school=DataDeal.formToJson(data= decodeURIComponent($("#school").serialize(),true));
+			/* school=DataDeal.formToJson(data= decodeURIComponent($("#school").serialize(),true));
 			school=school.replace(/\+/g," ");
-			school=eval("("+school+")");
+			school=eval("("+school+")"); */
+			school.school_distance=$("#school_distance").val();
+			school.school_name=$('#school_name').val();
 			schoollist.push(school);
 			$("#schoollist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++schoolcount)+"</span><span style='padding-right:10px;'>"+schoollist[schoolcount-1].school_name+"</span><span style='padding-right:10px;'>"+schoollist[schoolcount-1].school_distance+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
 			
@@ -1235,9 +1242,11 @@ $(function(){
 				});
 			}
 		else{
-			schooledititem=DataDeal.formToJson(data= decodeURIComponent($("#school").serialize(),true));
-			schooledititem=schooledititem.replace(/\+/g," ");
-			schooledititem=eval("("+schooledititem+")");
+			/* schooledititem=DataDeal.formToJson(data= decodeURIComponent($("#school").serialize(),true));
+			schooledititem=schooledititem.replace(/\+/g," "); */
+			schooledititem.school_distance=$("#school_distance").val();
+			schooledititem.school_name=$('#school_name').val();
+			//schooledititem=eval("("+schooledititem+")");
 			$("#school input").each(function(){
 				$(this).val("");
 				});

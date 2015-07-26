@@ -963,9 +963,12 @@ $(function(){
 			var school={};
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			school=DataDeal.formToJson(data= decodeURIComponent($("#school").serialize(),true));
+			/* school=DataDeal.formToJson(data= decodeURIComponent($("#school").serialize(),true));
 			school=school.replace(/\+/g," ");
-			school=eval("("+school+")");
+			school=eval("("+school+")"); */
+			
+			school.school_distance=$("#school_distance").val();
+			school.school_name=$('#school_name').val();
 
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
@@ -995,9 +998,11 @@ $(function(){
 			/* var huxing={}; */
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			schooledititem=DataDeal.formToJson(data= decodeURIComponent($("#school").serialize(),true));
+			/* schooledititem=DataDeal.formToJson(data= decodeURIComponent($("#school").serialize(),true));
 			schooledititem=schooledititem.replace(/\+/g," ");
-			schooledititem=eval("("+schooledititem+")");
+			schooledititem=eval("("+schooledititem+")"); */
+			schooledititem.school_distance=$("#school_distance").val();
+			schooledititem.school_name=$('#school_name').val();
 			/* schooledititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
