@@ -4623,8 +4623,53 @@ public class ProjectInputDao extends BaseDao {
 			            e.printStackTrace() ;   
 			        }   
 			     } 
+				String sqlcount="select COUNT(*) from area_recommend_broker where project_num = ?";
+				pstmt=con.prepareStatement(sqlcount);
+				pstmt.setString(1,project_num);
+				ResultSet rscount = null;
+				int count=0;
+				  rscount = pstmt.executeQuery();
+				while(rscount.next()){
+					count = rscount.getInt(1);
+				}
+				if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+				if(rscount!=null){
+					try{   
+						rscount.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+				}
+				if(count==0){
+					String sqlbroker = " insert into area_recommend_broker(broker_code1, broker_code2, broker_code3" +
+							" , area_code) values(?,?,?,?)";
+					pstmt = con.prepareStatement(sqlbroker);
+					pstmt.setString(1, broker_code1);
+					pstmt.setString(2, broker_code2);
+					pstmt.setString(3, broker_code3);
+					pstmt.setString(4, project_num);
+					
+					int resultbroker = pstmt.executeUpdate();
+					if(resultbroker == 0){
+						flagbroker = false;
+					}
+					if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				}
+				else if(count>0){
 					/*String sqlbroker = " insert into area_recommend_broker(broker_code1, broker_code2, " +
-							" , area_code) values(?,?,?,?)";*/
+					" , area_code) values(?,?,?,?)";*/
 					String sqlbroker = " update area_recommend_broker set broker_code1=?, broker_code2=?, broker_code3=? where project_num=?";
 					pstmt = con.prepareStatement(sqlbroker);
 					pstmt.setString(1, broker_code1);
@@ -4636,16 +4681,7 @@ public class ProjectInputDao extends BaseDao {
 					if(resultbroker == 0){
 						flagbroker = false;
 					}
-				
-				/*System.out.println("result4list.length:"+result4list.length);
-				for(int i=0;i<result4list.length;i++){
-					System.out.println("result4list"+i+":"+result4list[i]);
-				}*/
-				/*System.out.println("result77list.length:"+result77list.length);
-				for(int i=0;i<result7list.length;i++){
-					System.out.println("result77list"+i+":"+result77list[i]);
-				}*/
-				//delete from 户型及价格 
+					//delete from 户型及价格 
 					if(pstmt != null){   // 关闭声明   
 				        try{   
 				            pstmt.close() ;   
@@ -4653,6 +4689,8 @@ public class ProjectInputDao extends BaseDao {
 				            e.printStackTrace() ;   
 				        }   
 				     } 
+				}
+					
 				String sqldeletehouseinfo = "delete from house_info where id= ?";
 				pstmt = con.prepareStatement(sqldeletehouseinfo);
 				for(int i=0;i<houseInfolistdelete.size();i++){

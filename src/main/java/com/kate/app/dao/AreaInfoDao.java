@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
+import org.omg.CORBA.IRObject;
 import org.springframework.stereotype.Repository;
 
 import com.kate.app.model.AreaFamilyBackEnd;
@@ -3022,6 +3023,52 @@ public class AreaInfoDao extends BaseDao {
 			     } 
 					/*String sqlproject = " insert into recommend_project(recommend_num_1, recommend_num_2, " +
 							"recommend_num_3, area_code) values(?,?,?,?)";*/
+				//
+				String sqlcount="select COUNT(*) from recommend_project where area_code = ?";
+				pstmt=con.prepareStatement(sqlcount);
+				pstmt.setString(1,area_num);
+				ResultSet rscount = null;
+				int count=0;
+				  rscount = pstmt.executeQuery();
+				while(rscount.next()){
+					count = rscount.getInt(1);
+				}
+				if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+				if(rscount!=null){
+					try{   
+						rscount.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+				}
+				if(count==0){
+					String sqlproject =" insert into recommend_project(recommend_num_1, recommend_num_2, " +
+							"recommend_num_3, area_code) values(?,?,?,?)";
+					pstmt = con.prepareStatement(sqlproject);
+					pstmt.setString(1, recommend_num_1);
+					pstmt.setString(2, recommend_num_2);
+					pstmt.setString(3, recommend_num_3);
+					pstmt.setString(4, area_num);
+					
+					int resultproject = pstmt.executeUpdate();
+					if(resultproject == 0){
+						flagproject = false;
+					}
+					if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				}
+				else if(count>0) {
 					String sqlproject = " update recommend_project set recommend_num_1=?, recommend_num_2=?, recommend_num_3=? where area_code=?";
 					pstmt = con.prepareStatement(sqlproject);
 					pstmt.setString(1, recommend_num_1);
@@ -3040,6 +3087,8 @@ public class AreaInfoDao extends BaseDao {
 				            e.printStackTrace() ;   
 				        }   
 				     } 
+				}
+					
 				//鏂伴椈鎶ラ亾
 				boolean flagnews = true;
 				String reco_news_num_1 = "";
@@ -3069,9 +3118,52 @@ public class AreaInfoDao extends BaseDao {
 					reco_news_num_2 = resultList.get(1);
 					reco_news_num_3 = resultList.get(2);
 				}
-				
-					/*String sqlnews = " insert into recommend_news(reco_news_num_1, reco_news_num_2, " +
-							"reco_news_num_3, area_code) values(?,?,?,?)";*/
+				String sqlnewscount="select COUNT(*) from recommend_news where area_code = ?";
+				pstmt=con.prepareStatement(sqlnewscount);
+				pstmt.setString(1,area_num);
+				ResultSet rsnewscount = null;
+				int countnews=0;
+				  rsnewscount = pstmt.executeQuery();
+				while(rsnewscount.next()){
+					countnews = rsnewscount.getInt(1);
+				}
+				if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+				if(rsnewscount!=null){
+					try{   
+						rsnewscount.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+				}
+				if(countnews==0){
+					String sqlnews = " insert into recommend_news(reco_news_num_1, reco_news_num_2, " +
+							"reco_news_num_3, area_code) values(?,?,?,?)";
+					pstmt = con.prepareStatement(sqlnews);
+					pstmt.setString(1, reco_news_num_1);
+					pstmt.setString(2, reco_news_num_2);
+					pstmt.setString(3, reco_news_num_3);
+					pstmt.setString(4, area_num);
+					
+					int resultnews = pstmt.executeUpdate();
+					if(resultnews == 0){
+						flagnews = false;
+					}
+					
+					if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				}
+				else if(countnews>0){
 					String sqlnews = " update recommend_news set reco_news_num_1=?, reco_news_num_2=?, reco_news_num_3=? where area_code=?";
 					pstmt = con.prepareStatement(sqlnews);
 					pstmt.setString(1, reco_news_num_1);
@@ -3091,6 +3183,10 @@ public class AreaInfoDao extends BaseDao {
 				            e.printStackTrace() ;   
 				        }   
 				     } 
+				}
+					/*String sqlnews = " insert into recommend_news(reco_news_num_1, reco_news_num_2, " +
+							"reco_news_num_3, area_code) values(?,?,?,?)";*/
+					
 					
 					//middlepriceListdelete,middletrendListdelete,zujintrendlistListdelete
 					//,huibaotrendlistListdelete,tedianlistListdelete,peoplelistListdelete
@@ -3120,13 +3216,6 @@ public class AreaInfoDao extends BaseDao {
 						pstmt.setInt(1, middletrendListdelete.get(i).getId());
 						pstmt.addBatch();
 					}
-					if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
 					
 					int[] resultmiddletrenddelete=pstmt.executeBatch();
 					System.out.println("resultmiddletrenddelete.length:"+resultmiddletrenddelete.length);
