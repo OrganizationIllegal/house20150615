@@ -13,7 +13,35 @@ public class SearchList {
 	private String project_num;
     private String project_lan_cn;
     private String project_lan_en;
+    private String project_zhou;
+    private String project_city;
+    private String project_nation;
+    private String project_price;
    
+	public String getProject_zhou() {
+		return project_zhou;
+	}
+	public void setProject_zhou(String project_zhou) {
+		this.project_zhou = project_zhou;
+	}
+	public String getProject_city() {
+		return project_city;
+	}
+	public void setProject_city(String project_city) {
+		this.project_city = project_city;
+	}
+	public String getProject_nation() {
+		return project_nation;
+	}
+	public void setProject_nation(String project_nation) {
+		this.project_nation = project_nation;
+	}
+	public String getProject_price() {
+		return project_price;
+	}
+	public void setProject_price(String project_price) {
+		this.project_price = project_price;
+	}
 	private String mianji;
     private String project_address;
     private String project_logo;
@@ -31,8 +59,15 @@ public class SearchList {
     private int project_price_int_qi;
     private String project_desc;
     private int isCollected;//鏄惁琚綋鍓嶇敤鎴锋敹钘忥紝0琛ㄧず鏈敹钘忥紝1琛ㄧず琚綋鍓嶇敤鎴锋敹钘�
+    private String gps;
     
-    
+	
+	public String getGps() {
+		return gps;
+	}
+	public void setGps(String gps) {
+		this.gps = gps;
+	}
 	public int getIsCollected() {
 		return isCollected;
 	}
@@ -154,7 +189,7 @@ public class SearchList {
 		public void setProject_lan_en(String project_lan_en) {
 			this.project_lan_en = project_lan_en;
 		}
-	public SearchList(int id,String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String project_lan_en,String mianji,String project_address,String project_logo,String developer_id_name ,String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue, String center,String traffic,String xianfang,String maidi,int project_price_int_qi,String project_desc){
+	public SearchList(int id, String gps, String project_city, String project_nation, String project_zhou, String project_price, String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String project_lan_en,String mianji,String project_address,String project_logo,String developer_id_name ,String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue, String center,String traffic,String xianfang,String maidi,int project_price_int_qi,String project_desc){
 		this.id=id;
 		this.project_num = project_num;
 		this.project_img=project_img;
@@ -167,6 +202,10 @@ public class SearchList {
 		this.fanxian=fanxian;
 		this.project_lan_cn=project_lan_cn;
 		this.project_lan_en=project_lan_en;
+		this.project_city = project_city;
+		this.project_nation = project_nation;
+		this.project_price = project_price;
+		this.project_zhou = project_zhou;
 		
 		this.mianji=mianji;
 		this.project_address=project_address;
@@ -183,6 +222,7 @@ public class SearchList {
 		this.maidi=maidi;
 		this.project_price_int_qi=project_price_int_qi;
 		this.project_desc=project_desc;
+		this.gps = gps;
 	}
 	public SearchList(int id,String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String project_lan_en,String mianji,String project_address ){
 		this.id=id;
@@ -200,6 +240,38 @@ public class SearchList {
 		this.mianji=mianji;
 		this.project_address=project_address;
 		
+	}
+	public SearchList(int id, String gps, String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String project_lan_en,String mianji,String project_address,String project_logo,String developer_id_name ,String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue, String center,String traffic,String xianfang,String maidi,int project_price_int_qi,String project_desc){
+		this.id=id;
+		this.project_num = project_num;
+		this.project_img=project_img;
+		this.project_name=project_name;
+		this.maxPrice=maxPrice;
+		this.minPrice=minPrice;
+		this.maxArea=maxArea;
+		this.minArea=minArea;
+		this.keshou=keshou;
+		this.fanxian=fanxian;
+		this.project_lan_cn=project_lan_cn;
+		this.project_lan_en=project_lan_en;
+		
+		
+		this.mianji=mianji;
+		this.project_address=project_address;
+		this.project_logo=project_logo;
+		this.developer_id_name=developer_id_name;
+		this.xinkaipan=xinkaipan;
+		this.huaren=huaren;
+		this.remen=remen;
+		this.xuequ=xuequ;
+		this.baozu=baozu;
+		this.center=center;
+		this.traffic=traffic;
+		this.xianfang=xianfang;
+		this.maidi=maidi;
+		this.project_price_int_qi=project_price_int_qi;
+		this.project_desc=project_desc;
+		this.gps = gps;
 	}
 	public SearchList() {
 		// TODO Auto-generated constructor stub

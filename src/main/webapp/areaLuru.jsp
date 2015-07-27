@@ -930,9 +930,27 @@ $(function(){
 				return false;
 			}
 			var middleprice={};
-			middleprice=DataDeal.formToJson(data= decodeURIComponent($("#middleprice").serialize(),true));
+			/* middleprice=DataDeal.formToJson(data= decodeURIComponent($("#middleprice").serialize(),true));
 			middleprice=middleprice.replace(/\+/g," ");
-			middleprice=eval("("+middleprice+")");
+			middleprice=eval("("+middleprice+")"); */
+			
+			middleprice.project_type=$("#project_type").val();
+			middleprice.buy_price=$("#buy_price").val();
+			middleprice.zu_price=$("#zu_price").val();
+			middleprice.buy_one_name=$("#buy_one_name").val();
+			middleprice.buy_one_price=$("#buy_one_price").val();
+			middleprice.buy_two_name=$("#buy_two_name").val();
+			middleprice.buy_two_price=$("#buy_two_price").val();
+			middleprice.buy_three_name=$("#buy_three_name").val();
+			middleprice.buy_three_price=$("#buy_three_price").val();
+			middleprice.zu_one_name=$("#zu_one_name").val();
+			middleprice.zu_one_price=$("#zu_one_price").val();
+			middleprice.zu_two_name=$("#zu_two_name").val();
+			middleprice.zu_two_price=$("#zu_two_price").val();
+			middleprice.zu_three_name=$("#zu_three_name").val();
+			middleprice.zu_three_price=$("#zu_three_price").val(); 
+			middleprice.middle_datasource=$("#middle_datasource").val();
+			middleprice.middle_date=$("#middle_date").val();
 			
 			middlepricelist.push(middleprice);
 			/* $("#middlepricelist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++middlepricecount)+"</span><span style='padding-right:10px;'>"+middlepricelist[middlepricecount-1].houseTaxtype+"</span><span style='padding-right:10px;'>"+middlepricelist[middlepricecount-1].houseTaxprice+"</span><span style='padding-right:10px;'>"+middlepricelist[middlepricecount-1].houseTaxdesc+"</span><span style='padding-right:10px;'>"+middlepricelist[middlepricecount-1].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>"); */
@@ -978,9 +996,26 @@ $(function(){
 				alert("租三价格-请输入数字！");
 				return false;
 			}
-			middlepriceedititem=DataDeal.formToJson(data= decodeURIComponent($("#middleprice").serialize(),true));
+			/* middlepriceedititem=DataDeal.formToJson(data= decodeURIComponent($("#middleprice").serialize(),true));
 		 	middlepriceedititem=middlepriceedititem.replace(/\+/g," "); 
-			middlepriceedititem=eval("("+middlepriceedititem+")");
+			middlepriceedititem=eval("("+middlepriceedititem+")"); */
+			middlepriceedititem.project_type=$("#project_type").val();
+			middlepriceedititem.buy_price=$("#buy_price").val();
+			middlepriceedititem.zu_price=$("#zu_price").val();
+			middlepriceedititem.buy_one_name=$("#buy_one_name").val();
+			middlepriceedititem.buy_one_price=$("#buy_one_price").val();
+			middlepriceedititem.buy_two_name=$("#buy_two_name").val();
+			middlepriceedititem.buy_two_price=$("#buy_two_price").val();
+			middlepriceedititem.buy_three_name=$("#buy_three_name").val();
+			middlepriceedititem.buy_three_price=$("#buy_three_price").val();
+			middlepriceedititem.zu_one_name=$("#zu_one_name").val();
+			middlepriceedititem.zu_one_price=$("#zu_one_price").val();
+			middlepriceedititem.zu_two_name=$("#zu_two_name").val();
+			middlepriceedititem.zu_two_price=$("#zu_two_price").val();
+			middlepriceedititem.zu_three_name=$("#zu_three_name").val();
+			middlepriceedititem.zu_three_price=$("#zu_three_price").val(); 
+			middlepriceedititem.middle_datasource=$("#middle_datasource").val();
+			middlepriceedititem.middle_date=$("#middle_date").val();
 			/* middlepriceedititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -1129,9 +1164,19 @@ $(function(){
 			var middletrend={};
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			middletrend=DataDeal.formToJson(data= decodeURIComponent($("#middletrend").serialize(),true));
+			/* middletrend=DataDeal.formToJson(data= decodeURIComponent($("#middletrend").serialize(),true));
 			middletrend=middletrend.replace(/\+/g," ");
-			middletrend=eval("("+middletrend+")");
+			middletrend=eval("("+middletrend+")"); */
+					
+			middletrend.view_shunxu2=$("#view_shunxu2").val();
+			middletrend.project_type2=$('#project_type2').val();
+			middletrend.project_type2=$("#project_type2").val();
+			middletrend.view_shunxu2=$("#view_shunxu2").val();
+			middletrend.heng2=$("#heng2").val();
+			middletrend.zong2=$("#zong2").val();
+			middletrend.middle_zoushi_datasource=$("#middle_zoushi_datasource").val();
+			middletrend.middle_zoushi_date=$("#middle_zoushi_date").val(); 
+			
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
 			/* peitao.view= */
@@ -1165,9 +1210,17 @@ $(function(){
 				alert("区域房价中位数走势的纵坐标-请输入数字！");
 				return false;
 			}
-			middletrendedititem=DataDeal.formToJson(data= decodeURIComponent($("#middletrend").serialize(),true));
+			/* middletrendedititem=DataDeal.formToJson(data= decodeURIComponent($("#middletrend").serialize(),true));
 			middletrendedititem=middletrendedititem.replace(/\+/g," "); 
-			middletrendedititem=eval("("+middletrendedititem+")");
+			middletrendedititem=eval("("+middletrendedititem+")"); */
+			middletrendedititem.view_shunxu2=$("#view_shunxu2").val();
+			middletrendedititem.project_type2=$('#project_type2').val();
+			middletrendedititem.project_type2=$("#project_type2").val();
+			middletrendedititem.view_shunxu2=$("#view_shunxu2").val();
+			middletrendedititem.heng2=$("#heng2").val();
+			middletrendedititem.zong2=$("#zong2").val();
+			middletrendedititem.middle_zoushi_datasource=$("#middle_zoushi_datasource").val();
+			middletrendedititem.middle_zoushi_date=$("#middle_zoushi_date").val(); 
 			/* middletrendedititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -1246,9 +1299,16 @@ $(function(){
 			var zujintrend={};
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			zujintrend=DataDeal.formToJson(data= decodeURIComponent($("#zujintrend").serialize(),true));
+			/* zujintrend=DataDeal.formToJson(data= decodeURIComponent($("#zujintrend").serialize(),true));
 			zujintrend=zujintrend.replace(/\+/g," ");
-			zujintrend=eval("("+zujintrend+")");
+			zujintrend=eval("("+zujintrend+")"); */
+			
+			zujintrend.project_type3=$("#project_type3").val();
+			zujintrend.view_shunxu3=$("#view_shunxu3").val();
+			zujintrend.heng3=$("#heng3").val();
+			zujintrend.zong3=$("#zong3").val();
+			zujintrend.zujin_datasource=$("#zujin_datasource").val();
+			zujintrend.zujin_date=$("#zujin_date").val();
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
 			/* peitao.view= */
@@ -1279,9 +1339,16 @@ $(function(){
 				alert("区域租金走势的纵坐标-请输入数字！");
 				return false;
 			}
-			zujintrendedititem=DataDeal.formToJson(data= decodeURIComponent($("#zujintrend").serialize(),true));
+			/* zujintrendedititem=DataDeal.formToJson(data= decodeURIComponent($("#zujintrend").serialize(),true));
 			 zujintrendedititem=zujintrendedititem.replace(/\+/g," "); 
-			zujintrendedititem=eval("("+zujintrendedititem+")");
+			zujintrendedititem=eval("("+zujintrendedititem+")"); */
+			
+			zujintrendedititem.project_type3=$("#project_type3").val();
+			zujintrendedititem.view_shunxu3=$("#view_shunxu3").val();
+			zujintrendedititem.heng3=$("#heng3").val();
+			zujintrendedititem.zong3=$("#zong3").val();
+			zujintrendedititem.zujin_datasource=$("#zujin_datasource").val();
+			zujintrendedititem.zujin_date=$("#zujin_date").val();
 			/* zujintrendedititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -1361,9 +1428,16 @@ $(function(){
 			var huibaotrend={};
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			huibaotrend=DataDeal.formToJson(data= decodeURIComponent($("#huibaotrend").serialize(),true));
+			/* huibaotrend=DataDeal.formToJson(data= decodeURIComponent($("#huibaotrend").serialize(),true));
 			huibaotrend=huibaotrend.replace(/\+/g," ");
-			huibaotrend=eval("("+huibaotrend+")");
+			huibaotrend=eval("("+huibaotrend+")"); */
+			
+			huibaotrend.project_type4=$("#project_type4").val();
+			huibaotrend.view_shunxu4=$("#view_shunxu4").val();
+			huibaotrend.heng4=$("#heng4").val();
+			huibaotrend.zong4=$("#zong4").val();
+			huibaotrend.zujin_huibao_datasource=$("#zujin_huibao_datasource").val();
+			huibaotrend.zujin_huibao_date=$("#zujin_huibao_date").val();
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
 			/* peitao.view= */
@@ -1397,9 +1471,16 @@ $(function(){
 				alert("区域租金回报走势的纵坐标-请输入数字！");
 				return false;
 			}
-			huibaotrendedititem=DataDeal.formToJson(data= decodeURIComponent($("#huibaotrend").serialize(),true));
+			/* huibaotrendedititem=DataDeal.formToJson(data= decodeURIComponent($("#huibaotrend").serialize(),true));
 			 huibaotrendedititem=huibaotrendedititem.replace(/\+/g," "); 
-			huibaotrendedititem=eval("("+huibaotrendedititem+")");
+			huibaotrendedititem=eval("("+huibaotrendedititem+")"); */
+			
+			huibaotrendedititem.project_type4=$("#project_type4").val();
+			huibaotrendedititem.view_shunxu4=$("#view_shunxu4").val();
+			huibaotrendedititem.heng4=$("#heng4").val();
+			huibaotrendedititem.zong4=$("#zong4").val();
+			huibaotrendedititem.zujin_huibao_datasource=$("#zujin_huibao_datasource").val();
+			huibaotrendedititem.zujin_huibao_date=$("#zujin_huibao_date").val();
 			/* huibaotrendedititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -1475,9 +1556,13 @@ $(function(){
 				return false;
 			}
 			var tedian={};
-			tedian=DataDeal.formToJson(data= decodeURIComponent($("#tedian").serialize(),true));
+			/* tedian=DataDeal.formToJson(data= decodeURIComponent($("#tedian").serialize(),true));
 			tedian=tedian.replace(/\+/g," ");
-			tedian=eval("("+tedian+")");
+			tedian=eval("("+tedian+")"); */
+			tedian.data_source=$("#data_source").val();
+			tedian.update_time=$("#update_time").val();
+			tedian.view_shunxu=$("#view_shunxu").val();
+			tedian.area_character=$("#area_character").val();
 			tedianlist.push(tedian);
 			/* $("#tedianlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++tediancount)+"</span><span style='padding-right:10px;'>"+tedianlist[tediancount-1].houseTaxtype+"</span><span style='padding-right:10px;'>"+tedianlist[tediancount-1].houseTaxprice+"</span><span style='padding-right:10px;'>"+tedianlist[tediancount-1].houseTaxdesc+"</span><span style='padding-right:10px;'>"+tedianlist[tediancount-1].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>"); */
 			$('#tedianlist').append("<div><div class='area_left3'><span style='display:none;'>"+(++tediancount)+"</span><span class='area_span'>"+$("#area_num").val()+"</span><span class='area_span'>"+tedianlist[tediancount-1].data_source+"</span><span class='area_span'>"+tedianlist[tediancount-1].update_time+"</span><span class='area_span'>"+tedianlist[tediancount-1].view_shunxu+"</span><span class='area_span6'>"+tedianlist[tediancount-1].area_character+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edittedian'>编辑</a></span><span class='area_span5'><a href='#' class='deletetedian'>删除</a></span></div></div>");
@@ -1497,13 +1582,17 @@ $(function(){
 				alert("区域特点的显示顺序-请输入数字！");
 				return false;
 			}
-			tedianedititem=DataDeal.formToJson(data= decodeURIComponent($("#tedian").serialize(),true));
+			/* tedianedititem=DataDeal.formToJson(data= decodeURIComponent($("#tedian").serialize(),true));
 			tedianedititem=tedianedititem.replace(/\+/g," ");
-			tedianedititem=eval("("+tedianedititem+")");
+			tedianedititem=eval("("+tedianedititem+")"); */
 			/* tedianedititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			/* UpladFile("houseimg"); */
+			tedianedititem.data_source=$("#data_source").val();
+			tedianedititem.update_time=$("#update_time").val();
+			tedianedititem.view_shunxu=$("#view_shunxu").val();
+			tedianedititem.area_character=$("#area_character").val();
 			var date=$("#update_time").val();
 			var source=$("#data_source").val();
 			$("#tedian input").each(function(){
@@ -1568,9 +1657,15 @@ $(function(){
 			var people={};
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			people=DataDeal.formToJson(data= decodeURIComponent($("#people").serialize(),true));
+			/* people=DataDeal.formToJson(data= decodeURIComponent($("#people").serialize(),true));
 			people=people.replace(/\+/g," ");
-			people=eval("("+people+")");
+			people=eval("("+people+")"); */
+			people.column1=$("#column1").val();
+			people.column2=$("#column2").val();
+			people.column3=$("#column3").val();
+			people.view_shunxu_people=$("#view_shunxu_people").val();
+			people.people_datasource=$("#people_datasource").val();
+			people.people_date=$("#people_date").val();
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
 			/* peitao.view= */
@@ -1600,9 +1695,15 @@ $(function(){
 				alert("区域人口的显示顺序-请输入数字！");
 				return false;
 			}
-			peopleedititem=DataDeal.formToJson(data= decodeURIComponent($("#people").serialize(),true));
+			/* peopleedititem=DataDeal.formToJson(data= decodeURIComponent($("#people").serialize(),true));
 			 peopleedititem=peopleedititem.replace(/\+/g," ");
-			peopleedititem=eval("("+peopleedititem+")");
+			peopleedititem=eval("("+peopleedititem+")"); */
+			peopleedititem.column1=$("#column1").val();
+			peopleedititem.column2=$("#column2").val();
+			peopleedititem.column3=$("#column3").val();
+			peopleedititem.view_shunxu_people=$("#view_shunxu_people").val();
+			peopleedititem.people_datasource=$("#people_datasource").val();
+			peopleedititem.people_date=$("#people_date").val();
 			/* peopleedititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -1657,7 +1758,7 @@ var brokeredititem;
 var brokercount=0;
 $(function(){
 	$.ajaxSetup({  
-	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
+	    contentType: "application/x-www-form-urlencoded; charset=utf-8" 
 	});  
 	$(".addbroker").click(function(){
 		//alert(brokeredit);
@@ -1668,9 +1769,10 @@ $(function(){
 			var broker={};
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			broker=DataDeal.formToJson(data= decodeURIComponent($("#broker").serialize(),true));
+			/* broker=DataDeal.formToJson(data= decodeURIComponent($("#broker").serialize(),true));
 			broker=broker.replace(/\+/g," ");
-			broker=eval("("+broker+")");
+			broker=eval("("+broker+")"); */
+			broker.broker_name=$("#broker_name").val();
 			$.ajax({
 				  url: "/getjingjireninfo",
 				  method: "POST",
@@ -1689,18 +1791,18 @@ $(function(){
 			}
 		else{
 			
-			brokeredititem=DataDeal.formToJson(data= decodeURIComponent($("#broker").serialize(),true));
+			/* brokeredititem=DataDeal.formToJson(data= decodeURIComponent($("#broker").serialize(),true));
 			 brokeredititem=brokeredititem.replace(/\+/g," "); 
 			 brokeredititem=eval("("+brokeredititem+")");
 			$("#broker input").each(function(){
 				$(this).val("");
 				});
 			brokerlist[brokeredit]=brokeredititem;
-			alert($("#brokerlist").children().eq(brokeredit));
+			alert($("#brokerlist").children().eq(brokeredit)); */
 			/* $("#brokerlist").children().eq(brokeredit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(brokeredit+1)+"</span><span style='padding-right:10px;'>"+brokerlist[brokeredit].houseTaxtype+"</span><span style='padding-right:10px;'>"+brokerlist[brokeredit].houseTaxprice+"</span><span style='padding-right:10px;'>"+brokerlist[brokeredit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+brokerlist[brokeredit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
-			$("#brokerlist").children().eq(brokeredit).html("<div class='area_left3'><span style='display:none;'>"+(brokeredit+1)+"</span><span class='area_span'>"+brokerlist[brokeredit].column1+"</span><span class='area_span'>"+brokerlist[brokeredit].column2+"</span><span class='area_span'>"+brokerlist[brokeredit].column3+"</span><span class='area_span'>"+brokerlist[brokeredit].view_shunxu_broker+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editbroker'>编辑</a></span><span class='area_span5'><a href='#' class='deletebroker'>删除</a></span></div>").show();
+			/* $("#brokerlist").children().eq(brokeredit).html("<div class='area_left3'><span style='display:none;'>"+(brokeredit+1)+"</span><span class='area_span'>"+brokerlist[brokeredit].column1+"</span><span class='area_span'>"+brokerlist[brokeredit].column2+"</span><span class='area_span'>"+brokerlist[brokeredit].column3+"</span><span class='area_span'>"+brokerlist[brokeredit].view_shunxu_broker+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editbroker'>编辑</a></span><span class='area_span5'><a href='#' class='deletebroker'>删除</a></span></div>").show();
 
-			brokeredit=100;
+			brokeredit=100; */
 			
 			
 			}
@@ -1731,9 +1833,10 @@ $(function(){
 			var project={};
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			project=DataDeal.formToJson(data= decodeURIComponent($("#project").serialize(),true));
+			/* project=DataDeal.formToJson(data= decodeURIComponent($("#project").serialize(),true));
 			project=project.replace(/\+/g," ");
-			project=eval("("+project+")");
+			project=eval("("+project+")"); */
+			project.project_name=$("#project_name").val();
 			$.ajax({
 				  url: "/getprojectinfo",
 				  method: "POST",
@@ -1772,22 +1875,23 @@ $(function(){
 			/* var huxing={}; */
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			projectedititem=DataDeal.formToJson(data= decodeURIComponent($("#project").serialize(),true));
+			/* projectedititem=DataDeal.formToJson(data= decodeURIComponent($("#project").serialize(),true));
 			 projectedititem=projectedititem.replace(/\+/g," ");
-			projectedititem=eval("("+projectedititem+")");
+			projectedititem=eval("("+projectedititem+")"); */
+			/* projectedititem.project_name=$("#project.project_name").val(); */
 			/* projectedititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			/* UpladFile("houseimg"); */
-			$("#project input").each(function(){
+			/* $("#project input").each(function(){
 				$(this).val("");
-				});
-			projectlist[projectedit]=projectedititem;
+				}); */
+			/* projectlist[projectedit]=projectedititem; */
 			//alert($("#projectlist").children().eq(projectedit));
 			/* $("#projectlist").children().eq(projectedit).html("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(projectedit+1)+"</span><span style='padding-right:10px;'>"+projectlist[projectedit].houseTaxtype+"</span><span style='padding-right:10px;'>"+projectlist[projectedit].houseTaxprice+"</span><span style='padding-right:10px;'>"+projectlist[projectedit].houseTaxdesc+"</span><span style='padding-right:10px;'>"+projectlist[projectedit].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>").show(); */
-			$("#projectlist").children().eq(projectedit).html("<div class='area_left3'><span style='display:none;'>"+(projectedit+1)+"</span><span class='area_span'>"+projectlist[projectedit].column1+"</span><span class='area_span'>"+projectlist[projectedit].column2+"</span><span class='area_span'>"+projectlist[projectedit].column3+"</span><span class='area_span'>"+projectlist[projectedit].view_shunxu_project+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editproject'>编辑</a></span><span class='area_span5'><a href='#' class='deleteproject'>删除</a></span></div>").show();
+			/* $("#projectlist").children().eq(projectedit).html("<div class='area_left3'><span style='display:none;'>"+(projectedit+1)+"</span><span class='area_span'>"+projectlist[projectedit].column1+"</span><span class='area_span'>"+projectlist[projectedit].column2+"</span><span class='area_span'>"+projectlist[projectedit].column3+"</span><span class='area_span'>"+projectlist[projectedit].view_shunxu_project+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editproject'>编辑</a></span><span class='area_span5'><a href='#' class='deleteproject'>删除</a></span></div>").show();
 
-			projectedit=100;
+			projectedit=100; */
 			//$("#peitaolist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++peitaocount)+"</span><span class=''>"+filename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
 			/*peitao.view= */
 			
@@ -1818,9 +1922,11 @@ $(function(){
 			var news={};
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			news=DataDeal.formToJson(data= decodeURIComponent($("#news").serialize(),true));
+			/* news=DataDeal.formToJson(data= decodeURIComponent($("#news").serialize(),true));
 			news=news.replace(/\+/g," ");
-			news=eval("("+news+")");
+			news=eval("("+news+")"); */
+			news.news_type=$("#news_type").val();
+			news.news_title=$("#news_title").val();
 			$.ajax({
 				  url: "/getnewsinfo",
 				  method: "POST",
@@ -1913,10 +2019,43 @@ function savepro(){
 		alert("邮政编码-请输入数字！");
 		return false;
 	} */
-	var area;
+	/* var area;
 	area=DataDeal.formToJson(data= decodeURIComponent($("#area").serialize(),true));
 	area=area.replace(/\+/g," ");
-	area=eval("("+area+")");
+	area=eval("("+area+")"); */
+	var area={};
+	area.area_num=$("#area_num").val();
+	area.area_name=$("#area_name").val();
+	area.area_nation=$("#area_nation").val();
+	area.area_zhou=$("#area_zhou").val();
+	area.area_city=$("#area_city").val();
+	area.area_postcode=$("#area_postcode").val();
+	area.touzi_datasource=$("#touzi_datasource").val();
+	area.touzi_date=$("#touzi_date").val();
+	area.year_increment_rate=$("#year_increment_rate").val();
+	area.middle_price=$("#middle_price").val();
+	area.middle_zu_price=$("#middle_zu_price").val();
+	area.zu_house_rate=$("#zu_house_rate").val();
+	area.price_review=$("#price_review").val();
+	area.zu_xuqiu=$("#zu_xuqiu").val();
+	area.pro_type=$("#pro_type").val();
+	area.touzi_datasource1=$("#touzi_datasource1").val();
+	area.touzi_date1=$("#touzi_date1").val();
+	area.year_increment_rate1=$("#year_increment_rate1").val();
+	area.middle_price1=$("#middle_price1").val();
+	area.middle_zu_price1=$("#middle_zu_price1").val();
+	area.zu_house_rate1=$("#zu_house_rate1").val();
+	area.price_review1=$("#price_review1").val();
+	area.zu_xuqiu1=$("#zu_xuqiu1").val();
+	area.pro_type1=$("#pro_type1").val();
+	area.family_datasource=$("#family_datasource").val();
+	area.family_date=$("#family_date").val();
+	area.family_one=$("#family_one").val();
+	area.family_one_rate=$("#family_one_rate").val();
+	area.family_two=$("#family_two").val();
+	area.family_two_rate=$("#family_two_rate").val();
+	area.family_three=$("#family_three").val();
+	area.family_three_rate=$("#family_three_rate").val();
 	//alert("ff1")
     $.ajax({
 	    type: "POST",

@@ -674,7 +674,7 @@ $(function(){
 		});
 	$("#imagelist").on("click",".editpeitao",function(){
 		
-		var index=$(this).parent().parent().children().eq(0).text()-1;
+		var index=$(this).parent().parent().prevAll().length;
 		//alert(index);
 		edititem=imagelist[index];
 		$(this).parent().parent().hide();
@@ -762,9 +762,18 @@ $(function(){
 			var huxing={};
 			var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1];
-			huxing=DataDeal.formToJson(data= decodeURIComponent($("#huxingjiage").serialize(),true));
+			/* huxing=DataDeal.formToJson(data= decodeURIComponent($("#huxingjiage").serialize(),true));
 			huxing=huxing.replace(/\+/g," ");
-			huxing=eval("("+huxing+")");
+			huxing=eval("("+huxing+")"); */
+			huxing.housename=$("#housename").val();
+			huxing.houseprice=$("#houseprice").val();
+			huxing.room_num=$("#room_num").val();
+			huxing.houseimg=$("#file1").val();
+			huxing.tudi_mianji=$("#tudi_mianji").val();
+			huxing.jianzhu_mianji=$("#jianzhu_mianji").val();
+			huxing.shinei_mianji=$("#shinei_mianji").val();
+			huxing.shiwai_mianji=$("#shiwai_mianji").val();
+			huxing.wc_num=$("#wc_num").val();
 			huxing["houseimg"]=filename/* $('#projectimage').val() */;
 			huxing["houseimg"]=$('#file1').val();
 			/* peitao.shunxu=peitaocount+1; */
@@ -798,6 +807,17 @@ $(function(){
 			huxingedititem=DataDeal.formToJson(data= decodeURIComponent($("#huxingjiage").serialize(),true));
 			huxingedititem=eval("("+huxingedititem+")");
 			huxingedititem["houseimg"]=$('#file1').val();
+			huxingedititem.housename=$("#housename").val();
+			huxingedititem.houseprice=$("#houseprice").val();
+			huxingedititem.room_num=$("#room_num").val();
+			huxingedititem.houseimg=$("#file1").val();
+			huxingedititem.tudi_mianji=$("#tudi_mianji").val();
+			huxingedititem.jianzhu_mianji=$("#jianzhu_mianji").val();
+			huxingedititem.shinei_mianji=$("#shinei_mianji").val();
+			huxingedititem.shiwai_mianji=$("#shiwai_mianji").val();
+			huxingedititem.wc_num=$("#wc_num").val();
+			huxing["houseimg"]=filename/* $('#projectimage').val() */;
+			huxing["houseimg"]=$('#file1').val();
 			/* var filenames=$('#projectimage').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
 			UpladFile("houseimg");
@@ -872,9 +892,12 @@ $(function(){
 			var fujin={};
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			fujin=DataDeal.formToJson(data= decodeURIComponent($("#fujin").serialize(),true));
+			/* fujin=DataDeal.formToJson(data= decodeURIComponent($("#fujin").serialize(),true));
 			fujin=fujin.replace(/\+/g," ");
-			fujin=eval("("+fujin+")");
+			fujin=eval("("+fujin+")"); */
+			fujin.peitao_type=$("#peitao_type").val();
+			fujin.peitao_name=$("#peitao_name").val();
+			fujin.peitao_distance=$("#peitao_distance").val();
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
 			/* peitao.view= */
@@ -903,10 +926,12 @@ $(function(){
 			/* var huxing={}; */
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			fujinedititem=DataDeal.formToJson(data= decodeURIComponent($("#fujin").serialize(),true));
+			/* fujinedititem=DataDeal.formToJson(data= decodeURIComponent($("#fujin").serialize(),true));
 
-			fujinedititem=eval("("+fujinedititem+")");
-
+			fujinedititem=eval("("+fujinedititem+")"); */
+			fujinedititem.peitao_type=$("#peitao_type").val();
+			fujinedititem.peitao_name=$("#peitao_name").val();
+			fujinedititem.peitao_distance=$("#peitao_distance").val();
 			/* fujinedititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -1064,9 +1089,12 @@ $(function(){
 			var holdingcost={};
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			holdingcost=DataDeal.formToJson(data= decodeURIComponent($("#holdingcost").serialize(),true));
+			/* holdingcost=DataDeal.formToJson(data= decodeURIComponent($("#holdingcost").serialize(),true));
 			holdingcost=holdingcost.replace(/\+/g," ");
-			holdingcost=eval("("+holdingcost+")");
+			holdingcost=eval("("+holdingcost+")"); */
+			holdingcost.holdcosttype=$("#holdcosttype").val();
+			holdingcost.holdcostprice=$("#holdcostprice").val();
+			holdingcost.holdcostdesc=$("#holdcostdesc").val();
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
 			/* peitao.view= */
@@ -1096,8 +1124,11 @@ $(function(){
 			/* var huxing={}; */
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			holdingcostedititem=DataDeal.formToJson(data= decodeURIComponent($("#holdingcost").serialize(),true));
-			holdingcostedititem=eval("("+holdingcostedititem+")");
+			/* holdingcostedititem=DataDeal.formToJson(data= decodeURIComponent($("#holdingcost").serialize(),true));
+			holdingcostedititem=eval("("+holdingcostedititem+")"); */
+			holdingcostedititem.holdcosttype=$("#holdcosttype").val();
+			holdingcostedititem.holdcostprice=$("#holdcostprice").val();
+			holdingcostedititem.holdcostdesc=$("#holdcostdesc").val();
 			/* holdingcostedititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -1155,9 +1186,12 @@ $(function(){
 	$(".addhousetaxform").click(function(){
 		if(housetaxformedit==100){
 			var housetaxform={};
-			housetaxform=DataDeal.formToJson(data= decodeURIComponent($("#housetaxform").serialize(),true));
+			/* housetaxform=DataDeal.formToJson(data= decodeURIComponent($("#housetaxform").serialize(),true));
 			housetaxform=housetaxform.replace(/\+/g," ");
-			housetaxform=eval("("+housetaxform+")");
+			housetaxform=eval("("+housetaxform+")"); */
+			housetaxform.houseTaxtype=$("#houseTaxtype").val();
+			housetaxform.houseTaxprice=$("#houseTaxprice").val();
+			housetaxform.houseTaxdesc=$("#houseTaxdesc").val();
 			housetaxformlist.push(housetaxform);
 			/* $("#housetaxformlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++housetaxformcount)+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxtype+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxprice+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxdesc+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>"); */
 			$("#housetaxformlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++housetaxformcount)+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxtype+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxprice+"</span><span style='padding-right:10px;'>"+housetaxformlist[housetaxformcount-1].houseTaxdesc+"</span>"+"<span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>");
@@ -1166,8 +1200,11 @@ $(function(){
 				});
 			}
 		else{
-			housetaxformedititem=DataDeal.formToJson(data= decodeURIComponent($("#housetaxform").serialize(),true));
-			housetaxformedititem=eval("("+housetaxformedititem+")");
+			/* housetaxformedititem=DataDeal.formToJson(data= decodeURIComponent($("#housetaxform").serialize(),true));
+			housetaxformedititem=eval("("+housetaxformedititem+")"); */
+			housetaxformedititem.houseTaxtype=$("#houseTaxtype").val();
+			housetaxformedititem.houseTaxprice=$("#houseTaxprice").val();
+			housetaxformedititem.houseTaxdesc=$("#houseTaxdesc").val();
 			$("#housetaxform input").each(function(){
 				$(this).val("");
 				});
@@ -1209,9 +1246,10 @@ $(function(){
 	$(".addbroker").click(function(){
 		if(brokeredit==100){
 			var broker={};
-			broker=DataDeal.formToJson(data= decodeURIComponent($("#broker").serialize(),true));
+			/* broker=DataDeal.formToJson(data= decodeURIComponent($("#broker").serialize(),true));
 			broker=broker.replace(/\+/g," ");
-			broker=eval("("+broker+")");
+			broker=eval("("+broker+")"); */
+			broker.broker_name=$("#broker_name").val().replace(/\+/g," ");
 			$.ajax({
 				  url: "/getjingjireninfo",
 				  method: "POST",
