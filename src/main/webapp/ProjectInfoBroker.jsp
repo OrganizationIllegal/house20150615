@@ -1323,6 +1323,10 @@ $(function(){
 	$(".addholdingcost").click(function(){
 		//alert(holdingcostedit);
 		if(holdingcostedit==100){
+			if($("#holdcosttype").val()=="" || $("#holdcostprice").val()=="" ||$("#holdcostdesc").val()==""){
+				alert("请输入完整持有成本的类型、价格、描述！");
+				return false;
+			}
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
 				return false;} */
@@ -1356,6 +1360,10 @@ $(function(){
 			/* <a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a> */
 			}
 		else{
+			if($("#holdcosttype").val()=="" || $("#holdcostprice").val()=="" ||$("#holdcostdesc").val()==""){
+				alert("请输入完整持有成本的类型、价格、描述！");
+				return false;
+			}
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
 				return false;} */
@@ -1434,6 +1442,10 @@ $(function(){
 	$(".addhousetaxform").click(function(){
 		//alert(housetaxformedit);
 		if(housetaxformedit==100){
+			if($("#houseTaxtype").val()=="" || $("#houseTaxprice").val()=="" ||$("#houseTaxdesc").val()==""){
+				alert("请输入完整购房税费的类型、价格、描述！");
+				return false;
+			}
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
 				return false;} */
@@ -1466,6 +1478,10 @@ $(function(){
 			/* <a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a> */
 			}
 		else{
+			if($("#houseTaxtype").val()=="" || $("#houseTaxprice").val()=="" ||$("#houseTaxdesc").val()==""){
+				alert("请输入完整购房税费的类型、价格、描述！");
+				return false;
+			}
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
 				return false;} */
