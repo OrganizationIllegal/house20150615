@@ -1143,8 +1143,14 @@ $(function(){
 	
 });
 
-var fujinlist='${fujinPeitaoListJson}';
-fujinlist=eval("("+fujinlist+")");
+var fujinlist='${fujinPeitaoListJson}'; 
+/* var fujinlist='${fujinPeitaoListJson}'; */
+/* var fujinlist='${fujinPeitaoListJson}'.replace("\'", "&#39;");  */
+ //fujinlist.replace("\'", "&#39;");
+ 
+/* fujinlist=fujinlist.replace(/ad/g,"000"); */
+/* var fujinlist=eval("("+'${fujinPeitaoListJson}'+")").replace("\'", "&#39;"); */
+ fujinlist=eval("("+fujinlist+")"); 
 var fujinedit=100;
 var fujinedititem;
 var fujincount=fujinlist.length;
