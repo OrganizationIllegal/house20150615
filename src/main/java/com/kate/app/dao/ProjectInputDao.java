@@ -4649,7 +4649,7 @@ public class ProjectInputDao extends BaseDao {
 				}
 				if(count==0){
 					String sqlbroker = " insert into area_recommend_broker(broker_code1, broker_code2, broker_code3" +
-							" , area_code) values(?,?,?,?)";
+							" , project_num) values(?,?,?,?)";
 					pstmt = con.prepareStatement(sqlbroker);
 					pstmt.setString(1, broker_code1);
 					pstmt.setString(2, broker_code2);
