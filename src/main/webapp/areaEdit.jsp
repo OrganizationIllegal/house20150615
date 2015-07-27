@@ -1138,9 +1138,28 @@ $(function(){
 			var middleprice={};
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			middleprice=DataDeal.formToJson(data= decodeURIComponent($("#middleprice").serialize(),true));
+			/* middleprice=DataDeal.formToJson(data= decodeURIComponent($("#middleprice").serialize(),true));
 			middleprice=middleprice.replace(/\+/g," ");
-			middleprice=eval("("+middleprice+")");
+			middleprice=eval("("+middleprice+")"); */
+			
+			middleprice.project_type=$("#project_type").val();
+			middleprice.buy_price$("#buy_price").val();
+			middleprice.zu_price$("#zu_price").val();
+			middleprice.buy_one_name$("#buy_one_name").val();
+			middleprice.buy_one_price$("#buy_one_price").val();
+			middleprice.buy_two_name$("#buy_two_name").val();
+			middleprice.buy_two_price$("#buy_two_price").val();
+			middleprice.buy_three_name$("#buy_three_name").val();
+			middleprice.buy_three_price$("#buy_three_price").val();
+			middleprice.zu_one_name$("#zu_one_name").val();
+			middleprice.zu_one_price$("#zu_one_price").val();
+			middleprice.zu_two_name$("#zu_two_name").val();
+			middleprice.zu_two_price$("#zu_two_price").val();
+			middleprice.zu_three_name$("#zu_three_name").val();
+			middleprice.zu_three_price$("#zu_three_price").val(); 
+			middleprice.middle_datasource$("#middle_datasource").val();
+			middleprice.middle_date$("#middle_date").val();
+			
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
 			/* peitao.view= */
@@ -1173,9 +1192,28 @@ $(function(){
 			/* var huxing={}; */
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			middlepriceedititem=DataDeal.formToJson(data= decodeURIComponent($("#middleprice").serialize(),true));
+			/* middlepriceedititem=DataDeal.formToJson(data= decodeURIComponent($("#middleprice").serialize(),true));
 			middlepriceedititem=middlepriceedititem.replace(/\+/g," ");
-			middlepriceedititem=eval("("+middlepriceedititem+")");
+			middlepriceedititem=eval("("+middlepriceedititem+")"); */
+			
+			middlepriceedititem.project_type=$("#project_type").val();
+			middlepriceedititem.buy_price$("#buy_price").val();
+			middlepriceedititem.zu_price$("#zu_price").val();
+			middlepriceedititem.buy_one_name$("#buy_one_name").val();
+			middlepriceedititem.buy_one_price$("#buy_one_price").val();
+			middlepriceedititem.buy_two_name$("#buy_two_name").val();
+			middlepriceedititem.buy_two_price$("#buy_two_price").val();
+			middlepriceedititem.buy_three_name$("#buy_three_name").val();
+			middlepriceedititem.buy_three_price$("#buy_three_price").val();
+			middlepriceedititem.zu_one_name$("#zu_one_name").val();
+			middlepriceedititem.zu_one_price$("#zu_one_price").val();
+			middlepriceedititem.zu_two_name$("#zu_two_name").val();
+			middlepriceedititem.zu_two_price$("#zu_two_price").val();
+			middlepriceedititem.zu_three_name$("#zu_three_name").val();
+			middlepriceedititem.zu_three_price$("#zu_three_price").val(); 
+			middlepriceedititem.middle_datasource$("#middle_datasource").val();
+			middlepriceedititem.middle_date$("#middle_date").val();
+			
 			/* middlepriceedititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -1303,9 +1341,17 @@ $(function(){
 			var middletrend={};
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			middletrend=DataDeal.formToJson(data= decodeURIComponent($("#middletrend").serialize(),true));
+			/* middletrend=DataDeal.formToJson(data= decodeURIComponent($("#middletrend").serialize(),true));
 			middletrend=middletrend.replace(/\+/g," ");
-			middletrend=eval("("+middletrend+")");
+			middletrend=eval("("+middletrend+")"); */
+			middletrend.view_shunxu2=$("#view_shunxu2").val();
+			middletrend.project_type2=$('#project_type2').val();
+			middletrend.project_type2=$("#project_type2").val();
+			middletrend.view_shunxu2=$("#view_shunxu2").val();
+			middletrend.heng2=$("#heng2").val();
+			middletrend.zong2=$("#zong2").val();
+			middletrend.middle_zoushi_datasource=$("#middle_zoushi_datasource").val();
+			middletrend.middle_zoushi_date=$("#middle_zoushi_date").val(); 
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
 			/* peitao.view= */
@@ -1338,9 +1384,17 @@ $(function(){
 			/* var huxing={}; */
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			middletrendedititem=DataDeal.formToJson(data= decodeURIComponent($("#middletrend").serialize(),true));
+			/* middletrendedititem=DataDeal.formToJson(data= decodeURIComponent($("#middletrend").serialize(),true));
 			middletrendedititem=middletrendedititem.replace(/\+/g," ");
-			middletrendedititem=eval("("+middletrendedititem+")");
+			middletrendedititem=eval("("+middletrendedititem+")"); */
+			middletrendedititem.view_shunxu2=$("#view_shunxu2").val();
+			middletrendedititem.project_type2=$('#project_type2').val();
+			middletrendedititem.project_type2=$("#project_type2").val();
+			middletrendedititem.view_shunxu2=$("#view_shunxu2").val();
+			middletrendedititem.heng2=$("#heng2").val();
+			middletrendedititem.zong2=$("#zong2").val();
+			middletrendedititem.middle_zoushi_datasource=$("#middle_zoushi_datasource").val();
+			middletrendedititem.middle_zoushi_date=$("#middle_zoushi_date").val(); 
 			/* middletrendedititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -1415,9 +1469,15 @@ $(function(){
 			var zujintrend={};
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			zujintrend=DataDeal.formToJson(data= decodeURIComponent($("#zujintrend").serialize(),true));
+			/* zujintrend=DataDeal.formToJson(data= decodeURIComponent($("#zujintrend").serialize(),true));
 			zujintrend=zujintrend.replace(/\+/g," ");
-			zujintrend=eval("("+zujintrend+")");
+			zujintrend=eval("("+zujintrend+")"); */
+			zujintrend.project_type3=$("#project_type3").val();
+			zujintrend.view_shunxu3=$("#view_shunxu3").val();
+			zujintrend.heng3=$("#heng3").val();
+			zujintrend.zong3=$("#zong3").val();
+			zujintrend.zujin_datasource=$("#zujin_datasource").val();
+			zujintrend.zujin_date=$("#zujin_date").val();
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
 			/* peitao.view= */
@@ -1450,9 +1510,15 @@ $(function(){
 			/* var huxing={}; */
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			zujintrendedititem=DataDeal.formToJson(data= decodeURIComponent($("#zujintrend").serialize(),true));
+			/* zujintrendedititem=DataDeal.formToJson(data= decodeURIComponent($("#zujintrend").serialize(),true));
 			zujintrendedititem=zujintrendedititem.replace(/\+/g," ");
-			zujintrendedititem=eval("("+zujintrendedititem+")");
+			zujintrendedititem=eval("("+zujintrendedititem+")"); */
+			zujintrendedititem.project_type3=$("#project_type3").val();
+			zujintrendedititem.view_shunxu3=$("#view_shunxu3").val();
+			zujintrendedititem.heng3=$("#heng3").val();
+			zujintrendedititem.zong3=$("#zong3").val();
+			zujintrendedititem.zujin_datasource=$("#zujin_datasource").val();
+			zujintrendedititem.zujin_date=$("#zujin_date").val();
 			/* zujintrendedititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -1527,9 +1593,15 @@ $(function(){
 			var huibaotrend={};
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			huibaotrend=DataDeal.formToJson(data= decodeURIComponent($("#huibaotrend").serialize(),true));
+			/* huibaotrend=DataDeal.formToJson(data= decodeURIComponent($("#huibaotrend").serialize(),true));
 			huibaotrend=huibaotrend.replace(/\+/g," ");
-			huibaotrend=eval("("+huibaotrend+")");
+			huibaotrend=eval("("+huibaotrend+")"); */
+			huibaotrend.project_type4=$("#project_type4").val();
+			huibaotrend.view_shunxu4=$("#view_shunxu4").val();
+			huibaotrend.heng4=$("#heng4").val();
+			huibaotrend.zong4=$("#zong4").val();
+			huibaotrend.zujin_huibao_datasource=$("#zujin_huibao_datasource").val();
+			huibaotrend.zujin_huibao_date=$("#zujin_huibao_date").val();
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
 			/* peitao.view= */
@@ -1562,9 +1634,15 @@ $(function(){
 			/* var huxing={}; */
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			huibaotrendedititem=DataDeal.formToJson(data= decodeURIComponent($("#huibaotrend").serialize(),true));
+			/* huibaotrendedititem=DataDeal.formToJson(data= decodeURIComponent($("#huibaotrend").serialize(),true));
 			huibaotrendedititem=huibaotrendedititem.replace(/\+/g," ");
-			huibaotrendedititem=eval("("+huibaotrendedititem+")");
+			huibaotrendedititem=eval("("+huibaotrendedititem+")"); */
+			huibaotrendedititem.project_type4=$("#project_type4").val();
+			huibaotrendedititem.view_shunxu4=$("#view_shunxu4").val();
+			huibaotrendedititem.heng4=$("#heng4").val();
+			huibaotrendedititem.zong4=$("#zong4").val();
+			huibaotrendedititem.zujin_huibao_datasource=$("#zujin_huibao_datasource").val();
+			huibaotrendedititem.zujin_huibao_date=$("#zujin_huibao_date").val();
 			/* huibaotrendedititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -1638,9 +1716,13 @@ $(function(){
 				alert("请选择文件！");
 				return false;} */
 			var tedian={};
-			tedian=DataDeal.formToJson(data= decodeURIComponent($("#tedian").serialize(),true));
+			/* tedian=DataDeal.formToJson(data= decodeURIComponent($("#tedian").serialize(),true));
 			tedian=tedian.replace(/\+/g," ");
-			tedian=eval("("+tedian+")");
+			tedian=eval("("+tedian+")"); */
+			tedian.data_source=$("#data_source").val();
+			tedian.update_time$("#update_time").val();
+			tedian.view_shunxu=$("#view_shunxu").val();
+			tedian.area_character=$("#area_character").val();
 			tedianlist.push(tedian);
 			/* $("#tedianlist").append("<div style='float:left;padding-left:40px;'><span style='padding-right:10px;'>"+(++tediancount)+"</span><span style='padding-right:10px;'>"+tedianlist[tediancount-1].houseTaxtype+"</span><span style='padding-right:10px;'>"+tedianlist[tediancount-1].houseTaxprice+"</span><span style='padding-right:10px;'>"+tedianlist[tediancount-1].houseTaxdesc+"</span><span style='padding-right:10px;'>"+tedianlist[tediancount-1].houseTax_housename+"</span><span style='padding-left: 30px;padding-right: 40px;'><a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a><a href='#' class='deletepeitao'>删除</a></span></div>"); */
 			$('#tedianlist').append("<div><div class='area_left3'><span style='display:none;'>"+(++tediancount)+"</span><span class='area_span'>"+tedianlist[tediancount-1].view_shunxu+"</span><span class='area_input'>"+tedianlist[tediancount-1].area_character+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='edittedian'>编辑</a></span><span class='area_span5'><a href='#' class='deletetedian'>删除</a></span></div></div>");
@@ -1656,9 +1738,13 @@ $(function(){
 			/* <a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a> */
 			}
 		else{
-			tedianedititem=DataDeal.formToJson(data= decodeURIComponent($("#tedian").serialize(),true));
+			/* tedianedititem=DataDeal.formToJson(data= decodeURIComponent($("#tedian").serialize(),true));
 			tedianedititem=tedianedititem.replace(/\+/g," ");
-			tedianedititem=eval("("+tedianedititem+")");
+			tedianedititem=eval("("+tedianedititem+")"); */
+			tedianedititem.data_source=$("#data_source").val();
+			tedianedititem.update_time$("#update_time").val();
+			tedianedititem.view_shunxu=$("#view_shunxu").val();
+			tedianedititem.area_character=$("#area_character").val();
 			var date=$("#update_time").val();
 			var source=$("#data_source").val();
 			$("#tedian input").each(function(){
@@ -1720,9 +1806,15 @@ $(function(){
 			var people={};
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			people=DataDeal.formToJson(data= decodeURIComponent($("#people").serialize(),true));
+			/* people=DataDeal.formToJson(data= decodeURIComponent($("#people").serialize(),true));
 			people=people.replace(/\+/g," ");
-			people=eval("("+people+")");
+			people=eval("("+people+")"); */
+			people.column1=$("#column1").val();
+			people.column2=$("#column2").val();
+			people.column3=$("#column3").val();
+			people.view_shunxu_people=$("#view_shunxu_people").val();
+			people.people_datasource$("#people_datasource").val();
+			people.people_date=$("#people_date").val();
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
 			/* peitao.view= */
@@ -1755,9 +1847,15 @@ $(function(){
 			/* var huxing={}; */
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			peopleedititem=DataDeal.formToJson(data= decodeURIComponent($("#people").serialize(),true));
+			/* peopleedititem=DataDeal.formToJson(data= decodeURIComponent($("#people").serialize(),true));
 			peopleedititem=peopleedititem.replace(/\+/g," ");
-			peopleedititem=eval("("+peopleedititem+")");
+			peopleedititem=eval("("+peopleedititem+")"); */
+			peopleedititem.column1=$("#column1").val();
+			peopleedititem.column2=$("#column2").val();
+			peopleedititem.column3=$("#column3").val();
+			peopleedititem.view_shunxu_people=$("#view_shunxu_people").val();
+			peopleedititem.people_datasource$("#people_datasource").val();
+			peopleedititem.people_date=$("#people_date").val();
 			/* peopleedititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -1824,9 +1922,10 @@ $(function(){
 			var broker={};
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			broker=DataDeal.formToJson(data= decodeURIComponent($("#broker").serialize(),true));
+			/* broker=DataDeal.formToJson(data= decodeURIComponent($("#broker").serialize(),true));
 			broker=broker.replace(/\+/g," ");
-			broker=eval("("+broker+")");
+			broker=eval("("+broker+")"); */
+			broker.broker_name=$("#broker_name").val();
 			$.ajax({
 				  url: "/getjingjireninfo",
 				  method: "POST",
@@ -1899,9 +1998,10 @@ $(function(){
 			var project={};
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			project=DataDeal.formToJson(data= decodeURIComponent($("#project").serialize(),true));
+			/* project=DataDeal.formToJson(data= decodeURIComponent($("#project").serialize(),true));
 			project=project.replace(/\+/g," ");
-			project=eval("("+project+")");
+			project=eval("("+project+")"); */
+			project.project_name=$("#project.project_name").val();
 			$.ajax({
 				  url: "/getprojectinfo",
 				  method: "POST",
@@ -1987,9 +2087,11 @@ $(function(){
 			var news={};
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
-			news=DataDeal.formToJson(data= decodeURIComponent($("#news").serialize(),true));
+			/* news=DataDeal.formToJson(data= decodeURIComponent($("#news").serialize(),true));
 			news=news.replace(/\+/g," ");
-			news=eval("("+news+")");
+			news=eval("("+news+")"); */
+			news.news_type=$("#news_type").val();
+			news.news_title=$("#news_title").val();
 			$.ajax({
 				  url: "/getnewsinfo",
 				  method: "POST",
