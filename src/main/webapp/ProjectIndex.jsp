@@ -1238,15 +1238,15 @@ function popInfo(){
 					<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:950px;margin-bottom:10px;">推荐项目</a>
 					<div class="c-fix f-l p_project_node">
 						<a href="Index?proNum=${RecommendProject1.project_num}"><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject1.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
-						<a href="Index?proNum=${RecommendProject1.project_num}" class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject1.project_name}<br/>${RecommendProject1.project_desc}</a>
+						<a href="Index?proNum=${RecommendProject1.project_num}" class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject1.project_name}<br/><div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;">${RecommendProject1.project_desc}</div></a>
 					</div>
 					<div class="f-l p_project_node" style="margin-left:25px;">
 						<a href="Index?proNum=${RecommendProject2.project_num}"><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject2.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
-						<a href="Index?proNum=${RecommendProject2.project_num}" class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject2.project_name}<br/>${RecommendProject2.project_desc}</a>
+						<a href="Index?proNum=${RecommendProject2.project_num}" class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject2.project_name}<br/><div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;">${RecommendProject2.project_desc}</div></a>
 					</div>
 					<div class="f-l p_project_node" style="margin-left:25px;">
 						<a href="Index?proNum=${RecommendProject3.project_num}"><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject3.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
-						<a href="Index?proNum=${RecommendProject3.project_num}" class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject3.project_name}<br/>${RecommendProject3.project_desc}</a>
+						<a href="Index?proNum=${RecommendProject3.project_num}" class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject3.project_name}<br/><div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;">${RecommendProject3.project_desc}</div></a>
 					</div>
 				</div>
 			</div>
