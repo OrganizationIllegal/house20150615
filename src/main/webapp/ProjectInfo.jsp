@@ -1075,7 +1075,12 @@ $(function(){
 	
 });
 
+/* var fujinPeitaoListJson=eval($("fujinPeitaoListJson"));
+var fujinlist=fujinPeitaoListJson; */
+/* text.replace(/\"/gi,"""") */
 var fujinlist='${fujinPeitaoListJson}';
+/* var fujinlist=eval("("+${fujinPeitaoListJson}+")").replace(/ad/g,"00"); */
+fujinlist=fujinlist.replace(/ad/g,"000");
 fujinlist=eval("("+fujinlist+")");
 var fujinedit=100;
 var fujinedititem;
