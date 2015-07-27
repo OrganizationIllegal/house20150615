@@ -474,7 +474,7 @@ function saveBroker(){
 	}
 	var id=$("#id").val();
 	//alert("id"+id);
-	var broker;
+	var broker={};
 	/* broker=DataDeal.formToJson(data= decodeURIComponent($("#brokerinfo").serialize(),true));
 	broker=eval("("+broker+")"); */
 	broker.broker_num=$("#broker_num").val();
