@@ -1080,12 +1080,20 @@ public class ProjectInfoController {
 				    	brokerTypelist2.add(e);//鐢ㄤ簬娣诲姞
 				    }
 				    else{
+				    	if("公寓".equals(e.getInterested_num())){
+							e.setInterested_num("house_01");
+						}else if("别墅".equals(e.getInterested_num())){
+							e.setInterested_num("house_02");
+						}else if("联排别墅".equals(e.getInterested_num())){
+							e.setInterested_num("house_03");
+						}
 				    	brokerTypelist.add(e);//鐢ㄤ簬缂栬緫
 				    }
 				}
 			/*if(brokerTypelist.size()==0){
 				brokerTypelistdelete=brokerIntegertypeListbefore;
 			}*/
+			
 			for (int i=0;i<brokerIntegertypeListbefore.size();i++){
 				boolean flag=false;
 				for(int j=0;j<brokerTypelist.size();j++){
