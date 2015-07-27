@@ -595,7 +595,7 @@ function popInfo(){
 					<a class="c-fix f-l f-yahei s-14 p_panel_con">区域：${HouseProject.project_area}</a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_con">面积：${HouseProject.min_area}${HouseProject.mianji}-${HouseProject.max_area}${HouseProject.mianji}</a>
 					<!-- <a class="c-fix f-l f-yahei s-14 p_panel_con" id="qimoney">起价：$${HouseProject.project_price_int_qi}</a>  -->
-					<a class="c-fix f-l f-yahei s-14 p_panel_con" id="qimoney">起价：$<f:formatNumber value="${HouseProject.project_price_int_qi}" pattern="#,#00.#"/> </a> 
+					<a class="c-fix f-l f-yahei s-14 p_panel_con" id="qimoney">起价：$<f:formatNumber value="${HouseProject.project_price_int_qi}" pattern="#,#00.#"/>/平米</a> 
 					
 					
 					<a class="c-fix f-l f-yahei s-14 p_panel_con">户型：${HouseProject.project_house_type}</a>
