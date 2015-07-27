@@ -4127,7 +4127,7 @@ public class ProjectInputDao extends BaseDao {
 			try{
 				con.setAutoCommit(false);
 				//椤圭洰鏇存柊
-				String sql1= "update house_project set project_name=?, project_nation=?, project_address=?, project_price_int_qi=?, project_type=?, project_sales_remain=?,  project_finish_time=?, project_desc=?, project_city=?, project_house_type=?, project_high=?, project_lan_cn=?, project_lan_en=?, project_num=?, project_vedio=?, project_zhou=?, gps=?, return_money=?, walk_num=?, mianji=?, project_min_price=?, project_high_price=?, tuijiandu=?, housePrice_update_time=?,area_num=?, min_area=?, max_area=?,  developer_id_name=? where id="+id;
+				String sql1= "update house_project set project_name=?, project_nation=?, project_address=?, project_price_int_qi=?, project_type=?, project_sales_remain=?,  project_finish_time=?, project_desc=?, project_city=?, project_house_type=?, project_high=?, project_lan_cn=?, project_lan_en=?, project_num=?, project_vedio=?, project_zhou=?, gps=?, return_money=?, walk_num=?, mianji=?, project_min_price=?, project_high_price=?, tuijiandu=?, housePrice_update_time=?,area_num=?, min_area=?, max_area=?,  developer_id_name=?,project_area=? where id="+id;
 			    pstmt = con.prepareStatement(sql1);
 				pstmt.setString(1, project_name);
 				pstmt.setString(2, project_nation);
@@ -4161,6 +4161,7 @@ public class ProjectInputDao extends BaseDao {
 				pstmt.setInt(26, min_area);
 				pstmt.setInt(27, max_area);
 				pstmt.setString(28, developer_num);
+				pstmt.setString(29, project_area);
 				int result1 = pstmt.executeUpdate();
 				System.out.println("result1:"+result1);
 				//鎴峰瀷鍙婁环鏍兼洿鏂�
