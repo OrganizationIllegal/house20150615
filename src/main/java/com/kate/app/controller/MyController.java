@@ -560,7 +560,7 @@ public class MyController {
 		String buy_three_price = "";
 		
 		if(middlePrice!=null){
-			int price = middlePrice.getZu_one_price();
+			int price = middlePrice.getZu_price();
 			if(price!=0){
 				zu_price =  df.format(price);
 			}
@@ -615,7 +615,7 @@ public class MyController {
 		req.setAttribute("buy_price", buy_price);
 		req.setAttribute("buy_one_price", buy_one_price);
 		req.setAttribute("buy_two_price", buy_two_price);
-		req.setAttribute("buy_three_price ", buy_three_price );
+		req.setAttribute("buy_three_price", buy_three_price );
 	}
 	
 	/**
