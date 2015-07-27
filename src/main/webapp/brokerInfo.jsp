@@ -327,8 +327,10 @@ $(function(){
 		//alert(areaedit);
 		if(areaedit==100){
 			var area={};
-			area=DataDeal.formToJson(data= decodeURIComponent($("#area").serialize(),true));
-			area=eval("("+area+")");
+			/* area=DataDeal.formToJson(data= decodeURIComponent($("#area").serialize(),true));
+			area=eval("("+area+")"); */
+			area.area_code=$("#area_code").val();
+			area.view_shunxu=$("#view_shunxu").val();
 			arealist.push(area);
 			$('#arealist').append("<div><div class='area_left3'><span class='area_span'>"+(++areacount)+"</span><span class='area_span'>"+arealist[areacount-1].area_code+"</span><span class='area_span'>"+arealist[areacount-1].view_shunxu+"</span></div><div class='area_right3'><span class='area_span4'><a href='#' class='editarea'>编辑</a></span><span class='area_span5'><a href='#' class='deletearea'>删除</a></span></div></div>");
 			$("#area input").each(function(){
@@ -337,9 +339,11 @@ $(function(){
 			}
 		else{
 			//alert("edit");
-			areaedititem=DataDeal.formToJson(data= decodeURIComponent($("#area").serialize(),true));
+			/* areaedititem=DataDeal.formToJson(data= decodeURIComponent($("#area").serialize(),true));
 			//alert("aaa"+areaedititem);
-			areaedititem=eval("("+areaedititem+")");
+			areaedititem=eval("("+areaedititem+")"); */
+			areaedititem.area_code=$("#area_code").val();
+			areaedititem.view_shunxu=$("#view_shunxu").val();
 			$("#area input").each(function(){
 				$(this).val("");
 			});
@@ -363,7 +367,7 @@ $(function(){
 		$(this).parent().parent().parent().hide();
 		//alert(index+"index");
 		areaedit=index;
-		$("#area_code").val(areaedititem.area_code);
+		$("#area_code").val(areaedititem.area_code.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		$("#view_shunxu").val(areaedititem.view_shunxu);
 		}); 
 	
@@ -383,8 +387,10 @@ $(function(){
 		//alert(typeedit);
 		if(typeedit==100){
 			var type={};
-			type=DataDeal.formToJson(data= decodeURIComponent($("#type").serialize(),true));
-			type=eval("("+type+")");
+			/* type=DataDeal.formToJson(data= decodeURIComponent($("#type").serialize(),true));
+			type=eval("("+type+")"); */
+			type.interested_num=$('#interested_num').val();
+			type.view_shunxu2=$("#view_shunxu2").val();
 			typelist.push(type);
 			var selectIndex = document.getElementById("interested_num").selectedIndex;
 			var selectText = document.getElementById("interested_num").options[selectIndex].text;
@@ -395,8 +401,10 @@ $(function(){
 			}
 		else{
 			//alert("edit");
-			typeedititem=DataDeal.formToJson(data= decodeURIComponent($("#type").serialize(),true));
-			typeedititem=eval("("+typeedititem+")");
+			/* typeedititem=DataDeal.formToJson(data= decodeURIComponent($("#type").serialize(),true));
+			typeedititem=eval("("+typeedititem+")"); */
+			typeedititem.interested_num=$('#interested_num').val();
+			typeedititem.view_shunxu2=$("#view_shunxu2").val();
 			$("#type input").each(function(){
 				$(this).val("");
 				});
@@ -466,9 +474,16 @@ function saveBroker(){
 	}
 	var id=$("#id").val();
 	//alert("id"+id);
-	var broker;
-	broker=DataDeal.formToJson(data= decodeURIComponent($("#brokerinfo").serialize(),true));
-	broker=eval("("+broker+")");
+	var broker={};
+	/* broker=DataDeal.formToJson(data= decodeURIComponent($("#brokerinfo").serialize(),true));
+	broker=eval("("+broker+")"); */
+	broker.broker_num=$("#broker_num").val(); 
+	broker.broker_name=$("#broker_name").val();
+	broker.broker_language=$("#broker_language").val();
+	broker.broker_region=$("#broker_region").val();
+	broker.broker_type=$("#broker_type").val();
+	broker.broker_zizhi=$("#broker_zizhi").val();
+	broker.broker_experience=$("#broker_experience").val();
 	var filenames=$('#broker_img').val().split("\\");
 	var filename=filenames[filenames.length-1];
 	broker.broker_img=filename;

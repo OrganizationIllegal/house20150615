@@ -1560,7 +1560,7 @@ $(function(){
 			tedian=tedian.replace(/\+/g," ");
 			tedian=eval("("+tedian+")"); */
 			tedian.data_source=$("#data_source").val();
-			tedian.update_time$("#update_time").val();
+			tedian.update_time=$("#update_time").val();
 			tedian.view_shunxu=$("#view_shunxu").val();
 			tedian.area_character=$("#area_character").val();
 			tedianlist.push(tedian);
@@ -1590,7 +1590,7 @@ $(function(){
 			var filename=filenames[filenames.length-1]; */
 			/* UpladFile("houseimg"); */
 			tedianedititem.data_source=$("#data_source").val();
-			tedianedititem.update_time$("#update_time").val();
+			tedianedititem.update_time=$("#update_time").val();
 			tedianedititem.view_shunxu=$("#view_shunxu").val();
 			tedianedititem.area_character=$("#area_character").val();
 			var date=$("#update_time").val();
@@ -1664,7 +1664,7 @@ $(function(){
 			people.column2=$("#column2").val();
 			people.column3=$("#column3").val();
 			people.view_shunxu_people=$("#view_shunxu_people").val();
-			people.people_datasource$("#people_datasource").val();
+			people.people_datasource=$("#people_datasource").val();
 			people.people_date=$("#people_date").val();
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
@@ -1702,7 +1702,7 @@ $(function(){
 			peopleedititem.column2=$("#column2").val();
 			peopleedititem.column3=$("#column3").val();
 			peopleedititem.view_shunxu_people=$("#view_shunxu_people").val();
-			peopleedititem.people_datasource$("#people_datasource").val();
+			peopleedititem.people_datasource=$("#people_datasource").val();
 			peopleedititem.people_date=$("#people_date").val();
 			/* peopleedititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
@@ -1836,7 +1836,7 @@ $(function(){
 			/* project=DataDeal.formToJson(data= decodeURIComponent($("#project").serialize(),true));
 			project=project.replace(/\+/g," ");
 			project=eval("("+project+")"); */
-			project.project_name=$("#project.project_name").val();
+			project.project_name=$("#project_name").val();
 			$.ajax({
 				  url: "/getprojectinfo",
 				  method: "POST",
@@ -2019,10 +2019,43 @@ function savepro(){
 		alert("邮政编码-请输入数字！");
 		return false;
 	} */
-	var area;
+	/* var area;
 	area=DataDeal.formToJson(data= decodeURIComponent($("#area").serialize(),true));
 	area=area.replace(/\+/g," ");
-	area=eval("("+area+")");
+	area=eval("("+area+")"); */
+	var area={};
+	area.area_num=$("#area_num").val();
+	area.area_name=$("#area_name").val();
+	area.area_nation=$("#area_nation").val();
+	area.area_zhou=$("#area_zhou").val();
+	area.area_city=$("#area_city").val();
+	area.area_postcode=$("#area_postcode").val();
+	area.touzi_datasource=$("#touzi_datasource").val();
+	area.touzi_date=$("#touzi_date").val();
+	area.year_increment_rate=$("#year_increment_rate").val();
+	area.middle_price=$("#middle_price").val();
+	area.middle_zu_price=$("#middle_zu_price").val();
+	area.zu_house_rate=$("#zu_house_rate").val();
+	area.price_review=$("#price_review").val();
+	area.zu_xuqiu=$("#zu_xuqiu").val();
+	area.pro_type=$("#pro_type").val();
+	area.touzi_datasource1=$("#touzi_datasource1").val();
+	area.touzi_date1=$("#touzi_date1").val();
+	area.year_increment_rate1=$("#year_increment_rate1").val();
+	area.middle_price1=$("#middle_price1").val();
+	area.middle_zu_price1=$("#middle_zu_price1").val();
+	area.zu_house_rate1=$("#zu_house_rate1").val();
+	area.price_review1=$("#price_review1").val();
+	area.zu_xuqiu1=$("#zu_xuqiu1").val();
+	area.pro_type1=$("#pro_type1").val();
+	area.family_datasource=$("#family_datasource").val();
+	area.family_date=$("#family_date").val();
+	area.family_one=$("#family_one").val();
+	area.family_one_rate=$("#family_one_rate").val();
+	area.family_two=$("#family_two").val();
+	area.family_two_rate=$("#family_two_rate").val();
+	area.family_three=$("#family_three").val();
+	area.family_three_rate=$("#family_three_rate").val();
 	//alert("ff1")
     $.ajax({
 	    type: "POST",

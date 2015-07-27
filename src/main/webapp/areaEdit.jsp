@@ -1143,22 +1143,22 @@ $(function(){
 			middleprice=eval("("+middleprice+")"); */
 			
 			middleprice.project_type=$("#project_type").val();
-			middleprice.buy_price$("#buy_price").val();
-			middleprice.zu_price$("#zu_price").val();
-			middleprice.buy_one_name$("#buy_one_name").val();
-			middleprice.buy_one_price$("#buy_one_price").val();
-			middleprice.buy_two_name$("#buy_two_name").val();
-			middleprice.buy_two_price$("#buy_two_price").val();
-			middleprice.buy_three_name$("#buy_three_name").val();
-			middleprice.buy_three_price$("#buy_three_price").val();
-			middleprice.zu_one_name$("#zu_one_name").val();
-			middleprice.zu_one_price$("#zu_one_price").val();
-			middleprice.zu_two_name$("#zu_two_name").val();
-			middleprice.zu_two_price$("#zu_two_price").val();
-			middleprice.zu_three_name$("#zu_three_name").val();
-			middleprice.zu_three_price$("#zu_three_price").val(); 
-			middleprice.middle_datasource$("#middle_datasource").val();
-			middleprice.middle_date$("#middle_date").val();
+			middleprice.buy_price=$("#buy_price").val();
+			middleprice.zu_price=$("#zu_price").val();
+			middleprice.buy_one_name=$("#buy_one_name").val();
+			middleprice.buy_one_price=$("#buy_one_price").val();
+			middleprice.buy_two_name=$("#buy_two_name").val();
+			middleprice.buy_two_price=$("#buy_two_price").val();
+			middleprice.buy_three_name=$("#buy_three_name").val();
+			middleprice.buy_three_price=$("#buy_three_price").val();
+			middleprice.zu_one_name=$("#zu_one_name").val();
+			middleprice.zu_one_price=$("#zu_one_price").val();
+			middleprice.zu_two_name=$("#zu_two_name").val();
+			middleprice.zu_two_price=$("#zu_two_price").val();
+			middleprice.zu_three_name=$("#zu_three_name").val();
+			middleprice.zu_three_price=$("#zu_three_price").val(); 
+			middleprice.middle_datasource=$("#middle_datasource").val();
+			middleprice.middle_date=$("#middle_date").val();
 			
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
@@ -1197,22 +1197,22 @@ $(function(){
 			middlepriceedititem=eval("("+middlepriceedititem+")"); */
 			
 			middlepriceedititem.project_type=$("#project_type").val();
-			middlepriceedititem.buy_price$("#buy_price").val();
-			middlepriceedititem.zu_price$("#zu_price").val();
-			middlepriceedititem.buy_one_name$("#buy_one_name").val();
-			middlepriceedititem.buy_one_price$("#buy_one_price").val();
-			middlepriceedititem.buy_two_name$("#buy_two_name").val();
-			middlepriceedititem.buy_two_price$("#buy_two_price").val();
-			middlepriceedititem.buy_three_name$("#buy_three_name").val();
-			middlepriceedititem.buy_three_price$("#buy_three_price").val();
-			middlepriceedititem.zu_one_name$("#zu_one_name").val();
-			middlepriceedititem.zu_one_price$("#zu_one_price").val();
-			middlepriceedititem.zu_two_name$("#zu_two_name").val();
-			middlepriceedititem.zu_two_price$("#zu_two_price").val();
-			middlepriceedititem.zu_three_name$("#zu_three_name").val();
-			middlepriceedititem.zu_three_price$("#zu_three_price").val(); 
-			middlepriceedititem.middle_datasource$("#middle_datasource").val();
-			middlepriceedititem.middle_date$("#middle_date").val();
+			middlepriceedititem.buy_price=$("#buy_price").val();
+			middlepriceedititem.zu_price=$("#zu_price").val();
+			middlepriceedititem.buy_one_name=$("#buy_one_name").val();
+			middlepriceedititem.buy_one_price=$("#buy_one_price").val();
+			middlepriceedititem.buy_two_name=$("#buy_two_name").val();
+			middlepriceedititem.buy_two_price=$("#buy_two_price").val();
+			middlepriceedititem.buy_three_name=$("#buy_three_name").val();
+			middlepriceedititem.buy_three_price=$("#buy_three_price").val();
+			middlepriceedititem.zu_one_name=$("#zu_one_name").val();
+			middlepriceedititem.zu_one_price=$("#zu_one_price").val();
+			middlepriceedititem.zu_two_name=$("#zu_two_name").val();
+			middlepriceedititem.zu_two_price=$("#zu_two_price").val();
+			middlepriceedititem.zu_three_name=$("#zu_three_name").val();
+			middlepriceedititem.zu_three_price=$("#zu_three_price").val(); 
+			middlepriceedititem.middle_datasource=$("#middle_datasource").val();
+			middlepriceedititem.middle_date=$("#middle_date").val();
 			
 			/* middlepriceedititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
@@ -1315,9 +1315,9 @@ $(function(){
 			}
 		}
 		$('#zu_three_name').trigger('chosen:updated');
-		$("#zu_three_name").val(middlepriceedititem.zu_three_name);
+		$("#zu_three_name").val(middlepriceedititem.zu_three_name.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		$("#zu_three_price").val(middlepriceedititem.zu_three_price);
-		$("#middle_datasource").val(middlepriceedititem.middle_datasource);
+		$("#middle_datasource").val(middlepriceedititem.middle_datasource.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		$("#middle_date").val(middlepriceedititem.middle_date.length>=10?middlepriceedititem.middle_date.substr(0,10):middlepriceedititem.middle_date);
 		}); 
 	
@@ -1444,7 +1444,7 @@ $(function(){
 		$("#view_shunxu2").val(middletrendedititem.view_shunxu2);
 		$("#heng2").val(middletrendedititem.heng2||middletrendedititem.heng);
 		$("#zong2").val(middletrendedititem.zong2||middletrendedititem.zong);
-		$("#middle_zoushi_datasource").val(middletrendedititem.middle_zoushi_datasource);
+		$("#middle_zoushi_datasource").val(middletrendedititem.middle_zoushi_datasource.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		$("#middle_zoushi_date").val(middletrendedititem.middle_zoushi_date.length>=10?middletrendedititem.middle_zoushi_date.substr(0,10):middletrendedititem.middle_zoushi_date);
 		}); 
 	
@@ -1563,11 +1563,11 @@ $(function(){
 			}
 		}
 		$('#project_type3').trigger('chosen:updated');
-		$("#project_type3").val(zujintrendedititem.project_type3||zujintrendedititem.project_type);
+		$("#project_type3").val(zujintrendedititem.project_type3.replace(/\$nbsp;/g," ").replace("&#39;","'")||zujintrendedititem.project_type.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		$("#view_shunxu3").val(zujintrendedititem.view_shunxu3||zujintrendedititem.view_shunxu);
 		$("#heng3").val(zujintrendedititem.heng3||zujintrendedititem.heng);
 		$("#zong3").val(zujintrendedititem.zong3||zujintrendedititem.zong);
-		$("#zujin_datasource").val(zujintrendedititem.zujin_datasource||zujintrendedititem.zujin_datasource);
+		$("#zujin_datasource").val(zujintrendedititem.zujin_datasource.replace(/\$nbsp;/g," ").replace("&#39;","'")||zujintrendedititem.zujin_datasource.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		$("#zujin_date").val(zujintrendedititem.zujin_date.length>=10?zujintrendedititem.zujin_date.substr(0,10):zujintrendedititem.zujin_date);
 		}); 
 	
@@ -1687,11 +1687,11 @@ $(function(){
 			}
 		}
 		$('#project_type4').trigger('chosen:updated');
-		$("#project_type4").val(huibaotrendedititem.project_type4||huibaotrendedititem.project_type);
+		$("#project_type4").val(huibaotrendedititem.project_type4.replace(/\$nbsp;/g," ").replace("&#39;","'")||huibaotrendedititem.project_type.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		$("#view_shunxu4").val(huibaotrendedititem.view_shunxu4||huibaotrendedititem.view_shunxu);
 		$("#heng4").val(huibaotrendedititem.heng4||huibaotrendedititem.heng);
 		$("#zong4").val(huibaotrendedititem.zong4||huibaotrendedititem.zong); 
-		$("#zujin_huibao_datasource").val(huibaotrendedititem.zujin_huibao_datasource||huibaotrendedititem.zujin_huibao_datasource);
+		$("#zujin_huibao_datasource").val(huibaotrendedititem.zujin_huibao_datasource.replace(/\$nbsp;/g," ").replace("&#39;","'")||huibaotrendedititem.zujin_huibao_datasource.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		$("#zujin_huibao_date").val(huibaotrendedititem.zujin_huibao_date.length>=10?huibaotrendedititem.zujin_huibao_date.substr(0,10):huibaotrendedititem.zujin_huibao_date);
 		}); 
 	
@@ -1720,7 +1720,7 @@ $(function(){
 			tedian=tedian.replace(/\+/g," ");
 			tedian=eval("("+tedian+")"); */
 			tedian.data_source=$("#data_source").val();
-			tedian.update_time$("#update_time").val();
+			tedian.update_time=$("#update_time").val();
 			tedian.view_shunxu=$("#view_shunxu").val();
 			tedian.area_character=$("#area_character").val();
 			tedianlist.push(tedian);
@@ -1742,7 +1742,7 @@ $(function(){
 			tedianedititem=tedianedititem.replace(/\+/g," ");
 			tedianedititem=eval("("+tedianedititem+")"); */
 			tedianedititem.data_source=$("#data_source").val();
-			tedianedititem.update_time$("#update_time").val();
+			tedianedititem.update_time=$("#update_time").val();
 			tedianedititem.view_shunxu=$("#view_shunxu").val();
 			tedianedititem.area_character=$("#area_character").val();
 			var date=$("#update_time").val();
@@ -1778,10 +1778,10 @@ $(function(){
 		//$("#projectimage").val(edititem.name+"");
 		//alert(index+"index");
 		tedianedit=index;
-		$("#data_source").val(tedianedititem.data_source);
+		$("#data_source").val(tedianedititem.data_source.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		$("#update_time").val(tedianedititem.update_time.length>=10?tedianedititem.update_time.substr(0,10):tedianedititem.update_time);
 		$("#view_shunxu").val(tedianedititem.view_shunxu);
-		$("#area_character").val(tedianedititem.area_character);
+		$("#area_character").val(tedianedititem.area_character.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		}); 
 	
 });
@@ -1813,7 +1813,7 @@ $(function(){
 			people.column2=$("#column2").val();
 			people.column3=$("#column3").val();
 			people.view_shunxu_people=$("#view_shunxu_people").val();
-			people.people_datasource$("#people_datasource").val();
+			people.people_datasource=$("#people_datasource").val();
 			people.people_date=$("#people_date").val();
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
 			/* peitao.shunxu=peitaocount+1; */
@@ -1854,7 +1854,7 @@ $(function(){
 			peopleedititem.column2=$("#column2").val();
 			peopleedititem.column3=$("#column3").val();
 			peopleedititem.view_shunxu_people=$("#view_shunxu_people").val();
-			peopleedititem.people_datasource$("#people_datasource").val();
+			peopleedititem.people_datasource=$("#people_datasource").val();
 			peopleedititem.people_date=$("#people_date").val();
 			/* peopleedititem["houseimg"]=filename; */
 			/* var filenames=$('#projectimage').val().split("\\");
@@ -1893,11 +1893,11 @@ $(function(){
 		//$("#projectimage").val(edititem.name+"");
 		//alert(index+"index");
 		peopleedit=index;
-		$("#column1").val(peopleedititem.column1);
-		$("#column2").val(peopleedititem.column2);
-		$("#column3").val(peopleedititem.column3);
-		$("#view_shunxu_people").val(peopleedititem.view_shunxu_people);
-		$("#people_datasource").val(peopleedititem.people_datasource);
+		$("#column1").val(peopleedititem.column1.replace(/\$nbsp;/g," ").replace("&#39;","'"));
+		$("#column2").val(peopleedititem.column2.replace(/\$nbsp;/g," ").replace("&#39;","'"));
+		$("#column3").val(peopleedititem.column3.replace(/\$nbsp;/g," ").replace("&#39;","'"));
+		$("#view_shunxu_people").val(peopleedititem.view_shunxu_people.replace(/\$nbsp;/g," ").replace("&#39;","'"));
+		$("#people_datasource").val(peopleedititem.people_datasource.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		$("#people_date").val(peopleedititem.people_date.length>=10?peopleedititem.people_date.substr(0,10):peopleedititem.people_date);
 		}); 
 	
@@ -2001,7 +2001,7 @@ $(function(){
 			/* project=DataDeal.formToJson(data= decodeURIComponent($("#project").serialize(),true));
 			project=project.replace(/\+/g," ");
 			project=eval("("+project+")"); */
-			project.project_name=$("#project.project_name").val();
+			project.project_name=$("#project_name").val();
 			$.ajax({
 				  url: "/getprojectinfo",
 				  method: "POST",
@@ -2180,12 +2180,45 @@ var DataDeal = {
 
 function savepro(){
 
-	var area;
-	area=DataDeal.formToJson(data= decodeURIComponent($("#area").serialize(),true));
-	area=area.replace(/\+\"\,\"\+/g, " & ").replace(/\+/g," ");
+	var area={};
+	area.area_num=$("#area_num").val();
+	area.area_name=$("#area_name").val();
+	area.area_nation=$("#area_nation").val();
+	area.area_zhou=$("#area_zhou").val();
+	area.area_city=$("#area_city").val();
+	area.area_postcode=$("#area_postcode").val();
+	area.touzi_datasource=$("#touzi_datasource").val();
+	area.touzi_date=$("#touzi_date").val();
+	area.year_increment_rate=$("#year_increment_rate").val();
+	area.middle_price=$("#middle_price").val();
+	area.middle_zu_price=$("#middle_zu_price").val();
+	area.zu_house_rate=$("#zu_house_rate").val();
+	area.price_review=$("#price_review").val();
+	area.zu_xuqiu=$("#zu_xuqiu").val();
+	area.pro_type=$("#pro_type").val();
+	area.touzi_datasource1=$("#touzi_datasource1").val();
+	area.touzi_date1=$("#touzi_date1").val();
+	area.year_increment_rate1=$("#year_increment_rate1").val();
+	area.middle_price1=$("#middle_price1").val();
+	area.middle_zu_price1=$("#middle_zu_price1").val();
+	area.zu_house_rate1=$("#zu_house_rate1").val();
+	area.price_review1=$("#price_review1").val();
+	area.zu_xuqiu1=$("#zu_xuqiu1").val();
+	area.pro_type1=$("#pro_type1").val();
+	area.family_datasource=$("#family_datasource").val();
+	area.family_date=$("#family_date").val();
+	area.family_one=$("#family_one").val();
+	area.family_one_rate=$("#family_one_rate").val();
+	area.family_two=$("#family_two").val();
+	area.family_two_rate=$("#family_two_rate").val();
+	area.family_three=$("#family_three").val();
+	area.family_three_rate=$("#family_three_rate").val();
+	
+	/* area=DataDeal.formToJson(data= decodeURIComponent($("#area").serialize(),true));
+	area=area.replace(/\+\"\,\"\+/g, " & ").replace(/\+/g," "); */
 	/* area=area; */
 	/* alert(area); */
-	area=eval("("+area+")");
+	/* area=eval("("+area+")"); */
 	//alert("ff1")
 	/* area.family_datasource=$("#family_datasource").val(); */
 	/* alert(JSON.stringify(area)); */

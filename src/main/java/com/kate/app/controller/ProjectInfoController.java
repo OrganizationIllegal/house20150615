@@ -1080,12 +1080,20 @@ public class ProjectInfoController {
 				    	brokerTypelist2.add(e);//鐢ㄤ簬娣诲姞
 				    }
 				    else{
+				    	if("公寓".equals(e.getInterested_num())){
+							e.setInterested_num("house_01");
+						}else if("别墅".equals(e.getInterested_num())){
+							e.setInterested_num("house_02");
+						}else if("联排别墅".equals(e.getInterested_num())){
+							e.setInterested_num("house_03");
+						}
 				    	brokerTypelist.add(e);//鐢ㄤ簬缂栬緫
 				    }
 				}
 			/*if(brokerTypelist.size()==0){
 				brokerTypelistdelete=brokerIntegertypeListbefore;
 			}*/
+			
 			for (int i=0;i<brokerIntegertypeListbefore.size();i++){
 				boolean flag=false;
 				for(int j=0;j<brokerTypelist.size();j++){
@@ -1556,20 +1564,20 @@ public class ProjectInfoController {
 		List<HouseInfo1> houseInfoList=projectInputDao.getHouseInfoByProNum(pronum);
 		houseInfoListbefore=projectInputDao.getHouseInfoByProNum(pronum);
 		req.setAttribute("houseInfoList", houseInfoList);
-		req.setAttribute("houseInfoListJson", ConvertJson.list2json(houseInfoList));
+		req.setAttribute("houseInfoListJson", ConvertJson.list2json(houseInfoList).replace(" ", "&nbsp;").replace("'", "&#39;"));
 
 		//根据项目编号获取项目图片
 
 		List <ProjectPeiTao> projectPeiTaoList =projectInputDao.getProjectpeiTaoByProNum(pronum);
 		projectPeiTaoListbefore=projectInputDao.getProjectpeiTaoByProNum(pronum);
 		req.setAttribute("projectPeitaoList", projectPeiTaoList);
-		req.setAttribute("projectPeitaoListJson", ConvertJson.list2json(projectPeiTaoList));
+		req.setAttribute("projectPeitaoListJson", ConvertJson.list2json(projectPeiTaoList).replace(" ", "&nbsp;").replace("'", "&#39;"));
 
 		//根据项目编号获取项目配套
 		List <ProjectDescImage> projectImageList =projectInputDao.getProjectImageByProNum(pronum);
 		projectImageListbefore=projectInputDao.getProjectImageByProNum(pronum);
 		req.setAttribute("projectImageList", projectImageList);
-		req.setAttribute("projectImageListJson", ConvertJson.list2json(projectImageList));
+		req.setAttribute("projectImageListJson", ConvertJson.list2json(projectImageList).replace(" ", "&nbsp;").replace("'", "&#39;"));
 		//根据项目编号获取附近配套
 
 		List<FujinPeiTao> fujinPeitaoList=projectInputDao.getFujinPeiTaoByProNum(pronum);
@@ -1580,22 +1588,22 @@ public class ProjectInfoController {
 		List<FujinSchool> fujinSchoolList=projectInputDao.getFujinSchoolByProNum(pronum);
 		fujinSchoolListbefore=projectInputDao.getFujinSchoolByProNum(pronum);
 		req.setAttribute("fujinSchoolList",fujinSchoolList );
-		req.setAttribute("fujinSchoolListJson", ConvertJson.list2json(fujinSchoolList).replace("'", "&#39;"));
+		req.setAttribute("fujinSchoolListJson", ConvertJson.list2json(fujinSchoolList).replace(" ", "&nbsp;").replace("'", "&#39;"));
 		//鏍规嵁椤圭洰缂栧彿鑾峰彇鎸佹湁鎴愭湰
 		List<HoldCost> holdCostList=projectInputDao.getHoldCostByProNum(pronum);
 		holdCostListbefore=projectInputDao.getHoldCostByProNum(pronum);
 		req.setAttribute("holdCostList",holdCostList );
-		req.setAttribute("holdCostListJson", ConvertJson.list2json(holdCostList));
+		req.setAttribute("holdCostListJson", ConvertJson.list2json(holdCostList).replace(" ", "&nbsp;").replace("'", "&#39;"));
 		//鏍规嵁椤圭洰缂栧彿鑾峰彇璐埧绋庤垂
 		List<HouseTax> houseTaxList=projectInputDao.getHouseTaxByProNum(pronum);
 		houseTaxListbefore=projectInputDao.getHouseTaxByProNum(pronum);
 		req.setAttribute("houseTaxList",houseTaxList );
-		req.setAttribute("houseTaxListJson", ConvertJson.list2json(houseTaxList));
+		req.setAttribute("houseTaxListJson", ConvertJson.list2json(houseTaxList).replace(" ", "&nbsp;").replace("'", "&#39;"));
 		//推荐经纪人    按项目进行推荐
 		List<BrokerInfo> brokerlist=projectInputDao.getBrokerInfoByProNum(pronum);
 		brokerlistbefore=projectInputDao.getBrokerInfoByProNum(pronum);
 		req.setAttribute("brokerlist",brokerlist );
-		req.setAttribute("brokerlistJson", ConvertJson.list2json(brokerlist));
+		req.setAttribute("brokerlistJson", ConvertJson.list2json(brokerlist).replace(" ", "&nbsp;").replace("'", "&#39;"));
 		//推荐经纪人    按项目进行推荐
 		
 		//寰楀埌寮�鍙戝晢鐨勭紪鍙峰拰鍚嶇О
@@ -1676,7 +1684,7 @@ public class ProjectInfoController {
 					brokerServiceAreaListbefore=projectInputDao.findBrokerAreaList(broker_num);
 					
 					req.setAttribute("brokerServiceAreaList", brokerServiceAreaList);
-					req.setAttribute("brokerServiceAreaListJson", ConvertJson.list2json(brokerServiceAreaList));
+					req.setAttribute("brokerServiceAreaListJson", ConvertJson.list2json(brokerServiceAreaList).replace(" ", "&nbsp;").replace("'", "&#39;"));
 					//鑾峰彇缁忕邯浜烘搮闀跨被鍨�
 					List<BrokerType> brokerIntegertypeList=projectInputDao.findBrokerTypeList(broker_num);
 					for(int i=0;i<brokerIntegertypeList.size();i++){
@@ -1691,7 +1699,7 @@ public class ProjectInfoController {
 					}
 					brokerIntegertypeListbefore=projectInputDao.findBrokerTypeList(broker_num);
 					req.setAttribute("brokerIntegertypeList", brokerIntegertypeList);
-					req.setAttribute("brokerIntegertypeListJson", ConvertJson.list2json(brokerIntegertypeList));
+					req.setAttribute("brokerIntegertypeListJson", ConvertJson.list2json(brokerIntegertypeList).replace(" ", "&nbsp;").replace("'", "&#39;"));
 					return "/brokerInfo.jsp";
 				}
 	

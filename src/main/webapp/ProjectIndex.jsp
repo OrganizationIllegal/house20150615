@@ -132,15 +132,15 @@ function lunbo(){
 					{jQuery(".ad_position .limit .ad_small_box ul").animate({"margin-top":"0px"},{duration:animate_time,queue:false});}
 				else
 					{
-						jQuery(".ad_position .limit .ad_small_box ul").animate({"margin-top":(ad_huandeng_click_i-1)*-138},{duration:animate_time,queue:false});
+						jQuery(".ad_position .limit .ad_small_box ul").animate({"margin-top":(ad_huandeng_click_i-1)*-146},{duration:animate_time,queue:false});
 					}
 			}		
 		if(ad_huandeng_click_i==0)//锟斤拷始锟叫讹拷指示锟斤拷图片锟斤拷位锟斤拷
 			{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","0px");}
 		else if(ad_huandeng_click_i==ad_size)
-			{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","288px");}
+			{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","293px");} 
 		else
-			{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","144px");}
+			{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","146px");}
 		//jQuery(".ad_position .limit .ad_small_box ul li").css("opacity","0.5");
 		//jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).css("opacity","1");
 		//锟叫讹拷锟斤拷锟铰帮拷钮锟角凤拷傻锟斤拷
@@ -168,20 +168,20 @@ function lunbo(){
 		this_ad_top=parseInt(this_ad_top);
 		jQuery(".ad_position .limit .ad_left_big").animate({"margin-top":small_ad_hover_i*-474},{duration:animate_time,queue:false});if(small_ad_hover_i!=ad_huandeng_click_i);
 		if(small_ad_hover_i==0)
-			{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","3px");}
+			{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","0px");}
 		else if(small_ad_hover_i<ad_huandeng_click_i)
 			{
 				if(ad_huandeng_click_i-small_ad_hover_i==1)
-					{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top-144);}
+					{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top-146);}
 				else
-					{{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top-288);}}
+					{{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top-296);}}
 			}
 		else if(small_ad_hover_i>ad_huandeng_click_i)
 			{
 				if(small_ad_hover_i-ad_huandeng_click_i==1)
-					{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top+144);}
+					{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top+146);}
 				else
-					{{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top+288);}}
+					{{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top+296);}}
 			}
 		ad_huandeng_click_i=small_ad_hover_i;
 		//锟叫讹拷锟斤拷锟铰帮拷钮锟角凤拷傻锟斤拷
@@ -209,7 +209,7 @@ function lunbo(){
 		ad_huandeng_click_i=ad_huandeng_click_i-1;
 		if(ad_huandeng_click_i<0)
 			{ad_huandeng_click_i=0;}		
-		jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).trigger("mouseover");
+		jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).trigger("dblclick");
 	});
 	//锟斤拷锟斤拷锟斤拷掳锟脚ナ�
 	jQuery(".ad_small_box .bottom_button").click(function(){
@@ -218,10 +218,10 @@ function lunbo(){
 			{
 				ad_huandeng_click_i=ad_size;
 				jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).trigger("dblclick");
-				jQuery(".ad_position .limit .ad_small_box ul").animate({"margin-top":(ad_huandeng_click_i-2)*-138},{duration:animate_time,queue:false});
+				jQuery(".ad_position .limit .ad_small_box ul").animate({"margin-top":(ad_huandeng_click_i-2)*-146},{duration:animate_time,queue:false});
 			}
 		
-		jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).trigger("mouseover");
+		jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).trigger("dblclick");
 	});
 }
 function lunbo1(){
@@ -298,20 +298,20 @@ function lunbo1(){
 		this_ad_top=parseInt(this_ad_top);
 		jQuery(".ad_position .limit .ad_left_big").animate({"margin-top":small_ad_hover_i*-474},{duration:animate_time,queue:false});if(small_ad_hover_i!=ad_huandeng_click_i); 
 		if(small_ad_hover_i==0)
-			{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","3px");}
+			{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top","0px");}
 		else if(small_ad_hover_i<ad_huandeng_click_i)
 			{
 				if(ad_huandeng_click_i-small_ad_hover_i==1)
-					{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top-144);}
+					{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top-146);}
 				else
-					{{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top-288);}}
+					{{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top-296);}}
 			}
 		else if(small_ad_hover_i>ad_huandeng_click_i)
 			{
 				if(small_ad_hover_i-ad_huandeng_click_i==1)
-					{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top+144);}
+					{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top+146);}
 				else
-					{{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top+288);}}
+					{{jQuery(".ad_position .limit .ad_small_box .small_right_limit .this_ad").css("top",this_ad_top+296);}}
 			}
 		ad_huandeng_click_i=small_ad_hover_i;
 		//锟叫讹拷锟斤拷锟铰帮拷钮锟角凤拷傻锟斤拷
@@ -339,7 +339,7 @@ function lunbo1(){
 		ad_huandeng_click_i=ad_huandeng_click_i-1;
 		if(ad_huandeng_click_i<0)
 			{ad_huandeng_click_i=0;}		
-		jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).trigger("mouseover");
+		jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).trigger("dblclick");
 	});
 	//锟斤拷锟斤拷锟斤拷掳锟脚ナ�
 	jQuery(".ad_small_box .bottom_button").click(function(){
@@ -348,30 +348,31 @@ function lunbo1(){
 			{
 				ad_huandeng_click_i=ad_size;
 				jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).trigger("dblclick");
-				jQuery(".ad_position .limit .ad_small_box ul").animate({"margin-top":(ad_huandeng_click_i-2)*-138},{duration:animate_time,queue:false}); 
+				jQuery(".ad_position .limit .ad_small_box ul").animate({"margin-top":(ad_huandeng_click_i-2)*-146},{duration:animate_time,queue:false}); 
 			}
 		
-		jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).trigger("mouseover");
+		jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).trigger("dblclick");
 	});
 }
+
 $(function(){
 	var vedioUrl = "${vedio}";
 	lunbo();
-	player = new YKU.Player('youkuplayer1',{
+	 player = new YKU.Player('youkuplayer1',{
 		styleid: '0',
 		client_id: '6e97509b4cd3378b',
 		vid: 'XOTUxNDk2NDQ0',
 		events:{
-		onPlayerReady: function(){ 
+		/* onPlayerReady: function(){ 
 			//alert("zhunbei");
 			lunbo();
-		},    
+		}, */  
 		onPlayStart: function(){
 			playVideo();
 			lunbo1();
 		},
-		onPlayEnd: function(){ lunbo(); }
-		}
+		onPlayEnd: function(){ location.reload();}  
+		} 
 		});
 		function playVideo(){
 		player.playVideo();
@@ -380,8 +381,8 @@ $(function(){
 		function pauseVideo(){
 		player.pauseVideo();
 			alert("zanting")
-		}
-	/* lunbo(); */
+		} 
+	//lunbo(); 
 	
 	//锟矫碉拷片锟斤拷娌ワ拷锟�
 });
@@ -486,18 +487,19 @@ function popInfo(){
 	                    </c:when>
 	                    <c:otherwise>
 	                    	 
-		                    <c:forEach var="item"  items="${imageList}"   varStatus="status">
+		                  <%--   <c:forEach var="item"  items="${imageList}"   varStatus="status">
 			                     <c:if test="${status.index==0}">
 			                    	<tr><td><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="750" height="474" /></td></tr>
 			                     </c:if>
-			                 </c:forEach>
-			                 	<%-- <tr><td><img src="<%=application.getInitParameter("imagedir")%>/" width="750" height="474" /></td></tr> --%>
+			                 </c:forEach> --%>
+			      
 			                 	<tr><td><div id="youkuplayer1" style="width:750px;height:474px"></div></td> </tr>
+			               
                    
                     			 <c:forEach var="item"  items="${imageList}"   varStatus="status">
-			                     <c:if test="${status.index>0}">
+			                     <%-- <c:if test="${status.index>0}"> --%>
 			                    	<tr><td><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="750" height="474" /></td></tr>
-			                     </c:if>
+			                    <%--  </c:if> --%>
 			                 </c:forEach>
 	                    </c:otherwise>
 	                   
@@ -507,8 +509,8 @@ function popInfo(){
 
             <div class="ad_small_box" style="width:224px;height:474px;margin-left:20px;">
                 <div class="top_button off"></div>
-                <div class="small_right_limit">
-                    <ul style="margin-top: 0px;">
+                <div class="small_right_limit" style="padding:0px;">
+                    <ul>
                     <c:choose>
                     	<c:when test="${empty vedio}">
 		                    <c:forEach var="item"  items="${imageList}"   varStatus="status">
@@ -520,16 +522,16 @@ function popInfo(){
                     
                     	
                     	<c:otherwise>
-                    		<c:forEach var="item"  items="${imageList}"   varStatus="status">
+                    		<%-- <c:forEach var="item"  items="${imageList}"   varStatus="status">
 			            		<c:if test="${status.index==0}">
 			            			<li style="margin-top:6px"><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="210" height="140"/></li>
 			            		</c:if>
-			         		</c:forEach>
+			         		</c:forEach> --%>
 			         		<li style="margin-top:6px"><img src="<%=application.getInitParameter("imagedir")%>/au3000_xm_1.jpg" width="210" height="140"/></li>
                      		<c:forEach var="item"  items="${imageList}"   varStatus="status">
-			            		<c:if test="${status.index>0}">
+			            		<%-- <c:if test="${status.index>0}"> --%>
 			            			<li style="margin-top:6px"><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="210" height="140"/></li>
-			            		</c:if>
+			            		<%-- </c:if> --%>
 			         		</c:forEach>
                     
                     
@@ -542,7 +544,7 @@ function popInfo(){
                     	</c:forEach> --%>
                        
                     </ul>
-                    <!-- <div class="this_ad" style="top:0px;"><img style="border:blue 2px solid;width:211px;height:146px;margin-left:9px;margin-top:6px;"/></div> -->
+                    <div class="this_ad" style="top:0px;"><img style="border:blue 2px solid;width:210px;height:140px;margin-left:10px;margin-top:7px;"/></div>
                 </div>
                 <div class="bottom_button off"></div>
             </div>
@@ -739,16 +741,16 @@ function popInfo(){
             </div>
             <div class="ad_small_box_p" style="width:224px;height:487px;margin-left:20px;">
                 <div class="top_button off"></div>
-                <div class="small_right_limit_p">
-                    <ul style="margin-top: 0px;">
+                <div class="small_right_limit_p" style="padding:0px;">
+                    <ul>
                     	<c:forEach items="${ProjectPeitaoImage}" var="item" varStatus="status">
                     	<%-- <c:if test="${status.index<3 }"> --%>
-                    		<li style="margin-top:8px;"><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="210" height="140"/></li>
+                    		<li style="margin-top:10px;"><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="210" height="140"/></li>
                     	<%-- </c:if> --%>
                     </c:forEach>
                     	
                     </ul>
-                    <div class="this_ad_p" style="top:0px;"><img style="border:blue 2px solid;width:211px;height:151px;margin-left:9px;margin-top:8px;"/></div>
+                    <div class="this_ad_p" style="top:0px;"><img style="border:blue 2px solid;width:210px;height:140px;margin-left:10px;margin-top:10px;"/></div>
                 </div>
                 <div class="bottom_button off"></div>
             </div>
@@ -1238,15 +1240,15 @@ function popInfo(){
 					<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:950px;margin-bottom:10px;">推荐项目</a>
 					<div class="c-fix f-l p_project_node">
 						<a href="Index?proNum=${RecommendProject1.project_num}"><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject1.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
-						<a href="Index?proNum=${RecommendProject1.project_num}" class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject1.project_name}<br/>${RecommendProject1.project_desc}</a>
+						<a href="Index?proNum=${RecommendProject1.project_num}" class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject1.project_name}<br/><div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;">${RecommendProject1.project_desc}</div></a>
 					</div>
 					<div class="f-l p_project_node" style="margin-left:25px;">
 						<a href="Index?proNum=${RecommendProject2.project_num}"><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject2.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
-						<a href="Index?proNum=${RecommendProject2.project_num}" class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject2.project_name}<br/>${RecommendProject2.project_desc}</a>
+						<a href="Index?proNum=${RecommendProject2.project_num}" class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject2.project_name}<br/><div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;">${RecommendProject2.project_desc}</div></a>
 					</div>
 					<div class="f-l p_project_node" style="margin-left:25px;">
 						<a href="Index?proNum=${RecommendProject3.project_num}"><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject3.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
-						<a href="Index?proNum=${RecommendProject3.project_num}" class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject3.project_name}<br/>${RecommendProject3.project_desc}</a>
+						<a href="Index?proNum=${RecommendProject3.project_num}" class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject3.project_name}<br/><div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;">${RecommendProject3.project_desc}</div></a>
 					</div>
 				</div>
 			</div>
