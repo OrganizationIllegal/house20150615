@@ -1086,6 +1086,10 @@ $(function(){
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
 				return false;} */
+			if($("#holdcosttype").val()=="" || $("#holdcostprice").val()=="" ||$("#holdcostdesc").val()==""){
+				alert("请输入完整持有成本的类型、价格、描述！");
+				return false;
+			}
 			var holdingcost={};
 			/* var filenames=$('#houseimg').val().split("\\");
 			var filename=filenames[filenames.length-1]; */
@@ -1117,6 +1121,10 @@ $(function(){
 			/* <a href='#' style='padding-right:10px;' class='editpeitao'>编辑</a> */
 			}
 		else{
+			if($("#holdcosttype").val()=="" || $("#holdcostprice").val()=="" ||$("#holdcostdesc").val()==""){
+				alert("请输入完整持有成本的类型、价格、描述！");
+				return false;
+			}
 			/* if($('#houseimg').val()==""){
 				alert("请选择文件！");
 				return false;} */
@@ -1185,6 +1193,10 @@ $(function(){
 	});  
 	$(".addhousetaxform").click(function(){
 		if(housetaxformedit==100){
+			if($("#houseTaxtype").val()=="" || $("#houseTaxprice").val()=="" ||$("#houseTaxdesc").val()==""){
+				alert("请输入完整购房税费的类型、价格、描述！");
+				return false;
+			}
 			var housetaxform={};
 			/* housetaxform=DataDeal.formToJson(data= decodeURIComponent($("#housetaxform").serialize(),true));
 			housetaxform=housetaxform.replace(/\+/g," ");
@@ -1202,6 +1214,10 @@ $(function(){
 		else{
 			/* housetaxformedititem=DataDeal.formToJson(data= decodeURIComponent($("#housetaxform").serialize(),true));
 			housetaxformedititem=eval("("+housetaxformedititem+")"); */
+			if($("#houseTaxtype").val()=="" || $("#houseTaxprice").val()=="" ||$("#houseTaxdesc").val()==""){
+				alert("请输入完整购房税费的类型、价格、描述！");
+				return false;
+			}
 			housetaxformedititem.houseTaxtype=$("#houseTaxtype").val();
 			housetaxformedititem.houseTaxprice=$("#houseTaxprice").val();
 			housetaxformedititem.houseTaxdesc=$("#houseTaxdesc").val();
