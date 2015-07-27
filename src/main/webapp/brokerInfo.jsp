@@ -367,7 +367,7 @@ $(function(){
 		$(this).parent().parent().parent().hide();
 		//alert(index+"index");
 		areaedit=index;
-		$("#area_code").val(areaedititem.area_code);
+		$("#area_code").val(areaedititem.area_code.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		$("#view_shunxu").val(areaedititem.view_shunxu);
 		}); 
 	
