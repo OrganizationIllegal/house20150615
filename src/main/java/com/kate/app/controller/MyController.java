@@ -1135,7 +1135,6 @@ public class MyController {
 		}
 				
 			
-		System.out.println(hp1.getProject_num());
 		//HouseProject pro = houseProjectService.getHouseProject(proId);
 		//System.out.println(list.get(0).getImage_name());
 		recommentList.add(hp1);
