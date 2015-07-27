@@ -367,7 +367,7 @@ $(function(){
 		$(this).parent().parent().parent().hide();
 		//alert(index+"index");
 		areaedit=index;
-		$("#area_code").val(areaedititem.area_code);
+		$("#area_code").val(areaedititem.area_code.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		$("#view_shunxu").val(areaedititem.view_shunxu);
 		}); 
 	
@@ -474,10 +474,10 @@ function saveBroker(){
 	}
 	var id=$("#id").val();
 	//alert("id"+id);
-	var broker;
+	var broker={};
 	/* broker=DataDeal.formToJson(data= decodeURIComponent($("#brokerinfo").serialize(),true));
 	broker=eval("("+broker+")"); */
-	broker.broker_num=$("#broker_num").val();
+	broker.broker_num=$("#broker_num").val(); 
 	broker.broker_name=$("#broker_name").val();
 	broker.broker_language=$("#broker_language").val();
 	broker.broker_region=$("#broker_region").val();

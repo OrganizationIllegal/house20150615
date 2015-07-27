@@ -104,7 +104,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        <div style="font-size:15px;float:left;margin-top:-35px;margin-left:200px;">${item.leixing }</div>
 		</c:when>
 		<c:otherwise>
-			<img alt="house3" src="<%=application.getInitParameter("imagedir")%>/${item.leixingImg }" width="26px" height="30px" style="float:left;margin-top:-50px;margin-left:310px;">
+			<img alt="house3" src="<%=application.getInitParameter("imagedir")%>/${item.leixingImg }" width="26px" height="30px" style="float:left;margin-top:-40px;margin-left:310px;">
 	        <div style="font-size:15px;float:left;margin-top:-35px;margin-left:365px;">${item.leixing }</div>
 		</c:otherwise>
 	

@@ -36,6 +36,13 @@ public class BingMapController {
 		return "/bingMap.jsp";
 	}
 	
+	/*@RequestMapping({"/BingMap01"})
+	public String listBingMap01(HttpServletRequest req,HttpServletResponse resp){
+		List<BingMapVo> bingMapList=bingMapService.listBingMap();
+		req.setAttribute("bingMapList", bingMapList);
+		return "/bingMap01.jsp";
+	}*/
+	
 	//分页
 	@RequestMapping({"/BingMapPageList"})
 	public void BingMapPageList(HttpServletRequest req,HttpServletResponse resp){

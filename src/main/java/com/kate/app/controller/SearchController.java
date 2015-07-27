@@ -2,6 +2,9 @@ package com.kate.app.controller;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -13,8 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.kate.app.dao.AjaxDao;
 import com.kate.app.dao.AreaInfoDao;
 import com.kate.app.dao.BrokerInfoDao;
@@ -22,6 +27,7 @@ import com.kate.app.dao.ProjectInputDao;
 import com.kate.app.dao.SearchListDao;
 import com.kate.app.dao.UserDao;
 import com.kate.app.model.AreaInfo;
+import com.kate.app.model.BingMapVo;
 import com.kate.app.model.BrokerInfo;
 import com.kate.app.model.HouseProject;
 import com.kate.app.model.ProjectDescImage;
@@ -282,7 +288,8 @@ public class SearchController {
 					project_img = "";
 				}
 				
-		    
+				String gps = null;
+				//gps = item.getGps();
 		    	String project_name=item.getProject_name();
 		    	int project_sales_remain=item.getProject_sales_remain();
 		    	String maxPrice=item.getProject_high_price();
@@ -299,6 +306,7 @@ public class SearchController {
 		    	String developer_id_name = item.getDeveloper_id_name();
 		    	int project_price_int_qi = item.getProject_price_int_qi();
 		    	String project_desc = item.getProject_desc();
+		    	gps = item.getGps();
 		    	String xinkaipan1=null;
 			    String huaren1=null;
 			    String remen1=null;
@@ -309,6 +317,7 @@ public class SearchController {
 			    String traffic1=null;
 			    String xianfang1=null;
 			    String maidi1=null;
+			    
 		    	ProjectKey p = searchListDao.searchProjectKey(project_num);
 		    	if(p!=null){
 		    		xinkaipan1 = p.getXinkaipan();
@@ -322,7 +331,7 @@ public class SearchController {
 		    		xianfang1 = p.getXianfang();
 		    		maidi1 = p.getMaidi();
 		    	}
-		    	SearchList data=new SearchList(id,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,project_lan_en,mianji,project_address,project_logo,developer_id_name,xinkaipan1,huaren1,remen1,xuequ1,baozu1,daxue1,center1,traffic1,xianfang1,maidi1,project_price_int_qi,project_desc);
+		    	SearchList data=new SearchList(id,gps,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,project_lan_en,mianji,project_address,project_logo,developer_id_name,xinkaipan1,huaren1,remen1,xuequ1,baozu1,daxue1,center1,traffic1,xianfang1,maidi1,project_price_int_qi,project_desc);
 		    	searchList.add(data);
 			}
 			seachListResult = searchList;
@@ -330,6 +339,117 @@ public class SearchController {
 			return "searchList01.jsp";
 		}
 	
+		
+		
+		
+		@RequestMapping({"/BingMap01"})
+		public String listBingMap01(HttpServletRequest req,HttpServletResponse resp){
+			List<SearchList> searchList = seachListResult;
+			/*List<BingMapVo> bingMapList = new ArrayList<BingMapVo>();
+			for(SearchList item : searchList){
+				BingMapVo temp = new BingMapVo();
+				temp.setAverage_price(ite);
+			}
+			List<BingMapVo> bingMapList=bingMapService.listBingMap();*/
+			req.setAttribute("bingMapList", searchList);
+			return "/bingMap01.jsp";
+		}
+		
+		@RequestMapping({ "/BingMap/Coordinates01" })    
+		public void listMap(HttpServletRequest req, HttpServletResponse resp){
+			JSONObject json = new JSONObject();
+			JSONArray array = new JSONArray();
+			JSONArray array2 = new JSONArray();
+			JSONArray array3 = new JSONArray();
+			List<String> zhou=new ArrayList<String>();
+			array = jsonCoordinates();
+			int len=array.size();
+			for(int i=0;i<len;i++){
+				JSONObject obj=(JSONObject)array.get(i);
+				String project_zhou=obj.getString("project_zhou");
+				zhou.add(project_zhou);
+			}
+			Set<String> uniqueSet = new HashSet<String>(zhou);
+			for (String temp : uniqueSet) {
+				String str1=temp;
+				int size=Collections.frequency(zhou, temp);
+				JSONObject obj2 = new JSONObject();
+				obj2.put("zhou", size);
+				array2.add(obj2);
+				for(int j=0;j<len;j++){
+					JSONObject obj3=(JSONObject)array.get(j);
+					String project_zhou2=obj3.getString("project_zhou");
+					if(project_zhou2.equals(str1)){
+						array3.add(obj3);
+						break;
+					}
+				}
+	        }
+			json.put("List", array);
+			json.put("List2", array2);
+			json.put("List3", JSONArray.parseArray(JSON.toJSONString(array3, SerializerFeature.DisableCircularReferenceDetect)));
+			
+			try{
+				writeJson(json.toJSONString(),resp);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		
+		@RequestMapping({"/OrderByPrice01"})
+		public String OrderByPrice(HttpServletRequest req,HttpServletResponse resp){
+			int order=Integer.parseInt(req.getParameter("order"));
+			List<SearchList> searchList = seachListResult;
+			if(order==1){
+				Collections.sort(searchList,new Comparator<SearchList>(){  
+		            public int compare(SearchList arg0, SearchList arg1) { 
+		            	String a = String.valueOf(arg0.getProject_price_int_qi());
+		            	String b = String.valueOf(arg1.getProject_price_int_qi());
+		                return a.compareTo(b);  
+		            }  
+		        });  
+				
+			}
+			else{
+				Collections.sort(searchList,Collections.reverseOrder(new Comparator<SearchList>(){  
+		            public int compare(SearchList arg0, SearchList arg1) { 
+		            	String a = String.valueOf(arg0.getProject_price_int_qi());
+		            	String b = String.valueOf(arg1.getProject_price_int_qi());
+		                return a.compareTo(b);  
+		            }  
+		        }));
+				
+				
+			}
+			
+			req.setAttribute("bingMapList", searchList);
+			return "/bingMap01.jsp";
+		}
+		
+		
+		public JSONArray jsonCoordinates(){
+			JSONArray array = new JSONArray();
+			List<SearchList> searchList = seachListResult;
+			for(SearchList data : searchList){
+				JSONObject obj = new JSONObject();
+				obj.put("id", data.getId());
+				obj.put("gps", data.getGps()==null?"":data.getGps());
+				obj.put("project_name", data.getProject_name()==null?"":data.getProject_name());
+				obj.put("project_img", data.getProject_img()==null?"":data.getProject_img());
+				obj.put("project_price", data.getProject_price()==null?"":data.getProject_price());
+				obj.put("project_num", data.getProject_num()==null?"":data.getProject_num());
+				obj.put("project_min_price", data.getMinPrice()==null?"":data.getMinPrice());
+				obj.put("project_high_price", data.getMaxPrice()==null?"":data.getMaxPrice());
+				obj.put("project_zhou", data.getProject_zhou()==null?"":data.getProject_zhou());
+				obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
+				obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
+				array.add(obj);
+			}
+			return array;
+		}
+		
+		
 		
 		@RequestMapping({"/IndexSearchPage"})
 		public void SearchListPage(HttpServletRequest req, HttpServletResponse resp){

@@ -1315,9 +1315,9 @@ $(function(){
 			}
 		}
 		$('#zu_three_name').trigger('chosen:updated');
-		$("#zu_three_name").val(middlepriceedititem.zu_three_name);
+		$("#zu_three_name").val(middlepriceedititem.zu_three_name.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		$("#zu_three_price").val(middlepriceedititem.zu_three_price);
-		$("#middle_datasource").val(middlepriceedititem.middle_datasource);
+		$("#middle_datasource").val(middlepriceedititem.middle_datasource.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		$("#middle_date").val(middlepriceedititem.middle_date.length>=10?middlepriceedititem.middle_date.substr(0,10):middlepriceedititem.middle_date);
 		}); 
 	
@@ -1444,7 +1444,7 @@ $(function(){
 		$("#view_shunxu2").val(middletrendedititem.view_shunxu2);
 		$("#heng2").val(middletrendedititem.heng2||middletrendedititem.heng);
 		$("#zong2").val(middletrendedititem.zong2||middletrendedititem.zong);
-		$("#middle_zoushi_datasource").val(middletrendedititem.middle_zoushi_datasource);
+		$("#middle_zoushi_datasource").val(middletrendedititem.middle_zoushi_datasource.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		$("#middle_zoushi_date").val(middletrendedititem.middle_zoushi_date.length>=10?middletrendedititem.middle_zoushi_date.substr(0,10):middletrendedititem.middle_zoushi_date);
 		}); 
 	
@@ -1563,11 +1563,11 @@ $(function(){
 			}
 		}
 		$('#project_type3').trigger('chosen:updated');
-		$("#project_type3").val(zujintrendedititem.project_type3||zujintrendedititem.project_type);
+		$("#project_type3").val(zujintrendedititem.project_type3.replace(/\$nbsp;/g," ").replace("&#39;","'")||zujintrendedititem.project_type.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		$("#view_shunxu3").val(zujintrendedititem.view_shunxu3||zujintrendedititem.view_shunxu);
 		$("#heng3").val(zujintrendedititem.heng3||zujintrendedititem.heng);
 		$("#zong3").val(zujintrendedititem.zong3||zujintrendedititem.zong);
-		$("#zujin_datasource").val(zujintrendedititem.zujin_datasource||zujintrendedititem.zujin_datasource);
+		$("#zujin_datasource").val(zujintrendedititem.zujin_datasource.replace(/\$nbsp;/g," ").replace("&#39;","'")||zujintrendedititem.zujin_datasource.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		$("#zujin_date").val(zujintrendedititem.zujin_date.length>=10?zujintrendedititem.zujin_date.substr(0,10):zujintrendedititem.zujin_date);
 		}); 
 	
@@ -1687,11 +1687,11 @@ $(function(){
 			}
 		}
 		$('#project_type4').trigger('chosen:updated');
-		$("#project_type4").val(huibaotrendedititem.project_type4||huibaotrendedititem.project_type);
+		$("#project_type4").val(huibaotrendedititem.project_type4.replace(/\$nbsp;/g," ").replace("&#39;","'")||huibaotrendedititem.project_type.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		$("#view_shunxu4").val(huibaotrendedititem.view_shunxu4||huibaotrendedititem.view_shunxu);
 		$("#heng4").val(huibaotrendedititem.heng4||huibaotrendedititem.heng);
 		$("#zong4").val(huibaotrendedititem.zong4||huibaotrendedititem.zong); 
-		$("#zujin_huibao_datasource").val(huibaotrendedititem.zujin_huibao_datasource||huibaotrendedititem.zujin_huibao_datasource);
+		$("#zujin_huibao_datasource").val(huibaotrendedititem.zujin_huibao_datasource.replace(/\$nbsp;/g," ").replace("&#39;","'")||huibaotrendedititem.zujin_huibao_datasource.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		$("#zujin_huibao_date").val(huibaotrendedititem.zujin_huibao_date.length>=10?huibaotrendedititem.zujin_huibao_date.substr(0,10):huibaotrendedititem.zujin_huibao_date);
 		}); 
 	
@@ -1778,10 +1778,10 @@ $(function(){
 		//$("#projectimage").val(edititem.name+"");
 		//alert(index+"index");
 		tedianedit=index;
-		$("#data_source").val(tedianedititem.data_source);
+		$("#data_source").val(tedianedititem.data_source.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		$("#update_time").val(tedianedititem.update_time.length>=10?tedianedititem.update_time.substr(0,10):tedianedititem.update_time);
 		$("#view_shunxu").val(tedianedititem.view_shunxu);
-		$("#area_character").val(tedianedititem.area_character);
+		$("#area_character").val(tedianedititem.area_character.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		}); 
 	
 });
@@ -1893,11 +1893,11 @@ $(function(){
 		//$("#projectimage").val(edititem.name+"");
 		//alert(index+"index");
 		peopleedit=index;
-		$("#column1").val(peopleedititem.column1);
-		$("#column2").val(peopleedititem.column2);
-		$("#column3").val(peopleedititem.column3);
-		$("#view_shunxu_people").val(peopleedititem.view_shunxu_people);
-		$("#people_datasource").val(peopleedititem.people_datasource);
+		$("#column1").val(peopleedititem.column1.replace(/\$nbsp;/g," ").replace("&#39;","'"));
+		$("#column2").val(peopleedititem.column2.replace(/\$nbsp;/g," ").replace("&#39;","'"));
+		$("#column3").val(peopleedititem.column3.replace(/\$nbsp;/g," ").replace("&#39;","'"));
+		$("#view_shunxu_people").val(peopleedititem.view_shunxu_people.replace(/\$nbsp;/g," ").replace("&#39;","'"));
+		$("#people_datasource").val(peopleedititem.people_datasource.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		$("#people_date").val(peopleedititem.people_date.length>=10?peopleedititem.people_date.substr(0,10):peopleedititem.people_date);
 		}); 
 	
