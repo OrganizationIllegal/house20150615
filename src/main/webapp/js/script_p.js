@@ -34,15 +34,15 @@ $(function(){
 					{jQuery(".ad_position_p .limit_p .ad_small_box_p ul").animate({"margin-top":"0px"},{duration:animate_time,queue:false});}
 				else
 					{
-						jQuery(".ad_position_p .limit_p .ad_small_box_p ul").animate({"margin-top":(ad_huandeng_click_i-1)*-144},{duration:animate_time,queue:false});
+						jQuery(".ad_position_p .limit_p .ad_small_box_p ul").animate({"margin-top":(ad_huandeng_click_i-1)*-150},{duration:animate_time,queue:false});
 					}
 			}		
 		if(ad_huandeng_click_i==0)//锟斤拷始锟叫讹拷指示锟斤拷图片锟斤拷位锟斤拷
 			{jQuery(".ad_position_p .limit_p .ad_small_box_p .small_right_limit_p .this_ad_p").css("top","0px");}
 		else if(ad_huandeng_click_i==ad_size)
-			{jQuery(".ad_position_p .limit_p .ad_small_box_p .small_right_limit_p .this_ad_p").css("top","288px");}
+			{jQuery(".ad_position_p .limit_p .ad_small_box_p .small_right_limit_p .this_ad_p").css("top","300px");}
 		else
-			{jQuery(".ad_position_p .limit_p .ad_small_box_p .small_right_limit_p .this_ad_p").css("top","144px");}
+			{jQuery(".ad_position_p .limit_p .ad_small_box_p .small_right_limit_p .this_ad_p").css("top","150px");}
 		//jQuery(".ad_position .limit .ad_small_box ul li").css("opacity","0.5");
 		//jQuery(".ad_position .limit .ad_small_box ul li").eq(ad_huandeng_click_i).css("opacity","1");
 		//锟叫讹拷锟斤拷锟铰帮拷钮锟角凤拷傻锟斤拷
@@ -74,16 +74,16 @@ $(function(){
 		else if(small_ad_hover_i<ad_huandeng_click_i)
 			{
 				if(ad_huandeng_click_i-small_ad_hover_i==1)
-					{jQuery(".ad_position_p .limit_p .ad_small_box_p .small_right_limit_p .this_ad_p").css("top",this_ad_top-144);}
+					{jQuery(".ad_position_p .limit_p .ad_small_box_p .small_right_limit_p .this_ad_p").css("top",this_ad_top-150);}
 				else
-					{{jQuery(".ad_position_p .limit_p .ad_small_box_p .small_right_limit_p .this_ad_p").css("top",this_ad_top-288);}}
+					{{jQuery(".ad_position_p .limit_p .ad_small_box_p .small_right_limit_p .this_ad_p").css("top",this_ad_top-300);}}
 			}
 		else if(small_ad_hover_i>ad_huandeng_click_i)
 			{
 				if(small_ad_hover_i-ad_huandeng_click_i==1)
-					{jQuery(".ad_position_p .limit_p .ad_small_box_p .small_right_limit_p .this_ad_p").css("top",this_ad_top+144);}
+					{jQuery(".ad_position_p .limit_p .ad_small_box_p .small_right_limit_p .this_ad_p").css("top",this_ad_top+150);}
 				else
-					{{jQuery(".ad_position_p .limit_p .ad_small_box_p .small_right_limit_p .this_ad_p").css("top",this_ad_top+288);}}
+					{{jQuery(".ad_position_p .limit_p .ad_small_box_p .small_right_limit_p .this_ad_p").css("top",this_ad_top+300);}}
 			}
 		ad_huandeng_click_i=small_ad_hover_i;
 		//锟叫讹拷锟斤拷锟铰帮拷钮锟角凤拷傻锟斤拷
@@ -120,7 +120,7 @@ $(function(){
 			{
 				ad_huandeng_click_i=ad_size;
 				jQuery(".ad_position_p .limit_p .ad_small_box_p ul li").eq(ad_huandeng_click_i).trigger("dblclick");
-				jQuery(".ad_position_p .limit_p .ad_small_box_p ul").animate({"margin-top":(ad_huandeng_click_i-2)*-144},{duration:animate_time,queue:false});
+				jQuery(".ad_position_p .limit_p .ad_small_box_p ul").animate({"margin-top":(ad_huandeng_click_i-2)*-150},{duration:animate_time,queue:false});
 			}
 		
 		jQuery(".ad_position_p .limit_p .ad_small_box_p ul li").eq(ad_huandeng_click_i).trigger("dblclick");
