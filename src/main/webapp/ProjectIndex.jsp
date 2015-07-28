@@ -1150,10 +1150,12 @@ function popInfo(){
 				<div class="c-" style="margin-right:20px;float:rgiht;height:20px">
 					<span class="c-fix f-yahei s-12 fw f-r">数据来源：${family_datasource }&nbsp;&nbsp; 更新日期：${fn:substring(family_date,0,10)}</span>
 				</div>
+				<div style="position:absolute; width:100%;height:233px" id="zonefamily_pie">
 				</div>
+				</div> 
 				</c:if>
-			</div>
-		</div>
+			<!-- </div>
+		</div> -->
 		
 		<c:if test="${not empty newsList}">
 		<div class="c-fix bkg3" style="margin:0 auto;height:350px;width:990px">
@@ -1722,8 +1724,8 @@ function popInfo(){
   var holdingdata=${holdingdata};
  </script>
  <script  type="text/javascript">
-  var family={num1:"${dulirateVo}",num2:"${youngfamilyVo}",num3:"${oldfamilyVo}"};
-
+  var family={num1:"${fn:replace(dulirateVo,'%','')}",num2:"${fn:replace(youngfamilyVo,'%','')}",num3:"${fn:replace(oldfamilyVo,'%','')}"};
+  
   var trend_areamiddle_year="${areaMiddleYeatList}";
   var trend_areamiddle_rate="${areaMiddleRateList}";
   var areaZujinYeatList="${areaZujinYeatList}";
@@ -1740,6 +1742,7 @@ function popInfo(){
  </c:if>
  <script src="/js/cost.js" charset="GBK"></script>
  <script src="/js/news.js"></script>
+  <script src="/js/familyStatus.js"></script>
  <script type="text/javascript">
  	$(function () {
   		$('[data-toggle="popover"]').popover()
