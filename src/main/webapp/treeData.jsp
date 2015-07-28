@@ -360,7 +360,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								              },
 								              
 								            ]
-								          }
+								          },
+								          {
+									            text: '留言列表',	
+									            color: '#ffffff', 
+									            backColor:'rgb(59,94,132)',   
+									            href:'#title',          
+									            nodes: [
+									              {
+									                text: '留言列表',
+										            href:'#title'	                
+									              },
+									              
+									            ]
+									          }
+							          
 	        ];
 	      /*   $("#showlist").load("areaLuru.jsp"); */
 	        $("#showlist").load("/ProjectInput");
@@ -435,6 +449,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		       }
 	           else if(node.text=="地图中心点列表"){
 		           $("#showlist").load("/GpsCenterList.jsp");
+	           else if(node.text=="留言列表"){
+		           $("#showlist").load("Message.jsp");
 		       }
 	          } 
 	        });
