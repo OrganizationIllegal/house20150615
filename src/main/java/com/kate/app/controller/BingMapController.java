@@ -29,10 +29,53 @@ public class BingMapController {
 	@Autowired
 	private BingMapDao bingMapDao;
 	
+	@RequestMapping({"/MapCenterInput"})
+	public String mapCenterInput(HttpServletRequest req,HttpServletResponse resp){
+		List<String> list1= new ArrayList<String>();
+		List<String> areaNameSet=bingMapDao.getAreaName();
+		for(String i:areaNameSet){  
+	        if(!list1.contains(i)){  
+	        	list1.add(i);  
+	        }  
+	    }  
+		List<String> cityNameSet=bingMapDao.getCityName();
+		for(String i:cityNameSet){  
+	        if(!list1.contains(i)){  
+	        	list1.add(i);  
+	        }  
+	    }  
+		req.setAttribute("areacityNameSet", list1);
+		return "/GpsCenterInput.jsp";
+	}
+	
 	@RequestMapping({"/BingMap"})
 	public String listBingMap(HttpServletRequest req,HttpServletResponse resp){
+		List<String> list1= new ArrayList<String>();
+		List<String> list2= new ArrayList<String>();
+		List<String> list3= new ArrayList<String>();
 		List<BingMapVo> bingMapList=bingMapService.listBingMap();
 		req.setAttribute("bingMapList", bingMapList);
+		List<String> areaNameSet=bingMapDao.getAreaName();
+		for(String i:areaNameSet){  
+	        if(!list1.contains(i)){  
+	        	list1.add(i);  
+	        }  
+	    }  
+		req.setAttribute("areaNameSet", list1);
+		List<String> cityNameSet=bingMapDao.getCityName();
+		for(String i:cityNameSet){  
+	        if(!list2.contains(i)){  
+	        	list2.add(i);  
+	        }  
+	    }  
+		req.setAttribute("cityNameSet", list2);
+		List<String> addressNameSet=bingMapDao.getAddressName();
+		for(String i:addressNameSet){  
+	        if(!list3.contains(i)){  
+	        	list3.add(i);  
+	        }  
+	    }  
+		req.setAttribute("addressNameSet", list3);
 		return "/bingMap.jsp";
 	}
 	
@@ -259,25 +302,25 @@ public class BingMapController {
 		JSONArray array = new JSONArray();
 		JSONArray array2 = new JSONArray();
 		JSONArray array3 = new JSONArray();
-		List<String> zhou=new ArrayList<String>();
+		List<String> city=new ArrayList<String>();
 		array = bingMapService.jsonCoordinates();
 		int len=array.size();
 		for(int i=0;i<len;i++){
 			JSONObject obj=(JSONObject)array.get(i);
-			String project_zhou=obj.getString("project_zhou");
-			zhou.add(project_zhou);
+			String project_city=obj.getString("project_city");
+			city.add(project_city);
 		}
-		Set<String> uniqueSet = new HashSet<String>(zhou);
+		Set<String> uniqueSet = new HashSet<String>(city);
 		for (String temp : uniqueSet) {
 			String str1=temp;
-			int size=Collections.frequency(zhou, temp);
+			int size=Collections.frequency(city, temp);
 			JSONObject obj2 = new JSONObject();
-			obj2.put("zhou", size);
+			obj2.put("city", size);
 			array2.add(obj2);
 			for(int j=0;j<len;j++){
 				JSONObject obj3=(JSONObject)array.get(j);
-				String project_zhou2=obj3.getString("project_zhou");
-				if(project_zhou2.equals(str1)){
+				String project_city2=obj3.getString("project_city");
+				if(project_city2.equals(str1)){
 					array3.add(obj3);
 					break;
 				}
@@ -300,26 +343,26 @@ public class BingMapController {
 		JSONArray array = new JSONArray();
 		JSONArray array2 = new JSONArray();
 		JSONArray array3 = new JSONArray();
-		List<String> zhou=new ArrayList<String>();
+		List<String> city=new ArrayList<String>();
 		int type=Integer.parseInt(req.getParameter("house_type"));
 		array = bingMapService.filterByHouseType2(type);
 		int len=array.size();
 		for(int i=0;i<len;i++){
 			JSONObject obj=(JSONObject)array.get(i);
-			String project_zhou=obj.getString("project_zhou");
-			zhou.add(project_zhou);
+			String project_city=obj.getString("project_city");
+			city.add(project_city);
 		}
-		Set<String> uniqueSet = new HashSet<String>(zhou);
+		Set<String> uniqueSet = new HashSet<String>(city);
 		for (String temp : uniqueSet) {
 			String str1=temp;
-			int size=Collections.frequency(zhou, temp);
+			int size=Collections.frequency(city, temp);
 			JSONObject obj2 = new JSONObject();
-			obj2.put("zhou", size);
+			obj2.put("city", size);
 			array2.add(obj2);
 			for(int j=0;j<len;j++){
 				JSONObject obj3=(JSONObject)array.get(j);
-				String project_zhou2=obj3.getString("project_zhou");
-				if(project_zhou2.equals(str1)){
+				String project_city2=obj3.getString("project_city");
+				if(project_city2.equals(str1)){
 					array3.add(obj3);
 					break;
 				}
@@ -344,26 +387,73 @@ public class BingMapController {
 		JSONArray array = new JSONArray();
 		JSONArray array2 = new JSONArray();
 		JSONArray array3 = new JSONArray();
-		List<String> zhou=new ArrayList<String>();
+		List<String> city=new ArrayList<String>();
+		String area=req.getParameter("area");
+		String city1=req.getParameter("city");
+		String address=req.getParameter("address");
+		array = bingMapService.filterByKeyWord(area,city1,address);
+		int len=array.size();
+		for(int i=0;i<len;i++){
+			JSONObject obj=(JSONObject)array.get(i);
+			String project_city=obj.getString("project_city");
+			city.add(project_city);
+		}
+		Set<String> uniqueSet = new HashSet<String>(city);
+		for (String temp : uniqueSet) {
+			String str1=temp;
+			int size=Collections.frequency(city, temp);
+			JSONObject obj2 = new JSONObject();
+			obj2.put("city", size);
+			array2.add(obj2);
+			for(int j=0;j<len;j++){
+				JSONObject obj3=(JSONObject)array.get(j);
+				String project_city2=obj3.getString("project_city");
+				if(project_city2.equals(str1)){
+					array3.add(obj3);
+					break;
+				}
+			}
+        }
+		//System.out.println(array2);
+		//System.out.println(array3);
+		//System.out.println(array2.size());
+		//System.out.println(array3.size());
+		json.put("List", array);
+		json.put("List2", array2);
+		json.put("List3", JSONArray.parseArray(JSON.toJSONString(array3, SerializerFeature.DisableCircularReferenceDetect)));
+		try{
+			writeJson(json.toJSONString(),resp);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	/*@RequestMapping({ "/BingMap/FileterKeyWord" })    
+	public void filterByKeyWord(HttpServletRequest req, HttpServletResponse resp){
+		JSONObject json = new JSONObject();
+		JSONArray array = new JSONArray();
+		JSONArray array2 = new JSONArray();
+		JSONArray array3 = new JSONArray();
+		List<String> city=new ArrayList<String>();
 		String key=req.getParameter("keyword");
 		array = bingMapService.filterByKeyWord(key);
 		int len=array.size();
 		for(int i=0;i<len;i++){
 			JSONObject obj=(JSONObject)array.get(i);
-			String project_zhou=obj.getString("project_zhou");
-			zhou.add(project_zhou);
+			String project_city=obj.getString("project_city");
+			city.add(project_city);
 		}
-		Set<String> uniqueSet = new HashSet<String>(zhou);
+		Set<String> uniqueSet = new HashSet<String>(city);
 		for (String temp : uniqueSet) {
 			String str1=temp;
-			int size=Collections.frequency(zhou, temp);
+			int size=Collections.frequency(city, temp);
 			JSONObject obj2 = new JSONObject();
-			obj2.put("zhou", size);
+			obj2.put("city", size);
 			array2.add(obj2);
 			for(int j=0;j<len;j++){
 				JSONObject obj3=(JSONObject)array.get(j);
-				String project_zhou2=obj3.getString("project_zhou");
-				if(project_zhou2.equals(str1)){
+				String project_city2=obj3.getString("project_city");
+				if(project_city2.equals(str1)){
 					array3.add(obj3);
 					break;
 				}
@@ -381,7 +471,7 @@ public class BingMapController {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 	@RequestMapping({ "/BingMap/FileterProNum" })    
 	public void filterByProNum(HttpServletRequest req, HttpServletResponse resp){
@@ -394,6 +484,62 @@ public class BingMapController {
 			writeJson(json.toJSONString(),resp);
 		}catch(Exception e){
 			e.printStackTrace();
+		}
+	}
+	//地图中心点录入
+	@RequestMapping({ "/AddMapCenter" })
+	public void InsertMapCenter(HttpServletRequest req,HttpServletResponse resp){
+		JSONObject json = new JSONObject();
+		String name=req.getParameter("name");
+		String gps=req.getParameter("gps");
+		String  type=req.getParameter("type");
+		boolean flag=bingMapDao.InsertMapCenter(name, gps, type);
+		    if(flag==false){
+		    	json.put("flag", "0");
+			}
+		    else{
+		    	json.put("flag", "1");
+		    }
+		try{
+			 PrintWriter out = resp.getWriter();
+			 out.print(json);
+			}catch(Exception e){
+				e.printStackTrace();
+		}
+	}
+	//地图中心点列表
+	@RequestMapping({ "/MapCenterList" })    
+	public void selectMapCenterList(HttpServletRequest req, HttpServletResponse resp){
+		JSONObject json = new JSONObject();
+		JSONArray array = new JSONArray();
+		array = bingMapDao.selectMapCenterList();
+		int count = array.size();
+		json.put("total", count);
+		json.put("rows", array);
+		
+		try{
+			writeJson(array.toJSONString(),resp);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	//地图中心点删除
+	@RequestMapping({ "/deleteMapCenter" })
+	public void DeleteMapCenter(HttpServletRequest req,HttpServletResponse resp){
+		JSONObject json = new JSONObject();
+		int id=Integer.parseInt(req.getParameter("id"));
+		boolean flag=bingMapDao.deleteMapCenter(id);
+	    if(flag==false){
+	    	json.put("flag", "0");
+		}
+	    else{
+	    	json.put("flag", "1");
+	    }
+		try{
+			 PrintWriter out = resp.getWriter();
+			 out.print(json);
+			}catch(Exception e){
+				e.printStackTrace();
 		}
 	}
 	
