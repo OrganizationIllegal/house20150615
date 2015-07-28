@@ -1,10 +1,11 @@
 package com.kate.app.dao;
 
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import com.kate.app.model.HouseProject;
 @Repository 
 public class BingMapDao extends BaseDao {
 	public List<BingMapVo> listBingMap(){
+		NumberFormat nf = new DecimalFormat("#,###,###");
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
@@ -38,7 +40,8 @@ public class BingMapDao extends BaseDao {
 		    String house_type=null;
 		    String project_price=null;
 		    String return_money=null; 
-		    int project_price_int_qi=0;
+		    /*int project_price_int_qi=0;*/
+		    String project_price_int_qi=null;
 		    while(rs.next()){
 		    	id=rs.getInt("id");
 		    	project_img=rs.getString("project_img");
@@ -51,16 +54,16 @@ public class BingMapDao extends BaseDao {
 		    	minarea=rs.getInt("minarea");
 		    	//project_price=rs.getInt("project_price_qi");//锟剿达拷锟斤拷目锟桔革拷目前锟斤拷锟斤拷锟斤拷锟侥科斤拷锟桔革拷
 		    	project_price_qi=rs.getString("project_price_qi");
-		    	project_min_price=rs.getString("project_min_price");
-		    	project_high_price=rs.getString("project_high_price");
+		    	project_min_price=rs.getString("project_min_price")==null?"":nf.format(Integer.parseInt(rs.getString("project_min_price")));
+		    	project_high_price=rs.getString("project_high_price")==null?"":nf.format(Integer.parseInt(rs.getString("project_high_price")));
 		    	mianji=rs.getString("mianji");
 		    	house_type=rs.getString("project_type");
 		    	return_money=rs.getString("return_money");
 		    	if(rs.getString("project_price_int_qi")!=null){
-		    		project_price_int_qi=Integer.parseInt(rs.getString("project_price_int_qi"));
+		    	     project_price_int_qi=nf.format(Integer.parseInt(rs.getString("project_price_int_qi")));
 		    	}
 		    	else{
-		    		project_price_int_qi=0;
+		    		project_price_int_qi="0";
 		    	}
 		        BingMapVo bingMapVo=new BingMapVo(id,project_img,project_num,project_address, project_name, project_price,minarea, maxarea, project_sales_remain, project_price_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi);
 		    	bingMapList.add(bingMapVo);
@@ -98,6 +101,7 @@ public class BingMapDao extends BaseDao {
 		return bingMapList;
 	} 
 	public List<BingMapVo> filterByHouseType(int type){
+		NumberFormat nf = new DecimalFormat("#,###,###");
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
@@ -134,7 +138,8 @@ public class BingMapDao extends BaseDao {
 		    int minarea=0;
 		    String house_type=null;
 		    String return_money=null; 
-		    int project_price_int_qi=0;
+		   /* int project_price_int_qi=0;*/
+		    String project_price_int_qi=null;
 		    while(rs.next()){
 		    	id=rs.getInt("id");
 		    	project_img=rs.getString("project_img");
@@ -147,15 +152,15 @@ public class BingMapDao extends BaseDao {
 		    	project_price=rs.getString("project_price_qi");//锟剿达拷锟斤拷目锟桔革拷目前锟斤拷锟斤拷锟斤拷锟侥科斤拷锟桔革拷
 		    	project_price_qi=rs.getString("project_price_qi");
 		    	house_type=rs.getString("project_type");
-		    	project_min_price=rs.getString("project_min_price");
-		    	project_high_price=rs.getString("project_high_price");
+		    	project_min_price=rs.getString("project_min_price")==null?"":nf.format(Integer.parseInt(rs.getString("project_min_price")));
+		    	project_high_price=rs.getString("project_high_price")==null?"":nf.format(Integer.parseInt(rs.getString("project_high_price")));
 		    	mianji=rs.getString("mianji");
 		    	return_money=rs.getString("return_money");
 		    	if(rs.getString("project_price_int_qi")!=null){
-		    		project_price_int_qi=Integer.parseInt(rs.getString("project_price_int_qi"));
+		    		project_price_int_qi=nf.format(Integer.parseInt(rs.getString("project_price_int_qi")));
 		    	}
 		    	else{
-		    		project_price_int_qi=0;
+		    		project_price_int_qi="0";
 		    	}
 		    	BingMapVo bingMapVo=new BingMapVo(id,project_img,project_num,project_address, project_name, project_price,minarea, maxarea, project_sales_remain, project_price_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi);
 		    	bingMapList.add(bingMapVo);
@@ -191,6 +196,7 @@ public class BingMapDao extends BaseDao {
 		return bingMapList;
 	}
 	public List<BingMapVo> orderByPrice(int order){
+		NumberFormat nf = new DecimalFormat("#,###,###");
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
@@ -224,7 +230,8 @@ public class BingMapDao extends BaseDao {
 		    int minarea=0;
 		    String house_type=null;
 		    String return_money=null; 
-		    int project_price_int_qi=0;
+		   /* int project_price_int_qi=0;*/
+		    String project_price_int_qi=null;
 		    while(rs.next()){
 		    	id=rs.getInt("id");
 		    	project_img=rs.getString("project_img");
@@ -237,15 +244,15 @@ public class BingMapDao extends BaseDao {
 		    	project_price=rs.getString("project_price_qi");//锟剿达拷锟斤拷目锟桔革拷目前锟斤拷锟斤拷锟斤拷锟侥科斤拷锟桔革拷
 		    	project_price_qi=rs.getString("project_price_qi");
 		    	house_type=rs.getString("project_type");
-		    	project_min_price=rs.getString("project_min_price");
-		    	project_high_price=rs.getString("project_high_price");
+		    	project_min_price=rs.getString("project_min_price")==null?"":nf.format(Integer.parseInt(rs.getString("project_min_price")));
+		    	project_high_price=rs.getString("project_high_price")==null?"":nf.format(Integer.parseInt(rs.getString("project_high_price")));
 		    	mianji=rs.getString("mianji");
 		        return_money=rs.getString("return_money"); 
 		        if(rs.getString("project_price_int_qi")!=null){
-		        	project_price_int_qi=Integer.parseInt(rs.getString("project_price_int_qi"));
+		        	project_price_int_qi=nf.format(Integer.parseInt(rs.getString("project_price_int_qi")));
 		    	}
 		    	else{
-		    		project_price_int_qi=0;
+		    		project_price_int_qi="0";
 		    	}
 		        BingMapVo  bingMapVo=new BingMapVo(id,project_img,project_num,project_address, project_name, project_price,minarea, maxarea, project_sales_remain, project_price_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi);
 		    	bingMapList.add(bingMapVo);
@@ -284,6 +291,7 @@ public class BingMapDao extends BaseDao {
 	
 	
 	public List<BingMapVo> orderByTypeLeft(String housetype){
+		NumberFormat nf = new DecimalFormat("#,###,###");
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
@@ -312,7 +320,8 @@ public class BingMapDao extends BaseDao {
 		    int minarea=0;
 		    String house_type=null;
 		    String return_money=null; 
-		    int project_price_int_qi=0;
+		   /* int project_price_int_qi=0;*/
+		    String project_price_int_qi=null;
 		    while(rs.next()){
 		    	id=rs.getInt("id");
 		    	project_img=rs.getString("project_img");
@@ -325,15 +334,15 @@ public class BingMapDao extends BaseDao {
 		    	project_price=rs.getString("project_price_qi");//锟剿达拷锟斤拷目锟桔革拷目前锟斤拷锟斤拷锟斤拷锟侥科斤拷锟桔革拷
 		    	project_price_qi=rs.getString("project_price_qi");
 		    	house_type=rs.getString("project_type");
-		    	project_min_price=rs.getString("project_min_price");
-		    	project_high_price=rs.getString("project_high_price");
+		    	project_min_price=rs.getString("project_min_price")==null?"":nf.format(Integer.parseInt(rs.getString("project_min_price")));
+		    	project_high_price=rs.getString("project_high_price")==null?"":nf.format(Integer.parseInt(rs.getString("project_high_price")));
 		    	mianji=rs.getString("mianji");
 		        return_money=rs.getString("return_money"); 
 		        if(rs.getString("project_price_int_qi")!=null){
-		        	project_price_int_qi=Integer.parseInt(rs.getString("project_price_int_qi"));
+		        	project_price_int_qi=nf.format(Integer.parseInt(rs.getString("project_price_int_qi")));
 		    	}
 		    	else{
-		    		project_price_int_qi=0;
+		    		project_price_int_qi="0";
 		    	}
 		        BingMapVo  bingMapVo=new BingMapVo(id,project_img,project_num,project_address, project_name, project_price,minarea, maxarea, project_sales_remain, project_price_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi);
 		    	bingMapList.add(bingMapVo);

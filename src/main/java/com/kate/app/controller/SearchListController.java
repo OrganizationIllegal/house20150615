@@ -1,6 +1,8 @@
 package com.kate.app.controller;
 
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.Set;
 
@@ -42,6 +44,7 @@ public class SearchListController {
 	//宸︿晶鎼滅储
 	@RequestMapping({"/FilterList"})
 	public void filter_controller(HttpServletRequest req, HttpServletResponse resp){
+		NumberFormat nf = new DecimalFormat("#,###,###");
 		int projecttypeNum=Integer.parseInt(req.getParameter("projecttype"));
 		String projecttype=null;
 		switch(projecttypeNum){
@@ -117,9 +120,9 @@ public class SearchListController {
 				obj.put("Fanxian", item.getFanxian());
 				obj.put("Keshou", item.getKeshou());
 				obj.put("MaxArea", item.getMaxArea());
-				obj.put("MaxPrice", item.getMaxPrice());
+				obj.put("MaxPrice", item.getMaxPrice()==null?"":nf.format(Integer.parseInt(item.getMaxPrice())));
 				obj.put("MinArea", item.getMinArea());
-				obj.put("MinPrice", item.getMinPrice());
+				obj.put("MinPrice", item.getMinPrice()==null?"":nf.format(Integer.parseInt(item.getMinPrice())));
 				
 				obj.put("Project_name", item.getProject_name());
 				obj.put("project_num", item.getProject_num());
@@ -136,7 +139,7 @@ public class SearchListController {
 				obj.put("traffic", item.getTraffic());
 				obj.put("xianfang", item.getXianfang());
 				obj.put("maidi", item.getMaidi());
-				obj.put("project_price_int_qi", item.getProject_price_int_qi());
+				obj.put("project_price_int_qi", nf.format(item.getProject_price_int_qi()));
 				obj.put("project_desc", item.getProject_desc());
 				String lan = item.getProject_lan_cn();
 				String lan_en = item.getProject_lan_en();
@@ -177,6 +180,7 @@ public class SearchListController {
 	//閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熷彨鎲嬫嫹閿熸枻鎷风ず
 		@RequestMapping({"/SearchListPage"})
 		public void SearchListPage(HttpServletRequest req, HttpServletResponse resp){
+			NumberFormat nf = new DecimalFormat("#,###,###");
 			String pageIndex = req.getParameter("pageIndex");   //閿熸枻鎷峰墠椤甸敓鏂ゆ嫹
 			int pageNum  = pageIndex==null? 0 :Integer.parseInt(pageIndex);
 			
@@ -215,9 +219,9 @@ public class SearchListController {
 					obj.put("Fanxian", item.getFanxian());
 					obj.put("Keshou", item.getKeshou());
 					obj.put("MaxArea", item.getMaxArea());
-					obj.put("MaxPrice", item.getMaxPrice()==null?"":item.getMaxPrice());
+					obj.put("MaxPrice", item.getMaxPrice()==null?"":nf.format(Integer.parseInt(item.getMaxPrice())));
 					obj.put("MinArea", item.getMinArea());
-					obj.put("MinPrice", item.getMinPrice()==null?"":item.getMinPrice());	
+					obj.put("MinPrice", item.getMinPrice()==null?"":nf.format(Integer.parseInt(item.getMinPrice())));	
 					obj.put("Project_name", item.getProject_name());
 					obj.put("project_num", item.getProject_num());
 					obj.put("project_address", item.getProject_address());
@@ -233,7 +237,7 @@ public class SearchListController {
 					obj.put("traffic", item.getTraffic());
 					obj.put("xianfang", item.getXianfang());
 					obj.put("maidi", item.getMaidi());
-					obj.put("project_price_int_qi", item.getProject_price_int_qi());
+					obj.put("project_price_int_qi", nf.format(item.getProject_price_int_qi()));
 					obj.put("project_desc", item.getProject_desc());
 					String lan = item.getProject_lan_cn();
 					String lan_en = item.getProject_lan_en();
@@ -269,6 +273,7 @@ public class SearchListController {
 		@RequestMapping({"/OrderPage"})
 		public void OrderListPage(HttpServletRequest req, HttpServletResponse resp){
 			//String orderBy=req.getParameter("orderBy");
+			NumberFormat nf = new DecimalFormat("#,###,###");
 			String pageIndex = req.getParameter("pageIndex");   //閿熸枻鎷峰墠椤甸敓鏂ゆ嫹
 			int pageNum  = pageIndex==null? 0 :Integer.parseInt(pageIndex);
 			
@@ -307,9 +312,9 @@ public class SearchListController {
 					obj.put("Fanxian", item.getFanxian());
 					obj.put("Keshou", item.getKeshou());
 					obj.put("MaxArea", item.getMaxArea());
-					obj.put("MaxPrice", item.getMaxPrice()==null?"":item.getMaxPrice());
+					obj.put("MaxPrice", item.getMaxPrice()==null?"":nf.format(Integer.parseInt(item.getMaxPrice())));
 					obj.put("MinArea", item.getMinArea());
-					obj.put("MinPrice", item.getMinPrice()==null?"":item.getMinPrice());
+					obj.put("MinPrice", item.getMinPrice()==null?"":nf.format(Integer.parseInt(item.getMinPrice())));
 					
 					obj.put("Project_name", item.getProject_name());
 					obj.put("project_num", item.getProject_num());
@@ -326,7 +331,7 @@ public class SearchListController {
 					obj.put("traffic", item.getTraffic());
 					obj.put("xianfang", item.getXianfang());
 					obj.put("maidi", item.getMaidi());
-					obj.put("project_price_int_qi", item.getProject_price_int_qi());
+					obj.put("project_price_int_qi", nf.format(item.getProject_price_int_qi()));
 					obj.put("project_desc", item.getProject_desc());
 					String lan = item.getProject_lan_cn();
 					String lan_en = item.getProject_lan_en();

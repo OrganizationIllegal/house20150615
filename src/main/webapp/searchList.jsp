@@ -81,7 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div style="margin-bottom:20px"><a style="display:block;color:#333;font-size:14px;float:left;">总价</a></div>
 					<!-- <a style="display:block;color:#ff6600;font-size:14px;float:right">100k-2M+</a> -->
 					<!-- <input type="range" name="zongjia" id="zongjia" class="c-fix f-l" style="display:block;width:100%;margin-top:5px;margin-left:0px;" min="100000" max="2000000"></input> -->
-					<input type="text" id="zongjia" name="zongjia" value="0;2000000" style="margin-top:20px"/>
+					<input type="text" id="zongjia" name="zongjia" value="0;5000000" style="margin-top:20px"/>
 				</div> 
 				<div class="c-fix f-l f-yahei s-14" style="display:block;width:100%;min-height:20px;margin-top:20px;">
 					<div style="margin-bottom:20px"><a style="display:block;color:#333;font-size:14px;float:left;">单价</a></div>
@@ -94,7 +94,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a style="display:block;color:#ff6600;font-size:14px;float:right">0k-4+</a> -->
 					<div style="margin-bottom:20px"><a style="display:block;color:#333;font-size:14px;float:left;">卧室</a></div>
 					<!-- <input type="range" name="woshi" class="c-fix f-l" style="display:block;width:100%;margin-top:5px;margin-left:0px;" min="0" max="4"></input> -->
-					<input type="text" id="woshi" name="woshi" value="0;4" style="margin-top:20px"/>
+					<input type="text" id="woshi" name="woshi" value="0;6" style="margin-top:20px"/>
 				</div> 
 				<div style="display:block;width:100%;min-height:20px;margin-top:10px;float:left;clear:both">
 					<a style="display:block;color:#333;font-size:14px;float:left;">用途</a>
@@ -168,15 +168,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 		<div class="f-l list_node_right">
                 		<a class="c-fix f-l list_node_inner_lab f-yahei s-12"></a>
                 		<a class="f-l list_node_title fw f-yahei s-12 c-fix">最多：</a>
-                		<a class="f-r list_node_val f-yahei s-12">$${item.maxPrice}</a>
+                		<!-- <a class="f-r list_node_val f-yahei s-12">$${item.maxPrice}</a> -->
+                		 <a class="f-r list_node_val f-yahei s-12">$<f:formatNumber value="${item.maxPrice}" pattern="#,#00.#"/></a>
                 		<a class="f-l list_node_title fw f-yahei s-12 c-fix">最少：</a>
-                		<a class="f-r list_node_val f-yahei s-12">$${item.minPrice}</a>
+                		<!-- <a class="f-r list_node_val f-yahei s-12">$${item.minPrice}</a> -->
+                		 <a class="f-r list_node_val f-yahei s-12">$<f:formatNumber value="${item.minPrice}" pattern="#,#00.#"/></a>
                 		<a class="f-l list_node_title fw f-yahei s-12 c-fix">面积：</a>
                 		<a class="f-r list_node_val f-yahei s-12">${item.minArea}<span>-</span>${items.maxArea}</a>
                 		<a class="f-l list_node_title fw f-yahei s-12 c-fix">起价：</a>
                 		<a class="f-r list_node_val f-yahei s-12"><span>$</span><f:formatNumber value="${items.project_price_int_qi}"  pattern="#,#00.#"/></a>
-                		<a class="f-l list_node_title fw f-yahei s-12 c-fix">返现：</a>
-						<a class="f-r list_node_val f-yahei s-12">${item.fanxian}</a>
+                		<%-- <a class="f-l list_node_title fw f-yahei s-12 c-fix">返现：</a>
+						<a class="f-r list_node_val f-yahei s-12">${item.fanxian}</a> --%>
                 		</div>
                 		</div>
                 		</div>
@@ -198,7 +200,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      	$("#zongjia").ionRangeSlider({
    			 type: "double",
    			 min: 0,
-    		 max: 2000000,
+    		 max: 5000000,
     		 step: 100000
    			 //grid: true
 		});
@@ -212,11 +214,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		$("#woshi").ionRangeSlider({
    			 type: "double",
    			 min: 0,
-    		 max: 4,
+    		 max: 6,
    			 //grid: true
 		});
         var pageIndex = 0;     //页面索引初始值   
-        var pageSize = 5;     //每页显示条数初始化，修改显示条数，修改这里即可  
+        var pageSize = 10;     //每页显示条数初始化，修改显示条数，修改这里即可  
          $(function () {
          		//alert("ttttttttttt");
               	var total = InitTable(0);    //Load事件，初始化表格数据，页面索引为0（第一页）
@@ -227,7 +229,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     next_text: "»",
                     items_per_page:pageSize,
                     num_edge_entries: 1,       //两侧首尾分页条目数
-                    num_display_entries: 5,    //连续分页主体部分分页条目数
+                    num_display_entries: 10,    //连续分页主体部分分页条目数
                     current_page: pageIndex,   //当前页索引
                 });
                 //翻页调用   
@@ -244,7 +246,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         async: false,
                         dataType: "json",  
                         url: '/SearchListPage',      //提交到一般处理程序请求数据   
-                        data: { pageIndex : pageIndex, pageSize : 5},
+                        data: { pageIndex : pageIndex, pageSize : 10},
                         //data: "pageIndex=" + (pageIndex) + "&pageSize=" + pageSize,          //提交两个参数：pageIndex(页面索引)，pageSize(显示条数)                   
                         success: function(data) {
                         count = data.total;
@@ -283,7 +285,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						 var traffic=$("#traffic").val();
 					
  		 							  var pageIndex2 = 0;     //页面索引初始值   
-							          var pageSize2 = 5;     //每页显示条数初始化，修改显示条数，修改这里即可  
+							          var pageSize2 = 10;     //每页显示条数初始化，修改显示条数，修改这里即可  
 							         // var total2 = 100;
 							         var total2 = InitTable2(0); 
 							        
@@ -293,7 +295,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                    						 next_text: "»",
                    						 items_per_page:pageSize2,
                     					 num_edge_entries: 1,       //两侧首尾分页条目数
-                   						 num_display_entries: 5,    //连续分页主体部分分页条目数
+                   						 num_display_entries: 10,    //连续分页主体部分分页条目数
                     					 current_page: pageIndex2,   //当前页索引
                				 }); 
                				   function PageCallback2(index, jq) {    
@@ -310,7 +312,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						                        async: false,
 						                        dataType: "json",  
 						                        url: '/FilterList?projecttype='+projecttype+'&zongjia='+zongjia+"&danjia="+danjia+'&xinaipan='+xinaipan+'&remen='+remen+'&youxiu='+youxiu+'&center='+center+'&baozu='+baozu+'&huaren='+huaren+'&zuixin='+zuixin+'&daxue='+daxue+'&xianfang='+xianfang+'&traffic='+traffic,      //提交到一般处理程序请求数据   
-						                        data: { pageIndex : pageIndex2, pageSize : 5},
+						                        data: { pageIndex : pageIndex2, pageSize : 10},
 						                        success: function(data) {
 						                        count = data.total;
 						                        var html = getHtml(data.List);
@@ -328,7 +330,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     function paixu(v){
 		   							  var pageIndex3 = 0;     //页面索引初始值   
-							          var pageSize = 5;     //每页显示条数初始化，修改显示条数，修改这里即可  
+							          var pageSize = 10;     //每页显示条数初始化，修改显示条数，修改这里即可  
 							         var total3 = InitTable3(0); 
 		   					$("#Pagination").pagination(total3,{
                    						 callback: PageCallback3,  //PageCallback() 为翻页调用次函数。
@@ -336,7 +338,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                    						 next_text: "»",
                    						 items_per_page:pageSize,
                     					num_edge_entries: 1,       //两侧首尾分页条目数
-                   						 num_display_entries: 5,    //连续分页主体部分分页条目数
+                   						 num_display_entries: 10,    //连续分页主体部分分页条目数
                     					current_page: pageIndex3,   //当前页索引
                				 });
                				   function PageCallback3(index, jq) {    
@@ -352,7 +354,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						                        async: false,
 						                        dataType: "json",  
 						                        url: '/OrderPage',      //提交到一般处理程序请求数据   
-						                        data: { pageIndex : pageIndex3, pageSize : 5},
+						                        data: { pageIndex : pageIndex3, pageSize : 10},
 						                        success: function(data) {
 						                        count = data.total;
 						                        var html = getHtml(data.List);
@@ -437,15 +439,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 		html+="<div class='f-l list_node_right'>";
                 		html+="<a class='c-fix f-l list_node_inner_lab f-yahei s-12'></a>";
                 		html+="<a class='f-l list_node_title fw f-yahei s-12 c-fix'>最多：</a>";
-                		html+="<a class='f-r list_node_val f-yahei s-12'>"+"<span>$</span>"+items[j].MaxPrice+"</a>";
+                		html+="<a class='f-r list_node_val f-yahei s-12'>"+"<span>$</span>"+items[j].MaxPrice+"</a>"; 
                 		html+="<a class='f-l list_node_title fw f-yahei s-12 c-fix'>最少：</a>";
-                		html+="<a class='f-r list_node_val f-yahei s-12'>"+"<span>$</span>"+items[j].MinPrice+"</a>";
+                		 html+="<a class='f-r list_node_val f-yahei s-12'>"+"<span>$</span>"+items[j].MinPrice+"</a>"; 
                 		html+="<a class='f-l list_node_title fw f-yahei s-12 c-fix'>面积(M<sup><span style='font-size:8px'>2</span></sup>)：</a>";
                 		html+="<a class='f-r list_node_val f-yahei s-12'>"+items[j].MinArea+"<span>-</span>"+items[j].MaxArea+"</a>";
                 		html+="<a class='f-l list_node_title fw f-yahei s-12 c-fix'>起价：</a>";
-                		html+="<a class='f-r list_node_val f-yahei s-12' id='qimoney'>"+"<span>$</span>"+items[j].project_price_int_qi+"</a>";
-                		html+="<a class='f-l list_node_title fw f-yahei s-12 c-fix'>返现：</a>";
-                		html+="<a class='f-r list_node_val f-yahei s-12'>"+items[j].Fanxian+"</a>";
+                		 html+="<a class='f-r list_node_val f-yahei s-12' id='qimoney'>"+"<span>$</span>"+items[j].project_price_int_qi+"</a>"; 
+                		/* html+="<a class='f-l list_node_title fw f-yahei s-12 c-fix'>返现：</a>";
+                		html+="<a class='f-r list_node_val f-yahei s-12'>"+items[j].Fanxian+"</a>"; */
                 		html+="</div>";
                 		html+="</div>";
                 		html+="</div>";
@@ -459,6 +461,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 }
    </script>
    <script>
+   
    $(function(){
 	$(".btn").click(function(){
 		$(".btn_sel").removeClass("btn_sel");
