@@ -912,7 +912,8 @@ function popInfo(){
 		</div>
 		<div class="c-fix  bkg3"  style="margin:0 auto;height:280px;width:990px">
 			<div class="c-fix p_panel_4">
-				<a class="c-fix f-l p_inves_name f-yahei s-18 fw">${HouseProject.project_area}${HouseProject.project_type}投资数据</a>
+				<%-- <a class="c-fix f-l p_inves_name f-yahei s-18 fw">${HouseProject.project_area}${HouseProject.project_type}投资数据</a> --%>
+				<a class="c-fix f-l p_inves_name f-yahei s-18 fw">${area_name}${HouseProject.project_type}投资数据</a>
 				<a class="c-fix f-l p_inves_name f-yahei s-14" style="border-bottom:1px solid #999;padding-bottom:20px;">投资数据参考 公寓房产</a>
 				<div class="c-fix f-l p_inves_div">
 					<a class="c-fix f-l p_inves_lab f-yahei s-14 fw">年增长率</a>
@@ -944,7 +945,8 @@ function popInfo(){
 		</div>
  		<div class="c-fix  bkg3"  style="margin:0 auto;height:426px;width:990px">
 			<div class="c-fix p_panel_4">
-				<a class="c-fix f-l p_inves_name f-yahei s-18 fw">${HouseProject.project_area} ${HouseProject.project_type}中位数房价</a>
+				<%-- <a class="c-fix f-l p_inves_name f-yahei s-18 fw">${HouseProject.project_area} ${HouseProject.project_type}中位数房价</a> --%>
+				<a class="c-fix f-l p_inves_name f-yahei s-18 fw">${area_name} ${HouseProject.project_type}中位数房价</a>
 				<div class="c-fix f-l middle_bkg">
 					<a class="c-fix f-l f-yahei fw middle_lab1">$${buy_price}</a>
 					<a class="f-l f-yahei fw middle_lab2">$${zu_price}/周</a>
@@ -984,7 +986,7 @@ function popInfo(){
 <ul class="nav nav-tabs nav-justified" id="trendTabs">
       <li class="active"><a href="#price" data-toggle="tab"><b>${area_name}区域中位数房价走势</b></a></li>
       <li><a href="#rent" data-toggle="tab"><b>${area_name}区域租金走势</b></a></li>
-      <li><a href="#emptypercent" data-toggle="tab"><b>${area_name}区域资金回报率走势</b></a></li>
+      <li><a href="#emptypercent" data-toggle="tab"><b>${area_name}区域租金回报率走势</b></a></li>
      <!-- <p class="navbar-text navbar-right">Signed in as Mark Otto</p>-->
     </ul>
     
@@ -1042,7 +1044,7 @@ function popInfo(){
 						<a class="f-l f-yahei s-14 p_spec">${item}</a>
 						
 						</c:forEach>
-						<a class="c-fix f-l p_header3 f-yahei s-16 fw" style="width:721px">${area_name} 区域人口分布<span style="float:right;padding-right:20px;" class="s-12">数据来源：${people_datasource } 更新日期：${fn:substring(people_date,0,10)}</span></a>
+						<a class="c-fix f-l p_header3 f-yahei s-14 fw" style="width:721px">${area_name} 区域人口分布<span style="float:right;padding-right:20px;" class="s-12">数据来源：${people_datasource } 更新日期：${fn:substring(people_date,0,10)}</span></a>
 						<div class="c-fix f-l p_tab2" style="width:721px">
 						<table class="table table-striped">
 						 <tbody style="font-size:12px;">

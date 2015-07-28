@@ -76,13 +76,18 @@ public class SearchController {
 		seachBrokerListResult = brokerInfoList;
 		int count = brokerInfoList.size();
 		List<BrokerInfo> resultList = new ArrayList<BrokerInfo>();
-		if(count>=4){
+		/*if(count>=4){
 			resultList = brokerInfoList.subList(0, 4);
 		}
 		else{
 			resultList = brokerInfoList;
+		}*/
+		if(count>=10){
+			resultList = brokerInfoList.subList(0, 10);
 		}
-		
+		else{
+			resultList = brokerInfoList;
+		}
 		List<User> userList=userDao.listUser(username);
 		List<String> typeList=brokerInfoDao.getBrokerTypeList();
 		List<String> regionList=brokerInfoDao.getBrokerRegionList();
@@ -130,9 +135,9 @@ public class SearchController {
 		int pageNum  = pageIndex==null? 0 :Integer.parseInt(pageIndex);
 		
 		String pageSize_str  = req.getParameter("pageSize");  //姣忛〉閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓锟�
-		int pageSize  = pageSize_str==null? 4 :Integer.parseInt(pageSize_str);//榛樿姣忛〉4鏉¤褰�
-		
-		
+		/*int pageSize  = pageSize_str==null? 4 :Integer.parseInt(pageSize_str);//榛樿姣忛〉4鏉¤褰�
+*/		
+		int pageSize  = pageSize_str==null? 10 :Integer.parseInt(pageSize_str);//榛樿姣忛〉4鏉¤褰�
 		List<BrokerInfo> brokerList = seachBrokerListResult;
 		
 		int total = brokerList.size();
