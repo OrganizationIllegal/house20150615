@@ -1044,8 +1044,9 @@ function popInfo(){
 						<a class="f-l f-yahei s-14 p_spec">${item}</a>
 						
 						</c:forEach>
-						<a class="c-fix f-l p_header3 f-yahei s-14 fw" style="width:721px">${area_name} 区域人口分布<span style="float:right;padding-right:20px;" class="s-12">数据来源：${people_datasource } 更新日期：${fn:substring(people_date,0,10)}</span></a>
-						<div class="c-fix f-l p_tab2" style="width:721px">
+						
+						<a class="c-fix f-l p_header3 f-yahei s-14 fw" style="width:721px;margin-top: 97px;">${area_name} 区域人口分布<span style="float:right;padding-right:20px;" class="s-12">数据来源：${people_datasource } 更新日期：${fn:substring(people_date,0,10)}</span></a>
+						<div class="c-fix f-l p_tab2" style="width:721px;">
 						<table class="table table-striped">
 						 <tbody style="font-size:12px;">
 			    		<c:forEach items="${list}" var="item" varStatus="var" begin="0" end="0">
@@ -1136,7 +1137,8 @@ function popInfo(){
 					<img class="f-r p_adv" src="images/ad1.png"></img>
 				<img class="f-r p_adv2" src="images/adv.jpg"></img>
 				</c:if>
-				
+				</div>
+						</div>
 				<c:if test="${!empty dulirateVo && !empty youngfamilyVo && !empty oldfamilyVo}">
 				<div class="c-fix bkg3" style="margin:0 auto;height:265px;width:990px">
 				<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:950px;margin-bottom:10px;">${area_name} 区域家庭情况构成</a>
@@ -1742,7 +1744,7 @@ function popInfo(){
  <c:if test="${fn:length(areaMiddleList) > 0 && fn:length(areaZujinList) > 0 && fn:length(areaZhikongList) > 0}">
  <script src="/js/trend.js" charset="utf-8"></script>
  </c:if>
- <script src="/js/cost.js" charset="GBK"></script>
+ <script src="/js/cost.js" charset="utf-8"></script>
  <script src="/js/news.js"></script>
   <script src="/js/familyStatus.js"></script>
  <script type="text/javascript">
