@@ -61,8 +61,8 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		return "/overseas.jsp"; 
 	}
 	
-	/*缁便垹褰囩�灞炬殻娴犻攱鐗搁崡锟�
-	@RequestMapping({ "/UserInfo/AddAllPrice" })
+	//缁便垹褰囩�灞炬殻娴犻攱鐗搁崡锟�
+	/*@RequestMapping({ "/UserInfo/AddAllPrice" })
 	public void addAllPrice(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		String nick_name = req.getParameter("nick_name");
 		String pwd = req.getParameter("pwd");
@@ -72,11 +72,11 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		String msg = req.getParameter("msg");
 		int flag = userInfoDao.addAllPrice(nick_name, pwd, tel, email, allprice, msg);
 		if(flag==0){
-			System.out.println("濞ｈ濮炴径杈Е閿涳拷);
+			System.out.println("留言成功");
 		}else{
-			System.out.println("濞ｈ濮為幋鎰閿涳拷);
+			System.out.println("留言失败");
 		} 
-	}
+	}*/
 	
 	/*闂囷拷鐪�/
 	@RequestMapping({ "/UserInfo/AddNeed" })

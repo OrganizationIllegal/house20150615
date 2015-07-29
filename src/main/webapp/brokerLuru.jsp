@@ -71,6 +71,18 @@ body{
 <div class="area_left">
 <span class="area_span ">经纪人经验</span><span><input type="text" id="broker_experience" name="broker_experience" class="area_input"></span>
 </div>
+<div class="area_right">
+<span class="area_span">经纪人电话</span><span><input type="text" id="broker_phone" name="broker_phone" class="area_input"></span>
+</div>
+<div class="area_left">
+<span class="area_span ">经纪人邮件</span><span><input type="text" id="broker_email" name="broker_email" class="area_input"></span>
+</div>
+<div class="area_right">
+<span class="area_span">经纪人微信</span><span><input type="text" id="broker_wechat" name="broker_wechat" class="area_input"></span>
+</div>
+<div class="area_left">
+<span class="area_span ">经纪人QQ</span><span><input type="text" id="broker_qq" name="broker_qq" class="area_input"></span>
+</div>
 </form>
 <div class="c-fix" style="padding-left:35px;">
 <span class="area_span">经纪人图片</span>
@@ -386,7 +398,10 @@ function saveBroker(){
 	broker.broker_type=$("#broker_type").val();
 	broker.broker_zizhi=$("#broker_zizhi").val();
 	broker.broker_experience=$("#broker_experience").val();
-	
+	broker.phone=$("#broker_phone").val();
+	broker.email=$("#broker_email").val();
+	broker.wechat=$("#broker_wechat").val();
+	broker.qq=$("#broker_qq").val();
 	var filenames=$('#broker_img').val().split("\\");
 	var filename=filenames[filenames.length-1];
 	broker.broker_img=filename;

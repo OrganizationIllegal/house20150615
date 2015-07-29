@@ -126,9 +126,9 @@ public class BrokerInfoController {
 		//String message_time=Timestamp.parse(System.currentTimeMillis());
 		int project_id=0;
 		int viewed=0;
-		int type=1;
+		int type=6;
 		int result = 0;
-		int userid=userDao.findUserByName(username);
+		int userid=userDao.findUserByEmailAndTel(username);
 		if(userid!=0){
 			result=brokerInfoDao.InsertMessage(message_content, message_time, project_id, viewed, type, userid);
 		}

@@ -532,5 +532,48 @@ public class HouseProjectDao extends BaseDao{
         }
 		return projectInfo;
 	}
+	//根据项目id查找项目编号
+	public String findProjectNumById(int proid){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		String project_num=null;
+		try{
+			String sql = "select project_num from house_project where id="+proid;
+			pstmt = con.prepareStatement(sql);
+			  rs = pstmt.executeQuery();
+			while(rs.next()){
+				project_num=rs.getString("project_num");
+			}
+			
+		}catch (Exception e) {
+			 e.printStackTrace();
+        }
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return project_num;
+	}
 	
 }

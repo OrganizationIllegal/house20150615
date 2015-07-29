@@ -7,7 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>需求留言列表</title>
+<title>最新价格留言列表</title>
 <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="/bootstrap/css/bootstrap-table.css" rel="stylesheet">
 
@@ -22,11 +22,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="/js/bootstrap-table-export.js"></script>
 <script src="/js/tableExport.js"></script> 
 <script type="text/javascript">
-   function pop(content,id,row,index){
-      $("#modalcontent").html(content);
-      $('#demandprice').modal('show');
-     $.ajax({
-     		async : false,
+function pop(content,id,row,index){
+    $("#modalcontent").html(content);
+    $('#demandprice').modal('show');
+   $.ajax({
+   		async : false,
 	 	    type: "POST",
 	 		data: { id : id},
 	 		dateType: "json",
@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 			alert("error")
 	 		}
 	 	});
-    }
+  }
 </script>
 <style type="text/css">
 body{
@@ -58,13 +58,13 @@ if(request.getSession().getAttribute("flag")!=null){
 
 %>
 <div style="width:900px;margin:25px auto;">
-<div class="area_bkg1">当前位置:需求留言列表</div>
+<div class="area_bkg1">当前位置:最新价格留言列表</div>
  <!-- data-export-types:"['json', 'xml', 'txt', 'excel']" -->
  <!-- data-toggle='table' -->
  <table id="table"          
 
         data-toggle='table'
- 		data-url="/MessagePageList"
+ 		data-url="/MessagePriceLatestPageList"
  		data-striped='true'
  		data-search="true"
            data-show-pagination-switch="true"

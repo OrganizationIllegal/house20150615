@@ -14,10 +14,38 @@ public class BrokerInfoQuyu {
 	private int broker_experience;
 	private String broker_type;
 	private String broker_zizhi;
+	private String phone;
+	private String email;
+	private String wechat;
+	private String qq;
 	private List<LeiXing> leixingInfo;
 	private List<String> areaList;
 	
 	
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getWechat() {
+		return wechat;
+	}
+	public void setWechat(String wechat) {
+		this.wechat = wechat;
+	}
+	public String getQq() {
+		return qq;
+	}
+	public void setQq(String qq) {
+		this.qq = qq;
+	}
 	public List<String> getAreaList() {
 		return areaList;
 	}
