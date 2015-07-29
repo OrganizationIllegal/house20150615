@@ -1798,6 +1798,10 @@ public class ProjectInputDao extends BaseDao {
 							broker.setBroker_experience(rs.getInt("broker_experience"));
 							broker.setBroker_img(rs.getString("broker_img"));
 							broker.setIntroduction(rs.getString("introduction"));
+							broker.setPhone(rs.getString("phone"));
+							broker.setEmail(rs.getString("email"));
+							broker.setWechat(rs.getString("wechat"));
+							broker.setQq(rs.getString("qq"));
 						}
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
@@ -2198,12 +2202,16 @@ public class ProjectInputDao extends BaseDao {
 			int broker_experience=broker.getBroker_experience();
 			String broker_img=broker.getBroker_img();
 			String introduction=broker.getIntroduction();
-			 
+			String phone=broker.getPhone();
+			String email=broker.getEmail();
+			String wechat=broker.getWechat();
+			String qq=broker.getQq();
+			
 			boolean flag=true;
 			
 			try {
 				con.setAutoCommit(false);
-				String sql1 = "insert into broker_info(broker_num,broker_name,broker_language,broker_region,broker_img,introduction,broker_experience,broker_type,broker_zizhi) values(?,?,?,?,?,?,?,?,?)";
+				String sql1 = "insert into broker_info(broker_num,broker_name,broker_language,broker_region,broker_img,introduction,broker_experience,broker_type,broker_zizhi,phone,email,wechat,qq) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				pstmt = con.prepareStatement(sql1);
 				pstmt.setString(1, broker_num);
 				pstmt.setString(2, broker_name);
@@ -2214,6 +2222,10 @@ public class ProjectInputDao extends BaseDao {
 				pstmt.setInt(7, broker_experience);
 				pstmt.setString(8, broker_type);
 				pstmt.setString(9, broker_zizhi);
+				pstmt.setString(10, phone);
+				pstmt.setString(11, email);
+				pstmt.setString(12, wechat);
+				pstmt.setString(13, qq);
 				int exeResult = pstmt.executeUpdate();
 				if(pstmt != null){   // 关闭声明   
 			        try{   
@@ -2311,13 +2323,16 @@ public class ProjectInputDao extends BaseDao {
 					int broker_experience=broker.getBroker_experience();
 					String broker_img=broker.getBroker_img();
 					String introduction=broker.getIntroduction();
-					 
+					String phone=broker.getPhone();
+					String email=broker.getEmail();
+					String wechat=broker.getWechat();
+					String qq=broker.getQq();
 					boolean flag=true;
 					
 					try {
 						con.setAutoCommit(false);
 						//缁忕邯浜轰俊鎭洿鏂�
-						String sql1 = "update broker_info set broker_num=?,broker_name=?,broker_language=?,broker_region=?,broker_img=?,introduction=?,broker_experience=?,broker_type=?,broker_zizhi=? where id=?";
+						String sql1 = "update broker_info set broker_num=?,broker_name=?,broker_language=?,broker_region=?,broker_img=?,introduction=?,broker_experience=?,broker_type=?,broker_zizhi=?,phone=?,email=?,wechat=?,qq=? where id=?";
 						pstmt = con.prepareStatement(sql1);
 						pstmt.setString(1, broker_num);
 						pstmt.setString(2, broker_name);
@@ -2328,7 +2343,11 @@ public class ProjectInputDao extends BaseDao {
 						pstmt.setInt(7, broker_experience);
 						pstmt.setString(8, broker_type);
 						pstmt.setString(9, broker_zizhi);
-						pstmt.setInt(10, id);
+						pstmt.setString(10, phone);
+						pstmt.setString(11, email);
+						pstmt.setString(12, wechat);
+						pstmt.setString(13, qq);
+						pstmt.setInt(14, id);
 						int exeResult = pstmt.executeUpdate();
 						if(pstmt != null){   // 关闭声明   
 					        try{   

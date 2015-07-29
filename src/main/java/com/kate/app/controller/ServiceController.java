@@ -55,7 +55,7 @@ public class ServiceController {
 		List<User> userList=userDao.listUser(username);
 	    req.setAttribute("userList", userList);
 
-		req.setAttribute("brokerInfo", data);
+		req.setAttribute("brokerInfo", data); 
 		req.setAttribute("areaList", areaList);
 		
 		return "/Service.jsp";

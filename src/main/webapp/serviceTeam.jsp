@@ -211,8 +211,8 @@ function tijiao(){
 </script>
 
 <script type="text/javascript">
-var num = 1;
-var totleSize = "${count}"
+/* var num = 1; */
+var totleSize = "${count}";
 var pageNum1 = totleSize % 10 == 0 ? totleSize / 10 : totleSize / 10 + 1;
 var pageNum = (totleSize+9)/10;
 
@@ -238,6 +238,7 @@ var pageNum = (totleSize+9)/10;
 	                 		var totalSize = data.size;
 	                 		
 	                 		var pageNum = totalSize % 10 == 0 ? totleSize / 10 : Math.floor(totleSize / 10) + 1;
+	                 		var pageNum=(totalSize+9)/10;
 	                 		if(num==pageNum){
 	                 			  $.ajax({   
 				                        type: "POST",  
