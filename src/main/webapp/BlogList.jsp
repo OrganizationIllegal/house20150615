@@ -276,15 +276,18 @@ if(request.getSession().getAttribute("flag")!=null){
 	    // init bootpag
 	    var category="";
    		$(function(){
+   			
   			$('#type').change(function(){ 
+  				
 	  			category=$(this).children('option:selected').val();
+	  			
 				$.ajax({
                         type: "POST",  
                         dataType: "json",  
                         url: '/NewsBokeFenYe',      //提交到一般处理程序请求数据   
                         data: { pageIndex : 1,type:category},
                         success: function(data) {
-                       
+                        	alert(data)
                             $("#leftpanel").text("1-"+data.pageCount+"的"+data.total+"篇文章");
                             
                         	var html = getHtml(data.List);
@@ -303,7 +306,14 @@ if(request.getSession().getAttribute("flag")!=null){
                 						$(this).hide();
                 					}
                 				});
-                        }  
+                        },
+                        error:function( jqXHR, textStatus,  errorThrown ){
+                        	alert(jqXHR.status)
+
+                        	alert(jqXHR);
+                        	alert(textStatus);
+                        	alert(errorThrown);
+                        }
                     }); 
 			
 			});
@@ -325,6 +335,7 @@ if(request.getSession().getAttribute("flag")!=null){
                         //data: "pageIndex=" + (pageIndex) + "&pageSize=" + pageSize,          //提交两个参数：pageIndex(页面索引)，pageSize(显示条数)                   
                         success: function(data) {
 	                        count = data.total;
+	                        
 	                 		var html = getHtml(data.List);
 	                 		$("#mainlist").html(html);
 	                 		scroll(0,0);

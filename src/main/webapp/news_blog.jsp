@@ -83,20 +83,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body style="/* padding-top: 150px; */margin:0 auto;background-color:rgb(232, 233, 234);">
 <jsp:include page="head4index.jsp" />
- <%-- <jsp:include page="head2.jsp" /> --%>
-	<div class="" style="-margin-top:61px;">
-		<!-- <div class="row" style="height:36px;background-color:rgb(20,51,82);width:1190px;  margin: 0 auto;">
-            <div class="col-md-1"  style="width:142px;float:left;padding-left:0px;padding-right:0px;"></div>
-            <div class="col-md-3" style="width:340px;height:100%;line-height:37px;color:white;padding-left:0px;padding-right:0px;"><a href="/index01" style="color: #FFE4B5;padding-right: 10px;">首页</a>
-            
-           <a href="/BlogList" style="color: white;padding-right: 10px;">新闻博客 </a>
-            		<a href="/ZhiYeInfo" style="color: #FFE4B5;padding-right: 10px;">置业指导</a>
-            
-            
-            </div>
-        </div> -->
-       
-        <div class="row" style="background-color:white;height:102px;border:1px solid #FFE4E1;margin-left: auto;margin-right:auto;width:1190px;">
+		<div id="head_title" class="row" style="background-color:white;height:102px;border:1px solid #FFE4E1;margin-left: auto;margin-right:auto;width:1190px;">
             <div class="col-md-1"  style="width:142px;float:left;padding-left:0px;padding-right:0px;"></div>
             <div class="" style="font-size:24px;height:100%;padding-left:0px;">
             <div style="margin-top: 25px; margin-left:142px;">
@@ -118,10 +105,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="col-md-1" style="width:142px;float:left;padding-left:0px;padding-right:0px;"></div>
             <div class="col-md-7" style="width:601px;float:left;">
                 <div class="row">
-                    <div id="panel-left" >
-                      
+                    <div id="panel-left" class="main">
+                        <div class="panel-heading" id="leftpanel" style="font-weight: bold;display:none;">1-${pageCount}的${total}篇文章</div>
                       <div class="panel-body">
-                        <ul class="media-list">
+                        <ul class="media-list" id="mainlist">
 
                         
                           <li class="media">
@@ -173,7 +160,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         
                         
                         </ul>
-                       
+                        <div id="page-selection"></div>
                     </div>
                 </div>
             </div>
@@ -195,12 +182,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <option>请选择一个类别</option>
                     <c:choose>
                         <c:when test="${type==0}">
-            				<c:forEach items="${zhiYeFenleiList}" var="item">
+            				<c:forEach items="${zhiye_fenleiList}" var="item">
 		                    	<option>${item}</option>
 		                    </c:forEach>
             			</c:when>
             			<c:otherwise>
-            				<c:forEach items="${newsFenleiList}" var="item">
+            				<c:forEach items="${new_fenleiList}" var="item">
 		                    	<option>${item}</option>
 		                    </c:forEach>
             			</c:otherwise>
@@ -273,8 +260,146 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   <jsp:include page="zhucefoot.jsp" />
   	<jsp:include page="foot4index.jsp" />
-    </div>
+  
    
 </body>
 
 </html>
+
+
+
+<script type="text/javascript">
+
+var typeInfo = "${type}";
+	    // init bootpag
+	    var category="";
+   		$(function(){
+   			var titleHtml = "<div style='width:980px;font-size:24px;line-height:70px;height:100%;font-weight:bold;margin:0 auto;'>置业指导</div>";
+   			var titleHtml1 = "<div style='width:980px;font-size:24px;line-height:70px;height:100%;font-weight:bold;margin:0 auto;'>新闻博客</div>";
+   			//$("#leftpanel").show();
+   			//$(".main").attr("id","mainlist");
+  			$('#type').change(function(){ 
+  				$("#leftpanel").show();
+  				var html = "";
+	  			category=$(this).children('option:selected').val();
+				$.ajax({
+                        type: "POST",  
+                        dataType: "json",  
+                        url: '/DetailFenYe',      //提交到一般处理程序请求数据   
+                        data: { pageIndex : 1,type:category, typeInfo:typeInfo},
+                        success: function(data) {
+                        	
+                        	if(typeInfo==0){
+                        		$("#head_title").html(titleHtml);
+                        	}
+                        	else{
+                        		$("#head_title").html(titleHtml1);
+                        	}
+                        	
+                            $("#leftpanel").text("1-"+data.pageCount+"的"+data.total+"篇文章");
+                            
+                        	
+                        	if(typeInfo==0){
+                        		html = getHtml(data.List);
+                        		
+                        	}
+                        	else{
+                        		html = getHtml1(data.List);
+                        	}
+                        	$("#mainlist").html(html);
+                        	$('#page-selection').bootpag({
+                            	total: data.pageCount,
+                            	next:'下一页>',
+                            	prev:'<上一页',
+                            	leaps: true    
+						    });
+                        	scroll(0,0);
+                        	var li = $(".pagination").find("li");
+                			li.each(function(index, Element){
+                					if(index!=0 && index!=li.length-1){
+                						$(this).hide();
+                					}
+                				});
+                        },
+                        error:function(a,b,c){
+								/* alert(a);
+								alert(b);
+								alert(c); */
+                            }  
+                    }); 
+			
+			});
+	    });
+	    
+	    $('#page-selection').bootpag({
+	        total: "${pageCount}",
+	        next:'下一页>',
+        	prev:'<上一页',
+        	page:1
+	    }).on("page", function(event, num){
+	    
+	         $.ajax({   
+                        type: "POST",  
+                        dataType: "json",  
+                        url: '/ZhiYeFenYe',      //提交到一般处理程序请求数据   
+                        data: { pageIndex : num},
+                        //data: "pageIndex=" + (pageIndex) + "&pageSize=" + pageSize,          //提交两个参数：pageIndex(页面索引)，pageSize(显示条数)                   
+                        success: function(data) {
+	                        count = data.total;
+	                 		var html = getHtml(data.List);
+	                        $("#mainlist").html(html);
+	                        scroll(0,0);
+	                        var li = $(".pagination").find("li");
+	            			li.each(function(index, Element){
+	            					if(index!=0 && index!=li.length-1){
+	            						$(this).hide();
+	            					}
+	            				});
+                     }
+                        
+                  }); 
+	    });
+	    
+	    
+	    function getHtml(items){      //职业指导
+                var html="";
+                if(items!=null){
+                	for(var j=0;j<items.length;j++){
+                	    html+="<li class='media'><div class='media-left'><a href='/Detail?id="+items[j].id+"&type=0'>";
+                	    html+="<img class='media-object' src='<%=application.getInitParameter("imagedir")%>/"+items[j].image+"' alt='' width='180px' height='134px'>";
+ 						html+="</a></div><div class='media-body' style='padding-left:20px;'><div class='media-heading' style='font-size:20px;color:rgb(147,181,219);'><a href='/Detail?id="+items[j].id+"&type=0'>"+items[j].title;
+ 						html+="</a></div><p style='font-size:12px;'>"+items[j].fenlei;
+ 						html+="&nbsp;&nbsp;&nbsp;&nbsp;"+items[j].fabu_time;
+ 						html+="</p><p style='font-size:12px;'>"+items[j].zhiye_abstract;			
+ 						html+="</p><a href='/Detail?id="+items[j].id+"&type=0'>全文></a></div></li>";
+ 						
+                	}
+                }
+                else{
+                	html="";
+                }
+              	return html;
+        }
+	    function getHtml1(items){
+            var html="";
+            if(items!=null){
+            	for(var j=0;j<items.length;j++){
+            	    html+="<li class='media'><div class='media-left'><a href='/Detail?id="+items[j].id+"&type=1'>";
+            	    html+="<img class='media-object' src='<%=application.getInitParameter("imagedir")%>/"+items[j].image+"' alt='' width='180px' height='134px'>";
+						html+="</a></div><div class='media-body' style='padding-left:20px;'><div class='media-heading' style='font-size:20px;color:rgb(147,181,219);'><a  href='/Detail?id="+items[j].id+"&type=1'>"+items[j].title;
+						html+="</a></div><p style='font-size:12px;'>"+items[j].news_fenlei;
+						html+="&nbsp;&nbsp;&nbsp;&nbsp;"+items[j].newstime;
+						html+="</p><p style='font-size:12px;'>"+items[j].news_abstract;
+						html+="</p><a href='/Detail?id="+items[j].id+"&type=1'>全文></a></div></li>";
+            	}
+            }
+            else{
+            	html="";
+            }
+          	return html;
+    }
+	    
+	</script>
+	
+	
+	

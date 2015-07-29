@@ -106,22 +106,13 @@ function reLoad(){
 <%String imgdir=getServletConfig().getInitParameter("imagedir"); %>
 <jsp:include page="head4index.jsp" />
 <div id="container" class="" style="width:100%;margin:0 auto; padding-top:10px; background:#fff;">
- <!-- <a name="wintop"></a> -->
-		
-      <!--  <div class="row" style="height:36px;background-color:rgb(20,51,82);width:1190px;  margin: 0 auto;">
-            <div class="col-md-1"  style="width:142px;float:left;"></div>
-            <div class="col-md-3" style="width:340px;height:100%;line-height:37px;color:white;"><a href="/index01" style="color: #FFE4B5;padding-right: 10px;">首页</a><a href="/BlogList" style="color: #FFE4B5;padding-right: 10px;">新闻博客 </a><a href="/ZhiYeInfo" style="color:white;padding-right: 10px;">置业指导</a></div>
-        </div> -->
-        <!-- <div class="row" style="height:82px;border:1px solid #FFE4E1;width:100%; margin: 0 auto;background-color: white;margin-top:-10px;">
-            <div class="col-md-1"  style="width:142px;float:left;"></div>
-            <div class="col-md-2" style="width:300px;font-size:24px;line-height:70px;height:100%;font-weight:bold;">置业指导</div>
-        </div> -->
+
         <div  style="height:82px;border:1px solid #FFE4E1;width:100%; margin: 0 auto;background-color: white;margin-top:-10px;position:relative;">
             <div class="" style="width:980px;font-size:24px;line-height:70px;height:100%;font-weight:bold;margin:0 auto;">置业指导</div>
         </div>
         <div style="padding-top: 35px;width:100%; margin: 0 auto;background-color:rgb(247,248,250);">
         <div class="row" style="width:980px; margin: 0 auto;position:relative;">
-            <!-- <div class="col-md-1" style="width:142px;float:left;"></div> -->
+           
             <div class="col-md-7"  style="width:600px;float:left;">
                 <div class="row">
                     <div class="panel panel-default" id="panel-left">
@@ -333,18 +324,7 @@ function reLoad(){
 	    
 	    
 	</script>
-	<!-- <div class="row" style="width:1190px; margin: 0 auto;height:310px;background-color:rgb(20,51,82);vertical-align:middle;text-align:center;position:relative;">
-        <div>
-        	<img src="/pic/whiteangle.jpg"></img>
-        </div>
-        <div style="top: 50%; position: relative;margin-top: -54px;">
-            <font style="font-size:25px;font-weight:bold;color:#FFFFFF;">为您提供最好的海外购房服务</font><br><br>
-            <div style="  position: relative;left: 50%;margin-left: -43px;background-color: red;height:54px;width:86px;">
-            <div style="padding-top: 9%;"><a class="buttton" style="margin-top: 6px;color:white;font-size:25px;font-weight:bold;">注册</a></div>
-            </div>
-        </div>
-        </div>
-    </div> -->
+
 	<jsp:include page="zhucefoot.jsp" />
 	<jsp:include page="foot4index.jsp" /> 
     <!--<div class="row" style="height:20px;"></div>-->

@@ -246,6 +246,68 @@ public class BrokerInfoDao extends BaseDao {
 	} 
 	
 	
+	public BrokerInfo BrokerInfoListByNum(String broker_num){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		BrokerInfo data = null;
+		List<BrokerInfo> brokerInfoList=new ArrayList<BrokerInfo>();
+		try {
+			String sql = "select * from broker_info where broker_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, broker_num);
+			rs = pstmt.executeQuery();
+			
+		    while(rs.next()){
+		    	data = new BrokerInfo();
+		    	data.setBroker_experience(rs.getInt("broker_experience"));
+		    	data.setBroker_img(rs.getString("broker_img"));
+		    	data.setBroker_language(rs.getString("broker_language"));
+		    	data.setBroker_name(rs.getString("broker_name"));
+		    	data.setBroker_num(rs.getString("broker_num"));
+		    	data.setBroker_region(rs.getString("broker_region"));
+		    	data.setBroker_type(rs.getString("broker_type"));
+		    	data.setBroker_zizhi(rs.getString("broker_zizhi"));
+		    	data.setId(rs.getInt("id"));
+		    	data.setIntroduction(rs.getString("introduction"));
+		    	data.setOffice(rs.getString("office"));
+		    	//brokerInfoList.add(data);
+		    }
+		    
+		  
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return data;
+	} 
+	
+	
+	
 	public BrokerInfoQuyu getBrokerInfo(int id){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -255,7 +317,7 @@ public class BrokerInfoDao extends BaseDao {
 		List<String> areaList = new ArrayList<String>();
 		LeiXing temp = null;
 		try {
-			String sql = "select * from broker_info a, broker_interested_type b, interest_type c where a.id = "+id+" and a.broker_num=b.broker_num and b.interested_num=c.type_num";
+			String sql = "select  * from broker_info a, broker_interested_type b, interest_type c where a.id = "+id+" and a.broker_num=b.broker_num and b.interested_num=c.type_num";
 			/*pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, id);
 			  rs = pstmt.executeQuery();*/

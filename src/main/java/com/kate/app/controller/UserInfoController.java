@@ -148,32 +148,78 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 	/*濞夈劌鍞界拹锔藉煕*/
 	@RequestMapping({ "/Register" })
 	public String register(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+		HttpSession session = req.getSession();
 		int flag=0;
+		int role = 1;
+		List<User> userList = new ArrayList<User>();
 		String telemail = req.getParameter("telemail");
+		String url = req.getParameter("urlInfoReg");
 		String pwd = req.getParameter("pwd");
 		if(isEmail(telemail)){
 			flag=userInfoDao.register2(telemail, pwd);
+			if(flag==1){
+				userList = userInfoDao.judge(telemail);
+				if(userList.size()>0){
+					role = userList.get(0).getRole();
+					
+					flag = userList.get(0).getFlag();
+				}
+				session.setAttribute("role", role);
+				session.setAttribute("flag", flag);
+				session.setAttribute("username", telemail);
+			}
+			else{
+				session.setAttribute("role", role);
+				session.setAttribute("flag", flag);
+				session.setAttribute("username", "");
+			}
+			
 		}else if(isPhoneNumberValid(telemail)){
 			flag=userInfoDao.register1(telemail, pwd);
+			if(flag==1){
+				userList = userInfoDao.judge(telemail);
+				if(userList.size()>0){
+					role = userList.get(0).getRole();
+					
+					flag = userList.get(0).getFlag();
+				}
+				session.setAttribute("role", role);
+				session.setAttribute("flag", flag);
+				session.setAttribute("username", telemail);
+			}
+			else{
+				session.setAttribute("role", role);
+				session.setAttribute("flag", flag);
+				session.setAttribute("username", "");
+			}
+			
 		}
 		if(flag==0){
 			System.out.println("娉ㄥ唽澶辫触");
 		}else{
 			System.out.println("娉ㄥ唽鎴愬姛");
 		}
-		return "/index01";
+		String resultUrl = url.substring(url.indexOf("/"));
+		System.out.println(resultUrl);
+		return resultUrl;
 	}
 	
 	@RequestMapping({ "/Register2" })
 	public void register2(HttpServletRequest req, HttpServletResponse resp) throws Exception{
-		int flag=0;
+		HttpSession session = req.getSession();
+		int flag=-1;
 		String telemail = req.getParameter("telemail");
 		String pwd = req.getParameter("pwd");
 		JSONObject json = new JSONObject();
 		if(isEmail(telemail)){
 			flag=userInfoDao.register2(telemail, pwd);
+			session.setAttribute("username", telemail);
 		}else if(isPhoneNumberValid(telemail)){
 			flag=userInfoDao.register1(telemail, pwd);
+			session.setAttribute("username", telemail);
+		}
+		else{
+			session.setAttribute("username", "");
 		}
 		json.put("flag", flag);
 		try{

@@ -86,19 +86,6 @@
 <body>     
 <div style="width:auto; background:#fff url(../pic/indexbg3.png) repeat-x 0 -666px; -border-bottom:1px solid rgb(30,52,66);">     
 		
-		<%-- <div style="position:relative;">
-		<div id="info1"  style="position:absolute;display:none;">
-			 <ul id="info3" style="padding-left:0px;font-size:13px;font-family:Microsoft YaHei;">
-				<li><a href="/Collect.jsp">我的收藏</a></li>
-				<li><a href="/changePass.jsp">更改密码</a></li>
-				<li><a href="${pageContext.request.contextPath}/logout.jsp">退出登录</a></li>
-			</ul> 
-		</div>
-		<div id="haiwai" style="position:absolute;display:none;">
-		<div><a href="/overseas.jsp">海外购房</a></div>
-		<div><a href="/SearchList">项目一览</a></div>
-		</div> 
-		</div> --%>
 
      <div class="main_header" style="background-color:white; width:1190px; margin:0 auto; border:0; border-bottom:1px solid rgba(238, 238, 238, 1);">
 			<div class="c-fix f-l main_header_div" id="title" style="left:0; margin-left:0;">
@@ -238,6 +225,7 @@
          <div class="modal-body">
   <div style="text-align:center;margin-top:5px;"><div style="font-size:20px;font-weight:bold;">用户注册</div>
   <form method="post" action="/Register" name="fm2">
+  <input type="hidden" id="urlInfoReg" value="">
   <div  style="padding-top:15px;">
          <input type="text"  id="telemail" name="telemail" style="background-image:url(images/0.png);background-repeat:no-repeat;background-position:left;padding-left:35px;width:270px;height:34px;background-color:rgba(246, 245, 245, 1);" placeholder="手机号/邮箱" autocomplete="off">
    
@@ -303,6 +291,10 @@
 </body>
 
 <script>
+var href = window.location.href;
+
+$("#urlInfoReg").val(href);
+
 
 var role;
  $(function() {
@@ -327,12 +319,13 @@ var role;
                 })
                 
                 $("#reg").click(function() {
+                	
                   	var user = $("#telemail").val();
                   	var pass = $("#pwd").val();
                   	var temp;
                   	temp = judgeRe(user,pass);
                    
-                  	if(temp==true){	                	
+                  	if(temp==true){	 
   	                    document.fm2.submit();  //fm为form表单name
                   	}
                   	else{               	

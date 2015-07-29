@@ -117,13 +117,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- 左侧列表页start -->
 			<div  style="float:left;margin-right:34px">
 				<div id="list">
-				<c:forEach items="${resultList}"  var="item">
+				<c:forEach items="${resultListQuyu}"  var="item">
 					 <div id="item1" style="width:502px;height:155px;padding:15px 10px;margin-top:10px;margin-bottom:10px;border:1px solid rgb(207,201,201)">
                 	  <div style="float:left">
-                	  <a href="Service?brokerId=${item.id}"><img src="<%=application.getInitParameter("imagedir")%>/${item.broker_img }" style="width:126px;height:124px;"/></a>
+                	  <a href="Service?brokerId=${item.id}" target="_blank"><img src="<%=application.getInitParameter("imagedir")%>/${item.broker_img }" style="width:126px;height:124px;"/></a>
                 	  </div>
                 	   <div style="width:354px;float:left;font-family:微软雅黑;padding-left:15px">
-                	   <div style="font-size:18px;font-weight:bolder"><a href="Service?brokerId=${item.id}">${item.broker_name}</a></div>
+                	   <div style="font-size:18px;font-weight:bolder"><a href="Service?brokerId=${item.id}" target="_blank">${item.broker_name}</a></div>
                 	  <div style="font-size:13px;"><img  src="/images/serviceteam/b2.jpg"/><span style="padding-left:10px">${item.broker_type }</span></div>
                 	   <div style="font-size:13px; width:314px; height:20px; overflow:hidden;"><span style="padding-left:32px;font-style: italic;">${item.introduction}</span></div>
                 	  <!--  <hr style="height:1px;border:none;border-top:2px dashed #666666;margin-top:0px;margin-bottom:0px;"/> -->
@@ -134,7 +134,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	    <img src="/images/serviceteam/b5.jpg">
                 	   <div style="font-size:13px;"><div style="float:left;width:235px"><img  src="/images/serviceteam/b4.png"/>
                 	   <span style="padding-left:10px">${item.broker_language}</span></div><span>
-                	   <img  src="/images/serviceteam/b6.jpg"/></span></div>
+                	 <c:forEach var="item" items="${item.leixingInfo }"  varStatus="stat"> 
+                	   	<img  src="<%=application.getInitParameter("imagedir")%>/${item.leixingImg }" width=26px height=30px/>
+                	   </c:forEach>
+                	   
+                	   </span></div>
                 		</div>
                 		</div>
 			    </c:forEach>
@@ -212,8 +216,11 @@ function tijiao(){
 <script type="text/javascript">
 var num = 1;
 var totleSize = "${count}"
-var pageNum1 = totleSize % 10 == 0 ? totleSize / 10 : totleSize / 10 + 1;
+
+var pageNum1 = totleSize % 10 == 0 ? totleSize / 10 : Math.floor(totleSize / 10) + 1;
 var pageNum = (totleSize+9)/10;
+
+
 
 	    // init bootpag
 	    $("#page-selection").bootpag({
@@ -223,7 +230,9 @@ var pageNum = (totleSize+9)/10;
         	/* maxVisible: 0, */
         	leaps: true  
 	    }).on("page", function(event, num){
-	
+
+	    	if(num <=pageNum1){
+			
 	         $.ajax({   
                         type: "POST",  
                         dataType: "json",  
@@ -231,13 +240,16 @@ var pageNum = (totleSize+9)/10;
                         data: { pageIndex : num},
                         //data: "pageIndex=" + (pageIndex) + "&pageSize=" + pageSize,          //提交两个参数：pageIndex(页面索引)，pageSize(显示条数)                   
                         success: function(data) {
-	                        count = data.size;
-	                        
+                        	
+	                        count = data.size; 
 	                 		var html = getHtml(data.List);
+	                 		
 	                 		var totalSize = data.size;
 	                 		
-	                 		var pageNum = totalSize % 10 == 0 ? totleSize / 10 : Math.floor(totleSize / 10) + 1;
-	                 		if(num==pageNum){
+	                 		//var pageNum = totalSize % 10 == 0 ? totleSize / 10 : Math.floor(totleSize / 10) + 1;
+	                 		
+	                 		if(num == pageNum1){
+	                 			
 	                 			  $.ajax({   
 				                        type: "POST",  
 				                        dataType: "json",  
@@ -246,7 +258,7 @@ var pageNum = (totleSize+9)/10;
 				                        //data: "pageIndex=" + (pageIndex) + "&pageSize=" + pageSize,          //提交两个参数：pageIndex(页面索引)，pageSize(显示条数)                   
 				                        success: function(data) {
 					                        count = data.total;
-					                        //alert(count)
+					                       
 					                 		var html = getHtml(data.List);
 					                 		$("#list").html(html); 
 					                 		}
@@ -254,7 +266,7 @@ var pageNum = (totleSize+9)/10;
 	                 		$(".next").removeClass().addClass("next disabled");
 	                 			return false;
 	                 		}
-
+	                 		
 	                 		
 	                 		
 	                 		$("#list").html(html); 
@@ -268,9 +280,10 @@ var pageNum = (totleSize+9)/10;
                      }
                         
                   }); 
-	           
+	    	 }
+	
 	    });
-	    
+	   
 	    //经纪人描述可以是两行
 	    function getHtml2(items){
                 var html="";
@@ -280,7 +293,7 @@ var pageNum = (totleSize+9)/10;
                 	  html+="<div id='item1' style='width:502px;height:180px;background-color:white;padding:15px 10px;margin-top:10px;margin-bottom:10px;border:1px solid rgb(207,201,201)'>";
                 	   html+="<div style='float:left'>";
                 	  // html+="<img src='<%=application.getInitParameter("imagedir")%>/"+items[j].broker_img+"' style='width:126px;height:124px;'/>";
-                	  html+="<a href='Service?brokerId="+items[j].id+"'><img src='<%=application.getInitParameter("imagedir")%>/"+items[j].broker_img+"' style='width:126px;height:149px;'/></a>";
+                	  html+="<a href='Service?brokerId="+items[j].id+"' target='_blank'><img src='<%=application.getInitParameter("imagedir")%>/"+items[j].broker_img+"' style='width:126px;height:149px;'/></a>";
                 	   html+="</div>";
                 	   html+="<div style='width:354px;float:left;font-family:微软雅黑;padding-left:15px'>";
                 	   html+="<div style='font-size:18px;font-weight:bolder' >"+items[j].broker_name+"</div>";
@@ -291,8 +304,12 @@ var pageNum = (totleSize+9)/10;
                 	   html+="<div style='font-size:13px;' ><img  src='/images/serviceteam/b3.png'/><span style='padding-left:10px'>"+items[j].broker_region+"</span></div>";
                 	   // html+="<hr style='height:1px;border:none;border-top:2px dashed #666666;margin-top:0px;margin-bottom:0px;' />";
                 	    html+="<img src='/images/serviceteam/b5.jpg'>";
-                	    html+="<div style='font-size:13px;' ><div style='float:left;width:235px'><img  src='/images/serviceteam/b4.png'/><span style='padding-left:10px'>"+items[j].broker_language+"</span></div><span ><img  src='/images/serviceteam/b6.jpg'/></span></div>";
-                		html+="</div>";
+                	    html+="<div style='font-size:13px;' ><div style='float:left;width:235px'><img  src='/images/serviceteam/b4.png'/><span style='padding-left:10px'>"+items[j].broker_language+"</span></div><span >";
+                	    for(var k = 0; k < items[j].leixingInfo.length; k++){
+                	    	html+="<img  src='<%=application.getInitParameter("imagedir")%>/"+items[j].leixing_list[k].leixingImg+"' width=26px height=30px/>";
+                	    }
+                	  
+                		html+="</span></div></div>";
                 		html+="</div>";
                 	}
                 	}
@@ -308,7 +325,7 @@ var pageNum = (totleSize+9)/10;
                 	 for(var j=0;j<items.length;j++){
                 	   html+="<div id='item1' style='width:502px;height:155px;padding:15px 10px;margin-top:10px;margin-bottom:10px;border:1px solid rgb(207,201,201)'>";
                 	   html+="<div style='float:left'>";
-                	  html+="<a href='Service?brokerId="+items[j].id+"'><img src='<%=application.getInitParameter("imagedir")%>/"+items[j].broker_img+"' style='width:126px;height:124px;'/></a>";
+                	  html+="<a href='Service?brokerId="+items[j].id+"' target='_blank'><img src='<%=application.getInitParameter("imagedir")%>/"+items[j].broker_img+"' style='width:126px;height:124px;'/></a>";
                 	   html+="</div>";
                 	   html+="<div style='width:354px;float:left;font-family:微软雅黑;padding-left:15px'>";
                 	   html+="<div style='font-size:18px;font-weight:bolder' >"+items[j].broker_name+"</div>";
@@ -319,8 +336,12 @@ var pageNum = (totleSize+9)/10;
                 	   html+="<div style='font-size:13px;' ><img  src='/images/serviceteam/b3.png'/><span style='padding-left:10px'>"+items[j].broker_region+"</span></div>";
                 	   // html+="<hr style='height:1px;border:none;border-top:2px dashed #666666;margin-top:0px;margin-bottom:0px;' />";
                 	    html+="<img src='/images/serviceteam/b5.jpg'>";
-                	    html+="<div style='font-size:13px;' ><div style='float:left;width:235px'><img  src='/images/serviceteam/b4.png'/><span style='padding-left:10px'>"+items[j].broker_language+"</span></div><span ><img  src='/images/serviceteam/b6.jpg'/></span></div>";
-                		html+="</div>";
+                	    html+="<div style='font-size:13px;' ><div style='float:left;width:235px'><img  src='/images/serviceteam/b4.png'/><span style='padding-left:10px'>"+items[j].broker_language+"</span></div><span>";
+                	    for(var k = 0; k < items[j].leixing_list.length; k++){
+                	    	html+="<img  src='<%=application.getInitParameter("imagedir")%>/"+items[j].leixing_list[k].leixingImg+"' width=26px height=30px/>";
+                	    }
+                	    
+                		html+="</span></div></div>";
                 		html+="</div>";
                 	}
                 	}
@@ -357,13 +378,22 @@ var pageNum = (totleSize+9)/10;
 	              
 				} */
 				/* else{ */
+					
+					/* $(function(){
+	if(num>=pageNum1){
+		
+		$(".next").removeClass().addClass("next disabled");
+		alert(num+"fasdfadfadsf111111111111")
+	}
+	
+}); */
 				$("#page-selection").bootpag({
 			        total: "${count}",
 			        next:'下一页',
 		        	prev:'上一页',
 		        	leaps: true  
 			    });
-			    if(Size<=4){
+			    if(Size<=9){
 					$(".next").removeClass().addClass("next disabled");
 				}
 			    var li = $(".pagination").find("li");

@@ -88,16 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 		</style>
 <script type="text/javascript">
-$(function() {
-	$("#xiangmuZhuce").click(function(){
-		$('#registernewPro').modal('show');
-	})
 
-	 $("#login2RePro").click(function(){
-		   	$('#login').modal('show');
-		   	$('#registernewPro').modal('hide');
-  })   
-})
 
 
 function lunbo(){
@@ -356,6 +347,7 @@ function lunbo1(){
 }
 
 $(function(){
+	
 	var vedioUrl = "${vedio}";
 	lunbo();
 	 player = new YKU.Player('youkuplayer1',{
@@ -397,50 +389,20 @@ var e=$('#input2').val();
 }
 
 
-function pop(type,img){
-  $('#title').empty();	
-  $('#title').append("<h4>户型"+type+"</h4>");
-  $('#image').attr("src",img);
-  $('#housestyle').modal('show');
-   
-}
-function pop6(type,img){
-	$('#title').empty();	
-	  $('#title').append("<h4>户型"+type+"</h4>");
-	  $('#image').attr("src",img);
-	  $('#housestyle').modal('show');
-}
-function pop1(){
-  $('#recentquotation').modal('show');
-}
-function pop2(){
-  $('#completehouse').modal('show');
-}
-function pop3(){
-  $('#demandprice').modal('show');
-}
 
-function popInfo(){
-  $('#projectInfo').modal('show');
-}
-
-/* $(function() {
-	$('.succesny').olvSlides({
-		thumb: true,
-		thumbPage: true,
-		thumbDirection: "Y",
-
-
-	});
-}) */
 
 </script>		
 		
 	</head>
 	<body onload="getIndexMap();" style="background:rgb(232, 233, 234);">
-	<% int Control = 0; %>
-	
-	
+	<%! int Judge = 0; %>
+	<%
+            String username = null;
+       		if(request.getSession().getAttribute("username")!=null){
+       			out.println("ffffffffff");
+       			Judge = 1;   //用户登录
+       		}
+%>    
 		<jsp:include page="head4index.jsp" />
 		<div class="c-fix f-l bkg" style="background-image:url(images/header_bkg.jpg)">
 			<img src="images/header.jpg" class="c-fix f-l p_header"></img>
@@ -487,11 +449,7 @@ function popInfo(){
 	                    </c:when>
 	                    <c:otherwise>
 	                    	 
-		                  <%--   <c:forEach var="item"  items="${imageList}"   varStatus="status">
-			                     <c:if test="${status.index==0}">
-			                    	<tr><td><img src="<%=application.getInitParameter("imagedir")%>/${item.image_name}" width="750" height="474" /></td></tr>
-			                     </c:if>
-			                 </c:forEach> --%>
+		                
 			      
 			                 	<tr><td><div id="youkuplayer1" style="width:750px;height:474px"></div></td> </tr>
 			               
@@ -1657,7 +1615,7 @@ function popInfo(){
   <form method="post" action="/Register" name="fm1">
   <div  style="padding-top:15px;">
          <input type="text"  id="telemailnew" name="telemailnew" style="background-image:url(images/0.png);background-repeat:no-repeat;background-position:left;padding-left:35px;width:270px;height:34px;background-color:rgba(246, 245, 245, 1);" placeholder="手机号/邮箱" autocomplete="off">
-   
+   <input type="hidden" name="url" value="<%=request.getRequestURL() + "?" + request.getQueryString()%>">
    </div>
    <div>
          <input type="password" id="pwdnew" name="pwdnew" style="background-image:url(images/2.png);background-repeat:no-repeat;background-position:left;padding-left:35px;width:270px;height:34px;background-color:rgba(246, 245, 245, 1);" placeholder="密码" autocomplete="off">
@@ -1712,10 +1670,67 @@ function popInfo(){
 				alert("zanting")
 			}
 	</script> -->
-		
+		<input type="hidden" id= "url" name="url" value="<%=request.getRequestURL() + "?" + request.getQueryString()%>">
 </html>
 
 <script type="text/javascript">
+var url = $("#url").val();
+var kk = <%= Judge%>;
+alert(url)
+
+$(function() {
+	$("#xiangmuZhuce").click(function(){
+		$('#registernewPro').modal('show');
+	})
+
+	 $("#login2RePro").click(function(){
+		   	$('#login').modal('show');
+		   	$('#registernewPro').modal('hide');
+  })   
+})
+
+function pop(type,img){
+	
+ if(kk==0){
+	 $('#registernewPro').modal('show');
+ }
+ else{
+	 $('#title').empty();	
+	  $('#title').append("<h4>户型"+type+"</h4>");
+	  $('#image').attr("src",img);
+	  $('#housestyle').modal('show');
+ }
+  
+   
+}
+function pop6(type,img){
+	$('#title').empty();	
+	  $('#title').append("<h4>户型"+type+"</h4>");
+	  $('#image').attr("src",img);
+	  $('#housestyle').modal('show');
+}
+function pop1(){
+  $('#recentquotation').modal('show');
+}
+function pop2(){
+  $('#completehouse').modal('show');
+}
+function pop3(){
+  $('#demandprice').modal('show');
+}
+
+function popInfo(){
+	alert("fewfw")
+ if(kk==0){
+	 $('#registernewPro').modal('show');
+ }
+ else{
+	 $('#projectInfo').modal('show');
+ }
+  
+}
+
+
 /*   var qimoney=$("#qimoney").val();
   var value=$.formatNumber(qimoney,{format:"#,###", locale:"cn"});
   $("#qimoney").val(value); */
@@ -1765,12 +1780,13 @@ function popInfo(){
     			dateType:'json',
     			data:{"telemail":user,"pwd":pass},
     			success:function(data){
-    				if(data.flag == 1){
-    					alert("注册成功！");
-    					window.location.href = '/index01';
+    				if(data.flag == -1){
+    					alert("注册失败！");    
+    					
     				}
     				else{
-    					alert("注册失败！");    					
+    					alert("注册成功！");
+    					//window.location.href = '/index';  					
     				}
 
     			},

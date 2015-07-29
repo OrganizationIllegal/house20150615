@@ -14,7 +14,9 @@ import java.util.Set;
 import org.springframework.stereotype.Repository;
 
 import com.kate.app.model.BrokerInfo;
+import com.kate.app.model.BrokerInfoQuyu;
 import com.kate.app.model.HouseProject;
+import com.kate.app.model.LeiXing;
 import com.kate.app.model.ProjectKey;
 import com.kate.app.model.SearchList;
 
@@ -683,13 +685,14 @@ public class SearchListDao extends BaseDao {
 		return exeResult;
 	}
 	
-	public List<BrokerInfo> searchSericeList(String name, String type, String suozaiarea, String area_code, String lang){
+	public List<String> searchSericeList(String name, String type, String suozaiarea, String area_code, String lang){
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		List<BrokerInfo> brokerInfoList=new ArrayList<BrokerInfo>();
+		List<String> brokerInfoList=new ArrayList<String>();
+		
 			try {
-				String sql = "select * from broker_info a, broker_service_area b where a.broker_num = b.broker_num and ";
+				String sql = "select distinct a.broker_num from broker_info a left join broker_service_area b on  a.broker_num = b.broker_num where ";
 				int i=0;
 				if(name!=null && !"".equals(name)){
 					sql+="a.broker_name like '%"+name+"%'";
@@ -732,7 +735,7 @@ public class SearchListDao extends BaseDao {
 					}
 				}
 				if(i == 0){
-					sql = "select * from broker_info";
+					sql = "select distinct a.broker_num from broker_info a left join broker_service_area b on  a.broker_num = b.broker_num";
 				}
 				  stmt = con.createStatement();
 				  rs = stmt.executeQuery(sql);
@@ -743,12 +746,13 @@ public class SearchListDao extends BaseDao {
 			    String broker_region=null;
 			    String office=null;
 			    String introduction=null;
-			    String broker_num=null;
+			    
 			    int broker_experience=0;
 			    String broker_type=null;
 			    String broker_zizhi=null;
 			    while(rs.next()){
-			    	id=rs.getInt("id");
+			    	String broker_num=null;
+			    	/*id=rs.getInt("id");
 			    	broker_img=rs.getString("broker_img");
 			    	broker_language=rs.getString("broker_language");
 			    	if(broker_language!=null && !"".equals(broker_language)){
@@ -758,17 +762,17 @@ public class SearchListDao extends BaseDao {
 			    	broker_name=rs.getString("broker_name");
 			    	broker_region=rs.getString("broker_region");
 			    	office=rs.getString("office");
-			    	introduction=rs.getString("introduction");
+			    	introduction=rs.getString("introduction");*/
 			    	broker_num=rs.getString("broker_num");
-			    	broker_experience=rs.getInt("broker_experience");
+			    	/*broker_experience=rs.getInt("broker_experience");
 			    	broker_type=rs.getString("broker_type");
 			    	broker_zizhi=rs.getString("broker_zizhi");
 			    	BrokerInfo brokerInfo=new BrokerInfo(id,broker_name,broker_language,broker_region, broker_img, office,introduction,broker_num,broker_experience,broker_type,broker_zizhi);
-			    	brokerInfoList.add(brokerInfo);
+			    	brokerInfoList.add(brokerInfo);*/
 
 //			    	BrokerInfo brokerInfo=new BrokerInfo(id,broker_name,broker_language,broker_region, broker_img, office,introduction);
 //			    	brokerInfoList.add(brokerInfo);
-
+			    	brokerInfoList.add(broker_num);
 			    }
 			    
 			  
@@ -801,6 +805,72 @@ public class SearchListDao extends BaseDao {
 	        }
 			return brokerInfoList;
 		} 
+	
+	
+	
+	
+	public List<LeiXing> searchSericeListBroker(String broker_num){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		BrokerInfoQuyu data = null;
+		List<LeiXing> leixingList = new ArrayList<LeiXing>();
+		LeiXing temp = null;
+			try {
+				String sql = "select distinct type_image from broker_interested_type a, interest_type b where a.interested_num = b.type_num and a.broker_num=? ";
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, broker_num);
+				rs = pstmt.executeQuery();
+			   
+			    while(rs.next()){
+			    	
+			    	//String leixing = rs.getString("type_name");
+			    	String leixingImg = rs.getString("type_image");
+			    	if((leixingImg!=null && !"".equals(leixingImg))){
+			    		temp = new LeiXing();
+				    	//temp.setLeixing(leixing);
+				    	temp.setLeixingImg(leixingImg);
+				    	leixingList.add(temp);
+			    	}
+			    	
+			    	
+			    }
+			    
+			  
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
+			return leixingList;
+		} 
+	
+	
+	
+	
 	
 	public List<HouseProject> searchIndexList(String city1){
 		Statement stmt = null;

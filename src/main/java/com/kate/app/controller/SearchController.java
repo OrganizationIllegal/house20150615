@@ -29,7 +29,9 @@ import com.kate.app.dao.UserDao;
 import com.kate.app.model.AreaInfo;
 import com.kate.app.model.BingMapVo;
 import com.kate.app.model.BrokerInfo;
+import com.kate.app.model.BrokerInfoQuyu;
 import com.kate.app.model.HouseProject;
+import com.kate.app.model.LeiXing;
 import com.kate.app.model.ProjectDescImage;
 import com.kate.app.model.ProjectKey;
 import com.kate.app.model.SearchList;
@@ -51,7 +53,7 @@ public class SearchController {
 	private ProjectInputDao projectInputDao;
 	private static List<SearchList> seachListResult;
 	
-	private static List<BrokerInfo> seachBrokerListResult;
+	private static List<BrokerInfoQuyu> seachBrokerListResult;
 	
 	//鏈嶅姟鍥㈤槦鎼滅储
 	@RequestMapping({"/SearchService"})
@@ -72,26 +74,62 @@ public class SearchController {
 		if(fuwuarea!=null && !"".equals(fuwuarea)){
 			area_code = areaInfoDao.getAreaNum(fuwuarea);
 		}
-		List<BrokerInfo> brokerInfoList = searchListDao.searchSericeList(brokerName, type, suozaiarea, area_code, lang);
-		seachBrokerListResult = brokerInfoList;
-		int count = brokerInfoList.size();
-		List<BrokerInfo> resultList = new ArrayList<BrokerInfo>();
-		/*if(count>=4){
-			resultList = brokerInfoList.subList(0, 4);
+		List<String> brokerNumList = searchListDao.searchSericeList(brokerName, type, suozaiarea, area_code, lang);
+		List<BrokerInfo> brokerInfoList = new ArrayList<BrokerInfo>();
+		for(String item : brokerNumList){
+			BrokerInfo data = brokerInfoDao.BrokerInfoListByNum(item);
+			if(data!=null){
+				brokerInfoList.add(data);
+			}
 		}
-		else{
-			resultList = brokerInfoList;
-		}*/
-		if(count>=10){
+		
+		int count = brokerInfoList.size();
+		List<BrokerInfoQuyu> resultList = new ArrayList<BrokerInfoQuyu>();
+		List<BrokerInfoQuyu> resultListQuyu = new ArrayList<BrokerInfoQuyu>();
+		
+		/*if(count>=10){
 			resultList = brokerInfoList.subList(0, 10);
 		}
 		else{
 			resultList = brokerInfoList;
+		}*/
+		
+		for(BrokerInfo item : brokerInfoList){
+			BrokerInfoQuyu data = new BrokerInfoQuyu();
+			String broker_num = item.getBroker_num();
+			if(broker_num!=null && !"".equals(broker_num)){
+				if(item!=null){
+					int t = item.getId();
+					data.setId(t);
+					data.setBroker_name(item.getBroker_name()==null?"":item.getBroker_name());
+					data.setBroker_img(item.getBroker_img()==null?"":item.getBroker_img());
+					data.setBroker_num(item.getBroker_num()==null?"":item.getBroker_num());
+					data.setBroker_type(item.getBroker_type()==null?"":item.getBroker_type());
+					data.setBroker_region(item.getBroker_region()==null?"":item.getBroker_region());
+					data.setBroker_language(item.getBroker_language()==null?"":item.getBroker_language());
+				}
+				List<LeiXing> list = searchListDao.searchSericeListBroker(broker_num);
+				if (list!=null && list.size()>0) {
+					data.setLeixingInfo(list);
+				}
+				
+			}
+			resultListQuyu.add(data);
 		}
+		
+		seachBrokerListResult = resultListQuyu;
+		if(count>=10){
+			resultList = resultListQuyu.subList(0, 10);
+		}
+		else{
+			resultList = resultListQuyu;
+		}
+		
 		List<User> userList=userDao.listUser(username);
 		List<String> typeList=brokerInfoDao.getBrokerTypeList();
 		List<String> regionList=brokerInfoDao.getBrokerRegionList();
 		Set<String> languageList=brokerInfoDao.getBrokerLanguageList();
+		req.setAttribute("resultListQuyu", resultListQuyu);
 		req.setAttribute("typeList", typeList);
 		req.setAttribute("regionList", regionList);
 		req.setAttribute("languageList", languageList);
@@ -100,33 +138,7 @@ public class SearchController {
 		req.setAttribute("userList", userList);
 		req.setAttribute("count", count);
 		return "/serviceTeam.jsp";
-		/*JSONObject json = new JSONObject();
-		JSONArray array = new JSONArray();
 		
-			
-			for(BrokerInfo item : brokerInfoList){
-				JSONObject obj = new JSONObject();
-				
-				obj.put("id", item.getId());
-				obj.put("broker_img", item.getBroker_img());
-				obj.put("broker_language", item.getBroker_language());
-				obj.put("broker_name", item.getBroker_name());
-				obj.put("broker_region", item.getBroker_region());
-				obj.put("office", item.getOffice());
-				obj.put("introduction", item.getIntroduction());
-				obj.put("broker_num", item.getBroker_num());
-				obj.put("broker_experience", item.getBroker_experience());
-				obj.put("broker_type", item.getBroker_type());
-				obj.put("broker_zizhi", item.getBroker_zizhi());
-				array.add(obj);
-			}
-			json.put("List", array);
-			//json.put("total", total);
-*/			/*try{
-				writeJson(json.toJSONString(),resp);
-			}catch(Exception e){
-				e.printStackTrace();
-			}*/
 	}
 	
 	@RequestMapping({"/brokerinfoPage"})
@@ -138,7 +150,7 @@ public class SearchController {
 		/*int pageSize  = pageSize_str==null? 4 :Integer.parseInt(pageSize_str);//榛樿姣忛〉4鏉¤褰�
 */		
 		int pageSize  = pageSize_str==null? 10 :Integer.parseInt(pageSize_str);//榛樿姣忛〉4鏉¤褰�
-		List<BrokerInfo> brokerList = seachBrokerListResult;
+		List<BrokerInfoQuyu> brokerList = seachBrokerListResult;
 		
 		int total = brokerList.size();
 		int pageEnd = pageNum * pageSize;
@@ -150,20 +162,23 @@ public class SearchController {
 		JSONObject json = new JSONObject();
 		JSONArray array = new JSONArray();
 		if(pageStart <= end){
-			List<BrokerInfo> resultList=brokerList.subList(start, end);
-			for(BrokerInfo item : resultList){
+			List<BrokerInfoQuyu> resultList=brokerList.subList(start, end);
+			for(BrokerInfoQuyu item : resultList){
 				JSONObject obj = new JSONObject();
+				obj.put("broker_zizhi", item.getBroker_zizhi()==null?"":item.getBroker_zizhi());
+				obj.put("leixing_list", item.getLeixingInfo()==null?"":item.getLeixingInfo());
 				obj.put("id", item.getId());
-				obj.put("broker_img", item.getBroker_img());
-				obj.put("broker_language", item.getBroker_language());
-				obj.put("broker_name", item.getBroker_name());
-				obj.put("broker_region", item.getBroker_region());
-				obj.put("office", item.getOffice());
-				obj.put("introduction", item.getIntroduction());
-				obj.put("broker_num", item.getBroker_num());
+				obj.put("broker_img", item.getBroker_img()==null?"":item.getBroker_img());
+				obj.put("broker_language", item.getBroker_language()==null?"":item.getBroker_language());
+				obj.put("broker_name", item.getBroker_name()==null?"":item.getBroker_name());
+				obj.put("broker_region", item.getBroker_region()==null?"":item.getBroker_region());
+				obj.put("office", item.getOffice()==null?"":item.getOffice());
+				obj.put("introduction", item.getIntroduction()==null?"":item.getIntroduction());
+				obj.put("broker_num", item.getBroker_num()==null?"":item.getBroker_num());
 				obj.put("broker_experience", item.getBroker_experience());
-				obj.put("broker_type", item.getBroker_type());
-				obj.put("broker_zizhi", item.getBroker_zizhi());
+				obj.put("broker_type", item.getBroker_type()==null?"":item.getBroker_type());
+				
+				
 				array.add(obj);
 			}
 			json.put("List", array);

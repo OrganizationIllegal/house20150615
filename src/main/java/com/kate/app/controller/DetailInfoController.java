@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sound.sampled.LineListener;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,17 +34,19 @@ public class DetailInfoController {
 		int idInfo = 0;
 		ZhiYeZhiDao zhiYeDetail = null;
 		NewsBoke newsBokeDetail = null;
-		
-		
+		List<String> new_fenleiList = new ArrayList<String>();
+		List<String> zhiye_fenleiList = new ArrayList<String>();
 		
 		if(id!=null && !"".equals(id)){
 			idInfo = Integer.parseInt(id);
 		}
 		if(type.equals("0")){
 			zhiYeDetail = zhiYeDao.selectZhiYeById(idInfo);
+			zhiye_fenleiList = zhiYeDao.zhiYeFenlei();
 		}
 		else{
 			newsBokeDetail = zhiYeDao.selectNewsBokeById(idInfo);
+			new_fenleiList = zhiYeDao.newsBokeFenlei();
 		}
 		List<ZhiYeZhiDao> zhiYeList=zhiYeDao.selectZhiYe();   //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
 		List<NewsBoke> newsList = zhiYeDao.selectNewsBoke();
@@ -62,6 +65,8 @@ public class DetailInfoController {
 		}
 		
 		req.setAttribute("type",type);
+		req.setAttribute("zhiye_fenleiList",zhiye_fenleiList);
+		req.setAttribute("new_fenleiList",new_fenleiList);
 		req.setAttribute("zhiYeDetail",zhiYeDetail);
 		req.setAttribute("newsBokeDetail",newsBokeDetail);
 		req.setAttribute("lastestList",lastestList);

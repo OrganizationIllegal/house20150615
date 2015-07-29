@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.engine.jdbc.internal.TypeInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -130,7 +131,9 @@ public class ZhiYeZhiDaoController {
 					}
 				}
 				obj.put("news_abstract", abstractInfo);
-				obj.put("detail", item.getNews_detail());
+				String detail = item.getNews_detail();
+				detail = filter(detail);
+				obj.put("detail", detail);
 				obj.put("image", item.getNews_image());
 				obj.put("title", item.getNews_title());
 				String newstime=item.getNews_time().toString();
@@ -139,6 +142,7 @@ public class ZhiYeZhiDaoController {
 				}
 				obj.put("newstime", newstime);
 				array.add(obj);
+				System.out.println(array.size()+"fffffffff");
 			}
 			json.put("List", array);
 			json.put("total", total);
@@ -229,6 +233,143 @@ public class ZhiYeZhiDaoController {
 					e.printStackTrace();
 				}
 			}
+			
+			
+			@RequestMapping({"/DetailFenYe"})
+			public void DetailFenYe(HttpServletRequest req, HttpServletResponse resp){
+				String pageIndex = req.getParameter("pageIndex");   //閿熸枻鎷峰墠椤甸敓鏂ゆ嫹
+				int pageNum  = pageIndex==null? 0 :Integer.parseInt(pageIndex);
+				List<NewsBoke> newsBokeList = new ArrayList();     //新闻博客
+				List<ZhiYeZhiDao> zhiYeList = new ArrayList();     //职业指导
+				String fenlei = req.getParameter("type");
+				String leixing = req.getParameter("typeInfo");
+				int total = 0;
+				
+				if(fenlei==null||"".equals(fenlei)||fenlei.equals("请选择一个类别")){
+					if(leixing.equals("0")){
+						zhiYeList = zhiYeDao.selectZhiYe();   //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
+					}
+					else{
+						newsBokeList = zhiYeDao.selectNewsBoke();  //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
+					}
+					
+				}
+				else{
+					if(leixing.equals("0")){
+						zhiYeList = zhiYeDao.selectZhiYeByFenlei(fenlei);   //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
+					}
+					else{
+						newsBokeList = zhiYeDao.selectNewsBokeByFenlei(fenlei);  //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
+					}
+					
+				}
+				if(leixing.equals("0")){
+					total = zhiYeList.size();
+				}
+				else{
+					total = newsBokeList.size();
+				}
+				
+				int pageCount = total%PAGE_SIZE == 0 ? total/PAGE_SIZE: total/PAGE_SIZE+1;
+				int pageEnd = pageNum * PAGE_SIZE;
+				int end = pageEnd < total ? pageEnd : total;
+				
+				int start = (pageNum-1) * PAGE_SIZE;
+				int pageStart = start == pageEnd ? 0 : start;
+				
+				JSONObject json = new JSONObject();
+				JSONArray array = new JSONArray();
+				if(pageStart <= end){
+					if(leixing.equals("0")){
+						List<ZhiYeZhiDao> resultList=zhiYeList.subList(start, end);
+						
+						for(ZhiYeZhiDao item : resultList){
+							JSONObject obj = new JSONObject();
+							obj.put("id", item.getId());
+							obj.put("zhiye_num", item.getZhiye_num());
+							obj.put("fabu_people", item.getFabu_people());
+							obj.put("fenlei", item.getFenlei());
+							String abstractInfo = item.getZhiye_abstract();
+							if(abstractInfo!=null && !"".equals(abstractInfo)){
+								if(abstractInfo.length()>60){
+								abstractInfo = abstractInfo.substring(0,60)+"...";
+								}
+							}
+							obj.put("zhiye_abstract", abstractInfo);
+							obj.put("detail", item.getDetail());
+							obj.put("image", item.getImage());
+							obj.put("title", item.getTitle());
+							String fabutime=item.getFabu_time().toString();
+							if(fabutime!=null && !"".equals(fabutime)){
+								fabutime = fabutime.substring(0,10);
+							}
+							obj.put("fabu_time", fabutime);
+						
+							array.add(obj);
+						}
+						json.put("List", array);
+						json.put("total", total);
+						json.put("pageCount", pageCount);
+						
+					}
+					
+
+					else{
+						List<NewsBoke> resultList=newsBokeList.subList(start, end);
+						
+						for(NewsBoke item : resultList){
+							JSONObject obj = new JSONObject();
+							obj.put("id", item.getId());
+							obj.put("news_num", item.getNews_num());
+							obj.put("news_people", item.getNews_people());
+							obj.put("news_fenlei", item.getNews_fenlei());
+							String abstractInfo = item.getNews_abstract();
+							if(abstractInfo!=null && !"".equals(abstractInfo)){
+								if(abstractInfo.length()>60){
+								abstractInfo = abstractInfo.substring(0,60)+"...";
+								}
+							}
+							obj.put("news_abstract", abstractInfo);
+							obj.put("detail", item.getNews_detail());
+							obj.put("image", item.getNews_image());
+							obj.put("title", item.getNews_title());
+							String newstime=item.getNews_time().toString();
+							if(newstime!=null && !"".equals(newstime)){
+								newstime = newstime.substring(0,10);
+							}
+							obj.put("newstime", newstime);
+							array.add(obj);
+						}
+						json.put("List", array);
+						json.put("total", total);
+						json.put("pageCount", pageCount);
+						
+					}
+				}
+				try{
+					writeJson(json.toJSONString(),resp);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			}
+			
+			
+			public String filter(String text){
+				String theString = text.replace(">", "&gt;");  
+		        theString = theString.replace("<", "&lt;");  
+		        /*theString = theString.replace(" ", "&nbsp;");  */
+		        /*theString = theString.replace("\"", "&quot;");  */
+		       // theString = theString.replace("\'", "&#39;"); 
+		        /*theString = theString.replace("��", "&quot;"); 
+		        theString = theString.replace("��", "&quot;"); */
+		        theString = theString.replace("\\", "\\\\");      //��б�ߵ�ת��  
+		        theString = theString.replace("\n", "\\n");  
+		        theString = theString.replace("\r", "\\r"); 
+		        theString = theString.replace("\"", "\'"); 
+		        return theString;
+			}
+			
+			
 			
 			
 			public void writeJson(String json, HttpServletResponse response)throws Exception{

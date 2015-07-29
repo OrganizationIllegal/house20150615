@@ -68,7 +68,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="col-md-3"></div>
 		</div>
-		<div class="ovmap" style="width:100%;">
+		<div style="background-color:rgba(246,245,244,1);width:100%;">
+			<div class="ovmap" style="width: 1190px;">
 			<div class="map_font" style="text-align:left;">
 				<div style="font-size:20px;line-height:24px;font-family:微软雅黑;color:#727172;">海景房源</div>
 				<div style="color:#727172; font-size:40px; padding-top:16px; line-height:40px; font-weight:bolder;font-family:微软雅黑;color:#727172;">10000+公寓/别墅</div>
@@ -79,8 +80,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<!-- <div class="fl">
 				<img src="/images/overseas/ovmap.png">
 			</div> -->
+			</div>
 		</div>
-		<div class="ov_color" style="padding-top:50px;width:100%;">
+		
+		<div style="width:100%;background-color:rgb(255,255,255);">
+			<div class="ov_color" style="padding-top:50px;width:1190px;">
 			<div class="fl" style="padding-top:100px;margin-left:100px;width:10%;">
 				<img src="/images/overseas/ovcom.png">
 			</div>
@@ -97,8 +101,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<img src="/images/overseas/overseas4.PNG" sytle="position:absolute;">
 			</div>
+			</div>
 		</div>
-		<div class="ov_money" style="background-color:rgba(246, 245, 244, 1);padding-top:80px;width:100%;">
+		
+		<div style="background-color:rgba(246,245,244,1);width:100%;">
+			<div class="ov_money" style="background-color:rgba(246, 245, 244, 1);padding-top:80px;width:1190px;">
 			<div style="font-weight:bolder;font-size:24px;color:#595757;font-family:微软雅黑; margin:0 auto;">购买立即返还现金</div>
 			<div class="pic3" style="position:relative">
 				<div class="fl"><img src="/images/overseas/yuan1.PNG"></div>
@@ -124,7 +131,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div style="font-size:12px;font-family:微软雅黑;color:#727172;padding-top:8px;">*以房价50万元澳币房产计算</div>
 			</div>
 		</div>	
-		<div class="row" style="padding-top:50px;padding-bottom:20px; width:100%; margin:0 auto;background:#fff;">
+		</div>
+		
+		<div style="background-color:rgb(255,255,255);width:100%;">
+			<div class="row" style="padding-top:50px;padding-bottom:20px; width:1190px; margin:0 auto;background:#fff;">
 			
 			<div class="fl" style="text-align:left; width:450px; padding:0;margin-left:10%;">
 				<div style="font-size:10px;font-family:微软雅黑;color:#727172;padding-top:60px;">购房返利<span style="margin-left:5px;"></span>提高回报</div>
@@ -132,16 +142,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div style="font-size:18px;font-family:微软雅黑;color:#727172;padding-top:40px;">基于互联网服务优势，减少了中间环节，提高效率的</div>
 				<div style="font-size:18px;font-family:微软雅黑;color:#727172;">购房返利，这意味着你在同一套房产投资回报率的提升。</div>
 			</div>
-			<div class="fl" style="width:596px;margin-left:5%;">
+			<div class="fl" style="width:596px;/* margin-left:5%; */">
 				<div><img src="/images/overseas/overseas5.PNG"></div>
 				<div style="text-align:right;padding-right:80px;ont-size:12px;font-family:微软雅黑;filter:alpha(opacity=50);opacity:0.5;padding-top:20px;">*以50万澳元房产，首付30%计算</div>
 			</div>
 		</div>
-		<div class="row" style="background:#f7f7f6;padding-top:40px; width:100%; margin:0 auto;background:#fff;">
-			<div style="font-size:12px;">我们做了一些更具革命</div>
-			<div style="font-size:30px;font-weight:500px;padding-top:20px;color:#000;">首先，雷德芬内置技术房屋买卖时使你</div>
-			<div style="padding-top:70px;padding-bottom:60px;"><img src="/images/overseas/overseas6.PNG" width="100%;"></div>
 		</div>
+		
+		<div style="width:100%;background-color:rgba(246,245,244,1);">
+			<div class="row" style="background-color:rgba(246,245,244,1);width:1190px; margin:0 auto;background:#fff;">
+			<div style="height:40px;background-color:rgba(246,245,244,1);"></div>
+			<div style="font-size:12px;background-color:rgba(246,245,244,1);">我们做了一些更具革命</div>
+			<div style="font-size:30px;font-weight:500px;padding-top:20px;color:#000;background-color:rgba(246,245,244,1);">首先，雷德芬内置技术房屋买卖时使你</div>
+			<div style="padding-top:70px;padding-bottom:60px;background-color:rgba(246,245,244,1);"><img src="/images/overseas/overseas6.PNG" width="100%;"></div>
+		</div>
+		</div>
+		
+		
 	</div></div>
 <!-- 开立账户模态框start-->
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" 
