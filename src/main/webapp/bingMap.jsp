@@ -392,15 +392,16 @@ body{
 			                </div>
                 		</div> -->
                 <div class="c-fix f-l f-yahei" style="margin-left:30px;margin-top:8px;">
-	                <select data-placeholder="请选择区域..." class="chosen-select" id="project_area" name="project_area" style="width:200px;" tabindex="4">
-		 	            <option value=""></option>
-		  	            <c:forEach items="${areaNameSet}" var="item">
-        		   		<option value="${item}">${item}</option>
-   					    </c:forEach>
-	                </select>
+	               
 	                <select data-placeholder="请选择城市..." class="chosen-select" id="project_city" name="project_city" style="width:200px;" tabindex="4">
 		 	            <option value=""></option>
 		  	            <c:forEach items="${cityNameSet}" var="item">
+        		   		<option value="${item}">${item}</option>
+   					    </c:forEach>
+	                </select>
+	                 <select data-placeholder="请选择区域..." class="chosen-select" id="project_area" name="project_area" style="width:200px;" tabindex="4">
+		 	            <option value=""></option>
+		  	            <c:forEach items="${areaNameSet}" var="item">
         		   		<option value="${item}">${item}</option>
    					    </c:forEach>
 	                </select>

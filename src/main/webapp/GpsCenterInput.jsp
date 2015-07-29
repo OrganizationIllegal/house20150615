@@ -31,6 +31,7 @@ body{
 <!-- <span><input type="text" id="name" name="name" class="area_input"></span> -->
 <select data-placeholder="请选择..." class="chosen-select" id="name" name="name" style="width:220px;" tabindex="4">
  	 <option value=""></option>
+ 	 <option value="默认">默认</option>
  	 <c:forEach items="${areacityNameSet}" var="item">
      <option value="${item}">${item}</option>
    	 </c:forEach>
@@ -40,6 +41,7 @@ body{
 <span class="area_span">类型</span><span>
 <select data-placeholder="请选择..." class="chosen-select" id="type" name="type" style="width:220px;" tabindex="4">
  	 <option value=""></option>
+ 	 <option value="默认">默认</option>
  	 <option value="区域">区域</option>
 	 <option value="城市">城市</option>
  </select>

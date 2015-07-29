@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kate.app.dao.BingMapDao;
+import com.kate.app.model.BingMapCenter;
 import com.kate.app.model.BingMapVo;
 import com.kate.app.model.HouseProject;
 @Service
@@ -56,9 +57,23 @@ public class BingMapService {
 		}
 		return array;
 	}
-	
+	//查找地图中心点
+	public JSONArray jsonMapCenter(){
+		JSONArray array = new JSONArray();
+		List<BingMapCenter> list = bingMapDao.listMapCenter();
+		for(BingMapCenter data : list){
+			JSONObject obj = new JSONObject();
+			obj.put("id", data.getId());
+			obj.put("gps", data.getGps());
+			obj.put("name", data.getName());
+			obj.put("type", data.getType());
+			array.add(obj);
+		}
+		return array;
+	}
 	public JSONArray filterByHouseType2(int type){
 		JSONArray array = new JSONArray();
+		DecimalFormat df = new DecimalFormat("#,###,###");
 		List<HouseProject> list = bingMapDao.filterByHouseType2(type);
 		for(HouseProject data : list){
 			JSONObject obj = new JSONObject();
@@ -77,7 +92,7 @@ public class BingMapService {
 			obj.put("minArea", data.getMin_area()==0?0:data.getMin_area());
 			obj.put("maxArea", data.getMax_area()==0?0:data.getMax_area());
 			obj.put("return_money", data.getReturn_money()==null?"":data.getReturn_money());
-			obj.put("project_price_int_qi", data.getProject_price_int_qi()==0?0:data.getProject_price_int_qi());
+			obj.put("project_price_int_qi", data.getProject_price_int_qi()==0?0:df.format(data.getProject_price_int_qi()));
 			obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
 			obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
 			
@@ -87,6 +102,7 @@ public class BingMapService {
 	}
 	public JSONArray filterByKeyWord(String area,String city,String addr){
 		JSONArray array = new JSONArray();
+		DecimalFormat df = new DecimalFormat("#,###,###");
 		List<HouseProject> list = bingMapDao.filterByKeyWord(area,city,addr);
 		for(HouseProject data : list){
 			JSONObject obj = new JSONObject();
@@ -102,7 +118,7 @@ public class BingMapService {
 			obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
 			obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
 			obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
-			obj.put("project_price_int_qi", data.getProject_price_int_qi()==0?0:data.getProject_price_int_qi());
+			obj.put("project_price_int_qi", data.getProject_price_int_qi()==0?0:df.format(data.getProject_price_int_qi()));
 			obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
 			array.add(obj);
 		}

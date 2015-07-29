@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.kate.app.model.BingMapCenter;
 import com.kate.app.model.BingMapVo;
 import com.kate.app.model.HouseProject;
 @Repository 
@@ -497,7 +498,7 @@ public class BingMapDao extends BaseDao {
 		PreparedStatement pstmt = null;
 		List<HouseProject> coordinatesList=new ArrayList<HouseProject>();
 		try {
-			String sql = "SELECT * FROM `house_project` WHERE gps!=''";
+			String sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%'";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
 		    while(rs.next()){
@@ -550,6 +551,56 @@ public class BingMapDao extends BaseDao {
         }
 		return coordinatesList;
 	} 
+	//查找地图中心点
+	public List<BingMapCenter> listMapCenter(){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		List<BingMapCenter> mapCenterList=new ArrayList<BingMapCenter>();
+		try {
+			String sql = "SELECT * FROM `bingmap_center` WHERE gps!='' and gps like '%,%'";
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
+		    while(rs.next()){
+		    	BingMapCenter mapCenter=new BingMapCenter();
+		    	mapCenter.setId(rs.getInt("id"));
+		    	mapCenter.setGps(rs.getString("gps"));
+		    	mapCenter.setName(rs.getString("name"));
+		    	mapCenter.setType(rs.getString("type"));
+		    	mapCenterList.add(mapCenter);
+		    }
+		    
+		  
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			if(rs != null){   // 鍏抽棴璁板綍闆�   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 鍏抽棴澹版槑   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 鍏抽棴澹版槑   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return mapCenterList;
+	} 
 	
 	public List<HouseProject> filterByHouseType2(int type){
 		Statement stmt = null;
@@ -573,7 +624,7 @@ public class BingMapDao extends BaseDao {
 				housetype="";
 				break;
 			}
-			String sql = "SELECT * FROM `house_project` WHERE gps!='' ";
+			String sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%'";
 			if(!housetype.equals("")){
 				sql += "and project_type = '"+housetype+"'";
 			}
@@ -865,7 +916,7 @@ public class BingMapDao extends BaseDao {
 		PreparedStatement pstmt = null;
 		List<String> areaNameSet=new ArrayList<String>();
 		try {
-			String sql ="select project_num,project_area from house_project order by project_area asc";
+			String sql ="select distinct project_area from house_project order by project_area asc";
 			 pstmt = con.prepareStatement(sql);
 			  rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -908,7 +959,7 @@ public class BingMapDao extends BaseDao {
 			PreparedStatement pstmt = null;
 			List<String> cityNameSet=new ArrayList<String>();
 			try {
-				String sql ="select project_num,project_city from house_project order by project_city asc";
+				String sql ="select distinct project_city from house_project order by project_city asc";
 				 pstmt = con.prepareStatement(sql);
 				  rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -951,7 +1002,7 @@ public class BingMapDao extends BaseDao {
 			PreparedStatement pstmt = null;
 			List<String> addressNameSet=new ArrayList<String>();
 			try {
-				String sql ="select project_num,project_address from house_project order by project_address asc";
+				String sql ="select distinct project_address from house_project order by project_address asc";
 				 pstmt = con.prepareStatement(sql);
 				  rs = pstmt.executeQuery();
 				while(rs.next()){
