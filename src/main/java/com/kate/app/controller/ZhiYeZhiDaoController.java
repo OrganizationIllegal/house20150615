@@ -130,7 +130,7 @@ public class ZhiYeZhiDaoController {
 					}
 				}
 				obj.put("news_abstract", abstractInfo);
-				obj.put("detail", item.getNews_detail());
+				obj.put("detail", item.getNews_detail()/*.replaceAll("\\", "\n")*/);
 				obj.put("image", item.getNews_image());
 				obj.put("title", item.getNews_title());
 				String newstime=item.getNews_time().toString();

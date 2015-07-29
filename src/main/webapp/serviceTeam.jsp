@@ -14,7 +14,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="/bootstrap/js/bootstrap.min.js"></script> 
    <script src="/js/jquery.bootpag.min.js"></script>
    <link rel="stylesheet" type="text/css" href="/css/base.css" />
-		<link rel="stylesheet" type="text/css" href="/css/list.css" />
+   <link rel="stylesheet" type="text/css" href="/css/list.css" />
+   <link rel="stylesheet" href="/css/chosen.css">
+   <script src="/js/chosen.jquery.js" type="text/javascript"></script>
         <style>
        		#page-selection .next{-position:absolute;float:right;margin-right:15px}
   			#page-selection .prev{-position:absolute;-left:131px; float:left;margin-left:15px;}
@@ -22,6 +24,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			.pagination  {width:502px;height:48px;margin-top:9px!important;display:block!important;padding-top:9px;!important}
   			.prev {margin-left:40px;}
   			.next {margin-right:40px;}
+       </style>
+       <style>
+       		.chosen-container {			    
+			    zoom: 1.25 !important;
+			    font-size: 12px !important;
+			}
        </style>
         <!--<style>
       		 .pagination .prev{position:absolute;left:40px;}
@@ -72,23 +80,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</select>
 			 	 </div>
 			 	 <div style="width:200px;height:32px;float:left;margin-right:10px;" >
-			 	 	<input type="text" class="form-control" name="suozaiarea" placeholder="所在区域">
-			 	 	 <!-- <select id="type" style="  width: 200px;height: 32px; " class="form-control">
-         					<option>区域</option>
-        					 <c:forEach items="${regionList}" var="item">
-        					<option>${item}</option>
-       					   </c:forEach>
-                     </select> -->
+			 	 	<!-- <input type="text" class="form-control" name="suozaiarea" placeholder="所在区域"> -->
+			 	 	  <select name="suozaiarea" style="  width: 161px;height: 32px; " class="chosen-select">
+         					<option>所在区域</option>
+        					 <c:forEach items="${liveregionlist}" var="item">
+        					 <option value="${item}">${item}</option>
+       					    </c:forEach>
+                     </select>
 			 	 </div>
 			 	 
 			 	 <div style="width:200px;height:32px;float:left;margin-right:10px;" >
-			 	 	<input type="text" class="form-control" name="fuwuarea" placeholder="服务区域">
-			 	 	 <!-- <select id="type" style="  width: 200px;height: 32px; " class="form-control">
-         					<option>区域</option>
-        					 <c:forEach items="${regionList}" var="item">
-        					<option>${item}</option>
+			 	 	<!-- <input type="text" class="form-control" name="fuwuarea" placeholder="服务区域"> -->
+			 	 	 <select name="fuwuarea" style="  width: 161px;height: 32px; " class="chosen-select">
+         					<option>服务区域</option>
+        					 <c:forEach items="${serviceregionlist}" var="item">
+        					<option  value="${item}">${item}</option>
        					   </c:forEach>
-                     </select> -->
+                     </select>
 			 	 </div>
 			 	 
 			 	 
@@ -376,6 +384,18 @@ var pageNum = (totleSize+9)/10;
 					});
 			 });  
 	</script>	
+	 <script type="text/javascript">
+    var config = {
+      '.chosen-select'           : {},
+      '.chosen-select-deselect'  : {allow_single_deselect:true},
+      '.chosen-select-no-single' : {disable_search_threshold:10},
+      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+  </script>
 <%--   <jsp:include page="footlong.jsp" /> --%>
 </body>
 </html>

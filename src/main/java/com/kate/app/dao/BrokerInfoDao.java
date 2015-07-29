@@ -18,6 +18,46 @@ import com.kate.app.model.LeiXing;
 @Repository 
 public class BrokerInfoDao extends BaseDao {
 	
+	public List<String> getLiveRegionList(){
+		List<String> regionlist=new ArrayList<String>();
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		String sql="SELECT DISTINCT broker_region from broker_info";
+		try {
+			ps=con.prepareStatement(sql);
+			rs=ps.executeQuery();
+			while(rs.next()){
+				String areaname;
+				areaname=rs.getString(1);
+				regionlist.add(areaname);
+			}
+		} catch (Exception e) {
+			
+		}
+		return regionlist;
+	}
+	
+	public List<String> getServiceRegionList(){
+		List<String> regionlist=new ArrayList<String>();
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		String sql="SELECT DISTINCT area_name   from area_info";
+		try {
+			ps=con.prepareStatement(sql);
+			rs=ps.executeQuery();
+			while(rs.next()){
+				String areaname;
+				areaname=rs.getString(1);
+				regionlist.add(areaname);
+			}
+		} catch (Exception e) {
+			
+		}
+		return regionlist;
+	}
+	
+	
+	
 	public int isDuplicate(String broker_num){
 		Statement stmt = null;
 		ResultSet rs = null;

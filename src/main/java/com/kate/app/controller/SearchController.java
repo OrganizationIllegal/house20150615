@@ -92,6 +92,8 @@ public class SearchController {
 		List<String> typeList=brokerInfoDao.getBrokerTypeList();
 		List<String> regionList=brokerInfoDao.getBrokerRegionList();
 		Set<String> languageList=brokerInfoDao.getBrokerLanguageList();
+		List<String> serviceregionList=brokerInfoDao.getServiceRegionList();
+		List<String> liveregionlist=brokerInfoDao.getLiveRegionList();
 		req.setAttribute("typeList", typeList);
 		req.setAttribute("regionList", regionList);
 		req.setAttribute("languageList", languageList);
@@ -99,6 +101,8 @@ public class SearchController {
 		req.setAttribute("brokerInfoList",brokerInfoList);
 		req.setAttribute("userList", userList);
 		req.setAttribute("count", count);
+		req.setAttribute("serviceregionlist", serviceregionList);
+		req.setAttribute("liveregionlist", liveregionlist);
 		return "/serviceTeam.jsp";
 		/*JSONObject json = new JSONObject();
 		JSONArray array = new JSONArray();
