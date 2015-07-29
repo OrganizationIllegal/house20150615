@@ -30,6 +30,7 @@ import com.kate.app.dao.SearchListDao;
 import com.kate.app.dao.UserDao;
 import com.kate.app.model.AreaInfo;
 import com.kate.app.model.BrokerInfo;
+import com.kate.app.model.BrokerServiceArea;
 import com.kate.app.model.HouseProject;
 import com.kate.app.model.ProjectDescImage;
 import com.kate.app.model.ProjectKey;
@@ -94,6 +95,16 @@ public class SearchController {
 		else{
 			resultList = brokerInfoList;
 		}
+		for(BrokerInfo item : brokerInfoList){
+			String brokerNum=item.getBroker_num();
+			List<BrokerServiceArea> listBrokerServiceArea=brokerInfoDao.listBrokerServiceArea(brokerNum);
+			List<AreaInfo> listAreaInfo=new ArrayList<AreaInfo>();
+			for(BrokerServiceArea data : listBrokerServiceArea){
+				String areaCode=data.getArea_code();
+				listAreaInfo=brokerInfoDao.listAreaInfo(areaCode);
+			}
+		}
+		
 		List<User> userList=userDao.listUser(username);
 		List<String> typeList=brokerInfoDao.getBrokerTypeList();
 		List<String> regionList=brokerInfoDao.getBrokerRegionList();

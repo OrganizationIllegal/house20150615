@@ -129,7 +129,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	  <!--  <hr style="height:1px;border:none;border-top:2px dashed #666666;margin-top:0px;margin-bottom:0px;"/> -->
                 	    <img src="/images/serviceteam/b5.jpg">
                 	  <div style="font-size:13px;"><img  src="/images/serviceteam/b3.png"/>
-                	  <span style="padding-left:10px">${item.broker_region}</span></div>
+                	  <span style="padding-left:10px">${item.broker_region}</span>
+                	<%--   <span style="padding-left:10px">${item.brokerServiceArea1}</span> --%>
+                	  
+                	  </div>
                 	   <!-- <hr style="height:1px;border:none;border-top:2px dashed #666666;margin-top:0px;margin-bottom:0px;"/> -->
                 	    <img src="/images/serviceteam/b5.jpg">
                 	   <div style="font-size:13px;"><div style="float:left;width:235px"><img  src="/images/serviceteam/b4.png"/>
