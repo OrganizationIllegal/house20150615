@@ -273,6 +273,10 @@ public class BrokerInfoDao extends BaseDao {
 		    	data.setId(rs.getInt("id"));
 		    	data.setIntroduction(rs.getString("introduction"));
 		    	data.setOffice(rs.getString("office"));
+		    	data.setPhone(rs.getString("phone"));
+		    	data.setEmail(rs.getString("email"));
+		    	data.setWechat(rs.getString("wechat"));
+		    	data.setQq(rs.getString("qq"));
 		    	/*String area_num = rs.getString("area_code");
 		    	if(area_num!=null && !"".equals(area_num)){
 		    		String area_name = getAreaName(area_num);

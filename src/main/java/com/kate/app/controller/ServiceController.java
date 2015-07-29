@@ -49,7 +49,7 @@ public class ServiceController {
 //		}
 		
 
-		req.setAttribute("brokerInfo", data);
+		req.setAttribute("brokerInfo", data); 
 		req.setAttribute("areaList", areaList);
 		
 		return "/Service.jsp";

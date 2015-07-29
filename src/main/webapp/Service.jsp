@@ -21,13 +21,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div style="width:1190px;height:1000px;padding:20px 50px;margin:0px auto;background-color:white;">
 <div style="width:1060px;height:200px;padding:15px;background-color:rgba(245, 244, 244, 1);margin:0px auto;">
 <div style="width:168px;height:168px;-border:5px solid white;float:left;"><img alt="经纪人图片" src="<%=application.getInitParameter("imagedir")%>/${brokerInfo.broker_img}" style="width:168px;height:168px;"></div>
-<div style="width:180px;height:110px;float:left;margin-left:20px;margin-top:40px;">
+<div style="width:500px;height:110px;float:left;margin-left:20px;margin-top:40px;">
 <div style="font-size:20px;font-weight:bold;">${brokerInfo.broker_name}</div>
 <div style="margin-top:10px;height:20px;">
 	<img alt="house" src="images/service/house.png" style="float:left;">
 	<div style="font-size:15px;margin-top:-2px;float:left;">${brokerInfo.broker_type}</div>
 </div>
-<div style="margin-top:10px;"><img alt="btn" src="images/service/btn1.png"></div>
+<div style="margin-top:10px;"><!-- <img alt="btn" src="images/service/btn1.png"> -->
+	<c:if test="${not empty brokerInfo.phone}">
+	  <div style="width:50%;float:left;">电话：${brokerInfo.phone}</div>
+	</c:if>
+	<c:if test="${not empty brokerInfo.email}">
+	  <div style="width:50%;float:left;">Email：${brokerInfo.email}</div>
+	</c:if>
+	<c:if test="${not empty brokerInfo.wechat}">
+	  <div style="width:50%;float:left;">微信：${brokerInfo.wechat}</div>
+	</c:if>
+	<c:if test="${not empty brokerInfo.qq}">
+	  <div style="width:50%;float:left;">QQ：${brokerInfo.qq}</div>
+	</c:if>
+</div>
 </div>
 <div style="width:340px;height:180px;margin-left:720px;">
 <div style="width:310px;height:85px;background-color:rgba(55, 52, 67, 1);padding:15px;">
