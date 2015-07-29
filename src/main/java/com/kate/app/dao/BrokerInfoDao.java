@@ -11,12 +11,54 @@ import java.util.Set;
 
 import org.springframework.stereotype.Repository;
 
+import com.kate.app.model.AreaInfo;
 import com.kate.app.model.BrokerInfo;
 import com.kate.app.model.BrokerInfoQuyu;
+import com.kate.app.model.BrokerServiceArea;
 import com.kate.app.model.LeiXing;
 
 @Repository 
 public class BrokerInfoDao extends BaseDao {
+	
+	public List<String> getLiveRegionList(){
+		List<String> regionlist=new ArrayList<String>();
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		String sql="SELECT DISTINCT broker_region from broker_info";
+		try {
+			ps=con.prepareStatement(sql);
+			rs=ps.executeQuery();
+			while(rs.next()){
+				String areaname;
+				areaname=rs.getString(1);
+				regionlist.add(areaname);
+			}
+		} catch (Exception e) {
+			
+		}
+		return regionlist;
+	}
+	
+	public List<String> getServiceRegionList(){
+		List<String> regionlist=new ArrayList<String>();
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		String sql="SELECT DISTINCT area_name   from area_info";
+		try {
+			ps=con.prepareStatement(sql);
+			rs=ps.executeQuery();
+			while(rs.next()){
+				String areaname;
+				areaname=rs.getString(1);
+				regionlist.add(areaname);
+			}
+		} catch (Exception e) {
+			
+		}
+		return regionlist;
+	}
+	
+	
 	
 	public int isDuplicate(String broker_num){
 		Statement stmt = null;
@@ -134,6 +176,104 @@ public class BrokerInfoDao extends BaseDao {
 
         }
 		return brokerInfoList;
+	} 
+	//根据经纪人编号查找服务区域
+	public List<BrokerServiceArea> listBrokerServiceArea(String broker_num){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		List<BrokerServiceArea> brokerServiceAreaList=new ArrayList<BrokerServiceArea>();
+		try {
+			String sql = "select * from broker_service_area where broker_num=? order by view_shunxu";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, broker_num);
+			rs = pstmt.executeQuery();
+		    while(rs.next()){
+		    	BrokerServiceArea brokerServiceArea=new BrokerServiceArea();
+		    	brokerServiceArea.setId(rs.getInt("id"));
+		    	brokerServiceArea.setArea_code(rs.getString("area_code"));		    	
+		    	brokerServiceAreaList.add(brokerServiceArea);
+		    }
+		    
+		  
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return brokerServiceAreaList;
+	} 
+	//根据区域编号查找区域名称
+	public List<AreaInfo> listAreaInfo(String area_num){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		List<AreaInfo> AreaInfoList=new ArrayList<AreaInfo>();
+		try {
+			String sql = "select * from area_info where area_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, area_num);
+			rs = pstmt.executeQuery();
+		    while(rs.next()){
+		    	AreaInfo areaInfo=new AreaInfo();
+		    	areaInfo.setId(rs.getInt("id"));
+		    	areaInfo.setArea_name(rs.getString("area_name"));	    	
+		    	AreaInfoList.add(areaInfo);
+		    }
+		    
+		  
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return AreaInfoList;
 	} 
 	//閸欐垿锟介悾娆掆枅
 	public int InsertMessage(String message_content,String time,int project_id,int viewed,int type,int userid){
@@ -335,6 +475,10 @@ public class BrokerInfoDao extends BaseDao {
 		    	data.setId(rs.getInt("id"));
 		    	data.setIntroduction(rs.getString("introduction"));
 		    	data.setOffice(rs.getString("office"));
+		    	data.setPhone(rs.getString("phone"));
+		    	data.setEmail(rs.getString("email"));
+		    	data.setWechat(rs.getString("wechat"));
+		    	data.setQq(rs.getString("qq"));
 		    	/*String area_num = rs.getString("area_code");
 		    	if(area_num!=null && !"".equals(area_num)){
 		    		String area_name = getAreaName(area_num);

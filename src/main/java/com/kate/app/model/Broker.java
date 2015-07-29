@@ -1,5 +1,7 @@
 package com.kate.app.model;
 
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+
 public class Broker {
 	private int id;
 	private String broker_num;//
@@ -11,6 +13,35 @@ public class Broker {
 	private int broker_experience;//
 	private String broker_img;//
 	private String introduction;//
+	private String phone;
+	private String email;
+	private String wechat;
+	private String qq;
+	
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getWechat() {
+		return wechat;
+	}
+	public void setWechat(String wechat) {
+		this.wechat = wechat;
+	}
+	public String getQq() {
+		return qq;
+	}
+	public void setQq(String qq) {
+		this.qq = qq;
+	}
 	public int getId() {
 		return id;
 	}

@@ -283,7 +283,7 @@ if(request.getSession().getAttribute("flag")!=null){
 	  			
 				$.ajax({
                         type: "POST",  
-                        dataType: "json",  
+                        dataType: "json", 
                         url: '/NewsBokeFenYe',      //提交到一般处理程序请求数据   
                         data: { pageIndex : 1,type:category},
                         success: function(data) {

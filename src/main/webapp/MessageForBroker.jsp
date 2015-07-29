@@ -7,7 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>需求留言列表</title>
+<title>推荐最合适房产经纪人留言列表</title>
 <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="/bootstrap/css/bootstrap-table.css" rel="stylesheet">
 
@@ -22,11 +22,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="/js/bootstrap-table-export.js"></script>
 <script src="/js/tableExport.js"></script> 
 <script type="text/javascript">
-   function pop(content,id,row,index){
-      $("#modalcontent").html(content);
-      $('#demandprice').modal('show');
-     $.ajax({
-     		async : false,
+function pop(content,id,row,index){
+    $("#modalcontent").html(content);
+    $('#demandprice').modal('show');
+   $.ajax({
+   		async : false,
 	 	    type: "POST",
 	 		data: { id : id},
 	 		dateType: "json",
@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 			alert("error")
 	 		}
 	 	});
-    }
+  }
 </script>
 <style type="text/css">
 body{
@@ -58,13 +58,13 @@ if(request.getSession().getAttribute("flag")!=null){
 
 %>
 <div style="width:900px;margin:25px auto;">
-<div class="area_bkg1">当前位置:需求留言列表</div>
+<div class="area_bkg1">当前位置:推荐最合适房产经纪人留言列表</div>
  <!-- data-export-types:"['json', 'xml', 'txt', 'excel']" -->
  <!-- data-toggle='table' -->
  <table id="table"          
 
         data-toggle='table'
- 		data-url="/MessagePageList"
+ 		data-url="/MessageBrokerPageList"
  		data-striped='true'
  		data-search="true"
            data-show-pagination-switch="true"
@@ -84,7 +84,7 @@ if(request.getSession().getAttribute("flag")!=null){
             <th data-field="nick_name" data-sortable="true">姓名</th>
             <th data-field="tel" data-sortable="true">电话</th>
             <th data-field="email" data-sortable="true">Email</th>
-            <th data-field="project_num" data-sortable="true">项目编号</th>
+          <!--   <th data-field="project_num" data-sortable="true">项目编号</th> -->
             <th data-field="message_content_short" id="content"  data-sortable="true"   data-formatter="operateFormatter"  data-events="operateEvents"  >留言内容</th>
             <th data-field="message_content" data-visible="false" data-sortable="true"  >留言内容</th>
             <th data-field="message_time" data-sortable="true">留言时间</th>

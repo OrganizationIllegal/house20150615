@@ -61,8 +61,8 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		return "/overseas.jsp"; 
 	}
 	
-	/*缁便垹褰囩�灞炬殻娴犻攱鐗搁崡锟�
-	@RequestMapping({ "/UserInfo/AddAllPrice" })
+	//缁便垹褰囩�灞炬殻娴犻攱鐗搁崡锟�
+	/*@RequestMapping({ "/UserInfo/AddAllPrice" })
 	public void addAllPrice(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		String nick_name = req.getParameter("nick_name");
 		String pwd = req.getParameter("pwd");
@@ -72,11 +72,11 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		String msg = req.getParameter("msg");
 		int flag = userInfoDao.addAllPrice(nick_name, pwd, tel, email, allprice, msg);
 		if(flag==0){
-			System.out.println("濞ｈ濮炴径杈Е閿涳拷);
+			System.out.println("留言成功");
 		}else{
-			System.out.println("濞ｈ濮為幋鎰閿涳拷);
+			System.out.println("留言失败");
 		} 
-	}
+	}*/
 	
 	/*闂囷拷鐪�/
 	@RequestMapping({ "/UserInfo/AddNeed" })
@@ -149,15 +149,16 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 	@RequestMapping({ "/Register" })
 	public String register(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		HttpSession session = req.getSession();
-		int flag=0;
+		int flag1=0;
 		int role = 1;
+		int flag = 1;
 		List<User> userList = new ArrayList<User>();
 		String telemail = req.getParameter("telemail");
 		String url = req.getParameter("urlInfoReg");
 		String pwd = req.getParameter("pwd");
 		if(isEmail(telemail)){
-			flag=userInfoDao.register2(telemail, pwd);
-			if(flag==1){
+			flag1=userInfoDao.register2(telemail, pwd);
+			if(flag1==1){
 				userList = userInfoDao.judge(telemail);
 				if(userList.size()>0){
 					role = userList.get(0).getRole();
@@ -199,7 +200,7 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		}else{
 			System.out.println("娉ㄥ唽鎴愬姛");
 		}
-		String resultUrl = url.substring(url.indexOf("/"));
+		String resultUrl = url.substring(url.lastIndexOf("/"));
 		System.out.println(resultUrl);
 		return resultUrl;
 	}
@@ -207,21 +208,52 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 	@RequestMapping({ "/Register2" })
 	public void register2(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		HttpSession session = req.getSession();
-		int flag=-1;
+		int flag1=-1;
+		int flag=0;
+		int role = 1;
+		List<User> userList = new ArrayList<User>();
 		String telemail = req.getParameter("telemail");
 		String pwd = req.getParameter("pwd");
 		JSONObject json = new JSONObject();
 		if(isEmail(telemail)){
-			flag=userInfoDao.register2(telemail, pwd);
-			session.setAttribute("username", telemail);
+			flag1=userInfoDao.register2(telemail, pwd);
+			if(flag1==1){
+				userList = userInfoDao.judge(telemail);
+				if(userList.size()>0){
+					role = userList.get(0).getRole();
+					
+					flag = userList.get(0).getFlag();
+				}
+				session.setAttribute("role", role);
+				session.setAttribute("flag", flag);
+				session.setAttribute("username", telemail);
+			}
+			else{
+				session.setAttribute("role", role);
+				session.setAttribute("flag", flag);
+				session.setAttribute("username", "");
+			}
 		}else if(isPhoneNumberValid(telemail)){
-			flag=userInfoDao.register1(telemail, pwd);
-			session.setAttribute("username", telemail);
+			flag1=userInfoDao.register1(telemail, pwd);
+			if(flag1==1){
+				userList = userInfoDao.judge(telemail);
+				if(userList.size()>0){
+					role = userList.get(0).getRole();
+					
+					flag = userList.get(0).getFlag();
+				}
+				session.setAttribute("role", role);
+				session.setAttribute("flag", flag);
+				session.setAttribute("username", telemail);
+			}
+			else{
+				session.setAttribute("role", role);
+				session.setAttribute("flag", flag);
+				session.setAttribute("username", "");
+			}
+			
 		}
-		else{
-			session.setAttribute("username", "");
-		}
-		json.put("flag", flag);
+		json.put("flag", flag1);
 		try{
 			writeJson(json.toJSONString(),resp);
 		}catch(Exception e){
@@ -240,6 +272,7 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		String password = req.getParameter("password1");
 		String username_mode = req.getParameter("username_mode1");
 		String password_mode = req.getParameter("password_mode1");
+		String url = req.getParameter("urlInfoLog");
 		byte [] username_str = null;
 		byte [] password_str = null;
 		byte [] username_mode_str = null;
@@ -293,12 +326,15 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		}
 		session.setAttribute("role", role);
 		session.setAttribute("flag", flag);
-		if(role == 0){
+		String resultUrl = url.substring(url.lastIndexOf("/"));
+		System.out.println(resultUrl);
+		return resultUrl;
+		/*if(role == 0){
 			return "/treeData.jsp";
 		}
 		else{
 			return "/index01";
-		}
+		}*/
 		
 	}
 	

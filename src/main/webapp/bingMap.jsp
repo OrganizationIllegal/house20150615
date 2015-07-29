@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -12,6 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
    <link rel="stylesheet" type="text/css" href="css/base.css" />
    <link rel="stylesheet" type="text/css" href="css/map.css" />
+   <link rel="stylesheet" href="css/chosen.css">
    <script type="text/javascript" src="js/jquery.js"></script>
    <script src="/js/jquery-1.11.1.min.js"></script>  
    <script src="/bootstrap/js/bootstrap.min.js"></script>
@@ -275,7 +277,7 @@ body{
 	                    	html+="<div style='font-family:微软雅黑;font-size:13px'><span style='font-weight:bolder;'>最多</span><span class='right' style='margin-right:14px'>"+items[j].project_high_price+"</span></div>";
 	                    	html+="<div style='font-family:微软雅黑;font-size:13px'><span style='font-weight:bolder;'>最少</span><span class='right' style='margin-right:14px'>"+items[j].project_min_price+"</span></div>";
 	                    	html+="<div style='font-family:微软雅黑;font-size:13px'><span style='font-weight:bolder;'>面积</span><span class='right' style='margin-right:14px'>"+items[j].minArea+"<span>-</span>"+items[j].maxArea+"</span></div>";
-	                    	html+="<div style='font-family:微软雅黑;font-size:13px'><span style='font-weight:bolder;'>返利</span><span class='right'  style='margin-right:14px'>"+items[j].return_money+"</span></div>";
+	                    	/* html+="<div style='font-family:微软雅黑;font-size:13px'><span style='font-weight:bolder;'>返利</span><span class='right'  style='margin-right:14px'>"+items[j].return_money+"</span></div>"; */
 	                    	html+="<div style='font-family:微软雅黑;font-size:13px'><span style='font-weight:bolder;'>均价</span><span class='right'  style='margin-right:14px'>"+items[j].project_price_int_qi+"</span></div>";
 	                    	html+="</div></div></div>";
 	                    	
@@ -306,8 +308,8 @@ body{
                	html+="<a class='f-r f-yahei s-12 node_val'>$"+items[j].project_min_price+"</a>";
                	html+="<a class='c-fix f-l f-yahei s-12 node_title'>面积</a>";
                	html+="<a class='f-r f-yahei s-12 node_val'>"+items[j].minArea+"+"+items[j].maxArea+"</a>";
-               	html+="<a class='c-fix f-l f-yahei s-12 node_title'>返利</a>";
-               	html+="<a class='f-r f-yahei s-12 node_val'>"+items[j].return_money+"</a>";
+               /* 	html+="<a class='c-fix f-l f-yahei s-12 node_title'>返利</a>";
+               	html+="<a class='f-r f-yahei s-12 node_val'>"+items[j].return_money+"</a>"; */
                	html+="<a class='c-fix f-l f-yahei s-12 node_title'>起价</a>";
                	html+="<a class='f-r f-yahei s-12 node_val'>$"+items[j].project_price_int_qi+"</a>";
                	html+="</div></div>";
@@ -382,13 +384,35 @@ body{
 			</div>
 	
 			<div class="f-l div2" id="right1">
-				<input type="text" class="c-fix f-l inp" id="keyWord" placeholder="项目地址" style="color:rgb(213,213,213);font-family:微软雅黑;height:28px;width:434px;" autocomplete="off"></input>	
+				<!-- <input type="text" class="c-fix f-l inp" id="keyWord" placeholder="项目地址" style="color:rgb(213,213,213);font-family:微软雅黑;height:28px;width:434px;" autocomplete="off"></input>	
 				<a class="f-l f-yahei s-14 cp btn_search" onclick="addPushpinsearch()">搜索</a>
 				<div id="_suggestion" class="suggestion nobg" style="position:absolute;left: 375px; top: 33px; display: none; z-index:999;">			              
 				  <div class="suginner">
 			                    <ul class="suglist"></ul>
 			                </div>
-                		</div>
+                		</div> -->
+                <div class="c-fix f-l f-yahei" style="margin-left:30px;margin-top:8px;">
+	               
+	                <select data-placeholder="请选择城市..." class="chosen-select" id="project_city" name="project_city" style="width:200px;" tabindex="4">
+		 	            <option value=""></option>
+		  	            <c:forEach items="${cityNameSet}" var="item">
+        		   		<option value="${item}">${item}</option>
+   					    </c:forEach>
+	                </select>
+	                 <select data-placeholder="请选择区域..." class="chosen-select" id="project_area" name="project_area" style="width:200px;" tabindex="4">
+		 	            <option value=""></option>
+		  	            <c:forEach items="${areaNameSet}" var="item">
+        		   		<option value="${item}">${item}</option>
+   					    </c:forEach>
+	                </select>
+	                <select data-placeholder="请选择地址..." class="chosen-select" id="project_address" name="project_address" style="width:200px;" tabindex="4">
+		 	            <option value=""></option>
+		  	            <c:forEach items="${addressNameSet}" var="item">
+        		   		<option value="${item}">${item}</option>
+   					    </c:forEach>
+	                </select>
+                </div>
+                <div class="f-l f-yahei btn_search cp" onclick="addPushpinsearch()">搜索</div>
 				<a class="f-r f-yahei s-14 btn cp hover" style="padding:4px 6px;border:2px solid rgb(245,161,27)" href="/SearchList">列表找房</a>
 				<a class="f-r f-yahei s-14 btn btn_sel cp hover" style="padding:4px 6px"  href="#">地图找房</a>
 				<!-- <select class="f-r sel" style=" background: none;border: none;font-family: 微软雅黑;">
@@ -419,14 +443,15 @@ body{
 						<a class="f-r f-yahei s-12 node_val">$${item.project_min_price}</a>
 						<a class="c-fix f-l f-yahei s-12 node_title">面积</a>
 						<a class="f-r f-yahei s-12 node_val">${item.minArea}-${item.maxArea}</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">返利</a>
-						<a class="f-r f-yahei s-12 node_val">${item.return_money}</a>
+						<%-- <a class="c-fix f-l f-yahei s-12 node_title">返利</a>
+						<a class="f-r f-yahei s-12 node_val">${item.return_money}</a> --%>
 						<a class="c-fix f-l f-yahei s-12 node_title">起价</a>
 						<a class="f-r f-yahei s-12 node_val">$${item.project_price_int_qi}</a>
+						<a class="c-fix f-l f-yahei s-12 node_title">${item.project_key}</a>
+						<!-- <a class="f-r f-yahei s-12 node_val">$${item.project_price_int_qi}</a> -->
 					</div>
 				</div>
 			 </c:forEach> 
-				<
 			</div>
 			<div class="f-l div4" id="right2">
 				<div  id="myMap" style="position:relative;width:100%;height:100%;"></div>
@@ -435,7 +460,7 @@ body{
 		
 	</body>
 </html>
-<script>
+<<script type="text/javascript">
 		var value = $("#keyWord").val();
   		
    		
@@ -637,3 +662,17 @@ function checkForm(){
 }
    
 </script>
+<script src="/js/chosen.jquery.js" type="text/javascript"></script>
+ <script src="/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+ <script type="text/javascript">
+    var config = {
+      '.chosen-select'           : {},
+      '.chosen-select-deselect'  : {allow_single_deselect:true},
+      '.chosen-select-no-single' : {disable_search_threshold:10},
+      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+  </script>

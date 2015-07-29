@@ -19,9 +19,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.kate.app.dao.BrokerInfoDao;
 import com.kate.app.dao.ProjectInputDao;
 import com.kate.app.dao.UserDao;
+import com.kate.app.model.AreaInfo;
 import com.kate.app.model.Broker;
 import com.kate.app.model.BrokerInfo;
-import com.kate.app.model.BrokerIntegerType;
+import com.kate.app.model.BrokerServiceArea;
 import com.kate.app.model.BrokerType;
 import com.kate.app.model.ServiceArea;
 import com.kate.app.model.User;
@@ -126,9 +127,9 @@ public class BrokerInfoController {
 		//String message_time=Timestamp.parse(System.currentTimeMillis());
 		int project_id=0;
 		int viewed=0;
-		int type=1;
+		int type=6;
 		int result = 0;
-		int userid=userDao.findUserByName(username);
+		int userid=userDao.findUserByEmailAndTel(username);
 		if(userid!=0){
 			result=brokerInfoDao.InsertMessage(message_content, message_time, project_id, viewed, type, userid);
 		}

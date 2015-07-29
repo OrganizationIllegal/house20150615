@@ -527,7 +527,17 @@ var e=$('#input2').val();
 					<a class="c-fix f-l p_lab f-yahei s-14">价格区间：$${project.project_min_price}-$${project.project_high_price}</a>
 					<div class="f-l p_btn_get cp" onclick="pop3()"></div>
 				</div>
-				<div class="f-r p_btn_return">返现金额：$${project.return_money}</div>
+				<!-- <div class="f-r p_btn_return">返现金额：$${project.return_money}</div> -->
+				<input type="hidden" id="projectNum" value="${proNum}">
+				<div class="f-r" style="height:30px;width:100px;margin-top:20px">
+				<%--  <c:if test="${isCollected=='0'}">
+				<button id="shoucang" style="font-size:13px;" onclick="addcollect()" >点击收藏</button>
+				</c:if>
+				 <c:if test="${isCollected=='1'}">
+			    <button id="quxiaoshoucang" style="font-size:13px;background-color:red" onclick="delcollect()" >已收藏</button>
+			    </c:if> --%>
+			    <input type="button" id="shoucang" style="font-size:13px;" onclick="collect()" ></button>
+				</div>
 			</div>
 		</div>
 		<div class="c-fix  bkg3" style="margin:0 auto;height:405px;width:990px">
@@ -569,13 +579,27 @@ var e=$('#input2').val();
 				<div class="f-l p_panel_2" style="height:390px">
 					<a class="c-fix f-l f-yahei s-16 p_panel_lab fw" style="-margin-top:30px;margin-left:10px;">想要了解更多？</a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_lab fw" style="margin-top:5px;margin-left:10px;">填写信息我们会有专业人士一对一服务</a>
-
-					<input type="text" class="c-fix f-l p_inp" style="margin-top:20px;" placeholder="姓名"></input>
-					<input type="text" class="c-fix f-l p_inp" placeholder="邮箱"></input>
-					<input type="text" class="c-fix f-l p_inp" placeholder="电话"></input>
-					<input type="text" class="c-fix f-l p_inp" style="margin-top:10px;" placeholder="需求"></input>
+				<c:if test="${!empty userList }">
+                  <c:forEach items="${userList}"  var="item">
+					<input type="text" class="c-fix f-l p_inp" style="margin-top:20px;" placeholder="姓名"  id="name2" value=${item.nick_name}></input>
+					<input type="text" class="c-fix f-l p_inp" placeholder="邮箱" id="email2"value=${item.email}></input>
+					<input type="text" class="c-fix f-l p_inp" placeholder="电话" id="tel2" value=${item.tel}></input>
+					<!-- <input type="text" class="c-fix f-l p_inp" style="margin-top:10px;" id="message_content2" placeholder="需求"></input> -->
+					<textarea class="c-fix f-l p_txt s-14" style="margin-top:10px;" id="message_content2" placeholder="留言"></textarea>
+					<button type="button" class="f-l p_btn_submit cp" value="提交"  onclick="submitXuqiuMessage()">提交</button>
+				</c:forEach>
+				</c:if>
+				<c:if test="${empty userList }">
+              
+					<input type="text" class="c-fix f-l p_inp" style="margin-top:20px;" placeholder="姓名"  id="name2" ></input>
+					<input type="text" class="c-fix f-l p_inp" placeholder="邮箱" id="email2"></input>
+					<input type="text" class="c-fix f-l p_inp" placeholder="电话" id="tel2" ></input>
+					<!-- <input type="text" class="c-fix f-l p_inp" style="margin-top:10px;" placeholder="需求"></input> -->
 					<textarea class="c-fix f-l p_txt s-14" style="margin-top:10px;" placeholder="留言"></textarea>
-					<button type="submit" class="f-l p_btn_submit cp" value="提交">提交</button>
+					<button type="button" class="f-l p_btn_submit cp" value="提交" >提交</button>
+
+				</c:if>
+					
 				</div>
 			</div>
 		</div>
@@ -1002,8 +1026,9 @@ var e=$('#input2').val();
 						<a class="f-l f-yahei s-14 p_spec">${item}</a>
 						
 						</c:forEach>
-						<a class="c-fix f-l p_header3 f-yahei s-14 fw" style="width:721px">${area_name} 区域人口分布<span style="float:right;padding-right:20px;" class="s-12">数据来源：${people_datasource } 更新日期：${fn:substring(people_date,0,10)}</span></a>
-						<div class="c-fix f-l p_tab2" style="width:721px">
+						
+						<a class="c-fix f-l p_header3 f-yahei s-14 fw" style="width:721px;margin-top: 97px;">${area_name} 区域人口分布<span style="float:right;padding-right:20px;" class="s-12">数据来源：${people_datasource } 更新日期：${fn:substring(people_date,0,10)}</span></a>
+						<div class="c-fix f-l p_tab2" style="width:721px;">
 						<table class="table table-striped">
 						 <tbody style="font-size:12px;">
 			    		<c:forEach items="${list}" var="item" varStatus="var" begin="0" end="0">
@@ -1094,7 +1119,8 @@ var e=$('#input2').val();
 					<img class="f-r p_adv" src="images/ad1.png"></img>
 				<img class="f-r p_adv2" src="images/adv.jpg"></img>
 				</c:if>
-				
+				</div>
+						</div>
 				<c:if test="${!empty dulirateVo && !empty youngfamilyVo && !empty oldfamilyVo}">
 				<div class="c-fix bkg3" style="margin:0 auto;height:265px;width:990px">
 				<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:950px;margin-bottom:10px;">${area_name} 区域家庭情况构成</a>
@@ -1264,19 +1290,20 @@ var e=$('#input2').val();
             </h4>
          </div>
          <div class="modal-body" style="padding-top:30px;background-color:#EEEEE0;">
-            <form class="form-horizontal" role="form" action="/UserInfo/AddAllPrice" method="post">
+       <%--      <form class="form-horizontal" role="form" action="/indexSuoJia/MessageSubmit" method="post">  --%>
             <c:forEach items="${userList}"  var="item">
    <div class="form-group">
       <div class="col-sm-10 col-sm-offset-1">
-		<input type="text" class="form-control" name="name" placeholder=${item.nick_name}>
+		<input type="text" class="form-control" name="name1"  id="name1" value=${item.nick_name}>
+		<input type="hidden" class="form-control" name="userid" placeholder=${item.id}>
 	  </div>
       <div class="col-sm-1"></div>
    </div>
    <div class="form-group" >
       <div class="col-sm-10 col-sm-offset-1">
 
-         <input type="text" class="form-control" name="email" 
-            placeholder=${item.email}>
+         <input type="text" class="form-control" name="email1"  id="email1"
+            value=${item.email}>
 
 
 
@@ -1294,7 +1321,7 @@ var e=$('#input2').val();
    <div class="form-group" >
       <div class="col-sm-10 col-sm-offset-1">
 
-         <input type="text" class="form-control" name="tel" placeholder=${item.tel}>
+         <input type="text" class="form-control" name="tel1" id="tel1" value=${item.tel}>
 
 
       </div>
@@ -1303,7 +1330,7 @@ var e=$('#input2').val();
    <div class="form-group" >
       <div class="col-sm-10 col-sm-offset-1">
 
-         <textarea type="text" rows="5" cols="20" class="form-control" name="message_content"  placeholder="留言"></textarea>
+         <textarea type="text" rows="5" cols="20" class="form-control" name="message_content1"  id="message_content1" placeholder="留言"></textarea>
             
       </div>
       <div class="col-sm-1"></div>
@@ -1311,14 +1338,15 @@ var e=$('#input2').val();
    <div class="form-group" style="padding-bottom:40px;">
    	   <div class="col-sm-7"></div>
       <div class="col-sm-5">
-         <button type="submit" class="btn btn-default" style="width:105px;background-color:red;color:white;" type="submit" id="submit">提交</button>
+       <!--   <button type="submit" class="btn btn-default" style="width:105px;background-color:red;color:white;" type="submit" id="submit">提交</button> -->
+        <button type="button" class="btn btn-default" style="width:105px;background-color:red;color:white;"  onclick="submitMessageForPrice()">提交</button>
 
       </div>
      
    </div>
  </c:forEach>
  
-</form>
+<%-- </form> --%>
 
          </div>
    
@@ -1365,33 +1393,33 @@ var e=$('#input2').val();
             </h4>
          </div>
          <div class="modal-body" style="padding-top:30px;background-color:#EEEEE0;">
-            <form class="form-horizontal" role="form" action="/UserInfo/AddNewestPrice" method="post">
+         <%--    <form class="form-horizontal" role="form" action="/UserInfo/AddNewestPrice" method="post"> --%>
    <c:forEach items="${userList}"  var="item">
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
-         <input type="text" class="form-control" name="nick_name" 
-            placeholder=${item.nick_name}>
+         <input type="text" class="form-control" name="nick_name4"  id="nick_name4"
+            value=${item.nick_name}>
       </div>
       <div class="col-sm-1"></div>
    </div>
-   <div class="form-group" style="margin-bottom:0px;">
+  <!--  <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
          <input type="text" class="form-control" name="pwd" 
             placeholder=${item.pwd}>
       </div>
       <div class="col-sm-1"></div>
-   </div>
+   </div> -->
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
-         <input type="text" class="form-control" name="tel"  
-            placeholder=${item.tel}>
+         <input type="text" class="form-control" name="tel4"  id="tel4"
+            value=${item.tel}>
       </div>
       <div class="col-sm-1"></div>
    </div>
    <div class="form-group">
       <div class="col-sm-10 col-sm-offset-1">
-         <input type="text" class="form-control" name="email" 
-            placeholder=${item.email}>
+         <input type="text" class="form-control" name="email4" id="email4"
+            value=${item.email}>
       </div>
       <div class="col-sm-1"></div>
    </div>
@@ -1404,7 +1432,7 @@ var e=$('#input2').val();
    </div>
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
-         <textarea type="text" rows="5" cols="20" class="form-control" name="msg"  
+         <textarea type="text" rows="5" cols="20" class="form-control" name="msg4"  id="msg4"
             placeholder="留言"></textarea>
             
       </div>
@@ -1412,12 +1440,12 @@ var e=$('#input2').val();
    </div>
    <div class="form-group">
       <div class="col-sm-offset-1 col-sm-10">
-         <button type="submit" class="btn btn-default">发送</button>
+         <button type="submit" class="btn btn-default" onclick="submitForLatestPrice()">发送</button>
       </div>
       <div class="col-sm-1"></div>
    </div>
    </c:forEach>
-</form>
+<%-- </form> --%>
 
          </div>
    
@@ -1442,33 +1470,33 @@ var e=$('#input2').val();
             </h4>
          </div>
          <div class="modal-body" style="padding-top:30px;background-color:#EEEEE0;">
-            <form class="form-horizontal" role="form" action="/UserInfo/AddHouseType" method="post">
+           <%--  <form class="form-horizontal" role="form" action="/UserInfo/AddHouseType" method="post"> --%>
     <c:forEach items="${userList}"  var="item">
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
-         <input type="text" class="form-control" name="nick_name" 
-            placeholder=${item.nick_name}>
+         <input type="text" class="form-control" name="nick_name5" id="nick_name5" 
+            value=${item.nick_name}>
       </div>
       <div class="col-sm-1"></div>
    </div>
-   <div class="form-group" style="margin-bottom:0px;">
+  <!--  <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
          <input type="text" class="form-control" name="pwd" 
             placeholder=${item.pwd}>
       </div>
       <div class="col-sm-1"></div>
-   </div>
+   </div> -->
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
-         <input type="text" class="form-control" name="tel"  
-            placeholder=${item.tel}>
+         <input type="text" class="form-control" name="tel5" id="tel5"  
+            value=${item.tel}>
       </div>
       <div class="col-sm-1"></div>
    </div>
    <div class="form-group">
       <div class="col-sm-10 col-sm-offset-1">
-         <input type="text" class="form-control" name="email"
-            placeholder=${item.email}>
+         <input type="text" class="form-control" name="email5" id="email5"
+            value5=${item.email}>
       </div>
       <div class="col-sm-1"></div>
    </div>
@@ -1481,7 +1509,7 @@ var e=$('#input2').val();
    </div>
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
-         <textarea type="text" rows="5" cols="20" class="form-control" name="msg" 
+         <textarea type="text" rows="5" cols="20" class="form-control" name="msg5"  id="msg5"
             placeholder="留言"></textarea>
             
       </div>
@@ -1489,12 +1517,12 @@ var e=$('#input2').val();
    </div>
    <div class="form-group">
       <div class="col-sm-offset-1 col-sm-10">
-         <button type="submit" class="btn btn-default">发送</button>
+         <button type="button" class="btn btn-default" onclick="submitForHuxing()">发送</button>
       </div>
       <div class="col-sm-1"></div>
    </div>
    </c:forEach>
-</form>
+<%-- </form> --%>
 
          </div>
    
@@ -1517,33 +1545,33 @@ var e=$('#input2').val();
             </h4>
          </div>
          <div class="modal-body" style="padding-top:30px;background-color:#EEEEE0;">
-            <form class="form-horizontal" role="form" action="/UserInfo/AddAsk" method="post">
+           <%--  <form class="form-horizontal" role="form" action="/UserInfo/AddAsk" method="post"> --%>
             <c:forEach items="${userList}"  var="item">
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
-         <input type="text" class="form-control" name="nick_name" 
-            placeholder=${item.nick_name}>
+         <input type="text" class="form-control" name="nick_name3"  id="nick_name3"
+            value=${item.nick_name}>
       </div>
       <div class="col-sm-1"></div>
    </div>
-   <div class="form-group" style="margin-bottom:0px;">
+   <!-- <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
          <input type="text" class="form-control" name="pwd" 
-            placeholder=${item.pwd}>
+            value=${item.pwd}>
       </div>
       <div class="col-sm-1"></div>
-   </div>
+   </div> -->
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
-         <input type="text" class="form-control" name="tel" 
-            placeholder=${item.tel}>
+         <input type="text" class="form-control" name="tel3" id="tel3" 
+            value=${item.tel}>
       </div>
       <div class="col-sm-1"></div>
    </div>
    <div class="form-group">
       <div class="col-sm-10 col-sm-offset-1">
-         <input type="text" class="form-control" name="email" 
-            placeholder=${item.email}>
+         <input type="text" class="form-control" name="email3"  id="email3"
+            value=${item.email}>
       </div>
       <div class="col-sm-1"></div>
    </div>
@@ -1556,7 +1584,7 @@ var e=$('#input2').val();
    </div>
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
-         <textarea type="text" rows="5" cols="20" class="form-control" name="msg" 
+         <textarea type="text" rows="5" cols="20" class="form-control" name="msg3"  id="msg3"
             placeholder="留言"></textarea>
             
       </div>
@@ -1564,12 +1592,12 @@ var e=$('#input2').val();
    </div>
    <div class="form-group">
       <div class="col-sm-offset-1 col-sm-10">
-         <button type="submit" class="btn btn-default">发送</button>
+         <button type="button" class="btn btn-default"  onclick="submitForInfo()">发送</button>
       </div>
       <div class="col-sm-1"></div>
    </div>
    </c:forEach>
-</form>
+<%-- </form> --%>
 
          </div>
    
@@ -1675,8 +1703,9 @@ var e=$('#input2').val();
 
 <script type="text/javascript">
 var url = $("#url").val();
+var resultUrl = url.indexOf();
 var kk = <%= Judge%>;
-alert(url)
+
 
 $(function() {
 	$("#xiangmuZhuce").click(function(){
@@ -1757,7 +1786,7 @@ function popInfo(){
  <c:if test="${fn:length(areaMiddleList) > 0 && fn:length(areaZujinList) > 0 && fn:length(areaZhikongList) > 0}">
  <script src="/js/trend.js" charset="utf-8"></script>
  </c:if>
- <script src="/js/cost.js" charset="GBK"></script>
+ <script src="/js/cost.js" charset="utf-8"></script>
  <script src="/js/news.js"></script>
   <script src="/js/familyStatus.js"></script>
  <script type="text/javascript">
@@ -1847,4 +1876,273 @@ function popInfo(){
  	
  	
  </script>
+  <script type="text/javascript">
+  function submitMessageForPrice()
+  {
+	  var username=$("#name1").val();
+	  var email1=$("#email1").val();
+	  var tel=$("#tel1").val();
+	  var message_content=$("#message_content1").val();
+	  alert(username);
+	  alert(message_content);
+	  $.ajax({
+ 			type:'GET',
+ 			dataType:'json',
+ 			data:{"type":"1","username":username,"email":email1,"tel":tel,"message_content":message_content},
+ 			url:'/SubmitMessage',
+ 			async: false, 
+ 			success:function(data){
+ 	  		  	if(data.flag==1){
+ 				  alert("留言成功");
+ 				 $('#demandprice').modal('hide');
+ 				}
+ 	  			else{
+ 	  				alert("留言失败");
+ 	  			 $('#demandprice').modal('hide');
+ 				}
+ 	  				
+ 			},
+ 			error:function(){
+ 			}
+ 		});
+	  
+	  
+  }
+  
+  function submitXuqiuMessage()
+  {
+	  var username=$("#name2").val();
+	  var email1=$("#email2").val();
+	  var tel=$("#tel2").val();
+	  var message_content=$("#message_content2").val();
+	  alert(username);
+	  alert(message_content);
+	  $.ajax({
+ 			type:'GET',
+ 			dataType:'json',
+ 			data:{"type":"2","username":username,"email":email1,"tel":tel,"message_content":message_content},
+ 			url:'/SubmitMessage',
+ 			async: false, 
+ 			success:function(data){
+ 	  		  	if(data.flag==1){
+ 				  alert("留言成功");
+ 				/*  $('#demandprice').modal('hide'); */
+ 				 $("#message_content2").val("");
+ 				}
+ 	  			else{
+ 	  				alert("留言失败");
+ 	  			/*  $('#demandprice').modal('hide'); */
+ 				}
+ 	  				
+ 			},
+ 			error:function(){
+ 			}
+ 		});
+	  
+	  
+  }
+  function submitForInfo()
+  {
+	  var username=$("#nick_name3").val();
+	  var email1=$("#email3").val();
+	  var tel=$("#tel3").val();
+	  var message_content=$("#msg3").val();
+	  alert(username);
+	  alert(message_content);
+	  $.ajax({
+ 			type:'GET',
+ 			dataType:'json',
+ 			data:{"type":"3","username":username,"email":email1,"tel":tel,"message_content":message_content},
+ 			url:'/SubmitMessage',
+ 			async: false, 
+ 			success:function(data){
+ 	  		  	if(data.flag==1){
+ 				  alert("留言成功");
+ 				 $('#projectInfo').modal('hide'); 
+ 				/*  $("#message_content2").val(""); */
+ 				}
+ 	  			else{
+ 	  				alert("留言失败");
+ 	  			/*  $('#demandprice').modal('hide'); */
+ 				}
+ 	  				
+ 			},
+ 			error:function(){
+ 			}
+ 		});
+	  
+	  
+  }
+ 
+  function submitForLatestPrice()
+  {
+	  var username=$("#nick_name4").val();
+	  var email1=$("#email4").val();
+	  var tel=$("#tel4").val();
+	  var message_content=$("#msg4").val();
+	  alert(username);
+	  alert(message_content);
+	  $.ajax({
+ 			type:'GET',
+ 			dataType:'json',
+ 			data:{"type":"4","username":username,"email":email1,"tel":tel,"message_content":message_content},
+ 			url:'/SubmitMessage',
+ 			async: false, 
+ 			success:function(data){
+ 	  		  	if(data.flag==1){
+ 				  alert("留言成功");
+ 				 $('#recentquotation').modal('hide'); 
+ 				/*  $("#message_content2").val(""); */
+ 				}
+ 	  			else{
+ 	  				alert("留言失败");
+ 	  			 $('#recentquotation').modal('hide'); 
+ 				}
+ 	  				
+ 			},
+ 			error:function(){
+ 			}
+ 		});
+	  
+	  
+  }
+  
+  
+  function submitForHuxing()
+  {
+	  var username=$("#nick_name5").val();
+	  var email1=$("#email5").val();
+	  var tel=$("#tel5").val();
+	  var message_content=$("#msg5").val();
+	  alert(username);
+	  alert(message_content);
+	  $.ajax({
+ 			type:'GET',
+ 			dataType:'json',
+ 			data:{"type":"5","username":username,"email":email1,"tel":tel,"message_content":message_content},
+ 			url:'/SubmitMessage',
+ 			async: false, 
+ 			success:function(data){
+ 	  		  	if(data.flag==1){
+ 				  alert("留言成功");
+ 				 $('#completehouse').modal('hide'); 
+ 				/*  $("#message_content2").val(""); */
+ 				}
+ 	  			else{
+ 	  				alert("留言失败");
+ 	  			 $('#completehouse').modal('hide'); 
+ 				}
+ 	  				
+ 			},
+ 			error:function(){
+ 			}
+ 		});
+  }
+ /*  //点击收藏
+  function addcollect(){
+	  var projectNum=$("#projectNum").val();
+	   alert("点击收藏");
+	  $.ajax({
+			type: "POST",  
+ 			 dataType: "json",  
+ 			 url: '/AddCollect',      //提交到一般处理程序请求数据   
+  		     data: { proNum :projectNum},           
+  		     success: function(data) {
+  		          if(data.user==0){
+  			          $('#login').modal('show');
+  		         }else if(data.flag==1){
+  			         alert("收藏成功");
+  			        
+  			         //$("#star0").addClass("btn_star_sel");//白星变黄
+  			         $("#shoucang").css("background-color","red");
+  			         $("#shoucang").html("已收藏");
+  			         window.location.reload();
+  		         }
+  		      }  //success
+		  });//ajax
+  }
+  //取消收藏
+  function delcollect(){
+	  var projectNum=$("#projectNum").val();
+	   alert("取消收藏");
+	  $.ajax({
+			type: "POST",  
+ 			 dataType: "json",  
+ 			 url: '/DelCollect',      //提交到一般处理程序请求数据   
+  		     data: { proNum :projectNum},           
+  		     success: function(data) {
+  		          if(data.user==0){
+  			          $('#login').modal('show');
+  		         }else if(data.flag==1){
+  			         alert("取消收藏成功");
+  			         //$("#star0").addClass("btn_star_sel");//白星变黄
+  			          $("#quxiaoshoucang").css("background-color","rgb(226,226,226)"); 
+  			          $("#quxiaoshoucang").html("点击收藏");
+  			        window.location.reload();
+  		         }
+  		      }  //success
+		  });//ajax
+  } */
+  $(function () {
+	  var isCollect=${isCollected};
+	//  alert("isCollect "+isCollect);
+	  if(isCollect=="1"){
+		  $("#shoucang").css("background-color","red");
+	      $("#shoucang").val("已收藏");
+	  }else{
+		  $("#shoucang").css("background-color","rgb(226,226,226)"); 
+	      $("#shoucang").val("点击收藏");
+	  }
+	 // alert($("#shoucang").val())
+	  $("#shoucang").on('click',function(event){
+		  var projectNum=$("#projectNum").val();
+		 // alert(isCollect);
+		/*   if(isCollect=="0"){//0表示要进行收藏 */
+			if($("#shoucang").val()=="点击收藏"){
+			 // alert("收藏");
+			  $.ajax({
+					type: "POST",  
+		 			 dataType: "json",  
+		 			 url: '/AddCollect',      //提交到一般处理程序请求数据   
+		  		     data: { proNum :projectNum},           
+		  		     success: function(data) {
+		  		          if(data.user==0){
+		  			          $('#login').modal('show');
+		  		         }else if(data.flag==1){
+		  			         alert("收藏成功");
+		  			        
+		  			         //$("#star0").addClass("btn_star_sel");//白星变黄
+		  			         $("#shoucang").css("background-color","red");
+		  			        /*  $("#shoucang").html("已收藏"); */
+		  			        $("#shoucang").val("已收藏");
+		  			        /*  window.location.reload(); */
+		  		         }
+		  		      }  //success
+				  });//ajax
+		  }//if
+		  else{
+			  //alert("取消收藏");
+			  $.ajax({
+					type: "POST",  
+		 			 dataType: "json",  
+		 			 url: '/DelCollect',      //提交到一般处理程序请求数据   
+		  		     data: { proNum :projectNum},           
+		  		     success: function(data) {
+		  		          if(data.user==0){
+		  			          $('#login').modal('show');
+		  		         }else if(data.flag==1){
+		  			         alert("取消收藏成功");
+		  			         //$("#star0").addClass("btn_star_sel");//白星变黄
+		  			          $("#shoucang").css("background-color","rgb(226,226,226)"); 
+		  			          $("#shoucang").val("点击收藏");
+		  			       /*  window.location.reload(); */
+		  		         }
+		  		      }  //success
+				  });//ajax
+		  }
+	  })
+	  
+	});
+  
+  </script>
 

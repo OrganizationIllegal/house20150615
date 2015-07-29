@@ -452,18 +452,15 @@ public class SearchListController {
 			String username = (String)req.getSession().getAttribute("username");
 			if(username==null){//濡傛灉鐢ㄦ埛娌℃湁鐧诲綍
 				json.put("user", "0");
-				System.out.println("鐢ㄦ埛娌℃湁鐧诲綍");
 			}
 			else{
-				int userid=userDao.findUserByName(username);
+				int userid=userDao.findUserByEmailAndTel(username);
 				String proNum=req.getParameter("proNum");
 				int flag=searchListDao.AddCollect(userid, proNum);
 				if(flag==0){
 					json.put("flag", "0");
-					System.out.println("娣诲姞澶辫触");
 				}else{
 					json.put("flag", "1");
-					System.out.println("娣诲姞鎴愬姛");
 				}
 				json.put("user", "1");
 			}
@@ -479,7 +476,7 @@ public class SearchListController {
 			//TODO鑾峰緱session涓殑鐢ㄦ埛id
 			String proNum=req.getParameter("proNum");
 			String username = (String)req.getSession().getAttribute("username");
-			int userid=userDao.findUserByName(username);
+			int userid=userDao.findUserByEmailAndTel(username);
 			int flag=searchListDao.DelCollect(userid, proNum);
 			JSONObject json = new JSONObject();
 			if(flag==0){

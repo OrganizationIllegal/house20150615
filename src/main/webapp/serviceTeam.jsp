@@ -14,7 +14,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="/bootstrap/js/bootstrap.min.js"></script> 
    <script src="/js/jquery.bootpag.min.js"></script>
    <link rel="stylesheet" type="text/css" href="/css/base.css" />
-		<link rel="stylesheet" type="text/css" href="/css/list.css" />
+   <link rel="stylesheet" type="text/css" href="/css/list.css" />
+   <link rel="stylesheet" href="/css/chosen.css">
+   <script src="/js/chosen.jquery.js" type="text/javascript"></script>
         <style>
        		#page-selection .next{-position:absolute;float:right;margin-right:15px}
   			#page-selection .prev{-position:absolute;-left:131px; float:left;margin-left:15px;}
@@ -22,6 +24,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			.pagination  {width:502px;height:48px;margin-top:9px!important;display:block!important;padding-top:9px;!important}
   			.prev {margin-left:40px;}
   			.next {margin-right:40px;}
+       </style>
+       <style>
+       		.chosen-container {			    
+			    zoom: 1.25 !important;
+			    font-size: 12px !important;
+			}
        </style>
         <!--<style>
       		 .pagination .prev{position:absolute;left:40px;}
@@ -72,23 +80,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</select>
 			 	 </div>
 			 	 <div style="width:200px;height:32px;float:left;margin-right:10px;" >
-			 	 	<input type="text" class="form-control" name="suozaiarea" placeholder="所在区域">
-			 	 	 <!-- <select id="type" style="  width: 200px;height: 32px; " class="form-control">
-         					<option>区域</option>
-        					 <c:forEach items="${regionList}" var="item">
-        					<option>${item}</option>
-       					   </c:forEach>
-                     </select> -->
+			 	 	<!-- <input type="text" class="form-control" name="suozaiarea" placeholder="所在区域"> -->
+			 	 	  <select name="suozaiarea" style="  width: 161px;height: 32px; " class="chosen-select">
+         					<option>所在区域</option>
+        					 <c:forEach items="${liveregionlist}" var="item">
+        					 <option value="${item}">${item}</option>
+       					    </c:forEach>
+                     </select>
 			 	 </div>
 			 	 
 			 	 <div style="width:200px;height:32px;float:left;margin-right:10px;" >
-			 	 	<input type="text" class="form-control" name="fuwuarea" placeholder="服务区域">
-			 	 	 <!-- <select id="type" style="  width: 200px;height: 32px; " class="form-control">
-         					<option>区域</option>
-        					 <c:forEach items="${regionList}" var="item">
-        					<option>${item}</option>
+			 	 	<!-- <input type="text" class="form-control" name="fuwuarea" placeholder="服务区域"> -->
+			 	 	 <select name="fuwuarea" style="  width: 161px;height: 32px; " class="chosen-select">
+         					<option>服务区域</option>
+        					 <c:forEach items="${serviceregionlist}" var="item">
+        					<option  value="${item}">${item}</option>
        					   </c:forEach>
-                     </select> -->
+                     </select>
 			 	 </div>
 			 	 
 			 	 
@@ -129,7 +137,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	  <!--  <hr style="height:1px;border:none;border-top:2px dashed #666666;margin-top:0px;margin-bottom:0px;"/> -->
                 	    <img src="/images/serviceteam/b5.jpg">
                 	  <div style="font-size:13px;"><img  src="/images/serviceteam/b3.png"/>
-                	  <span style="padding-left:10px">${item.broker_region}</span></div>
+                	  <span style="padding-left:10px">${item.broker_region}</span>
+                	<%--   <span style="padding-left:10px">${item.brokerServiceArea1}</span> --%>
+                	  
+                	  </div>
                 	   <!-- <hr style="height:1px;border:none;border-top:2px dashed #666666;margin-top:0px;margin-bottom:0px;"/> -->
                 	    <img src="/images/serviceteam/b5.jpg">
                 	   <div style="font-size:13px;"><div style="float:left;width:235px"><img  src="/images/serviceteam/b4.png"/>
@@ -177,9 +188,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</c:if>
 				 <c:forEach items="${userList}"  var="item">
 				 		<div class="form-group" style="padding:15px 15px;paddign-top:0px">
-					 	<input type="text" class="form-control" id="name" name="name" placeholder="姓名    ${item.nick_name} "style="margin-bottom:15px">
-					 	<input type="text" class="form-control" id="email" name="email" placeholder="邮箱     ${item.email}" style="margin-bottom:15px">
-					 	 <input type="text" class="form-control" id="tel" name="tel" placeholder="电话    ${item.tel}"  style="margin-bottom:15px">
+					 	<input type="text" class="form-control" id="name" name="name" placeholder="姓名    ${item.nick_name} value= ${item.nick_name}"style="margin-bottom:15px">
+					 	<input type="text" class="form-control" id="email" name="email" placeholder="邮箱     ${item.email}" value=  ${item.email} style="margin-bottom:15px">
+					 	 <input type="text" class="form-control" id="tel" name="tel" placeholder="电话    ${item.tel}" value=${item.tel} style="margin-bottom:15px">
 					 	 <textarea type="text" rows="5" cols="20" class="form-control" id="message_content" name="message_content"  placeholder="留言" style="height:108px;margin-bottom:15px"></textarea>
 					 	 <!--  <button type="submit" class="btn btn-default" style="width:87px;height:38px;background-color:rgb(192,59,72);color:white;margin-left:262px" type="submit" id="submit">提交</button> -->
 						<button type="button" class="btn btn-default" style="width:87px;height:38px;background-color:rgb(192,59,72);color:white;margin-left:262px"  id="submit" onclick="tijiao()">提交</button>					
@@ -207,6 +218,7 @@ function tijiao(){
          success: function(data) {
         	 if(data.flag==1){
         	 alert("提交成功");
+        	 $("#message_content").val("");
         	 }
          }
       		});
@@ -214,10 +226,16 @@ function tijiao(){
 </script>
 
 <script type="text/javascript">
+
 var num = 1;
 var totleSize = "${count}"
 
 var pageNum1 = totleSize % 10 == 0 ? totleSize / 10 : Math.floor(totleSize / 10) + 1;
+
+/* var num = 1; */
+var totleSize = "${count}";
+
+
 var pageNum = (totleSize+9)/10;
 
 
@@ -245,11 +263,11 @@ var pageNum = (totleSize+9)/10;
 	                 		var html = getHtml(data.List);
 	                 		
 	                 		var totalSize = data.size;
-	                 		
+
 	                 		//var pageNum = totalSize % 10 == 0 ? totleSize / 10 : Math.floor(totleSize / 10) + 1;
 	                 		
 	                 		if(num == pageNum1){
-	                 			
+
 	                 			  $.ajax({   
 				                        type: "POST",  
 				                        dataType: "json",  
@@ -404,6 +422,18 @@ var pageNum = (totleSize+9)/10;
 					});
 			 });  
 	</script>	
+	 <script type="text/javascript">
+    var config = {
+      '.chosen-select'           : {},
+      '.chosen-select-deselect'  : {allow_single_deselect:true},
+      '.chosen-select-no-single' : {disable_search_threshold:10},
+      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+  </script>
 <%--   <jsp:include page="footlong.jsp" /> --%>
 </body>
 </html>

@@ -178,6 +178,7 @@
          <div class="modal-body">
   <div style="text-align:center;margin-top:5px;"><div style="font-size:20px;font-weight:bold;">欢迎登录海外房产优选</div>
   <form method="post" name="fm" action="/login" autocomplete="off" >
+  <input type="hidden" id="urlInfoLog" name="urlInfoLog" value="">
   <div  style="padding-top:25px;">
          <input type="text"  id="username"
             name="username" style="background-image:url(images/0.png);background-repeat:no-repeat;background-position:left;width:270px;padding-left:35px;height:32px;background-color:rgba(246, 245, 245, 1);" placeholder="手机号/邮箱" autocomplete="off"  disableautocomplete />
@@ -225,7 +226,7 @@
          <div class="modal-body">
   <div style="text-align:center;margin-top:5px;"><div style="font-size:20px;font-weight:bold;">用户注册</div>
   <form method="post" action="/Register" name="fm2">
-  <input type="hidden" id="urlInfoReg" value="">
+  <input type="hidden" id="urlInfoReg" name="urlInfoReg" value="">
   <div  style="padding-top:15px;">
          <input type="text"  id="telemail" name="telemail" style="background-image:url(images/0.png);background-repeat:no-repeat;background-position:left;padding-left:35px;width:270px;height:34px;background-color:rgba(246, 245, 245, 1);" placeholder="手机号/邮箱" autocomplete="off">
    
@@ -293,12 +294,14 @@
 <script>
 var href = window.location.href;
 
-$("#urlInfoReg").val(href);
+
 
 
 var role;
  $(function() {
+	
                 $("#login1").click(function() {
+                	$("#urlInfoLog").val(href);
                 	var user = $("#username").val();
                 	var pass = $("#password").val();
                 	var temp;
@@ -319,8 +322,8 @@ var role;
                 })
                 
                 $("#reg").click(function() {
-                	
-                  	var user = $("#telemail").val();
+                	$("#urlInfoReg").val(href);
+                	var user = $("#telemail").val();
                   	var pass = $("#pwd").val();
                   	var temp;
                   	temp = judgeRe(user,pass);
