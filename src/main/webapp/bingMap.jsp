@@ -277,7 +277,7 @@ body{
 	                    	html+="<div style='font-family:微软雅黑;font-size:13px'><span style='font-weight:bolder;'>最多</span><span class='right' style='margin-right:14px'>"+items[j].project_high_price+"</span></div>";
 	                    	html+="<div style='font-family:微软雅黑;font-size:13px'><span style='font-weight:bolder;'>最少</span><span class='right' style='margin-right:14px'>"+items[j].project_min_price+"</span></div>";
 	                    	html+="<div style='font-family:微软雅黑;font-size:13px'><span style='font-weight:bolder;'>面积</span><span class='right' style='margin-right:14px'>"+items[j].minArea+"<span>-</span>"+items[j].maxArea+"</span></div>";
-	                    	html+="<div style='font-family:微软雅黑;font-size:13px'><span style='font-weight:bolder;'>返利</span><span class='right'  style='margin-right:14px'>"+items[j].return_money+"</span></div>";
+	                    	/* html+="<div style='font-family:微软雅黑;font-size:13px'><span style='font-weight:bolder;'>返利</span><span class='right'  style='margin-right:14px'>"+items[j].return_money+"</span></div>"; */
 	                    	html+="<div style='font-family:微软雅黑;font-size:13px'><span style='font-weight:bolder;'>均价</span><span class='right'  style='margin-right:14px'>"+items[j].project_price_int_qi+"</span></div>";
 	                    	html+="</div></div></div>";
 	                    	
@@ -308,8 +308,8 @@ body{
                	html+="<a class='f-r f-yahei s-12 node_val'>$"+items[j].project_min_price+"</a>";
                	html+="<a class='c-fix f-l f-yahei s-12 node_title'>面积</a>";
                	html+="<a class='f-r f-yahei s-12 node_val'>"+items[j].minArea+"+"+items[j].maxArea+"</a>";
-               	html+="<a class='c-fix f-l f-yahei s-12 node_title'>返利</a>";
-               	html+="<a class='f-r f-yahei s-12 node_val'>"+items[j].return_money+"</a>";
+               /* 	html+="<a class='c-fix f-l f-yahei s-12 node_title'>返利</a>";
+               	html+="<a class='f-r f-yahei s-12 node_val'>"+items[j].return_money+"</a>"; */
                	html+="<a class='c-fix f-l f-yahei s-12 node_title'>起价</a>";
                	html+="<a class='f-r f-yahei s-12 node_val'>$"+items[j].project_price_int_qi+"</a>";
                	html+="</div></div>";
@@ -443,10 +443,12 @@ body{
 						<a class="f-r f-yahei s-12 node_val">$${item.project_min_price}</a>
 						<a class="c-fix f-l f-yahei s-12 node_title">面积</a>
 						<a class="f-r f-yahei s-12 node_val">${item.minArea}-${item.maxArea}</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">返利</a>
-						<a class="f-r f-yahei s-12 node_val">${item.return_money}</a>
+						<%-- <a class="c-fix f-l f-yahei s-12 node_title">返利</a>
+						<a class="f-r f-yahei s-12 node_val">${item.return_money}</a> --%>
 						<a class="c-fix f-l f-yahei s-12 node_title">起价</a>
 						<a class="f-r f-yahei s-12 node_val">$${item.project_price_int_qi}</a>
+						<a class="c-fix f-l f-yahei s-12 node_title">${item.project_key}</a>
+						<!-- <a class="f-r f-yahei s-12 node_val">$${item.project_price_int_qi}</a> -->
 					</div>
 				</div>
 			 </c:forEach> 
