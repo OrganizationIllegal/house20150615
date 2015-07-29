@@ -1122,7 +1122,7 @@ var e=$('#input2').val();
 				</div>
 						</div>
 				<c:if test="${!empty dulirateVo && !empty youngfamilyVo && !empty oldfamilyVo}">
-				<div class="c-fix bkg3" style="margin:0 auto;height:265px;width:990px">
+				<div class="c-fix bkg3" style="margin:0 auto;height:265px;width:990px;position:relative;">
 				<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:950px;margin-bottom:10px;">${area_name} 区域家庭情况构成</a>
 				<div class="c-fix f-l p_family" style="margin-left:72px;-margin-top:20px;height:184px">
 					<a class="c-fix f-l family_lab f-yahei s-14 fw">${dulirateVo}</a>
