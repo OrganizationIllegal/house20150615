@@ -486,7 +486,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$(".btn_more").data("open",false);
 			});
 		$("#morequxiao").click(function(){
-			$(".main_more input").val("");
+			$(".main_more input:radio").attr("checked",false);
+			$(".main_more input:checkbox").attr("checked",false);
 			$(".main_more").css({'display': 'none'});
 			$("#morequxiao").val("取消");
 			$("#moretijiao").val("提交");
