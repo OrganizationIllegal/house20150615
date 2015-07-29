@@ -335,42 +335,69 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							              
 							            ]
 							          },
+						          {
+							            text: '地图中心点录入',	
+							            color: '#ffffff', 
+							            backColor:'rgb(59,94,132)',   
+							            href:'#title',          
+							            nodes: [
+							              {
+							                text: '地图中心点录入',
+								            href:'#title'	                
+							              },
+							              
+							            ]
+							          },
 							          {
-								            text: '留言列表',	
+								            text: '地图中心点列表',	
 								            color: '#ffffff', 
 								            backColor:'rgb(59,94,132)',   
 								            href:'#title',          
 								            nodes: [
-								                    {
-										                text: '索取完整价格单留言列表',
-											            href:'#message1'	                
+
+										              {
+										                text: '地图中心点列表',
+											            href:'#title'	                
 										              },
-										              {
-										                text: '需求留言',
-										                href:'#message2'	                
-										              },
-										              {
-											            text: '项目详情咨询留言'	,
-											            href:'#message3'                
-											          },
-										              {
-										                text: '最新价格留言',
-										                href:'#message4' 	                
-										              },
-										              {
-											                text: '完整户型留言',
-											                href:'#message5' 	                
+							                  ]
+							          },
+
+								          {
+									            text: '留言列表',	
+									            color: '#ffffff', 
+									            backColor:'rgb(59,94,132)',   
+									            href:'#title',          
+									            nodes: [
+									              
+									            	  {
+											                text: '索取完整价格单留言列表',
+												            href:'#message1'	                
 											              },
 											              {
-												                text: '合适房产经纪人留言',
-												                href:'#message6' 	                
+											                text: '需求留言',
+											                href:'#message2'	                
+											              },
+											              {
+												            text: '项目详情咨询留言'	,
+												            href:'#message3'                
+												          },
+											              {
+											                text: '最新价格留言',
+											                href:'#message4' 	                
+											              },
+											              {
+												                text: '完整户型留言',
+												                href:'#message5' 	                
 												              },
-											              
-										              
-								              
-								            ]
-								          }
-	        ];
+												              {
+													                text: '合适房产经纪人留言',
+													                href:'#message6' 	                
+													              }
+
+									            ]
+									          }
+							        ]
+
 	      /*   $("#showlist").load("areaLuru.jsp"); */
 	        $("#showlist").load("/ProjectInput");
 	        $('#treeview').treeview({
@@ -439,10 +466,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        	   
 		           
 		        }
-	           else if(node.text=="索取完整价格单留言列表"){
-		        /*    $("#showlist").load("MessageForPrice.jsp"); */
-	        	   window.open("MessageForPrice.jsp","索取完整价格单留言列表");
+	         
+	           else if(node.text=="地图中心点录入"){
+		           $("#showlist").load("/MapCenterInput");
 		       }
+	           else if(node.text=="地图中心点列表"){
+		           $("#showlist").load("/GpsCenterList.jsp");
+	           }
+	           else if(node.text=="索取完整价格单留言列表"){
+			        /*    $("#showlist").load("MessageForPrice.jsp"); */
+		        	   window.open("MessageForPrice.jsp","索取完整价格单留言列表");
+		           }
 	           else if(node.text=="需求留言"){
 		          /*  $("#showlist").load("Message.jsp"); */
 	        	   window.open("Message.jsp","需求留言");

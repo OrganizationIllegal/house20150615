@@ -5,8 +5,9 @@ $(function(){
 	        
 	        var labelTop = {
 				    normal : {
+				    	color:'#CDCD00',
 				        label : {
-				            show : true,
+				            show : false,
 				            position : 'center',
 				            formatter : '{b}',
 				            textStyle: {
@@ -20,6 +21,7 @@ $(function(){
 				};
 				var labelFromatter = {
 				    normal : {
+				    	color:'#bfbfbf',
 				        label : {
 				            formatter : function (params){
 				                return 100 - params.value + '%'
@@ -34,7 +36,7 @@ $(function(){
 				    normal : {
 				        color: '#ccc',
 				        label : {
-				            show : true,
+				            show : false,
 				            position : 'center'
 				        },
 				        labelLine : {
@@ -45,52 +47,40 @@ $(function(){
 				        color: 'rgba(0,0,0,0)'
 				    }
 				};
-				var radius = [60, 75];
+				var radius = [70, 90];
 				option = {
-					title:{
-						text:"×îÐÂ¸üÐÂÊ±¼ä:2015-04-28",
-						x:"right"
-					},
-				    legend: {
-				        x : 'center',
-				        y : 'center',
-				        data:[
-				            '¶ÀÁ¢ÇàÄê','ÇàÄê¼ÒÍ¥','ÀÏÄê¼ÒÍ¥'//'¶ÀÁ¢ÇàÄê','ÇàÄê¼ÒÍ¥','ÀÏÄê¼ÒÍ¥'
-				        ],
-				        show:false
-				    },
 				    series : [
 				        {
 				            type : 'pie',
-				            center : ['20%', '50%'],
+				            center : ['16.5%', '52.2%'],
 				            radius : radius,
 				            x: '0%', // for funnel
 				            itemStyle : labelFromatter,
 				            data : [
 				                {name:'other', value:46, itemStyle : labelBottom},
-				                {name:'¶ÀÁ¢ÇàÄê', value:54,itemStyle : labelTop}
+				                {name:'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', value:54,itemStyle : labelTop}
 				            ]
 				        },
 				        {
 				            type : 'pie',
-				            center : ['50%', '50%'],
+				            center : ['49.9%', '52.2%'],
 				            radius : radius,
 				            x:'20%', // for funnel
 				            itemStyle : labelFromatter,
 				            data : [
 				                {name:'other', value:56, itemStyle : labelBottom},
-				                {name:'ÇàÄê¼ÒÍ¥', value:44,itemStyle : labelTop}
+				                {name:'ï¿½ï¿½ï¿½ï¿½ï¿½Í¥', value:44,itemStyle : labelTop}
 				            ]
 				        },
 				        {
 				            type : 'pie',
-				            center : ['80%', '50%'],
+				            center : ['83.3%', '52.2%'],
 				            radius : radius,
 				            x:'40%', // for funnel
 				            itemStyle : labelFromatter,
 				            data : [
 				                {name:'other', value:65, itemStyle : labelBottom},
-				                {name:'ÀÏÄê¼ÒÍ¥', value:35,itemStyle : labelTop}
+				                {name:'ï¿½ï¿½ï¿½ï¿½ï¿½Í¥', value:35,itemStyle : labelTop}
 				            ]
 				        }
 				        
@@ -103,7 +93,7 @@ $(function(){
 		option.series[2].data[1].value=parseFloat(parseFloat(family.num3).toFixed(2));
 		option.series[2].data[0].value=parseFloat(100-parseFloat(family.num3)).toFixed(2);
 		
-	        // Îªecharts¶ÔÏó¼ÓÔØÊý¾Ý 
+	        // Îªechartsï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	        myChart.setOption(option); 
 
 
