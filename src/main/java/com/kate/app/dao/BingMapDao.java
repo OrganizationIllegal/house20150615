@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.kate.app.model.BingMapCenter;
 import com.kate.app.model.BingMapVo;
 import com.kate.app.model.HouseProject;
 @Repository 
@@ -44,6 +45,7 @@ public class BingMapDao extends BaseDao {
 		    String return_money=null; 
 		    /*int project_price_int_qi=0;*/
 		    String project_price_int_qi=null;
+		    String project_key=null;
 		    while(rs.next()){
 		    	id=rs.getInt("id");
 		    	project_img=rs.getString("project_img");
@@ -67,7 +69,9 @@ public class BingMapDao extends BaseDao {
 		    	else{
 		    		project_price_int_qi="0";
 		    	}
-		        BingMapVo bingMapVo=new BingMapVo(id,project_img,project_num,project_address, project_name, project_price,minarea, maxarea, project_sales_remain, project_price_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi);
+		    	//第一个项目关键字
+		    	project_key=findProjectKeyByNum(project_num);
+		        BingMapVo bingMapVo=new BingMapVo(id,project_img,project_num,project_address, project_name, project_price,minarea, maxarea, project_sales_remain, project_price_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key);
 		    	bingMapList.add(bingMapVo);
 		    }
 		    
@@ -102,6 +106,106 @@ public class BingMapDao extends BaseDao {
         }
 		return bingMapList;
 	} 
+	//根据项目编号查找project_key
+	public String findProjectKeyByNum(String proNum){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		List<BingMapVo> bingMapList=new ArrayList<BingMapVo>();
+		String project_key=null;
+		try {
+			String sql = "select * from project_key where  project_num='"+proNum+"'";
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
+			  String xinkaipan="";//新开盘
+			  String remen="";//热门项目
+			  String xuequ="";//优秀学区
+			  String center="";//城市中心
+			  String baozu="";//包租项目
+			  String huaren="";//华人区
+			  String maidi="";//最新项目
+			  String daxue="";//大学附近
+			  String xianfang="";//现房项目
+			  String traffic="";//轨道交通
+		    while(rs.next()){
+		    	xinkaipan=rs.getString("xinkaipan")==null?"":rs.getString("xinkaipan");
+		    	remen=rs.getString("remen")==null?"":rs.getString("remen");
+		    	xuequ=rs.getString("xuequ")==null?"":rs.getString("xuequ");
+		    	center=rs.getString("center")==null?"":rs.getString("center");
+		    	baozu=rs.getString("baozu")==null?"":rs.getString("baozu");
+		    	huaren=rs.getString("huaren")==null?"":rs.getString("huaren");
+		    	maidi=rs.getString("maidi")==null?"":rs.getString("maidi");
+		    	daxue=rs.getString("daxue")==null?"":rs.getString("daxue");
+		    	xianfang=rs.getString("xianfang")==null?"":rs.getString("xianfang");
+		    	traffic=rs.getString("traffic")==null?"":rs.getString("traffic");
+		    }
+		    if(xinkaipan.equals("1")){
+		    	project_key="新开盘";
+		    }
+		    else if(remen.equals("1")){
+		    	project_key="热门项目";
+		    }
+		    else if(xuequ.equals("1")){
+		    	project_key="优秀学区";
+		    }
+		    else if(center.equals("1")){
+		    	project_key="城市中心";
+		    }
+		    else if(baozu.equals("1")){
+		    	project_key="包租项目";
+		    }
+		    else if(huaren.equals("1")){
+		    	project_key="华人区";
+		    }
+		    else if(maidi.equals("1")){
+		    	project_key="最新项目";
+		    }
+		    else if(daxue.equals("1")){
+		    	project_key="大学附近";
+		    }
+		    else if(xianfang.equals("1")){
+		    	project_key="现房项目";
+		    }
+		    else if(traffic.equals("1")){
+		    	project_key="轨道交通";
+		    }
+		    else{
+		    	project_key="";
+		    }
+		    
+		  
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			if(rs != null){   // 鍏抽棴璁板綍闆�   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 鍏抽棴澹版槑   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 鍏抽棴澹版槑   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return project_key;
+	}
+	
+	
 	public List<BingMapVo> filterByHouseType(int type){
 		NumberFormat nf = new DecimalFormat("#,###,###");
 		Statement stmt = null;
@@ -142,6 +246,7 @@ public class BingMapDao extends BaseDao {
 		    String return_money=null; 
 		   /* int project_price_int_qi=0;*/
 		    String project_price_int_qi=null;
+		    String project_key=null;
 		    while(rs.next()){
 		    	id=rs.getInt("id");
 		    	project_img=rs.getString("project_img");
@@ -164,7 +269,8 @@ public class BingMapDao extends BaseDao {
 		    	else{
 		    		project_price_int_qi="0";
 		    	}
-		    	BingMapVo bingMapVo=new BingMapVo(id,project_img,project_num,project_address, project_name, project_price,minarea, maxarea, project_sales_remain, project_price_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi);
+		    	project_key=findProjectKeyByNum(project_num);
+		    	BingMapVo bingMapVo=new BingMapVo(id,project_img,project_num,project_address, project_name, project_price,minarea, maxarea, project_sales_remain, project_price_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key);
 		    	bingMapList.add(bingMapVo);
 		    }
 		} catch (Exception e) {
@@ -234,6 +340,7 @@ public class BingMapDao extends BaseDao {
 		    String return_money=null; 
 		   /* int project_price_int_qi=0;*/
 		    String project_price_int_qi=null;
+		    String project_key=null;
 		    while(rs.next()){
 		    	id=rs.getInt("id");
 		    	project_img=rs.getString("project_img");
@@ -256,7 +363,8 @@ public class BingMapDao extends BaseDao {
 		    	else{
 		    		project_price_int_qi="0";
 		    	}
-		        BingMapVo  bingMapVo=new BingMapVo(id,project_img,project_num,project_address, project_name, project_price,minarea, maxarea, project_sales_remain, project_price_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi);
+		        project_key=findProjectKeyByNum(project_num);
+		        BingMapVo  bingMapVo=new BingMapVo(id,project_img,project_num,project_address, project_name, project_price,minarea, maxarea, project_sales_remain, project_price_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key);
 		    	bingMapList.add(bingMapVo);
 		    }
 		} catch (Exception e) {
@@ -324,6 +432,7 @@ public class BingMapDao extends BaseDao {
 		    String return_money=null; 
 		   /* int project_price_int_qi=0;*/
 		    String project_price_int_qi=null;
+		    String project_key=null;
 		    while(rs.next()){
 		    	id=rs.getInt("id");
 		    	project_img=rs.getString("project_img");
@@ -346,7 +455,8 @@ public class BingMapDao extends BaseDao {
 		    	else{
 		    		project_price_int_qi="0";
 		    	}
-		        BingMapVo  bingMapVo=new BingMapVo(id,project_img,project_num,project_address, project_name, project_price,minarea, maxarea, project_sales_remain, project_price_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi);
+		        project_key=findProjectKeyByNum(project_num);
+		        BingMapVo  bingMapVo=new BingMapVo(id,project_img,project_num,project_address, project_name, project_price,minarea, maxarea, project_sales_remain, project_price_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key);
 		    	bingMapList.add(bingMapVo);
 		    }
 		} catch (Exception e) {
@@ -388,7 +498,7 @@ public class BingMapDao extends BaseDao {
 		PreparedStatement pstmt = null;
 		List<HouseProject> coordinatesList=new ArrayList<HouseProject>();
 		try {
-			String sql = "SELECT * FROM `house_project` WHERE gps!=''";
+			String sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%'";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
 		    while(rs.next()){
@@ -441,6 +551,56 @@ public class BingMapDao extends BaseDao {
         }
 		return coordinatesList;
 	} 
+	//查找地图中心点
+	public List<BingMapCenter> listMapCenter(){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		List<BingMapCenter> mapCenterList=new ArrayList<BingMapCenter>();
+		try {
+			String sql = "SELECT * FROM `bingmap_center` WHERE gps!='' and gps like '%,%'";
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
+		    while(rs.next()){
+		    	BingMapCenter mapCenter=new BingMapCenter();
+		    	mapCenter.setId(rs.getInt("id"));
+		    	mapCenter.setGps(rs.getString("gps"));
+		    	mapCenter.setName(rs.getString("name"));
+		    	mapCenter.setType(rs.getString("type"));
+		    	mapCenterList.add(mapCenter);
+		    }
+		    
+		  
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			if(rs != null){   // 鍏抽棴璁板綍闆�   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 鍏抽棴澹版槑   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 鍏抽棴澹版槑   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return mapCenterList;
+	} 
 	
 	public List<HouseProject> filterByHouseType2(int type){
 		Statement stmt = null;
@@ -464,7 +624,7 @@ public class BingMapDao extends BaseDao {
 				housetype="";
 				break;
 			}
-			String sql = "SELECT * FROM `house_project` WHERE gps!='' ";
+			String sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%'";
 			if(!housetype.equals("")){
 				sql += "and project_type = '"+housetype+"'";
 			}
@@ -756,7 +916,7 @@ public class BingMapDao extends BaseDao {
 		PreparedStatement pstmt = null;
 		List<String> areaNameSet=new ArrayList<String>();
 		try {
-			String sql ="select project_num,project_area from house_project order by project_area asc";
+			String sql ="select distinct project_area from house_project order by project_area asc";
 			 pstmt = con.prepareStatement(sql);
 			  rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -799,7 +959,7 @@ public class BingMapDao extends BaseDao {
 			PreparedStatement pstmt = null;
 			List<String> cityNameSet=new ArrayList<String>();
 			try {
-				String sql ="select project_num,project_city from house_project order by project_city asc";
+				String sql ="select distinct project_city from house_project order by project_city asc";
 				 pstmt = con.prepareStatement(sql);
 				  rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -842,7 +1002,7 @@ public class BingMapDao extends BaseDao {
 			PreparedStatement pstmt = null;
 			List<String> addressNameSet=new ArrayList<String>();
 			try {
-				String sql ="select project_num,project_address from house_project order by project_address asc";
+				String sql ="select distinct project_address from house_project order by project_address asc";
 				 pstmt = con.prepareStatement(sql);
 				  rs = pstmt.executeQuery();
 				while(rs.next()){

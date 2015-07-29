@@ -56,6 +56,7 @@ if(request.getSession().getAttribute("flag")!=null){
             <th data-field="id" data-visible="false">ID</th>
             <th data-field="news_num">新闻编号</th>
             <th data-field="news_title">新闻标题</th>
+            <th data-field="news_fenlei">新闻分类</th>
             <th data-field="operate"
                 data-formatter="operateFormatter"
                 data-events="operateEvents">Item Operate</th>

@@ -1,6 +1,7 @@
 package com.kate.app.controller;
 
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -22,18 +23,20 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.kate.app.dao.AjaxDao;
 import com.kate.app.dao.AreaInfoDao;
+import com.kate.app.dao.BingMapDao;
 import com.kate.app.dao.BrokerInfoDao;
 import com.kate.app.dao.ProjectInputDao;
 import com.kate.app.dao.SearchListDao;
 import com.kate.app.dao.UserDao;
 import com.kate.app.model.AreaInfo;
-import com.kate.app.model.BingMapVo;
 import com.kate.app.model.BrokerInfo;
+import com.kate.app.model.BrokerServiceArea;
 import com.kate.app.model.HouseProject;
 import com.kate.app.model.ProjectDescImage;
 import com.kate.app.model.ProjectKey;
 import com.kate.app.model.SearchList;
 import com.kate.app.model.User;
+import com.kate.app.service.BingMapService;
 
 @Controller
 public class SearchController {
@@ -49,6 +52,10 @@ public class SearchController {
 	private BrokerInfoDao brokerInfoDao;
 	@Autowired
 	private ProjectInputDao projectInputDao;
+	@Autowired
+	private BingMapDao bingMapDao;
+	@Autowired
+	private BingMapService bingMapService;
 	private static List<SearchList> seachListResult;
 	
 	private static List<BrokerInfo> seachBrokerListResult;
@@ -88,6 +95,16 @@ public class SearchController {
 		else{
 			resultList = brokerInfoList;
 		}
+		for(BrokerInfo item : brokerInfoList){
+			String brokerNum=item.getBroker_num();
+			List<BrokerServiceArea> listBrokerServiceArea=brokerInfoDao.listBrokerServiceArea(brokerNum);
+			List<AreaInfo> listAreaInfo=new ArrayList<AreaInfo>();
+			for(BrokerServiceArea data : listBrokerServiceArea){
+				String areaCode=data.getArea_code();
+				listAreaInfo=brokerInfoDao.listAreaInfo(areaCode);
+			}
+		}
+		
 		List<User> userList=userDao.listUser(username);
 		List<String> typeList=brokerInfoDao.getBrokerTypeList();
 		List<String> regionList=brokerInfoDao.getBrokerRegionList();
@@ -316,6 +333,8 @@ public class SearchController {
 		    	int project_price_int_qi = item.getProject_price_int_qi();
 		    	String project_desc = item.getProject_desc();
 		    	gps = item.getGps();
+		    	String project_area=item.getProject_area();
+		    	String project_type=item.getProject_type();
 		    	String xinkaipan1=null;
 			    String huaren1=null;
 			    String remen1=null;
@@ -340,7 +359,7 @@ public class SearchController {
 		    		xianfang1 = p.getXianfang();
 		    		maidi1 = p.getMaidi();
 		    	}
-		    	SearchList data=new SearchList(id,gps,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,project_lan_en,mianji,project_address,project_logo,developer_id_name,xinkaipan1,huaren1,remen1,xuequ1,baozu1,daxue1,center1,traffic1,xianfang1,maidi1,project_price_int_qi,project_desc);
+		    	SearchList data=new SearchList(id,project_area,project_type,gps,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,project_lan_en,mianji,project_address,project_logo,developer_id_name,xinkaipan1,huaren1,remen1,xuequ1,baozu1,daxue1,center1,traffic1,xianfang1,maidi1,project_price_int_qi,project_desc);
 		    	searchList.add(data);
 			}
 			seachListResult = searchList;
@@ -360,6 +379,30 @@ public class SearchController {
 				temp.setAverage_price(ite);
 			}
 			List<BingMapVo> bingMapList=bingMapService.listBingMap();*/
+			List<String> list1= new ArrayList<String>();
+			List<String> list2= new ArrayList<String>();
+			List<String> list3= new ArrayList<String>();
+			List<String> areaNameSet=bingMapDao.getAreaName();
+			for(String i:areaNameSet){  
+		        if(!list1.contains(i)){  
+		        	list1.add(i);  
+		        }  
+		    }  
+			req.setAttribute("areaNameSet", list1);
+			List<String> cityNameSet=bingMapDao.getCityName();
+			for(String i:cityNameSet){  
+		        if(!list2.contains(i)){  
+		        	list2.add(i);  
+		        }  
+		    }  
+			req.setAttribute("cityNameSet", list2);
+			List<String> addressNameSet=bingMapDao.getAddressName();
+			for(String i:addressNameSet){  
+		        if(!list3.contains(i)){  
+		        	list3.add(i);  
+		        }  
+		    }  
+			req.setAttribute("addressNameSet", list3);
 			req.setAttribute("bingMapList", searchList);
 			return "/bingMap01.jsp";
 		}
@@ -370,34 +413,46 @@ public class SearchController {
 			JSONArray array = new JSONArray();
 			JSONArray array2 = new JSONArray();
 			JSONArray array3 = new JSONArray();
-			List<String> zhou=new ArrayList<String>();
+			JSONArray arrayCenter = new JSONArray();
+			JSONArray arrayCentermoren = new JSONArray();
+			List<String> city=new ArrayList<String>();
 			array = jsonCoordinates();
+			arrayCenter=bingMapService.jsonMapCenter();
+			int lenCenter=arrayCenter.size();
+			for(int k=0;k<lenCenter;k++){
+				JSONObject objCenter=(JSONObject)arrayCenter.get(k);
+				String type=objCenter.getString("type");
+				if("默认".equals(type)){
+					arrayCentermoren.add(objCenter);
+				}
+			}
 			int len=array.size();
 			for(int i=0;i<len;i++){
 				JSONObject obj=(JSONObject)array.get(i);
-				String project_zhou=obj.getString("project_zhou");
-				zhou.add(project_zhou);
+				String project_city=obj.getString("project_city");
+				city.add(project_city);
 			}
-			Set<String> uniqueSet = new HashSet<String>(zhou);
+			Set<String> uniqueSet = new HashSet<String>(city);
 			for (String temp : uniqueSet) {
 				String str1=temp;
-				int size=Collections.frequency(zhou, temp);
+				int size=Collections.frequency(city, temp);
 				JSONObject obj2 = new JSONObject();
-				obj2.put("zhou", size);
+				obj2.put("city", size);
 				array2.add(obj2);
 				for(int j=0;j<len;j++){
 					JSONObject obj3=(JSONObject)array.get(j);
-					String project_zhou2=obj3.getString("project_zhou");
-					if(project_zhou2.equals(str1)){
+					String project_city2=obj3.getString("project_city");
+					if(project_city2.equals(str1)){
 						array3.add(obj3);
 						break;
 					}
 				}
 	        }
+			//System.out.println(array);
 			json.put("List", array);
 			json.put("List2", array2);
 			json.put("List3", JSONArray.parseArray(JSON.toJSONString(array3, SerializerFeature.DisableCircularReferenceDetect)));
-			
+			json.put("ListCentermoren", arrayCentermoren);
 			try{
 				writeJson(json.toJSONString(),resp);
 			}catch(Exception e){
@@ -439,6 +494,7 @@ public class SearchController {
 		
 		public JSONArray jsonCoordinates(){
 			JSONArray array = new JSONArray();
+			DecimalFormat df = new DecimalFormat("#,###,###");
 			List<SearchList> searchList = seachListResult;
 			for(SearchList data : searchList){
 				JSONObject obj = new JSONObject();
@@ -453,6 +509,9 @@ public class SearchController {
 				obj.put("project_zhou", data.getProject_zhou()==null?"":data.getProject_zhou());
 				obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
 				obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
+				obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
+				obj.put("project_price_int_qi", data.getProject_price_int_qi()==0?0:df.format(data.getProject_price_int_qi()));
+				obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
 				array.add(obj);
 			}
 			return array;

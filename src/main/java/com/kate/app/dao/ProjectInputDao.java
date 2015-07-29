@@ -1281,6 +1281,7 @@ public class ProjectInputDao extends BaseDao {
 							obj.put("id", rs.getInt("id"));
 							obj.put("news_num", rs.getString("news_num"));
 							obj.put("news_title", rs.getString("news_title"));
+							obj.put("news_fenlei", rs.getString("news_fenlei"));
 							jsonArray.add(obj);
 						}
 					} catch (Exception e) {
