@@ -22,7 +22,7 @@ import com.kate.app.model.MessageVo;
 public class UserMessageController {
 	@Autowired
 	private UserMessageDao userMessageDao;
-	@RequestMapping({"/UserMessageList"})
+	/*@RequestMapping({"/UserMessageList"})
 	public String listMessage(HttpServletRequest req,HttpServletResponse resp){
 		String user = req.getParameter("user");
 		String username = (String)req.getSession().getAttribute("username");
@@ -31,10 +31,10 @@ public class UserMessageController {
 			req.setAttribute("error", 1);
 			return "/QuanxianError.jsp";
 		}
-		/*else if(!user.equals(username)){
+		else if(!user.equals(username)){
 			req.setAttribute("error", 2);
 			return "/QuanxianError.jsp";
-		}*/
+		}
 		List<MessageVo> messageList=userMessageDao.getUserMessage(username);
 		List<MessageVo> messageListprice=userMessageDao.getUserMessagePrice(username);
 		List<MessageVo> messageListpriceLatest=userMessageDao.getUserMessagLatestPrice(username);
@@ -42,7 +42,7 @@ public class UserMessageController {
 		req.setAttribute("messageList", messageList);
 		req.setAttribute("messageListpriceLatest", messageListpriceLatest);
 		return "/UserMessage.jsp";
-	}
+	}*/
 	@RequestMapping({ "/UserSaveView" })    
 	public void saveView(HttpServletRequest req, HttpServletResponse resp){
 		String Id = req.getParameter("id");
@@ -67,7 +67,7 @@ public class UserMessageController {
 		}
 	}
 	//普�?留言分页
-	@RequestMapping({"/UserMessagePageList"})
+	/*@RequestMapping({"/UserMessagePageList"})
 	public void MessageListPage(HttpServletRequest req, HttpServletResponse resp){
 		String username = (String)req.getSession().getAttribute("username");
 		String pageIndex = req.getParameter("pageIndex");  //页面索引 
@@ -127,9 +127,9 @@ public class UserMessageController {
 			e.printStackTrace();
 		}
 		
-	}
+	}*/
 	//索取完整价格留言分页
-	@RequestMapping({"/UserMessagePricePageList"})
+	/*@RequestMapping({"/UserMessagePricePageList"})
 	public void MessagePriceListPage(HttpServletRequest req, HttpServletResponse resp){
 		String username = (String)req.getSession().getAttribute("username");
 		String pageIndex = req.getParameter("pageIndex");  //页面索引 
@@ -189,9 +189,9 @@ public class UserMessageController {
 			e.printStackTrace();
 		}
 		
-	}
+	}*/
 	//获取�?��价格留言分页
-	@RequestMapping({"/UserMessagePriceLatestPageList"})
+	/*@RequestMapping({"/UserMessagePriceLatestPageList"})
 	public void MessagePricelatestListPage(HttpServletRequest req, HttpServletResponse resp){
 		String username = (String)req.getSession().getAttribute("username");
 		String pageIndex = req.getParameter("pageIndex");  //页面索引 
@@ -251,7 +251,7 @@ public class UserMessageController {
 			e.printStackTrace();
 		}
 		
-	}
+	}*/
 	public void writeJson(String json, HttpServletResponse response)throws Exception{
 	    response.setContentType("text/html");
 	    response.setCharacterEncoding("UTF-8");
@@ -262,5 +262,6 @@ public class UserMessageController {
 	    out.flush();
 	    out.close();
 	}
+	
 
 }

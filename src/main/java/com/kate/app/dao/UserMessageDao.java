@@ -15,7 +15,7 @@ import com.kate.app.model.MessageVo;
 
 @Repository 
 public class UserMessageDao extends BaseDao {
-	public List<MessageVo> getUserMessage(String username){
+	/*public List<MessageVo> getUserMessage(String username){
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
@@ -77,8 +77,8 @@ public class UserMessageDao extends BaseDao {
 
         }
 		return messageList;
-	}
-	public List<MessageVo> getUserMessagePrice(String username){
+	}*/
+/*	public List<MessageVo> getUserMessagePrice(String username){
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
@@ -138,8 +138,8 @@ public class UserMessageDao extends BaseDao {
 
         }
 		return messageList;
-	}
-	public List<MessageVo> getUserMessagLatestPrice(String username){
+	}*/
+	/*public List<MessageVo> getUserMessagLatestPrice(String username){
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
@@ -201,7 +201,7 @@ public class UserMessageDao extends BaseDao {
 
         }
 		return messageList;
-	}
+	}*/
 	public boolean saveView(int id){   //0是未查看�?是已经查�?
 		Statement stmt = null;
 		ResultSet rs = null;

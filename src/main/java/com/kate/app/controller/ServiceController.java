@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kate.app.dao.BrokerInfoDao;
 import com.kate.app.dao.HouseProjectDao;
+import com.kate.app.dao.UserDao;
 import com.kate.app.model.BrokerInfo;
 import com.kate.app.model.BrokerInfoQuyu;
+import com.kate.app.model.User;
 
 @Controller
 public class ServiceController {
@@ -20,6 +22,8 @@ public class ServiceController {
 	private HouseProjectDao houseProjectDao;
 	@Autowired
 	private BrokerInfoDao brokerInfoDao;
+	@Autowired
+	private UserDao userDao;
 	
 	
 	@RequestMapping({"/Service"})
@@ -47,7 +51,9 @@ public class ServiceController {
 //				
 //			}
 //		}
-		
+		String username = (String)req.getSession().getAttribute("username");
+		List<User> userList=userDao.listUser(username);
+	    req.setAttribute("userList", userList);
 
 		req.setAttribute("brokerInfo", data); 
 		req.setAttribute("areaList", areaList);

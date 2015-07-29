@@ -125,4 +125,51 @@ public class UserDao extends BaseDao {
 		return id;
 	} 
 
+	public int findUserByEmailAndTel(String username){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		int id = 0;
+		try {
+			String sql = "select * from user  where email=? or tel=?";
+			 pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, username);
+			pstmt.setString(2, username);
+			  rs = pstmt.executeQuery();
+		    while(rs.next()){
+		    	id = rs.getInt("id");
+		    }
+		    
+		  
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(rs != null){   // 鍏抽棴璁板綍闆�  
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 鍏抽棴澹版槑   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 鍏抽棴澹版槑   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+
+		return id;
+	} 
+
 }

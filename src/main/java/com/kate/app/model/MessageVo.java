@@ -7,23 +7,35 @@ public class MessageVo {
 	private String message_content;
 	private Date message_time;
 	private int project_id;
+	private String project_num;
 	private int viewed;
 	private int type;
 	private int userid;
 	private String nick_name;
 	private String email;
 	private String tel;
-	public MessageVo(int id,String message_content,Date message_time,int project_id,int viewed,int type,String nick_name,String email,String tel){
+	
+	public MessageVo(int id,String message_content,Date message_time,int project_id,String project_num,int viewed,int type,String nick_name,String email,String tel){
 		this.id=id;
 		this.message_content=message_content;
 		this.message_time=message_time;
 		this.project_id=project_id;
+		this.project_num=project_num;
 		this.viewed=viewed;
 		this.type=type;
 		this.nick_name=nick_name;
 		this.email=email;
 		this.tel=tel;
 	}
+	
+	public String getProject_num() {
+		return project_num;
+	}
+
+	public void setProject_num(String project_num) {
+		this.project_num = project_num;
+	}
+
 	public int getId() {
 		return id;
 	}
