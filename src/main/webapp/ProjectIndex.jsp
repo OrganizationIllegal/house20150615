@@ -88,7 +88,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 		</style>
 <script type="text/javascript">
+
+ 
+
 $(function() {
+	
+	
 	$("#xiangmuZhuce").click(function(){
 		$('#registernewPro').modal('show');
 	})

@@ -109,7 +109,7 @@
 				<div style="position:relative;">
 				<div id="haiwai" style="position:absolute;display:none;">
 <div><a href="/overseas.jsp">海外购房</a></div>
-<div><a href="/SearchList">项目一览</a></div>
+<div><a href="/BingMap">项目一览</a></div>
 </div> 
 				</div></div>
 				<a id="t3" href="/SearchService" class="f-l f-yahei s-14 main_nav cp fw">服务团队</a>

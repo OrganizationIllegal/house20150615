@@ -378,8 +378,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 		//alert(imgUrl)
                 		html+="<div class='c-fix f-r list_node' style='margin-top:15px;margin-bottom:15px'>";
                 		html+="<div class='c-fix f-l list_node_header'>";
-                		html+="<a href='/Index?proNum="+items[j].project_num+"' class='c-fix f-l f-arial s-16 list_node_name fw' style='cursor:pointer;'>"+items[j].Project_name+"</a>";
-                		html+="<a href='/Index?proNum="+items[j].project_num+"' class='f-l f-arial s-12 list_node_address' style='cursor:pointer'>"+items[j].project_address+"</a>";
+                		html+="<a href='/Index?proNum="+items[j].project_num+"' target='_blank' class='c-fix f-l f-arial s-16 list_node_name fw' style='cursor:pointer;'>"+items[j].Project_name+"</a>";
+                		html+="<a href='/Index?proNum="+items[j].project_num+"' target='_blank' class='f-l f-arial s-12 list_node_address' style='cursor:pointer'>"+items[j].project_address+"</a>";
                 		//html+="<div class='f-r btn_star cp' id='star' onclick=a(\""+items[j].project_num+"\")></div>";
                 		if(items[j].isCollected==0)//未收藏 星星显示白色
                 		{
@@ -391,11 +391,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	    html+="<span style='margin-right:-58px;float:right;color:white;font-size:13px;font-family:微软雅黑'>收藏</span>";
                 		html+="</div>";
                 		html+="<div class='c-fix f-l list_node_body'>";
-                		html+="<a href='/Index?proNum="+items[j].project_num+"'>";
+                		html+="<a href='/Index?proNum="+items[j].project_num+"' target='_blank'>";
                 		html+="<img class='c-fix f-l list_node_img' src='"+imgUrl+"'></img></a>";
                 		html+="<div class='f-l list_node_middle'>";
-                		html+="<a href='/Index?proNum="+items[j].project_num+"' class='c-fix f-l list_node_inner_name f-yahei s-14'  style='font-weight:bolder;cursor:pointer;'>"+items[j].Project_name+"</a>";
-                		html+="<a href='/Index?proNum="+items[j].project_num+"' class='c-fix f-l list_node_desc f-yahei s-13' style='height:60px;overflow-y:hidden;cursor:pointer;'>"+items[j].project_lan_cn+"</a>";
+                		html+="<a href='/Index?proNum="+items[j].project_num+"' targte='_blank' class='c-fix f-l list_node_inner_name f-yahei s-14'  style='font-weight:bolder;cursor:pointer;'>"+items[j].Project_name+"</a>";
+                		html+="<a href='/Index?proNum="+items[j].project_num+"' targte='_blank' class='c-fix f-l list_node_desc f-yahei s-13' style='height:60px;overflow-y:hidden;cursor:pointer;'>"+items[j].project_lan_cn+"</a>";
                 		html+="<div class='c-fix f-l list_node_tag_div' style='margin-bottom:20px;margin-top:10px;height:40px'>";
                 		if(items[j].remen==1){
                 			html+="<div style='border:1px solid rgb(254,254,230); text-align:center;margin-left:5px;margin-right:5px;margin-bottom:10px;font-size:10px;width:54px;float:left;'  >热门项目</div>";
