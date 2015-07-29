@@ -569,7 +569,17 @@ function popInfo(){
 					<a class="c-fix f-l p_lab f-yahei s-14">价格区间：$${project.project_min_price}-$${project.project_high_price}</a>
 					<div class="f-l p_btn_get cp" onclick="pop3()"></div>
 				</div>
-				<div class="f-r p_btn_return">返现金额：$${project.return_money}</div>
+				<!-- <div class="f-r p_btn_return">返现金额：$${project.return_money}</div> -->
+				<input type="hidden" id="projectNum" value="${proNum}">
+				<div class="f-r" style="height:30px;width:100px;margin-top:20px">
+				<%--  <c:if test="${isCollected=='0'}">
+				<button id="shoucang" style="font-size:13px;" onclick="addcollect()" >点击收藏</button>
+				</c:if>
+				 <c:if test="${isCollected=='1'}">
+			    <button id="quxiaoshoucang" style="font-size:13px;background-color:red" onclick="delcollect()" >已收藏</button>
+			    </c:if> --%>
+			    <input type="button" id="shoucang" style="font-size:13px;" onclick="collect()" ></button>
+				</div>
 			</div>
 		</div>
 		<div class="c-fix  bkg3" style="margin:0 auto;height:405px;width:990px">
@@ -2010,8 +2020,112 @@ function popInfo(){
  			error:function(){
  			}
  		});
-	  
-	  
   }
+ /*  //点击收藏
+  function addcollect(){
+	  var projectNum=$("#projectNum").val();
+	   alert("点击收藏");
+	  $.ajax({
+			type: "POST",  
+ 			 dataType: "json",  
+ 			 url: '/AddCollect',      //提交到一般处理程序请求数据   
+  		     data: { proNum :projectNum},           
+  		     success: function(data) {
+  		          if(data.user==0){
+  			          $('#login').modal('show');
+  		         }else if(data.flag==1){
+  			         alert("收藏成功");
+  			        
+  			         //$("#star0").addClass("btn_star_sel");//白星变黄
+  			         $("#shoucang").css("background-color","red");
+  			         $("#shoucang").html("已收藏");
+  			         window.location.reload();
+  		         }
+  		      }  //success
+		  });//ajax
+  }
+  //取消收藏
+  function delcollect(){
+	  var projectNum=$("#projectNum").val();
+	   alert("取消收藏");
+	  $.ajax({
+			type: "POST",  
+ 			 dataType: "json",  
+ 			 url: '/DelCollect',      //提交到一般处理程序请求数据   
+  		     data: { proNum :projectNum},           
+  		     success: function(data) {
+  		          if(data.user==0){
+  			          $('#login').modal('show');
+  		         }else if(data.flag==1){
+  			         alert("取消收藏成功");
+  			         //$("#star0").addClass("btn_star_sel");//白星变黄
+  			          $("#quxiaoshoucang").css("background-color","rgb(226,226,226)"); 
+  			          $("#quxiaoshoucang").html("点击收藏");
+  			        window.location.reload();
+  		         }
+  		      }  //success
+		  });//ajax
+  } */
+  $(function () {
+	  var isCollect=${isCollected};
+	//  alert("isCollect "+isCollect);
+	  if(isCollect=="1"){
+		  $("#shoucang").css("background-color","red");
+	      $("#shoucang").val("已收藏");
+	  }else{
+		  $("#shoucang").css("background-color","rgb(226,226,226)"); 
+	      $("#shoucang").val("点击收藏");
+	  }
+	 // alert($("#shoucang").val())
+	  $("#shoucang").on('click',function(event){
+		  var projectNum=$("#projectNum").val();
+		 // alert(isCollect);
+		/*   if(isCollect=="0"){//0表示要进行收藏 */
+			if($("#shoucang").val()=="点击收藏"){
+			 // alert("收藏");
+			  $.ajax({
+					type: "POST",  
+		 			 dataType: "json",  
+		 			 url: '/AddCollect',      //提交到一般处理程序请求数据   
+		  		     data: { proNum :projectNum},           
+		  		     success: function(data) {
+		  		          if(data.user==0){
+		  			          $('#login').modal('show');
+		  		         }else if(data.flag==1){
+		  			         alert("收藏成功");
+		  			        
+		  			         //$("#star0").addClass("btn_star_sel");//白星变黄
+		  			         $("#shoucang").css("background-color","red");
+		  			        /*  $("#shoucang").html("已收藏"); */
+		  			        $("#shoucang").val("已收藏");
+		  			        /*  window.location.reload(); */
+		  		         }
+		  		      }  //success
+				  });//ajax
+		  }//if
+		  else{
+			  //alert("取消收藏");
+			  $.ajax({
+					type: "POST",  
+		 			 dataType: "json",  
+		 			 url: '/DelCollect',      //提交到一般处理程序请求数据   
+		  		     data: { proNum :projectNum},           
+		  		     success: function(data) {
+		  		          if(data.user==0){
+		  			          $('#login').modal('show');
+		  		         }else if(data.flag==1){
+		  			         alert("取消收藏成功");
+		  			         //$("#star0").addClass("btn_star_sel");//白星变黄
+		  			          $("#shoucang").css("background-color","rgb(226,226,226)"); 
+		  			          $("#shoucang").val("点击收藏");
+		  			       /*  window.location.reload(); */
+		  		         }
+		  		      }  //success
+				  });//ajax
+		  }
+	  })
+	  
+	});
+  
   </script>
 

@@ -6,6 +6,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,11 +21,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.kate.app.dao.AjaxDao;
 import com.kate.app.dao.AreaInfoDao;
 import com.kate.app.dao.BrokerInfoDao;
-import com.kate.app.dao.HouseProjectDao;
 import com.kate.app.dao.InvestDataDao;
 import com.kate.app.dao.MiddlePriceDao;
 import com.kate.app.dao.NewsBokeDao;
 import com.kate.app.dao.RecoProjectDao;
+import com.kate.app.dao.SearchListDao;
 import com.kate.app.dao.UserDao;
 import com.kate.app.dao.UtilDao;
 import com.kate.app.model.AreaFamily;
@@ -117,6 +118,8 @@ public class MyController {
 	private NewsBokeDao newsBokeDao;
 	@Autowired
 	private AreaInfoDao areaInfoDao;
+	@Autowired
+	private SearchListDao searchListDao;
 	
 	int proid=0;
 	
@@ -221,6 +224,17 @@ public class MyController {
 		/* getRecommendBroker(req,resp,area_num);*/
 		 req.setAttribute("area_name", area_name);
 		 req.setAttribute("areaInfo", areaInfo);
+		 req.setAttribute("proNum", proNum);
+		 //判斷該項目是否已被收藏
+		 String  isCollected=null;
+		 int userid=userDao.findUserByEmailAndTel(username);
+		 Set<String> proNumList=searchListDao.proNumList(userid);
+		 if(proNumList.contains(proNum)){
+			 isCollected="1";//表示已收藏
+		 }else{
+			 isCollected="0";//表示未收藏
+		 }
+		 req.setAttribute("isCollected", isCollected);
 		 return "/ProjectIndex.jsp";
 	}
 	
