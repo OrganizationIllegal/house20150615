@@ -509,9 +509,11 @@ function saveBroker(){
 			}else{
 				alert("更新失败");
 			}
+			window.close();
 		},
 		error:function(){
-			alert("error")
+			alert("error");
+			window.close();
 		}
     });
 }

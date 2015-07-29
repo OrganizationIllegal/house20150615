@@ -69,7 +69,7 @@ $(function(){
                           name:'',
                           icon : 'image://pic/legendicon.jpg',
                           textStyle:{
-                        	  fontFamily:'΢���ź�',
+                        	  fontFamily:'Microsoft YaHei',
                         	  fontSize:16
                           }
                       };
@@ -248,7 +248,7 @@ $('#costTabs a').click(function (e) {
             	  var item={
                           name:'',
                           icon : 'image://pic/legendicon.jpg',
-                          textStyle:{fontFamily:'΢���ź�',
+                          textStyle:{fontFamily:'Microsoft YaHei',
                         	  fontSize:16
                         	  }
                       };

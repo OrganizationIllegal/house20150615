@@ -212,8 +212,8 @@ function tijiao(){
 <script type="text/javascript">
 var num = 1;
 var totleSize = "${count}"
-var pageNum1 = totleSize % 4 == 0 ? totleSize / 4 : totleSize / 4 + 1;
-var pageNum = (totleSize+3)/4;
+var pageNum1 = totleSize % 10 == 0 ? totleSize / 10 : totleSize / 10 + 1;
+var pageNum = (totleSize+9)/10;
 
 	    // init bootpag
 	    $("#page-selection").bootpag({
@@ -236,7 +236,7 @@ var pageNum = (totleSize+3)/4;
 	                 		var html = getHtml(data.List);
 	                 		var totalSize = data.size;
 	                 		
-	                 		var pageNum = totalSize % 4 == 0 ? totleSize / 4 : Math.floor(totleSize / 4) + 1;
+	                 		var pageNum = totalSize % 10 == 0 ? totleSize / 10 : Math.floor(totleSize / 10) + 1;
 	                 		if(num==pageNum){
 	                 			  $.ajax({   
 				                        type: "POST",  

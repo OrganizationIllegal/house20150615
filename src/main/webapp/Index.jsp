@@ -313,8 +313,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<a class="f-l f-yahei s-12 main_more_name">买地建房</a>
 						</div>
 						<div class="c-fix f-l main_more_line" style="border-width:0px;text-align:center">
-							<input  type="button" value="提交" style="background-color:#ff6600;width:50px;height:30px;font-family:微软雅黑"/>
-							<input type="button" value="取消 " style="background-color:#ff6600;width:50px;height:30px;font-family:微软雅黑"/>
+							<input  type="button" id="moretijiao" value="提交" style="background-color:#ff6600;width:50px;height:30px;font-family:微软雅黑;line-height: normal;"/>
+							<input type="button" id="morequxiao" value="取消 " style="background-color:#ff6600;width:50px;height:30px;font-family:微软雅黑;line-height: normal;"/>
 						</div>
 					</div>
 					</form>
@@ -477,7 +477,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 	
 	<jsp:include page="foot4index.jsp" /> 
-		
+	<script type="text/javascript">
+	$(function(){
+		$("#moretijiao").click(function(){
+			$(".main_more").css({'display': 'none'});
+			$("#moretijiao").val("提交");
+			$("#morequxiao").val("取消");
+			$(".btn_more").data("open",false);
+			});
+		$("#morequxiao").click(function(){
+			$(".main_more input").val("");
+			$(".main_more").css({'display': 'none'});
+			$("#morequxiao").val("取消");
+			$("#moretijiao").val("提交");
+			$(".btn_more").data("open",false);
+			});
+    });
+	</script>
 </body>
 </html>
 
@@ -871,6 +887,8 @@ function hoverFunc(select, css){
     	alert("ok");
 	}); */
 });
+    
+        
  
  </script>
 

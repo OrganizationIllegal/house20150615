@@ -81,7 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div style="margin-bottom:20px"><a style="display:block;color:#333;font-size:14px;float:left;">总价</a></div>
 					<!-- <a style="display:block;color:#ff6600;font-size:14px;float:right">100k-2M+</a> -->
 					<!-- <input type="range" name="zongjia" id="zongjia" class="c-fix f-l" style="display:block;width:100%;margin-top:5px;margin-left:0px;" min="100000" max="2000000"></input> -->
-					<input type="text" id="zongjia" name="zongjia" value="0;2000000" style="margin-top:20px"/>
+					<input type="text" id="zongjia" name="zongjia" value="0;5000000" style="margin-top:20px"/>
 				</div> 
 				<div class="c-fix f-l f-yahei s-14" style="display:block;width:100%;min-height:20px;margin-top:20px;">
 					<div style="margin-bottom:20px"><a style="display:block;color:#333;font-size:14px;float:left;">单价</a></div>
@@ -94,7 +94,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a style="display:block;color:#ff6600;font-size:14px;float:right">0k-4+</a> -->
 					<div style="margin-bottom:20px"><a style="display:block;color:#333;font-size:14px;float:left;">卧室</a></div>
 					<!-- <input type="range" name="woshi" class="c-fix f-l" style="display:block;width:100%;margin-top:5px;margin-left:0px;" min="0" max="4"></input> -->
-					<input type="text" id="woshi" name="woshi" value="0;4" style="margin-top:20px"/>
+					<input type="text" id="woshi" name="woshi" value="0;6" style="margin-top:20px"/>
 				</div> 
 				<div style="display:block;width:100%;min-height:20px;margin-top:10px;float:left;clear:both">
 					<a style="display:block;color:#333;font-size:14px;float:left;">用途</a>
@@ -175,8 +175,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 		<a class="f-r list_node_val f-yahei s-12">${item.minArea}<span>-</span>${items.maxArea}</a>
                 		<a class="f-l list_node_title fw f-yahei s-12 c-fix">起价：</a>
                 		<a class="f-r list_node_val f-yahei s-12"><span>$</span><f:formatNumber value="${items.project_price_int_qi}"  pattern="#,#00.#"/></a>
-                		<a class="f-l list_node_title fw f-yahei s-12 c-fix">返现：</a>
-						<a class="f-r list_node_val f-yahei s-12">${item.fanxian}</a>
+                		<%-- <a class="f-l list_node_title fw f-yahei s-12 c-fix">返现：</a>
+						<a class="f-r list_node_val f-yahei s-12">${item.fanxian}</a> --%>
                 		</div>
                 		</div>
                 		</div>
@@ -198,7 +198,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      	$("#zongjia").ionRangeSlider({
    			 type: "double",
    			 min: 0,
-    		 max: 2000000,
+    		 max: 5000000,
     		 step: 100000
    			 //grid: true
 		});
@@ -212,7 +212,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		$("#woshi").ionRangeSlider({
    			 type: "double",
    			 min: 0,
-    		 max: 4,
+    		 max: 6,
    			 //grid: true
 		});
         var pageIndex = 0;     //页面索引初始值   
@@ -444,8 +444,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 		html+="<a class='f-r list_node_val f-yahei s-12'>"+items[j].MinArea+"<span>-</span>"+items[j].MaxArea+"</a>";
                 		html+="<a class='f-l list_node_title fw f-yahei s-12 c-fix'>起价：</a>";
                 		html+="<a class='f-r list_node_val f-yahei s-12' id='qimoney'>"+"<span>$</span>"+items[j].project_price_int_qi+"</a>";
-                		html+="<a class='f-l list_node_title fw f-yahei s-12 c-fix'>返现：</a>";
-                		html+="<a class='f-r list_node_val f-yahei s-12'>"+items[j].Fanxian+"</a>";
+                		/* html+="<a class='f-l list_node_title fw f-yahei s-12 c-fix'>返现：</a>";
+                		html+="<a class='f-r list_node_val f-yahei s-12'>"+items[j].Fanxian+"</a>"; */
                 		html+="</div>";
                 		html+="</div>";
                 		html+="</div>";

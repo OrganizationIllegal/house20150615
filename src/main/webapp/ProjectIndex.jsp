@@ -917,7 +917,8 @@ function popInfo(){
 		</div>
 		<div class="c-fix  bkg3"  style="margin:0 auto;height:280px;width:990px">
 			<div class="c-fix p_panel_4">
-				<a class="c-fix f-l p_inves_name f-yahei s-18 fw">${HouseProject.project_area}${HouseProject.project_type}投资数据</a>
+				<%-- <a class="c-fix f-l p_inves_name f-yahei s-18 fw">${HouseProject.project_area}${HouseProject.project_type}投资数据</a> --%>
+				<a class="c-fix f-l p_inves_name f-yahei s-18 fw">${area_name}${HouseProject.project_type}投资数据</a>
 				<a class="c-fix f-l p_inves_name f-yahei s-14" style="border-bottom:1px solid #999;padding-bottom:20px;">投资数据参考 公寓房产</a>
 				<div class="c-fix f-l p_inves_div">
 					<a class="c-fix f-l p_inves_lab f-yahei s-14 fw">年增长率</a>
@@ -949,7 +950,8 @@ function popInfo(){
 		</div>
  		<div class="c-fix  bkg3"  style="margin:0 auto;height:426px;width:990px">
 			<div class="c-fix p_panel_4">
-				<a class="c-fix f-l p_inves_name f-yahei s-18 fw">${HouseProject.project_area} ${HouseProject.project_type}中位数房价</a>
+				<%-- <a class="c-fix f-l p_inves_name f-yahei s-18 fw">${HouseProject.project_area} ${HouseProject.project_type}中位数房价</a> --%>
+				<a class="c-fix f-l p_inves_name f-yahei s-18 fw">${area_name} ${HouseProject.project_type}中位数房价</a>
 				<div class="c-fix f-l middle_bkg">
 					<a class="c-fix f-l f-yahei fw middle_lab1">$${buy_price}</a>
 					<a class="f-l f-yahei fw middle_lab2">$${zu_price}/周</a>
@@ -989,7 +991,7 @@ function popInfo(){
 <ul class="nav nav-tabs nav-justified" id="trendTabs">
       <li class="active"><a href="#price" data-toggle="tab"><b>${area_name}区域中位数房价走势</b></a></li>
       <li><a href="#rent" data-toggle="tab"><b>${area_name}区域租金走势</b></a></li>
-      <li><a href="#emptypercent" data-toggle="tab"><b>${area_name}区域资金回报率走势</b></a></li>
+      <li><a href="#emptypercent" data-toggle="tab"><b>${area_name}区域租金回报率走势</b></a></li>
      <!-- <p class="navbar-text navbar-right">Signed in as Mark Otto</p>-->
     </ul>
     
@@ -1047,8 +1049,9 @@ function popInfo(){
 						<a class="f-l f-yahei s-14 p_spec">${item}</a>
 						
 						</c:forEach>
-						<a class="c-fix f-l p_header3 f-yahei s-16 fw" style="width:721px">${area_name} 区域人口分布<span style="float:right;padding-right:20px;" class="s-12">数据来源：${people_datasource } 更新日期：${fn:substring(people_date,0,10)}</span></a>
-						<div class="c-fix f-l p_tab2" style="width:721px">
+						
+						<a class="c-fix f-l p_header3 f-yahei s-14 fw" style="width:721px;margin-top: 97px;">${area_name} 区域人口分布<span style="float:right;padding-right:20px;" class="s-12">数据来源：${people_datasource } 更新日期：${fn:substring(people_date,0,10)}</span></a>
+						<div class="c-fix f-l p_tab2" style="width:721px;">
 						<table class="table table-striped">
 						 <tbody style="font-size:12px;">
 			    		<c:forEach items="${list}" var="item" varStatus="var" begin="0" end="0">
@@ -1139,7 +1142,8 @@ function popInfo(){
 					<img class="f-r p_adv" src="images/ad1.png"></img>
 				<img class="f-r p_adv2" src="images/adv.jpg"></img>
 				</c:if>
-				
+				</div>
+						</div>
 				<c:if test="${!empty dulirateVo && !empty youngfamilyVo && !empty oldfamilyVo}">
 				<div class="c-fix bkg3" style="margin:0 auto;height:265px;width:990px">
 				<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:950px;margin-bottom:10px;">${area_name} 区域家庭情况构成</a>
@@ -1155,10 +1159,12 @@ function popInfo(){
 				<div class="c-" style="margin-right:20px;float:rgiht;height:20px">
 					<span class="c-fix f-yahei s-12 fw f-r">数据来源：${family_datasource }&nbsp;&nbsp; 更新日期：${fn:substring(family_date,0,10)}</span>
 				</div>
+				<div style="position:absolute; width:100%;height:233px" id="zonefamily_pie">
 				</div>
+				</div> 
 				</c:if>
-			</div>
-		</div>
+			<!-- </div>
+		</div> -->
 		
 		<c:if test="${not empty newsList}">
 		<div class="c-fix bkg3" style="margin:0 auto;height:350px;width:990px">
@@ -1727,8 +1733,8 @@ function popInfo(){
   var holdingdata=${holdingdata};
  </script>
  <script  type="text/javascript">
-  var family={num1:"${dulirateVo}",num2:"${youngfamilyVo}",num3:"${oldfamilyVo}"};
-
+  var family={num1:"${fn:replace(dulirateVo,'%','')}",num2:"${fn:replace(youngfamilyVo,'%','')}",num3:"${fn:replace(oldfamilyVo,'%','')}"};
+  
   var trend_areamiddle_year="${areaMiddleYeatList}";
   var trend_areamiddle_rate="${areaMiddleRateList}";
   var areaZujinYeatList="${areaZujinYeatList}";
@@ -1743,8 +1749,9 @@ function popInfo(){
  <c:if test="${fn:length(areaMiddleList) > 0 && fn:length(areaZujinList) > 0 && fn:length(areaZhikongList) > 0}">
  <script src="/js/trend.js" charset="utf-8"></script>
  </c:if>
- <script src="/js/cost.js" charset="GBK"></script>
+ <script src="/js/cost.js" charset="utf-8"></script>
  <script src="/js/news.js"></script>
+  <script src="/js/familyStatus.js"></script>
  <script type="text/javascript">
  	$(function () {
   		$('[data-toggle="popover"]').popover()
