@@ -1702,10 +1702,11 @@ var e=$('#input2').val();
 </html>
 
 <script type="text/javascript">
-var url = $("#url").val();
-var resultUrl = url.indexOf();
-var kk = <%= Judge%>;
+var url = window.location.href;
+var resultUrl = url.substring(url.lastIndexOf('/'));
 
+var kk = <%= Judge%>;
+alert(kk)
 
 $(function() {
 	$("#xiangmuZhuce").click(function(){
@@ -1815,7 +1816,7 @@ function popInfo(){
     				}
     				else{
     					alert("注册成功！");
-    					//window.location.href = '/index';  					
+    					window.location.href = resultUrl;  					
     				}
 
     			},
