@@ -611,13 +611,27 @@ function popInfo(){
 				<div class="f-l p_panel_2" style="height:390px">
 					<a class="c-fix f-l f-yahei s-16 p_panel_lab fw" style="-margin-top:30px;margin-left:10px;">想要了解更多？</a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_lab fw" style="margin-top:5px;margin-left:10px;">填写信息我们会有专业人士一对一服务</a>
-
-					<input type="text" class="c-fix f-l p_inp" style="margin-top:20px;" placeholder="姓名"></input>
-					<input type="text" class="c-fix f-l p_inp" placeholder="邮箱"></input>
-					<input type="text" class="c-fix f-l p_inp" placeholder="电话"></input>
-					<input type="text" class="c-fix f-l p_inp" style="margin-top:10px;" placeholder="需求"></input>
+				<c:if test="${!empty userList }">
+                  <c:forEach items="${userList}"  var="item">
+					<input type="text" class="c-fix f-l p_inp" style="margin-top:20px;" placeholder="姓名"  id="name2" value=${item.nick_name}></input>
+					<input type="text" class="c-fix f-l p_inp" placeholder="邮箱" id="email2"value=${item.email}></input>
+					<input type="text" class="c-fix f-l p_inp" placeholder="电话" id="tel2" value=${item.tel}></input>
+					<!-- <input type="text" class="c-fix f-l p_inp" style="margin-top:10px;" id="message_content2" placeholder="需求"></input> -->
+					<textarea class="c-fix f-l p_txt s-14" style="margin-top:10px;" id="message_content2" placeholder="留言"></textarea>
+					<button type="button" class="f-l p_btn_submit cp" value="提交"  onclick="submitXuqiuMessage()">提交</button>
+				</c:forEach>
+				</c:if>
+				<c:if test="${empty userList }">
+              
+					<input type="text" class="c-fix f-l p_inp" style="margin-top:20px;" placeholder="姓名"  id="name2" ></input>
+					<input type="text" class="c-fix f-l p_inp" placeholder="邮箱" id="email2"></input>
+					<input type="text" class="c-fix f-l p_inp" placeholder="电话" id="tel2" ></input>
+					<!-- <input type="text" class="c-fix f-l p_inp" style="margin-top:10px;" placeholder="需求"></input> -->
 					<textarea class="c-fix f-l p_txt s-14" style="margin-top:10px;" placeholder="留言"></textarea>
-					<button type="submit" class="f-l p_btn_submit cp" value="提交">提交</button>
+					<button type="button" class="f-l p_btn_submit cp" value="提交" >提交</button>
+
+				</c:if>
+					
 				</div>
 			</div>
 		</div>
@@ -1304,19 +1318,20 @@ function popInfo(){
             </h4>
          </div>
          <div class="modal-body" style="padding-top:30px;background-color:#EEEEE0;">
-            <form class="form-horizontal" role="form" action="/UserInfo/AddAllPrice" method="post">
+       <%--      <form class="form-horizontal" role="form" action="/indexSuoJia/MessageSubmit" method="post">  --%>
             <c:forEach items="${userList}"  var="item">
    <div class="form-group">
       <div class="col-sm-10 col-sm-offset-1">
-		<input type="text" class="form-control" name="name" placeholder=${item.nick_name}>
+		<input type="text" class="form-control" name="name1"  id="name1" value=${item.nick_name}>
+		<input type="hidden" class="form-control" name="userid" placeholder=${item.id}>
 	  </div>
       <div class="col-sm-1"></div>
    </div>
    <div class="form-group" >
       <div class="col-sm-10 col-sm-offset-1">
 
-         <input type="text" class="form-control" name="email" 
-            placeholder=${item.email}>
+         <input type="text" class="form-control" name="email1"  id="email1"
+            value=${item.email}>
 
 
 
@@ -1334,7 +1349,7 @@ function popInfo(){
    <div class="form-group" >
       <div class="col-sm-10 col-sm-offset-1">
 
-         <input type="text" class="form-control" name="tel" placeholder=${item.tel}>
+         <input type="text" class="form-control" name="tel1" id="tel1" value=${item.tel}>
 
 
       </div>
@@ -1343,7 +1358,7 @@ function popInfo(){
    <div class="form-group" >
       <div class="col-sm-10 col-sm-offset-1">
 
-         <textarea type="text" rows="5" cols="20" class="form-control" name="message_content"  placeholder="留言"></textarea>
+         <textarea type="text" rows="5" cols="20" class="form-control" name="message_content1"  id="message_content1" placeholder="留言"></textarea>
             
       </div>
       <div class="col-sm-1"></div>
@@ -1351,14 +1366,15 @@ function popInfo(){
    <div class="form-group" style="padding-bottom:40px;">
    	   <div class="col-sm-7"></div>
       <div class="col-sm-5">
-         <button type="submit" class="btn btn-default" style="width:105px;background-color:red;color:white;" type="submit" id="submit">提交</button>
+       <!--   <button type="submit" class="btn btn-default" style="width:105px;background-color:red;color:white;" type="submit" id="submit">提交</button> -->
+        <button type="button" class="btn btn-default" style="width:105px;background-color:red;color:white;"  onclick="submitMessageForPrice()">提交</button>
 
       </div>
      
    </div>
  </c:forEach>
  
-</form>
+<%-- </form> --%>
 
          </div>
    
@@ -1405,33 +1421,33 @@ function popInfo(){
             </h4>
          </div>
          <div class="modal-body" style="padding-top:30px;background-color:#EEEEE0;">
-            <form class="form-horizontal" role="form" action="/UserInfo/AddNewestPrice" method="post">
+         <%--    <form class="form-horizontal" role="form" action="/UserInfo/AddNewestPrice" method="post"> --%>
    <c:forEach items="${userList}"  var="item">
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
-         <input type="text" class="form-control" name="nick_name" 
-            placeholder=${item.nick_name}>
+         <input type="text" class="form-control" name="nick_name4"  id="nick_name4"
+            value=${item.nick_name}>
       </div>
       <div class="col-sm-1"></div>
    </div>
-   <div class="form-group" style="margin-bottom:0px;">
+  <!--  <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
          <input type="text" class="form-control" name="pwd" 
             placeholder=${item.pwd}>
       </div>
       <div class="col-sm-1"></div>
-   </div>
+   </div> -->
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
-         <input type="text" class="form-control" name="tel"  
-            placeholder=${item.tel}>
+         <input type="text" class="form-control" name="tel4"  id="tel4"
+            value=${item.tel}>
       </div>
       <div class="col-sm-1"></div>
    </div>
    <div class="form-group">
       <div class="col-sm-10 col-sm-offset-1">
-         <input type="text" class="form-control" name="email" 
-            placeholder=${item.email}>
+         <input type="text" class="form-control" name="email4" id="email4"
+            value=${item.email}>
       </div>
       <div class="col-sm-1"></div>
    </div>
@@ -1444,7 +1460,7 @@ function popInfo(){
    </div>
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
-         <textarea type="text" rows="5" cols="20" class="form-control" name="msg"  
+         <textarea type="text" rows="5" cols="20" class="form-control" name="msg4"  id="msg4"
             placeholder="留言"></textarea>
             
       </div>
@@ -1452,12 +1468,12 @@ function popInfo(){
    </div>
    <div class="form-group">
       <div class="col-sm-offset-1 col-sm-10">
-         <button type="submit" class="btn btn-default">发送</button>
+         <button type="submit" class="btn btn-default" onclick="submitForLatestPrice()">发送</button>
       </div>
       <div class="col-sm-1"></div>
    </div>
    </c:forEach>
-</form>
+<%-- </form> --%>
 
          </div>
    
@@ -1482,33 +1498,33 @@ function popInfo(){
             </h4>
          </div>
          <div class="modal-body" style="padding-top:30px;background-color:#EEEEE0;">
-            <form class="form-horizontal" role="form" action="/UserInfo/AddHouseType" method="post">
+           <%--  <form class="form-horizontal" role="form" action="/UserInfo/AddHouseType" method="post"> --%>
     <c:forEach items="${userList}"  var="item">
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
-         <input type="text" class="form-control" name="nick_name" 
-            placeholder=${item.nick_name}>
+         <input type="text" class="form-control" name="nick_name5" id="nick_name5" 
+            value=${item.nick_name}>
       </div>
       <div class="col-sm-1"></div>
    </div>
-   <div class="form-group" style="margin-bottom:0px;">
+  <!--  <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
          <input type="text" class="form-control" name="pwd" 
             placeholder=${item.pwd}>
       </div>
       <div class="col-sm-1"></div>
-   </div>
+   </div> -->
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
-         <input type="text" class="form-control" name="tel"  
-            placeholder=${item.tel}>
+         <input type="text" class="form-control" name="tel5" id="tel5"  
+            value=${item.tel}>
       </div>
       <div class="col-sm-1"></div>
    </div>
    <div class="form-group">
       <div class="col-sm-10 col-sm-offset-1">
-         <input type="text" class="form-control" name="email"
-            placeholder=${item.email}>
+         <input type="text" class="form-control" name="email5" id="email5"
+            value5=${item.email}>
       </div>
       <div class="col-sm-1"></div>
    </div>
@@ -1521,7 +1537,7 @@ function popInfo(){
    </div>
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
-         <textarea type="text" rows="5" cols="20" class="form-control" name="msg" 
+         <textarea type="text" rows="5" cols="20" class="form-control" name="msg5"  id="msg5"
             placeholder="留言"></textarea>
             
       </div>
@@ -1529,12 +1545,12 @@ function popInfo(){
    </div>
    <div class="form-group">
       <div class="col-sm-offset-1 col-sm-10">
-         <button type="submit" class="btn btn-default">发送</button>
+         <button type="button" class="btn btn-default" onclick="submitForHuxing()">发送</button>
       </div>
       <div class="col-sm-1"></div>
    </div>
    </c:forEach>
-</form>
+<%-- </form> --%>
 
          </div>
    
@@ -1557,33 +1573,33 @@ function popInfo(){
             </h4>
          </div>
          <div class="modal-body" style="padding-top:30px;background-color:#EEEEE0;">
-            <form class="form-horizontal" role="form" action="/UserInfo/AddAsk" method="post">
+           <%--  <form class="form-horizontal" role="form" action="/UserInfo/AddAsk" method="post"> --%>
             <c:forEach items="${userList}"  var="item">
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
-         <input type="text" class="form-control" name="nick_name" 
-            placeholder=${item.nick_name}>
+         <input type="text" class="form-control" name="nick_name3"  id="nick_name3"
+            value=${item.nick_name}>
       </div>
       <div class="col-sm-1"></div>
    </div>
-   <div class="form-group" style="margin-bottom:0px;">
+   <!-- <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
          <input type="text" class="form-control" name="pwd" 
-            placeholder=${item.pwd}>
+            value=${item.pwd}>
       </div>
       <div class="col-sm-1"></div>
-   </div>
+   </div> -->
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
-         <input type="text" class="form-control" name="tel" 
-            placeholder=${item.tel}>
+         <input type="text" class="form-control" name="tel3" id="tel3" 
+            value=${item.tel}>
       </div>
       <div class="col-sm-1"></div>
    </div>
    <div class="form-group">
       <div class="col-sm-10 col-sm-offset-1">
-         <input type="text" class="form-control" name="email" 
-            placeholder=${item.email}>
+         <input type="text" class="form-control" name="email3"  id="email3"
+            value=${item.email}>
       </div>
       <div class="col-sm-1"></div>
    </div>
@@ -1596,7 +1612,7 @@ function popInfo(){
    </div>
    <div class="form-group" style="margin-bottom:0px;">
       <div class="col-sm-10 col-sm-offset-1">
-         <textarea type="text" rows="5" cols="20" class="form-control" name="msg" 
+         <textarea type="text" rows="5" cols="20" class="form-control" name="msg3"  id="msg3"
             placeholder="留言"></textarea>
             
       </div>
@@ -1604,12 +1620,12 @@ function popInfo(){
    </div>
    <div class="form-group">
       <div class="col-sm-offset-1 col-sm-10">
-         <button type="submit" class="btn btn-default">发送</button>
+         <button type="button" class="btn btn-default"  onclick="submitForInfo()">发送</button>
       </div>
       <div class="col-sm-1"></div>
    </div>
    </c:forEach>
-</form>
+<%-- </form> --%>
 
          </div>
    
@@ -1828,4 +1844,169 @@ function popInfo(){
  	
  	
  </script>
+  <script type="text/javascript">
+  function submitMessageForPrice()
+  {
+	  var username=$("#name1").val();
+	  var email1=$("#email1").val();
+	  var tel=$("#tel1").val();
+	  var message_content=$("#message_content1").val();
+	  alert(username);
+	  alert(message_content);
+	  $.ajax({
+ 			type:'GET',
+ 			dataType:'json',
+ 			data:{"type":"1","username":username,"email":email1,"tel":tel,"message_content":message_content},
+ 			url:'/SubmitMessage',
+ 			async: false, 
+ 			success:function(data){
+ 	  		  	if(data.flag==1){
+ 				  alert("留言成功");
+ 				 $('#demandprice').modal('hide');
+ 				}
+ 	  			else{
+ 	  				alert("留言失败");
+ 	  			 $('#demandprice').modal('hide');
+ 				}
+ 	  				
+ 			},
+ 			error:function(){
+ 			}
+ 		});
+	  
+	  
+  }
+  
+  function submitXuqiuMessage()
+  {
+	  var username=$("#name2").val();
+	  var email1=$("#email2").val();
+	  var tel=$("#tel2").val();
+	  var message_content=$("#message_content2").val();
+	  alert(username);
+	  alert(message_content);
+	  $.ajax({
+ 			type:'GET',
+ 			dataType:'json',
+ 			data:{"type":"2","username":username,"email":email1,"tel":tel,"message_content":message_content},
+ 			url:'/SubmitMessage',
+ 			async: false, 
+ 			success:function(data){
+ 	  		  	if(data.flag==1){
+ 				  alert("留言成功");
+ 				/*  $('#demandprice').modal('hide'); */
+ 				 $("#message_content2").val("");
+ 				}
+ 	  			else{
+ 	  				alert("留言失败");
+ 	  			/*  $('#demandprice').modal('hide'); */
+ 				}
+ 	  				
+ 			},
+ 			error:function(){
+ 			}
+ 		});
+	  
+	  
+  }
+  function submitForInfo()
+  {
+	  var username=$("#nick_name3").val();
+	  var email1=$("#email3").val();
+	  var tel=$("#tel3").val();
+	  var message_content=$("#msg3").val();
+	  alert(username);
+	  alert(message_content);
+	  $.ajax({
+ 			type:'GET',
+ 			dataType:'json',
+ 			data:{"type":"3","username":username,"email":email1,"tel":tel,"message_content":message_content},
+ 			url:'/SubmitMessage',
+ 			async: false, 
+ 			success:function(data){
+ 	  		  	if(data.flag==1){
+ 				  alert("留言成功");
+ 				 $('#projectInfo').modal('hide'); 
+ 				/*  $("#message_content2").val(""); */
+ 				}
+ 	  			else{
+ 	  				alert("留言失败");
+ 	  			/*  $('#demandprice').modal('hide'); */
+ 				}
+ 	  				
+ 			},
+ 			error:function(){
+ 			}
+ 		});
+	  
+	  
+  }
+ 
+  function submitForLatestPrice()
+  {
+	  var username=$("#nick_name4").val();
+	  var email1=$("#email4").val();
+	  var tel=$("#tel4").val();
+	  var message_content=$("#msg4").val();
+	  alert(username);
+	  alert(message_content);
+	  $.ajax({
+ 			type:'GET',
+ 			dataType:'json',
+ 			data:{"type":"4","username":username,"email":email1,"tel":tel,"message_content":message_content},
+ 			url:'/SubmitMessage',
+ 			async: false, 
+ 			success:function(data){
+ 	  		  	if(data.flag==1){
+ 				  alert("留言成功");
+ 				 $('#recentquotation').modal('hide'); 
+ 				/*  $("#message_content2").val(""); */
+ 				}
+ 	  			else{
+ 	  				alert("留言失败");
+ 	  			 $('#recentquotation').modal('hide'); 
+ 				}
+ 	  				
+ 			},
+ 			error:function(){
+ 			}
+ 		});
+	  
+	  
+  }
+  
+  
+  function submitForHuxing()
+  {
+	  var username=$("#nick_name5").val();
+	  var email1=$("#email5").val();
+	  var tel=$("#tel5").val();
+	  var message_content=$("#msg5").val();
+	  alert(username);
+	  alert(message_content);
+	  $.ajax({
+ 			type:'GET',
+ 			dataType:'json',
+ 			data:{"type":"5","username":username,"email":email1,"tel":tel,"message_content":message_content},
+ 			url:'/SubmitMessage',
+ 			async: false, 
+ 			success:function(data){
+ 	  		  	if(data.flag==1){
+ 				  alert("留言成功");
+ 				 $('#completehouse').modal('hide'); 
+ 				/*  $("#message_content2").val(""); */
+ 				}
+ 	  			else{
+ 	  				alert("留言失败");
+ 	  			 $('#completehouse').modal('hide'); 
+ 				}
+ 	  				
+ 			},
+ 			error:function(){
+ 			}
+ 		});
+	  
+	  
+  }
+  </script>
 

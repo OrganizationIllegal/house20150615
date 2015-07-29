@@ -341,10 +341,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								            backColor:'rgb(59,94,132)',   
 								            href:'#title',          
 								            nodes: [
-								              {
-								                text: '留言列表',
-									            href:'#title'	                
-								              },
+								                    {
+										                text: '索取完整价格单留言列表',
+											            href:'#message1'	                
+										              },
+										              {
+										                text: '需求留言',
+										                href:'#message2'	                
+										              },
+										              {
+											            text: '项目详情咨询留言'	,
+											            href:'#message3'                
+											          },
+										              {
+										                text: '最新价格留言',
+										                href:'#message4' 	                
+										              },
+										              {
+											                text: '完整户型留言',
+											                href:'#message5' 	                
+											              },
+											              {
+												                text: '合适房产经纪人留言',
+												                href:'#message6' 	                
+												              },
+											              
+										              
 								              
 								            ]
 								          }
@@ -417,9 +439,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        	   
 		           
 		        }
-	           else if(node.text=="留言列表"){
-		           $("#showlist").load("Message.jsp");
+	           else if(node.text=="索取完整价格单留言列表"){
+		        /*    $("#showlist").load("MessageForPrice.jsp"); */
+	        	   window.open("MessageForPrice.jsp","索取完整价格单留言列表");
 		       }
+	           else if(node.text=="需求留言"){
+		          /*  $("#showlist").load("Message.jsp"); */
+	        	   window.open("Message.jsp","需求留言");
+		       }
+	           else if(node.text=="项目详情咨询留言"){
+			          /*  $("#showlist").load("Message.jsp"); */
+		        	   window.open("MessageForInfo.jsp","项目详情留言");
+			       }
+	           else if(node.text=="最新价格留言"){
+			          /*  $("#showlist").load("Message.jsp"); */
+		        	   window.open("MessageForLatestPrice.jsp","最新价格留言");
+			       }
+	           else if(node.text=="完整户型留言"){
+			          /*  $("#showlist").load("Message.jsp"); */
+		        	   window.open("MessageForHuxing.jsp","完整户型留言");
+			       }
+	           else if(node.text=="合适房产经纪人留言"){
+			          /*  $("#showlist").load("Message.jsp"); */
+		        	   window.open("MessageForBroker.jsp","合适房产经纪人留言");
+			       }
 	          } 
 	        });
  });

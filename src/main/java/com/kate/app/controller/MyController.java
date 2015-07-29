@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.kate.app.dao.AjaxDao;
 import com.kate.app.dao.AreaInfoDao;
 import com.kate.app.dao.BrokerInfoDao;
@@ -117,6 +118,7 @@ public class MyController {
 	@Autowired
 	private AreaInfoDao areaInfoDao;
 	
+	int proid=0;
 	
 	@RequestMapping({"/Index" })
 	public String Index(HttpServletRequest req, HttpServletResponse resp){
@@ -135,6 +137,7 @@ public class MyController {
 		}*/
 		if(proNum!=null && !"".equals(proNum)){
 			proId = utilDao.getHouseProId(proNum);
+			proid=proId;
 			
 		}
 		HouseProject project = houseProjectService.getHouseProject(proId);
@@ -211,7 +214,7 @@ public class MyController {
 		 GetNewsInfo(req,resp,area_num);
 		 RecommendProject(req,resp,proId,proNum,area_num);
 		 listSuoJia(req,resp,username);
-		 messageSubmit(req,resp,username,proId);
+		 //messageSubmit(req,resp,username,proId);
 		 //通过项目推荐经纪人
 		 getRecommendBroker(req,resp,proNum,area_num);
 		//通过区域推荐经纪人
@@ -1151,19 +1154,67 @@ public class MyController {
 		req.setAttribute("userList", userList);
 		
 	}
-	
+	//提交留言
+	/**
+	 * type=1
+	 * type=1
+	 * type=1
+	 * type=1
+	 * type=1
+	 * type=1
+	 * @param req
+	 * @param resp
+	 */
+	@RequestMapping({"/SubmitMessage"})
+	public void messageSubmit(HttpServletRequest req,HttpServletResponse resp){
+	   JSONObject json = new JSONObject();
+	   int type=Integer.parseInt(req.getParameter("type"));
+	   String email=req.getParameter("email");
+	   String tel=req.getParameter("tel");
+	   String username=req.getParameter("username");
+	   int userid=userDao.findUserByEmailAndTel(username);
+	   String message_content=req.getParameter("message_content");
+	   String message_time = new java.sql.Timestamp(System.currentTimeMillis()).toString();
+	   int viewed=0;
+	   int result = 0;
+	   if(userid!=0){
+			result=brokerInfoDao.InsertMessage(message_content, message_time, proid, viewed, type, userid);
+		}
+		if(result==1){
+			json.put("flag", "1");
+		}else{
+			json.put("flag", "0");
+		}
+		try{
+			writeJson(json.toJSONString(),resp);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	
 	//閿熸枻鎷烽敓鏂ゆ嫹宄や紮鎷烽敓鏂ゆ嫹宄や紮鎷烽敓鏂ゆ嫹閿燂拷
-		@RequestMapping({"/indexSuoJia/MessageSubmit"})
+	/*	@RequestMapping({"/indexSuoJia/MessageSubmit"})
 		public void messageSubmit(HttpServletRequest req,HttpServletResponse resp, String username,int proId){
+			JSONObject json = new JSONObject();
+			String username = (String)req.getSession().getAttribute("username");
 			String message_content=req.getParameter("message_content");
 			String message_time = new java.sql.Timestamp(System.currentTimeMillis()).toString();
 			int viewed=0;
-			int type=2;
+			int type=1;
 			int result = 0;
 			int userid=userDao.findUserByName(username);
 			if(userid!=0){
 				result=brokerInfoDao.InsertMessage(message_content, message_time, proId, viewed, type, userid);
+			}
+			if(result==1){
+				json.put("flag", "1");
+			}else{
+				json.put("flag", "0");
+			}
+			try{
+				writeJson(json.toJSONString(),resp);
+			}catch(Exception e){
+				e.printStackTrace();
 			}
 			
 			req.setAttribute("result", result);
@@ -1172,7 +1223,7 @@ public class MyController {
 			//req.setAttribute("brokerInfoList", brokerInfoList);
 			req.setAttribute("userList", userList);
 			//return "/index.jsp";
-		}
+		}*/
 	//通过项目推荐经纪人
 		@RequestMapping({"/recommendBroker"})
 		public void getRecommendBroker(HttpServletRequest req,HttpServletResponse resp, String project_num, String area_num){

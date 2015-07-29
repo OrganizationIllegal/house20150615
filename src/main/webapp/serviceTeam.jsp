@@ -173,9 +173,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</c:if>
 				 <c:forEach items="${userList}"  var="item">
 				 		<div class="form-group" style="padding:15px 15px;paddign-top:0px">
-					 	<input type="text" class="form-control" id="name" name="name" placeholder="姓名    ${item.nick_name} "style="margin-bottom:15px">
-					 	<input type="text" class="form-control" id="email" name="email" placeholder="邮箱     ${item.email}" style="margin-bottom:15px">
-					 	 <input type="text" class="form-control" id="tel" name="tel" placeholder="电话    ${item.tel}"  style="margin-bottom:15px">
+					 	<input type="text" class="form-control" id="name" name="name" placeholder="姓名    ${item.nick_name} value= ${item.nick_name}"style="margin-bottom:15px">
+					 	<input type="text" class="form-control" id="email" name="email" placeholder="邮箱     ${item.email}" value=  ${item.email} style="margin-bottom:15px">
+					 	 <input type="text" class="form-control" id="tel" name="tel" placeholder="电话    ${item.tel}" value=${item.tel} style="margin-bottom:15px">
 					 	 <textarea type="text" rows="5" cols="20" class="form-control" id="message_content" name="message_content"  placeholder="留言" style="height:108px;margin-bottom:15px"></textarea>
 					 	 <!--  <button type="submit" class="btn btn-default" style="width:87px;height:38px;background-color:rgb(192,59,72);color:white;margin-left:262px" type="submit" id="submit">提交</button> -->
 						<button type="button" class="btn btn-default" style="width:87px;height:38px;background-color:rgb(192,59,72);color:white;margin-left:262px"  id="submit" onclick="tijiao()">提交</button>					
@@ -203,6 +203,7 @@ function tijiao(){
          success: function(data) {
         	 if(data.flag==1){
         	 alert("提交成功");
+        	 $("#message_content").val("");
         	 }
          }
       		});
