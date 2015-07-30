@@ -167,6 +167,7 @@ public class BingMapController {
 				obj.put("project_img", item.getProject_img());
 				obj.put("return_money",item.getReturn_money());
 				obj.put("project_price_int_qi",item.getProject_price_int_qi());
+				obj.put("project_key",item.getProject_key());
 				array.add(obj);
 			}
 			json.put("List", array);
@@ -267,6 +268,7 @@ public class BingMapController {
 				obj.put("project_img", item.getProject_img());
 				obj.put("return_money",item.getReturn_money());
 				obj.put("project_price_int_qi",item.getProject_price_int_qi());
+				obj.put("project_key",item.getProject_key());
 				array.add(obj);
 			}
 			json.put("List", array);

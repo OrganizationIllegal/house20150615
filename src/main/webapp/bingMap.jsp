@@ -278,6 +278,7 @@ body{
 	                    	html+="<div style='font-family:微软雅黑;font-size:13px'><span style='font-weight:bolder;'>面积</span><span class='right' style='margin-right:14px'>"+items[j].minArea+"<span>-</span>"+items[j].maxArea+"</span></div>";
 	                    	/* html+="<div style='font-family:微软雅黑;font-size:13px'><span style='font-weight:bolder;'>返利</span><span class='right'  style='margin-right:14px'>"+items[j].return_money+"</span></div>"; */
 	                    	html+="<div style='font-family:微软雅黑;font-size:13px'><span style='font-weight:bolder;'>均价</span><span class='right'  style='margin-right:14px'>"+items[j].project_price_int_qi+"</span></div>";
+	                    	html+="<div style='font-family:微软雅黑;font-size:13px'><span style='font-weight:bolder;'>均价</span><span class='right'  style='margin-right:14px'>"+items[j].project_key+"</span></div>";
 	                    	html+="</div></div></div>";
 	                    	
 	                	}
@@ -311,6 +312,7 @@ body{
                	html+="<a class='f-r f-yahei s-12 node_val'>"+items[j].return_money+"</a>"; */
                	html+="<a class='c-fix f-l f-yahei s-12 node_title'>起价</a>";
                	html+="<a class='f-r f-yahei s-12 node_val'>$"+items[j].project_price_int_qi+"</a>";
+            	html+="<a class='c-fix f-l f-yahei s-12 node_title'>"+items[j].project_key+"</a>";
                	html+="</div></div>";
                	
            	}

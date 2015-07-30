@@ -95,7 +95,7 @@ public class BingMapService {
 			obj.put("project_price_int_qi", data.getProject_price_int_qi()==0?"N/A":df.format(data.getProject_price_int_qi()));
 			obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
 			obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
-			
+			obj.put("project_key", data.getProject_key()==null?"":data.getProject_key());
 			array.add(obj);
 		}
 		return array;
