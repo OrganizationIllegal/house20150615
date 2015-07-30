@@ -13,8 +13,15 @@ public class HouseProject {
 	 * @time   20150730
 	 */
 	private String project_key;
+	private String project_address_short;
 	
 	
+	public String getProject_address_short() {
+		return project_address_short;
+	}
+	public void setProject_address_short(String project_address_short) {
+		this.project_address_short = project_address_short;
+	}
 	public String getProject_key() {
 		return project_key;
 	}

@@ -2,6 +2,7 @@ package com.kate.app.controller;
 
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -243,6 +244,7 @@ public class SearchController {
 	//棣栭〉鎼滅储
 		@RequestMapping({"/IndexSearch"})
 		public String IndexSearch(HttpServletRequest req, HttpServletResponse resp){
+			NumberFormat nf = new DecimalFormat("#,###,###");
 			String searchcity = req.getParameter("searchcity");
 			String type = req.getParameter("type");
 			String minimumprice = req.getParameter("minimumprice");
@@ -348,8 +350,8 @@ public class SearchController {
 				//gps = item.getGps();
 		    	String project_name=item.getProject_name();
 		    	int project_sales_remain=item.getProject_sales_remain();
-		    	String maxPrice=item.getProject_high_price();
-		    	String minprice=item.getProject_min_price();
+		    	String maxPrice=item.getProject_high_price()==null?"":nf.format(Integer.parseInt(item.getProject_high_price()));
+		    	String minprice=item.getProject_min_price()==null?"":nf.format(Integer.parseInt(item.getProject_min_price()));
 		    	int maxarea=item.getMax_area();
 		    	int minarea=item.getMin_area();
 		    	String return_money=item.getReturn_money();
@@ -360,7 +362,8 @@ public class SearchController {
 		    	String project_address=item.getProject_address();
 		    	String project_logo = item.getProject_logo();
 		    	String developer_id_name = item.getDeveloper_id_name();
-		    	int project_price_int_qi = item.getProject_price_int_qi();
+		    	String project_price_int_qi_str = nf.format(item.getProject_price_int_qi());
+		    /*	int project_price_int_qi=Integer.parseInt(project_price_int_qi_str);*/
 		    	String project_desc = item.getProject_desc();
 		    	gps = item.getGps();
 		    	String project_area=item.getProject_area();
@@ -391,8 +394,9 @@ public class SearchController {
 		    	}
 		    	String project_key=null;
 		    	project_key=bingMapDao.findProjectKeyByNum(project_num);
-		    			
-		    	SearchList data=new SearchList(id,project_area,project_type,gps,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,project_lan_en,mianji,project_address,project_logo,developer_id_name,xinkaipan1,huaren1,remen1,xuequ1,baozu1,daxue1,center1,traffic1,xianfang1,maidi1,project_price_int_qi,project_desc,project_key);
+		        String project_address_short=null;
+		        project_address_short=project_address.length()>40?project_address.substring(0, 40):project_address;
+		    	SearchList data=new SearchList(id,project_area,project_type,gps,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,project_lan_en,mianji,project_address,project_logo,developer_id_name,xinkaipan1,huaren1,remen1,xuequ1,baozu1,daxue1,center1,traffic1,xianfang1,maidi1,project_price_int_qi_str,project_desc,project_key,project_address_short);
 		    	searchList.add(data);
 			}
 			seachListResult = searchList;

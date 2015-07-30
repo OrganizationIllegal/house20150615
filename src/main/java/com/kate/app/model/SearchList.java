@@ -19,7 +19,15 @@ public class SearchList {
     private String project_price;
     private String project_area;
     private String project_type;
+    private String project_address_short;
+    
    
+	public String getProject_address_short() {
+		return project_address_short;
+	}
+	public void setProject_address_short(String project_address_short) {
+		this.project_address_short = project_address_short;
+	}
 	public String getProject_type() {
 		return project_type;
 	}
@@ -71,12 +79,19 @@ public class SearchList {
     private String maidi;
     private String  developer_id_name;
     private int project_price_int_qi;
+    private String  project_price_int_qi_str;
     private String project_desc;
     private int isCollected;//鏄惁琚綋鍓嶇敤鎴锋敹钘忥紝0琛ㄧず鏈敹钘忥紝1琛ㄧず琚綋鍓嶇敤鎴锋敹钘�
     private String gps;
     private String project_key;
     
 	
+	public String getProject_price_int_qi_str() {
+		return project_price_int_qi_str;
+	}
+	public void setProject_price_int_qi_str(String project_price_int_qi_str) {
+		this.project_price_int_qi_str = project_price_int_qi_str;
+	}
 	public String getProject_key() {
 		return project_key;
 	}
@@ -264,7 +279,7 @@ public class SearchList {
 		this.project_address=project_address;
 		
 	}
-	public SearchList(int id, String project_area,String project_type,String gps, String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String project_lan_en,String mianji,String project_address,String project_logo,String developer_id_name ,String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue, String center,String traffic,String xianfang,String maidi,int project_price_int_qi,String project_desc,String project_key){
+	public SearchList(int id, String project_area,String project_type,String gps, String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String project_lan_en,String mianji,String project_address,String project_logo,String developer_id_name ,String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue, String center,String traffic,String xianfang,String maidi,int project_price_int_qi,String project_desc,String project_key,String project_address_short){
 		this.id=id;
 		this.project_num = project_num;
 		this.project_img=project_img;
@@ -297,6 +312,42 @@ public class SearchList {
 		this.project_desc=project_desc;
 		this.gps = gps;
 		this.project_key=project_key;
+		this.project_address_short=project_address_short;
+	}
+	public SearchList(int id, String project_area,String project_type,String gps, String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String project_lan_en,String mianji,String project_address,String project_logo,String developer_id_name ,String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue, String center,String traffic,String xianfang,String maidi,String project_price_int_qi_str,String project_desc,String project_key,String project_address_short){
+		this.id=id;
+		this.project_num = project_num;
+		this.project_img=project_img;
+		this.project_name=project_name;
+		this.maxPrice=maxPrice;
+		this.minPrice=minPrice;
+		this.maxArea=maxArea;
+		this.minArea=minArea;
+		this.keshou=keshou;
+		this.fanxian=fanxian;
+		this.project_lan_cn=project_lan_cn;
+		this.project_lan_en=project_lan_en;
+		this.project_area=project_area;
+		this.project_type=project_type;
+		
+		this.mianji=mianji;
+		this.project_address=project_address;
+		this.project_logo=project_logo;
+		this.developer_id_name=developer_id_name;
+		this.xinkaipan=xinkaipan;
+		this.huaren=huaren;
+		this.remen=remen;
+		this.xuequ=xuequ;
+		this.baozu=baozu;
+		this.center=center;
+		this.traffic=traffic;
+		this.xianfang=xianfang;
+		this.maidi=maidi;
+		this.project_price_int_qi_str=project_price_int_qi_str;
+		this.project_desc=project_desc;
+		this.gps = gps;
+		this.project_key=project_key;
+		this.project_address_short=project_address_short;
 	}
 	public SearchList() {
 		// TODO Auto-generated constructor stub
