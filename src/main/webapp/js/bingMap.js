@@ -401,6 +401,7 @@
        /* 增加搜索pushpin*/
          function addPushpinsearch()
       {
+        	
         	 var area=$("#project_area").val();
         	 var city=$("#project_city").val();
         	 var address=$("#project_address").val();
@@ -414,6 +415,9 @@
     		 		success:function(data){
     		 		data=$.parseJSON(data);
     		 		//alert(data)
+    		 		
+    		 		var html = getHtml1(data.List);
+			 		 $("#left").html(html); 
     		 		    var items=data.List;
     		 		    var items2=data.List2;
     		 		    var items3=data.List3;

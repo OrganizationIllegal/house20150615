@@ -416,18 +416,7 @@ body{
                 <div class="f-l f-yahei btn_search cp" onclick="addPushpinsearch()">搜索</div>
 				<a class="f-r f-yahei s-14 btn cp hover" style="padding:4px 6px;border:2px solid rgb(245,161,27)" href="/SearchList">列表找房</a>
 				<a class="f-r f-yahei s-14 btn btn_sel cp hover" style="padding:4px 6px"  href="#">地图找房</a>
-				<!-- <select class="f-r sel" style=" background: none;border: none;font-family: 微软雅黑;">
-					<option>交房时间</option>
-				</select>
-				<select class="f-r sel" style=" background: none;border: none;font-family: 微软雅黑;">
-					<option>价格范围</option>
-				</select> -->
-				<!-- <select class="f-r sel" id="house" onchange="housetype(this)"  style=" background: none;border: none;font-family: 微软雅黑;">
-					<option value="0">房屋类型</option>
-					<option value="1">公寓</option>
-					<option value="2">别墅</option>
-					<option value="3">联排别墅</option>
-				</select> -->
+
 			</div>
 			<div class="c-fix f-l div3" style="-height:840px;overflow-y:auto;overflow-x:hidden;" id="left">
 			 <c:forEach var="item" items="${bingMapList}"> 

@@ -53,6 +53,10 @@ public class BingMapService {
 			obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
 			obj.put("project_price_int_qi", data.getProject_price_int_qi()==0?"N/A":df.format(data.getProject_price_int_qi()));
 			obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
+			obj.put("project_address", data.getProject_address()==null?"":data.getProject_address());
+			obj.put("minArea", data.getMin_area()==0?0:data.getMin_area());
+			obj.put("maxArea", data.getMax_area()==0?0:data.getMax_area());
+			obj.put("return_money", data.getReturn_money()==null?"":data.getReturn_money());
 			array.add(obj);
 		}
 		return array;
@@ -118,8 +122,15 @@ public class BingMapService {
 			obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
 			obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
 			obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
+
 			obj.put("project_price_int_qi", data.getProject_price_int_qi()==0?"N/A":df.format(data.getProject_price_int_qi()));
+
 			obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
+			obj.put("project_address", data.getProject_address()==null?"":data.getProject_address());
+			
+			obj.put("return_money", data.getReturn_money()==null?"":data.getReturn_money());
+			obj.put("minArea", data.getMin_area()==0?0:data.getMin_area());
+			obj.put("maxArea", data.getMax_area()==0?0:data.getMax_area());
 			array.add(obj);
 		}
 		return array;
@@ -167,6 +178,10 @@ public class BingMapService {
 			obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
 			obj.put("project_price_int_qi", data.getProject_price_int_qi()==0?"N/A":df.format(data.getProject_price_int_qi()));
 			obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
+			obj.put("project_address", data.getProject_address()==null?"":data.getProject_address());
+			obj.put("return_money", data.getReturn_money()==null?"":data.getReturn_money());
+			obj.put("minArea", data.getMin_area()==0?0:data.getMin_area());
+			obj.put("maxArea", data.getMax_area()==0?0:data.getMax_area());
 			array.add(obj);
 		}
 		return array;

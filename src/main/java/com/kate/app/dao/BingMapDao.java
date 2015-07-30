@@ -816,6 +816,7 @@ public class BingMapDao extends BaseDao {
 			  pstmt.setString(3, addr);*/
 			rs = pstmt.executeQuery();
 			while(rs.next()){
+				DecimalFormat df = new DecimalFormat("#,###,###");
 		    	HouseProject coordinates=new HouseProject();
 		    	coordinates.setId(rs.getInt("id"));
 		    	coordinates.setGps(rs.getString("gps"));
@@ -823,14 +824,26 @@ public class BingMapDao extends BaseDao {
 		    	coordinates.setProject_img(rs.getString("project_img"));
 		    	coordinates.setProject_price(rs.getString("project_price"));
 		    	coordinates.setProject_num(rs.getString("project_num"));
-		    	coordinates.setProject_min_price(rs.getString("project_min_price"));
-		    	coordinates.setProject_high_price(rs.getString("project_high_price"));
+		    	coordinates.setProject_min_price(rs.getString("project_min_price")==null?"":df.format(Integer.parseInt(rs.getString("project_min_price"))));
+		    	coordinates.setProject_high_price(rs.getString("project_high_price")==null?"":df.format(Integer.parseInt(rs.getString("project_high_price"))));
+		    	
 		    	coordinates.setProject_zhou(rs.getString("project_zhou"));
 		    	coordinates.setProject_city(rs.getString("project_city"));
 		    	coordinates.setProject_nation(rs.getString("project_nation"));
 		    	coordinates.setProject_area(rs.getString("project_area"));
-		    	coordinates.setProject_price_int_qi(rs.getInt("project_price_int_qi"));
+		    	coordinates.setMax_area(rs.getInt("max_area"));
+		    	coordinates.setMin_area(rs.getInt("min_area"));
 		    	coordinates.setProject_type(rs.getString("project_type"));
+		    	coordinates.setProject_address(rs.getString("project_address"));
+		    	coordinates.setMianji(rs.getString("mianji"));
+		    	coordinates.setReturn_money(rs.getString("return_money"));
+		        if(rs.getString("project_price_int_qi")!=null){
+		        	coordinates.setProject_price_qi(df.format(Integer.parseInt(rs.getString("project_price_int_qi"))));
+		    	}
+		    	else{
+		    		coordinates.setProject_price_qi("0");
+		    	}
+		        //String project_key=findProjectKeyByNum(project_num);
 		    	coordinatesList.add(coordinates);
 		    }
 		} catch (Exception e) {
