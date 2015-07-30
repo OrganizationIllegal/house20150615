@@ -437,7 +437,7 @@ public class BingMapController {
 				}
 			}
         }
-		//System.out.println(array2);
+		//System.out.println(array);
 		//System.out.println(array3);
 		//System.out.println(array2.size());
 		//System.out.println(array3.size());

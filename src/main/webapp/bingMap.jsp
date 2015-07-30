@@ -65,8 +65,7 @@ body{
 </style>
    <script type="text/javascript">
    $(function(){
-	   /* $("#_suggestion").hide(); */
-	   $("#keyWord").focus();
+	  $("#project_city").prop("disabled", true);
    });
    </script>
    <script type="text/javascript">

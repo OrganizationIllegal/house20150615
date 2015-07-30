@@ -883,7 +883,52 @@ public class SearchListDao extends BaseDao {
 			return leixingList;
 		} 
 	
-	
+	//根据经纪人编号得到经纪人的服务区域
+	public List<String> findFuwuAreaByNum(String broker_num){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		List<String> fuquAreaList = new ArrayList<String>();
+			try {
+				String sql = "select distinct a.area_name from area_info a join broker_service_area b  on a.area_num=b.area_code  join  broker_info c on b.broker_num=c.broker_num where c.broker_num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, broker_num);
+				rs = pstmt.executeQuery();
+			    while(rs.next()){
+			    	String area_name = rs.getString("area_name");
+			    	if((area_name!=null && !"".equals(area_name))){
+			    		fuquAreaList.add(area_name);
+			    	}
+			    }
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
+			return fuquAreaList;
+		} 
 	
 	
 	
