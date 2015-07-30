@@ -41,7 +41,16 @@ public class BingMapService {
 			JSONObject obj = new JSONObject();
 			obj.put("id", data.getId());
 			obj.put("gps", data.getGps()==null?"":data.getGps());
-			obj.put("project_name", data.getProject_name()==null?"":data.getProject_name());
+			String name = data.getProject_name()==null?"":data.getProject_name();
+			String fullName = data.getProject_name()==null?"":data.getProject_name();
+			if(name!=null && !"".equals(name)){
+				if(name.length()>8){
+					name = name.substring(0, 8)+"...";
+				}
+			}
+					
+			obj.put("project_name", name);
+			obj.put("project_name_full", fullName);
 			obj.put("project_img", data.getProject_img()==null?"":data.getProject_img());
 			obj.put("project_price", data.getProject_price()==null?"":data.getProject_price());
 			obj.put("project_num", data.getProject_num()==null?"":data.getProject_num());
@@ -83,7 +92,15 @@ public class BingMapService {
 			JSONObject obj = new JSONObject();
 			obj.put("id", data.getId());
 			obj.put("gps", data.getGps()==null?"":data.getGps());
+			String project_name_short = data.getProject_name()==null?"":data.getProject_name();
+			if(project_name_short!=null && !"".equals(project_name_short)){
+				if(project_name_short.length()>20){
+					project_name_short = project_name_short.substring(0, 20);
+				}
+			}
 			obj.put("project_name", data.getProject_name()==null?"":data.getProject_name());
+			obj.put("project_name_short", project_name_short);
+			
 			obj.put("project_img", data.getProject_img()==null?"":data.getProject_img());
 			obj.put("project_price", data.getProject_price()==null?"":data.getProject_price());
 			obj.put("project_num", data.getProject_num()==null?"":data.getProject_num());
@@ -92,8 +109,15 @@ public class BingMapService {
 			obj.put("project_zhou", data.getProject_zhou()==null?"":data.getProject_zhou());
 			obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
 			obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
-			obj.put("project_address", data.getProject_address()==null?"":data.getProject_address());
 			
+			/*String project_address_short = data.getProject_address()==null?"":data.getProject_address();
+			if(project_address_short!=null && !"".equals(project_address_short)){
+				if(project_address_short.length()>40){
+					project_address_short = project_address_short.substring(0, 40);
+				}
+			}
+			obj.put("project_address", data.getProject_address()==null?"":data.getProject_address());
+			obj.put("project_address_short", project_address_short);*/
 			obj.put("project_address_short", data.getProject_address_short()==null?"":data.getProject_address_short());
 			
 			obj.put("minArea", data.getMin_area()==0?0:data.getMin_area());
