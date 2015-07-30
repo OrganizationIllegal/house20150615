@@ -766,7 +766,7 @@ public class BingMapDao extends BaseDao {
 		List<HouseProject> coordinatesList=new ArrayList<HouseProject>();
 		try {
 			  if(!"".equals(area)&&!"".equals(city)&&!"".equals(addr)){
-			  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and project_area=? or project_city=? or project_address=?";
+			  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and project_area=? and project_city=? and project_address=?";
 			  //System.out.println("area city addr");
 			  pstmt = con.prepareStatement(sql);
 			  pstmt.setString(1, area);
@@ -788,19 +788,19 @@ public class BingMapDao extends BaseDao {
 						  pstmt = con.prepareStatement(sql);
 						  pstmt.setString(1, addr);
 						  }else if(!"".equals(area)&&!"".equals(city)&&"".equals(addr)){
-							  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and project_area=? or project_city=?";
+							  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and project_area=? and project_city=?";
 							 // System.out.println("area city");
 							  pstmt = con.prepareStatement(sql);
 							  pstmt.setString(1, area);
 							  pstmt.setString(2, city);
 							  }else if(!"".equals(area)&&"".equals(city)&&!"".equals(addr)){
-								  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and project_area=? or project_address=?";
+								  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and project_area=? and project_address=?";
 								  //System.out.println("area addr");
 								  pstmt = con.prepareStatement(sql);
 								  pstmt.setString(1, area);
 								  pstmt.setString(2, addr);
 								  }else if("".equals(area)&&!"".equals(city)&&!"".equals(addr)){
-									  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and project_city=? or project_address=?";
+									  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and project_city=? and project_address=?";
 									  //System.out.println("city addr");
 									  pstmt = con.prepareStatement(sql);
 									  pstmt.setString(1, city);
