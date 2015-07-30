@@ -165,9 +165,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<img alt="submit" src="images/service/tijiao.png" style="float:right;margin-right:10px;margin-top:5px;cursor:pointer;">
 	</c:if>
 	 <c:forEach items="${userList}"  var="item">
-	 <input type="text" id="name" name="name"  value=${item.nick_name} placeholder="姓名" style="width:200px;height:28px;margin-left:15px;margin-top:15px;font-size:15px;padding-left:10px;">
-	<input type="text" id="email" name="email" value=${item.email} placeholder="邮箱" style="width:200px;height:28px;margin-left:15px;margin-top:15px;font-size:15px;padding-left:10px;">
-	<input type="text" id="tel" name="tel" value=${item.tel}  placeholder="电话" style="width:200px;height:28px;margin-left:15px;margin-top:15px;font-size:15px;padding-left:10px;">
+	 <input type="text" id="name" name="name"  value="${item.nick_name}" placeholder="姓名" style="width:200px;height:28px;margin-left:15px;margin-top:15px;font-size:15px;padding-left:10px;">
+	<input type="text" id="email" name="email" value="${item.email}" placeholder="邮箱" style="width:200px;height:28px;margin-left:15px;margin-top:15px;font-size:15px;padding-left:10px;">
+	<input type="text" id="tel" name="tel" value="${item.tel}"  placeholder="电话" style="width:200px;height:28px;margin-left:15px;margin-top:15px;font-size:15px;padding-left:10px;">
 	<textarea type="text" rows="5" cols="20" id="liuyan" name="liuyan" placeholder="留言" style="width:200px;height:60px;margin-left:15px;margin-top:15px;font-size:15px;padding-left:10px;padding-top:10px;"></textarea>
 	<img alt="submit" src="images/service/tijiao.png" onclick="tijiao()" style="float:right;margin-right:10px;margin-top:5px;cursor:pointer;">
 	 </c:forEach>
