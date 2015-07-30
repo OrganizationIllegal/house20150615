@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kate.app.model.AreaInfo;
@@ -19,7 +20,8 @@ import com.kate.app.model.LeiXing;
 
 @Repository 
 public class BrokerInfoDao extends BaseDao {
-	
+	@Autowired
+	private SearchListDao searchListDao;
 	public List<String> getLiveRegionList(){
 		List<String> regionlist=new ArrayList<String>();
 		PreparedStatement ps=null;
@@ -598,6 +600,7 @@ public class BrokerInfoDao extends BaseDao {
 		    	String broker3=rs.getString("broker_code3");
 		    	if(broker1!=null && !"".equals(broker1)){
 		    		BrokerInfo brokerInfo1=findBrokerbyId(broker1);
+		    		
 		    		recommendbrokerList.add(brokerInfo1);
 		    	}
 		    	if(broker2!=null && !"".equals(broker2)){
@@ -640,6 +643,80 @@ public class BrokerInfoDao extends BaseDao {
 		return recommendbrokerList;
 		
 	}
+	//根据项目推荐经纪人 add 擅长服务类型
+		public List<BrokerInfoQuyu> getRecommendBroke2(String project_num){
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+			List<BrokerInfoQuyu> recommendbrokerList = new ArrayList<BrokerInfoQuyu>();
+			try {
+				String sql = "select * from area_recommend_broker where project_num = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, project_num);
+				  rs = pstmt.executeQuery();
+			    while(rs.next()){
+			    	String broker1=rs.getString("broker_code1");
+			    	String broker2=rs.getString("broker_code2");
+			    	String broker3=rs.getString("broker_code3");
+			    	if(broker1!=null && !"".equals(broker1)){
+			    		BrokerInfoQuyu brokerInfo1=findBrokerbyId2(broker1);
+			    		List<LeiXing> list = searchListDao.searchSericeListBroker(broker1);
+						if (list!=null && list.size()>0) {
+							brokerInfo1.setLeixingInfo(list);
+							System.out.println(list.size()+brokerInfo1.getBroker_name()+"fffffffffffff");
+						}
+			    		recommendbrokerList.add(brokerInfo1);
+			    	}
+			    	if(broker2!=null && !"".equals(broker2)){
+			    		BrokerInfoQuyu brokerInfo2=findBrokerbyId2(broker2);
+			    		List<LeiXing> list = searchListDao.searchSericeListBroker(broker2);
+						if (list!=null && list.size()>0) {
+							brokerInfo2.setLeixingInfo(list);
+							System.out.println(list.size()+brokerInfo2.getBroker_name()+"fffffffffffff");
+						}
+			    		recommendbrokerList.add(brokerInfo2);
+			    	}
+			    	if(broker3!=null && !"".equals(broker3)){
+			    		BrokerInfoQuyu brokerInfo3=findBrokerbyId2(broker3);
+			    		List<LeiXing> list = searchListDao.searchSericeListBroker(broker3);
+						if (list!=null && list.size()>0) {
+							brokerInfo3.setLeixingInfo(list);
+							System.out.println(list.size()+brokerInfo3.getBroker_name()+"fffffffffffff");
+						}
+			    		recommendbrokerList.add(brokerInfo3);
+			    	}
+			    }
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
+			return recommendbrokerList;
+			
+		}
 	
 	//根据区域推荐经纪人
 		public List<BrokerInfo> getRecommendBrokerByArea(String area_code){
@@ -700,12 +777,139 @@ public class BrokerInfoDao extends BaseDao {
 			return recommendbrokerList;
 			
 		}
+		//根据区域推荐经纪人 add 经纪人擅长类型
+				public List<BrokerInfoQuyu> getRecommendBrokerByArea2(String area_code){
+					Statement stmt = null;
+					ResultSet rs = null;
+					PreparedStatement pstmt = null;
+					List<BrokerInfoQuyu> recommendbrokerList=new ArrayList<BrokerInfoQuyu>();
+					try {
+						String sql = "select * from area_recommend_broker where area_code = ?";
+						pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, area_code);
+						  rs = pstmt.executeQuery();
+					    while(rs.next()){
+					    	String broker1=rs.getString("broker_code1");
+					    	String broker2=rs.getString("broker_code2");
+					    	String broker3=rs.getString("broker_code3");
+					    	if(broker1!=null){
+					    		BrokerInfoQuyu brokerInfo1=findBrokerbyId2(broker1);
+					    		List<LeiXing> list = searchListDao.searchSericeListBroker(broker1);
+								if (list!=null && list.size()>0) {
+									brokerInfo1.setLeixingInfo(list);
+									System.out.println(list.size()+brokerInfo1.getBroker_name()+"fffffffffffff");
+								}
+					    		recommendbrokerList.add(brokerInfo1);
+					    	}
+					    	if(broker2!=null){
+					    		BrokerInfoQuyu brokerInfo2=findBrokerbyId2(broker2);
+					    		List<LeiXing> list = searchListDao.searchSericeListBroker(broker2);
+								if (list!=null && list.size()>0) {
+									brokerInfo2.setLeixingInfo(list);
+									System.out.println(list.size()+brokerInfo2.getBroker_name()+"fffffffffffff");
+								}
+					    		recommendbrokerList.add(brokerInfo2);
+					    	}
+					    	if(broker3!=null){
+					    		BrokerInfoQuyu brokerInfo3=findBrokerbyId2(broker3);
+					    		List<LeiXing> list = searchListDao.searchSericeListBroker(broker3);
+								if (list!=null && list.size()>0) {
+									brokerInfo3.setLeixingInfo(list);
+									System.out.println(list.size()+brokerInfo3.getBroker_name()+"fffffffffffff");
+								}
+					    		recommendbrokerList.add(brokerInfo3);
+					    	}
+					    }
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					finally{
+						if(rs != null){   // 关闭记录集   
+					        try{   
+					            rs.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					          }   
+					      if(stmt != null){   // 关闭声明   
+					        try{   
+					            stmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+					      if(pstmt != null){   // 关闭声明   
+						        try{   
+						            pstmt.close() ;   
+						        }catch(SQLException e){   
+						            e.printStackTrace() ;   
+						        }   
+						     } 
+
+			        }
+					return recommendbrokerList;
+					
+				}
 	public BrokerInfo findBrokerbyId(String broker_code){
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 
 		BrokerInfo brokerInfo=new BrokerInfo();
+		try {
+			String sql = "select * from broker_info where broker_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, broker_code);
+			  rs = pstmt.executeQuery();
+			
+		    while(rs.next()){
+		    	brokerInfo.setId(Integer.parseInt(rs.getString("id")));
+		    	brokerInfo.setBroker_num(rs.getString("broker_num"));
+		    	brokerInfo.setBroker_name(rs.getString("broker_name"));
+		    	brokerInfo.setBroker_img(rs.getString("broker_img"));
+		    	brokerInfo.setBroker_experience(Integer.parseInt(rs.getString("broker_experience")));
+		    	brokerInfo.setBroker_language(rs.getString("broker_language"));
+		    	brokerInfo.setBroker_region(rs.getString("broker_region"));
+		    }
+		 } catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return brokerInfo;
+		
+	}
+	
+	public BrokerInfoQuyu findBrokerbyId2(String broker_code){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
+		BrokerInfoQuyu brokerInfo=new BrokerInfoQuyu();
 		try {
 			String sql = "select * from broker_info where broker_num = ?";
 			pstmt = con.prepareStatement(sql);
