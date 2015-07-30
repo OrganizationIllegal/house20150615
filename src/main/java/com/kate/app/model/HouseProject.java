@@ -7,6 +7,7 @@ public class HouseProject {
 	private String project_name;
 	private String project_img;
 	private String project_logo;
+	
 	public String getProject_logo() {
 		return project_logo;
 	}

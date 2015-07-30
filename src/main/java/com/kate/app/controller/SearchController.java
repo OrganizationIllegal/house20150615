@@ -365,6 +365,7 @@ public class SearchController {
 		    	gps = item.getGps();
 		    	String project_area=item.getProject_area();
 		    	String project_type=item.getProject_type();
+		    	String project_city = item.getProject_city();
 		    	String xinkaipan1=null;
 			    String huaren1=null;
 			    String remen1=null;
@@ -389,7 +390,7 @@ public class SearchController {
 		    		xianfang1 = p.getXianfang();
 		    		maidi1 = p.getMaidi();
 		    	}
-		    	SearchList data=new SearchList(id,project_area,project_type,gps,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,project_lan_en,mianji,project_address,project_logo,developer_id_name,xinkaipan1,huaren1,remen1,xuequ1,baozu1,daxue1,center1,traffic1,xianfang1,maidi1,project_price_int_qi,project_desc);
+		    	SearchList data=new SearchList(id,project_city,project_area,project_type,gps,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,project_lan_en,mianji,project_address,project_logo,developer_id_name,xinkaipan1,huaren1,remen1,xuequ1,baozu1,daxue1,center1,traffic1,xianfang1,maidi1,project_price_int_qi,project_desc);
 		    	searchList.add(data);
 			}
 			seachListResult = searchList;

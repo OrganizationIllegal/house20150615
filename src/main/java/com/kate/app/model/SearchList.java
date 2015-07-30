@@ -257,7 +257,7 @@ public class SearchList {
 		this.project_address=project_address;
 		
 	}
-	public SearchList(int id, String project_area,String project_type,String gps, String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String project_lan_en,String mianji,String project_address,String project_logo,String developer_id_name ,String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue, String center,String traffic,String xianfang,String maidi,int project_price_int_qi,String project_desc){
+	public SearchList(int id, String project_city, String project_area,String project_type,String gps, String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String project_lan_en,String mianji,String project_address,String project_logo,String developer_id_name ,String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue, String center,String traffic,String xianfang,String maidi,int project_price_int_qi,String project_desc){
 		this.id=id;
 		this.project_num = project_num;
 		this.project_img=project_img;
@@ -272,7 +272,7 @@ public class SearchList {
 		this.project_lan_en=project_lan_en;
 		this.project_area=project_area;
 		this.project_type=project_type;
-		
+		this.project_city = project_city;
 		this.mianji=mianji;
 		this.project_address=project_address;
 		this.project_logo=project_logo;
