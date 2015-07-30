@@ -1706,7 +1706,7 @@ var url = window.location.href;
 var resultUrl = url.substring(url.lastIndexOf('/'));
 
 var kk = <%= Judge%>;
-alert(kk)
+//alert(kk)
 
 $(function() {
 	$("#xiangmuZhuce").click(function(){
@@ -1750,7 +1750,7 @@ function pop3(){
 }
 
 function popInfo(){
-	alert("fewfw")
+	//alert("fewfw")
  if(kk==0){
 	 $('#registernewPro').modal('show');
  }
@@ -1884,8 +1884,8 @@ function popInfo(){
 	  var email1=$("#email1").val();
 	  var tel=$("#tel1").val();
 	  var message_content=$("#message_content1").val();
-	  alert(username);
-	  alert(message_content);
+	  //alert(username);
+	  //alert(message_content);
 	  $.ajax({
  			type:'GET',
  			dataType:'json',
@@ -1916,8 +1916,8 @@ function popInfo(){
 	  var email1=$("#email2").val();
 	  var tel=$("#tel2").val();
 	  var message_content=$("#message_content2").val();
-	  alert(username);
-	  alert(message_content);
+	 // alert(username);
+	  //alert(message_content);
 	  $.ajax({
  			type:'GET',
  			dataType:'json',
@@ -1948,8 +1948,8 @@ function popInfo(){
 	  var email1=$("#email3").val();
 	  var tel=$("#tel3").val();
 	  var message_content=$("#msg3").val();
-	  alert(username);
-	  alert(message_content);
+	  //alert(username);
+	  //alert(message_content);
 	  $.ajax({
  			type:'GET',
  			dataType:'json',
@@ -1981,8 +1981,8 @@ function popInfo(){
 	  var email1=$("#email4").val();
 	  var tel=$("#tel4").val();
 	  var message_content=$("#msg4").val();
-	  alert(username);
-	  alert(message_content);
+	  //alert(username);
+	  //alert(message_content);
 	  $.ajax({
  			type:'GET',
  			dataType:'json',
@@ -2015,8 +2015,8 @@ function popInfo(){
 	  var email1=$("#email5").val();
 	  var tel=$("#tel5").val();
 	  var message_content=$("#msg5").val();
-	  alert(username);
-	  alert(message_content);
+	  //alert(username);
+	  //alert(message_content);
 	  $.ajax({
  			type:'GET',
  			dataType:'json',
