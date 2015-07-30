@@ -73,9 +73,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			 	    <!--<input type="text" class="form-control" name="type" placeholder="类型">-->
 			 	   
 					<select  style="width:200px;height:32px" value="" name="type" class="form-control" >
-						<option>类型</option>
+						  <option>类型</option>
         					 <c:forEach items="${typeList}" var="item">
-        					 <option>${item}</option>
+        					     <option>${item}</option>
        					    </c:forEach>
 					</select>
 			 	 </div>
