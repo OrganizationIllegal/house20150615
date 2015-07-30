@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -265,7 +266,7 @@ body{
 	                if(items!=null){
 	                	for(var j=0;j<items.length;j++){
 	                    	html+=" <div id='firsthouse' style='border:1px solid #E6E6FA;padding:0 5 10 5'>"
-	                    	html+="<div style='padding-top:11px;padding-left:4px'><span style='font-family:微软雅黑;font-size:13px;font-weight:bolder'>"+items[j].project_address+"</span></div>";
+	                    	html+="<div style='padding-top:11px;padding-left:4px'><span style='font-family:微软雅黑;font-size:13px;font-weight:bolder' title='"+items[j].project_address+"' >"+items[j].project_address_short+"</span></div>";
 	                		html+="<hr style='margin-top:6px;margin-bottom:8px'/>"
 	                    	html+="<div class='media' style='padding-left:4px'> ";
 	                    	html+="<a class='pull-left' href='/Index?proNum="+items[j].project_num+"'"+" target='_parent'>";
@@ -296,7 +297,7 @@ body{
            if(items!=null){
            	for(var j=0;j<items.length;j++){
            		var imgUrl = <%=application.getInitParameter("imagedir")%>/+items[j].project_img; 
-               	html+=" <div class='c-fix f-l div_node'><a class='c-fix f-l f-yahei s-12 node_address'>"+items[j].project_address+"</a>";
+               	html+=" <div class='c-fix f-l div_node'><a class='c-fix f-l f-yahei s-12 node_address' title='"+items[j].project_address+"'>"+items[j].project_address_short+"</a>";
                	html+="<a href='/Index?proNum="+items[j].project_num+"'"+" target='_parent'>";
            		
                	html+="<img class='c-fix f-l node_img'  src='"+imgUrl+"' style='width:160px;height:100px' ></img></a>";
@@ -307,7 +308,7 @@ body{
                	html+="<a class='c-fix f-l f-yahei s-12 node_title'>最少</a>";
                	html+="<a class='f-r f-yahei s-12 node_val'>$"+items[j].project_min_price+"</a>";
                	html+="<a class='c-fix f-l f-yahei s-12 node_title'>面积</a>";
-               	html+="<a class='f-r f-yahei s-12 node_val'>"+items[j].minArea+"+"+items[j].maxArea+"</a>";
+               	html+="<a class='f-r f-yahei s-12 node_val'>"+items[j].minArea+"-"+items[j].maxArea+"</a>";
                /* 	html+="<a class='c-fix f-l f-yahei s-12 node_title'>返利</a>";
                	html+="<a class='f-r f-yahei s-12 node_val'>"+items[j].return_money+"</a>"; */
                	html+="<a class='c-fix f-l f-yahei s-12 node_title'>起价</a>";
@@ -395,19 +396,19 @@ body{
                 <div class="c-fix f-l f-yahei" style="margin-left:30px;margin-top:8px;">
 	               
 	                <select data-placeholder="请选择城市..." class="chosen-select" id="project_city" name="project_city" style="width:200px;" tabindex="4">
-		 	            <option value=""></option>
+		 	            <option value="">请选择城市...</option>
 		  	            <c:forEach items="${cityNameSet}" var="item">
         		   		<option value="${item}">${item}</option>
    					    </c:forEach>
 	                </select>
 	                 <select data-placeholder="请选择区域..." class="chosen-select" id="project_area" name="project_area" style="width:200px;" tabindex="4">
-		 	            <option value=""></option>
+		 	            <option value="">请选择区域...</option>
 		  	            <c:forEach items="${areaNameSet}" var="item">
         		   		<option value="${item}">${item}</option>
    					    </c:forEach>
 	                </select>
 	                <select data-placeholder="请选择地址..." class="chosen-select" id="project_address" name="project_address" style="width:200px;" tabindex="4">
-		 	            <option value=""></option>
+		 	            <option value="">请选择地址...</option>
 		  	            <c:forEach items="${addressNameSet}" var="item">
         		   		<option value="${item}">${item}</option>
    					    </c:forEach>
@@ -421,7 +422,7 @@ body{
 			<div class="c-fix f-l div3" style="-height:840px;overflow-y:auto;overflow-x:hidden;" id="left">
 			 <c:forEach var="item" items="${bingMapList}"> 
 				<div class="c-fix f-l div_node">
-					<a class="c-fix f-l f-yahei s-12 node_address">${item.project_address}</a>
+					<a class="c-fix f-l f-yahei s-12 node_address"  title="${item.project_address}">${item.project_address_short}</a>
 					<a href="/Index?proNum=${item.project_num}" target="blank">
 					<img class="c-fix f-l node_img" src="<%=application.getInitParameter("imagedir")%>/${item.project_img}" style="width:160px;height:100px" ></img>
 					</a>

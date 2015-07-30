@@ -832,7 +832,7 @@ public class SearchListDao extends BaseDao {
 		List<LeiXing> leixingList = new ArrayList<LeiXing>();
 		LeiXing temp = null;
 			try {
-				String sql = "select distinct type_image from broker_interested_type a, interest_type b where a.interested_num = b.type_num and a.broker_num=? ";
+				String sql = "select  type_image from broker_interested_type a, interest_type b where a.interested_num = b.type_num and a.broker_num=? ";
 				
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, broker_num);

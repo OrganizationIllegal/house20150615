@@ -1,5 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -144,8 +146,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	     <c:if test="${!empty item.areaList}">
                 	     <div style="float:right">
                 	         <img  src="/images/serviceteam/b3.png"/>
-                	         <c:forEach var="item" items="${item.areaList }"  varStatus="stat"> 
-                	   	        <span style="padding-left:5px">${item}</span>
+
+                	         <c:forEach var="item1" items="${item.areaList }"  varStatus="stat"> 
+                	   	        <span style="padding-left:5px">${item1}</span>
+
                 	         </c:forEach>
                 	     </div>
                 	     </c:if>
@@ -153,9 +157,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	   <!-- <hr style="height:1px;border:none;border-top:2px dashed #666666;margin-top:0px;margin-bottom:0px;"/> -->
                 	    <img src="/images/serviceteam/b5.jpg">
                 	   <div style="font-size:13px;"><div style="float:left;width:235px"><img  src="/images/serviceteam/b4.png"/>
-                	   <span style="padding-left:10px">${item.broker_language}</span></div><span>
-                	   <c:forEach var="item" items="${item.leixingInfo }"  varStatus="stat"> 
-                	   	  <img  src="<%=application.getInitParameter("imagedir")%>/${item.leixingImg }" width=26px height=30px/>
+
+                	   <span style="padding-left:10px;height:20px;width:50px;">${item.broker_language}</span></div>
+                	   <span style="height:20px;width:50px;">
+                	   <c:forEach var="item2" items="${item.leixingInfo }"  varStatus="stat"> 
+                	   	  <img  src="<%=application.getInitParameter("imagedir")%>/${item2.leixingImg }" width=26px height=30px/>
+
                 	   </c:forEach>
                 	   
                 	   </span></div>
@@ -364,7 +371,7 @@ var pageNum = (totleSize+9)/10;
                 	   // html+="<hr style='height:1px;border:none;border-top:2px dashed #666666;margin-top:0px;margin-bottom:0px;' />";
                 	    html+="<img src='/images/serviceteam/b5.jpg'>";
                 	    html+="<div style='font-size:13px;' ><div style='float:left;width:235px'><img  src='/images/serviceteam/b4.png'/><span style='padding-left:10px'>"+items[j].broker_language+"</span></div><span>";
-                	    for(var k = 0; k < items[j].leixing_list.length; k++){
+                	    for(var k = 0; k < items[j].leixingInfo.length; k++){
                 	    	html+="<img  src='<%=application.getInitParameter("imagedir")%>/"+items[j].leixing_list[k].leixingImg+"' width=26px height=30px/>";
                 	    }
                 	    

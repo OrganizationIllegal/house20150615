@@ -619,8 +619,23 @@ var e=$('#input2').val();
 		</div>
 		<c:if test="${!empty HouseInfoList }">
 		
+		<c:choose>
+					<c:when test="${fn:length(HouseInfoList)==1}">
+						<div class="c-fix  bkg3"  name="loc_hx" id="loc_hx" style="margin:0 auto;height:222px;width:990px">
+					</c:when>
+					<c:when test="${fn:length(HouseInfoList)==2}">
+						<div class="c-fix  bkg3"  name="loc_hx" id="loc_hx" style="margin:0 auto;height:365px;width:990px">
+					</c:when>
+					<c:when test="${fn:length(HouseInfoList)==3}">
+						<div class="c-fix  bkg3"  name="loc_hx" id="loc_hx" style="margin:0 auto;height:319px;width:990px">
+					</c:when>
+					
+					<c:otherwise>
+						<div class="c-fix  bkg3"  name="loc_hx" id="loc_hx" style="margin:0 auto;height:365px;width:990px">
+					</c:otherwise>
+					
+				</c:choose>
 		
-		<div class="c-fix  bkg3"  name="loc_hx" id="loc_hx" style="margin:0 auto;height:365px;width:990px">
 			<div class="c-fix p_panel">
 				<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw">户型及价格</a>
 				<c:forEach var="obj" items="${HouseInfoList}" varStatus="stat"> 

@@ -30,6 +30,9 @@ public class BingMapDao extends BaseDao {
 			  rs = stmt.executeQuery(sql);
 		    int id=0;
 		    String project_address=null;
+		    //对项目地址进行截取
+		    String project_address_short=null;
+		    
 		    String project_img=null;
 		    String project_num=null;
 		    String project_name=null;
@@ -69,9 +72,12 @@ public class BingMapDao extends BaseDao {
 		    	else{
 		    		project_price_int_qi="0";
 		    	}
+		    	//对项目地址进行截取
+		    	project_address_short=project_address.length()>40?project_address.substring(0, 40):project_address;
+		    	
 		    	//第一个项目关键字
 		    	project_key=findProjectKeyByNum(project_num);
-		        BingMapVo bingMapVo=new BingMapVo(id,project_img,project_num,project_address, project_name, project_price,minarea, maxarea, project_sales_remain, project_price_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key);
+		        BingMapVo bingMapVo=new BingMapVo(id,project_img,project_num,project_address, project_name, project_price,minarea, maxarea, project_sales_remain, project_price_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key,project_address_short);
 		    	bingMapList.add(bingMapVo);
 		    }
 		    
@@ -247,6 +253,7 @@ public class BingMapDao extends BaseDao {
 		   /* int project_price_int_qi=0;*/
 		    String project_price_int_qi=null;
 		    String project_key=null;
+		    String project_address_short=null;
 		    while(rs.next()){
 		    	id=rs.getInt("id");
 		    	project_img=rs.getString("project_img");
@@ -270,7 +277,9 @@ public class BingMapDao extends BaseDao {
 		    		project_price_int_qi="0";
 		    	}
 		    	project_key=findProjectKeyByNum(project_num);
-		    	BingMapVo bingMapVo=new BingMapVo(id,project_img,project_num,project_address, project_name, project_price,minarea, maxarea, project_sales_remain, project_price_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key);
+		    	//对项目地址进行截取
+		    	project_address_short=project_address.length()>40?project_address.substring(0, 40):project_address;
+		    	BingMapVo bingMapVo=new BingMapVo(id,project_img,project_num,project_address, project_name, project_price,minarea, maxarea, project_sales_remain, project_price_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key,project_address_short);
 		    	bingMapList.add(bingMapVo);
 		    }
 		} catch (Exception e) {
@@ -341,6 +350,7 @@ public class BingMapDao extends BaseDao {
 		   /* int project_price_int_qi=0;*/
 		    String project_price_int_qi=null;
 		    String project_key=null;
+		    String project_address_short=null;
 		    while(rs.next()){
 		    	id=rs.getInt("id");
 		    	project_img=rs.getString("project_img");
@@ -364,7 +374,9 @@ public class BingMapDao extends BaseDao {
 		    		project_price_int_qi="0";
 		    	}
 		        project_key=findProjectKeyByNum(project_num);
-		        BingMapVo  bingMapVo=new BingMapVo(id,project_img,project_num,project_address, project_name, project_price,minarea, maxarea, project_sales_remain, project_price_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key);
+		      //对项目地址进行截取
+		    	project_address_short=project_address.length()>40?project_address.substring(0, 40):project_address;
+		        BingMapVo  bingMapVo=new BingMapVo(id,project_img,project_num,project_address, project_name, project_price,minarea, maxarea, project_sales_remain, project_price_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key,project_address_short);
 		    	bingMapList.add(bingMapVo);
 		    }
 		} catch (Exception e) {
@@ -433,6 +445,7 @@ public class BingMapDao extends BaseDao {
 		   /* int project_price_int_qi=0;*/
 		    String project_price_int_qi=null;
 		    String project_key=null;
+		    String project_address_short=null;
 		    while(rs.next()){
 		    	id=rs.getInt("id");
 		    	project_img=rs.getString("project_img");
@@ -456,7 +469,9 @@ public class BingMapDao extends BaseDao {
 		    		project_price_int_qi="0";
 		    	}
 		        project_key=findProjectKeyByNum(project_num);
-		        BingMapVo  bingMapVo=new BingMapVo(id,project_img,project_num,project_address, project_name, project_price,minarea, maxarea, project_sales_remain, project_price_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key);
+		        //对项目地址进行截取
+		    	project_address_short=project_address.length()>40?project_address.substring(0, 40):project_address;
+		        BingMapVo  bingMapVo=new BingMapVo(id,project_img,project_num,project_address, project_name, project_price,minarea, maxarea, project_sales_remain, project_price_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key,project_address_short);
 		    	bingMapList.add(bingMapVo);
 		    }
 		} catch (Exception e) {
@@ -644,7 +659,12 @@ public class BingMapDao extends BaseDao {
 		    	coordinates.setProject_zhou(rs.getString("project_zhou"));
 		    	coordinates.setProject_city(rs.getString("project_city"));
 		    	coordinates.setProject_nation(rs.getString("project_nation"));
+		    	
 		    	coordinates.setProject_address(rs.getString("project_address"));
+		    	String project_address=rs.getString("project_address");
+		    	String project_address_short=project_address.length()>40?project_address.substring(0, 40):project_address;
+		    	coordinates.setProject_address_short(project_address_short);
+		    	
 		    	coordinates.setProject_area(rs.getString("project_area"));
 		    	coordinates.setProject_price_int_qi(rs.getInt("project_price_int_qi"));
 		    	coordinates.setProject_type(rs.getString("project_type"));
