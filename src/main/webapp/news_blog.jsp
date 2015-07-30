@@ -130,7 +130,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                           
                           </li>
                         
-                        <li class="media" style="margin-top:30px;font-size:13px;">
+                        <li class="media" style="margin-top:30px;font-size:13px;border-bottom-width: 1px; border-bottom-style: solid;
+		  border-bottom-color: rgba(0,0,0,0);">
                            <span>
 	                            <c:choose>
 			                        <c:when test="${type==0}">
@@ -143,14 +144,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                            	</span>
                           
                           </li>
-                         <li class="media">
+                         <!-- <li class="media">
                            <a href="/BlogList?type='退税技巧'" target="_blank"><span style="font-family:微软雅黑; color:rgba(140, 181, 225, 1); font-size: 13px;padding-right: 10px;text-decoration: underline;">退税技巧</span></a>
                             <a href="/BlogList?type='房地产'" target="_blank"><span style="font-family:微软雅黑; color:rgba(140, 181, 225, 1); font-size: 13px;padding-right: 10px;text-decoration: underline;">个人投资</span></a>
                          		<a href="/BlogList?type='市场'" target="_blank"><span style="font-family:微软雅黑; color:rgba(140, 181, 225, 1);font-size: 13px;padding-right: 10px;text-decoration: underline; ">房地产</span></a>
                          <a href="/BlogList?type=''" target="_blank"><span style="font-family:微软雅黑; color:rgba(140, 181, 225, 1); font-size: 13px;padding-right: 10px;text-decoration: underline;">市场</span></a>
-                          </li>
+                          </li> -->
                         
-                         <li class="media" style="margin-top:15px;">
+                         <li class="media" style="margin-top:15px;border-bottom-width: 1px; border-bottom-style: solid;
+		  border-bottom-color: rgba(0,0,0,0);">
                          
                           <!--  <a href="/BlogList" target="_blank"><span style="font-family:微软雅黑; color:rgba(140, 181, 225, 1);font-size:12px; ">←返回到所有博客文章</span></a> -->
                           <c:choose>
@@ -175,7 +177,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="" style="padding-left: 0px;font-size:13px;font-family:'微软雅黑';">
               
               <div class=""> 
-              	<div style="padding-bottom: 5px;font-size:13px;font-family:'微软雅黑';">置业<span style="width: 230px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;margin-left:30px;"></span></div>
+              	<div style="padding-bottom: 5px;font-size:13px;font-family:'微软雅黑';">置业<span style="width: 283px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
 	               	<div style="padding-bottom: 5px;font-size:13px;font-family:'微软雅黑';padding-top:5px;"><a href="/ZhiYeInfo" style="display:block;">置业指导</a></div>
 	                <div style="font-size:13px;font-family:'微软雅黑';"><a href="/BlogList">新闻博客</a></div>
               </div>
@@ -183,7 +185,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="" style="padding-left: 0px;padding-top: 30px;font-size:13px;font-family:'微软雅黑';">
               
               <div class=""> 
-				<div style="padding-bottom: 9px;padding-top: 9px;">分类浏览&nbsp;<span style="width: 230px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
+				<div style="padding-bottom: 9px;padding-top: 9px;">分类浏览&nbsp;<span style="width: 253px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
                 <select id="type" style="  width: 283px;height: 30px;">
                     <option>请选择一个类别</option>
                     <c:choose>
@@ -206,8 +208,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="" style="padding-top: 58px;padding-left: 0px;font-size:13px;font-family:'微软雅黑';">
               
               <div class=""> 
-              	<div style="padding-bottom: 11px;">最新新闻博客&nbsp;<span style="width: 205px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
-                <ul class="media-list">
+              	<div style="padding-bottom: 11px;">最新新闻博客&nbsp;<span style="width: 228px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
+                <ul class="media-list" style="width:310px">
 
                 <c:forEach items="${newsList}" var="item" varStatus="status">
                 		 <li class="media">
@@ -218,6 +220,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                               </div>
                               <div class="media-body" style="padding-left:10px;padding-top:5px;">
                                 <a href="/Detail?id=${item.id}&type=1"><div class="media-heading" style="font-size:13px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${item.news_title}</div></a>
+              
                                 <div style="font-size:11px;">${item.news_people}</div>
                                 
                               </div>
@@ -234,8 +237,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="" style="  padding-top: 41px;padding-left: 0px;font-size:13px;font-family:'微软雅黑';">
               
               <div class=""> 
-              	<div style="padding-bottom: 11px;">最新置业指导&nbsp;<span style="width: 259px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
-                <ul class="media-list">
+              	<div style="padding-bottom: 11px;">最新置业指导&nbsp;<span style="width: 252px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
+                <ul class="media-list" style="width:310px">
 
                 	 <c:forEach items="${lastestList}" var="item" varStatus="status">
                 	 	 <li class="media">
