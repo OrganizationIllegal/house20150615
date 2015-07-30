@@ -171,28 +171,28 @@ public class SearchListDao extends BaseDao {
 			if(remen1.equals("1")){
 				sql+=" and p.remen='1'";//閫変腑
 			}
-			if(youxiu1=="1"){
+			if(youxiu1.equals("1")){
 				sql+=" and p.xuequ='1'";//閫変腑
 			}
-			if(center1=="1"){
+			if(center1.equals("1")){
 				sql+=" and p.center='1'";//閫変腑
 			}
-			if(baozu1=="1"){
+			if(baozu1.equals("1")){
 				sql+=" and p.baozu='1'";//閫変腑
 			}
-			if(huaren1=="1"){
+			if(huaren1.equals("1")){
 				sql+=" and p.huaren='1'";//閫変腑
 			}
-			if(zuixin1=="1"){
+			if(zuixin1.equals("1")){
 				sql+=" and p.maidi='1'";//閫変腑
 			}
-			if(daxue1=="1"){
+			if(daxue1.equals("1")){
 				sql+=" and p.daxue='1'";//閫変腑
 			}
-			if(xianfang1=="1"){
+			if(xianfang1.equals("1")){
 				sql+=" and p.xianfang='1'";//閫変腑
 			}
-			if(traffic1=="1"){
+			if(traffic1.equals("1")){
 				sql+=" and p.traffic='1'";//閫変腑
 			}
 			
