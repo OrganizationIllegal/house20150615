@@ -478,7 +478,11 @@ public class SearchController {
 					}
 				}
 	        }
-			//System.out.println(array);
+			/*System.out.println(array);
+			System.out.println(array2);
+			System.out.println(array3);
+			System.out.println(array2.size());
+			System.out.println(array3.size());*/
 			json.put("List", array);
 			json.put("List2", array2);
 			json.put("List3", JSONArray.parseArray(JSON.toJSONString(array3, SerializerFeature.DisableCircularReferenceDetect)));
@@ -545,7 +549,7 @@ public class SearchController {
 				obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
 				obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
 				obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
-				obj.put("project_price_int_qi", data.getProject_price_int_qi()==0?0:df.format(data.getProject_price_int_qi()));
+				obj.put("project_price_int_qi", data.getProject_price_int_qi()==0?"N/A":df.format(data.getProject_price_int_qi()));
 				obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
 				array.add(obj);
 			}
