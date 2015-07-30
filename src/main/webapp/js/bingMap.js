@@ -105,7 +105,7 @@
           
       function addPushpin()
       {
-		alert("ffff")
+		//alert("ffff")
 		 $.ajax({
 		 	    type: "GET",
 		 		dateType: "json",
