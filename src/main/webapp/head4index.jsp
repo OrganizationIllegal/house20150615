@@ -103,6 +103,7 @@
 				<a id="t4" href="/ZhiYeInfo" class="f-l f-yahei s-14 main_nav cp fw">置业指导</a>
 				<a id="t5" href="/BlogList" class="f-l f-yahei s-14 main_nav cp fw">海外新闻</a>
 				<a id="t6" href="/AboutUs.jsp" class="f-l f-yahei s-14 main_nav cp fw">关于我们</a>
+				
 <%
             String username = null;
        		if(request.getSession().getAttribute("username")!=null){
@@ -135,13 +136,15 @@
 	       	 }
 	    %>
 	    
-		<li><a href="${pageContext.request.contextPath}/logout.jsp">退出登录</a></li>
+		
+		<li><a href="<%-- ${pageContext.request.contextPath}/logout.jsp --%>" id="logout">退出登录</a></li>
 	</ul> 
 </div>
 	       		</div></div>
 	       		<%
        			}
 	         	else{
+	         		
 	      		%>
 					<a class="f-r s-14 f-yahei main_reg fw cp" id="register2" style="margin-right:30px;">注册</a>
 					<a class="f-r s-14 f-yahei main_sep fw cp">/</a>
@@ -339,7 +342,22 @@ var role;
                   $("#cancel").click(function() {
                     	$("#telemail").val("").focus();
                     	$("#pwd").val("");
-                    });   
+                    });  
+                  
+                  $("#logout").click(function(){
+                	  $.ajax({
+                		  type:'GET',
+                		  url:'/logout?url='+href,
+                		  dataType:'json',
+                		  success:function(data){
+                			  if(data.flag==1){
+                				  window.location.href= href;
+                			  }
+                		  }
+                		  
+                	  });
+                })
+                  
         })
 
 function judge(username, password){
