@@ -412,7 +412,7 @@ body{
 	                </select>
                 </div>
                 <div class="f-l f-yahei btn_search cp" onclick="addPushpinsearch()">搜索</div>
-				<a class="f-r f-yahei s-14 btn cp hover" style="padding:4px 6px;border:2px solid rgb(245,161,27)" href="/searchList01.jsp">列表找房</a>
+				<a class="f-r f-yahei s-14 btn cp hover" style="padding:4px 6px;border:2px solid rgb(245,161,27)" href="/SearchList">列表找房</a>
 				<a class="f-r f-yahei s-14 btn btn_sel cp hover" style="padding:4px 6px"  href="#">地图找房</a>
 				<!-- <select class="f-r sel" style=" background: none;border: none;font-family: 微软雅黑;">
 					<option>交房时间</option>
@@ -449,7 +449,6 @@ body{
 					</div>
 				</div>
 			 </c:forEach> 
-				<
 			</div>
 			<div class="f-l div4" id="right2">
 				<div  id="myMap" style="position:relative;width:100%;height:100%;"></div>
