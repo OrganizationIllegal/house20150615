@@ -661,13 +661,8 @@ public class BingMapDao extends BaseDao {
 		    	coordinates.setProject_high_price(rs.getString("project_high_price"));
 		    	coordinates.setProject_zhou(rs.getString("project_zhou"));
 		    	coordinates.setProject_city(rs.getString("project_city"));
-		    	coordinates.setProject_nation(rs.getString("project_nation"));
-		    	
-		    	coordinates.setProject_address(rs.getString("project_address"));
-		    	String project_address=rs.getString("project_address");
-		    	String project_address_short=project_address.length()>40?project_address.substring(0, 40):project_address;
-		    	coordinates.setProject_address_short(project_address_short);
-		    	
+		    	coordinates.setProject_nation(rs.getString("project_nation"));	    	
+		    	coordinates.setProject_address(rs.getString("project_address"));		    	
 		    	coordinates.setProject_area(rs.getString("project_area"));
 		    	coordinates.setProject_price_int_qi(rs.getInt("project_price_int_qi"));
 		    	coordinates.setProject_type(rs.getString("project_type"));
