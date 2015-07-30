@@ -122,6 +122,11 @@ public class SearchController {
 				if (list!=null && list.size()>0) {
 					data.setLeixingInfo(list);
 				}
+				//得到该经纪人的服务区域
+				List<String> fuwuArea = searchListDao.findFuwuAreaByNum(broker_num);
+				if (fuwuArea!=null && fuwuArea.size()>0) {
+					data.setAreaList(fuwuArea);
+				}
 				
 			}
 			resultListQuyu.add(data);

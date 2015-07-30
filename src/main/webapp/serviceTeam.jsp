@@ -136,17 +136,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	   <div style="font-size:13px; width:314px; height:20px; overflow:hidden;"><span style="padding-left:32px;font-style: italic;">${item.introduction}</span></div>
                 	  <!--  <hr style="height:1px;border:none;border-top:2px dashed #666666;margin-top:0px;margin-bottom:0px;"/> -->
                 	    <img src="/images/serviceteam/b5.jpg">
-                	  <div style="font-size:13px;"><img  src="/images/serviceteam/b3.png"/>
-                	  <span style="padding-left:10px">${item.broker_region}</span>
-                	<%--   <span style="padding-left:10px">${item.brokerServiceArea1}</span> --%>
-                	  
+                	  <div style="font-size:13px;">
+                	     <div style="float:left"> 
+                	         <img  src="/images/serviceteam/b3.png"/>
+                	         <span style="padding-left:10px">${item.broker_region}</span>
+                	     </div>
+                	     <c:if test="${!empty item.areaList}">
+                	     <div style="float:right">
+                	         <img  src="/images/serviceteam/b3.png"/>
+                	         <c:forEach var="item" items="${item.areaList }"  varStatus="stat"> 
+                	   	        <span style="padding-left:5px">${item}</span>
+                	         </c:forEach>
+                	     </div>
+                	     </c:if>
                 	  </div>
                 	   <!-- <hr style="height:1px;border:none;border-top:2px dashed #666666;margin-top:0px;margin-bottom:0px;"/> -->
                 	    <img src="/images/serviceteam/b5.jpg">
                 	   <div style="font-size:13px;"><div style="float:left;width:235px"><img  src="/images/serviceteam/b4.png"/>
                 	   <span style="padding-left:10px">${item.broker_language}</span></div><span>
-                	 <c:forEach var="item" items="${item.leixingInfo }"  varStatus="stat"> 
-                	   	<img  src="<%=application.getInitParameter("imagedir")%>/${item.leixingImg }" width=26px height=30px/>
+                	   <c:forEach var="item" items="${item.leixingInfo }"  varStatus="stat"> 
+                	   	  <img  src="<%=application.getInitParameter("imagedir")%>/${item.leixingImg }" width=26px height=30px/>
                 	   </c:forEach>
                 	   
                 	   </span></div>
