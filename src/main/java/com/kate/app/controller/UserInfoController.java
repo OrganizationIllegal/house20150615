@@ -60,7 +60,21 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		}
 		return "/overseas.jsp"; 
 	}
-	
+	/*瀵拷鐝涚拹锔藉煕*/
+	@RequestMapping({ "/logout" })
+	public void logout(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+		JSONObject json = new JSONObject();
+		HttpSession session = req.getSession();
+		String url = req.getParameter("url");
+		session.invalidate();
+		
+		json.put("flag", 1);
+		try{
+			writeJson(json.toJSONString(),resp);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	//缁便垹褰囩�灞炬殻娴犻攱鐗搁崡锟�
 	/*@RequestMapping({ "/UserInfo/AddAllPrice" })
 	public void addAllPrice(HttpServletRequest req, HttpServletResponse resp) throws Exception{
@@ -328,6 +342,7 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		session.setAttribute("flag", flag);
 		String resultUrl = url.substring(url.lastIndexOf("/"));
 		System.out.println(resultUrl);
+		resp.sendRedirect(resultUrl);      //重定向
 		return resultUrl;
 		/*if(role == 0){
 			return "/treeData.jsp";

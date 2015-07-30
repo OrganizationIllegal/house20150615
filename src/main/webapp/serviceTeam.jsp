@@ -73,9 +73,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			 	    <!--<input type="text" class="form-control" name="type" placeholder="类型">-->
 			 	   
 					<select  style="width:200px;height:32px" value="" name="type" class="form-control" >
-						<option>类型</option>
+						  <option>类型</option>
         					 <c:forEach items="${typeList}" var="item">
-        					 <option>${item}</option>
+        					     <option>${item}</option>
        					    </c:forEach>
 					</select>
 			 	 </div>
@@ -136,17 +136,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	   <div style="font-size:13px; width:314px; height:20px; overflow:hidden;"><span style="padding-left:32px;font-style: italic;">${item.introduction}</span></div>
                 	  <!--  <hr style="height:1px;border:none;border-top:2px dashed #666666;margin-top:0px;margin-bottom:0px;"/> -->
                 	    <img src="/images/serviceteam/b5.jpg">
-                	  <div style="font-size:13px;"><img  src="/images/serviceteam/b3.png"/>
-                	  <span style="padding-left:10px">${item.broker_region}</span>
-                	<%--   <span style="padding-left:10px">${item.brokerServiceArea1}</span> --%>
-                	  
+                	  <div style="font-size:13px;">
+                	     <div style="float:left"> 
+                	         <img  src="/images/serviceteam/b3.png"/>
+                	         <span style="padding-left:10px">${item.broker_region}</span>
+                	     </div>
+                	     <c:if test="${!empty item.areaList}">
+                	     <div style="float:right">
+                	         <img  src="/images/serviceteam/b3.png"/>
+                	         <c:forEach var="item" items="${item.areaList }"  varStatus="stat"> 
+                	   	        <span style="padding-left:5px">${item}</span>
+                	         </c:forEach>
+                	     </div>
+                	     </c:if>
                 	  </div>
                 	   <!-- <hr style="height:1px;border:none;border-top:2px dashed #666666;margin-top:0px;margin-bottom:0px;"/> -->
                 	    <img src="/images/serviceteam/b5.jpg">
                 	   <div style="font-size:13px;"><div style="float:left;width:235px"><img  src="/images/serviceteam/b4.png"/>
                 	   <span style="padding-left:10px">${item.broker_language}</span></div><span>
-                	 <c:forEach var="item" items="${item.leixingInfo }"  varStatus="stat"> 
-                	   	<img  src="<%=application.getInitParameter("imagedir")%>/${item.leixingImg }" width=26px height=30px/>
+                	   <c:forEach var="item" items="${item.leixingInfo }"  varStatus="stat"> 
+                	   	  <img  src="<%=application.getInitParameter("imagedir")%>/${item.leixingImg }" width=26px height=30px/>
                 	   </c:forEach>
                 	   
                 	   </span></div>
@@ -188,9 +197,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</c:if>
 				 <c:forEach items="${userList}"  var="item">
 				 		<div class="form-group" style="padding:15px 15px;paddign-top:0px">
-					 	<input type="text" class="form-control" id="name" name="name" placeholder="姓名    ${item.nick_name} value= ${item.nick_name}"style="margin-bottom:15px">
-					 	<input type="text" class="form-control" id="email" name="email" placeholder="邮箱     ${item.email}" value=  ${item.email} style="margin-bottom:15px">
-					 	 <input type="text" class="form-control" id="tel" name="tel" placeholder="电话    ${item.tel}" value=${item.tel} style="margin-bottom:15px">
+					 	<input type="text" class="form-control" id="name" name="name" placeholder="姓名    ${item.nick_name}" value= "${item.nick_name}" style="margin-bottom:15px">
+					 	<input type="text" class="form-control" id="email" name="email" placeholder="邮箱     ${item.email}" value="${item.email}" style="margin-bottom:15px">
+					 	 <input type="text" class="form-control" id="tel" name="tel" placeholder="电话    ${item.tel}" value="${item.tel}" style="margin-bottom:15px">
 					 	 <textarea type="text" rows="5" cols="20" class="form-control" id="message_content" name="message_content"  placeholder="留言" style="height:108px;margin-bottom:15px"></textarea>
 					 	 <!--  <button type="submit" class="btn btn-default" style="width:87px;height:38px;background-color:rgb(192,59,72);color:white;margin-left:262px" type="submit" id="submit">提交</button> -->
 						<button type="button" class="btn btn-default" style="width:87px;height:38px;background-color:rgb(192,59,72);color:white;margin-left:262px"  id="submit" onclick="tijiao()">提交</button>					

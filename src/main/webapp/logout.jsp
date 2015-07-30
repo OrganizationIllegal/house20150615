@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  
  <%
 session.invalidate();
-out.print("<script>alert('用户即将退出，确定后退出该页面。');window.location.href='/index01'</script>");
+out.print("<script>alert('用户即将退出，确定后退出该页面。');/* window.location.href='/index01' */</script>");
 %>
 </body>
 

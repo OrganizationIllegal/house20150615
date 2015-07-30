@@ -153,7 +153,7 @@ public class SearchListDao extends BaseDao {
 		PreparedStatement pstmt = null;
 		List<SearchList> searchInfoList=new ArrayList<SearchList>();
 		try {
-			String sql = "select t.id,t.project_num,t.project_desc,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi from house_project t left join project_key p on t.project_num=p.project_num  where ";
+			String sql = "select t.id,t.gps,t.project_nation,t.project_area,t.project_type,t.project_city,t.project_price,t.project_zhou,t.project_num,t.project_desc,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi from house_project t left join project_key p on t.project_num=p.project_num  where ";
 			if(projecttype!=null && !"".equals(projecttype)){
 				sql+=" t.project_type like ";
 				sql+=" '"+projecttype+"'";
@@ -883,7 +883,52 @@ public class SearchListDao extends BaseDao {
 			return leixingList;
 		} 
 	
-	
+	//根据经纪人编号得到经纪人的服务区域
+	public List<String> findFuwuAreaByNum(String broker_num){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		List<String> fuquAreaList = new ArrayList<String>();
+			try {
+				String sql = "select distinct a.area_name from area_info a join broker_service_area b  on a.area_num=b.area_code  join  broker_info c on b.broker_num=c.broker_num where c.broker_num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, broker_num);
+				rs = pstmt.executeQuery();
+			    while(rs.next()){
+			    	String area_name = rs.getString("area_name");
+			    	if((area_name!=null && !"".equals(area_name))){
+			    		fuquAreaList.add(area_name);
+			    	}
+			    }
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
+			return fuquAreaList;
+		} 
 	
 	
 	
