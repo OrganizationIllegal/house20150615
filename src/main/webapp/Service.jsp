@@ -162,7 +162,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<input type="text" id="email" name="email" placeholder="邮箱" style="width:200px;height:28px;margin-left:15px;margin-top:15px;font-size:15px;padding-left:10px;">
 	<input type="text" id="tel" name="tel" placeholder="电话" style="width:200px;height:28px;margin-left:15px;margin-top:15px;font-size:15px;padding-left:10px;">
 	<textarea type="text" rows="5" cols="20" id="liuyan" name="liuyan" placeholder="留言" style="width:200px;height:60px;margin-left:15px;margin-top:15px;font-size:15px;padding-left:10px;padding-top:10px;"></textarea>
-	<img alt="submit" src="images/service/tijiao.png" style="float:right;margin-right:10px;margin-top:5px;cursor:pointer;">
+	<img alt="submit" src="images/service/tijiao.png" style="float:right;margin-right:10px;margin-top:5px;cursor:pointer;" onclick="pop1()">
 	</c:if>
 	 <c:forEach items="${userList}"  var="item">
 	 <input type="text" id="name" name="name"  value="${item.nick_name}" placeholder="姓名" style="width:200px;height:28px;margin-left:15px;margin-top:15px;font-size:15px;padding-left:10px;">
@@ -178,8 +178,99 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <jsp:include page="foot4index.jsp" />
 </body>
 </html>
-<script type="text/javascript">
 
+
+	<!-- register start -->
+<div class="modal fade" id="registernewPro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content" style="margin-left:100px;height:285px;width:355px;">
+         <div class="modal-header" style="background-color:rgb(55,52,67);padding:0px 10px;height:10px;">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true" style="font-size:18px;color:white;">
+                  &times;
+            </button>
+         </div>
+         <div class="modal-body">
+  <div style="text-align:center;margin-top:5px;"><div style="font-size:20px;font-weight:bold;">用户注册</div>
+  <form method="post" action="/Register" name="fm1">
+  <div  style="padding-top:15px;">
+         <input type="text"  id="telemailnew" name="telemailnew" style="background-image:url(images/0.png);background-repeat:no-repeat;background-position:left;padding-left:35px;width:270px;height:34px;background-color:rgba(246, 245, 245, 1);" placeholder="手机号/邮箱" autocomplete="off">
+   <input type="hidden" name="url" value="<%=request.getRequestURL() + "?" + request.getQueryString()%>">
+   </div>
+   <div>
+         <input type="password" id="pwdnew" name="pwdnew" style="background-image:url(images/2.png);background-repeat:no-repeat;background-position:left;padding-left:35px;width:270px;height:34px;background-color:rgba(246, 245, 245, 1);" placeholder="密码" autocomplete="off">
+   </div>
+   <div style="padding-top:15px;padding-left:26px;float:left;font-size:12px;">
+   
+   <img src="images/register.png" id="regnew" style="width:120px;height:30px;cursor:pointer;"><span style="padding-left:20px;"><a id="cancelnew" href="#">取消</a></span>
+   </div>
+</form>
+<div style="float:left;margin-top:60px;margin-left:-165px;font-size:12px;"><span>已有账户？<a href="javascript:void(0);" id="login2RePro">登录</a></span></div>
+<div style="float:left;margin-top:85px;margin-left:-165px;font-size:12px;font-weight:bold;"><span><input type="checkbox" checked="true">我已阅读并接受<a href="/ServiceProtocol.jsp" style="color:black;">《用户服务协议》</a></span></div>
+</div>
+   
+      </div>
+</div>
+</div>
+</div>
+<!-- register end -->
+<script type="text/javascript">
+function pop1(){
+	  $('#registernewPro').modal('show');
+
+}
+$(function() {
+$("#xiangmuZhuce").click(function(){
+	$('#registernewPro').modal('show');
+})
+
+$("#login2RePro").click(function(){
+	   	$('#login').modal('show');
+	   	$('#registernewPro').modal('hide');
+})   
+
+
+$("#regnew").click(function() {
+	var user = $("#telemailnew").val();
+	var pass = $("#pwdnew").val();
+	var temp;
+	temp = judgeRe(user,pass);
+	//alert(temp)             	
+	 if(temp==true){	                	
+     //document.fm1.submit();  //fm为form表单name
+		$.ajax({
+		type:'post',
+		url:'/Register2',
+		dateType:'json',
+		data:{"telemail":user,"pwd":pass},
+		success:function(data){
+			if(data.flag == -1){
+				alert("注册失败！");    
+				
+			}
+			else{
+				alert("注册成功！");
+				window.location.href = resultUrl;  					
+			}
+
+		},
+		error:function(){
+			}
+	});
+	}
+	else{               	
+		return false;
+	}  
+	
+});
+
+
+$("#cancelnew").click(function() {
+     	$("#telemailnew").val("").focus();
+     	$("#pwdnew").val("");
+     }); 
+	   
+})
 function tijiao(){
 	var  username=$("#name").val();
 	var message_content=$("#liuyan").val();
