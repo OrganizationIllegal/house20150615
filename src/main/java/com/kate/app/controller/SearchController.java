@@ -519,7 +519,12 @@ public class SearchController {
 				
 				
 			}
-			
+			List<String> areaNameSet=bingMapDao.getAreaName();
+			req.setAttribute("areaNameSet", areaNameSet);
+			List<String> cityNameSet=bingMapDao.getCityName();
+			req.setAttribute("cityNameSet", cityNameSet);
+			List<String> addressNameSet=bingMapDao.getAddressName();
+			req.setAttribute("addressNameSet", addressNameSet);
 			req.setAttribute("bingMapList", searchList);
 			return "/bingMap01.jsp";
 		}

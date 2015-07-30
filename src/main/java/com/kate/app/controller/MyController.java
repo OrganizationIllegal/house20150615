@@ -581,40 +581,64 @@ public class MyController {
 			if(price!=0){
 				zu_price =  df.format(price);
 			}
+			else{
+				zu_price = "N-A";
+			}
 			
 			int price1 = middlePrice.getZu_one_price();
 			if(price1!=0){
 				zu_one_price =  df.format(price1);
+			}
+			else{
+				zu_one_price = "N-A";
 			}
 			
 			int price2 = middlePrice.getZu_two_price();
 			if(price2!=0){
 				zu_two_price =  df.format(price2);
 			}
+			else{
+				zu_two_price = "N-A";
+			}
 			
 			int price3 = middlePrice.getZu_three_price();
 			if(price3!=0){
 				zu_three_price =  df.format(price3);
+			}
+			else{
+				zu_three_price = "N-A";
 			}
 			
 			int price4 = middlePrice.getBuy_price();
 			if(price4!=0){
 				buy_price =  df.format(price4);
 			}
+			else{
+				buy_price = "N-A";
+			}
 			
 			int price5 = middlePrice.getBuy_one_price();
 			if(price5!=0){
 				buy_one_price =  df.format(price5);
+			}
+			else{
+				buy_one_price = "N-A";
 			}
 			
 			int price6 = middlePrice.getBuy_two_price();
 			if(price6!=0){
 				buy_two_price =  df.format(price6);
 			}
+			else{
+				buy_two_price = "N-A";
+			}
 			
 			int price7 = middlePrice.getBuy_three_price();
 			if(price7!=0){
 				buy_three_price =  df.format(price7);
+			}
+			else{
+				buy_three_price = "N-A";
 			}
 			
 			

@@ -883,6 +883,12 @@ public class BingMapDao extends BaseDao {
 		    	coordinates.setProject_num(rs.getString("project_num"));
 		    	coordinates.setProject_min_price(rs.getString("project_min_price"));
 		    	coordinates.setProject_high_price(rs.getString("project_high_price"));
+		    	coordinates.setProject_zhou(rs.getString("project_zhou"));
+		    	coordinates.setProject_city(rs.getString("project_city"));
+		    	coordinates.setProject_nation(rs.getString("project_nation"));
+		    	coordinates.setProject_area(rs.getString("project_area"));
+		    	coordinates.setProject_price_int_qi(rs.getInt("project_price_int_qi"));
+		    	coordinates.setProject_type(rs.getString("project_type"));
 		    	coordinatesList.add(coordinates);
 		    }
 		} catch (Exception e) {
@@ -922,7 +928,7 @@ public class BingMapDao extends BaseDao {
 		PreparedStatement pstmt = null;
 		List<String> areaNameSet=new ArrayList<String>();
 		try {
-			String sql ="select distinct project_area from house_project order by project_area asc";
+			String sql ="select distinct project_area from house_project order by project_area";
 			 pstmt = con.prepareStatement(sql);
 			  rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -965,7 +971,7 @@ public class BingMapDao extends BaseDao {
 			PreparedStatement pstmt = null;
 			List<String> cityNameSet=new ArrayList<String>();
 			try {
-				String sql ="select distinct project_city from house_project order by project_city asc";
+				String sql ="select distinct project_city from house_project order by project_city";
 				 pstmt = con.prepareStatement(sql);
 				  rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -1008,7 +1014,7 @@ public class BingMapDao extends BaseDao {
 			PreparedStatement pstmt = null;
 			List<String> addressNameSet=new ArrayList<String>();
 			try {
-				String sql ="select distinct project_address from house_project order by project_address asc";
+				String sql ="select distinct project_address from house_project order by project_address";
 				 pstmt = con.prepareStatement(sql);
 				  rs = pstmt.executeQuery();
 				while(rs.next()){

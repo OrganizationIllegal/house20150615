@@ -171,6 +171,11 @@ public class SearchListController {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		try {
+			//resp.sendRedirect("/SearchList");      //重定向
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		
 
 	}
