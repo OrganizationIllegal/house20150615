@@ -81,16 +81,12 @@ public class SearchController {
 		if(lang!=null && !"".endsWith(lang) && lang.equals("语言")){
 			lang = "";
 		}
-		if(suozaiarea!=null && !"".endsWith(suozaiarea) && suozaiarea.equals("所在区域")){
+		if(suozaiarea!=null && !"".equals(suozaiarea) && suozaiarea.equals("所在区域")){
 			suozaiarea = "";
 		}
-		if(fuwuarea!=null && !"".endsWith(fuwuarea) && fuwuarea.equals("服务区域")){
+		if(fuwuarea!=null && !"".equals(fuwuarea) && fuwuarea.equals("服务区域")){
 			fuwuarea = "";
 		}
-		if(lang!=null && !"".endsWith(lang) && lang.equals("语言")){
-			lang = "";
-		}
-		
 		if(fuwuarea!=null && !"".equals(fuwuarea)){
 			area_code = areaInfoDao.getAreaNum(fuwuarea);
 		}
@@ -401,7 +397,7 @@ public class SearchController {
 			}
 			seachListResult = searchList;
 			//req.setAttribute("searchList",searchList);
-			return "searchList01.jsp";
+			return "/BingMap01";
 		}
 	
 		
