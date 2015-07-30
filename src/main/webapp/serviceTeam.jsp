@@ -199,7 +199,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					 	<input type="text" class="form-control" id="email" name="email" placeholder="邮箱"  style="margin-bottom:15px">
 					 	 <input type="text" class="form-control" id="tel" name="tel" placeholder="电话"  style="margin-bottom:15px">
 					 	 <textarea type="text" rows="5" cols="20" class="form-control" id="message_content" name="message_content"  placeholder="留言" style="height:108px;margin-bottom:15px"></textarea>
-					 	  <button type="button" class="btn btn-default" style="width:87px;height:38px;background-color:rgb(192,59,72);color:white;margin-left:262px" id="submit" onclick="tijiao()">提交</button>
+					 	  <button type="button" class="btn btn-default" style="width:87px;height:38px;background-color:rgb(192,59,72);color:white;margin-left:262px" id="submit" onclick="pop1()">提交</button>
 					 </div>
 				</c:if>
 				 <c:forEach items="${userList}"  var="item">
@@ -220,8 +220,101 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		</div>
 	<jsp:include page="foot4index.jsp" />
+	
+	
+	<!-- register start -->
+<div class="modal fade" id="registernewPro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content" style="margin-left:100px;height:285px;width:355px;">
+         <div class="modal-header" style="background-color:rgb(55,52,67);padding:0px 10px;height:10px;">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true" style="font-size:18px;color:white;">
+                  &times;
+            </button>
+         </div>
+         <div class="modal-body">
+  <div style="text-align:center;margin-top:5px;"><div style="font-size:20px;font-weight:bold;">用户注册</div>
+  <form method="post" action="/Register" name="fm1">
+  <div  style="padding-top:15px;">
+         <input type="text"  id="telemailnew" name="telemailnew" style="background-image:url(images/0.png);background-repeat:no-repeat;background-position:left;padding-left:35px;width:270px;height:34px;background-color:rgba(246, 245, 245, 1);" placeholder="手机号/邮箱" autocomplete="off">
+   <input type="hidden" name="url" value="<%=request.getRequestURL() + "?" + request.getQueryString()%>">
+   </div>
+   <div>
+         <input type="password" id="pwdnew" name="pwdnew" style="background-image:url(images/2.png);background-repeat:no-repeat;background-position:left;padding-left:35px;width:270px;height:34px;background-color:rgba(246, 245, 245, 1);" placeholder="密码" autocomplete="off">
+   </div>
+   <div style="padding-top:15px;padding-left:26px;float:left;font-size:12px;">
+   
+   <img src="images/register.png" id="regnew" style="width:120px;height:30px;cursor:pointer;"><span style="padding-left:20px;"><a id="cancelnew" href="#">取消</a></span>
+   </div>
+</form>
+<div style="float:left;margin-top:60px;margin-left:-165px;font-size:12px;"><span>已有账户？<a href="javascript:void(0);" id="login2RePro">登录</a></span></div>
+<div style="float:left;margin-top:85px;margin-left:-165px;font-size:12px;font-weight:bold;"><span><input type="checkbox" checked="true">我已阅读并接受<a href="/ServiceProtocol.jsp" style="color:black;">《用户服务协议》</a></span></div>
+</div>
+   
+      </div>
+</div>
+</div>
+</div>
+<!-- register end -->
+	
 			
 <script type="text/javascript">
+function pop1(){
+		  $('#registernewPro').modal('show');
+
+}
+$(function() {
+	$("#xiangmuZhuce").click(function(){
+		$('#registernewPro').modal('show');
+	})
+
+	 $("#login2RePro").click(function(){
+		   	$('#login').modal('show');
+		   	$('#registernewPro').modal('hide');
+  })   
+
+
+  $("#regnew").click(function() {
+   	var user = $("#telemailnew").val();
+   	var pass = $("#pwdnew").val();
+   	var temp;
+   	temp = judgeRe(user,pass);
+   	//alert(temp)             	
+   	 if(temp==true){	                	
+           //document.fm1.submit();  //fm为form表单name
+   		$.ajax({
+  			type:'post',
+  			url:'/Register2',
+  			dateType:'json',
+  			data:{"telemail":user,"pwd":pass},
+  			success:function(data){
+  				if(data.flag == -1){
+  					alert("注册失败！");    
+  					
+  				}
+  				else{
+  					alert("注册成功！");
+  					window.location.href = resultUrl;  					
+  				}
+
+  			},
+  			error:function(){
+    			}
+  		});
+   	}
+   	else{               	
+   		return false;
+   	}  
+   	
+   });
+
+
+	  $("#cancelnew").click(function() {
+	       	$("#telemailnew").val("").focus();
+	       	$("#pwdnew").val("");
+	       }); 
+		   
+})
 
 function tijiao(){
 	var  username=$("#name").val();
