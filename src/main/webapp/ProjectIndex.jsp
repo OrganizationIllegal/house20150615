@@ -368,11 +368,11 @@ $(function(){
 		});
 		function playVideo(){
 		player.playVideo();
-		alert("kaishi");
+		//alert("kaishi");
 		}
 		function pauseVideo(){
 		player.pauseVideo();
-			alert("zanting")
+			//alert("zanting")
 		} 
 	//lunbo(); 
 	
@@ -399,8 +399,10 @@ var e=$('#input2').val();
 	<%
             String username = null;
        		if(request.getSession().getAttribute("username")!=null){
-       			out.println("ffffffffff");
        			Judge = 1;   //用户登录
+       		}
+       		else{
+       			Judge = 0;   //用户登录
        		}
 %>    
 		<jsp:include page="head4index.jsp" />
@@ -1706,7 +1708,7 @@ var url = window.location.href;
 var resultUrl = url.substring(url.lastIndexOf('/'));
 
 var kk = <%= Judge%>;
-alert(kk)
+//alert(kk)
 
 $(function() {
 	$("#xiangmuZhuce").click(function(){
@@ -1734,23 +1736,45 @@ function pop(type,img){
    
 }
 function pop6(type,img){
-	$('#title').empty();	
-	  $('#title').append("<h4>户型"+type+"</h4>");
-	  $('#image').attr("src",img);
-	  $('#housestyle').modal('show');
+	if(kk==0){
+		 $('#registernewPro').modal('show');
+	}
+	else{
+		$('#title').empty();	
+		  $('#title').append("<h4>户型"+type+"</h4>");
+		  $('#image').attr("src",img);
+		  $('#housestyle').modal('show');
+	}
+	
 }
 function pop1(){
-  $('#recentquotation').modal('show');
+	if(kk==0){
+		  $('#registernewPro').modal('show');
+	}
+	else{
+		$('#recentquotation').modal('show');
+	}
 }
 function pop2(){
-  $('#completehouse').modal('show');
+	if(kk==0){
+		  $('#registernewPro').modal('show');
+	}
+	else{
+		$('#completehouse').modal('show');
+	}
+  	
 }
 function pop3(){
-  $('#demandprice').modal('show');
+  if(kk==0){
+	  $('#registernewPro').modal('show');
+  }
+  else{
+	  $('#demandprice').modal('show');
+  }
+  
 }
 
 function popInfo(){
-	alert("fewfw")
  if(kk==0){
 	 $('#registernewPro').modal('show');
  }
@@ -1884,8 +1908,8 @@ function popInfo(){
 	  var email1=$("#email1").val();
 	  var tel=$("#tel1").val();
 	  var message_content=$("#message_content1").val();
-	  alert(username);
-	  alert(message_content);
+	  /* alert(username);
+	  alert(message_content); */
 	  $.ajax({
  			type:'GET',
  			dataType:'json',
@@ -1916,8 +1940,8 @@ function popInfo(){
 	  var email1=$("#email2").val();
 	  var tel=$("#tel2").val();
 	  var message_content=$("#message_content2").val();
-	  alert(username);
-	  alert(message_content);
+	  /* alert(username);
+	  alert(message_content); */
 	  $.ajax({
  			type:'GET',
  			dataType:'json',
@@ -1948,8 +1972,8 @@ function popInfo(){
 	  var email1=$("#email3").val();
 	  var tel=$("#tel3").val();
 	  var message_content=$("#msg3").val();
-	  alert(username);
-	  alert(message_content);
+	  /* alert(username);
+	  alert(message_content); */
 	  $.ajax({
  			type:'GET',
  			dataType:'json',
@@ -1981,8 +2005,8 @@ function popInfo(){
 	  var email1=$("#email4").val();
 	  var tel=$("#tel4").val();
 	  var message_content=$("#msg4").val();
-	  alert(username);
-	  alert(message_content);
+	  /* alert(username);
+	  alert(message_content); */
 	  $.ajax({
  			type:'GET',
  			dataType:'json',
@@ -2015,8 +2039,8 @@ function popInfo(){
 	  var email1=$("#email5").val();
 	  var tel=$("#tel5").val();
 	  var message_content=$("#msg5").val();
-	  alert(username);
-	  alert(message_content);
+	  /* alert(username);
+	  alert(message_content); */
 	  $.ajax({
  			type:'GET',
  			dataType:'json',
