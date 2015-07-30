@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <title>HousePurchasing</title>
    <link rel="stylesheet" type="text/css" href="css/base.css" />
    <link rel="stylesheet" type="text/css" href="css/main.css" />
-   <link href="/css/pagination.css" rel="stylesheet">
+    <link href="/css/pagination.css" rel="stylesheet">
    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
    <script src="/js/jquery.min.js"></script>
    <script src="/bootstrap/js/bootstrap.min.js"></script>
@@ -62,7 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		#panel-left .panel-body{
 			padding-top:0px;
 		}
-		#leftpanel{background-color: white;}
+		/* #panel-left{background-color: white;} */
 		.panel{
 			font-family:'微软雅黑';
 		}
@@ -78,10 +78,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		#panel-left{
 			margin-bottom: 8px;
 		}
-		#panel-left .panel-body{
+		.panel-heading {
+		    border-bottom: 1px solid rgb(221, 221, 221);
+		    }
+		/* #panel-left .panel-body{
 			padding-right:0px;
 			padding-left:0px;
-		}
+		} */
    </style>
 </head>
 <body style="/* padding-top: 150px; */margin:0 auto;background-color:rgb(232, 233, 234);">
@@ -116,13 +119,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         
                           <li class="media">
                           <c:choose>
-            	<c:when test="${type==0}">
-            		<img src="<%=application.getInitParameter("imagedir")%>/${zhiYeDetail.image}" width="601px" height="373px">
-            	</c:when>
-            	<c:otherwise>
-            		<img src="<%=application.getInitParameter("imagedir")%>/${newsBokeDetail.news_image}" width="601px" height="373px">
-            	</c:otherwise>
-            </c:choose>
+			            	<c:when test="${type==0}">
+			            		<img src="<%=application.getInitParameter("imagedir")%>/${zhiYeDetail.image}" width="601px" height="373px">
+			            	</c:when>
+			            	<c:otherwise>
+			            		<img src="<%=application.getInitParameter("imagedir")%>/${newsBokeDetail.news_image}" width="601px" height="373px">
+			            	</c:otherwise>
+			              </c:choose>
                             
                           
                           </li>
@@ -140,14 +143,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                            	</span>
                           
                           </li>
-                         </li><li class="media">
+                         <li class="media">
                            <a href="/BlogList?type='退税技巧'" target="_blank"><span style="font-family:微软雅黑; color:rgba(140, 181, 225, 1); font-size: 13px;padding-right: 10px;text-decoration: underline;">退税技巧</span></a>
                             <a href="/BlogList?type='房地产'" target="_blank"><span style="font-family:微软雅黑; color:rgba(140, 181, 225, 1); font-size: 13px;padding-right: 10px;text-decoration: underline;">个人投资</span></a>
                          		<a href="/BlogList?type='市场'" target="_blank"><span style="font-family:微软雅黑; color:rgba(140, 181, 225, 1);font-size: 13px;padding-right: 10px;text-decoration: underline; ">房地产</span></a>
                          <a href="/BlogList?type=''" target="_blank"><span style="font-family:微软雅黑; color:rgba(140, 181, 225, 1); font-size: 13px;padding-right: 10px;text-decoration: underline;">市场</span></a>
                           </li>
                         
-                         </li><li class="media" style="margin-top:15px;">
+                         <li class="media" style="margin-top:15px;">
                          
                           <!--  <a href="/BlogList" target="_blank"><span style="font-family:微软雅黑; color:rgba(140, 181, 225, 1);font-size:12px; ">←返回到所有博客文章</span></a> -->
                           <c:choose>
@@ -163,7 +166,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         
                         
                         </ul>
-                        <div id="page-selection"></div>
+                        <div id="page-selection" style="display:none;"></div>
                     </div>
                 </div>
             </div>
@@ -300,8 +303,8 @@ var typeInfo = "${type}";
                         	}
                         	
                             $("#leftpanel").text("1-"+data.pageCount+"的"+data.total+"篇文章");
-                            
-                        	
+                            $("#panel-left").css("background-color","white");
+                        	$("#page-selection").css("display","block");
                         	if(typeInfo==0){
                         		html = getHtml(data.List);
                         		
