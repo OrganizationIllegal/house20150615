@@ -508,6 +508,24 @@ public class MessageController {
 					
 					
 				}
+				//合作伙伴留言分页
+				@RequestMapping({"/MessageHezuoPageList"})
+				public void MessageForHezuoListPage(HttpServletRequest req, HttpServletResponse resp){
+					JSONObject json = new JSONObject();
+					JSONArray array = new JSONArray();
+					array = messageDao.getMessage(7);
+					int count = array.size();
+					json.put("total", count);
+					json.put("rows", array);
+					
+					try{
+						writeJson(array.toJSONString(),resp);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+					
+					
+				}
 	public void writeJson(String json, HttpServletResponse response)throws Exception{
 	    response.setContentType("text/html");
 	    response.setCharacterEncoding("UTF-8");

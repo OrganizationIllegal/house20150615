@@ -27,7 +27,7 @@ public class MessageDao extends BaseDao {
 		JSONArray jsonArray=new JSONArray();
 		List<MessageVo> messageList=new ArrayList<MessageVo>();
 		try {
-			String sql = "select t.id,t.message_content,t.message_time,t.project_id,t.type,t.viewed ,u.nick_name,u.email,u.tel from message t join user u on t.userid=u.id  where t.type="+type;
+			String sql = "select t.id,t.hezuo,t.message_content,t.message_time,t.project_id,t.type,t.viewed ,u.nick_name,u.email,u.tel from message t join user u on t.userid=u.id  where t.type="+type;
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
 			int id=0;
@@ -42,6 +42,7 @@ public class MessageDao extends BaseDao {
 			String nick_name=null;
 			String email=null;
 			String tel=null;
+			String hezuo=null;
 			
 			while(rs.next()){
 				JSONObject obj = new JSONObject();
@@ -61,6 +62,7 @@ public class MessageDao extends BaseDao {
 				nick_name=rs.getString("nick_name");
 				email=rs.getString("email");
 				tel=rs.getString("tel");
+				hezuo=rs.getString("hezuo");
 				/*MessageVo messageVo=new MessageVo(id,message_content,message_time,project_id,project_num,viewed,type,nick_name,email,tel);
 				messageList.add(messageVo);*/
 				obj.put("id", id);
@@ -73,6 +75,7 @@ public class MessageDao extends BaseDao {
 				obj.put("nick_name", nick_name);
 				obj.put("email", email);
 				obj.put("tel", tel);
+				obj.put("hezuo", hezuo);
 				jsonArray.add(obj);
 				
 			}

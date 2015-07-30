@@ -392,7 +392,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												              {
 													                text: '合适房产经纪人留言',
 													                href:'#message6' 	                
-													              }
+													              },
+													              {
+														                text: '合作伙伴留言',
+														                href:'#message7' 	                
+														              }
 
 									            ]
 									          }
@@ -496,6 +500,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	           else if(node.text=="合适房产经纪人留言"){
 			          /*  $("#showlist").load("Message.jsp"); */
 		        	   window.open("MessageForBroker.jsp","合适房产经纪人留言");
+			       }
+	           else if(node.text=="合作伙伴留言"){
+			          /*  $("#showlist").load("Message.jsp"); */
+		        	   window.open("MessageForHeZuo.jsp","合作伙伴留言");
 			       }
 	          } 
 	        });

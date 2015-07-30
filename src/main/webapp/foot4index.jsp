@@ -6,7 +6,8 @@
 					<img src="images/footer_icon.png" style="display:block;width:200px;float:left"></img>
 					<div style="display:block;height:50px;float:left">
 						<a style="display:block;width:110px;height:50px;line-height:50px;text-align:center;color:#666;font-size:12px;cursor:pointer;float:left" href="/AboutUs.jsp">关于我们</a>
-						<a style="display:block;width:110px;height:50px;line-height:50px;text-align:center;color:#666;font-size:12px;cursor:pointer;float:left" href="/business.jsp">商务合作</a>
+						<!-- <a style="display:block;width:110px;height:50px;line-height:50px;text-align:center;color:#666;font-size:12px;cursor:pointer;float:left" href="/business.jsp">商务合作</a> -->
+						 <a style="display:block;width:110px;height:50px;line-height:50px;text-align:center;color:#666;font-size:12px;cursor:pointer;float:left" href="/Business">商务合作</a>
 						<a style="display:block;width:110px;height:50px;line-height:50px;text-align:center;color:#666;font-size:12px;cursor:pointer;float:left" href="/ServiceProtocol.jsp">服务协议</a>
 						<a style="display:block;width:110px;height:50px;line-height:50px;text-align:center;color:#666;font-size:12px;cursor:pointer;float:left" href="/PrivacyPolicy.jsp">使用条款&隐私政策</a>
 						<a style="display:block;width:110px;height:50px;line-height:50px;text-align:center;color:#666;font-size:12px;cursor:pointer;float:left" href="/Joinus.jsp">加入我们</a>
