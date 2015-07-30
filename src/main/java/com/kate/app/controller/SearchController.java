@@ -11,6 +11,7 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.constraints.Size;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -120,19 +121,29 @@ public class SearchController {
 					data.setBroker_type(item.getBroker_type()==null?"":item.getBroker_type());
 					data.setBroker_region(item.getBroker_region()==null?"":item.getBroker_region());
 					data.setBroker_language(item.getBroker_language()==null?"":item.getBroker_language());
-				}
-				List<LeiXing> list = searchListDao.searchSericeListBroker(broker_num);
-				if (list!=null && list.size()>0) {
-					data.setLeixingInfo(list);
-				}
-				//得到该经纪人的服务区域
-				List<String> fuwuArea = searchListDao.findFuwuAreaByNum(broker_num);
-				if (fuwuArea!=null && fuwuArea.size()>0) {
-					data.setAreaList(fuwuArea);
+					List<LeiXing> list = searchListDao.searchSericeListBroker(broker_num);
+					if (list!=null && list.size()>0) {
+						data.setLeixingInfo(list);
+						System.out.println(list.size()+data.getBroker_name()+"fffffffffffff");
+					}
+					//得到该经纪人的服务区域
+					List<String> fuwuArea = searchListDao.findFuwuAreaByNum(broker_num);
+					if (fuwuArea!=null && fuwuArea.size()>0) {
+						data.setAreaList(fuwuArea);
+					}
+					resultListQuyu.add(data);
 				}
 				
 			}
-			resultListQuyu.add(data);
+			
+		}
+		
+		for(BrokerInfoQuyu i : resultListQuyu){
+			if(i!=null){
+				if(i.getLeixingInfo()!=null && i.getLeixingInfo().size()>0)
+				  System.out.println(i.getLeixingInfo().size()+"11111111111111111111");
+			}
+			
 		}
 		
 		seachBrokerListResult = resultListQuyu;
@@ -146,6 +157,7 @@ public class SearchController {
 		for(BrokerInfo item : brokerInfoList){
 			String brokerNum=item.getBroker_num();
 			List<BrokerServiceArea> listBrokerServiceArea=brokerInfoDao.listBrokerServiceArea(brokerNum);
+			
 			List<AreaInfo> listAreaInfo=new ArrayList<AreaInfo>();
 			for(BrokerServiceArea data : listBrokerServiceArea){
 				String areaCode=data.getArea_code();
