@@ -144,8 +144,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	     <c:if test="${!empty item.areaList}">
                 	     <div style="float:right">
                 	         <img  src="/images/serviceteam/b3.png"/>
-                	         <c:forEach var="item" items="${item.areaList }"  varStatus="stat"> 
-                	   	        <span style="padding-left:5px">${item}</span>
+                	         <c:forEach var="item1" items="${item.areaList }"  varStatus="stat"> 
+                	   	        <span style="padding-left:5px">${item1}</span>
                 	         </c:forEach>
                 	     </div>
                 	     </c:if>
@@ -153,9 +153,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	   <!-- <hr style="height:1px;border:none;border-top:2px dashed #666666;margin-top:0px;margin-bottom:0px;"/> -->
                 	    <img src="/images/serviceteam/b5.jpg">
                 	   <div style="font-size:13px;"><div style="float:left;width:235px"><img  src="/images/serviceteam/b4.png"/>
-                	   <span style="padding-left:10px">${item.broker_language}</span></div><span>
-                	   <c:forEach var="item" items="${item.leixingInfo }"  varStatus="stat"> 
-                	   	  <img  src="<%=application.getInitParameter("imagedir")%>/${item.leixingImg }" width=26px height=30px/>
+                	   <span style="padding-left:10px;height:20px;width:50px;">${item.broker_language}</span></div>
+                	   <span style="height:20px;width:50px;">
+                	   <c:forEach var="item2" items="${item.leixingInfo }"  varStatus="stat"> 
+                	   	  <img  src="<%=application.getInitParameter("imagedir")%>/${item2.leixingImg }" width=26px height=30px/>
                 	   </c:forEach>
                 	   
                 	   </span></div>
