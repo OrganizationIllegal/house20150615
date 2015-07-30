@@ -14,9 +14,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <script src="/js/jquery.min.js"></script>
    <script src="/bootstrap/js/bootstrap.min.js"></script>
    <script src="/js/jquery.bootpag.min.js"></script>
-   <script src="/js/jquery.pagination.js"></script>
+   <!-- <script src="/js/jquery.pagination.js"></script> -->
    	<link rel="stylesheet" type="text/css" href="css/base.css" />
-		<link rel="stylesheet" type="text/css" href="css/main.css" />
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
     <style>
     	body{
     		font-family:"Microsoft YaHei"!important;

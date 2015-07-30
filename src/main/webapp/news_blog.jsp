@@ -9,11 +9,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
    <title>HousePurchasing</title>
+   <link rel="stylesheet" type="text/css" href="css/base.css" />
+   <link rel="stylesheet" type="text/css" href="css/main.css" />
+   <link href="/css/pagination.css" rel="stylesheet">
    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
    <script src="/js/jquery.min.js"></script>
    <script src="/bootstrap/js/bootstrap.min.js"></script>
-      	<link rel="stylesheet" type="text/css" href="css/base.css" />
-		<link rel="stylesheet" type="text/css" href="css/main.css" />
+   <script src="/js/jquery.bootpag.min.js"></script>
+      	
     <style>
    		body{
     		font-family:"Microsoft YaHei"!important;
