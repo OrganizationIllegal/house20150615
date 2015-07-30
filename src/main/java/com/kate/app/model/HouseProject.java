@@ -7,6 +7,7 @@ public class HouseProject {
 	private String project_name;
 	private String project_img;
 	private String project_logo;
+
 	/**
 	 * 增加项目关键字,用于BingMap左侧按房屋类型
 	 * @author wenruijie
@@ -28,6 +29,7 @@ public class HouseProject {
 	public void setProject_key(String project_key) {
 		this.project_key = project_key;
 	}
+
 	public String getProject_logo() {
 		return project_logo;
 	}

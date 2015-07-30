@@ -396,19 +396,19 @@ body{
                 <div class="c-fix f-l f-yahei" style="margin-left:30px;margin-top:8px;">
 	               
 	                <select data-placeholder="请选择城市..." class="chosen-select" id="project_city" name="project_city" style="width:200px;" tabindex="4">
-		 	            <option value=""></option>
+		 	            <option value="">请选择城市...</option>
 		  	            <c:forEach items="${cityNameSet}" var="item">
         		   		<option value="${item}">${item}</option>
    					    </c:forEach>
 	                </select>
 	                 <select data-placeholder="请选择区域..." class="chosen-select" id="project_area" name="project_area" style="width:200px;" tabindex="4">
-		 	            <option value=""></option>
+		 	            <option value="">请选择区域...</option>
 		  	            <c:forEach items="${areaNameSet}" var="item">
         		   		<option value="${item}">${item}</option>
    					    </c:forEach>
 	                </select>
 	                <select data-placeholder="请选择地址..." class="chosen-select" id="project_address" name="project_address" style="width:200px;" tabindex="4">
-		 	            <option value=""></option>
+		 	            <option value="">请选择地址...</option>
 		  	            <c:forEach items="${addressNameSet}" var="item">
         		   		<option value="${item}">${item}</option>
    					    </c:forEach>
@@ -417,18 +417,7 @@ body{
                 <div class="f-l f-yahei btn_search cp" onclick="addPushpinsearch()">搜索</div>
 				<a class="f-r f-yahei s-14 btn cp hover" style="padding:4px 6px;border:2px solid rgb(245,161,27)" href="/SearchList">列表找房</a>
 				<a class="f-r f-yahei s-14 btn btn_sel cp hover" style="padding:4px 6px"  href="#">地图找房</a>
-				<!-- <select class="f-r sel" style=" background: none;border: none;font-family: 微软雅黑;">
-					<option>交房时间</option>
-				</select>
-				<select class="f-r sel" style=" background: none;border: none;font-family: 微软雅黑;">
-					<option>价格范围</option>
-				</select> -->
-				<!-- <select class="f-r sel" id="house" onchange="housetype(this)"  style=" background: none;border: none;font-family: 微软雅黑;">
-					<option value="0">房屋类型</option>
-					<option value="1">公寓</option>
-					<option value="2">别墅</option>
-					<option value="3">联排别墅</option>
-				</select> -->
+
 			</div>
 			<div class="c-fix f-l div3" style="-height:840px;overflow-y:auto;overflow-x:hidden;" id="left">
 			 <c:forEach var="item" items="${bingMapList}"> 

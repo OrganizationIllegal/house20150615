@@ -368,6 +368,7 @@ public class SearchController {
 		    	gps = item.getGps();
 		    	String project_area=item.getProject_area();
 		    	String project_type=item.getProject_type();
+		    	String project_city = item.getProject_city();
 		    	String xinkaipan1=null;
 			    String huaren1=null;
 			    String remen1=null;
@@ -392,8 +393,10 @@ public class SearchController {
 		    		xianfang1 = p.getXianfang();
 		    		maidi1 = p.getMaidi();
 		    	}
+
 		    	String project_key=null;
 		    	project_key=bingMapDao.findProjectKeyByNum(project_num);
+		    	
 		        String project_address_short=null;
 		        project_address_short=project_address.length()>40?project_address.substring(0, 40):project_address;
 		    	SearchList data=new SearchList(id,project_area,project_type,gps,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,project_lan_en,mianji,project_address,project_logo,developer_id_name,xinkaipan1,huaren1,remen1,xuequ1,baozu1,daxue1,center1,traffic1,xianfang1,maidi1,project_price_int_qi_str,project_desc,project_key,project_address_short);
@@ -485,7 +488,11 @@ public class SearchController {
 					}
 				}
 	        }
-			//System.out.println(array);
+			/*System.out.println(array);
+			System.out.println(array2);
+			System.out.println(array3);
+			System.out.println(array2.size());
+			System.out.println(array3.size());*/
 			json.put("List", array);
 			json.put("List2", array2);
 			json.put("List3", JSONArray.parseArray(JSON.toJSONString(array3, SerializerFeature.DisableCircularReferenceDetect)));
@@ -552,7 +559,7 @@ public class SearchController {
 				obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
 				obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
 				obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
-				obj.put("project_price_int_qi", data.getProject_price_int_qi()==0?0:df.format(data.getProject_price_int_qi()));
+				obj.put("project_price_int_qi", data.getProject_price_int_qi()==0?"N/A":df.format(data.getProject_price_int_qi()));
 				obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
 				array.add(obj);
 			}

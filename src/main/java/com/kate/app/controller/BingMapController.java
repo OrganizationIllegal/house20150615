@@ -3,6 +3,7 @@ package com.kate.app.controller;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,13 +22,19 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.kate.app.dao.BingMapDao;
 import com.kate.app.model.BingMapVo;
+import com.kate.app.model.HouseProject;
+import com.kate.app.model.SearchList;
 import com.kate.app.service.BingMapService;
+import com.mysql.jdbc.StreamingNotifiable;
 @Controller
 public class BingMapController {
 	@Autowired
 	private BingMapService bingMapService;
 	@Autowired
 	private BingMapDao bingMapDao;
+
+	
+	private static List<HouseProject>  seachListResult;
 	
 	@RequestMapping({"/MapCenterInput"})
 	public String mapCenterInput(HttpServletRequest req,HttpServletResponse resp){
@@ -219,7 +226,61 @@ public class BingMapController {
 	@RequestMapping({"/OrderByPrice"})
 	public String OrderByPrice(HttpServletRequest req,HttpServletResponse resp){
 		int order=Integer.parseInt(req.getParameter("order"));
-		List<BingMapVo> bingMapList=bingMapService.orderByPrice(order);
+		List<BingMapVo> bingMapList = new ArrayList<BingMapVo>();
+		if(seachListResult!=null && seachListResult.size()>0){
+			for(HouseProject item : seachListResult){
+				int id = item.getId();
+				String project_img = item.getProject_img();
+				String project_num = item.getProject_num();
+				String project_address = item.getProject_address();
+				String project_name = item.getProject_name();
+				int project_sales_remain = item.getProject_sales_remain();
+				int maxarea = item.getMax_area();
+				int minarea = item.getMin_area();
+				String project_price = item.getProject_price();
+				String project_price_qi = item.getProject_price_qi();
+				String house_type = item.getProject_house_type();
+				String project_min_price = item.getProject_min_price();
+				String project_high_price = item.getProject_high_price();
+				String mianji = item.getMianji();
+				String return_money = item.getReturn_money();
+				String project_price_int_qi = item.getProject_price_qi();
+				String project_key = "";
+				if(project_num!=null && !"".equals(project_num)){
+					project_key =bingMapDao.findProjectKeyByNum(project_num);
+				}
+				BingMapVo  bingMapVo=new BingMapVo(id,project_img,project_num,project_address, project_name, project_price,minarea, maxarea, project_sales_remain, project_price_int_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key);
+				bingMapList.add(bingMapVo);
+				
+			}
+			
+			if(order==1){
+				Collections.sort(bingMapList,new Comparator<BingMapVo>(){  
+		            public int compare(BingMapVo arg0, BingMapVo arg1) { 
+		            	String a = String.valueOf(arg0.getProject_price_int_qi());
+		            	String b = String.valueOf(arg1.getProject_price_int_qi());
+		                return a.compareTo(b);  
+		            }  
+		        });  
+				
+			}
+			else{
+				Collections.sort(bingMapList,Collections.reverseOrder(new Comparator<BingMapVo>(){  
+		            public int compare(BingMapVo arg0, BingMapVo arg1) { 
+		            	String a = String.valueOf(arg0.getProject_price_int_qi());
+		            	String b = String.valueOf(arg1.getProject_price_int_qi());
+		                return a.compareTo(b);  
+		            }  
+		        }));
+				
+				
+			}
+		}
+		else{
+			bingMapList=bingMapService.orderByPrice(order);
+		}
+		
+		
 		req.setAttribute("bingMapList", bingMapList);
 		List<String> areaNameSet=bingMapDao.getAreaName();
 		req.setAttribute("areaNameSet", areaNameSet);
@@ -410,6 +471,9 @@ public class BingMapController {
 		String city1=req.getParameter("city");
 		String address=req.getParameter("address");
 		array = bingMapService.filterByKeyWord(area,city1,address);
+		List<HouseProject> list = bingMapDao.filterByKeyWord(area,city1,address);
+		seachListResult = list;
+		
 		arrayCenter=bingMapService.jsonMapCenter();
 		int lenCenter=arrayCenter.size();
 		for(int k=0;k<lenCenter;k++){
