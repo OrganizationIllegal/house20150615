@@ -1908,8 +1908,7 @@ function popInfo(){
 	  var email1=$("#email1").val();
 	  var tel=$("#tel1").val();
 	  var message_content=$("#message_content1").val();
-	  /* alert(username);
-	  alert(message_content); */
+
 	  $.ajax({
  			type:'GET',
  			dataType:'json',
@@ -1940,8 +1939,7 @@ function popInfo(){
 	  var email1=$("#email2").val();
 	  var tel=$("#tel2").val();
 	  var message_content=$("#message_content2").val();
-	  /* alert(username);
-	  alert(message_content); */
+
 	  $.ajax({
  			type:'GET',
  			dataType:'json',
@@ -1972,8 +1970,7 @@ function popInfo(){
 	  var email1=$("#email3").val();
 	  var tel=$("#tel3").val();
 	  var message_content=$("#msg3").val();
-	  /* alert(username);
-	  alert(message_content); */
+
 	  $.ajax({
  			type:'GET',
  			dataType:'json',
@@ -2005,8 +2002,6 @@ function popInfo(){
 	  var email1=$("#email4").val();
 	  var tel=$("#tel4").val();
 	  var message_content=$("#msg4").val();
-	  /* alert(username);
-	  alert(message_content); */
 	  $.ajax({
  			type:'GET',
  			dataType:'json',
@@ -2015,7 +2010,7 @@ function popInfo(){
  			async: false, 
  			success:function(data){
  	  		  	if(data.flag==1){
- 				  alert("留言成功");
+ 	  		  	  alert("留言成功");
  				 $('#recentquotation').modal('hide'); 
  				/*  $("#message_content2").val(""); */
  				}
@@ -2039,8 +2034,7 @@ function popInfo(){
 	  var email1=$("#email5").val();
 	  var tel=$("#tel5").val();
 	  var message_content=$("#msg5").val();
-	  /* alert(username);
-	  alert(message_content); */
+
 	  $.ajax({
  			type:'GET',
  			dataType:'json',
