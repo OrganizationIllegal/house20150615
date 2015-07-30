@@ -55,9 +55,10 @@ public class BingMapController {
 		return "/GpsCenterInput.jsp";
 	}
 	
-	@RequestMapping({"/BingMap"})
+	@RequestMapping({"/BingMap"})    //首页加载
 	public String listBingMap(HttpServletRequest req,HttpServletResponse resp){
 		List<BingMapVo> bingMapList=bingMapService.listBingMap();
+		
 		req.setAttribute("bingMapList", bingMapList);
 		List<String> areaNameSet=bingMapDao.getAreaName();
 		req.setAttribute("areaNameSet", areaNameSet);
@@ -401,7 +402,7 @@ public class BingMapController {
 	}
 	
 	@RequestMapping({ "/BingMap/FileterType2" })    
-	public void filterByHouseType2(HttpServletRequest req, HttpServletResponse resp){
+	public void filterByHouseType2(HttpServletRequest req, HttpServletResponse resp){    //公寓
 		JSONObject json = new JSONObject();
 		JSONArray array = new JSONArray();
 		JSONArray array2 = new JSONArray();
@@ -410,7 +411,9 @@ public class BingMapController {
 		JSONArray arrayCentermoren = new JSONArray();
 		List<String> city=new ArrayList<String>();
 		int type=Integer.parseInt(req.getParameter("house_type"));
+		
 		array = bingMapService.filterByHouseType2(type);
+		
 		arrayCenter=bingMapService.jsonMapCenter();
 		int lenCenter=arrayCenter.size();
 		for(int k=0;k<lenCenter;k++){

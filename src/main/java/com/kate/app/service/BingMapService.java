@@ -17,7 +17,7 @@ import com.kate.app.model.HouseProject;
 public class BingMapService {
 	@Autowired
 	private BingMapDao bingMapDao;
-	public List<BingMapVo> listBingMap(){
+	public List<BingMapVo> listBingMap(){    //加载列出所有列表
 		List<BingMapVo> bingMapList=new ArrayList<BingMapVo>();
 		bingMapList=bingMapDao.listBingMap();
 		return bingMapList;
@@ -88,6 +88,7 @@ public class BingMapService {
 		JSONArray array = new JSONArray();
 		DecimalFormat df = new DecimalFormat("#,###,###");
 		List<HouseProject> list = bingMapDao.filterByHouseType2(type);
+		
 		for(HouseProject data : list){
 			JSONObject obj = new JSONObject();
 			obj.put("id", data.getId());
@@ -119,6 +120,7 @@ public class BingMapService {
 			obj.put("project_address", data.getProject_address()==null?"":data.getProject_address());
 			obj.put("project_address_short", project_address_short);*/
 			obj.put("project_address_short", data.getProject_address_short()==null?"":data.getProject_address_short());
+			obj.put("project_address", data.getProject_address()==null?"":data.getProject_address());
 			
 			obj.put("minArea", data.getMin_area()==0?0:data.getMin_area());
 			obj.put("maxArea", data.getMax_area()==0?0:data.getMax_area());
