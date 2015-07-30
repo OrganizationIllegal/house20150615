@@ -74,8 +74,15 @@ public class SearchList {
     private String project_desc;
     private int isCollected;//鏄惁琚綋鍓嶇敤鎴锋敹钘忥紝0琛ㄧず鏈敹钘忥紝1琛ㄧず琚綋鍓嶇敤鎴锋敹钘�
     private String gps;
+    private String project_key;
     
 	
+	public String getProject_key() {
+		return project_key;
+	}
+	public void setProject_key(String project_key) {
+		this.project_key = project_key;
+	}
 	public String getGps() {
 		return gps;
 	}
@@ -257,7 +264,9 @@ public class SearchList {
 		this.project_address=project_address;
 		
 	}
-	public SearchList(int id, String project_city, String project_area,String project_type,String gps, String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String project_lan_en,String mianji,String project_address,String project_logo,String developer_id_name ,String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue, String center,String traffic,String xianfang,String maidi,int project_price_int_qi,String project_desc){
+
+	public SearchList(int id, String project_area,String project_type,String gps, String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String project_lan_en,String mianji,String project_address,String project_logo,String developer_id_name ,String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue, String center,String traffic,String xianfang,String maidi,int project_price_int_qi,String project_desc,String project_key){
+
 		this.id=id;
 		this.project_num = project_num;
 		this.project_img=project_img;
@@ -289,6 +298,7 @@ public class SearchList {
 		this.project_price_int_qi=project_price_int_qi;
 		this.project_desc=project_desc;
 		this.gps = gps;
+		this.project_key=project_key;
 	}
 	public SearchList() {
 		// TODO Auto-generated constructor stub

@@ -913,7 +913,7 @@ public class BrokerInfoDao extends BaseDao {
 		PreparedStatement pstmt = null;
 		List<String> typeList=new ArrayList<String>();
 		try{
-			String sql="select distinct t.broker_type from broker_info t ";
+			String sql="select distinct t.broker_type from broker_info t where broker_type!=''";
 			pstmt=con.prepareStatement(sql);
 			  rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -956,7 +956,7 @@ public class BrokerInfoDao extends BaseDao {
 		PreparedStatement pstmt = null;
 		List<String> regionList=new ArrayList<String>();
 		try{
-			String sql="select distinct t.broker_region from broker_info t ";
+			String sql="select distinct t.broker_region from broker_info t where broker_region!=''";
 			pstmt=con.prepareStatement(sql);
 			  rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -999,7 +999,7 @@ public class BrokerInfoDao extends BaseDao {
 		PreparedStatement pstmt = null;
 		Set<String> languageList=new HashSet<String>();
 		try{
-			String sql="select distinct t.broker_language from broker_info t ";
+			String sql="select distinct t.broker_language from broker_info t where broker_language!=''";
 			pstmt=con.prepareStatement(sql);
 			  rs = pstmt.executeQuery();
 			while(rs.next()){
