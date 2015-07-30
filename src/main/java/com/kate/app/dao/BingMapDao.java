@@ -18,14 +18,14 @@ import com.kate.app.model.BingMapVo;
 import com.kate.app.model.HouseProject;
 @Repository 
 public class BingMapDao extends BaseDao {
-	public List<BingMapVo> listBingMap(){
+	public List<BingMapVo> listBingMap(){    //加载地图找房调用
 		NumberFormat nf = new DecimalFormat("#,###,###");
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<BingMapVo> bingMapList=new ArrayList<BingMapVo>();
 		try {
-			String sql = "select t.id,t.project_num,t.project_name,t.project_address,t.project_type,t.project_price_qi,t.project_price,t.project_min_price,t.project_high_price,t.mianji,t.project_img,t.project_lan_cn,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_price_int_qi from house_project t where t.isSeen=1";
+			String sql = "select t.id,t.project_num,t.project_name,t.project_address,t.project_type,t.project_price_qi,t.project_price,t.project_min_price,t.project_high_price,t.mianji,t.project_img,t.project_lan_cn,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_price_int_qi from house_project t where t.isSeen=1 and t.gps!='' and t.gps like '%,%'";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
 		    int id=0;
@@ -620,7 +620,7 @@ public class BingMapDao extends BaseDao {
 		return mapCenterList;
 	} 
 	
-	public List<HouseProject> filterByHouseType2(int type){
+	public List<HouseProject> filterByHouseType2(int type){    //根据类型查找
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
@@ -642,7 +642,7 @@ public class BingMapDao extends BaseDao {
 				housetype="";
 				break;
 			}
-			String sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%'";
+			String sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 ";
 			if(!housetype.equals("")){
 				sql += "and project_type = '"+housetype+"'";
 			}
