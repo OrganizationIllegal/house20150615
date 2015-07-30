@@ -5,6 +5,11 @@ public class BingMapVo {
 	private String project_img;
 	private String project_num;
 	private String project_address;
+	
+	
+	private String project_address_short;
+	
+	
 	private String project_name;
 	private String project_price;
 	private int minArea;
@@ -20,6 +25,27 @@ public class BingMapVo {
     private String project_price_int_qi;
     private String project_key;
     
+	public BingMapVo(int project_id,String project_img,String project_num,String project_address, String project_name,String project_price,int minArea,int maxArea,int keshou,String average_price,String house_type,String project_min_price,String project_high_price,String mianji,String return_money,String project_price_int_qi,String project_key,String project_address_short){
+		this.project_id=project_id;
+		this.project_img=project_img;
+		this.project_num=project_num;
+		this.project_address=project_address;
+		this.project_name=project_name;
+		this.project_price=project_price;
+		this.minArea=minArea;
+		this.maxArea=maxArea;
+		this.keshou=keshou;
+		this.average_price=average_price;
+		this.house_type=house_type;
+		this.project_min_price=project_min_price;
+		this.project_high_price=project_high_price;
+		this.mianji=mianji;
+		this.return_money=return_money;
+		this.project_price_int_qi=project_price_int_qi;
+		this.project_key=project_key;
+		this.project_address_short=project_address_short;
+	}
+	
 	public BingMapVo(int project_id,String project_img,String project_num,String project_address, String project_name,String project_price,int minArea,int maxArea,int keshou,String average_price,String house_type,String project_min_price,String project_high_price,String mianji,String return_money,String project_price_int_qi,String project_key){
 		this.project_id=project_id;
 		this.project_img=project_img;
@@ -40,7 +66,18 @@ public class BingMapVo {
 		this.project_key=project_key;
 	}
 	
-	
+
+	public String getProject_address_short() {
+		return project_address_short;
+	}
+
+
+
+	public void setProject_address_short(String project_address_short) {
+		this.project_address_short = project_address_short;
+	}
+
+
 
 	public String getProject_key() {
 		return project_key;

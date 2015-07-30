@@ -87,12 +87,15 @@ public class BingMapService {
 			obj.put("project_img", data.getProject_img()==null?"":data.getProject_img());
 			obj.put("project_price", data.getProject_price()==null?"":data.getProject_price());
 			obj.put("project_num", data.getProject_num()==null?"":data.getProject_num());
-			obj.put("project_min_price", data.getProject_min_price()==null?"":data.getProject_min_price());
-			obj.put("project_high_price", data.getProject_high_price()==null?"":data.getProject_high_price());
+			obj.put("project_min_price", data.getProject_min_price()==null?"":df.format(Integer.parseInt(data.getProject_min_price())));
+			obj.put("project_high_price", data.getProject_high_price()==null?"":df.format(Integer.parseInt(data.getProject_high_price())));
 			obj.put("project_zhou", data.getProject_zhou()==null?"":data.getProject_zhou());
 			obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
 			obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
 			obj.put("project_address", data.getProject_address()==null?"":data.getProject_address());
+			
+			obj.put("project_address_short", data.getProject_address_short()==null?"":data.getProject_address_short());
+			
 			obj.put("minArea", data.getMin_area()==0?0:data.getMin_area());
 			obj.put("maxArea", data.getMax_area()==0?0:data.getMax_area());
 			obj.put("return_money", data.getReturn_money()==null?"":data.getReturn_money());
