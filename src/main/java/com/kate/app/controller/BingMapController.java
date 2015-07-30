@@ -220,6 +220,12 @@ public class BingMapController {
 		int order=Integer.parseInt(req.getParameter("order"));
 		List<BingMapVo> bingMapList=bingMapService.orderByPrice(order);
 		req.setAttribute("bingMapList", bingMapList);
+		List<String> areaNameSet=bingMapDao.getAreaName();
+		req.setAttribute("areaNameSet", areaNameSet);
+		List<String> cityNameSet=bingMapDao.getCityName();
+		req.setAttribute("cityNameSet", cityNameSet);
+		List<String> addressNameSet=bingMapDao.getAddressName();
+		req.setAttribute("addressNameSet", addressNameSet);
 		return "/bingMap.jsp";
 	}
 	

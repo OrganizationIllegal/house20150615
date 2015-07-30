@@ -30,11 +30,8 @@ import com.kate.app.dao.SearchListDao;
 import com.kate.app.dao.UserDao;
 import com.kate.app.model.AreaInfo;
 import com.kate.app.model.BrokerInfo;
-
 import com.kate.app.model.BrokerInfoQuyu;
-
 import com.kate.app.model.BrokerServiceArea;
-
 import com.kate.app.model.HouseProject;
 import com.kate.app.model.LeiXing;
 import com.kate.app.model.ProjectDescImage;
@@ -519,7 +516,12 @@ public class SearchController {
 				
 				
 			}
-			
+			List<String> areaNameSet=bingMapDao.getAreaName();
+			req.setAttribute("areaNameSet", areaNameSet);
+			List<String> cityNameSet=bingMapDao.getCityName();
+			req.setAttribute("cityNameSet", cityNameSet);
+			List<String> addressNameSet=bingMapDao.getAddressName();
+			req.setAttribute("addressNameSet", addressNameSet);
 			req.setAttribute("bingMapList", searchList);
 			return "/bingMap01.jsp";
 		}
