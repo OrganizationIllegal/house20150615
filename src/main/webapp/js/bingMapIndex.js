@@ -1,19 +1,25 @@
  var map = null;
  var defaultInfobox;
  var map2=null; 
- var url=location.search;
+ 
  var LA=null;
  //var defaltCenter=new Microsoft.Maps.Location(-37.847019, 145.064643); 
       /*加载地图*/
       function getIndexMap(){
     	 map = new Microsoft.Maps.Map(document.getElementById('indexMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: true });
      	 map2 = new Microsoft.Maps.Map(document.getElementById('eyeMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL', mapTypeId: Microsoft.Maps.MapTypeId.birdseye,showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false,disableZooming: true });
-    	  $.ajax({
-  	 	    type: "GET",
+     	 var url=window.location.href;   	
+     	 var name=url.indexOf("=");
+     	 var proNum=url.substring(name+1);
+     	 //alert(proNum)
+     	 $.ajax({
+  	 	    type: "POST",
   	 		dateType: "json",
-  	 		url: "/BingMap/FileterProNum"+url, 		
+  	 		//url: "/BingMap/FileterProNum"+url, 
+  	 		url: "/BingMap/FileterProNum",
+  	 		data:{"proNum":proNum},
   	 		success:function(data){
-  	 		//alert(data)
+  	 		alert(data)
   	 		data=$.parseJSON(data);
   	 		    var items=data.List;
   	 		    for(var i=0;i<items.length;i++){
