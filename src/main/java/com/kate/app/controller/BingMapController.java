@@ -167,6 +167,7 @@ public class BingMapController {
 				obj.put("project_img", item.getProject_img());
 				obj.put("return_money",item.getReturn_money());
 				obj.put("project_price_int_qi",item.getProject_price_int_qi());
+				obj.put("project_key",item.getProject_key());
 				array.add(obj);
 			}
 			json.put("List", array);
@@ -220,6 +221,12 @@ public class BingMapController {
 		int order=Integer.parseInt(req.getParameter("order"));
 		List<BingMapVo> bingMapList=bingMapService.orderByPrice(order);
 		req.setAttribute("bingMapList", bingMapList);
+		List<String> areaNameSet=bingMapDao.getAreaName();
+		req.setAttribute("areaNameSet", areaNameSet);
+		List<String> cityNameSet=bingMapDao.getCityName();
+		req.setAttribute("cityNameSet", cityNameSet);
+		List<String> addressNameSet=bingMapDao.getAddressName();
+		req.setAttribute("addressNameSet", addressNameSet);
 		return "/bingMap.jsp";
 	}
 	
@@ -261,6 +268,7 @@ public class BingMapController {
 				obj.put("project_img", item.getProject_img());
 				obj.put("return_money",item.getReturn_money());
 				obj.put("project_price_int_qi",item.getProject_price_int_qi());
+				obj.put("project_key",item.getProject_key());
 				array.add(obj);
 			}
 			json.put("List", array);

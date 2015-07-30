@@ -276,8 +276,9 @@ body{
 	                    	html+="<div style='font-family:微软雅黑;font-size:13px'><span style='font-weight:bolder;'>最多</span><span class='right' style='margin-right:14px'>"+items[j].maxPrice+"</span></div>";
 	                    	html+="<div style='font-family:微软雅黑;font-size:13px'><span style='font-weight:bolder;'>最少</span><span class='right' style='margin-right:14px'>"+items[j].minPrice+"</span></div>";
 	                    	html+="<div style='font-family:微软雅黑;font-size:13px'><span style='font-weight:bolder;'>面积</span><span class='right' style='margin-right:14px'>"+items[j].minArea+"<span>-</span>"+items[j].maxArea+"</span></div>";
-	                    	html+="<div style='font-family:微软雅黑;font-size:13px'><span style='font-weight:bolder;'>返利</span><span class='right'  style='margin-right:14px'>"+items[j].fanxian+"</span></div>";
+	                    	/* html+="<div style='font-family:微软雅黑;font-size:13px'><span style='font-weight:bolder;'>返利</span><span class='right'  style='margin-right:14px'>"+items[j].fanxian+"</span></div>"; */
 	                    	html+="<div style='font-family:微软雅黑;font-size:13px'><span style='font-weight:bolder;'>均价</span><span class='right'  style='margin-right:14px'>"+items[j].project_price_int_qi+"</span></div>";
+	                    	html+="<div style='font-family:微软雅黑;font-size:13px'><span style='font-weight:bolder;'>均价</span><span class='right'  style='margin-right:14px'>"+items[j].project_key+"</span></div>";
 	                    	html+="</div></div></div>";
 	                    	
 	                	}
@@ -307,10 +308,12 @@ body{
                	html+="<a class='f-r f-yahei s-12 node_val'>$"+items[j].minPrice+"</a>";
                	html+="<a class='c-fix f-l f-yahei s-12 node_title'>面积</a>";
                	html+="<a class='f-r f-yahei s-12 node_val'>"+items[j].minArea+"+"+items[j].maxArea+"</a>";
-               	html+="<a class='c-fix f-l f-yahei s-12 node_title'>返利</a>";
-               	html+="<a class='f-r f-yahei s-12 node_val'>"+items[j].fanxian+"</a>";
+               /* 	html+="<a class='c-fix f-l f-yahei s-12 node_title'>返利</a>";
+               	html+="<a class='f-r f-yahei s-12 node_val'>"+items[j].fanxian+"</a>"; */
                	html+="<a class='c-fix f-l f-yahei s-12 node_title'>起价</a>";
                	html+="<a class='f-r f-yahei s-12 node_val'>$"+items[j].project_price_int_qi+"</a>";
+            	html+="<a class='c-fix f-l f-yahei s-12 node_title'>"+items[j].project_key+"</a>";
+              /*  	html+="<a class='f-r f-yahei s-12 node_val'>$"+items[j].project_key+"</a>"; */
                	html+="</div></div>";
                	
            	}
@@ -412,7 +415,7 @@ body{
 	                </select>
                 </div>
                 <div class="f-l f-yahei btn_search cp" onclick="addPushpinsearch()">搜索</div>
-				<a class="f-r f-yahei s-14 btn cp hover" style="padding:4px 6px;border:2px solid rgb(245,161,27)" href="/searchList01.jsp">列表找房</a>
+				<a class="f-r f-yahei s-14 btn cp hover" style="padding:4px 6px;border:2px solid rgb(245,161,27)" href="/SearchList">列表找房</a>
 				<a class="f-r f-yahei s-14 btn btn_sel cp hover" style="padding:4px 6px"  href="#">地图找房</a>
 				<!-- <select class="f-r sel" style=" background: none;border: none;font-family: 微软雅黑;">
 					<option>交房时间</option>
@@ -442,14 +445,14 @@ body{
 						<a class="f-r f-yahei s-12 node_val">$${item.minPrice}</a>
 						<a class="c-fix f-l f-yahei s-12 node_title">面积</a>
 						<a class="f-r f-yahei s-12 node_val">${item.minArea}-${item.maxArea}</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">返利</a>
-						<a class="f-r f-yahei s-12 node_val">${item.fanxian}</a>
+						<%-- <a class="c-fix f-l f-yahei s-12 node_title">返利</a>
+						<a class="f-r f-yahei s-12 node_val">${item.fanxian}</a> --%>
 						<a class="c-fix f-l f-yahei s-12 node_title">起价</a>
 						<a class="f-r f-yahei s-12 node_val">$${item.project_price_int_qi}</a>
+						<a class="c-fix f-l f-yahei s-12 node_title">${item.project_key}</a>
 					</div>
 				</div>
 			 </c:forEach> 
-				<
 			</div>
 			<div class="f-l div4" id="right2">
 				<div  id="myMap" style="position:relative;width:100%;height:100%;"></div>

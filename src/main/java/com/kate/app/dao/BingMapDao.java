@@ -632,6 +632,7 @@ public class BingMapDao extends BaseDao {
 			  rs = stmt.executeQuery(sql);
 			while(rs.next()){
 		    	HouseProject coordinates=new HouseProject();
+		    	String project_num=rs.getString("project_num");
 		    	coordinates.setId(rs.getInt("id"));
 		    	coordinates.setGps(rs.getString("gps"));
 		    	coordinates.setProject_name(rs.getString("project_name"));
@@ -662,6 +663,11 @@ public class BingMapDao extends BaseDao {
 		    	else{
 		    		coordinates.setProject_price_int_qi(0);
 		    	}
+		    	//获取项目关键字，根据项目编号查找项目关键字
+		    	String project_key=findProjectKeyByNum(project_num);
+		    	coordinates.setProject_key(project_key);
+		    	
+		    	
 		    	coordinatesList.add(coordinates);
 		    }
 		} catch (Exception e) {
@@ -760,7 +766,7 @@ public class BingMapDao extends BaseDao {
 		List<HouseProject> coordinatesList=new ArrayList<HouseProject>();
 		try {
 			  if(!"".equals(area)&&!"".equals(city)&&!"".equals(addr)){
-			  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and project_area=? or project_city=? or project_address=?";
+			  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and project_area=? and project_city=? and project_address=?";
 			  //System.out.println("area city addr");
 			  pstmt = con.prepareStatement(sql);
 			  pstmt.setString(1, area);
@@ -782,19 +788,19 @@ public class BingMapDao extends BaseDao {
 						  pstmt = con.prepareStatement(sql);
 						  pstmt.setString(1, addr);
 						  }else if(!"".equals(area)&&!"".equals(city)&&"".equals(addr)){
-							  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and project_area=? or project_city=?";
+							  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and project_area=? and project_city=?";
 							 // System.out.println("area city");
 							  pstmt = con.prepareStatement(sql);
 							  pstmt.setString(1, area);
 							  pstmt.setString(2, city);
 							  }else if(!"".equals(area)&&"".equals(city)&&!"".equals(addr)){
-								  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and project_area=? or project_address=?";
+								  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and project_area=? and project_address=?";
 								  //System.out.println("area addr");
 								  pstmt = con.prepareStatement(sql);
 								  pstmt.setString(1, area);
 								  pstmt.setString(2, addr);
 								  }else if("".equals(area)&&!"".equals(city)&&!"".equals(addr)){
-									  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and project_city=? or project_address=?";
+									  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and project_city=? and project_address=?";
 									  //System.out.println("city addr");
 									  pstmt = con.prepareStatement(sql);
 									  pstmt.setString(1, city);
@@ -877,6 +883,12 @@ public class BingMapDao extends BaseDao {
 		    	coordinates.setProject_num(rs.getString("project_num"));
 		    	coordinates.setProject_min_price(rs.getString("project_min_price"));
 		    	coordinates.setProject_high_price(rs.getString("project_high_price"));
+		    	coordinates.setProject_zhou(rs.getString("project_zhou"));
+		    	coordinates.setProject_city(rs.getString("project_city"));
+		    	coordinates.setProject_nation(rs.getString("project_nation"));
+		    	coordinates.setProject_area(rs.getString("project_area"));
+		    	coordinates.setProject_price_int_qi(rs.getInt("project_price_int_qi"));
+		    	coordinates.setProject_type(rs.getString("project_type"));
 		    	coordinatesList.add(coordinates);
 		    }
 		} catch (Exception e) {
@@ -916,7 +928,7 @@ public class BingMapDao extends BaseDao {
 		PreparedStatement pstmt = null;
 		List<String> areaNameSet=new ArrayList<String>();
 		try {
-			String sql ="select distinct project_area from house_project order by project_area asc";
+			String sql ="select distinct project_area from house_project order by project_area";
 			 pstmt = con.prepareStatement(sql);
 			  rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -959,7 +971,7 @@ public class BingMapDao extends BaseDao {
 			PreparedStatement pstmt = null;
 			List<String> cityNameSet=new ArrayList<String>();
 			try {
-				String sql ="select distinct project_city from house_project order by project_city asc";
+				String sql ="select distinct project_city from house_project order by project_city";
 				 pstmt = con.prepareStatement(sql);
 				  rs = pstmt.executeQuery();
 				while(rs.next()){
@@ -1002,7 +1014,7 @@ public class BingMapDao extends BaseDao {
 			PreparedStatement pstmt = null;
 			List<String> addressNameSet=new ArrayList<String>();
 			try {
-				String sql ="select distinct project_address from house_project order by project_address asc";
+				String sql ="select distinct project_address from house_project order by project_address";
 				 pstmt = con.prepareStatement(sql);
 				  rs = pstmt.executeQuery();
 				while(rs.next()){

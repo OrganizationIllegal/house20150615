@@ -30,11 +30,8 @@ import com.kate.app.dao.SearchListDao;
 import com.kate.app.dao.UserDao;
 import com.kate.app.model.AreaInfo;
 import com.kate.app.model.BrokerInfo;
-
 import com.kate.app.model.BrokerInfoQuyu;
-
 import com.kate.app.model.BrokerServiceArea;
-
 import com.kate.app.model.HouseProject;
 import com.kate.app.model.LeiXing;
 import com.kate.app.model.ProjectDescImage;
@@ -392,7 +389,10 @@ public class SearchController {
 		    		xianfang1 = p.getXianfang();
 		    		maidi1 = p.getMaidi();
 		    	}
-		    	SearchList data=new SearchList(id,project_area,project_type,gps,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,project_lan_en,mianji,project_address,project_logo,developer_id_name,xinkaipan1,huaren1,remen1,xuequ1,baozu1,daxue1,center1,traffic1,xianfang1,maidi1,project_price_int_qi,project_desc);
+		    	String project_key=null;
+		    	project_key=bingMapDao.findProjectKeyByNum(project_num);
+		    			
+		    	SearchList data=new SearchList(id,project_area,project_type,gps,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,project_lan_en,mianji,project_address,project_logo,developer_id_name,xinkaipan1,huaren1,remen1,xuequ1,baozu1,daxue1,center1,traffic1,xianfang1,maidi1,project_price_int_qi,project_desc,project_key);
 		    	searchList.add(data);
 			}
 			seachListResult = searchList;
@@ -481,7 +481,11 @@ public class SearchController {
 					}
 				}
 	        }
-			//System.out.println(array);
+			/*System.out.println(array);
+			System.out.println(array2);
+			System.out.println(array3);
+			System.out.println(array2.size());
+			System.out.println(array3.size());*/
 			json.put("List", array);
 			json.put("List2", array2);
 			json.put("List3", JSONArray.parseArray(JSON.toJSONString(array3, SerializerFeature.DisableCircularReferenceDetect)));
@@ -519,7 +523,12 @@ public class SearchController {
 				
 				
 			}
-			
+			List<String> areaNameSet=bingMapDao.getAreaName();
+			req.setAttribute("areaNameSet", areaNameSet);
+			List<String> cityNameSet=bingMapDao.getCityName();
+			req.setAttribute("cityNameSet", cityNameSet);
+			List<String> addressNameSet=bingMapDao.getAddressName();
+			req.setAttribute("addressNameSet", addressNameSet);
 			req.setAttribute("bingMapList", searchList);
 			return "/bingMap01.jsp";
 		}
@@ -543,7 +552,7 @@ public class SearchController {
 				obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
 				obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
 				obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
-				obj.put("project_price_int_qi", data.getProject_price_int_qi()==0?0:df.format(data.getProject_price_int_qi()));
+				obj.put("project_price_int_qi", data.getProject_price_int_qi()==0?"N/A":df.format(data.getProject_price_int_qi()));
 				obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
 				array.add(obj);
 			}
