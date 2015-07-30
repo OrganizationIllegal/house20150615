@@ -632,6 +632,7 @@ public class BingMapDao extends BaseDao {
 			  rs = stmt.executeQuery(sql);
 			while(rs.next()){
 		    	HouseProject coordinates=new HouseProject();
+		    	String project_num=rs.getString("project_num");
 		    	coordinates.setId(rs.getInt("id"));
 		    	coordinates.setGps(rs.getString("gps"));
 		    	coordinates.setProject_name(rs.getString("project_name"));
@@ -662,6 +663,11 @@ public class BingMapDao extends BaseDao {
 		    	else{
 		    		coordinates.setProject_price_int_qi(0);
 		    	}
+		    	//获取项目关键字，根据项目编号查找项目关键字
+		    	String project_key=findProjectKeyByNum(project_num);
+		    	coordinates.setProject_key(project_key);
+		    	
+		    	
 		    	coordinatesList.add(coordinates);
 		    }
 		} catch (Exception e) {

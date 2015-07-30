@@ -30,11 +30,8 @@ import com.kate.app.dao.SearchListDao;
 import com.kate.app.dao.UserDao;
 import com.kate.app.model.AreaInfo;
 import com.kate.app.model.BrokerInfo;
-
 import com.kate.app.model.BrokerInfoQuyu;
-
 import com.kate.app.model.BrokerServiceArea;
-
 import com.kate.app.model.HouseProject;
 import com.kate.app.model.LeiXing;
 import com.kate.app.model.ProjectDescImage;
@@ -392,7 +389,10 @@ public class SearchController {
 		    		xianfang1 = p.getXianfang();
 		    		maidi1 = p.getMaidi();
 		    	}
-		    	SearchList data=new SearchList(id,project_area,project_type,gps,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,project_lan_en,mianji,project_address,project_logo,developer_id_name,xinkaipan1,huaren1,remen1,xuequ1,baozu1,daxue1,center1,traffic1,xianfang1,maidi1,project_price_int_qi,project_desc);
+		    	String project_key=null;
+		    	project_key=bingMapDao.findProjectKeyByNum(project_num);
+		    			
+		    	SearchList data=new SearchList(id,project_area,project_type,gps,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,project_lan_en,mianji,project_address,project_logo,developer_id_name,xinkaipan1,huaren1,remen1,xuequ1,baozu1,daxue1,center1,traffic1,xianfang1,maidi1,project_price_int_qi,project_desc,project_key);
 		    	searchList.add(data);
 			}
 			seachListResult = searchList;
