@@ -37,6 +37,7 @@ public class BingMapService {
 		JSONArray array = new JSONArray();
 		DecimalFormat df = new DecimalFormat("#,###,###");
 		List<HouseProject> list = bingMapDao.listMap();
+		
 		for(HouseProject data : list){
 			JSONObject obj = new JSONObject();
 			obj.put("id", data.getId());
@@ -110,8 +111,8 @@ public class BingMapService {
 			obj.put("project_img", data.getProject_img()==null?"":data.getProject_img());
 			obj.put("project_price", data.getProject_price()==null?"":data.getProject_price());
 			obj.put("project_num", data.getProject_num()==null?"":data.getProject_num());
-			obj.put("project_min_price", data.getProject_min_price()==null?"":df.format(Integer.parseInt(data.getProject_min_price())));
-			obj.put("project_high_price", data.getProject_high_price()==null?"":df.format(Integer.parseInt(data.getProject_high_price())));
+			obj.put("project_min_price", data.getProject_min_price()==null?"N/A":df.format(Integer.parseInt(data.getProject_min_price())));
+			obj.put("project_high_price", data.getProject_high_price()==null?"N/A":df.format(Integer.parseInt(data.getProject_high_price())));
 			obj.put("project_zhou", data.getProject_zhou()==null?"":data.getProject_zhou());
 			obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
 			obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
@@ -156,8 +157,8 @@ public class BingMapService {
 			obj.put("project_img", data.getProject_img()==null?"":data.getProject_img());
 			obj.put("project_price", data.getProject_price()==null?"":data.getProject_price());
 			obj.put("project_num", data.getProject_num()==null?"":data.getProject_num());
-			obj.put("project_min_price", data.getProject_min_price()==null?"":data.getProject_min_price());
-			obj.put("project_high_price", data.getProject_high_price()==null?"":data.getProject_high_price());
+			obj.put("project_min_price", data.getProject_min_price()==null?"N/A":data.getProject_min_price());
+			obj.put("project_high_price", data.getProject_high_price()==null?"N/A":data.getProject_high_price());
 			obj.put("project_zhou", data.getProject_zhou()==null?"":data.getProject_zhou());
 			obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
 			obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
@@ -178,6 +179,12 @@ public class BingMapService {
 			obj.put("return_money", data.getReturn_money()==null?"":data.getReturn_money());
 			obj.put("minArea", data.getMin_area()==0?0:data.getMin_area());
 			obj.put("maxArea", data.getMax_area()==0?0:data.getMax_area());
+			String project_num = data.getProject_num()==null?"":data.getProject_num();
+			String project_key = "";
+			if(project_num!=null && !"".equals(project_num)){
+				project_key = bingMapDao.findProjectKeyByNum(project_num);
+			}
+			obj.put("project_key", project_key);
 			array.add(obj);
 		}
 		return array;

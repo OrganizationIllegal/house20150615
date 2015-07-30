@@ -1,6 +1,7 @@
 package com.kate.app.controller;
 
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -8,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.mail.Flags.Flag;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -35,6 +37,10 @@ public class BingMapController {
 
 	
 	private static List<HouseProject>  seachListResult;
+	
+	private static List<HouseProject> typeListResult;
+	
+	private static int flagInfo = 0;
 	
 	@RequestMapping({"/MapCenterInput"})
 	public String mapCenterInput(HttpServletRequest req,HttpServletResponse resp){
@@ -224,33 +230,52 @@ public class BingMapController {
 	}
 	
 	
-	@RequestMapping({"/OrderByPrice"})
+	@RequestMapping({"/OrderByPrice"})            //排序
 	public String OrderByPrice(HttpServletRequest req,HttpServletResponse resp){
 		int order=Integer.parseInt(req.getParameter("order"));
 		List<BingMapVo> bingMapList = new ArrayList<BingMapVo>();
-		if(seachListResult!=null && seachListResult.size()>0){
+		if(flagInfo==2){
 			for(HouseProject item : seachListResult){
+				DecimalFormat df = new DecimalFormat("#,###,###");
 				int id = item.getId();
 				String project_img = item.getProject_img();
 				String project_num = item.getProject_num();
-				String project_address = item.getProject_address();
-				String project_name = item.getProject_name();
+				String project_address_short = item.getProject_address();
+				
+			
+				if(project_address_short!=null && !"".equals(project_address_short)){
+					if(project_address_short.length()>40){
+						project_address_short = project_address_short.substring(0, 40);
+					}
+				}
+				String project_address = item.getProject_address()==null?"":item.getProject_address();
+				
+				
+				String project_name_short = item.getProject_name();
+				if(project_name_short!=null && !"".equals(project_name_short)){
+					if(project_name_short.length()>20){
+						project_name_short = project_name_short.substring(0, 20);
+					}
+				}
+				String project_name = item.getProject_name()==null?"":item.getProject_name();
+		
 				int project_sales_remain = item.getProject_sales_remain();
 				int maxarea = item.getMax_area();
 				int minarea = item.getMin_area();
 				String project_price = item.getProject_price();
-				String project_price_qi = item.getProject_price_qi();
+				String project_price_int_qi = item.getProject_price_qi();
 				String house_type = item.getProject_house_type();
+				String tempPrice = item.getProject_min_price();
 				String project_min_price = item.getProject_min_price();
 				String project_high_price = item.getProject_high_price();
 				String mianji = item.getMianji();
 				String return_money = item.getReturn_money();
-				String project_price_int_qi = item.getProject_price_qi();
+				
 				String project_key = "";
 				if(project_num!=null && !"".equals(project_num)){
 					project_key =bingMapDao.findProjectKeyByNum(project_num);
 				}
-				BingMapVo  bingMapVo=new BingMapVo(id,project_img,project_num,project_address, project_name, project_price,minarea, maxarea, project_sales_remain, project_price_int_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key);
+				BingMapVo  bingMapVo=new BingMapVo(id,project_name,project_img,project_num,project_address, project_name_short, project_price,minarea, maxarea, project_sales_remain, project_price_int_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key,project_address_short);
 				bingMapList.add(bingMapVo);
 				
 			}
@@ -273,8 +298,72 @@ public class BingMapController {
 		                return a.compareTo(b);  
 		            }  
 		        }));
+			}
+		}
+		else if(flagInfo==1){
+			for(HouseProject item : typeListResult){
+				DecimalFormat df = new DecimalFormat("#,###,###");
+				int id = item.getId();
+				String project_img = item.getProject_img();
+				String project_num = item.getProject_num();
+				String project_address_short = item.getProject_address();
+				
+			
+				if(project_address_short!=null && !"".equals(project_address_short)){
+					if(project_address_short.length()>40){
+						project_address_short = project_address_short.substring(0, 40);
+					}
+				}
+				String project_address = item.getProject_address()==null?"":item.getProject_address();
 				
 				
+				String project_name_short = item.getProject_name();
+				if(project_name_short!=null && !"".equals(project_name_short)){
+					if(project_name_short.length()>20){
+						project_name_short = project_name_short.substring(0, 20);
+					}
+				}
+				String project_name = item.getProject_name()==null?"":item.getProject_name();
+		
+				int project_sales_remain = item.getProject_sales_remain();
+				int maxarea = item.getMax_area();
+				int minarea = item.getMin_area();
+				String project_price = item.getProject_price();
+				String project_price_qi = item.getProject_price_qi();
+				String house_type = item.getProject_house_type();
+				String project_min_price = item.getProject_min_price()==null?"N/A":df.format(Integer.parseInt(item.getProject_min_price()));
+				String project_high_price = item.getProject_high_price()==null?"N/A":df.format(Integer.parseInt(item.getProject_high_price()));
+				String mianji = item.getMianji();
+				String return_money = item.getReturn_money();
+				String project_price_int_qi = item.getProject_price_int_qi()==0?"N/A":df.format(item.getProject_price_int_qi());
+				
+				String project_key = "";
+				if(project_num!=null && !"".equals(project_num)){
+					project_key =bingMapDao.findProjectKeyByNum(project_num);
+				}
+				BingMapVo  bingMapVo=new BingMapVo(id,project_name,project_img,project_num,project_address, project_name_short, project_price,minarea, maxarea, project_sales_remain, project_price_int_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key,project_address_short);
+				bingMapList.add(bingMapVo);
+				
+			}
+			
+			if(order==1){
+				Collections.sort(bingMapList,new Comparator<BingMapVo>(){  
+		            public int compare(BingMapVo arg0, BingMapVo arg1) { 
+		            	String a = String.valueOf(arg0.getProject_price_int_qi());
+		            	String b = String.valueOf(arg1.getProject_price_int_qi());
+		                return a.compareTo(b);  
+		            }  
+		        });  
+				
+			}
+			else{
+				Collections.sort(bingMapList,Collections.reverseOrder(new Comparator<BingMapVo>(){  
+		            public int compare(BingMapVo arg0, BingMapVo arg1) { 
+		            	String a = String.valueOf(arg0.getProject_price_int_qi());
+		            	String b = String.valueOf(arg1.getProject_price_int_qi());
+		                return a.compareTo(b);  
+		            }  
+		        }));
 			}
 		}
 		else{
@@ -403,6 +492,8 @@ public class BingMapController {
 	
 	@RequestMapping({ "/BingMap/FileterType2" })    
 	public void filterByHouseType2(HttpServletRequest req, HttpServletResponse resp){    //公寓
+		flagInfo = 1;          //根据类型进行查询
+		
 		JSONObject json = new JSONObject();
 		JSONArray array = new JSONArray();
 		JSONArray array2 = new JSONArray();
@@ -411,6 +502,8 @@ public class BingMapController {
 		JSONArray arrayCentermoren = new JSONArray();
 		List<String> city=new ArrayList<String>();
 		int type=Integer.parseInt(req.getParameter("house_type"));
+		List<HouseProject> list = bingMapDao.filterByHouseType2(type);
+		typeListResult = list;    //根据类型查询结果集合
 		
 		array = bingMapService.filterByHouseType2(type);
 		
@@ -461,6 +554,7 @@ public class BingMapController {
 	}
 	@RequestMapping({ "/BingMap/FileterKeyWord" })    
 	public void filterByKeyWord(HttpServletRequest req, HttpServletResponse resp){
+		flagInfo = 2;
 		JSONObject json = new JSONObject();
 		JSONArray array = new JSONArray();
 		JSONArray array2 = new JSONArray();
@@ -474,6 +568,7 @@ public class BingMapController {
 		String city1=req.getParameter("city");
 		String address=req.getParameter("address");
 		array = bingMapService.filterByKeyWord(area,city1,address);
+		
 		List<HouseProject> list = bingMapDao.filterByKeyWord(area,city1,address);
 		seachListResult = list;
 		

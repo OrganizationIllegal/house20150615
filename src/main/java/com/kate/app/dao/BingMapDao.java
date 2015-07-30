@@ -61,8 +61,8 @@ public class BingMapDao extends BaseDao {
 		    	minarea=rs.getInt("minarea");
 		    	//project_price=rs.getInt("project_price_qi");//锟剿达拷锟斤拷目锟桔革拷目前锟斤拷锟斤拷锟斤拷锟侥科斤拷锟桔革拷
 		    	project_price_qi=rs.getString("project_price_qi");
-		    	project_min_price=rs.getString("project_min_price")==null?"":nf.format(Integer.parseInt(rs.getString("project_min_price")));
-		    	project_high_price=rs.getString("project_high_price")==null?"":nf.format(Integer.parseInt(rs.getString("project_high_price")));
+		    	project_min_price=rs.getString("project_min_price")==null?"N/A":nf.format(Integer.parseInt(rs.getString("project_min_price")));
+		    	project_high_price=rs.getString("project_high_price")==null?"N/A":nf.format(Integer.parseInt(rs.getString("project_high_price")));
 		    	mianji=rs.getString("mianji");
 		    	house_type=rs.getString("project_type");
 		    	return_money=rs.getString("return_money");
@@ -70,7 +70,7 @@ public class BingMapDao extends BaseDao {
 		    	     project_price_int_qi=nf.format(Integer.parseInt(rs.getString("project_price_int_qi")));
 		    	}
 		    	else{
-		    		project_price_int_qi="0";
+		    		project_price_int_qi="N/A";
 		    	}
 		    	//对项目地址进行截取
 		    	project_address_short=project_address.length()>40?project_address.substring(0, 40):project_address;
@@ -516,7 +516,7 @@ public class BingMapDao extends BaseDao {
 		PreparedStatement pstmt = null;
 		List<HouseProject> coordinatesList=new ArrayList<HouseProject>();
 		try {
-			String sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%'";
+			String sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
 		    while(rs.next()){
@@ -784,54 +784,51 @@ public class BingMapDao extends BaseDao {
 		List<HouseProject> coordinatesList=new ArrayList<HouseProject>();
 		try {
 			  if(!"".equals(area)&&!"".equals(city)&&!"".equals(addr)){
-			  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and project_area=? and project_city=? and project_address=?";
+			  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_area=? and project_city=? and project_address=?";
 			  //System.out.println("area city addr");
 			  pstmt = con.prepareStatement(sql);
 			  pstmt.setString(1, area);
 			  pstmt.setString(2, city);
 			  pstmt.setString(3, addr);
 			  }else if(!"".equals(area)&&"".equals(city)&&"".equals(addr)){
-				  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and project_area=?";
+				  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_area=?";
 				  //System.out.println("area");
 				  pstmt = con.prepareStatement(sql);
 				  pstmt.setString(1, area);
 				  }else if("".equals(area)&&!"".equals(city)&&"".equals(addr)){
-					  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and project_city=?";
+					  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_city=?";
 					  //System.out.println("city");
 					  pstmt = con.prepareStatement(sql);
 					  pstmt.setString(1, city);
 					  }else if("".equals(area)&&"".equals(city)&&!"".equals(addr)){
-						  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and project_address=?";
+						  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_address=?";
 						  //System.out.println("addr");
 						  pstmt = con.prepareStatement(sql);
 						  pstmt.setString(1, addr);
 						  }else if(!"".equals(area)&&!"".equals(city)&&"".equals(addr)){
-							  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and project_area=? and project_city=?";
+							  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_area=? and project_city=?";
 							 // System.out.println("area city");
 							  pstmt = con.prepareStatement(sql);
 							  pstmt.setString(1, area);
 							  pstmt.setString(2, city);
 							  }else if(!"".equals(area)&&"".equals(city)&&!"".equals(addr)){
-								  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and project_area=? and project_address=?";
+								  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_area=? and project_address=?";
 								  //System.out.println("area addr");
 								  pstmt = con.prepareStatement(sql);
 								  pstmt.setString(1, area);
 								  pstmt.setString(2, addr);
 								  }else if("".equals(area)&&!"".equals(city)&&!"".equals(addr)){
-									  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and project_city=? and project_address=?";
+									  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_city=? and project_address=?";
 									  //System.out.println("city addr");
 									  pstmt = con.prepareStatement(sql);
 									  pstmt.setString(1, city);
 									  pstmt.setString(2, addr);
 									  }else{
-										  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%'";
+										  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1";
 										  //System.out.println("无条件");
 										  pstmt = con.prepareStatement(sql);
 									  }
-			 /* pstmt = con.prepareStatement(sql);
-			  pstmt.setString(1, area);
-			  pstmt.setString(2, city);
-			  pstmt.setString(3, addr);*/
+
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				DecimalFormat df = new DecimalFormat("#,###,###");
@@ -859,7 +856,7 @@ public class BingMapDao extends BaseDao {
 		        	coordinates.setProject_price_qi(df.format(Integer.parseInt(rs.getString("project_price_int_qi"))));
 		    	}
 		    	else{
-		    		coordinates.setProject_price_qi("0");
+		    		coordinates.setProject_price_qi("N/A");
 		    	}
 		        //String project_key=findProjectKeyByNum(project_num);
 		    	coordinatesList.add(coordinates);
