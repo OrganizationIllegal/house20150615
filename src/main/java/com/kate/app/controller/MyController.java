@@ -34,7 +34,7 @@ import com.kate.app.model.AreaMiddle;
 import com.kate.app.model.AreaPeopleInfo;
 import com.kate.app.model.AreaZhikong;
 import com.kate.app.model.AreaZujin;
-import com.kate.app.model.BrokerInfo;
+import com.kate.app.model.BrokerInfoQuyu;
 import com.kate.app.model.BuyInfo;
 import com.kate.app.model.DeveloperInfo;
 import com.kate.app.model.FamilyIncome;
@@ -1265,13 +1265,22 @@ public class MyController {
 			req.setAttribute("userList", userList);
 			//return "/index.jsp";
 		}*/
-	//通过项目推荐经纪人
-		@RequestMapping({"/recommendBroker"})
+	//通过项目推荐经纪人BrokerInfoQuyu
+		/*@RequestMapping({"/recommendBroker"})
 		public void getRecommendBroker(HttpServletRequest req,HttpServletResponse resp, String project_num, String area_num){
 			List<BrokerInfo> recommendBroker = null;
 			recommendBroker = brokerInfoDao.getRecommendBroker(project_num);
 			if(recommendBroker == null){
 				recommendBroker = brokerInfoDao.getRecommendBrokerByArea(area_num);
+			}
+			req.setAttribute("recommendBroker", recommendBroker);
+		}*/
+		@RequestMapping({"/recommendBroker"})
+		public void getRecommendBroker(HttpServletRequest req,HttpServletResponse resp, String project_num, String area_num){
+			List<BrokerInfoQuyu> recommendBroker = null;
+			recommendBroker = brokerInfoDao.getRecommendBroke2(project_num);
+			if(recommendBroker == null){
+				recommendBroker = brokerInfoDao.getRecommendBroke2(project_num);
 			}
 			req.setAttribute("recommendBroker", recommendBroker);
 		}

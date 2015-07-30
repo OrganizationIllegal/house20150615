@@ -1226,12 +1226,17 @@ var e=$('#input2').val();
 								<a class="f-l agent_lab f-yahei s-14" style="margin-top:15px;">从业经验：${item.broker_experience }年</a>
 								<a class="f-l agent_lab f-yahei s-14">语言：${item.broker_language }</a>
 								<a class="f-l agent_lab f-yahei s-14">区域：${item.broker_region }</a>
-								<div class="f-l icon1 cp"></div>
+								<!-- <div class="f-l icon1 cp"></div>
 								<div class="f-l icon2 cp"></div>
-								<div class="f-l icon3 cp"></div>
+								<div class="f-l icon3 cp"></div> -->
+								  <span style="height:20px;width:50px;">
+                	                   <c:forEach var="item3" items="${item.leixingInfo }"  varStatus="stat"> 
+                	   	                   <img  src="<%=application.getInitParameter("imagedir")%>/${item3.leixingImg }" style="width:26px;height:20px;margin-left:5px"/>
+                	                   </c:forEach>
+                                 </span>
 							</div>
 						</c:if>
-						</c:forEach>
+					</c:forEach>
 					</div>
 				</div>
 			</div>

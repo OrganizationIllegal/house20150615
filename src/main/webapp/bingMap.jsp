@@ -303,12 +303,16 @@ body{
            if(items!=null){
            	for(var j=0;j<items.length;j++){
            		var imgUrl = <%=application.getInitParameter("imagedir")%>/+items[j].project_img; 
-               	html+=" <div class='c-fix f-l div_node'><a class='c-fix f-l f-yahei s-12 node_address' title='items[j].project_address'>"+items[j].project_address_short+"</a>";
+
+               	html+=" <div class='c-fix f-l div_node'><a class='c-fix f-l f-yahei s-12 node_address' title='"+items[j].project_address+"'>"+items[j].project_address_short+"</a>";
+
                	html+="<a href='/Index?proNum="+items[j].project_num+"'"+" target='_parent'>";
            		
                	html+="<img class='c-fix f-l node_img'  src='"+imgUrl+"' style='width:160px;height:100px' ></img></a>";
                	html+="<div class='f-l node_right' style='width:167px'>";
-               	html+="<a class='c-fix f-l f-arial s-12 fw node_name'>"+items[j].project_name_short+"</a>";
+
+               	html+="<a class='c-fix f-l f-arial s-12 fw node_name' title='"+items[j].project_name+"'>"+items[j].project_name_short+"</a>";
+
                	html+="<a class='c-fix f-l f-yahei s-12 node_title' style='margin-top:1px'>最多</a>";
                	html+="<a class='f-r f-yahei s-12 node_val' style='margin-top:1px'>$"+items[j].project_high_price+"</a>";
                	html+="<a class='c-fix f-l f-yahei s-12 node_title'>最少</a>";
@@ -402,19 +406,19 @@ body{
                 <div class="c-fix f-l f-yahei" style="margin-left:30px;margin-top:8px;">
 	               
 	                <select data-placeholder="请选择城市..." class="chosen-select" id="project_city" name="project_city" style="width:200px;" tabindex="4">
-		 	            <option value=""></option>
+		 	            <option value="">请选择城市...</option>
 		  	            <c:forEach items="${cityNameSet}" var="item">
         		   		<option value="${item}">${item}</option>
    					    </c:forEach>
 	                </select>
 	                 <select data-placeholder="请选择区域..." class="chosen-select" id="project_area" name="project_area" style="width:200px;" tabindex="4">
-		 	            <option value=""></option>
+		 	            <option value="">请选择区域...</option>
 		  	            <c:forEach items="${areaNameSet}" var="item">
         		   		<option value="${item}">${item}</option>
    					    </c:forEach>
 	                </select>
 	                <select data-placeholder="请选择地址..." class="chosen-select" id="project_address" name="project_address" style="width:200px;" tabindex="4">
-		 	            <option value=""></option>
+		 	            <option value="">请选择地址...</option>
 		  	            <c:forEach items="${addressNameSet}" var="item">
         		   		<option value="${item}">${item}</option>
    					    </c:forEach>
