@@ -64,11 +64,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         float:right;
         margin-right:-10px;
         margin-top:-190px;
-        text-align: center;
+ /*        -text-align: center; */
     }
 
     #header .word{
-        text-align: center;
+       /*  text-align: center; */
         vertical-align: middle; 
         padding-top: 150px; 
         font-size: 40px;
@@ -133,7 +133,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   padding: 0;
 }
 .text-center {
-  text-align: center;
+  /* text-align: center; */
 }
 
 .text-center img{
@@ -161,7 +161,7 @@ padding-left:40px; text-align:left;
 }
 .login_bot{
         font-size: 12px;
-        text-align: center;
+       /*  text-align: center; */
 }
     </style>
 </head>
@@ -192,7 +192,7 @@ padding-left:40px; text-align:left;
                                             <option value="选择">选择</option>
                                         </select> -->
                                      <span>
-                                        <select data-placeholder="请选择..." class="chosen-select" id="hezuo1" name="hezuo1" style="width:255px;" tabindex="4">
+                                        <select data-placeholder="请选择..." class="chosen-select" id="hezuo1" name="hezuo1" style="width:255px;text-align:left;" tabindex="4">
  	                                         <option value=""></option>
   	                                          <option value="房产经纪">房产经纪</option>
                                               <option value="贷款经纪">贷款经纪</option>
@@ -389,7 +389,7 @@ padding-left:40px; text-align:left;
                                             <option value="选择">选择</option>
                                         </select> -->
                                           <span>
-                                        <select data-placeholder="请选择..." class="chosen-select" id="hezuo2" name="hezuo2" style="width:255px;" tabindex="4" style="float:left">
+                                        <select data-placeholder="请选择..." class="chosen-select" id="hezuo2" name="hezuo2" style="width:255px;" tabindex="4" style="float:left;text-align:left;">
  	                                          <option value=""></option>
   	                                          <option value="房产经纪">房产经纪</option>
                                               <option value="贷款经纪">贷款经纪</option>
