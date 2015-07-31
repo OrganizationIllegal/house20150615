@@ -430,8 +430,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		
 		<!-- *************************************** main_bkg2 ************************************************** -->
-	 	<div class="main_bkg2" style="background:#163F66 url(../pic/indexbg4.png) repeat-x 0 -666px;">
-			<div style="background:#163F66 url(../pic/indexbg4.png) repeat-x 0 -666px; width:1190px; margin:0 auto; height:155px;">
+	 	<div class="main_bkg2" style="background:#1763ac url(../pic/indexbg4.png) repeat-x 0 -666px;">
+			<div style="background:#1763ac url(../pic/indexbg4.png) repeat-x 0 -666px; width:1190px; margin:0 auto; height:155px;">
 				<div class="c-fix f-l main_bkg2_div">
 					<div style="color:white;font-family:微软雅黑;font-size:46px;font-weight:bolder;position:absolute;filter:alpha(opacity=60);opacity:0.6;top:20px">我们</div>
 					<div style="color:white;font-family:微软雅黑;font-size:15px;font-weight:Regular;position:absolute;left:100px;margin-top:30px;">我们应用互联网思维和技术，为您提供更全、更多的海外项目信息，通过全方位服务，让您更方便、更快捷、更省钱的买到更适合的海外房产</div>
@@ -448,19 +448,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   <ol class="carousel-indicators">
 	      <li data-target="#myCarousel" data-slide-to="0" class="active" style="background-color:#8E8E8E"></li>
 	      <li data-target="#myCarousel" data-slide-to="1" style="background-color:#8E8E8E"></li>
-	      <li data-target="#myCarousel" data-slide-to="2" style="background-color:#8E8E8E"></li>
+	     <!--  <li data-target="#myCarousel" data-slide-to="2" style="background-color:#8E8E8E"></li> -->
 	   </ol>   
 	<!--    轮播（Carousel）项目 -->
 	   <div class="carousel-inner">
 	      <div class="item active">
-	         <img src="pic/a.jpg" alt="First slide">
+	         <img src="images/index/lunbo1.png" alt="First slide" style="width:1190px;height:500px;">
 	         <div class="carousel-caption"></div>
 	      </div>
 	      <div class="item">
-	         <img src="pic/a.jpg" alt="Second slide">
+	         <img src="images/index/lunbo2.jpg" alt="Second slide" style="width:1190px;height:500px;">
 	         <div class="carousel-caption"></div>
 	      </div>
-	      <div class="item">
+	      <!-- <div class="item">
 	        <img src="pic/90.jpg" alt="Third slide"> 
 	     
 	          <div id="map"  alt="Third slide">
@@ -472,13 +472,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	         		<div><span style="font-family:微软雅黑;font-size:15px">超过10000套真实房源</span></div>
 	         		<div><span style="font-family:微软雅黑;font-size:15px">每天实时更新最新房源</span></div>
 	         	</div>
-	         	<div style="margin-top:100px" ><!-- <img src="pic/pomap.jpg" style="width:400px;"/> --></div>
+	         	<div style="margin-top:100px" ><img src="pic/pomap.jpg" style="width:400px;"/></div>
 	         	<div ></div>
 	         	
 	         </div>
 	   
 	         <div class="carousel-caption"></div>
-	      </div>
+	      </div> -->
 	   	</div>
 		</div>
    </div>
@@ -487,35 +487,63 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <!-- *************************************** main_bkg4 ************************************************** -->
 	 <div class="main_bkg4" style="background:#ECEAEB url(../pic/indexbg6.png) repeat-x 0 -666px;">
 			<div class="main_bkg4_div" style="background:#ECEAEB url(../pic/indexbg6.png) repeat-x 0 -666px;">
-				<a class="c-fix f-l f-yahei s-20 main_title fw" style="width:1190px">为您提供最好的海外购房服务</a>
+				<!-- <a class="c-fix f-l f-yahei s-20 main_title fw" style="width:1190px">为您提供最好的海外购房服务</a>
 				<div class="c-fix f-l large_icon"></div>
 				<div class="f-l large_icon2"></div>
 				<div class="f-r large_icon3"></div>
 				<span class="c-fix f-l large_icon_lab f-yahei s-14"><a class="fw" style="color:black">互联网科技：</a>我们通过互联网科技提供完整、详细、及时的房源及细节信息，使你更聪明，更方便的购买你所需的房产。</span>
 				<span class="f-l large_icon_lab2 f-yahei s-14"><a class="fw" style="color:black">完整的购房服务：</a>7*24小时全天候在线，全方位服务的专业代理服务。我们提供了基于您的满意付费房地产经纪人。</span>
-				<span class="f-r large_icon_lab3 f-yahei s-14"><a class="fw" style="color:black">难以置信的收益：</a>在海房优选购买房产，我们提供高达70%现金返还。</span>
+				<span class="f-r large_icon_lab3 f-yahei s-14"><a class="fw" style="color:black">难以置信的收益：</a>在海房优选购买房产，我们提供高达70%现金返还。</span> -->
+				<div class="c-fix f-l f-yahei" style="width:396px;height:375px;text-align:center;">
+				    <div class="f-yahei fw" style="color:#4a494a;font-size:35px;margin-top:15px;margin-bottom:5px;">华人区</div>
+				    <a href="#"><img src="images/index/01.png" style="width:230px;height:230px;"></a>
+				    <div class="f-yahei" style="color:#888889;font-size:25px;margin-top:5px;">华人聚集地，优质房源</div>
+				    <div class="f-yahei cp fw" style="color:#1763ac;font-size:30px;"><a href="#">去找房</a></div>
+				</div>
+				<div class="f-l f-yahei" style="width:396px;height:375px;text-align:center;">
+				    <div class="f-yahei fw" style="color:#4a494a;font-size:35px;margin-top:15px;margin-bottom:5px;">学区房</div>
+				    <a href="#"><img src="images/index/02.png" style="width:230px;height:230px;"></a>
+				    <div class="f-yahei" style="color:#888889;font-size:25px;margin-top:5px;">热门学区，海外置业首选</div>
+				    <div class="f-yahei cp fw" style="color:#1763ac;font-size:30px;"><a href="#">去找房</a></div>
+				</div>
+				<div class="f-l f-yahei" style="width:396px;height:375px;text-align:center;">
+				    <div class="f-yahei fw" style="color:#4a494a;font-size:35px;margin-top:15px;margin-bottom:5px;">市中心</div>
+				    <a href="#"><img src="images/index/02.png" style="width:230px;height:230px;"></a>
+				    <div class="f-yahei" style="color:#888889;font-size:25px;margin-top:5px;">城市中心，稀缺房产资源</div>
+				    <div class="f-yahei cp fw" style="color:#1763ac;font-size:30px;"><a href="#">去找房</a></div>
+				</div>
 			</div>
 	</div>
 		
 		
 		 <!-- *************************************** main_bkg5 ************************************************** -->
 		<div class="main_bkg5">
-			<div class=" main_bkg5_div">
+			<!-- <div class=" main_bkg5_div">
 				<a class="c-fix f-l f-yahei s-20 main_title2 fw">购房返利</a>
-				<!-- <img class="c-fix f-l main_round" src="images/round1.jpg"></img> -->
+				<img class="c-fix f-l main_round" src="images/round1.jpg"></img>
 				<img class="c-fix f-l main_round" src="images/round4.jpg"></img>
 				<div class="f-l main_round_middle">
 					<a class="c-fix f-l lab_money f-arial fw">$17,500</a>
 					<a class="c-fix f-l f-yahei s-16 middle_lab fw">佣金返还</a>
 				</div>
-				<!-- <img class="f-r main_round" src="images/round2.jpg"></img> -->
+				<img class="f-r main_round" src="images/round2.jpg"></img>
 				<img class="f-r main_round" src="images/round3.jpg"></img>
 				
 			</div>
 			<img class="c-fix f-l main_bkg5_line" src="images/line.png"></img>
 			<a class="c-fix f-l middle_lab2 f-yahei s-16">在海房优选购买澳洲新房</a>
 			<a class="c-fix f-l middle_lab2 f-yahei s-16" style="margin-top:5px;">最高可获得高达70%的佣金返还</a>
-			<a class="c-fix f-l middle_lab2 f-yahei s-12" style="margin-top:20px;">*以房价50万元澳币房产计算</a>
+			<a class="c-fix f-l middle_lab2 f-yahei s-12" style="margin-top:20px;">*以房价50万元澳币房产计算</a> -->
+			<div class=" main_bkg4_div">
+			<div class="c-fix f-l f-yahei" style="width:595px;height:300px;margin-top:100px;padding-left:80px;">
+			     <div class="f-yahei" style="color:rgb(74,74,74);font-size:30px;margin-top:15px;margin-bottom:5px;">最适合你的优秀经纪</div>
+			     <a href="/SearchService"><img src="images/index/btn3.png" style="width:450px;height:70px;margin-top:5px;"></a>
+			     <div class="f-yahei" style="color:rgb(162,162,162);font-size:19px;margin-top:15px;margin-bottom:5px;">购房者可以通过专业背景、本地经验、服务区域、所在区域</div>
+			     <div class="f-yahei" style="color:rgb(162,162,162);font-size:19px;margin-top:10px;margin-bottom:5px;">多维度的找到适合自己需求的经纪人</div>
+			     <div class="f-yahei" style="color:rgb(162,162,162);font-size:19px;margin-top:10px;margin-bottom:5px;">更简单的开启海外置业。</div>
+			</div>
+			<div class="f-l" style="width:595px;text-align:center;"><img src="images/index/broker.png"></div>
+			</div>
 		</div>
 		
 		

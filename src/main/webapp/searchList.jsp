@@ -58,6 +58,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    			.btn_star_sel{
    				background-color:yellow;
    			}
+   			.shoucang{
+   			
+   			}
    		</style>
    	
 	</head>
@@ -222,6 +225,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          $(function () {
          		//alert("ttttttttttt");
               	var total = InitTable(0);    //Load事件，初始化表格数据，页面索引为0（第一页）
+             
                 //分页，PageCount是总条目数，这是必选参数，其它参数都是可选
                 $("#Pagination").pagination(total,{
                     callback: PageCallback,  //PageCallback() 为翻页调用次函数。
@@ -238,7 +242,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     InitTable(index);  
                 }  
                 //请求数据   
-                function InitTable(pageIndex) { 
+                function InitTable(pageIndex,i) { 
                 	pageIndex = pageIndex+1;   
                 	var count = 0;            
                     $.ajax({   
@@ -348,7 +352,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		   						  function InitTable3(pageIndex3) { 
 						                	pageIndex3 = pageIndex3+1;   
 						                	var count = 0; 
-						                	       
+						                	      
 						                    $.ajax({   
 						                        type: "POST",  
 						                        async: false,
@@ -373,8 +377,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     	
                 var html="";
-                
+              
                 if(items!=null){
+                /* 	int i=0; */
                 	for(var j=0;j<items.length;j++){
                 		var imgUrl = <%=application.getInitParameter("imagedir")%>/+items[j].Project_img; 
                 		//alert(imgUrl)
@@ -383,14 +388,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 		html+="<a href='/Index?proNum="+items[j].project_num+"' target='_blank' class='c-fix f-l f-arial s-16 list_node_name fw' style='cursor:pointer;'>"+items[j].Project_name+"</a>";
                 		html+="<a href='/Index?proNum="+items[j].project_num+"' target='_blank' class='f-l f-arial s-12 list_node_address' style='cursor:pointer'>"+items[j].project_address+"</a>";
                 		//html+="<div class='f-r btn_star cp' id='star' onclick=a(\""+items[j].project_num+"\")></div>";
-                		if(items[j].isCollected==0)//未收藏 星星显示白色
+                		/* if(items[j].isCollected==0)//未收藏 星星显示白色
                 		{
-                		 	html+="<div class='f-r btn_star cp'  id='star"+j+"' data-proNum="+items[j].project_num+"></div>";	
+                		 	html+="<div class='f-r btn_star cp shoucang'  style='margin-right:45px' id='"+items[j].id+"' data-proNum="+items[j].project_num+"></div>";	
+                		 	html+="<span style='margin-right:-72px;float:right;color:white;font-size:13px;font-family:微软雅黑'>收藏</span>";
                 		}
                 		else{
-                			 html+="<div class='f-r btn_star cp btn_star_sel'  id='star"+j+"' data-proNum="+items[j].project_num+"></div>";
+                			 html+="<div class='f-r btn_star cp btn_star_sel shoucang'  style='margin-right:45px' id='"+items[j].id+"' data-proNum="+items[j].project_num+"></div>";
+                			 html+="<span tyle='margin-right:-72px;float:right;color:rgb(255,226,8);font-size:13px;font-family:微软雅黑'>已收藏</span>";
+                		} */
+                		 if(items[j].isCollected==0)//未收藏 星星显示白色
+                		{
+                		    html+="<span style='float:right;color:white;font-size:13px;font-family:微软雅黑;margin-right:15px'>收藏</span>";
+                		 	html+="<div class='f-r btn_star cp shoucang'  style='margin-right:0px' id='"+items[j].id+"' data-proNum="+items[j].project_num+"></div>";	
+                		 	
                 		}
-                	    html+="<span style='margin-right:-58px;float:right;color:white;font-size:13px;font-family:微软雅黑'>收藏</span>";
+                		else{
+                			 html+="<span style='float:right;color:rgb(255,226,8);font-size:13px;font-family:微软雅黑;margin-right:15px'>已收藏</span>";
+                			 html+="<div class='f-r btn_star cp btn_star_sel shoucang'  style='margin-right:0px' id='"+items[j].id+"' data-proNum="+items[j].project_num+"></div>";
+                			
+                		}
+                	   
                 		html+="</div>";
                 		html+="<div class='c-fix f-l list_node_body'>";
                 		html+="<a href='/Index?proNum="+items[j].project_num+"' target='_blank'>";
@@ -480,214 +498,58 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	$(".next").click(function(){
 		alert("后一页");
 	});
+	//点击收藏
+	$(document).on('click','.shoucang',function(event){
+		//alert($(this).attr('data-proNum'));
+		var proNum=$(this).attr('data-proNum');
+		//alert(proNum);
+		var _this=$(this);
+		if($(this).attr("class").indexOf("btn_star_sel") != -1){
+			
+			$.ajax({
+ 				type: "POST",  
+       			 dataType: "json",  
+       			 url: '/DelCollect',      //提交到一般处理程序请求数据   
+        		data: { proNum :proNum},           
+        		success: function(data) {
+        		if(data.user==0){
+        			//alert("请登录");
+        			$('#login').modal('show');
+        			
+        		}else if(data.flag==1){
+        			alert("删除收藏夹成功");
+        			_this.removeClass("btn_star_sel");//黄星变白
+        			/* _this.getElementsByTagName("span").html("收藏"); */
+        			_this.prev().html("收藏");
+        			_this.prev().css("color","white");
+        			
+        		}
+        		}  //success
+			});//ajax
+		}else{
+			$.ajax({
+ 				type: "POST",  
+       			 dataType: "json",  
+       			 url: '/AddCollect',      //提交到一般处理程序请求数据   
+        		data: { proNum :proNum},           
+        		success: function(data) {
+        		if(data.user==0){
+        			//alert("请登录");
+        			$('#login').modal('show');
+        		}else if(data.flag==1){
+        			alert("收藏成功");
+        			_this.addClass("btn_star_sel");//白星变黄
+        			/* _this.getElementsByTagName("span").html("已收藏"); */
+        			_this.prev().html("已收藏");
+        			_this.prev().css("color","rgb(255,226,8)");
+        		}
+        		}  //success
+			});//ajax
+		}//else
+		
+	});
 	
-	
-
-					$("#star0").on('click',function(event){
-						//alert("currentstar"+currentstar);
-						var proNum=this.getAttribute('data-proNum');
-						//alert(proNum);
-						if($("#star0").attr("class").indexOf("btn_star_sel") != -1){//删除
-							$.ajax({
-				 				type: "POST",  
-                       			 dataType: "json",  
-                       			 url: '/DelCollect',      //提交到一般处理程序请求数据   
-                        		data: { proNum :proNum},           
-                        		success: function(data) {
-                        		if(data.user==0){
-                        			//alert("请登录");
-                        			$('#login').modal('show');
-                        			
-                        		}else if(data.flag==1){
-                        			alert("删除收藏夹成功");
-                        			$("#star0").removeClass("btn_star_sel");//黄星变白
-                        		}
-                        		}  //success
-							});//ajax
-							
-						}else{//添加
-							$.ajax({
-				 				type: "POST",  
-                       			 dataType: "json",  
-                       			 url: '/AddCollect',      //提交到一般处理程序请求数据   
-                        		data: { proNum :proNum},           
-                        		success: function(data) {
-                        		if(data.user==0){
-                        			//alert("请登录");
-                        			$('#login').modal('show');
-                        			
-                        		}else if(data.flag==1){
-                        			alert("收藏成功");
-                        			$("#star0").addClass("btn_star_sel");//白星变黄
-                        		}
-                        		}  //success
-							});//ajax
-						}//else
-					});//click
-					
-					$("#star1").on('click',function(event){
-						//alert("currentstar"+currentstar);
-						var proNum=this.getAttribute('data-proNum');
-						//alert(proNum);
-						if($("#star1").attr("class").indexOf("btn_star_sel") != -1){
-							$.ajax({
-				 				type: "POST",  
-                       			 dataType: "json",  
-                       			 url: '/DelCollect',      //提交到一般处理程序请求数据   
-                        		data: { proNum :proNum},           
-                        		success: function(data) {
-                        		if(data.user==0){
-                        			//alert("请登录");
-                        			$('#login').modal('show');
-                        			
-                        		}else if(data.flag==1){
-                        			alert("删除收藏夹成功");
-                        			$("#star1").removeClass("btn_star_sel");//黄星变白
-                        		}
-                        		}  //success
-							});//ajax
-						}else{
-							$.ajax({
-				 				type: "POST",  
-                       			 dataType: "json",  
-                       			 url: '/AddCollect',      //提交到一般处理程序请求数据   
-                        		data: { proNum :proNum},           
-                        		success: function(data) {
-                        		if(data.user==0){
-                        			//alert("请登录");
-                        			$('#login').modal('show');
-                        		}else if(data.flag==1){
-                        			alert("收藏成功");
-                        			$("#star1").addClass("btn_star_sel");//白星变黄
-                        		}
-                        		}  //success
-							});//ajax
-						}//else
-					});//click
-					$("#star2").on('click',function(event){
-						//alert("currentstar"+currentstar);
-						var proNum=this.getAttribute('data-proNum');
-						//alert(proNum);
-						if($("#star2").attr("class").indexOf("btn_star_sel") != -1){
-							$.ajax({
-				 				type: "POST",  
-                       			 dataType: "json",  
-                       			 url: '/DelCollect',      //提交到一般处理程序请求数据   
-                        		data: { proNum :proNum},           
-                        		success: function(data) {
-                        		if(data.user==0){
-                        			//alert("请登录");
-                        			$('#login').modal('show');
-                        			
-                        		}else if(data.flag==1){
-                        			alert("删除收藏夹成功");
-                        			$("#star2").removeClass("btn_star_sel");//黄星变白
-                        		}
-                        		}  //success
-							});//ajax
-						}else{
-							$.ajax({
-				 				type: "POST",  
-                       			 dataType: "json",  
-                       			 url: '/AddCollect',      //提交到一般处理程序请求数据   
-                        		data: { proNum :proNum},           
-                        		success: function(data) {
-                        		if(data.user==0){
-                        			//alert("请登录");
-                        				$('#login').modal('show');
-                        		}else if(data.flag==1){
-                        			alert("收藏成功");
-                        			$("#star2").addClass("btn_star_sel");//白星变黄
-                        		}
-                        		}  //success
-							});//ajax
-						}//else
-					});//click
-					$("#star3").on('click',function(event){
-						//alert("currentstar"+currentstar);
-						var proNum=this.getAttribute('data-proNum');
-						//alert(proNum);
-						if($("#star3").attr("class").indexOf("btn_star_sel") != -1){
-							$.ajax({
-				 				type: "POST",  
-                       			 dataType: "json",  
-                       			 url: '/DelCollect',      //提交到一般处理程序请求数据   
-                        		data: { proNum :proNum},           
-                        		success: function(data) {
-                        		if(data.user==0){
-                        			//alert("请登录");
-                        			$('#login').modal('show');
-                        			
-                        		}else if(data.flag==1){
-                        			alert("删除收藏夹成功");
-                        			$("#star3").removeClass("btn_star_sel");//黄星变白
-                        		}
-                        		}  //success
-							});//ajax
-						}else{
-							$.ajax({
-				 				type: "POST",  
-                       			 dataType: "json",  
-                       			 url: '/AddCollect',      //提交到一般处理程序请求数据   
-                        		data: { proNum :proNum},           
-                        		success: function(data) {
-                        		if(data.user==0){
-                        			//alert("请登录");
-                        			$('#login').modal('show');
-                        		}else if(data.flag==1){
-                        			alert("收藏成功");
-                        			$("#star3").addClass("btn_star_sel");//白星变黄
-                        		}
-                        		}  //success
-							});//ajax
-						}//else
-					});//click
-					$("#star4").on('click',function(event){
-						//alert("currentstar"+currentstar);
-						var proNum=this.getAttribute('data-proNum');
-						//alert(proNum);
-						if($("#star4").attr("class").indexOf("btn_star_sel") != -1){
-							$.ajax({
-				 				type: "POST",  
-                       			 dataType: "json",  
-                       			 url: '/DelCollect',      //提交到一般处理程序请求数据   
-                        		data: { proNum :proNum},           
-                        		success: function(data) {
-                        		if(data.user==0){
-                        			//alert("请登录");
-                        			$('#login').modal('show');
-                        			
-                        		}else if(data.flag==1){
-                        			alert("删除收藏夹成功");
-                        			$("#star4").removeClass("btn_star_sel");//黄星变白
-                        		}
-                        		}  //success
-							});//ajax
-						}else{
-							$.ajax({
-				 				type: "POST",  
-                       			 dataType: "json",  
-                       			 url: '/AddCollect',      //提交到一般处理程序请求数据   
-                        		data: { proNum :proNum},           
-                        		success: function(data) {
-                        		if(data.user==0){
-                        			//alert("请登录");
-                        			$('#login').modal('show');
-                        		}else if(data.flag==1){
-                        			alert("收藏成功");
-                        			$("#star4").addClass("btn_star_sel");//白星变黄
-                        		}
-                        		}  //success
-							});//ajax
-						}//else
-					});//click
-				
-				
-					
-					
-					
-				
-});
+   });
 
     </script>
 
