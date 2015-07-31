@@ -17,23 +17,29 @@ public class Index01Dao extends BaseDao {
 	
 	
 	
-	public List<Integer> getTuijian(){
+	public List<String> getTuijian(){
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 
-		List<Integer> list = new ArrayList<Integer>();
+		List<String> list = new ArrayList<String>();
 		try {
 			String sql = " select * from index_recommend_project";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
 			while(rs.next()){
-				Integer temp1 = rs.getInt("recommend_1");
-				Integer temp2 = rs.getInt("recommend_2");
-				Integer temp3 = rs.getInt("recommend_3");
-				list.add(temp1);
-				list.add(temp2);
-				list.add(temp3);
+				String temp1 = rs.getString("recommend_num_1");
+				if(temp1!=null){
+					list.add(temp1);
+				}
+				String temp2 = rs.getString("recommend_num_2");
+				if(temp2!=null){
+					list.add(temp2);
+				}
+				String temp3 = rs.getString("recommend_num_3");
+				if(temp3!=null){
+					list.add(temp3);
+				}
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -65,22 +71,28 @@ public class Index01Dao extends BaseDao {
         }
 		return list;
 	}
-	public List<Integer> getTuijian2(){
+	public List<String> getTuijian2(){
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		List<Integer> list = new ArrayList<Integer>();
+		List<String> list = new ArrayList<String>();
 		try {
 			String sql = " select * from index_recommend_project";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
 			while(rs.next()){
-				Integer temp1 = rs.getInt("recommend_3");
-				Integer temp2 = rs.getInt("recommend_4");
-				Integer temp3 = rs.getInt("recommend_5");
-				list.add(temp1);
-				list.add(temp2);
-				list.add(temp3);
+				String temp1 = rs.getString("recommend_num_4");
+				if(temp1!=null){
+					list.add(temp1);
+				}
+				String temp2 = rs.getString("recommend_num_5");
+				if(temp2!=null){
+					list.add(temp2);
+				}
+				String temp3 = rs.getString("recommend_num_6");
+				if(temp3!=null){
+					list.add(temp3);
+				}
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
