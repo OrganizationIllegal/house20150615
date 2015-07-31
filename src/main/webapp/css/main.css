@@ -12,7 +12,7 @@
 .main_reg{display:block;height:50px;line-height:50px;margin-top:10px;color:rgb(63,129,215)}
 
 .main_bkg{display:block;width:100%;height:400px;-background-color:rgb(30,52,66); -overflow:hidden;}
-.main_img{display:block;width:1190px;height:400px;background-image:url(../images/main_bkg.jpg);position:relative;-left:50%;-margin-left:-585px;margin:0 auto;}
+.main_img{display:block;width:100%;height:400px;background-image:url(../images/main_bkg.png);-position:relative;-left:50%;-margin-left:-585px;margin:0 auto;min-width:1190px;background-repeat:no-repeat;}
 .main_div{display:block;min-height:30px;margin-top:60px;}
 .main_sel{display:block;height:20px;}
 .main_lab{display:block;height:20px;line-height:20px;margin-left:10px;color:#fff;}
@@ -53,7 +53,7 @@
 .main_bkg5_line{display:block;width:900px;position:relative;left:50%;margin-left:-450px;}
 .middle_lab2{display:block;width:100%;text-align:center;color:#666;margin-top:10px;}
 
-.main_bkg6{display:block;width:100%;height:575px;background-color:rgb(236,234,235);}
+.main_bkg6{display:block;width:100%;height:880px;background-color:rgb(236,234,235);}   /*修改*/
 .main_bkg6_div{display:block;width:1140px;margin:0 auto;height:575px;background-color:rgb(236,234,235);position:relative;}
 .main_lab2{display:block;color:#666;line-height:30px;width:100%;border-bottom:1px solid #666;margin-top:20px;}
 .main_node{display:block;width:360px;margin-top:5px;}

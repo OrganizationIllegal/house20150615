@@ -630,7 +630,11 @@ var e=$('#input2').val();
 					<div class="f-l p_btn_get my_center" onclick="popInfo()"><img src="images/index/proinfobtn.png"></img></div>
 				</div>
 				<!-- <img class="f-r p_adv" src="images/ad1.png"></img> -->
-				<img class="f-r p_adv" src="images/index/proinfo.png" style="height:340px;"></img>
+
+				<!-- <img class="f-r p_adv" src="images/index/proinfo.png"></img> -->
+				<img class="f-r p_adv" src="<%=application.getInitParameter("imagedir")%>/${ad1}"></img>
+				
+
 			</div>
 		</div>
 		<c:if test="${!empty HouseInfoList }">
@@ -1164,8 +1168,10 @@ var e=$('#input2').val();
 			  	  </table>
 						</div>
 					</div>
-					<img class="f-r p_adv" src="images/ad1.png"></img>
-				<img class="f-r p_adv2" src="images/adv.jpg"></img>
+					<%-- <img class="f-r p_adv" src="images/ad1.png"></img><%=application.getInitParameter("imagedir")%>/${add1}
+				<img class="f-r p_adv2" src="images/adv.jpg"></img> --%>
+				<img class="f-r p_adv" src="<%=application.getInitParameter("imagedir")%>/${ad2}"></img>
+				<img class="f-r p_adv2" src="<%=application.getInitParameter("imagedir")%>/${ad3}"></img>
 				</c:if>
 				</div>
 						</div>
@@ -1422,7 +1428,7 @@ var e=$('#input2').val();
                data-dismiss="modal" aria-hidden="true">
                   &times;
             </button>
-            <div class="modal-title" id="title">
+            <div class="modal-title" id="titleHouse">
                
             </div>
          </div>
@@ -1782,6 +1788,7 @@ function pop(type,img){
 	 $('#registernewPro').modal('show');
  }
  else{
+	
 	 $('#title').empty();	
 	  $('#title').append("<h4>户型"+type+"</h4>");
 	  $('#image').attr("src",img);
@@ -1791,12 +1798,14 @@ function pop(type,img){
    
 }
 function pop6(type,img){
+	
 	if(kk==0){
 		 $('#registernewPro').modal('show');
 	}
 	else{
-		$('#title').empty();	
-		  $('#title').append("<h4>户型"+type+"</h4>");
+		  //alert($('#titleHouse').text())
+		  $('#titleHouse').empty();	
+		  $('#titleHouse').append("<h4>户型"+type+"</h4>");
 		  $('#image').attr("src",img);
 		  $('#housestyle').modal('show');
 	}
