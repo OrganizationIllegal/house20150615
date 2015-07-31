@@ -1241,7 +1241,7 @@ var e=$('#input2').val();
 					<div class="f-r p_right2">
 					<c:forEach var="item" items="${recommendBroker}" varStatus="stat">
 						<c:if test="${stat.index<3}">
-							<div class="c-fix f-l agent_node" <c:if test="${stat.index!=0 }">style="margin-top:10px;"</c:if>>
+							<div class="c-fix f-l agent_node" style="height:156px;"<c:if test="${stat.index!=0 }">style="margin-top:10px;"</c:if>>
 								<%-- <img src="<%=application.getInitParameter("imagedir")%>/${item.broker_img}" height="143" class="c-fix f-l agent_avatar"></img> --%>
 								<a href="Service?brokerId=${item.id}"><img src="<%=application.getInitParameter("imagedir")%>/${item.broker_img}" height="143" class="c-fix f-l agent_avatar"></img></a>
 								<a class="f-l agent_name f-yahei s-16 fw">${item.broker_name }</a>
