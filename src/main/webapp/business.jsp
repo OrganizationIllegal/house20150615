@@ -243,7 +243,7 @@ padding-left:40px; text-align:left;
 
 
         <section id="feature">
-        <div style="width:930px;margin:0 auto;">
+        <div style="width:1190px;margin:0 auto;padding-left:20px;padding-right:20px">
            <div class="" style="text-align:center;">
                 <div style="font-size:35px;padding-top:20px;">互联网海外置业</div>
 </div>
@@ -251,22 +251,22 @@ padding-left:40px; text-align:left;
                 <div class="features" style="-width:80%; -margin:0 auto;">
                     <div class="col-md-4 wow fadeInDown animated" >
                         <div class="text-center">
-                            <img src="images/business/1-1.png" alt="">
-                            <div class="divf2" style="font-size:15.5px;padding-bottom:30px;">应用互联网技术，促成你与成千上万的潜在买家直接联系。</div>
+                            <img src="images/business/1-1.png" alt="" style="height:90px;">
+                            <div class="divf2" style="font-size:15.5px;padding-bottom:30px;text-align:left;line-height:150%">应用互联网技术，促成你与成千上万的潜在买家直接联系。</div>
                         </div>
                    </div>
 
                    <div class="col-md-4 wow fadeInDown animated" >
                         <div class="text-center">
-                            <img src="images/business/1-2.png" alt="">
-                            <div class="divf2" style="font-size:15.5px;padding-bottom:30px;">成熟的技术能够让你快速便捷的管理房源信息</div>
+                            <img src="images/business/1-2.png" alt="" style="height:90px;">
+                            <div class="divf2" style="font-size:15.5px;padding-bottom:30px;text-align:left;line-height:150%">成熟的技术能够让你快速便捷的管理房源信息</div>
                         </div>
                    </div>
 
                    <div class="col-md-4 wow fadeInDown animated" >
                         <div class="text-center">
                             <img src="images/business/1-3.png" alt="" style="height:90px;">
-                            <div class="divf2" style="font-size:15.5px;padding-bottom:30px;">海房优选的平台连接，让你更容易，更简单的与你的客户沟通</div>
+                            <div class="divf2" style="font-size:15.5px;padding-bottom:30px;text-align:left;line-height:150%">海房优选的平台连接，让你更容易，更简单的与你的客户沟通</div>
                         </div>
                    </div>
 
@@ -279,14 +279,14 @@ padding-left:40px; text-align:left;
        <section id="feature">
            <div class="center tender" style="background:#fff; padding-top:60px">
                
-            <div style="width:930px;margin:0 auto;">
+            <div style="width:1190px;margin:0 auto;padding-left:35px;padding-right:35px">
             <div class="row">
-                <div class="col-md-6 item_left" style="-padding-left:150px; padding-top:50px;text-align:left;padding-right:10px;">
+                <div class="col-md-6 item_left" style="-padding-left:150px;padding-left:0px; padding-top:50px;text-align:left;padding-right:10px;">
                      <h2 class="divf1">经纪人</h2>
                      <div class="divf3" style="font-size:16px;">您将可获得海外优选合作海外新盘代理权，进行新盘销售，获取销售佣金提成；并通过海房优选电子化佣金结算系统，更智能、更快捷、更高效地进行佣金结算；海房优选聚集了大批普通购房者，与海房优选合作，您将获得更为丰富的客户资源！</div>
                 </div>
                 <div class="col-md-6 item_right" style="padding-left:40px; text-align:left;">
-                    <img src="images/business/2.png"/>
+                    <img src="images/business/2.png" style="width:540px;height:360px"/>
                 </div>
             </div><!--/.row-->  
             </div> </div> 
@@ -295,15 +295,15 @@ padding-left:40px; text-align:left;
         <section id="feature">
            <div class="center tender">
                
-            <div style="width:930px;margin:0 auto;">
+            <div style="width:1190px;margin:0 auto;padding-left:35px;padding-right:35px">
             <div class="row">
                 
-                <div class="col-md-6 item_left"  >
-                    <img src="images/business/4.png"/ style="-padding-left:130px;">
+                <div class="col-md-6 item_left"  style="padding-left:0px" >
+                    <img src="images/business/4.png" style="-padding-left:130px;width:540px;height:360px">
                 </div>
 
                 <div class="col-md-6 item_right" style="-padding-right:135px; padding-top:110px;text-align:left;padding-left:20px;">
-                     <h2 style="text-align:right" class="divf1">开发商</h2>
+                     <h2 style="text-align:left" class="divf1">开发商</h2>
                      <div style="text-align:left;font-size:16px;">成为海房优选签约开发商，您将获得全新的线上推广平台，拓展推广渠道；同时您将可以利用海房优选优质的信息展示平台，全方位提升品牌形象；</div>
                 </div>
             </div><!--/.row--> 
@@ -313,14 +313,14 @@ padding-left:40px; text-align:left;
        <section id="feature">
            <div class="center tender" style="background:#fff; padding-top:50px">
                
-           <div style="width:930px;margin:0 auto;">
+           <div style="width:1190px;margin:0 auto;padding-left:35px;padding-right:35px">
             <div class="row">
-                <div class="col-md-6 item_left" style="-padding-left:150px; padding-top:50px;text-align:left;padding-right:12px;">
+                <div class="col-md-6 item_left" style="-padding-left:150px;padding-left:0px; padding-top:50px;text-align:left;padding-right:12px;">
                      <h2 class="divf1">服务商</h2>
                      <div style="font-size:16px;">海房优选聚集了大批有海外生活服务需求的会员用户，成为海外优选签约服务商，您将获得更多优质的潜在用户；成为海房优选签约服务商，您将可获得海房优选客户直接的需求派单；并在抢单后通过海房优选电子化佣金结算系统，更智能、更便捷、更高效地进行佣金结算；</div>
                 </div>
                 <div class="col-md-6 item_right" style="padding-left:40px; text-align:left;">
-                    <img src="images/business/5.png"/>
+                    <img src="images/business/5.png" style="width:540px;height:360px"/>
                 </div>
             </div><!--/.row-->  
             </div> </div> 
