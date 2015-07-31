@@ -184,8 +184,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	
 	<!-- *************************************** main_bkg1 ************************************************** -->
-		 <div class="main_bkg" style="background:rgb(30,52,66) url(../pic/indexbg2.png) repeat-x 0 -666px;">
-			<div class="main_img">
+		 <div class="main_bkg" style="-background:rgb(255,180,2) url(../pic/indexbg2.png) repeat-x 0 -666px;">
+		    <img  src="images/main_bkg.png" style="width:100%;height:400px;margin:0 auto;min-width:1190px;">
+		    <div style="position:relative;top:-330px;margin:0 auto;width:630px;height:90px;"><img  src="images/index/font1.png" style="width:630px;height:90px;"></div>
+		    <div style="position:relative;top:-315px;width:540px;height:150px;margin:0 auto;"><img  src="images/index/lankuang.png" style="width:535px;height:150px;">
+		    <div style="position:relative;top:-135px;left:30px;width:360px;height:40px;"><img src="images/index/font2.png" style="width:330px;height:35px;"></div>
+		    <div style="position:relative;top:-130px;left:30px;">
+		        <form role="form" action="/IndexSearch" method="get"  target="_blank">
+						<input type="text" class="c-fix f-l inp_search" placeholder="请输入期望的城市（区域）" id="searchTerritory" name="searchcity" autocomplete="off" style="background-color:white;width:365px;"></input>
+						<!-- <input class="f-l btn_search cp" style="border:none; " type="submit" id="search" target="blank" value=""> -->
+						<div class="cp" style="margin-left:15px;width:100px;height:30px;position:relative;top:-30px;left:365px;" id="search" target="blank"><img src="images/index/btn1.png"></div>
+						<div id="_suggestion" class="suggestion nobg" style="position:absolute;left: 100px; top: 130px; display: none; z-index:999;">			                <div class="suginner">
+			                    <ul class="suglist"></ul>
+			                </div>
+                		</div>
+						
+				</form>
+				<div style="width:370px;height:30px;margin-top:15px;">
+					<div id="divselect" onclick="test()" style="width:76px;" class="divselect">
+      					<cite style="width:70px; font-family:微软雅黑; -font-size:14px;font-size:16px">澳洲</cite>
+				      <ul id="test1" style="width:74px;">
+				         <li><a href="javascript:;" selectid="1" style="font-size:16px">澳洲</a></li>
+				         <!--<li><a href="javascript:;" selectid="2">美洲</a></li>
+				         <li><a href="javascript:;" selectid="3">非洲</a></li>-->
+				      </ul>
+				    </div>
+				    <a id="city1" class="f-l main_lab f-yahei s-14 city" style="cursor:pointer;font-size:16px;">墨尔本</a>
+					<a class="f-l main_lab f-yahei s-14 city" style="cursor:pointer;font-size:16px;">悉尼</a>
+					<a class="f-l main_lab f-yahei s-14 city" style="cursor:pointer;font-size:16px;">布里斯班</a>
+					<a class="f-l main_lab f-yahei s-14 city" style="cursor:pointer;font-size:16px;">阿德莱德</a>
+					<a class="f-l main_lab f-yahei s-14 city" style="cursor:pointer;font-size:16px;">珀斯</a>
+				  </div>
+				  <div class="cp" style="position:relative;top:-25px;left:415px;width:65px;height:20px;"><img src="images/index/gaoji.png" style="width:65px;height:20px;"></div>
+		    </div>
+		    </div>
+			<%-- <div class="main_img">               
 				<div class="c-fix f-l main_div" id="city">
 				 <div id="divselect" onclick="test()" style="width:76px;" class="divselect">
       					<cite style="width:70px; font-family:微软雅黑; -font-size:14px;font-size:16px">澳洲</cite>
@@ -319,7 +352,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 					</form>
 				</div>
-				</div>
+				</div> --%>
 		</div>
 		
 		<!-- *************************************** main_bkg2 ************************************************** -->
