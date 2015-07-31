@@ -136,12 +136,12 @@ if(request.getSession().getAttribute("flag")!=null){
                         	<c:if test="${status.index < 10}">
                         		<li class="media" >
                              <div class="media-left">
-                                <a href="/Detail?id=${item.id}&type=1">
+                                <a href="/Detail?id=${item.id}&type=1" target='_blank'>
                                   <img class="media-object" src="<%=application.getInitParameter("imagedir")%>/${item.news_image}" alt="" width="180px" height="134px">
                                 </a>
                               </div>
                               <div class="media-body" style="padding-left:20px;">
-                                <div class="media-heading" style="font-size:20px;color:rgb(147,181,219);"><a  href="/Detail?id=${item.id}&type=1">${item.news_title}</a></div>
+                                <div class="media-heading" style="font-size:20px;color:rgb(147,181,219);"><a  href="/Detail?id=${item.id}&type=1" target='_blank'>${item.news_title}</a></div>
                                 <p style="font-size:12px;">${item.news_fenlei}&nbsp;&nbsp;&nbsp;&nbsp;${fn:substring(item.news_time,0,10)}</p>
                                 <p style="font-size:12px;">
                                 	<c:choose> 
@@ -153,7 +153,7 @@ if(request.getSession().getAttribute("flag")!=null){
 								     </c:otherwise>
 								    </c:choose>
                                 </p>
-                                <a href="/Detail?id=${item.id}&type=1">全文></a>
+                                <a href="/Detail?id=${item.id}&type=1" target='_blank'>全文></a>
                               </div>
                               
                               
@@ -198,12 +198,12 @@ if(request.getSession().getAttribute("flag")!=null){
                 <c:forEach items="${newslastestList}" var="item" varStatus="status">
                 		 <li class="media">
                              <div class="media-left" style="float:left;">
-                                <a href="/Detail?id=${item.id}&type=1">
+                                <a href="/Detail?id=${item.id}&type=1" target='_blank'>
                                   <img class="media-object" src="<%=application.getInitParameter("imagedir")%>/${item.news_image}" alt="" width="62px" height="46px">
                                 </a>
                               </div>
                               <div class="media-body" style="padding-left:10px;padding-top:5px;">
-                                <a href="/Detail?id=${item.id}&type=1"><div class="media-heading" style="font-size:13px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${item.news_title}</div></a>
+                                <a href="/Detail?id=${item.id}&type=1" target='_blank'><div class="media-heading" style="font-size:13px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${item.news_title}</div></a>
                                 <div style="font-size:11px;">${item.news_people}</div>
                                 
                               </div>
@@ -225,12 +225,12 @@ if(request.getSession().getAttribute("flag")!=null){
                 	 <c:forEach items="${lastestList}" var="item" varStatus="status">
                 	 	 <li class="media">
                              <div class="media-left" style="float:left;">
-                               <a href="/Detail?id=${item.id}&type=0">
+                               <a href="/Detail?id=${item.id}&type=0" target='_blank'>
                                   <img class="media-object" src="<%=application.getInitParameter("imagedir")%>/${item.image}" alt=""  width="62px" height="46px">
                                 </a>
                               </div>
                               <div class="media-body" style="padding-left:10px;padding-top:5px;">
-                                <a href="/Detail?id=${item.id}&type=0"> <div class="media-heading" style="font-size:13px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${item.title}</div></a>
+                                <a href="/Detail?id=${item.id}&type=0" target='_blank'> <div class="media-heading" style="font-size:13px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${item.title}</div></a>
                                 <div style="font-size:11px;">${item.fenlei}</div>
                                 
                               </div>
@@ -287,7 +287,7 @@ if(request.getSession().getAttribute("flag")!=null){
                         url: '/NewsBokeFenYe',      //提交到一般处理程序请求数据   
                         data: { pageIndex : 1,type:category},
                         success: function(data) {
-                        	alert(data)
+                        	/* alert(data) */
                             $("#leftpanel").text("1-"+data.pageCount+"的"+data.total+"篇文章");
                             
                         	var html = getHtml(data.List);
@@ -308,11 +308,11 @@ if(request.getSession().getAttribute("flag")!=null){
                 				});
                         },
                         error:function( jqXHR, textStatus,  errorThrown ){
-                        	alert(jqXHR.status)
+                        	/* alert(jqXHR.status)
 
                         	alert(jqXHR);
                         	alert(textStatus);
-                        	alert(errorThrown);
+                        	alert(errorThrown); */
                         }
                     }); 
 			
@@ -357,13 +357,13 @@ if(request.getSession().getAttribute("flag")!=null){
                 var html="";
                 if(items!=null){
                 	for(var j=0;j<items.length;j++){
-                	    html+="<li class='media'><div class='media-left'><a href='/Detail?id="+items[j].id+"&type=1'>";
+                	    html+="<li class='media'><div class='media-left'><a href='/Detail?id="+items[j].id+"&type=1' target='_blank'>";
                 	    html+="<img class='media-object' src='<%=application.getInitParameter("imagedir")%>/"+items[j].image+"' alt='' width='180px' height='134px'>";
- 						html+="</a></div><div class='media-body' style='padding-left:20px;'><div class='media-heading' style='font-size:20px;color:rgb(147,181,219);'><a  href='/Detail?id="+items[j].id+"&type=1'>"+items[j].title;
+ 						html+="</a></div><div class='media-body' style='padding-left:20px;'><div class='media-heading' style='font-size:20px;color:rgb(147,181,219);'><a  href='/Detail?id="+items[j].id+"&type=1' target='_blank'>"+items[j].title;
  						html+="</a></div><p style='font-size:12px;'>"+items[j].news_fenlei;
  						html+="&nbsp;&nbsp;&nbsp;&nbsp;"+items[j].newstime;
  						html+="</p><p style='font-size:12px;'>"+items[j].news_abstract;
- 						html+="</p><a href='/Detail?id="+items[j].id+"&type=1'>全文></a></div></li>";
+ 						html+="</p><a href='/Detail?id="+items[j].id+"&type=1' target='_blank'>全文></a></div></li>";
                 	}
                 }
                 else{

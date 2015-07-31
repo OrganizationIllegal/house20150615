@@ -14,6 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <link rel="stylesheet" type="text/css" href="css/main.css" />
    <script src="/js/jquery.min.js"></script>
    <script src="/bootstrap/js/bootstrap.min.js"></script>
+     <link rel="stylesheet" href="css/chosen.css">
    <script type="text/javascript">
    function reLoad(){
        var wid=document.documentElement.clientWidth ;
@@ -182,19 +183,28 @@ padding-left:40px; text-align:left;
                         </div>
                         <div class="portlet-body form">
                             <!-- BEGIN FORM-->
-                           <form action="http://localhost/MytoonPHP/index.php/agent/agent_save" method="post" accept-charset="utf-8">                              
+                          <!--  <form action="http://localhost/MytoonPHP/index.php/agent/agent_save" method="post" accept-charset="utf-8">         -->                      
                                
-                       
+                            
                                 
                                 <div class="control-group span12">
-                                        <select class="control" style="width:100%">
+                                        <!-- <select class="control" style="width:100%">
                                             <option value="选择">选择</option>
+                                        </select> -->
+                                     <span>
+                                        <select data-placeholder="请选择..." class="chosen-select" id="hezuo1" name="hezuo1" style="width:255px;" tabindex="4">
+ 	                                         <option value=""></option>
+  	                                          <option value="房产经纪">房产经纪</option>
+                                              <option value="贷款经纪">贷款经纪</option>
+                                              <option value="会计师">会计师</option>
+                                              <option value="购房律师">购房律师</option>
                                         </select>
+                                     </span>
                                         
                                     
                                 </div>
                                 
-
+<c:if test="${empty userList}">
                                 <div class="control-group span12">
                                     <div class="controls">
                                         <input type="text"  style="width:100%" placeholder="姓名:">
@@ -221,12 +231,44 @@ padding-left:40px; text-align:left;
                                     </div>
                                 </div>
 
-                                    <button type="submit" style="width:100%;height:25px;font-size:13px;" class="btn blue"><i class="icon-ok"></i>提交</button>
+                                    <button type="submit" style="width:100%;height:25px;font-size:13px;" class="btn blue" onclick="pop1()"><i class="icon-ok"></i>提交</button>
+     </c:if>
+<c:if test="${!empty userList}">
+      <c:forEach items="${userList}"  var="item">
+                                <div class="control-group span12">
+                                    <div class="controls">
+                                        <input type="text"  style="width:100%" placeholder="姓名:" id="name" value="${item.nick_name}">
+                                        <span class="help-inline"></span>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <input type="text" style="width:100%" placeholder="电子邮件:" id="email" value="${item.email}">
+                                        <span class="help-inline"></span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <input type="text" style="width:100%" class="span12" placeholder="联系电话:" id="tel" value="${item.tel}" >
+                                        <span class="help-inline"></span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <input type="text" style="width:100%" class="span12" placeholder="留言:" id="message_content">
+                                        <span class="help-inline"></span>
+                                    </div>
+                                </div>
+
+                                    <button type="submit" style="width:100%;height:25px;font-size:13px;" class="btn blue" onclick="tijiao()"><i class="icon-ok"></i>提交</button>
+     </c:forEach>
+     </c:if>
 
                                 <div style="padding-top:5px;font-weight:bold;">或拨打电话400-810-9685</div>  
                                 <div>我们尊重你的隐私。请参阅我们的<span style="color:#4d90fe;">隐私政策</span></div>
                                 
-                            </form>                       
+                          <!--   </form>  -->                      
                              </div>
 
                             
@@ -338,19 +380,56 @@ padding-left:40px; text-align:left;
                         </div>
                         <div class="portlet-body form">
                             <!-- BEGIN FORM-->
-                           <form action="http://localhost/MytoonPHP/index.php/agent/agent_save" method="post" accept-charset="utf-8">                              
+                          <!--  <form action="http://localhost/MytoonPHP/index.php/agent/agent_save" method="post" accept-charset="utf-8">        -->                       
                                
                        
                                 
                                 <div class="control-group span12">
-                                        <select class="control" style="width:100%">
+                                       <!--  <select class="control" style="width:100%">
                                             <option value="选择">选择</option>
+                                        </select> -->
+                                          <span>
+                                        <select data-placeholder="请选择..." class="chosen-select" id="hezuo2" name="hezuo2" style="width:255px;" tabindex="4" style="float:left">
+ 	                                          <option value=""></option>
+  	                                          <option value="房产经纪">房产经纪</option>
+                                              <option value="贷款经纪">贷款经纪</option>
+                                              <option value="会计师">会计师</option>
+                                              <option value="购房律师">购房律师</option>
                                         </select>
+                                     </span>
                                         
                                     
                                 </div>
                                 
 
+                              <!--   <div class="control-group span12">
+                                    <div class="controls">
+                                        <input type="text"  style="width:100%" placeholder="姓名:">
+                                        <span class="help-inline"></span>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <input type="text" style="width:100%" placeholder="电子邮件:" >
+                                        <span class="help-inline"></span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <input type="text" style="width:100%" class="span12" placeholder="联系电话:" >
+                                        <span class="help-inline"></span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <input type="text" style="width:100%" class="span12" placeholder="留言:" >
+                                        <span class="help-inline"></span>
+                                    </div>
+                                </div>
+
+                                    <button type="submit" style="width:100%;height:25px;font-size:13px;" class="btn blue"><i class="icon-ok"></i>提交</button> -->
+                                    <c:if test="${empty userList}">
                                 <div class="control-group span12">
                                     <div class="controls">
                                         <input type="text"  style="width:100%" placeholder="姓名:">
@@ -377,12 +456,44 @@ padding-left:40px; text-align:left;
                                     </div>
                                 </div>
 
-                                    <button type="submit" style="width:100%;height:25px;font-size:13px;" class="btn blue"><i class="icon-ok"></i>提交</button>
+                                    <button type="submit" style="width:100%;height:25px;font-size:13px;" class="btn blue" onclick="pop1()"><i class="icon-ok"></i>提交</button>
+     </c:if>
+<c:if test="${!empty userList}">
+      <c:forEach items="${userList}"  var="item">
+                                <div class="control-group span12">
+                                    <div class="controls">
+                                        <input type="text"  style="width:100%" placeholder="姓名:" id="name2" value="${item.nick_name}">
+                                        <span class="help-inline"></span>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <input type="text" style="width:100%" placeholder="电子邮件:" id="email2" value="${item.email}">
+                                        <span class="help-inline"></span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <input type="text" style="width:100%" class="span12" placeholder="联系电话:" id="tel2" value="${item.tel}" >
+                                        <span class="help-inline"></span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <input type="text" style="width:100%" class="span12" placeholder="留言:" id="message_content2">
+                                        <span class="help-inline"></span>
+                                    </div>
+                                </div>
+
+                                    <button type="submit" style="width:100%;height:25px;font-size:13px;" class="btn blue" onclick="tijiao2()"><i class="icon-ok"></i>提交</button>
+     </c:forEach>
+     </c:if>
 
                                 <div style="padding-top:5px;font-weight:bold;">或拨打电话400-810-9685</div>  
                                 <div>我们尊重你的隐私。请参阅我们的<span style="color:#4d90fe;">隐私政策</span></div>
                                 
-                            </form>                       
+                           <!--  </form>        -->                
                              </div>
 
                             
@@ -453,6 +564,150 @@ padding-left:40px; text-align:left;
    </div>
 </div>
 </div>
+
+<!-- register start -->
+<div class="modal fade" id="registernewPro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content" style="margin-left:100px;height:285px;width:355px;">
+         <div class="modal-header" style="background-color:rgb(55,52,67);padding:0px 10px;height:10px;">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true" style="font-size:18px;color:white;">
+                  &times;
+            </button>
+         </div>
+         <div class="modal-body">
+  <div style="text-align:center;margin-top:5px;"><div style="font-size:20px;font-weight:bold;">用户注册</div>
+  <form method="post" action="/Register" name="fm1">
+  <div  style="padding-top:15px;">
+         <input type="text"  id="telemailnew" name="telemailnew" style="background-image:url(images/0.png);background-repeat:no-repeat;background-position:left;padding-left:35px;width:270px;height:34px;background-color:rgba(246, 245, 245, 1);" placeholder="手机号/邮箱" autocomplete="off">
+   <input type="hidden" name="url" value="<%=request.getRequestURL() + "?" + request.getQueryString()%>">
+   </div>
+   <div>
+         <input type="password" id="pwdnew" name="pwdnew" style="background-image:url(images/2.png);background-repeat:no-repeat;background-position:left;padding-left:35px;width:270px;height:34px;background-color:rgba(246, 245, 245, 1);" placeholder="密码" autocomplete="off">
+   </div>
+   <div style="padding-top:15px;padding-left:26px;float:left;font-size:12px;">
+   
+   <img src="images/register.png" id="regnew" style="width:120px;height:30px;cursor:pointer;"><span style="padding-left:20px;"><a id="cancelnew" href="#">取消</a></span>
+   </div>
+</form>
+<div style="float:left;margin-top:60px;margin-left:-165px;font-size:12px;"><span>已有账户？<a href="javascript:void(0);" id="login2RePro">登录</a></span></div>
+<div style="float:left;margin-top:85px;margin-left:-165px;font-size:12px;font-weight:bold;"><span><input type="checkbox" checked="true">我已阅读并接受<a href="/ServiceProtocol.jsp" style="color:black;">《用户服务协议》</a></span></div>
+</div>
+   
+      </div>
+</div>
+</div>
+</div>
+<!-- register end -->
+	
+
 <jsp:include page="foot4index.jsp" />
+<script type="text/javascript">
+function pop1(){
+		  $('#registernewPro').modal('show');
+
+}
+$(function() {
+	$("#xiangmuZhuce").click(function(){
+		$('#registernewPro').modal('show');
+	})
+
+	 $("#login2RePro").click(function(){
+		   	$('#login').modal('show');
+		   	$('#registernewPro').modal('hide');
+  })   
+
+
+  $("#regnew").click(function() {
+   	var user = $("#telemailnew").val();
+   	var pass = $("#pwdnew").val();
+   	var temp;
+   	temp = judgeRe(user,pass);
+   	//alert(temp)             	
+   	 if(temp==true){	                	
+           //document.fm1.submit();  //fm为form表单name
+   		$.ajax({
+  			type:'post',
+  			url:'/Register2',
+  			dateType:'json',
+  			data:{"telemail":user,"pwd":pass},
+  			success:function(data){
+  				if(data.flag == -1){
+  					alert("注册失败！");    
+  					
+  				}
+  				else{
+  					alert("注册成功！");
+  					window.location.href = resultUrl;  					
+  				}
+
+  			},
+  			error:function(){
+    			}
+  		});
+   	}
+   	else{               	
+   		return false;
+   	}  
+   	
+   });
+
+
+	  $("#cancelnew").click(function() {
+	       	$("#telemailnew").val("").focus();
+	       	$("#pwdnew").val("");
+	       }); 
+		   
+})
+
+function tijiao(){
+	var  username=$("#name").val();
+	var message_content=$("#message_content").val();
+	var hezuo1=$("#hezuo1").val();
+	 $.ajax({  
+         type: "POST",  
+         dataType: "json",  
+         data:{username:username,message_content:message_content,hezuo:hezuo1},
+         url: '/hezuoMessageSubmit',           
+         success: function(data) {
+        	 if(data.flag==1){
+        	 alert("提交成功");
+        	 $("#message_content").val("");
+        	 }
+         }
+      		});
+}
+function tijiao2(){
+	var  username=$("#name2").val();
+	var message_content=$("#message_content2").val();
+	var hezuo2=$("#hezuo2").val();
+	 $.ajax({  
+         type: "POST",  
+         dataType: "json",  
+         data:{username:username,message_content:message_content,hezuo:hezuo2},
+         url: '/hezuoMessageSubmit',           
+         success: function(data) {
+        	 if(data.flag==1){
+        	 alert("提交成功");
+        	 $("#message_content2").val("");
+        	 }
+         }
+      		});
+}
+</script>
+<script src="/js/chosen.jquery.js" type="text/javascript"></script>
+ <script src="/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+ <script type="text/javascript">
+    var config = {
+      '.chosen-select'           : {},
+      '.chosen-select-deselect'  : {allow_single_deselect:true},
+      '.chosen-select-no-single' : {disable_search_threshold:10},
+      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
+  </script>
 </body>
 </html>

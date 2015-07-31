@@ -66,6 +66,12 @@ body{
    <script type="text/javascript">
    $(function(){
 	  $("#project_city").prop("disabled", true);
+	  var current = $("#house1").val();
+	  /* if(current == 0){
+		  addPushpin();
+	      getMap();
+	  } */
+	  //alert(current+"neirong")
    });
    </script>
    <script type="text/javascript">
@@ -92,7 +98,7 @@ body{
    function housetype1(v){
 	   var selectedOption=v.options[v.selectedIndex];  
 	   switch(selectedOption.value){
-	   case "1":
+	   case "1":    //公寓
 		   addPushpin1();
 		   break;
 	   case "2":
@@ -296,12 +302,16 @@ body{
            if(items!=null){
            	for(var j=0;j<items.length;j++){
            		var imgUrl = <%=application.getInitParameter("imagedir")%>/+items[j].project_img; 
+
                	html+=" <div class='c-fix f-l div_node'><a class='c-fix f-l f-yahei s-12 node_address' title='"+items[j].project_address+"'>"+items[j].project_address_short+"</a>";
+
                	html+="<a href='/Index?proNum="+items[j].project_num+"'"+" target='_parent'>";
            		
                	html+="<img class='c-fix f-l node_img'  src='"+imgUrl+"' style='width:160px;height:100px' ></img></a>";
                	html+="<div class='f-l node_right' style='width:167px'>";
+
                	html+="<a class='c-fix f-l f-arial s-12 fw node_name' title='"+items[j].project_name+"'>"+items[j].project_name_short+"</a>";
+
                	html+="<a class='c-fix f-l f-yahei s-12 node_title' style='margin-top:1px'>最多</a>";
                	html+="<a class='f-r f-yahei s-12 node_val' style='margin-top:1px'>$"+items[j].project_high_price+"</a>";
                	html+="<a class='c-fix f-l f-yahei s-12 node_title'>最少</a>";

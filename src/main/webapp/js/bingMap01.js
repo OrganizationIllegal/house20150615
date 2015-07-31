@@ -115,7 +115,7 @@
 		 $.ajax({
 		 	    type: "GET",
 		 		dateType: "json",
-		 		url: "/BingMap/FileterType2?house_type=0",		
+		 		url: "/BingMap1/FileterType2?house_type=0",		
 		 		success:function(data){
 		       
 		 		data=$.parseJSON(data);
@@ -143,7 +143,7 @@
 		 $.ajax({
 		 	    type: "GET",
 		 		dateType: "json",
-		 		url: "/BingMap/FileterType2?house_type=1",		
+		 		url: "/BingMap1/FileterType2?house_type=1",		
 		 		success:function(data){
 		        //alert(data)
 		 		data=$.parseJSON(data);
@@ -233,7 +233,7 @@
 	    $.ajax({
 	 	    type: "GET",
 	 		dateType: "json",
-	 		url: "/BingMap/FileterType2?house_type=2",		
+	 		url: "/BingMap1/FileterType2?house_type=2",		
 	 		success:function(data){
 	        //alert(data)
 	 		data=$.parseJSON(data);
@@ -321,7 +321,7 @@
 			 $.ajax({
 			 	    type: "GET",
 			 		dateType: "json",
-			 		url: "/BingMap/FileterType2?house_type=3",		
+			 		url: "/BingMap1/FileterType2?house_type=3",		
 			 		success:function(data){
 			        //alert(data)
 			 		data=$.parseJSON(data);
@@ -416,7 +416,7 @@
     		 	    type: "POST",
     		 		dateType: "json",
     		 		data:{"area":area,"city":city,"address":address},
-    		 		url: "/BingMap/FileterKeyWord", 		
+    		 		url: "/BingMap1/FileterKeyWord", 		
     		 		success:function(data){
     		 		data=$.parseJSON(data);
     		 		//alert(data)

@@ -598,7 +598,7 @@ var e=$('#input2').val();
 					<input type="text" class="c-fix f-l p_inp" placeholder="电话" id="tel2" ></input>
 					<!-- <input type="text" class="c-fix f-l p_inp" style="margin-top:10px;" placeholder="需求"></input> -->
 					<textarea class="c-fix f-l p_txt s-14" style="margin-top:10px;" placeholder="留言"></textarea>
-					<button type="button" class="f-l p_btn_submit cp" value="提交" >提交</button>
+					<button type="button" class="f-l p_btn_submit cp" value="提交" onclick="popmodal()" >提交</button>
 
 				</c:if>
 					
@@ -1249,16 +1249,16 @@ var e=$('#input2').val();
 				<div class="c-fix p_inner bgc" style="padding-bottom:30px;">
 					<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:950px;margin-bottom:10px;">推荐项目</a>
 					<div class="c-fix f-l p_project_node">
-						<a href="Index?proNum=${RecommendProject1.project_num}"><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject1.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
-						<a href="Index?proNum=${RecommendProject1.project_num}" class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject1.project_name}<br/><div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;">${RecommendProject1.project_desc}</div></a>
+						<a href="Index?proNum=${RecommendProject1.project_num}" target='_blank'><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject1.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
+						<a href="Index?proNum=${RecommendProject1.project_num}" target='_blank' class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject1.project_name}<br/><div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;word-break:break-all">${RecommendProject1.project_desc}</div></a>
 					</div>
 					<div class="f-l p_project_node" style="margin-left:25px;">
-						<a href="Index?proNum=${RecommendProject2.project_num}"><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject2.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
-						<a href="Index?proNum=${RecommendProject2.project_num}" class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject2.project_name}<br/><div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;">${RecommendProject2.project_desc}</div></a>
+						<a href="Index?proNum=${RecommendProject2.project_num}" target='_blank'><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject2.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
+						<a href="Index?proNum=${RecommendProject2.project_num}" target='_blank' class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject2.project_name}<br/><div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;word-break:break-all">${RecommendProject2.project_desc}</div></a>
 					</div>
 					<div class="f-l p_project_node" style="margin-left:25px;">
-						<a href="Index?proNum=${RecommendProject3.project_num}"><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject3.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
-						<a href="Index?proNum=${RecommendProject3.project_num}" class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject3.project_name}<br/><div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;">${RecommendProject3.project_desc}</div></a>
+						<a href="Index?proNum=${RecommendProject3.project_num}" target='_blank'><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject3.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
+						<a href="Index?proNum=${RecommendProject3.project_num}" target='_blank' class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject3.project_name}<br/><div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;word-break:break-all">${RecommendProject3.project_desc}</div></a>
 					</div>
 				</div>
 			</div>
@@ -1802,6 +1802,9 @@ function popInfo(){
 	 $('#projectInfo').modal('show');
  }
   
+}
+function popmodal(){
+	 $('#registernewPro').modal('show');
 }
 
 
