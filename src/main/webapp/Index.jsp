@@ -46,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 }
 
 .nobg , .suginner{background:#fff;}
-.nobg , .suglist{width:434px;}   /*宽度修改*/
+.nobg , .suglist{width:365px;}   /*宽度修改*/
 
 .suginner_nobg {
 	background:none;
@@ -190,17 +190,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    <div style="position:relative;top:-315px;width:540px;height:150px;margin:0 auto;"><img  src="images/index/lankuang.png" style="width:535px;height:150px;">
 		    <div style="position:relative;top:-135px;left:30px;width:360px;height:40px;"><img src="images/index/font2.png" style="width:330px;height:35px;"></div>
 		    <div style="position:relative;top:-130px;left:30px;">
-		        <form role="form" action="/IndexSearch" method="get"  target="_blank">
+		        <form role="form" name="searchForm" action="/IndexSearch" method="get"  target="_blank">
 						<input type="text" class="c-fix f-l inp_search" placeholder="请输入期望的城市（区域）" id="searchTerritory" name="searchcity" autocomplete="off" style="background-color:white;width:365px;"></input>
 						<!-- <input class="f-l btn_search cp" style="border:none; " type="submit" id="search" target="blank" value=""> -->
-						<div class="cp" style="margin-left:15px;width:100px;height:30px;position:relative;top:-30px;left:365px;" id="search" target="blank"><img src="images/index/btn1.png"></div>
-						<div id="_suggestion" class="suggestion nobg" style="position:absolute;left: 100px; top: 130px; display: none; z-index:999;">			                <div class="suginner">
+						<div class="cp" style="margin-left:15px;width:100px;height:30px;position:relative;top:-30px;left:365px;" id="search" target="blank">
+						<img src="images/index/btn1.png"></div>
+						<div id="_suggestion" class="suggestion nobg" style="position:absolute;left: 0px; top: 30px; display: none; z-index:999;">			                
+						<div class="suginner">
 			                    <ul class="suglist"></ul>
 			                </div>
                 		</div>
-						
-				</form>
-				<div style="width:370px;height:30px;margin-top:15px;">
+                		
+                		<div style="width:370px;height:30px;margin-top:15px;">
 					<div id="divselect" onclick="test()" style="width:76px;" class="divselect">
       					<cite style="width:70px; font-family:微软雅黑; -font-size:14px;font-size:16px">澳洲</cite>
 				      <ul id="test1" style="width:74px;">
@@ -215,7 +216,80 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a class="f-l main_lab f-yahei s-14 city" style="cursor:pointer;font-size:16px;">阿德莱德</a>
 					<a class="f-l main_lab f-yahei s-14 city" style="cursor:pointer;font-size:16px;">珀斯</a>
 				  </div>
-				  <div class="cp" style="position:relative;top:-25px;left:415px;width:65px;height:20px;"><img src="images/index/gaoji.png" style="width:65px;height:20px;"></div>
+				  <div class="cp" style="position:relative;top:-25px;left:415px;width:65px;height:20px;">
+				  <img src="images/index/gaoji.png" style="width:65px;height:20px;">
+				  </div>
+				  
+				  
+						<div class="c-fix f-l main_more" style="display:none;">
+						<div class="c-fix f-l main_more_line">
+							<a class="c-fix f-l f-yahei s-12 main_more_title">国家</a>
+							<input type="radio" name="country" value="" class="f-l main_more_radio more" checked="checked">
+							<a class="f-l f-yahei s-12 main_more_name">不限</a>
+							<input type="radio" name="country" value="澳大利亚"  class="f-l main_more_radio australia">
+							<a class="f-l f-yahei s-12 main_more_name ">澳大利亚</a>
+							<input type="radio" name="country" value="加拿大"  class="f-l main_more_radio canada">
+							<a class="f-l f-yahei s-12 main_more_name ">加拿大</a>
+						</div>
+						<div class="c-fix f-l main_more_line" id="australiacity">
+							<a class="c-fix f-l f-yahei s-12 main_more_title">城市</a>
+							<input type="radio" name="city2" value="" class="f-l main_more_radio" checked="checked">
+							<a class="f-l f-yahei s-12 main_more_name">不限</a>
+							<input type="radio" name="city2" value="墨尔本" class="f-l main_more_radio">
+							<a class="f-l f-yahei s-12 main_more_name">墨尔本(Melbourne)</a>
+							<input type="radio" name="city2" value="悉尼" class="f-l main_more_radio">
+							<a class="f-l f-yahei s-12 main_more_name">悉尼(Sydney)</a>
+							<input type="radio" name="city2" value="布里斯班" class="f-l main_more_radio">
+							<a class="f-l f-yahei s-12 main_more_name">布里斯班(Brisbane)</a>
+							<input type="radio" name="city2" value="阿德莱德" class="f-l main_more_radio">
+							<a class="f-l f-yahei s-12 main_more_name">阿德莱德(Adelaide)</a>
+							<input type="radio" name="city2" value="珀斯" class="f-l main_more_radio">
+							<a class="f-l f-yahei s-12 main_more_name">珀斯(Perth)</a>
+						</div>
+						<div class="c-fix f-l main_more_line" id="canadiancity">
+							<a class="c-fix f-l f-yahei s-12 main_more_title">城市</a>
+							<input type="radio" name="city2" value="" class="f-l main_more_radio" checked="checked">
+							<a class="f-l f-yahei s-12 main_more_name">不限</a>
+							<input type="radio" name="city2" value="多伦多" class="f-l main_more_radio">
+							<a class="f-l f-yahei s-12 main_more_name">多伦多(Toronoto)</a>
+							<input type="radio" name="city2" value="温哥华" class="f-l main_more_radio">
+							<a class="f-l f-yahei s-12 main_more_name">温哥华(Vancouver)</a>
+						</div>
+						<div class="c-fix f-l main_more_line">
+							<a class="c-fix f-l f-yahei s-12 main_more_title">用途</a>
+							<input type="checkbox"  class="f-l main_more_check">
+							<a class="f-l f-yahei s-12 main_more_name">不限</a>
+							<input type="checkbox" name="xinkaipan" value="新开盘" class="f-l main_more_check">
+							<a class="f-l f-yahei s-12 main_more_name">新开盘</a>
+							<input type="checkbox" name="huaren" value="华人区" class="f-l main_more_check">
+							<a class="f-l f-yahei s-12 main_more_name">华人区</a>
+							<input type="checkbox" name="remen" value="热门项目" class="f-l main_more_check">
+							<a class="f-l f-yahei s-12 main_more_name">热门项目</a>
+							<input type="checkbox" name="xuequ" value="优秀学区" class="f-l main_more_check">
+							<a class="f-l f-yahei s-12 main_more_name">优秀学区</a>
+							<input type="checkbox" name="baozu" value="包租项目" class="f-l main_more_check">
+							<a class="f-l f-yahei s-12 main_more_name">包租项目</a>
+							<input type="checkbox" name="daxue" value="大学附近" class="f-l main_more_check">
+							<a class="f-l f-yahei s-12 main_more_name">大学附近</a>
+							<input type="checkbox" name="center" value="城市中心" class="f-l main_more_check">
+							<a class="f-l f-yahei s-12 main_more_name">城市中心</a>
+						</div>
+						<div class="c-fix f-l main_more_line" style="border-width:0px;">
+							<a class="c-fix f-l f-yahei s-12 main_more_title"></a>
+							<input type="checkbox" name="traffic" value="轨道交通" class="f-l main_more_check">
+							<a class="f-l f-yahei s-12 main_more_name">轨道交通</a>
+							<input type="checkbox" name="xianfang" value="现房项目" class="f-l main_more_check">
+							<a class="f-l f-yahei s-12 main_more_name">现房项目</a>
+							<input type="checkbox" name="maidi" value="买地建房"class="f-l main_more_check">
+							<a class="f-l f-yahei s-12 main_more_name">买地建房</a>
+						</div>
+						<div class="c-fix f-l main_more_line" style="border-width:0px;text-align:center">
+							<input  type="button" id="moretijiao" value="提交" style="background-color:#ff6600;width:50px;height:30px;font-family:微软雅黑;line-height: normal;"/>
+							<input type="button" id="morequxiao" value="取消 " style="background-color:#ff6600;width:50px;height:30px;font-family:微软雅黑;line-height: normal;"/>
+						</div>
+					</div>
+				</form>
+				
 		    </div>
 		    </div>
 			<%-- <div class="main_img">               
@@ -913,13 +987,16 @@ function hoverFunc(select, css){
     }
     
     $(function(){
-    
+    	$("#search").click(function(){
+    		
+    		document.searchForm.submit();
+    	})
 	/* $('#_suggestion >.suginner > .suglist').on('click', 'li', function () {
 		window.location.href="/IndexSearch"+encodeURIComponent($(this).text());
 				}); */
-	/* $('#_suggestion .suginner ').delegate('ul', 'click', function () {
-    	alert("ok");
-	}); */
+	/* /* $('#_suggestion .suginner ').delegate('ul', 'click', function () {
+    	alert("ok"); */
+	//}); */
 });
     
         

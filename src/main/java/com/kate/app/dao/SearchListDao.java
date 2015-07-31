@@ -1109,10 +1109,11 @@ public class SearchListDao extends BaseDao {
 			int i=0;
 			int j=0;
 			if(xinkaipan!=null && !"".equals(xinkaipan)){
-				sql1+="xinkaipan like '%"+xinkaipan+"%'";
-				sql+= "and project_num in (" +sql1+ ") and ";
+				xinkaipan = "1";
+				sql1+="xinkaipan="+xinkaipan;
+				sql+= "and project_num in (" +sql1+ ") ";
 				if(city!=null && !"".equals(city)){
-					sql+="project_city like '%"+city+"%'";
+					sql+=" and project_city like '%"+city+"%'";
 					j=1;
 				}
 				if(type!=null && !"".equals(type)){
@@ -1142,9 +1143,9 @@ public class SearchListDao extends BaseDao {
 						j=1;
 					}
 				}
-				if(j==0){
-					sql+= "project_num in (" +sql1+ ")";
-				}
+				/*if(j==0){
+					sql+= "and project_num in (" +sql1+ ")";
+				}*/
 				i=1;
 			}
 			if(huaren!=null &&!"".equals(huaren)){
