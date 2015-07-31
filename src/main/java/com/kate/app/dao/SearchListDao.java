@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -933,24 +935,51 @@ public class SearchListDao extends BaseDao {
 	
 	
 	public List<HouseProject> searchIndexList(String city1){
+		NumberFormat df = new DecimalFormat("#,###,###");
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<HouseProject> houseProjectList=new ArrayList<HouseProject>();
 		try {
-			String sql = "select * from house_project where project_name like '%" +city1+ "%' or project_city like '%" +city1+ "%'";
+			String sql = "select * from house_project where isSeen=1 and project_name like '%" +city1+ "%' or project_city like '%" +city1+ "%'";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
 		    while(rs.next()){
 		    	HouseProject projectInfo = new HouseProject();
-				projectInfo.setProject_name(rs.getString("project_name"));
+		    	String project_name = rs.getString("project_name");
+		    	String project_name_short = "";
+		    	if(project_name!=null && !"".equals(project_name)){
+		    		project_name_short = project_name.length()>20?project_name.substring(0,20):project_name;
+		    	}
+		    			
+				projectInfo.setProject_name(project_name);
+				projectInfo.setProject_name_short(project_name_short);
+				
+				
 				projectInfo.setProject_img(rs.getString("project_img"));
 				projectInfo.setProject_logo(rs.getString("project_logo"));
 				projectInfo.setProject_nation(rs.getString("project_nation"));
-				projectInfo.setProject_address(rs.getString("project_address"));
+				
+				String project_address = rs.getString("project_address");
+				String project_addresse_short = "";
+		    	if(project_address!=null && !"".equals(project_address)){
+		    		project_addresse_short = project_address.length()>40?project_address.substring(0,40):project_address;
+		    	}		
+		    	projectInfo.setProject_address(project_address);
+		    	projectInfo.setProject_address_short(project_addresse_short);
+		    	
+		    	
 				projectInfo.setProject_area(rs.getString("project_area"));
-				projectInfo.setProject_price_qi(rs.getString("project_price_qi"));
-				projectInfo.setProject_price_int_qi(rs.getInt("project_price_int_qi"));
+				//projectInfo.setProject_price_qi(rs.getString("project_price_qi"));
+				//projectInfo.setProject_price_int_qi(rs.getInt("project_price_int_qi"));
+				
+				 if(rs.getString("project_price_int_qi")!=null){
+					 projectInfo.setProject_price_qi(df.format(Integer.parseInt(rs.getString("project_price_int_qi"))));
+			    	}
+			    	else{
+			    		projectInfo.setProject_price_qi("N/A");
+			    	}
+				
 				projectInfo.setProject_type(rs.getString("project_type"));
 				projectInfo.setProject_sales_remain(rs.getInt("project_sales_remain"));
 				//projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));
@@ -968,8 +997,9 @@ public class SearchListDao extends BaseDao {
 				projectInfo.setGps(rs.getString("gps"));
 				projectInfo.setReturn_money(rs.getString("return_money"));
 				projectInfo.setDeveloper_id(rs.getInt("developer_id"));
-				projectInfo.setProject_high_price(rs.getString("project_high_price"));
-				projectInfo.setProject_min_price(rs.getString("project_min_price"));
+				projectInfo.setDeveloper_id_name(rs.getString("developer_id_name"));
+				projectInfo.setProject_high_price(rs.getString("project_high_price")==null?"":df.format(Integer.parseInt(rs.getString("project_high_price"))));
+				projectInfo.setProject_min_price(rs.getString("project_min_price")==null?"":df.format(Integer.parseInt(rs.getString("project_min_price"))));
 				projectInfo.setMax_area(rs.getInt("max_area"));
 				projectInfo.setMin_area(rs.getInt("min_area"));
 				projectInfo.setArea_id(rs.getInt("area_id"));
@@ -1068,18 +1098,19 @@ public class SearchListDao extends BaseDao {
 	
 	
 	public List<HouseProject> indexSericeList(String city, String type, String minimumprice, String maximumprice, String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue,String center,String traffic,String xianfang,String maidi){
+		NumberFormat df = new DecimalFormat("#,###,###");
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<HouseProject> houseProjectList=new ArrayList<HouseProject>();
 		try {
-			String sql = "select * from house_project where ";
+			String sql = "select * from house_project where isSeen=1 ";
 			String sql1 = "select project_num from project_key where ";
 			int i=0;
 			int j=0;
 			if(xinkaipan!=null && !"".equals(xinkaipan)){
 				sql1+="xinkaipan like '%"+xinkaipan+"%'";
-				sql+= "project_num in (" +sql1+ ") and ";
+				sql+= "and project_num in (" +sql1+ ") and ";
 				if(city!=null && !"".equals(city)){
 					sql+="project_city like '%"+city+"%'";
 					j=1;
@@ -1791,9 +1822,9 @@ public class SearchListDao extends BaseDao {
 			}
 			
 			if(i == 0){
-				sql = "select * from house_project where ";
+				sql = "select * from house_project where isSeen=1 ";
 				if(city!=null && !"".equals(city)){
-					sql+="project_city like '%"+city+"%'";
+					sql+="and project_city like '%"+city+"%'";
 					j=1;
 				}
 				if(type!=null && !"".equals(type)){
@@ -1824,7 +1855,7 @@ public class SearchListDao extends BaseDao {
 					}
 				}
 				if(j==0){
-					sql = "select * from house_project";
+					sql = "select * from house_project where isSeen=1";
 				}
 			}
 			
@@ -1832,14 +1863,40 @@ public class SearchListDao extends BaseDao {
 			  rs = stmt.executeQuery(sql);
 		    while(rs.next()){
 		    	HouseProject projectInfo = new HouseProject();
-				projectInfo.setProject_name(rs.getString("project_name"));
+		    	String project_name = rs.getString("project_name");
+		    	String project_name_short = "";
+		    	if(project_name!=null && !"".equals(project_name)){
+		    		project_name_short = project_name.length()>20?project_name.substring(0,20):project_name;
+		    	}
+		    			
+				projectInfo.setProject_name(project_name);
+				projectInfo.setProject_name_short(project_name_short);
+				
+				
 				projectInfo.setProject_img(rs.getString("project_img"));
 				projectInfo.setProject_logo(rs.getString("project_logo"));
 				projectInfo.setProject_nation(rs.getString("project_nation"));
-				projectInfo.setProject_address(rs.getString("project_address"));
+				
+				String project_address = rs.getString("project_address");
+				String project_addresse_short = "";
+		    	if(project_address!=null && !"".equals(project_address)){
+		    		project_addresse_short = project_address.length()>40?project_address.substring(0,40):project_address;
+		    	}		
+		    	projectInfo.setProject_address(project_address);
+		    	projectInfo.setProject_address_short(project_addresse_short);
+		    	
+		    	
 				projectInfo.setProject_area(rs.getString("project_area"));
-				projectInfo.setProject_price_qi(rs.getString("project_price_qi"));
-				projectInfo.setProject_price_int_qi(rs.getInt("project_price_int_qi"));
+				//projectInfo.setProject_price_qi(rs.getString("project_price_qi"));
+				//projectInfo.setProject_price_int_qi(rs.getInt("project_price_int_qi"));
+				
+				 if(rs.getString("project_price_int_qi")!=null){
+					 projectInfo.setProject_price_qi(df.format(Integer.parseInt(rs.getString("project_price_int_qi"))));
+			    	}
+			    	else{
+			    		projectInfo.setProject_price_qi("N/A");
+			    	}
+				
 				projectInfo.setProject_type(rs.getString("project_type"));
 				projectInfo.setProject_sales_remain(rs.getInt("project_sales_remain"));
 				//projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));
@@ -1857,8 +1914,9 @@ public class SearchListDao extends BaseDao {
 				projectInfo.setGps(rs.getString("gps"));
 				projectInfo.setReturn_money(rs.getString("return_money"));
 				projectInfo.setDeveloper_id(rs.getInt("developer_id"));
-				projectInfo.setProject_high_price(rs.getString("project_high_price"));
-				projectInfo.setProject_min_price(rs.getString("project_min_price"));
+				projectInfo.setDeveloper_id_name(rs.getString("developer_id_name"));
+				projectInfo.setProject_high_price(rs.getString("project_high_price")==null?"":df.format(Integer.parseInt(rs.getString("project_high_price"))));
+				projectInfo.setProject_min_price(rs.getString("project_min_price")==null?"":df.format(Integer.parseInt(rs.getString("project_min_price"))));
 				projectInfo.setMax_area(rs.getInt("max_area"));
 				projectInfo.setMin_area(rs.getInt("min_area"));
 				projectInfo.setArea_id(rs.getInt("area_id"));
@@ -1904,26 +1962,53 @@ public class SearchListDao extends BaseDao {
 	}
 	
 	public List<HouseProject> searchIndexProject(String areaNum){
+		NumberFormat df = new DecimalFormat("#,###,###");
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 
 		List<HouseProject> houseProjectList=new ArrayList<HouseProject>();
 		try {
-			String sql = "select * from house_project where area_num=?";
+			String sql = "select * from house_project where isSeen=1 and area_num=?";
 			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, areaNum);
 			  rs = pstmt.executeQuery();
 		    while(rs.next()){
 		    	HouseProject projectInfo = new HouseProject();
-				projectInfo.setProject_name(rs.getString("project_name"));
+		    	String project_name = rs.getString("project_name");
+		    	String project_name_short = "";
+		    	if(project_name!=null && !"".equals(project_name)){
+		    		project_name_short = project_name.length()>20?project_name.substring(0,20):project_name;
+		    	}
+		    			
+				projectInfo.setProject_name(project_name);
+				projectInfo.setProject_name_short(project_name_short);
+				
+				
 				projectInfo.setProject_img(rs.getString("project_img"));
 				projectInfo.setProject_logo(rs.getString("project_logo"));
 				projectInfo.setProject_nation(rs.getString("project_nation"));
-				projectInfo.setProject_address(rs.getString("project_address"));
+				
+				String project_address = rs.getString("project_address");
+				String project_addresse_short = "";
+		    	if(project_address!=null && !"".equals(project_address)){
+		    		project_addresse_short = project_address.length()>40?project_address.substring(0,40):project_address;
+		    	}		
+		    	projectInfo.setProject_address(project_address);
+		    	projectInfo.setProject_address_short(project_addresse_short);
+		    	
+		    	
 				projectInfo.setProject_area(rs.getString("project_area"));
-				projectInfo.setProject_price_qi(rs.getString("project_price_qi"));
-				projectInfo.setProject_price_int_qi(rs.getInt("project_price_int_qi"));
+				//projectInfo.setProject_price_qi(rs.getString("project_price_qi"));
+				//projectInfo.setProject_price_int_qi(rs.getInt("project_price_int_qi"));
+				
+				 if(rs.getString("project_price_int_qi")!=null){
+					 projectInfo.setProject_price_qi(df.format(Integer.parseInt(rs.getString("project_price_int_qi"))));
+			    	}
+			    	else{
+			    		projectInfo.setProject_price_qi("N/A");
+			    	}
+				
 				projectInfo.setProject_type(rs.getString("project_type"));
 				projectInfo.setProject_sales_remain(rs.getInt("project_sales_remain"));
 				//projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));
@@ -1942,8 +2027,8 @@ public class SearchListDao extends BaseDao {
 				projectInfo.setReturn_money(rs.getString("return_money"));
 				projectInfo.setDeveloper_id(rs.getInt("developer_id"));
 				projectInfo.setDeveloper_id_name(rs.getString("developer_id_name"));
-				projectInfo.setProject_high_price(rs.getString("project_high_price"));
-				projectInfo.setProject_min_price(rs.getString("project_min_price"));
+				projectInfo.setProject_high_price(rs.getString("project_high_price")==null?"":df.format(Integer.parseInt(rs.getString("project_high_price"))));
+				projectInfo.setProject_min_price(rs.getString("project_min_price")==null?"":df.format(Integer.parseInt(rs.getString("project_min_price"))));
 				projectInfo.setMax_area(rs.getInt("max_area"));
 				projectInfo.setMin_area(rs.getInt("min_area"));
 				projectInfo.setArea_id(rs.getInt("area_id"));
@@ -1990,26 +2075,53 @@ public class SearchListDao extends BaseDao {
 	
 	
 	public List<HouseProject> searchIndexProjectByPro(String proName){
+		NumberFormat df = new DecimalFormat("#,###,###");
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 
 		List<HouseProject> houseProjectList=new ArrayList<HouseProject>();
 		try {
-			String sql = "select * from house_project where project_name=?";
+			String sql = "select * from house_project where isSeen=1 and project_name=?";
 			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, proName);
 			  rs = pstmt.executeQuery();
 		    while(rs.next()){
 		    	HouseProject projectInfo = new HouseProject();
-				projectInfo.setProject_name(rs.getString("project_name"));
+		    	String project_name = rs.getString("project_name");
+		    	String project_name_short = "";
+		    	if(project_name!=null && !"".equals(project_name)){
+		    		project_name_short = project_name.length()>20?project_name.substring(0,20):project_name;
+		    	}
+		    			
+				projectInfo.setProject_name(project_name);
+				projectInfo.setProject_name_short(project_name_short);
+				
+				
 				projectInfo.setProject_img(rs.getString("project_img"));
 				projectInfo.setProject_logo(rs.getString("project_logo"));
 				projectInfo.setProject_nation(rs.getString("project_nation"));
-				projectInfo.setProject_address(rs.getString("project_address"));
+				
+				String project_address = rs.getString("project_address");
+				String project_addresse_short = "";
+		    	if(project_address!=null && !"".equals(project_address)){
+		    		project_addresse_short = project_address.length()>40?project_address.substring(0,40):project_address;
+		    	}		
+		    	projectInfo.setProject_address(project_address);
+		    	projectInfo.setProject_address_short(project_addresse_short);
+		    	
+		    	
 				projectInfo.setProject_area(rs.getString("project_area"));
-				projectInfo.setProject_price_qi(rs.getString("project_price_qi"));
-				projectInfo.setProject_price_int_qi(rs.getInt("project_price_int_qi"));
+				//projectInfo.setProject_price_qi(rs.getString("project_price_qi"));
+				//projectInfo.setProject_price_int_qi(rs.getInt("project_price_int_qi"));
+				
+				 if(rs.getString("project_price_int_qi")!=null){
+					 projectInfo.setProject_price_qi(df.format(Integer.parseInt(rs.getString("project_price_int_qi"))));
+			    	}
+			    	else{
+			    		projectInfo.setProject_price_qi("N/A");
+			    	}
+				
 				projectInfo.setProject_type(rs.getString("project_type"));
 				projectInfo.setProject_sales_remain(rs.getInt("project_sales_remain"));
 				//projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));
@@ -2027,8 +2139,9 @@ public class SearchListDao extends BaseDao {
 				projectInfo.setGps(rs.getString("gps"));
 				projectInfo.setReturn_money(rs.getString("return_money"));
 				projectInfo.setDeveloper_id(rs.getInt("developer_id"));
-				projectInfo.setProject_high_price(rs.getString("project_high_price"));
-				projectInfo.setProject_min_price(rs.getString("project_min_price"));
+				projectInfo.setDeveloper_id_name(rs.getString("developer_id_name"));
+				projectInfo.setProject_high_price(rs.getString("project_high_price")==null?"":df.format(Integer.parseInt(rs.getString("project_high_price"))));
+				projectInfo.setProject_min_price(rs.getString("project_min_price")==null?"":df.format(Integer.parseInt(rs.getString("project_min_price"))));
 				projectInfo.setMax_area(rs.getInt("max_area"));
 				projectInfo.setMin_area(rs.getInt("min_area"));
 				projectInfo.setArea_id(rs.getInt("area_id"));

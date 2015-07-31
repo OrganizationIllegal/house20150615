@@ -96,7 +96,6 @@ body{
    }
    
    function housetype1(v){
-	   alert("ffffff")
 	   var selectedOption=v.options[v.selectedIndex];  
 	   switch(selectedOption.value){
 	   case "1":    //公寓

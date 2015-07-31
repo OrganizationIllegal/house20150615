@@ -26,10 +26,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      location.hash="#team";
 	 offSet();
     }
-     function tab4(){
+    /*  function tab4(){
      location.hash="#news";
 	 offSet();
-    }
+    } */
      function tab5(){
      location.hash="#telus";
 	 offSet();
@@ -42,10 +42,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         var can3 = document.getElementById("circle3");
         var can4 = document.getElementById("circle4");
         var can5 = document.getElementById("circle5");
-        var can6 = document.getElementById("circle6");
-        var can7 = document.getElementById("circle7");
+        //var can6 = document.getElementById("circle6");
+        /* var can7 = document.getElementById("circle7");
         var can8 = document.getElementById("circle8");
-        var can9 = document.getElementById("circle9");
+        var can9 = document.getElementById("circle9"); */
         var can10 = document.getElementById("circle10");
         var can11 = document.getElementById("circle11");
         var can12 = document.getElementById("circle12");
@@ -54,22 +54,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         var can15 = document.getElementById("circle15");
         var can16 = document.getElementById("circle16");
         var can17 = document.getElementById("circle17");
-        var can18 = document.getElementById("circle18");
+        /* var can18 = document.getElementById("circle18");
         var can19 = document.getElementById("circle19");
         var can20 = document.getElementById("circle20");
-        var can21 = document.getElementById("circle21");
+        var can21 = document.getElementById("circle21"); */
         
         
         
-        var ctx = can.getContext("2d");   
+        //var ctx = can.getContext("2d");   
         var ctx2 = can2.getContext("2d");   
         var ctx3 = can3.getContext("2d");   
         var ctx4 = can4.getContext("2d"); 
         var ctx5 = can5.getContext("2d");   
-        var ctx6 = can6.getContext("2d");  
-        var ctx7 = can7.getContext("2d");   
+        //var ctx6 = can6.getContext("2d");  
+        /* var ctx7 = can7.getContext("2d");   
         var ctx8 = can8.getContext("2d");  
-        var ctx9 = can9.getContext("2d"); 
+        var ctx9 = can9.getContext("2d");  */
          var ctx10 = can10.getContext("2d");  
          var ctx11 = can11.getContext("2d");  
          var ctx12 = can12.getContext("2d");  
@@ -78,10 +78,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          var ctx15 = can15.getContext("2d");  
          var ctx16 = can16.getContext("2d");  
         var ctx17 = can17.getContext("2d");
-        var ctx18 = can18.getContext("2d");
+        /* var ctx18 = can18.getContext("2d");
         var ctx19 = can19.getContext("2d");
         var ctx20 = can20.getContext("2d");
-        var ctx21 = can21.getContext("2d");
+        var ctx21 = can21.getContext("2d"); */
         
         var img = new Image();
         var img2 = new Image();
@@ -107,9 +107,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         var img21 = new Image();
         
         
-        img.onload = function (){
+       /*  img.onload = function (){
              ctx.drawImage(img, 0, 0, 70, 70);
-             }
+             } */
         img2.onload = function (){
              ctx2.drawImage(img2, 0, 0, 70, 70);
              }
@@ -122,10 +122,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         img5.onload = function (){
              ctx5.drawImage(img5, 0, 0, 70, 70);
              }
-        img6.onload = function (){
+        /* img6.onload = function (){
              ctx6.drawImage(img6, 0, 0, 70, 70);
-             }
-        img7.onload = function (){
+             } */
+       /*  img7.onload = function (){
              ctx7.drawImage(img7, 0, 0, 70, 70);
              }
         img8.onload = function (){
@@ -133,7 +133,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
              }
         img9.onload = function (){
              ctx9.drawImage(img9, 0, 0, 70, 70);
-             }
+             } */
         img10.onload = function (){
              ctx10.drawImage(img10, 0, 0, 150, 150);
              }
@@ -158,7 +158,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         img17.onload = function (){
              ctx17.drawImage(img16, 0, 0, 150, 150);
              }
-         img18.onload = function (){
+         /* img18.onload = function (){
              ctx18.drawImage(img17, 0, 0, 150, 150);
              } 
          
@@ -170,7 +170,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
              } 
          img21.onload = function (){
              ctx21.drawImage(img17, 0, 0, 150, 150);
-             } 
+             }  */
         img.src = "/images/jingjiren.PNG";
         img2.src = "/images/f.jpg";
         img3.src = "/images/jingjiren.PNG";
@@ -196,15 +196,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
         
         
-        begin(ctx); 
+        //begin(ctx); 
         begin(ctx2);  
         begin(ctx3); 
         begin(ctx4);  
         begin(ctx5); 
-        begin(ctx6);
-        begin(ctx7);  
+        //begin(ctx6);
+       /*  begin(ctx7);  
         begin(ctx8); 
-        begin(ctx9); 
+        begin(ctx9);  */
         begin2(ctx10);
         begin2(ctx11);  
         begin2(ctx12); 
@@ -214,10 +214,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         begin2(ctx15);  
         begin2(ctx16); 
         begin2(ctx17); 
-        begin2(ctx18); 
+        /* begin2(ctx18); 
         begin2(ctx19); 
         begin2(ctx20); 
-        begin2(ctx21); 
+        begin2(ctx21); */ 
         
         
 })
@@ -263,11 +263,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--start我们革命性的改变了-->
    <div class="" >
 		<!--<img  src="../images/bb.JPG">-->
-		<div style="background-color:rgb(20,51,82);height:450px;">
-			<div style="padding-top:50px;text-align:center;color:white;font-weight:bold;margin-top:-10px;"><img  src="../images/sd.JPG"></div>
-			<div align=center style="position:relative; height:50px;">
+		<div style="width:100%;margin:0 auto;height:450px;" >
+			<img  src="../images/us0.png" height=450 width="100%">
+		
+			<div style="padding-top:50px;left:2%;text-align:center;color:white;font-weight:bold;-margin-top:-10px;-position:relative;-top:-501px;-left:2%;">
+				<img  src="../images/uswenzi.png" style="position: relative;top:-501px;left:2%">
+			</div>
+			<div align=center style="position:relative; height:50px;top: -679px;/* margin: 0 auto; */left:0%;">
 			    <div style="width:136px; height:50px;">
-			    <button type="button" style="margin:0 auto; border:0; width:136px; height:46px; background:#d7253f; font-size:28px; color:#fff;"  id="register_aboutus">注册账户</button>
+			    <img  src="../images/00.png" id="register_aboutus">
+			    <!-- <button type="button" style="margin:0 auto; border:0; width:136px; height:46px; background:#d7253f; font-size:28px; color:#fff;"  id="register_aboutus">注册</button> -->
 			     </div>
 				 
 			</div>
@@ -277,11 +282,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div> -->
 		
 		<div class="" style="width:100%; margin:0 auto; border:1px solid #dcdcdc; ">
-			<ul class="ab_index">
+			<ul class="ab_index" style="list-style-type: none;position: relative;left: 6%;">
 				<li><a href="#youxuan"  onclick="tab1()" style="color:#425a74; text-decoration:none;">海房优选</a></li>
 				<li><a href="#story"  onclick="tab2()"  style="color:#425a74; text-decoration:none;">我们的故事</a></li>
 				<li><a href="#team"  onclick="tab3()"  style="color:#425a74; text-decoration:none;">我们的团队</a></li>
-				<li><a href="#news"  onclick="tab4()"  style="color:#425a74; text-decoration:none;">新闻报道</a></li>
+				<!-- <li><a href="#news"  onclick="tab4()"  style="color:#425a74; text-decoration:none;">新闻报道</a></li> -->
 				<li style="border-right:1px solid #dcdcdc;"><a href="#telus"  onclick="tab5()"  style="color:#425a74; text-decoration:none;">联系方式</a></li>
 			</ul>
 			
@@ -297,57 +302,59 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--start当前落后的购房服务 -->
 <div class="" style="padding-top:50px;text-align:center;height:500px" >
 		<div style=""><span  style="font-size:13px;font-family:微软雅黑;text-align:center; color:#969b9f;">当前落后的购房服务</span></div>
-		<div style="margin-top:6px"><span  style="font-size:34px;text-align:center;  color:#969b9f;">大量的中间环节造成国内低效不透明的购房过程。</span></div>
+		<div style="margin-top:6px"><span  style="font-size:34px;text-align:center;  color:#969b9f;">大量的中间环节造成不透明,低效率的购房过程。</span></div>
 		<!--start画圆圈 -->
 		<div id="circles" style="height:120px; width:980px;margin:0 auto;">
 		   <div id="touzizhe"  style="margin:0 30px;width:100px;height:100px;float:left;">
-		   		<div><canvas id="circle1" width="70" height="70"></canvas></div>
-		   		<div style="font-size:13px;font-family:微软雅黑; margin-bottom:4px;">投资者</div>
+		   		<%-- <div id="circle1"><canvas id="circle1" width="70" height="70"></canvas></div> --%>
+		   		<img src="../images/touzizhe.png">
+		   		<!-- <div style="font-size:13px;font-family:微软雅黑; margin-bottom:4px;">投资者</div> -->
 		   </div>
-		   <div id="jignjiren2"  style="margin:0 30px;width:100px;height:100px;float:left;">
+		   <div id="jignjiren2"  style="margin:9px 30px;width:100px;height:100px;float:left;">
 		   		<div><canvas id="circle2" width="70" height="70"  ></canvas></div>
 		   		<div style="font-size:13px;font-family:微软雅黑; margin-bottom:4px;">国内经纪人</div>
 		   		<div ><span style="font-size:13px;font-family:微软雅黑;color:#fff;background:#d62541;padding:4px 4px;-webkit-border-radius: 4px;-moz-border-radius: 4px;">1%手续费</span></div>
 		   </div>
-		    <div id="dailigongsi"  style="margin:0 30px;width:100px;height:100px;float:left;">
+		    <div id="dailigongsi"  style="margin:9px 30px;width:100px;height:100px;float:left;">
 		   		<div><canvas id="circle3" width="70" height="70"></canvas></div>
 		   		<div style="font-size:13px;font-family:微软雅黑; margin-bottom:4px;">代理经纪公司</div>
 		   		<div ><span style="font-size:13px;font-family:微软雅黑;color:white;background:#d62541;padding:4px 4px;-webkit-border-radius: 4px;-moz-border-radius: 4px;">1%手续费</span></div>
 		   </div>
-		     <div id="haiwaigongsi"  style="margin:0 30px;width:100px;height:100px;float:left;">
+		     <div id="haiwaigongsi"  style="margin:9px 30px;width:100px;height:100px;float:left;">
 		   		<div><canvas id="circle4" width="70" height="70"  ></canvas></div>
 		   		<div style="font-size:13px;font-family:微软雅黑; margin-bottom:4px;">海外经纪公司</div>
 		   		<div ><span style="font-size:13px;font-family:微软雅黑;color:white;background:#d62541;padding:4px 4px;-webkit-border-radius: 4px;-moz-border-radius: 4px;">1%手续费</span></div>
 		   </div>
-		    <div id="jingjishang"  style="margin:0 30px;width:100px;height:100px;float:left;">
+		    <div id="jingjishang"  style="margin:9px 30px;width:100px;height:100px;float:left;">
 		   		<div><canvas id="circle5" width="70" height="70"></canvas></div>
 		   		<div style="font-size:13px;font-family:微软雅黑; margin-bottom:4px;">房地产经纪商</div>
 		   		<div ><span style="font-size:13px;font-family:微软雅黑;color:white;background:#d62541;padding:4px 4px;-webkit-border-radius: 4px;-moz-border-radius: 4px;">1-2%手续费</span></div>
 		   </div>
 		     <div id="fangchan" style="margin:0 30px;width:100px;height:100px;float:left;">
-		   		<div><canvas id="circle6" width="70" height="70"  ></canvas></div>
-		   		<div style="font-size:13px;font-family:微软雅黑;">房产</div>
+		     	<img src="../images/fangyuan.png">
+		   		<%-- <div><canvas id="circle6" width="70" height="70"  ></canvas></div>
+		   		<div style="font-size:13px;font-family:微软雅黑;">房产</div> --%>
 		   </div>
 		</div>
 		<!--end画圆圈 -->
 		<!--star很少的可选房屋-->
-		<div style="position:relative;">
+		<div style="position:relative;top:16px;">
 		<div id="show" style="width:1000px; margin:30px auto; padding:20px 0;border:1px solid #C3C3C3;height:124px;" >
 			<div class="" style="font-size:13px;font-family:微软雅黑;text-align:center; float:left; width:250px;margin-left:35px;">
 				<div style="margin-top:10px;font-size:14px;font-family:微软雅黑;font-weight:bold"><span>很少的可选房屋</span></div>
-				<div style="margin-top:10px;font-size:12px;text-align:center;color:#858384;"><span>传统海外房产购买时，购房人仅能找到少量房源</span></div>
+				<div style="margin-top:10px;font-size:12px;text-align:center;color:#858384;"><span>传统海外房产购买时，购房者被动通过经纪人提供少量房源。</span></div>
 			</div>
 			<div class="" style="font-size:13px;font-family:微软雅黑;text-align:center; float:left; width:250px; margin-left:74px;">
-				<div style="margin-top:10px;font-size:14px;font-family:微软雅黑;font-weight:bold"><span>中间环节多，费用高</span></div>
-				<div style="margin-top:10px;font-size:12px;text-align:center;color:#858384;"><span>大量的购房中间环节每个参与者均要收取费用，购房时产生不必要的成本</span></div>
+				<div style="margin-top:10px;font-size:14px;font-family:微软雅黑;font-weight:bold"><span>未知的服务</span></div>
+				<div style="margin-top:10px;font-size:12px;text-align:center;color:#858384;"><span>购房者并不了解提供服务的经纪人的能力和背景，无法确保得到适合自己的购房服务。</span></div>
 			</div>
 			<div class="" style="font-size:13px;font-family:微软雅黑;text-align:center; float:left;margin-left:92px;width:250px;">
 				<div style="margin-top:10px;font-size:14px;font-family:微软雅黑;font-weight:bold"><span>房屋信息不完整</span></div>
-				<div style="margin-top:10px;font-size:12px;text-align:center;color:#858384;"><span>购房者只能看到最基础的房源信息无法有效做出明确选择</span></div>
+				<div style="margin-top:10px;font-size:12px;text-align:center;color:#858384;"><span>购房者只能看到最基础的房源信息无法有效做出明确选择。</span></div>
 			</div>
-			<div style="width:45px;height:45px;float:left;margin-left:140px;margin-top:-118px;"><img  src="../images/oo.JPG"></div>
-			<div style="width:45px;height:45px;float:left;margin-left:470px;margin-top:-118px;"><img  src="../images/oo.JPG"></div>
-			<div style="width:45px;height:45px;float:left;margin-left:800px;margin-top:-118px;"><img  src="../images/oo.JPG"></div>
+			<div style="width:45px;height:45px;float:left;margin-left:140px;margin-top:-118px;"><img  src="../images/sd1.png"></div>
+			<div style="width:45px;height:45px;float:left;margin-left:470px;margin-top:-118px;"><img  src="../images/sd1.png"></div>
+			<div style="width:45px;height:45px;float:left;margin-left:800px;margin-top:-118px;"><img  src="../images/sd1.png"></div>
 		</div>
 		</div>
 		<!--end很少的可选房屋-->
@@ -356,11 +363,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--start海房优选解决方案 -->
 <div id="youxuan" class="" style="padding:40px 0 ;text-align:center;background-color:rgb(247,248,250);height:500px" >
 		<div style="margin:20px 0"><span  style="font-size:14px;font-family:微软雅黑;text-align:center; color:#898c93;">海房优选解决方案</span></div>
-		<div style="margin:20px 0"><span  style="font-size:32px;text-align:center; color:#898c93;">互联网直接连接购房者和房产</span></div>
+		<div style="margin:20px 0"><span  style="font-size:32px;text-align:center; color:#898c93;">互联网思维和技术，提供高效透明的购房服务</span></div>
 		<!--start画圆圈 -->
 		<div id="circles" style="width:450px; margin:20px auto;height:120px">
-		   
-		   <div id="touzizhe"  class="tzz" >
+		   <img src="../images/haha.png">
+		   <%-- <div id="touzizhe"  class="tzz" >
 		   		<div><canvas id="circle7" width="70" height="70"></canvas></div>
 		   		<div style="font-size:13px;font-family:微软雅黑;">投资者</div>
 		   </div>
@@ -371,7 +378,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    <div id="dailigongsi"  class="tzz" >
 		   		<div><canvas id="circle9" width="70" height="70"></canvas></div>
 		   		<div style="font-size:13px;font-family:微软雅黑;">房产</div>
-		   </div>
+		   </div> --%>
 		   
 		</div>
 		<!--end画圆圈 -->
@@ -380,39 +387,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		<div id="show" style="width:1000px; margin:30px auto; padding:20px 0;border:1px solid #C3C3C3;height:124px; background-color:white;" >
 			<div class="" style="font-size:13px;font-family:微软雅黑;text-align:center; float:left; width:250px;margin-left:39px;">
-				<div style="margin-top:10px;font-size:14px;font-family:微软雅黑;font-weight:bold"><span>多样化的选择</span></div>
-				<div style="margin-top:10px;font-size:12px;text-align:center;color:#858384;"><span>购房者可以在网站查询海量房源，基于地图的搜索购房者寻找适合的房产</span></div>
+				<div style="margin-top:10px;font-size:14px;font-family:微软雅黑;font-weight:bold"><span>真实可选房源</span></div>
+				<div style="margin-top:10px;font-size:12px;text-align:center;color:#858384;"><span>购房者可以在网站查询海量房源，基于地图的搜索购房者寻找适合的房产。</span></div>
 			</div>
 			<div class="" style="font-size:13px;font-family:微软雅黑;text-align:center; float:left; width:250px; margin-left:93px;">
-				<div style="margin-top:10px;font-size:14px;font-family:微软雅黑;font-weight:bold"><span>没有中间环节</span></div>
-				<div style="margin-top:10px;font-size:12px;text-align:center;color:#858384;"><span>互联网思维和全新的服务大大的降低中间成本，购房获得可观的购房返利，增加了潜在的投资回报</span></div>
+				<div style="margin-top:10px;font-size:14px;font-family:微软雅黑;font-weight:bold"><span>优质购房服务</span></div>
+				<div style="margin-top:10px;font-size:12px;text-align:center;color:#858384;"><span>通过对经纪人的严格调查，购房者能够找到适合自己的，具有本地经验的专业经纪。</span></div>
 			</div>
 			<div class="" style="font-size:13px;font-family:微软雅黑;text-align:center; margin-left:87px;float:left;width:250px;">
-				<div style="margin-top:10px;font-size:14px;font-family:微软雅黑;font-weight:bold"><span>丰富完整的房产信息</span></div>
-				<div style="margin-top:10px;font-size:12px;text-align:center;color:#858384;"><span>互联网计求丰富完整的房屋信息及街区信息，区村人口构成真实租金收益，让购房者更简单的做出明智的购房选择</span></div>
+				<div style="margin-top:10px;font-size:14px;font-family:微软雅黑;font-weight:bold"><span>聪明购房决定</span></div>
+				<div style="margin-top:10px;font-size:12px;text-align:center;color:#858384;"><span>丰富完整的房屋及街区信息，区域人口构成真实租金收益，让购房者更简单的做出明智的购房选择。</span></div>
 			</div>
-			<div style="width:45px;height:45px;float:left;margin-left:140px;margin-top:-135px;"><img  src="../images/cc.JPG"></div>
-			<div style="width:45px;height:45px;float:left;margin-left:470px;margin-top:-135px;"><img  src="../images/cc.JPG"></div>
-			<div style="width:45px;height:45px;float:left;margin-left:800px;margin-top:-135px;"><img  src="../images/cc.JPG"></div>
+			<div style="width:45px;height:45px;float:left;margin-left:140px;margin-top:-135px;"><img  src="../images/cc1.png"></div>
+			<div style="width:45px;height:45px;float:left;margin-left:470px;margin-top:-135px;"><img  src="../images/cc1.png"></div>
+			<div style="width:45px;height:45px;float:left;margin-left:800px;margin-top:-135px;"><img  src="../images/cc1.png"></div>
 		</div>
 		
-		<!-- <div id="show" style="margin:20px 80px 20px 80px;padding:20px;border:1px solid #C3C3C3;height:120px;background-color:white;position:absolute;" >
-			<div class="col-md-4" style="font-size:13px;font-family:微软雅黑;text-align:center;">
-				<div style="margin-top:10px;font-size:17px;font-family:微软雅黑;font-weight:bold"><span>很少的可选房屋</span></div>
-				<div style="margin-top:10px;text-align:left"><span>传统海外房产购买时，购房人仅能找到少量房源</span></div>
-			</div>
-			<div class="col-md-4" style="font-size:13px;font-family:微软雅黑;text-align:center;">
-				<div style="margin-top:10px;font-size:17px;font-family:微软雅黑;font-weight:bold"><span>中间环节多，费用高</span></div>
-				<div style="margin-top:10px;text-align:left"><span>大量的购房中间环节每个参与者均要收取费用，购房时产生不必要的成本</span></div>
-			</div>
-			<div class="col-md-4" style="font-size:13px;font-family:微软雅黑;text-align:center;">
-				<div style="margin-top:10px;font-size:17px;font-family:微软雅黑;font-weight:bold"><span>房屋信息不完整</span></div>
-				<div style="margin-top:10px;text-align:left"><span>购房者只能看到最基础的房源信息无法有效做出明确选择</span></div>
-			</div>
-		</div> -->
-		<!-- <div style="position:absolute;left:343px;top:-20px;"><img  src="../images/cc.JPG"></div>
-		<div style="position:absolute;left:691px; top:-20px;"><img  src="../images/cc.JPG"></div>
-		<div style="position:absolute;left:1036px; top:-20px;"><img  src="../images/cc.JPG"></div> -->
+	
 		</div>
 		<!--end很少的可选房屋-->
 </div>
@@ -442,7 +433,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 <!--end海外优选的故事 -->
 <!--start我们的团队-->
-<div id="team" class="" style="width:100%; margin:0 auto; height:800px; color:#878c90;" >
+<div id="team" class="" style="width:100%; margin:0 auto; height:587px; color:#878c90;" >
 		<div style="margin-top:30px; text-align:center;"><span  style="font-size:15px;font-family:微软雅黑;text-align:center;">我们的团队</span></div>
 		<div style="margin-top:20px; text-align:center;"><span  style="font-size:25px;text-align:center;">我们的背景涵盖房地产、互联网、金融和技术</span></div>
 		<!--start画圆圈 -->
@@ -497,7 +488,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    
 		</div>
 		
-		<div id="circles" style="margin:20px 80px;height:120px">
+		<%-- <div id="circles" style="margin:20px 80px;height:120px">
 			<div style="width:840px; margin:0 auto;">
 		   <div id="touzizhe"  class="" style="float:left; width:160px; margin-left:50px;  height:220px;">
 		   		<div><canvas id="circle18" width="150" height="150"></canvas></div>
@@ -521,7 +512,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		   </div>
 		   </div>
 		    
-		</div>
+		</div> --%>
 		<!--end画圆圈 -->
 </div>
 <!--end我们的团队-->

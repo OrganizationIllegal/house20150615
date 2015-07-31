@@ -15,6 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 			<link rel="stylesheet" type="text/css" href="css/base.css" />
 		<link rel="stylesheet" type="text/css" href="css/project.css" />
+		<link rel="stylesheet" type="text/css" href="/css/list.css" />
 		<!-- <link type="text/css" rel="stylesheet" href="/css/sli-style.css"> -->
 		<!-- <script type="text/javascript" src="js/jquery.js"></script> -->
 	    <script type="text/javascript" src="/js/jquery.min.js"></script>
@@ -421,7 +422,21 @@ var e=$('#input2').val();
 				<a href="#loc_fy" class="f-l p_nav_btn f-yahei s-14 cp">购房费用</a>
 				<a class="f-l p_nav_line f-yahei s-14"></a>
 				<a href="#loc_tz" class="f-l p_nav_btn f-yahei s-14 cp">投资分析</a>
+				<!-- <div class="f-r f-yahei s-14 cp" style="margin-right:40px;margin-top:5px;"> -->
+				    <!-- <input type="button" id="shoucang" style="font-size:13px;" onclick="collect()" > -->
+				        <!-- <span style="color:white;float:right;margin-top:10px;margin-right:80px">收藏</span> -->
+				        <!-- <div class="f-r btn_star cp" style="margin-right:10px" id="shoucang" onclick="collect()" ></div> -->
+				        <c:if test="${isCollected=='0'}">
+				             <span style="color:white;float:right;margin-top:10px;margin-right:80px" id="shoucangtext">收藏</span> 
+				             <div class="f-r btn_star cp" style="margin-right:10px" id="shoucang" onclick="collect()" ></div> 
+				        </c:if>
+				         <c:if test="${isCollected=='1'}">
+				               <span style="color:rgb(255,226,8);float:right;margin-top:10px;margin-right:80px" id="shoucangtext">已收藏</span> 
+				               <div class="f-r btn_star cp btn_star_sel" style="margin-right:10px" id="shoucang" onclick="collect()" ></div> 
+				         </c:if>
+				<!-- </div> -->
 			</div>
+			
 		</div>
         
  		<div class="c-fix f-l bkg2" style="height: 477px;">
@@ -530,6 +545,7 @@ var e=$('#input2').val();
 					<div class="f-l p_btn_get cp" onclick="pop3()"></div>
 				</div>
 				<!-- <div class="f-r p_btn_return">返现金额：$${project.return_money}</div> -->
+				<div class="f-r p_btn_return">400-810-9685</div>
 				<input type="hidden" id="projectNum" value="${proNum}">
 				<div class="f-r" style="height:30px;width:100px;margin-top:20px">
 				<%--  <c:if test="${isCollected=='0'}">
@@ -538,7 +554,7 @@ var e=$('#input2').val();
 				 <c:if test="${isCollected=='1'}">
 			    <button id="quxiaoshoucang" style="font-size:13px;background-color:red" onclick="delcollect()" >已收藏</button>
 			    </c:if> --%>
-			    <input type="button" id="shoucang" style="font-size:13px;" onclick="collect()" ></button>
+			   <!--  <input type="button" id="shoucang" style="font-size:13px;" onclick="collect()" ></button> -->
 				</div>
 			</div>
 		</div>
@@ -576,7 +592,7 @@ var e=$('#input2').val();
 				<div class="f-l p_panel_1">
 					<a class="c-fix f-l f-yahei s-14 p_panel_title2 fw">开发商信息：${HouseProject.developer_id_name}</a>
 					<img class="c-fix f-l p_panel_logo" src="<%=application.getInitParameter("imagedir")%>/${DeveloperInfo.developer_logo }" style="width:110px;height:50px;"></img>
-					<a class="c-fix f-l p_panel_intro f-yahei s-14">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${DeveloperInfo.developer_desc}</a>
+					<a class="c-fix f-l p_panel_intro f-yahei s-14" style=" overflow: hidden;text-overflow: ellipsis; height: 218px;" title="${DeveloperInfo.developer_desc}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${DeveloperInfo.developer_desc}</a>
 				</div>
 				<div class="f-l p_panel_2" style="height:390px">
 					<a class="c-fix f-l f-yahei s-16 p_panel_lab fw" style="-margin-top:30px;margin-left:10px;">想要了解更多？</a>
@@ -610,13 +626,15 @@ var e=$('#input2').val();
 				<div class="c-fix f-l p_panel_3">
 					<a class="c-fix f-l f-yahei s-14 p_panel_title3 fw">项目详情</a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_name fw">${HouseProject.project_name}</a>
-					<a class="c-fix f-l f-yahei s-14 p_panel_content" style="  word-break: break-all;">${HouseProject.project_desc}</a>
+					<a class="c-fix f-l f-yahei s-14 p_panel_content" style="  word-break: break-all;overflow: hidden;text-overflow: ellipsis;height:130px;" title="${HouseProject.project_desc}">${HouseProject.project_desc}</a>
 					<div class="f-l p_btn_get my_center" onclick="popInfo()"><img src="images/index/proinfobtn.png"></img></div>
 				</div>
 				<!-- <img class="f-r p_adv" src="images/ad1.png"></img> -->
+
 				<!-- <img class="f-r p_adv" src="images/index/proinfo.png"></img> -->
 				<img class="f-r p_adv" src="<%=application.getInitParameter("imagedir")%>/${ad1}"></img>
 				
+
 			</div>
 		</div>
 		<c:if test="${!empty HouseInfoList }">
@@ -656,11 +674,11 @@ var e=$('#input2').val();
 					<c:choose>
 						<c:when test="${HouseProject.project_type =='公寓'}">
 							<div class="f-l p_struct_attr">
-								<a class="c-fix f-l attr1 f-yahei s-14 fw">${obj.house_size_in}</a>
+								<a class="c-fix f-l attr1 f-yahei s-14 fw">${obj.house_size_in}平米</a>
 								<a class="c-fix f-l attr2 f-yahei s-12 fw">室内面积</a>
 							</div>
 							<div class="f-l p_struct_attr">
-								<a class="c-fix f-l attr1 f-yahei s-14 fw">${obj.house_size_out}</a>
+								<a class="c-fix f-l attr1 f-yahei s-14 fw">${obj.house_size_out}平米</a>
 								<a class="c-fix f-l attr2 f-yahei s-12 fw">室外面积</a>
 							</div>
 						</c:when>
@@ -781,7 +799,10 @@ var e=$('#input2').val();
 		<div class="c-fix  bkg3"  style="margin:0 auto;height:520px;width:990px">
 			<div class="c-fix p_panel_4">
 				<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:930px;">学校和周边</a>
-				<div class="c-fix f-l p_left">
+				<div class="c-fix" style="background-image:url('images/proindex/schoolbac.png');height:225px;width:960px;margin:0 auto;border-bottom: 1px solid rgb(238,238,238);">
+				<div style="position:relative;left:260px;top:50px;height:70px;width:70px;font-size:40px;color:#004169;">${HouseProject.walk_num }</div>
+				</div>
+				<%-- <div class="c-fix f-l p_left">
 					<img src="images/walk_score.jpg" class="c-fix f-l icon_walk"></img>
 					<a class="c-fix f-l walk_lab f-yahei s-14" style="margin-top:20px;">步行指数：${HouseProject.walk_num }</a>
 					<a class="c-fix f-l walk_lab f-arial s-14">Walk Score</a>
@@ -796,11 +817,22 @@ var e=$('#input2').val();
 					</div>
 					</c:forEach>
 					
-				</div>
-				<div class="f-l p_right" style="margin-left:35px">
+				</div> --%>
+				<!-- <div class="f-l p_right" style="margin-left:35px">
 					<img class="c-fix f-l score_board" src="images/score_board.jpg"></img>
+				</div> -->
+				<div class="c-fix f-l p_left">
+				<c:forEach items="${nearSchoolList}" var="item" begin="0" end="2" step="1" varStatus="var">
+					<div class="c-fix f-l p_school_node">
+						<div class="c-fix f-l p_school_inner">
+							<a class="c-fix f-l p_school_lab f-yahei s-14">${item.school_type}</a>	
+							<a class="f-r p_school_lab f-yahei s-14" style="margin-right:20px;">${item.school_name}</a>	
+						</div>
+						<a class="c-fix f-r p_school_distance f-yahei s-14" style="margin-right:20px;">${item.school_distance}m</a>	
+					</div>
+					</c:forEach>
 				</div>
-				<a class="f-l f-yahei s-14 p_panel_title4 fw" style="width:455px;margin-left:60px;margin-top:-8px;">附近配套</a>
+				<!-- <a class="f-l f-yahei s-14 p_panel_title4 fw" style="width:455px;margin-left:60px;margin-top:-8px;">附近配套</a> -->
 				<div class="f-l p_right_bottom" style="margin-left:35px;">
 				<c:forEach items="${nearSchoolFacility}" var="item" begin="0" end="2" step="1" varStatus="var">
 					<div class="c-fix f-l p_school_node">
@@ -1024,7 +1056,8 @@ var e=$('#input2').val();
 
 				
 					<div class="c-fix f-l p_left2">
-						<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:690px;margin-bottom:10px;">${area_name} 地区特点</a>
+						<%-- <a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:690px;margin-bottom:10px;">${area_name} 地区特点</a> --%>
+						<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:720px;height:50px;padding-left:20px;margin-bottom:10px;background-color:rgb(169,193,217);margin-left:0px;">${area_name} 地区特点</a>
 						<c:forEach items="${featureList}" var="item" varStatus="var" begin="0" end="9" step="5">
 						<a class="f-l f-yahei s-14 p_spec">${item}</a>
 						
@@ -1046,20 +1079,20 @@ var e=$('#input2').val();
 						
 						</c:forEach>
 						
-						<a class="c-fix f-l p_header3 f-yahei s-14 fw" style="width:721px;margin-top: 97px;">${area_name} 区域人口分布<span style="float:right;padding-right:20px;" class="s-12">数据来源：${people_datasource } 更新日期：${fn:substring(people_date,0,10)}</span></a>
+						<a class="c-fix f-l p_header3 f-yahei s-14 fw" style="width:721px;margin-top: 10px;border-top: 15px solid rgb(233,242,249);">${area_name} 区域人口分布<span style="float:right;padding-right:20px;" class="s-12">数据来源：${people_datasource } 更新日期：${fn:substring(people_date,0,10)}</span></a>
 						<div class="c-fix f-l p_tab2" style="width:721px;">
-						<table class="table table-striped">
+						<table class="table table-striped" style="text-align:center;">
 						 <tbody style="font-size:12px;">
 			    		<c:forEach items="${list}" var="item" varStatus="var" begin="0" end="0">
 				    		<tr class="row">
-				    		<td class="col-md-4" style="background:rgb(224,238,218);margin-right:5px;">${item.column1 }</td>
-				    		<td class="col-md-4" style="background:rgb(224,238,218);margin-right:5px;">${item.column2 }</td>
-				    		<td class="col-md-4" style="background:rgb(224,238,218)">${item.column3 }</td>
+				    		<td class="col-md-4" style="-background:rgb(224,238,218);margin-right:5px;">${item.column1 }</td>
+				    		<td class="col-md-4" style="-background:rgb(224,238,218);margin-right:5px;">${item.column2 }</td>
+				    		<td class="col-md-4" style="-background:rgb(224,238,218)">${item.column3 }</td>
 				    		</tr>
 			    		</c:forEach>
 			    	
 			    	<c:forEach items="${list}" var="item" varStatus="var" begin="1" end="1">
-						<tr class="row">
+						<tr class="row" style="background:#E0EEFB;border-top:2px solid #a9c2da;">
 			    			<td>${item.column1}</td>
 			    			<td>${item.column2}</td>
 			    			<td>${item.column3}</td>
@@ -1067,21 +1100,21 @@ var e=$('#input2').val();
 					</c:forEach> 
 			    	</tbody>
 			  	  </table>
-			  	 <table class="table table-striped">
+			  	 <table class="table table-striped" style="text-align:center;">
 				  	
 			    	<tbody style="font-size:12px;">
 			    		<c:forEach items="${list}" var="item" varStatus="var" begin="2" end="2">
 			    		<tr class="row">
-			    		<td class="col-md-4" style="background:rgb(224,238,218);margin-right:5px;">${item.column1}</td>
-			    		<td class="col-md-4" style="background:rgb(224,238,218);margin-right:5px;">${item.column2}</td>
-			    		<td class="col-md-4" style="background:rgb(224,238,218);margin-right:5px;">${item.column3}</td>
+			    		<td class="col-md-4" style="-background:rgb(224,238,218);margin-right:5px;">${item.column1}</td>
+			    		<td class="col-md-4" style="-background:rgb(224,238,218);margin-right:5px;">${item.column2}</td>
+			    		<td class="col-md-4" style="-background:rgb(224,238,218);margin-right:5px;">${item.column3}</td>
 			    		</tr>
 			    		</c:forEach> 
 			    	
 			    	
 			    	
 			    	<c:forEach items="${list}" var="item" varStatus="var" begin="3" end="3">
-						<tr class="row">
+						<tr class="row" style="background:#E0EEFB;">
 			    			<td>${item.column1}</td>
 			    			<td>${item.column2}<span></span></td>
 			    			<td>${item.column3}<span></span></td>
@@ -1089,14 +1122,14 @@ var e=$('#input2').val();
 					</c:forEach> 
 			    	</tbody>
 			  	  </table>
-			  	  <table class="table table-striped">
+			  	  <table class="table table-striped" style="text-align:center;">
 				  	
 			    	<tbody style="font-size:12px;">
 			    	<c:forEach items="${list}" var="item" varStatus="var" begin="4" end="4">
 			    		<tr class="row">
-			    		<td class="col-md-4" style="background:rgb(224,238,218);margin-right:5px;">${item.column1}</td>
-			    		<td class="col-md-4" style="background:rgb(224,238,218);margin-right:5px;">${item.column2}</td>
-			    		<td class="col-md-4" style="background:rgb(224,238,218);margin-right:5px;">${item.column3}</td>
+			    		<td class="col-md-4" style="-background:rgb(224,238,218);margin-right:5px;">${item.column1}</td>
+			    		<td class="col-md-4" style="-background:rgb(224,238,218);margin-right:5px;">${item.column2}</td>
+			    		<td class="col-md-4" style="-background:rgb(224,238,218);margin-right:5px;">${item.column3}</td>
 			    		</tr>
 			    		</c:forEach>
 			    	
@@ -1111,21 +1144,21 @@ var e=$('#input2').val();
 					</c:forEach> 
 			    	</tbody>
 			  	  </table>
-			  	  <table class="table table-striped">
+			  	  <table class="table table-striped" style="text-align:center;" >
 				  	
 			    	<tbody style="font-size:12px;">
 			    	<c:forEach items="${list}" var="item" varStatus="var" begin="10" end="10">
-			    		<tr class="row">
-			    		<td  class="col-md-4" style="background:rgb(224,238,218);margin-right:5px;">${item.column1}</td>
-			    		<td  class="col-md-4" style="background:rgb(224,238,218);margin-right:5px;">${item.column2}</td>
-			    		<td  class="col-md-4" style="background:rgb(224,238,218);margin-right:5px;">${item.column3}</td>
+			    		<tr class="row" >
+			    		<td  class="col-md-4" style="-background:rgb(224,238,218);margin-right:5px;">${item.column1}</td>
+			    		<td  class="col-md-4" style="-background:rgb(224,238,218);margin-right:5px;">${item.column2}</td>
+			    		<td  class="col-md-4" style="-background:rgb(224,238,218);margin-right:5px;">${item.column3}</td>
 			    		</tr>
 			    		</c:forEach>
 			    	
 			    	
 			    	
 			    	<c:forEach items="${list}" var="item" varStatus="var" begin="11" end="11">
-						<tr class="row">
+						<tr class="row" style="background:#E0EEFB;border-bottom:2px solid #a9c2da;">
 			    			<td>${item.column1}</td>
 			    			<td><span>$</span>${item.column2}</td>
 			    			<td><span>$</span>${item.column3}</td>
@@ -1174,24 +1207,28 @@ var e=$('#input2').val();
 					    <a href="/Detail?id=${item.id}&type=1">
 						<img src="<%=application.getInitParameter("imagedir")%>/${newsInfo_one.news_image}" class="c-fix f-l news_img" style="width:315px;height:200px"></img>
 						</a>
-						<a href="/Detail?id=${item.id}&type=1" class="c-fix f-l f-yahei s-16 fw news_title">新闻标题：${newsInfo_one.news_title}</a>
+						<a href="/Detail?id=${item.id}&type=1" class="c-fix f-l f-yahei s-16 fw news_title" style="margin-top:5px;font-size:15px;">${newsInfo_one.news_title}</a>
 						<div class="p_foot">
-						<a class="c-fix f-l f-yahei s-14 news_type">分类：${newsInfo_one.news_fenlei}</a>
-						<a class="f-l f-yahei s-14 news_time">时间：${timeResuleOne}</a>
+						<a class="c-fix f-l f-yahei s-14 news_type" style="font-size:12px;">分类：${newsInfo_one.news_fenlei}</a>
+						<a class="f-l f-yahei s-14 news_time" style="font-size:12px;">时间：${timeResuleOne}</a>
 						</div>
 					</div>
 			
 					 <div class="f-l p_news_node" style="margin-left:5px;">
+					    <a href="/Detail?id=${item.id}&type=1">
 						<img src="<%=application.getInitParameter("imagedir")%>/${newsInfo_two.news_image}" class="c-fix f-l news_img" style="width:315px;height:200px"></img>
-						<a class="c-fix f-l f-yahei s-16 fw news_title">新闻标题：${newsInfo_two.news_title}</a>
-						<a class="c-fix f-l f-yahei s-14 news_type">分类：${newsInfo_two.news_fenlei}</a>
-						<a class="f-l f-yahei s-14 news_time">时间：${timeResuleTwo}</a>
+						</a>
+						<a href="/Detail?id=${item.id}&type=1" style="margin-top:5px;font-size:15px;" class="c-fix f-l f-yahei s-16 fw news_title">${newsInfo_two.news_title}</a>
+						<a class="c-fix f-l f-yahei s-14 news_type" style="font-size:12px;">分类：${newsInfo_two.news_fenlei}</a>
+						<a class="f-l f-yahei s-14 news_time" style="font-size:12px;">时间：${timeResuleTwo}</a>
 					</div>
 					<div class="f-l p_news_node" style="margin-left:5px;">
+					    <a href="/Detail?id=${item.id}&type=1">
 						<img src="<%=application.getInitParameter("imagedir")%>/${newsInfo_three.news_image}" class="c-fix f-l news_img" style="width:315px;height:200px"></img>
-						<a class="c-fix f-l f-yahei s-16 fw news_title">新闻标题：${newsInfo_three.news_title}</a>
-						<a class="c-fix f-l f-yahei s-14 news_type">分类：${newsInfo_three.news_fenlei}</a>
-						<a class="f-l f-yahei s-14 news_time">时间：${timeResuleThree}</a>
+						</a>
+						<a href="/Detail?id=${item.id}&type=1" style="margin-top:5px;font-size:15px;" class="c-fix f-l f-yahei s-16 fw news_title">${newsInfo_three.news_title}</a>
+						<a class="c-fix f-l f-yahei s-14 news_type" style="font-size:12px;">分类：${newsInfo_three.news_fenlei}</a>
+						<a class="f-l f-yahei s-14 news_time" style="font-size:12px;">时间：${timeResuleThree}</a>
 					</div>
 				</div>
 			</div>
@@ -1223,7 +1260,7 @@ var e=$('#input2').val();
 					<div class="f-r p_right2">
 					<c:forEach var="item" items="${recommendBroker}" varStatus="stat">
 						<c:if test="${stat.index<3}">
-							<div class="c-fix f-l agent_node" <c:if test="${stat.index!=0 }">style="margin-top:10px;"</c:if>>
+							<div class="c-fix f-l agent_node" style="height:156px;"<c:if test="${stat.index!=0 }">style="margin-top:10px;"</c:if>>
 								<%-- <img src="<%=application.getInitParameter("imagedir")%>/${item.broker_img}" height="143" class="c-fix f-l agent_avatar"></img> --%>
 								<a href="Service?brokerId=${item.id}"><img src="<%=application.getInitParameter("imagedir")%>/${item.broker_img}" height="143" class="c-fix f-l agent_avatar"></img></a>
 								<a class="f-l agent_name f-yahei s-16 fw">${item.broker_name }</a>
@@ -2132,20 +2169,18 @@ function popmodal(){
   $(function () {
 	  var isCollect=${isCollected};
 	//  alert("isCollect "+isCollect);
-	  if(isCollect=="1"){
+	  /* if(isCollect=="1"){
 		  $("#shoucang").css("background-color","red");
 	      $("#shoucang").val("已收藏");
 	  }else{
 		  $("#shoucang").css("background-color","rgb(226,226,226)"); 
 	      $("#shoucang").val("点击收藏");
-	  }
+	  } */
 	 // alert($("#shoucang").val())
 	  $("#shoucang").on('click',function(event){
 		  var projectNum=$("#projectNum").val();
-		 // alert(isCollect);
-		/*   if(isCollect=="0"){//0表示要进行收藏 */
-			if($("#shoucang").val()=="点击收藏"){
-			 // alert("收藏");
+		/* 	if($("#shoucang").val()=="点击收藏"){ */
+			if($("#shoucang").attr("class").indexOf("btn_star_sel")==-1){
 			  $.ajax({
 					type: "POST",  
 		 			 dataType: "json",  
@@ -2156,12 +2191,12 @@ function popmodal(){
 		  			          $('#login').modal('show');
 		  		         }else if(data.flag==1){
 		  			         alert("收藏成功");
-		  			        
-		  			         //$("#star0").addClass("btn_star_sel");//白星变黄
-		  			         $("#shoucang").css("background-color","red");
-		  			        /*  $("#shoucang").html("已收藏"); */
-		  			        $("#shoucang").val("已收藏");
-		  			        /*  window.location.reload(); */
+		  			       /*   $("#shoucang").css("background-color","red");
+		  			        $("#shoucang").val("已收藏"); */
+		  			       $("#shoucang").addClass("btn_star_sel");
+		  			       $("#shoucangtext").html("已收藏");
+		  			       $("#shoucangtext").css("color","rgb(255,226,8)");
+		  			       
 		  		         }
 		  		      }  //success
 				  });//ajax
@@ -2178,10 +2213,12 @@ function popmodal(){
 		  			          $('#login').modal('show');
 		  		         }else if(data.flag==1){
 		  			         alert("取消收藏成功");
-		  			         //$("#star0").addClass("btn_star_sel");//白星变黄
-		  			          $("#shoucang").css("background-color","rgb(226,226,226)"); 
-		  			          $("#shoucang").val("点击收藏");
-		  			       /*  window.location.reload(); */
+		  			         /*  $("#shoucang").css("background-color","rgb(226,226,226)"); 
+		  			          $("#shoucang").val("点击收藏"); */
+		  			       $("#shoucang").removeClass("btn_star_sel");
+		  			       $("#shoucangtext").html("收藏");
+		  			       $("#shoucangtext").css("color","rgb(255,255,255)");
+		  			     
 		  		         }
 		  		      }  //success
 				  });//ajax
