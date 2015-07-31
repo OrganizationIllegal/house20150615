@@ -382,19 +382,19 @@ public class SearchListDao extends BaseDao {
 		    	project_logo=rs.getString("project_logo");
 		    	developer_id_name=rs.getString("developer_id_name");
 		    	project_desc=rs.getString("project_desc");
-		    	gps = rs.getString("gps");
-		    	project_nation = rs.getString("project_nation");
-		    	project_city = rs.getString("project_city");
+		    	/*gps = rs.getString("gps");*/
+		    	/*project_nation = rs.getString("project_nation");*/
+		    /*	project_city = rs.getString("project_city");
 		    	project_price = rs.getString("project_price");
-		    	project_zhou = rs.getString("project_zhou");
+		    	project_zhou = rs.getString("project_zhou");*/
 		    	xinkaipan=rs.getString("xinkaipan");
 		    	huaren=rs.getString("huaren");
 		    	remen=rs.getString("remen");
 		    	xuequ=rs.getString("xuequ");
 		    	baozu=rs.getString("baozu");
 		    	daxue=rs.getString("daxue");
-		    	project_area=rs.getString("project_area");
-		    	project_type=rs.getString("project_type");
+		    	/*project_area=rs.getString("project_area");
+		    	project_type=rs.getString("project_type");*/
 		    	
 		    	center=rs.getString("center");
 		    	traffic=rs.getString("traffic");

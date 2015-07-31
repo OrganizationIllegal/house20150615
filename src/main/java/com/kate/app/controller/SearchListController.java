@@ -202,7 +202,8 @@ public class SearchListController {
 			int pageStart = start == pageEnd ? 0 : start;
 			//寰楀埌褰撳墠鐢ㄦ埛鐨刬d
 			String username = (String)req.getSession().getAttribute("username");
-			int userid=userDao.findUserByName(username);
+			/*int userid=userDao.findUserByName(username);*/
+			int userid=userDao.findUserByEmailAndTel(username);
 			//寰楀埌褰撳墠鐢ㄦ埛鏀惰棌鐨凱roNum鐨勯泦鍚�
 			Set<String> proNumList=searchListDao.proNumList(userid);
 			
@@ -285,8 +286,8 @@ public class SearchListController {
 			String pageSize_str  = req.getParameter("pageSize");  //姣忛〉閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓锟�
 			int pageSize  = pageSize_str==null? 0 :Integer.parseInt(pageSize_str);
 			
-			List<SearchList> searchList=searchListDao.OrderlistSearchList();
 			
+			List<SearchList> searchList=searchListDao.OrderlistSearchList();
 			int total = searchList.size();
 			int pageEnd = pageNum * pageSize;
 			int end = pageEnd < total ? pageEnd : total;
