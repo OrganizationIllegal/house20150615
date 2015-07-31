@@ -274,7 +274,7 @@ public class BingMapDao extends BaseDao {
 		    		project_price_int_qi=nf.format(Integer.parseInt(rs.getString("project_price_int_qi")));
 		    	}
 		    	else{
-		    		project_price_int_qi="0";
+		    		project_price_int_qi="N/A";
 		    	}
 		    	project_key=findProjectKeyByNum(project_num);
 		    	//对项目地址进行截取
@@ -621,6 +621,7 @@ public class BingMapDao extends BaseDao {
 	} 
 	
 	public List<HouseProject> filterByHouseType2(int type){    //根据类型查找
+		NumberFormat nf = new DecimalFormat("#,###,###");
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
@@ -657,12 +658,28 @@ public class BingMapDao extends BaseDao {
 		    	coordinates.setProject_img(rs.getString("project_img"));
 		    	coordinates.setProject_price(rs.getString("project_price"));
 		    	coordinates.setProject_num(rs.getString("project_num"));
-		    	coordinates.setProject_min_price(rs.getString("project_min_price"));
-		    	coordinates.setProject_high_price(rs.getString("project_high_price"));
+		    	coordinates.setProject_min_price(rs.getString("project_min_price")==null?"N/A":nf.format(Integer.parseInt(rs.getString("project_min_price"))));
+		    	coordinates.setProject_high_price(rs.getString("project_high_price")==null?"N/A":nf.format(Integer.parseInt(rs.getString("project_high_price"))));
+		    	coordinates.setMinPrice(rs.getString("project_min_price")==null?"N/A":nf.format(Integer.parseInt(rs.getString("project_min_price"))));
+		    	coordinates.setMaxPrice(rs.getString("project_high_price")==null?"N/A":nf.format(Integer.parseInt(rs.getString("project_high_price"))));
 		    	coordinates.setProject_zhou(rs.getString("project_zhou"));
 		    	coordinates.setProject_city(rs.getString("project_city"));
 		    	coordinates.setProject_nation(rs.getString("project_nation"));	    	
-		    	coordinates.setProject_address(rs.getString("project_address"));		    	
+		    	coordinates.setProject_address(rs.getString("project_address"));
+		    	String project_address = rs.getString("project_address")==null?"":rs.getString("project_address");
+		    	String project_address_short = "";
+		    	if(project_address!=null && !"".equals(project_address)){
+		    		project_address_short = project_address.length()>40 ? project_address.substring(0,40):project_address;
+		    	}
+		    	coordinates.setProject_address_short(project_address_short);
+		    	
+		    	String project_name = rs.getString("project_name")==null?"":rs.getString("project_name");
+		    	String project_name_short = "";
+		    	if(project_name!=null && !"".equals(project_name)){
+		    		project_name_short = project_name.length()>40 ? project_name.substring(0,40):project_name;
+		    	}
+		    	coordinates.setProject_name_short(project_name_short);
+		    	
 		    	coordinates.setProject_area(rs.getString("project_area"));
 		    	coordinates.setProject_price_int_qi(rs.getInt("project_price_int_qi"));
 		    	coordinates.setProject_type(rs.getString("project_type"));
@@ -670,17 +687,27 @@ public class BingMapDao extends BaseDao {
 		    	coordinates.setProject_sales_remain(rs.getInt("project_sales_remain"));
 		    	coordinates.setMax_area(rs.getInt("max_area"));
 		    	coordinates.setMin_area(rs.getInt("min_area"));
+		    	coordinates.setMinArea(rs.getInt("min_area"));
+		    	coordinates.setMaxArea(rs.getInt("max_area"));
 		    	coordinates.setProject_price_qi(("project_price_qi"));//锟剿达拷锟斤拷目锟桔革拷目前锟斤拷锟斤拷锟斤拷锟侥科斤拷锟桔革拷
 		    	coordinates.setProject_type(rs.getString("project_type"));
 		    	coordinates.setMianji(rs.getString("mianji"));
 		    	coordinates.setReturn_money(rs.getString("return_money"));
-		    	if(rs.getString("project_price_int_qi")!=null){
+		    	if(rs.getString("project_price_int_qi")!=null){    //起价
 		    		int temp = Integer.parseInt(rs.getString("project_price_int_qi"));
 		        	coordinates.setProject_price_int_qi(temp);
 		    	}
 		    	else{
 		    		coordinates.setProject_price_int_qi(0);
 		    	}
+		    	if(rs.getString("project_price_int_qi")!=null){
+		    		String project_price_int_qi=nf.format(Integer.parseInt(rs.getString("project_price_int_qi")));
+		    		coordinates.setProject_price_int_qi_str(project_price_int_qi);
+		    	}
+		    	else{
+		    		coordinates.setProject_price_int_qi_str("N/A");
+		    	}
+		    	
 		    	//获取项目关键字，根据项目编号查找项目关键字
 		    	String project_key=findProjectKeyByNum(project_num);
 		    	coordinates.setProject_key(project_key);
@@ -777,6 +804,7 @@ public class BingMapDao extends BaseDao {
 		return coordinatesList;
 	}*/
 	public List<HouseProject> filterByKeyWord(String area,String city,String addr){
+		NumberFormat nf = new DecimalFormat("#,###,###");
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
@@ -839,15 +867,18 @@ public class BingMapDao extends BaseDao {
 		    	coordinates.setProject_img(rs.getString("project_img"));
 		    	coordinates.setProject_price(rs.getString("project_price"));
 		    	coordinates.setProject_num(rs.getString("project_num"));
-		    	coordinates.setProject_min_price(rs.getString("project_min_price")==null?"":df.format(Integer.parseInt(rs.getString("project_min_price"))));
-		    	coordinates.setProject_high_price(rs.getString("project_high_price")==null?"":df.format(Integer.parseInt(rs.getString("project_high_price"))));
-		    	
+		    	coordinates.setProject_min_price(rs.getString("project_min_price")==null?"N/A":df.format(Integer.parseInt(rs.getString("project_min_price"))));
+		    	coordinates.setProject_high_price(rs.getString("project_high_price")==null?"N/A":df.format(Integer.parseInt(rs.getString("project_high_price"))));
+		    	coordinates.setMinPrice(rs.getString("project_min_price")==null?"N/A":df.format(Integer.parseInt(rs.getString("project_min_price"))));
+		    	coordinates.setMaxPrice(rs.getString("project_high_price")==null?"N/A":df.format(Integer.parseInt(rs.getString("project_high_price"))));
 		    	coordinates.setProject_zhou(rs.getString("project_zhou"));
 		    	coordinates.setProject_city(rs.getString("project_city"));
 		    	coordinates.setProject_nation(rs.getString("project_nation"));
 		    	coordinates.setProject_area(rs.getString("project_area"));
 		    	coordinates.setMax_area(rs.getInt("max_area"));
 		    	coordinates.setMin_area(rs.getInt("min_area"));
+		    	coordinates.setMinArea(rs.getInt("min_area"));
+		    	coordinates.setMaxArea(rs.getInt("max_area"));
 		    	coordinates.setProject_type(rs.getString("project_type"));
 		    	coordinates.setProject_address(rs.getString("project_address"));
 		    	coordinates.setMianji(rs.getString("mianji"));
@@ -858,7 +889,27 @@ public class BingMapDao extends BaseDao {
 		    	else{
 		    		coordinates.setProject_price_qi("N/A");
 		    	}
+		        if(rs.getString("project_price_int_qi")!=null){
+		    		String project_price_int_qi=nf.format(Integer.parseInt(rs.getString("project_price_int_qi")));
+		    		coordinates.setProject_price_int_qi_str(project_price_int_qi);
+		    	}
+		    	else{
+		    		coordinates.setProject_price_int_qi_str("N/A");
+		    	}
 		        //String project_key=findProjectKeyByNum(project_num);
+		        String project_address = rs.getString("project_address")==null?"":rs.getString("project_address");
+		    	String project_address_short = "";
+		    	if(project_address!=null && !"".equals(project_address)){
+		    		project_address_short = project_address.length()>40 ? project_address.substring(0,40):project_address;
+		    	}
+		    	coordinates.setProject_address_short(project_address_short);
+		    	
+		    	String project_name = rs.getString("project_name")==null?"":rs.getString("project_name");
+		    	String project_name_short = "";
+		    	if(project_name!=null && !"".equals(project_name)){
+		    		project_name_short = project_name.length()>40 ? project_name.substring(0,40):project_name;
+		    	}
+		    	coordinates.setProject_name_short(project_name_short);
 		    	coordinatesList.add(coordinates);
 		    }
 		} catch (Exception e) {

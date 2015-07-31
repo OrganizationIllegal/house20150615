@@ -449,18 +449,7 @@ body{
                 <div class="f-l f-yahei btn_search cp" onclick="addPushpinsearch()">搜索</div>
 				<a class="f-r f-yahei s-14 btn cp hover" style="padding:4px 6px;border:2px solid rgb(245,161,27)" href="/SearchList">列表找房</a>
 				<a class="f-r f-yahei s-14 btn btn_sel cp hover" style="padding:4px 6px"  href="#">地图找房</a>
-				<!-- <select class="f-r sel" style=" background: none;border: none;font-family: 微软雅黑;">
-					<option>交房时间</option>
-				</select>
-				<select class="f-r sel" style=" background: none;border: none;font-family: 微软雅黑;">
-					<option>价格范围</option>
-				</select> -->
-				<!-- <select class="f-r sel" id="house" onchange="housetype(this)"  style=" background: none;border: none;font-family: 微软雅黑;">
-					<option value="0">房屋类型</option>
-					<option value="1">公寓</option>
-					<option value="2">别墅</option>
-					<option value="3">联排别墅</option>
-				</select> -->
+				
 			</div>
 			<div class="c-fix f-l div3" style="-height:840px;overflow-y:auto;overflow-x:hidden;" id="left">
 			 <c:forEach var="item" items="${bingMapList}"> 
@@ -470,7 +459,7 @@ body{
 					<img class="c-fix f-l node_img" src="<%=application.getInitParameter("imagedir")%>/${item.project_img}" style="width:160px;height:100px" ></img>
 					</a>
 					<div class="f-l node_right" style="width:167px">
-						<a class="c-fix f-l f-arial s-12 fw node_name">${item.project_name}</a>
+						<a class="c-fix f-l f-arial s-12 fw node_name" title="${item.project_name}">${item.project_name_short}</a>
 						<a class="c-fix f-l f-yahei s-12 node_title" style="margin-top:1px">最多</a>
 						<a class="f-r f-yahei s-12 node_val" style="margin-top:1px">$${item.maxPrice}</a>
 						<a class="c-fix f-l f-yahei s-12 node_title">最少</a>
@@ -480,7 +469,7 @@ body{
 						<%-- <a class="c-fix f-l f-yahei s-12 node_title">返利</a>
 						<a class="f-r f-yahei s-12 node_val">${item.fanxian}</a> --%>
 						<a class="c-fix f-l f-yahei s-12 node_title">起价</a>
-						<a class="f-r f-yahei s-12 node_val">$${item.project_price_int_qi}</a>
+						<a class="f-r f-yahei s-12 node_val">$${item.project_price_int_qi_str}</a>
 						<a class="c-fix f-l f-yahei s-12 node_title">${item.project_key}</a>
 					</div>
 				</div>

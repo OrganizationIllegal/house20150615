@@ -40,7 +40,10 @@ public class BingMapController {
 	
 	private static List<HouseProject> typeListResult;
 	
+	private static List<HouseProject> listResult;
+	
 	private static int flagInfo = 0;
+	private static int orderFlag = 0;
 	
 	@RequestMapping({"/MapCenterInput"})
 	public String mapCenterInput(HttpServletRequest req,HttpServletResponse resp){
@@ -232,6 +235,7 @@ public class BingMapController {
 	
 	@RequestMapping({"/OrderByPrice"})            //排序
 	public String OrderByPrice(HttpServletRequest req,HttpServletResponse resp){
+		orderFlag = 1;
 		int order=Integer.parseInt(req.getParameter("order"));
 		List<BingMapVo> bingMapList = new ArrayList<BingMapVo>();
 		if(flagInfo==2){
@@ -331,12 +335,16 @@ public class BingMapController {
 				String project_price = item.getProject_price();
 				String project_price_qi = item.getProject_price_qi();
 				String house_type = item.getProject_house_type();
-				String project_min_price = item.getProject_min_price()==null?"N/A":df.format(Integer.parseInt(item.getProject_min_price()));
-				String project_high_price = item.getProject_high_price()==null?"N/A":df.format(Integer.parseInt(item.getProject_high_price()));
+				/*String project_min_price = item.getProject_min_price()==null?"N/A":df.format(Integer.parseInt(item.getProject_min_price()));
+				String project_high_price = item.getProject_high_price()==null?"N/A":df.format(Integer.parseInt(item.getProject_high_price()));*/
+				
+				String project_min_price = item.getProject_min_price();
+				String project_high_price = item.getProject_high_price();
+				
 				String mianji = item.getMianji();
 				String return_money = item.getReturn_money();
-				String project_price_int_qi = item.getProject_price_int_qi()==0?"N/A":df.format(item.getProject_price_int_qi());
-				
+				/*String project_price_int_qi = item.getProject_price_int_qi()==0?"N/A":df.format(item.getProject_price_int_qi());*/
+				String project_price_int_qi = item.getProject_price_int_qi_str();
 				String project_key = "";
 				if(project_num!=null && !"".equals(project_num)){
 					project_key =bingMapDao.findProjectKeyByNum(project_num);
@@ -446,7 +454,13 @@ public class BingMapController {
 		JSONArray arrayCenter = new JSONArray();
 		JSONArray arrayCentermoren = new JSONArray();
 		List<String> city=new ArrayList<String>();
-		array = bingMapService.jsonCoordinates();
+		
+		List<HouseProject> list = bingMapDao.listMap();
+		listResult = list;
+		array = jsonCoordinates();
+		//array = bingMapService.jsonCoordinates();
+		
+		
 		arrayCenter=bingMapService.jsonMapCenter();
 		int lenCenter=arrayCenter.size();
 		for(int k=0;k<lenCenter;k++){
@@ -607,10 +621,7 @@ public class BingMapController {
 				}
 			}
         }
-		//System.out.println(array);
-		//System.out.println(array3);
-		//System.out.println(array2.size());
-		//System.out.println(array3.size());
+
 		json.put("List", array);
 		json.put("List2", array2);
 		json.put("List3", JSONArray.parseArray(JSON.toJSONString(array3, SerializerFeature.DisableCircularReferenceDetect)));
@@ -624,51 +635,7 @@ public class BingMapController {
 		}
 	}
 	
-	/*@RequestMapping({ "/BingMap/FileterKeyWord" })    
-	public void filterByKeyWord(HttpServletRequest req, HttpServletResponse resp){
-		JSONObject json = new JSONObject();
-		JSONArray array = new JSONArray();
-		JSONArray array2 = new JSONArray();
-		JSONArray array3 = new JSONArray();
-		List<String> city=new ArrayList<String>();
-		String key=req.getParameter("keyword");
-		array = bingMapService.filterByKeyWord(key);
-		int len=array.size();
-		for(int i=0;i<len;i++){
-			JSONObject obj=(JSONObject)array.get(i);
-			String project_city=obj.getString("project_city");
-			city.add(project_city);
-		}
-		Set<String> uniqueSet = new HashSet<String>(city);
-		for (String temp : uniqueSet) {
-			String str1=temp;
-			int size=Collections.frequency(city, temp);
-			JSONObject obj2 = new JSONObject();
-			obj2.put("city", size);
-			array2.add(obj2);
-			for(int j=0;j<len;j++){
-				JSONObject obj3=(JSONObject)array.get(j);
-				String project_city2=obj3.getString("project_city");
-				if(project_city2.equals(str1)){
-					array3.add(obj3);
-					break;
-				}
-			}
-        }
-		System.out.println(array2);
-		System.out.println(array3);
-		System.out.println(array2.size());
-		System.out.println(array3.size());
-		json.put("List", array);
-		json.put("List2", array2);
-		json.put("List3", JSONArray.parseArray(JSON.toJSONString(array3, SerializerFeature.DisableCircularReferenceDetect)));
-		try{
-			writeJson(json.toJSONString(),resp);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-	}*/
-	
+
 	@RequestMapping({ "/BingMap/FileterProNum" })    
 	public void filterByProNum(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -738,6 +705,100 @@ public class BingMapController {
 				e.printStackTrace();
 		}
 	}
+	
+	
+	public JSONArray jsonCoordinates(){    //加载
+		JSONArray array = new JSONArray();
+		DecimalFormat df = new DecimalFormat("#,###,###");
+		if(orderFlag == 0){
+			List<HouseProject> searchList = listResult;
+			for(HouseProject data : searchList){
+				JSONObject obj = new JSONObject();
+				obj.put("id", data.getId());
+				obj.put("gps", data.getGps()==null?"":data.getGps());
+				obj.put("project_name", data.getProject_name()==null?"":data.getProject_name());
+				obj.put("project_img", data.getProject_img()==null?"":data.getProject_img());
+				obj.put("project_price", data.getProject_price()==null?"":data.getProject_price());
+				obj.put("project_num", data.getProject_num()==null?"":data.getProject_num());
+				obj.put("project_min_price", data.getMinPrice()==null?"":data.getMinPrice());
+				obj.put("project_high_price", data.getMaxPrice()==null?"":data.getMaxPrice());
+				obj.put("project_zhou", data.getProject_zhou()==null?"":data.getProject_zhou());
+				obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
+				obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
+				obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
+				obj.put("project_price_int_qi", data.getProject_price_int_qi()==0?"N/A":df.format(data.getProject_price_int_qi()));
+				obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
+				array.add(obj);
+			}
+		}else if(orderFlag!=0 && flagInfo==1){
+			List<HouseProject> typeList = typeListResult;
+			for(HouseProject data : typeList){
+				JSONObject obj = new JSONObject();
+				obj.put("id", data.getId());
+				obj.put("gps", data.getGps()==null?"":data.getGps());
+				obj.put("project_name", data.getProject_name()==null?"":data.getProject_name());
+				obj.put("project_img", data.getProject_img()==null?"":data.getProject_img());
+				obj.put("project_price", data.getProject_price()==null?"":data.getProject_price());
+				obj.put("project_num", data.getProject_num()==null?"":data.getProject_num());
+				obj.put("project_min_price", data.getMinPrice()==null?"":data.getMinPrice());
+				obj.put("project_high_price", data.getMaxPrice()==null?"":data.getMaxPrice());
+				obj.put("project_zhou", data.getProject_zhou()==null?"":data.getProject_zhou());
+				obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
+				obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
+				obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
+				obj.put("project_price_int_qi", data.getProject_price_int_qi_str());
+				obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
+				array.add(obj);
+			}
+			
+		}else if(orderFlag!=0 && flagInfo==2){
+			List<HouseProject> filterList = seachListResult;
+			for(HouseProject data : filterList){
+				JSONObject obj = new JSONObject();
+				obj.put("id", data.getId());
+				obj.put("gps", data.getGps()==null?"":data.getGps());
+				obj.put("project_name", data.getProject_name()==null?"":data.getProject_name());
+				obj.put("project_img", data.getProject_img()==null?"":data.getProject_img());
+				obj.put("project_price", data.getProject_price()==null?"":data.getProject_price());
+				obj.put("project_num", data.getProject_num()==null?"":data.getProject_num());
+				obj.put("project_min_price", data.getMinPrice()==null?"":data.getMinPrice());
+				obj.put("project_high_price", data.getMaxPrice()==null?"":data.getMaxPrice());
+				obj.put("project_zhou", data.getProject_zhou()==null?"":data.getProject_zhou());
+				obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
+				obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
+				obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
+				obj.put("project_price_int_qi", data.getProject_price_int_qi_str());
+				obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
+				array.add(obj);
+			}
+		}
+		else{
+			List<HouseProject> searchList = listResult;
+			for(HouseProject data : searchList){
+				JSONObject obj = new JSONObject();
+				obj.put("id", data.getId());
+				obj.put("gps", data.getGps()==null?"":data.getGps());
+				obj.put("project_name", data.getProject_name()==null?"":data.getProject_name());
+				obj.put("project_img", data.getProject_img()==null?"":data.getProject_img());
+				obj.put("project_price", data.getProject_price()==null?"":data.getProject_price());
+				obj.put("project_num", data.getProject_num()==null?"":data.getProject_num());
+				obj.put("project_min_price", data.getMinPrice()==null?"":data.getMinPrice());
+				obj.put("project_high_price", data.getMaxPrice()==null?"":data.getMaxPrice());
+				obj.put("project_zhou", data.getProject_zhou()==null?"":data.getProject_zhou());
+				obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
+				obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
+				obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
+				obj.put("project_price_int_qi", data.getProject_price_int_qi()==0?"N/A":df.format(data.getProject_price_int_qi()));
+				obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
+				array.add(obj);
+			}
+		}
+		
+		
+		
+		return array;
+	}
+	
 	
 	public void writeJson(String json, HttpServletResponse response)throws Exception{
 	    response.setContentType("text/html");

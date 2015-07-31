@@ -75,6 +75,22 @@ public class HouseProject {
 	private String wuyefei;
 	private String project_min_price;
 	private String project_high_price;
+	private String maxPrice;
+	private String minPrice;
+	
+	
+	public String getMaxPrice() {
+		return maxPrice;
+	}
+	public void setMaxPrice(String maxPrice) {
+		this.maxPrice = maxPrice;
+	}
+	public String getMinPrice() {
+		return minPrice;
+	}
+	public void setMinPrice(String minPrice) {
+		this.minPrice = minPrice;
+	}
 	private int tuijiandu;
 	private Timestamp housePrice_update_time;
 	private String tuijian_news_num_1;
@@ -366,8 +382,37 @@ public class HouseProject {
 	private String developer_id_name;
 	private int min_area;
 	private int max_area;
+	private int minArea;
+	private int maxArea;
+	private String project_price_int_qi_str;
+	public String getProject_price_int_qi_str() {
+		return project_price_int_qi_str;
+	}
+	public void setProject_price_int_qi_str(String project_price_int_qi_str) {
+		this.project_price_int_qi_str = project_price_int_qi_str;
+	}
+	public int getMinArea() {
+		return minArea;
+	}
+	public void setMinArea(int minArea) {
+		this.minArea = minArea;
+	}
+	public int getMaxArea() {
+		return maxArea;
+	}
+	public void setMaxArea(int maxArea) {
+		this.maxArea = maxArea;
+	}
 	private String area_num;
-	
+	private String project_name_short;
+
+
+	public String getProject_name_short() {
+		return project_name_short;
+	}
+	public void setProject_name_short(String project_name_short) {
+		this.project_name_short = project_name_short;
+	}
 	
 	
 }
