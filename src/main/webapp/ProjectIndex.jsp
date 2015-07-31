@@ -15,6 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 			<link rel="stylesheet" type="text/css" href="css/base.css" />
 		<link rel="stylesheet" type="text/css" href="css/project.css" />
+		<link rel="stylesheet" type="text/css" href="/css/list.css" />
 		<!-- <link type="text/css" rel="stylesheet" href="/css/sli-style.css"> -->
 		<!-- <script type="text/javascript" src="js/jquery.js"></script> -->
 	    <script type="text/javascript" src="/js/jquery.min.js"></script>
@@ -421,7 +422,19 @@ var e=$('#input2').val();
 				<a href="#loc_fy" class="f-l p_nav_btn f-yahei s-14 cp">购房费用</a>
 				<a class="f-l p_nav_line f-yahei s-14"></a>
 				<a href="#loc_tz" class="f-l p_nav_btn f-yahei s-14 cp">投资分析</a>
-				<div class="f-r f-yahei s-14 cp" style="margin-right:40px;margin-top:5px;"><input type="button" id="shoucang" style="font-size:13px;" onclick="collect()" ></div>
+				<!-- <div class="f-r f-yahei s-14 cp" style="margin-right:40px;margin-top:5px;"> -->
+				    <!-- <input type="button" id="shoucang" style="font-size:13px;" onclick="collect()" > -->
+				        <!-- <span style="color:white;float:right;margin-top:10px;margin-right:80px">收藏</span> -->
+				        <!-- <div class="f-r btn_star cp" style="margin-right:10px" id="shoucang" onclick="collect()" ></div> -->
+				        <c:if test="${isCollected=='0'}">
+				             <span style="color:white;float:right;margin-top:10px;margin-right:80px" id="shoucangtext">收藏</span> 
+				             <div class="f-r btn_star cp" style="margin-right:10px" id="shoucang" onclick="collect()" ></div> 
+				        </c:if>
+				         <c:if test="${isCollected=='1'}">
+				               <span style="color:rgb(255,226,8);float:right;margin-top:10px;margin-right:80px" id="shoucangtext">已收藏</span> 
+				               <div class="f-r btn_star cp btn_star_sel" style="margin-right:10px" id="shoucang" onclick="collect()" ></div> 
+				         </c:if>
+				<!-- </div> -->
 			</div>
 			
 		</div>
@@ -579,7 +592,7 @@ var e=$('#input2').val();
 				<div class="f-l p_panel_1">
 					<a class="c-fix f-l f-yahei s-14 p_panel_title2 fw">开发商信息：${HouseProject.developer_id_name}</a>
 					<img class="c-fix f-l p_panel_logo" src="<%=application.getInitParameter("imagedir")%>/${DeveloperInfo.developer_logo }" style="width:110px;height:50px;"></img>
-					<a class="c-fix f-l p_panel_intro f-yahei s-14">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${DeveloperInfo.developer_desc}</a>
+					<a class="c-fix f-l p_panel_intro f-yahei s-14" style=" overflow: hidden;text-overflow: ellipsis; height: 218px;" title="${DeveloperInfo.developer_desc}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${DeveloperInfo.developer_desc}</a>
 				</div>
 				<div class="f-l p_panel_2" style="height:390px">
 					<a class="c-fix f-l f-yahei s-16 p_panel_lab fw" style="-margin-top:30px;margin-left:10px;">想要了解更多？</a>
@@ -613,7 +626,7 @@ var e=$('#input2').val();
 				<div class="c-fix f-l p_panel_3">
 					<a class="c-fix f-l f-yahei s-14 p_panel_title3 fw">项目详情</a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_name fw">${HouseProject.project_name}</a>
-					<a class="c-fix f-l f-yahei s-14 p_panel_content" style="  word-break: break-all;">${HouseProject.project_desc}</a>
+					<a class="c-fix f-l f-yahei s-14 p_panel_content" style="  word-break: break-all;overflow: hidden;text-overflow: ellipsis;height:130px;" title="${HouseProject.project_desc}">${HouseProject.project_desc}</a>
 					<div class="f-l p_btn_get my_center" onclick="popInfo()"><img src="images/index/proinfobtn.png"></img></div>
 				</div>
 				<!-- <img class="f-r p_adv" src="images/ad1.png"></img> -->
@@ -657,11 +670,11 @@ var e=$('#input2').val();
 					<c:choose>
 						<c:when test="${HouseProject.project_type =='公寓'}">
 							<div class="f-l p_struct_attr">
-								<a class="c-fix f-l attr1 f-yahei s-14 fw">${obj.house_size_in}</a>
+								<a class="c-fix f-l attr1 f-yahei s-14 fw">${obj.house_size_in}平米</a>
 								<a class="c-fix f-l attr2 f-yahei s-12 fw">室内面积</a>
 							</div>
 							<div class="f-l p_struct_attr">
-								<a class="c-fix f-l attr1 f-yahei s-14 fw">${obj.house_size_out}</a>
+								<a class="c-fix f-l attr1 f-yahei s-14 fw">${obj.house_size_out}平米</a>
 								<a class="c-fix f-l attr2 f-yahei s-12 fw">室外面积</a>
 							</div>
 						</c:when>
@@ -2150,20 +2163,18 @@ function popmodal(){
   $(function () {
 	  var isCollect=${isCollected};
 	//  alert("isCollect "+isCollect);
-	  if(isCollect=="1"){
+	  /* if(isCollect=="1"){
 		  $("#shoucang").css("background-color","red");
 	      $("#shoucang").val("已收藏");
 	  }else{
 		  $("#shoucang").css("background-color","rgb(226,226,226)"); 
 	      $("#shoucang").val("点击收藏");
-	  }
+	  } */
 	 // alert($("#shoucang").val())
 	  $("#shoucang").on('click',function(event){
 		  var projectNum=$("#projectNum").val();
-		 // alert(isCollect);
-		/*   if(isCollect=="0"){//0表示要进行收藏 */
-			if($("#shoucang").val()=="点击收藏"){
-			 // alert("收藏");
+		/* 	if($("#shoucang").val()=="点击收藏"){ */
+			if($("#shoucang").attr("class").indexOf("btn_star_sel")==-1){
 			  $.ajax({
 					type: "POST",  
 		 			 dataType: "json",  
@@ -2174,12 +2185,12 @@ function popmodal(){
 		  			          $('#login').modal('show');
 		  		         }else if(data.flag==1){
 		  			         alert("收藏成功");
-		  			        
-		  			         //$("#star0").addClass("btn_star_sel");//白星变黄
-		  			         $("#shoucang").css("background-color","red");
-		  			        /*  $("#shoucang").html("已收藏"); */
-		  			        $("#shoucang").val("已收藏");
-		  			        /*  window.location.reload(); */
+		  			       /*   $("#shoucang").css("background-color","red");
+		  			        $("#shoucang").val("已收藏"); */
+		  			       $("#shoucang").addClass("btn_star_sel");
+		  			       $("#shoucangtext").html("已收藏");
+		  			       $("#shoucangtext").css("color","rgb(255,226,8)");
+		  			       
 		  		         }
 		  		      }  //success
 				  });//ajax
@@ -2196,10 +2207,12 @@ function popmodal(){
 		  			          $('#login').modal('show');
 		  		         }else if(data.flag==1){
 		  			         alert("取消收藏成功");
-		  			         //$("#star0").addClass("btn_star_sel");//白星变黄
-		  			          $("#shoucang").css("background-color","rgb(226,226,226)"); 
-		  			          $("#shoucang").val("点击收藏");
-		  			       /*  window.location.reload(); */
+		  			         /*  $("#shoucang").css("background-color","rgb(226,226,226)"); 
+		  			          $("#shoucang").val("点击收藏"); */
+		  			       $("#shoucang").removeClass("btn_star_sel");
+		  			       $("#shoucangtext").html("收藏");
+		  			       $("#shoucangtext").css("color","rgb(255,255,255)");
+		  			     
 		  		         }
 		  		      }  //success
 				  });//ajax
