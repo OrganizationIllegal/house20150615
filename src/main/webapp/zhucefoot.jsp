@@ -70,19 +70,23 @@ $("#register2new").click(function(){
     }
 });
 </script>
-<div class="row" style="width:100%; margin: 0 auto;height:310px;background-color:rgb(20,51,82);vertical-align:middle;text-align:center;position:relative;">
-        <div>
+<div class="row" style="width:100%; margin: 0 auto;height:310px;vertical-align:middle;text-align:center;position:relative;">
+        <img  src="../images/button4.png" height=310 width="100%">
+        <!-- <div>
         	<img src="/pic/whiteangle.jpg"></img>
-        </div>
-        <div style="top: 50%; position: relative;margin-top: -54px;">
+        </div> -->
+        <div style="top: -50%; position: relative;margin-top: -54px;left:7px;">
             <font style="font-size:32px;font-weight:normal;color:#FFFFFF;font-family:'微软雅黑'">为您提供最好的海外购房服务</font><br><br>
-            <div style="  position: relative;left: 50%;margin-left: -43px;background-color: red;height:54px;width:86px;">
-            <div style="padding-top: 6%;"><a class="buttton" style="margin-top: 6px;color:white;font-size:32px;font-weight:normal;cursor:pointer;" id="register2new"
-          >注册</a></div>
+            <div style="position: relative;left: 48%;margin-left: -43px;height:54px;width:86px;">
+            <div style="padding-top: 6%;">
+            <img  src="../images/00.png" id="register2new">
+           <!--  <a class="buttton" style="margin-top: 6px;color:white;font-size:32px;font-weight:normal;cursor:pointer;" id="register2new"
+          >注册</a> -->
+          </div>
             </div>
         </div>
-        </div>
-    </div>
+</div>
+  
 <!-- register start -->
 <div class="modal fade" id="registernew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
    <div class="modal-dialog">
