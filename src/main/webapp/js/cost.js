@@ -77,7 +77,7 @@ $(function(){
             	  legendarr.push(item);
             	});
         	var series=[];
-        	var color=['#CD6839','#8B2500','#CDCD00','#CD3278','#B03060']
+        	var color=['#7693AF','#9BB2C9','#597692','#41617F','#84A1C0','#94B5CE','#BECDDC']
         	$.each(eval(housetaxdata), function(index, value) {
           	  	value.itemStyle={
           	  			normal:{
