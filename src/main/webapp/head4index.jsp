@@ -89,18 +89,18 @@
 
      <div class="main_header" style="background-color:white; width:1190px; margin:0 auto; border:0; border-bottom:1px solid rgba(238, 238, 238, 1);">
 			<div class="c-fix f-l main_header_div" id="title" style="left:0; margin-left:0;">
-				<img src="images/logo.jpg" class="c-fix f-l main_logo"></img>
+				<img src="images/LOGO.png" class="c-fix f-l main_logo"></img>
 				<a id="t1" href="/index01" class="f-l f-yahei s-14 main_nav cp fw ">首页</a>
 				<div>
-				<a id="t2" href="/overseas.jsp" class="f-l f-yahei s-14 main_nav cp fw">海外购房</a>
-				<div style="position:relative;">
+				<a id="t2" href="/SearchList" class="f-l f-yahei s-14 main_nav cp fw">房源列表</a>
+				<!-- <div style="position:relative;">
 				<div id="haiwai" style="position:absolute;display:none;">
 <div><a href="/overseas.jsp">海外购房</a></div>
 <div><a href="/SearchList">项目一览</a></div>
 </div> 
-				</div></div>
+				</div> --></div>
 				<a id="t3" href="/SearchService" class="f-l f-yahei s-14 main_nav cp fw">服务团队</a>
-				<a id="t4" href="/ZhiYeInfo" class="f-l f-yahei s-14 main_nav cp fw">置业指导</a>
+				<a id="t4" href="/ZhiYeInfo" class="f-l f-yahei s-14 main_nav cp fw">置业百科</a>
 				<a id="t5" href="/BlogList" class="f-l f-yahei s-14 main_nav cp fw">海外新闻</a>
 				<a id="t6" href="/AboutUs.jsp" class="f-l f-yahei s-14 main_nav cp fw">关于我们</a>
 				
