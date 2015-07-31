@@ -12,7 +12,7 @@
 .main_reg{display:block;height:50px;line-height:50px;margin-top:10px;color:rgb(63,129,215)}
 
 .main_bkg{display:block;width:100%;height:400px;-background-color:rgb(30,52,66); -overflow:hidden;}
-.main_img{display:block;width:1190px;height:400px;background-image:url(../images/main_bkg.jpg);position:relative;-left:50%;-margin-left:-585px;margin:0 auto;}
+.main_img{display:block;width:100%;height:400px;background-image:url(../images/main_bkg.png);-position:relative;-left:50%;-margin-left:-585px;margin:0 auto;min-width:1190px;background-repeat:no-repeat;}
 .main_div{display:block;min-height:30px;margin-top:60px;}
 .main_sel{display:block;height:20px;}
 .main_lab{display:block;height:20px;line-height:20px;margin-left:10px;color:#fff;}
