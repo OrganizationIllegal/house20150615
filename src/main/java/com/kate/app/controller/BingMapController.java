@@ -267,7 +267,7 @@ public class BingMapController {
 				int maxarea = item.getMax_area();
 				int minarea = item.getMin_area();
 				String project_price = item.getProject_price();
-				String project_price_int_qi = item.getProject_price_qi();
+				String project_price_int_qi = item.getProject_price_int_qi_str();
 				String house_type = item.getProject_house_type();
 				String tempPrice = item.getProject_min_price();
 				String project_min_price = item.getProject_min_price();
@@ -333,7 +333,6 @@ public class BingMapController {
 				int maxarea = item.getMax_area();
 				int minarea = item.getMin_area();
 				String project_price = item.getProject_price();
-				String project_price_qi = item.getProject_price_qi();
 				String house_type = item.getProject_house_type();
 				/*String project_min_price = item.getProject_min_price()==null?"N/A":df.format(Integer.parseInt(item.getProject_min_price()));
 				String project_high_price = item.getProject_high_price()==null?"N/A":df.format(Integer.parseInt(item.getProject_high_price()));*/

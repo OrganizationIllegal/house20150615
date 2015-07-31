@@ -372,7 +372,7 @@ public class BingMapDao extends BaseDao {
 		        	project_price_int_qi=nf.format(Integer.parseInt(rs.getString("project_price_int_qi")));
 		    	}
 		    	else{
-		    		project_price_int_qi="0";
+		    		project_price_int_qi="N/A";
 		    	}
 		        project_key=findProjectKeyByNum(project_num);
 		      //对项目地址进行截取
@@ -907,7 +907,7 @@ public class BingMapDao extends BaseDao {
 		    	String project_name = rs.getString("project_name")==null?"":rs.getString("project_name");
 		    	String project_name_short = "";
 		    	if(project_name!=null && !"".equals(project_name)){
-		    		project_name_short = project_name.length()>40 ? project_name.substring(0,40):project_name;
+		    		project_name_short = project_name.length()>20 ? project_name.substring(0,20):project_name;
 		    	}
 		    	coordinates.setProject_name_short(project_name_short);
 		    	coordinatesList.add(coordinates);
