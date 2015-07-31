@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.kate.app.dao.AdDao;
 import com.kate.app.dao.AjaxDao;
 import com.kate.app.dao.AreaInfoDao;
 import com.kate.app.dao.BrokerInfoDao;
@@ -120,6 +121,8 @@ public class MyController {
 	private AreaInfoDao areaInfoDao;
 	@Autowired
 	private SearchListDao searchListDao;
+	@Autowired
+	private AdDao addao;
 	
 	int proid=0;
 	
@@ -133,6 +136,9 @@ public class MyController {
 		String project_type ="";
 		String area_name ="";
 		String area_num=null;
+		String ad1="";
+		String ad2="";
+		String ad3="";
 		AreaInfo areaInfo = new AreaInfo();
 		/*if(username==null||"".equals(username) ){
 			req.setAttribute("error", 1);
@@ -220,6 +226,13 @@ public class MyController {
 		 //messageSubmit(req,resp,username,proId);
 		 //通过项目推荐经纪人
 		 getRecommendBroker(req,resp,proNum,area_num);
+		 //获取广告图片名称
+		 ad1=addao.getad1();
+		 ad2=addao.getad2();
+		 ad3=addao.getad3();
+		 req.setAttribute("ad1", ad1);
+		 req.setAttribute("ad2", ad2);
+		 req.setAttribute("ad3", ad3);
 		//通过区域推荐经纪人
 		/* getRecommendBroker(req,resp,area_num);*/
 		 req.setAttribute("area_name", area_name);
