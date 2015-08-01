@@ -2,12 +2,24 @@ package com.kate.app.model;
 
 import java.sql.Timestamp;
 
-public class HouseProject {
+public class HouseProject implements Comparable<HouseProject>{
 	private int id;
 	private String project_name;
 	private String project_img;
 	private String project_logo;
-
+	private String bijiao;
+	public String getBijiao() {
+		return bijiao;
+	}
+	public void setBijiao(String bijiao) {
+		this.bijiao = bijiao;
+	}
+	
+	
+	public int compareTo(HouseProject arg0) {
+        return this.getBijiao().compareTo(arg0.getBijiao());
+    }
+	
 	/**
 	 * 增加项目关键字,用于BingMap左侧按房屋类型
 	 * @author wenruijie

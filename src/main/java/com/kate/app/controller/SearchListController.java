@@ -379,7 +379,8 @@ public class SearchListController {
 			int pageSize  = pageSize_str==null? 0 :Integer.parseInt(pageSize_str);
 			
 			String username = (String)req.getSession().getAttribute("username");
-			int userid=userDao.findUserByName(username);
+			/*int userid=userDao.findUserByName(username);*/
+			int userid=userDao.findUserByEmailAndTel(username);
 			List<SearchList> searchList=searchListDao.listCollectList(userid);
 			
 			int total = searchList.size();
