@@ -591,15 +591,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<a href="/Detail?id=${item.id}&type=1">
 									<img src="<%=application.getInitParameter("imagedir")%>/${item.news_image}" class="c-fix f-l main_node_img" style="width:360px;height:225px"></img>
 								</a>
-								<a href="/Detail?id=${item.id}&type=1" style="text-decoration:none;width:360px;" class="c-fix f-l main_node_article f-yahei s-14">
-									<c:choose>
+								<a href="/Detail?id=${item.id}&type=1" style="text-decoration:none;width:360px;overflow: hidden;text-overflow: ellipsis;height:50px" class="c-fix f-l main_node_article f-yahei s-14">
+								${item.news_abstract}
+									<%-- <c:choose>
 										<c:when test="${fn:length(item.news_abstract) > 50}">
 											${fn:substring(item.news_abstract, 0, 50)}...
 										</c:when>
 										<c:otherwise>
 											${item.news_abstract}
 										</c:otherwise>
-									</c:choose>
+									</c:choose> --%>
 									
 								</a>
 									</div>
