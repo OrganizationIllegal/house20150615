@@ -7,15 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kate.app.dao.HouseProjectDao;
+import com.kate.app.dao.ProjectInputDao;
 import com.kate.app.model.BrokerInfo;
 import com.kate.app.model.DeveloperInfo;
 import com.kate.app.model.HouseProject;
+import com.kate.app.model.ProjectDescImage;
 import com.kate.app.model.ProjectImage;
 
 @Service
 public class HouseProjectService {
 	@Autowired
     private HouseProjectDao houseProjectDao;
+	@Autowired
+	private ProjectInputDao projectInputDao;
 	
 
 	public HouseProject getHouseProject(int id){
@@ -28,6 +32,10 @@ public class HouseProjectService {
 	public HouseProject getHouseProjectByNum(String proNum){
 		HouseProject projectInfo = new HouseProject();		
 		projectInfo = houseProjectDao.HouseProjectByNumDao(proNum);
+		List<ProjectDescImage> imageList = projectInputDao.getProjectImageByProNum(proNum);
+		if(imageList!=null && imageList.size()>0){
+			projectInfo.setProject_img(imageList.get(0).getName());
+		}
 		return projectInfo;
 				
 	}

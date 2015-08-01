@@ -260,7 +260,7 @@ public class BingMapController {
 						int id = item.getId();
 						String project_num = item.getProject_num();
 						String project_img = item.getProject_img();
-						if(project_img==null || "".equals(project_img)){
+						/*if(project_img==null || "".equals(project_img)){
 							List<ProjectDescImage> imageList = houseProjectDao.HouseProjectImageList(project_num);
 							if(imageList!=null && imageList.size()>0){
 								project_img = imageList.get(0).getName();
@@ -268,7 +268,7 @@ public class BingMapController {
 							else{
 								project_img = "";
 							}
-						}
+						}*/
 						
 						String project_address_short = item.getProject_address();
 						
@@ -316,7 +316,7 @@ public class BingMapController {
 						int id = item.getId();
 						String project_img = item.getProject_img();
 						String project_num = item.getProject_num();
-						if(project_img==null || "".equals(project_img)){
+						/*if(project_img==null || "".equals(project_img)){
 							List<ProjectDescImage> imageList = houseProjectDao.HouseProjectImageList(project_num);
 							if(imageList!=null && imageList.size()>0){
 								project_img = imageList.get(0).getName();
@@ -324,7 +324,7 @@ public class BingMapController {
 							else{
 								project_img = "";
 							}
-						}
+						}*/
 						
 						
 						String project_address_short = item.getProject_address();
@@ -381,7 +381,7 @@ public class BingMapController {
 						int id = item.getId();
 						String project_num = item.getProject_num();
 						String project_img = item.getProject_img();
-						if(project_img==null || "".equals(project_img)){
+						/*if(project_img==null || "".equals(project_img)){
 							List<ProjectDescImage> imageList = houseProjectDao.HouseProjectImageList(project_num);
 							if(imageList!=null && imageList.size()>0){
 								project_img = imageList.get(0).getName();
@@ -389,7 +389,7 @@ public class BingMapController {
 							else{
 								project_img = "";
 							}
-						}
+						}*/
 						
 						String project_address_short = item.getProject_address();
 						
@@ -441,7 +441,7 @@ public class BingMapController {
 						int id = item.getId();
 						String project_num = item.getProject_num();
 						String project_img = item.getProject_img();
-						if(project_img==null || "".equals(project_img)){
+						/*if(project_img==null || "".equals(project_img)){
 							List<ProjectDescImage> imageList = houseProjectDao.HouseProjectImageList(project_num);
 							if(imageList!=null && imageList.size()>0){
 								project_img = imageList.get(0).getName();
@@ -449,7 +449,7 @@ public class BingMapController {
 							else{
 								project_img = "";
 							}
-						}
+						}*/
 						
 						String project_address_short = item.getProject_address();
 						
@@ -712,7 +712,7 @@ public class BingMapController {
 		
 		List<HouseProject> list = bingMapDao.filterByKeyWord(area,city1,address,0);
 		seachListResult = list;
-		for(HouseProject item : seachListResult){
+		/*for(HouseProject item : seachListResult){
 			if(item!=null){
 				if(item.getProject_num()!=null && !"".equals(item.getProject_num())){
 					String project_img = "";
@@ -727,7 +727,7 @@ public class BingMapController {
 				}
 			}
 			
-		}
+		}*/
 		seachListResultShengxu = bingMapDao.filterByKeyWord(area,city1,address,1);
 		for(HouseProject item : seachListResultShengxu){
 			if(item!=null){

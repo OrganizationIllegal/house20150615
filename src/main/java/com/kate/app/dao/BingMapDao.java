@@ -16,6 +16,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.kate.app.model.BingMapCenter;
 import com.kate.app.model.BingMapVo;
 import com.kate.app.model.HouseProject;
+import com.kate.app.model.ProjectDescImage;
 @Repository 
 public class BingMapDao extends BaseDao {
 	public List<BingMapVo> listBingMap(){    //加载地图找房调用
@@ -51,8 +52,21 @@ public class BingMapDao extends BaseDao {
 		    String project_key=null;
 		    while(rs.next()){
 		    	id=rs.getInt("id");
-		    	project_img=rs.getString("project_img");
+		    	//project_img=rs.getString("project_img");
 		    	project_num=rs.getString("project_num");
+		    	
+		    	if(project_num!=null && !"".equals(project_num)){
+		    		List<ProjectDescImage> imageList = HouseProjectImageList(project_num);
+					if(imageList!=null && imageList.size()>0){
+						project_img = imageList.get(0).getName();
+					}
+					else{
+						project_img = "";
+					}
+		    	}
+		    	
+		    	
+		    	
 		    	project_address=rs.getString("project_address");
 		    	project_name=rs.getString("project_name");
 		    	project_price=rs.getString("project_price");
@@ -257,8 +271,19 @@ public class BingMapDao extends BaseDao {
 		    String project_address_short=null;
 		    while(rs.next()){
 		    	id=rs.getInt("id");
-		    	project_img=rs.getString("project_img");
-		    	project_num=rs.getString("project_num");
+		    	
+		    	if(project_num!=null && !"".equals(project_num)){
+		    		List<ProjectDescImage> imageList = HouseProjectImageList(project_num);
+					if(imageList!=null && imageList.size()>0){
+						project_img = imageList.get(0).getName();
+					}
+					else{
+						project_img = "";
+					}
+		    	}
+		    	
+		    	
+		    	
 		    	project_address=rs.getString("project_address");
 		    	project_name=rs.getString("project_name");
 		    	project_sales_remain=rs.getInt("project_sales_remain");
@@ -356,8 +381,21 @@ public class BingMapDao extends BaseDao {
 		    String project_address_short=null;
 		    while(rs.next()){
 		    	id=rs.getInt("id");
-		    	project_img=rs.getString("project_img");
+		    
 		    	project_num=rs.getString("project_num");
+		    	
+		    	if(project_num!=null && !"".equals(project_num)){
+		    		List<ProjectDescImage> imageList = HouseProjectImageList(project_num);
+					if(imageList!=null && imageList.size()>0){
+						project_img = imageList.get(0).getName();
+					}
+					else{
+						project_img = "";
+					}
+		    	}
+		    	
+		    	
+		    	
 		    	project_address=rs.getString("project_address");
 		    	project_name=rs.getString("project_name");
 		    	project_sales_remain=rs.getInt("project_sales_remain");
@@ -455,6 +493,19 @@ public class BingMapDao extends BaseDao {
 		    	id=rs.getInt("id");
 		    	project_img=rs.getString("project_img");
 		    	project_num=rs.getString("project_num");
+		    	
+		    	if(project_num!=null && !"".equals(project_num)){
+		    		List<ProjectDescImage> imageList = HouseProjectImageList(project_num);
+					if(imageList!=null && imageList.size()>0){
+						project_img = imageList.get(0).getName();
+					}
+					else{
+						project_img = "";
+					}
+		    	}
+		    	
+		    	
+		    	
 		    	project_address=rs.getString("project_address");
 		    	project_name=rs.getString("project_name");
 		    	project_sales_remain=rs.getInt("project_sales_remain");
@@ -528,9 +579,24 @@ public class BingMapDao extends BaseDao {
 		    	coordinates.setId(rs.getInt("id"));
 		    	coordinates.setGps(rs.getString("gps"));
 		    	coordinates.setProject_name(rs.getString("project_name"));
-		    	coordinates.setProject_img(rs.getString("project_img"));
-		    	coordinates.setProject_price(rs.getString("project_price"));
+		    	
 		    	coordinates.setProject_num(rs.getString("project_num"));
+		    	String project_num = rs.getString("project_num");
+		    	String project_img = "";
+		    	if(project_num!=null && !"".equals(project_num)){
+		    		List<ProjectDescImage> imageList = HouseProjectImageList(project_num);
+					if(imageList!=null && imageList.size()>0){
+						project_img = imageList.get(0).getName();
+					}
+					else{
+						project_img = "";
+					}
+		    	}
+		    	
+		    	coordinates.setProject_img(project_img);
+				
+		    	coordinates.setProject_price(rs.getString("project_price"));
+		    	
 		    	coordinates.setProject_min_price(rs.getString("project_min_price"));
 		    	coordinates.setProject_high_price(rs.getString("project_high_price"));
 		    	coordinates.setProject_zhou(rs.getString("project_zhou"));
@@ -676,7 +742,17 @@ public class BingMapDao extends BaseDao {
 		    	coordinates.setId(rs.getInt("id"));
 		    	coordinates.setGps(rs.getString("gps"));
 		    	coordinates.setProject_name(rs.getString("project_name"));
-		    	coordinates.setProject_img(rs.getString("project_img"));
+		    	String project_img = "";
+		    	if(project_num!=null && !"".equals(project_num)){
+		    		List<ProjectDescImage> imageList = HouseProjectImageList(project_num);
+					if(imageList!=null && imageList.size()>0){
+						project_img = imageList.get(0).getName();
+					}
+					else{
+						project_img = "";
+					}
+		    	}
+		    	coordinates.setProject_img(project_img);
 		    	coordinates.setProject_price(rs.getString("project_price"));
 		    	coordinates.setProject_num(rs.getString("project_num"));
 		    	coordinates.setProject_min_price(rs.getString("project_min_price")==null?"N/A":nf.format(Integer.parseInt(rs.getString("project_min_price"))));
@@ -935,14 +1011,21 @@ public class BingMapDao extends BaseDao {
 		    	coordinates.setGps(rs.getString("gps"));
 		    	coordinates.setProject_name(rs.getString("project_name"));
 		    	coordinates.setProject_img(rs.getString("project_img"));
-		    	
-		    	
-		    	
-		    	
-		    	
-		    	coordinates.setProject_price(rs.getString("project_price"));
 		    	String project_num = rs.getString("project_num");
 		    	
+		    	String project_img = "";
+		    	if(project_num!=null && !"".equals(project_num)){
+		    		List<ProjectDescImage> imageList = HouseProjectImageList(project_num);
+					if(imageList!=null && imageList.size()>0){
+						project_img = imageList.get(0).getName();
+					}
+					else{
+						project_img = "";
+					}
+		    	}
+		    	
+		    	coordinates.setProject_img(project_img);
+		    	coordinates.setProject_price(rs.getString("project_price"));
 		    	coordinates.setProject_num(rs.getString("project_num"));
 		    	coordinates.setProject_min_price(rs.getString("project_min_price")==null?"N/A":df.format(Integer.parseInt(rs.getString("project_min_price"))));
 		    	coordinates.setProject_high_price(rs.getString("project_high_price")==null?"N/A":df.format(Integer.parseInt(rs.getString("project_high_price"))));
@@ -1042,7 +1125,19 @@ public class BingMapDao extends BaseDao {
 		    	coordinates.setId(rs.getInt("id"));
 		    	coordinates.setGps(rs.getString("gps"));
 		    	coordinates.setProject_name(rs.getString("project_name"));
-		    	coordinates.setProject_img(rs.getString("project_img"));
+		    	
+		    	String project_num = rs.getString("project_num");
+		    	String project_img = "";
+		    	if(project_num!=null && !"".equals(project_num)){
+		    		List<ProjectDescImage> imageList = HouseProjectImageList(project_num);
+					if(imageList!=null && imageList.size()>0){
+						project_img = imageList.get(0).getName();
+					}
+					else{
+						project_img = "";
+					}
+		    	}
+		    	coordinates.setProject_img(project_img);
 		    	coordinates.setProject_price(rs.getString("project_price"));
 		    	coordinates.setProject_num(rs.getString("project_num"));
 		    	coordinates.setProject_min_price(rs.getString("project_min_price"));
@@ -1352,5 +1447,54 @@ public class BingMapDao extends BaseDao {
 
 	        }
 			return flag;
+		}
+		
+		public List<ProjectDescImage> HouseProjectImageList(String pro_num){
+			DecimalFormat df = new DecimalFormat("#,###,###");
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+
+			List<ProjectDescImage> imageList = new ArrayList<ProjectDescImage>();
+			
+			try{
+				String sql = "select * from project_desc_image where project_num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, pro_num);
+				  rs = pstmt.executeQuery();
+				while(rs.next()){
+					ProjectDescImage image = new ProjectDescImage();
+					image.setName(rs.getString("image_name"));
+					imageList.add(image);
+				}
+				
+			}catch (Exception e) {
+				 e.printStackTrace();
+	        }
+			finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
+			return imageList;
 		}
 }
