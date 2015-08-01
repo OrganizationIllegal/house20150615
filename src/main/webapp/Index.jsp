@@ -216,7 +216,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a class="f-l main_lab f-yahei s-14 city" style="cursor:pointer;font-size:16px;">阿德莱德</a>
 					<a class="f-l main_lab f-yahei s-14 city" style="cursor:pointer;font-size:16px;">珀斯</a>
 				  </div>
-				  <div class="btn_more" style="position:relative;top:-39px;left:415px;width:65px;height:20px;">
+
+				  <div class="btn_more" style="position:relative;top:-38px;left:415px;width:65px;height:20px;cursor:pointer;">
+
 				  <img src="images/index/gaoji.png" style="width:65px;height:20px;">
 				  </div>
 				  
@@ -356,7 +358,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					 </div>
 					 
 					 <!-- onmouseout="city3out()" -->
-					<a class="f-l f-yahei s-14 btn_more cp">更多</a>
+					<a class="f-l f-yahei s-14 btn_more" style="cursor:pointer;">更多</a>
 					<div class="c-fix f-l main_more" style="display:none;">
 						<div class="c-fix f-l main_more_line">
 							<a class="c-fix f-l f-yahei s-12 main_more_title">国家</a>
@@ -490,7 +492,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="f-l f-yahei" style="width:396px;height:375px;text-align:center;">
 				    <div class="f-yahei fw" style="color:#4a494a;font-size:35px;margin-top:15px;margin-bottom:5px;">市中心</div>
-				    <a href="/IndexSearch?center=城市中心"><img src="images/index/02.png" style="width:230px;height:230px;"></a>
+				    <a href="/IndexSearch?center=城市中心"><img src="images/index/03.png" style="width:230px;height:230px;"></a>
 				    <div class="f-yahei" style="color:#888889;font-size:25px;margin-top:5px;">城市中心，稀缺房产资源</div>
 				    <div class="f-yahei cp fw" style="color:#1763ac;font-size:30px;"><a href="/IndexSearch?center=城市中心">去找房</a></div>
 				</div>
@@ -573,15 +575,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<a href="/Detail?id=${item.id}&type=1">
 									<img src="<%=application.getInitParameter("imagedir")%>/${item.news_image}" class="c-fix f-l main_node_img" style="width:360px;height:225px"></img>
 								</a>
-								<a href="/Detail?id=${item.id}&type=1" style="text-decoration:none;width:360px;" class="c-fix f-l main_node_article f-yahei s-14">
-									<c:choose>
+								<a href="/Detail?id=${item.id}&type=1" style="text-decoration:none;width:360px;overflow: hidden;text-overflow: ellipsis;height:50px" class="c-fix f-l main_node_article f-yahei s-14">
+								${item.news_abstract}
+									<%-- <c:choose>
 										<c:when test="${fn:length(item.news_abstract) > 50}">
 											${fn:substring(item.news_abstract, 0, 50)}...
 										</c:when>
 										<c:otherwise>
 											${item.news_abstract}
 										</c:otherwise>
-									</c:choose>
+									</c:choose> --%>
 									
 								</a>
 									</div>

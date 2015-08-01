@@ -22,6 +22,7 @@ import com.kate.app.dao.AdDao;
 import com.kate.app.dao.AjaxDao;
 import com.kate.app.dao.AreaInfoDao;
 import com.kate.app.dao.BrokerInfoDao;
+import com.kate.app.dao.HouseProjectDao;
 import com.kate.app.dao.InvestDataDao;
 import com.kate.app.dao.MiddlePriceDao;
 import com.kate.app.dao.NewsBokeDao;
@@ -52,6 +53,7 @@ import com.kate.app.model.NewsBoke;
 import com.kate.app.model.PeopleForeign;
 import com.kate.app.model.PeopleInfo;
 import com.kate.app.model.PeopleNation;
+import com.kate.app.model.ProjectDescImage;
 import com.kate.app.model.ProjectImage;
 import com.kate.app.model.RecoProject;
 import com.kate.app.model.User;
@@ -123,7 +125,8 @@ public class MyController {
 	private SearchListDao searchListDao;
 	@Autowired
 	private AdDao addao;
-	
+	@Autowired
+	private HouseProjectDao houseProjectDao;
 	int proid=0;
 	
 	@RequestMapping({"/Index" })
@@ -205,6 +208,12 @@ public class MyController {
 		/*if(areaNum!=null && !"".equals(areaNum)){
 			areaId = utilDao.getAreaId(areaNum);
 		}*/
+		List<ProjectDescImage> imageList2 = houseProjectDao.HouseProjectImageList(proNum);
+		String image1 = "";
+		if(imageList2!=null && imageList2.size()>0){
+			image1 = imageList2.get(0).getName();
+		}
+		project.setProject_img(image1);
 		
 		 ProjectImage(req,resp,proNum);
 		 ProjectPeitaoImage(req,resp,proNum);
@@ -307,7 +316,7 @@ public class MyController {
  			min = df1.format(priceTemp);
  		}
  		else{
- 			min = "0,000,000";
+ 			min = "N/A";
  		}
 		project.setProject_min_price(min);
 		
@@ -316,7 +325,7 @@ public class MyController {
  			high = df1.format(priceTemp);
  		}
  		else{
- 			high = "0,000,000";
+ 			high = "N/A";
  		}
 		project.setProject_high_price(high);
 		
@@ -393,6 +402,8 @@ public class MyController {
 		//String type = pro.getProject_type();
 		List<HouseInfo> houseInfoList=houseInfoService.getHouseInfoList(proNum);
 		DecimalFormat df1 = new DecimalFormat("#,###,###");
+		String updateTime = String.valueOf(System.currentTimeMillis());
+		
 		for(HouseInfo item : houseInfoList){
 			String price = item.getHouse_price();
 			if(price!=null && !"".equals(price)){
@@ -400,12 +411,16 @@ public class MyController {
 	 			price = df1.format(priceTemp);
 	 		}
 	 		else{
-	 			price = "0,000,000";
+	 			price = "N/A";
 	 		}
 			item.setHouse_price(price);
 		}
+		if(houseInfoList!=null && houseInfoList.size()>0){
+			updateTime = houseInfoList.get(0).getUpdate_time();
+		}
 		
 		req.setAttribute("HouseInfoList", houseInfoList);
+		req.setAttribute("updateTime", updateTime);
 	}
 		/*String timeResule = null;
 		if(pro!=null){
@@ -506,7 +521,7 @@ public class MyController {
  			}*/
  		}
  		else{
- 			middlePrice = "$"+"0,000,000K";
+ 			middlePrice = "$"+"N/A";
  		}
  		
  		double result=0.00;
@@ -525,7 +540,7 @@ public class MyController {
  			middle_zu_price = "$"+ df1.format(zuTemp)  +"/周";
  		}
  		else{
- 			middle_zu_price = "$"+0+"/周";
+ 			middle_zu_price = "$N/A"+"/周";
  		}
  		String price_review = data.getPrice_review();
  		if(price_review!=null && !"".equals(price_review)){
@@ -539,7 +554,7 @@ public class MyController {
  			}
  		}
  		else{
- 			middle_zu_price = "$"+0+"/月";
+ 			middle_zu_price = "$N/A"+"/月";
  		}
  			
  		data.setYear_increment_rate(increment);
@@ -595,7 +610,7 @@ public class MyController {
 				zu_price =  df.format(price);
 			}
 			else{
-				zu_price = "N-A";
+				zu_price = "N/A";
 			}
 			
 			int price1 = middlePrice.getZu_one_price();
@@ -603,7 +618,7 @@ public class MyController {
 				zu_one_price =  df.format(price1);
 			}
 			else{
-				zu_one_price = "N-A";
+				zu_one_price = "N/A";
 			}
 			
 			int price2 = middlePrice.getZu_two_price();
@@ -611,7 +626,7 @@ public class MyController {
 				zu_two_price =  df.format(price2);
 			}
 			else{
-				zu_two_price = "N-A";
+				zu_two_price = "N/A";
 			}
 			
 			int price3 = middlePrice.getZu_three_price();
@@ -619,7 +634,7 @@ public class MyController {
 				zu_three_price =  df.format(price3);
 			}
 			else{
-				zu_three_price = "N-A";
+				zu_three_price = "N/A";
 			}
 			
 			int price4 = middlePrice.getBuy_price();
@@ -627,7 +642,7 @@ public class MyController {
 				buy_price =  df.format(price4);
 			}
 			else{
-				buy_price = "N-A";
+				buy_price = "N/A";
 			}
 			
 			int price5 = middlePrice.getBuy_one_price();
@@ -635,7 +650,7 @@ public class MyController {
 				buy_one_price =  df.format(price5);
 			}
 			else{
-				buy_one_price = "N-A";
+				buy_one_price = "N/A";
 			}
 			
 			int price6 = middlePrice.getBuy_two_price();
@@ -643,7 +658,7 @@ public class MyController {
 				buy_two_price =  df.format(price6);
 			}
 			else{
-				buy_two_price = "N-A";
+				buy_two_price = "N/A";
 			}
 			
 			int price7 = middlePrice.getBuy_three_price();
@@ -651,7 +666,7 @@ public class MyController {
 				buy_three_price =  df.format(price7);
 			}
 			else{
-				buy_three_price = "N-A";
+				buy_three_price = "N/A";
 			}
 			
 			

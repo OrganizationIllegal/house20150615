@@ -42,6 +42,9 @@ public class HouseInfoDao extends BaseDao{
 				houseInfo.setJianzhu_area(rs.getString("jianzhu_area"));
 				houseInfo.setHouse_price(rs.getString("house_price"));
 				houseInfo.setHouse_img(rs.getString("house_img"));
+				String a = rs.getString("update_time");
+				
+				houseInfo.setUpdate_time(a);
 				list.add(houseInfo);
 			}
 			

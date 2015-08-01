@@ -15,6 +15,7 @@ import com.kate.app.dao.Index01Dao;
 import com.kate.app.dao.ZhiYeDao;
 import com.kate.app.model.HouseProject;
 import com.kate.app.model.NewsBoke;
+import com.kate.app.model.ProjectDescImage;
 
 @Controller
 public class Index01Controller {
@@ -32,16 +33,31 @@ public class Index01Controller {
 		List<NewsBoke> newsList = zhiYeDao.selectNewsBoke();
 		List<HouseProject> projectList = new ArrayList<HouseProject>();
 		List<HouseProject> projectList2 = new ArrayList<HouseProject>();
+		List<ProjectDescImage> imageList1 = new ArrayList<ProjectDescImage>();
+		List<ProjectDescImage> imageList2 = new ArrayList<ProjectDescImage>();
+		
 		for(String i : list){
 			HouseProject pro = new HouseProject();
+			String image = "";
 			pro = houseProjectDao.HouseProjectByNumDao(i);
+			imageList1 = houseProjectDao.HouseProjectImageList(i);
+			if(imageList1!=null && imageList1.size()>0){
+				image = imageList1.get(0).getName();
+			}
+			pro.setProject_img(image);
 			if(pro!=null){
 				projectList.add(pro);
 			}
 		}
 		for(String j : list2){
 			HouseProject pro2 = new HouseProject();
+			String image1 = "";
 			pro2 = houseProjectDao.HouseProjectByNumDao(j);
+			imageList2 = houseProjectDao.HouseProjectImageList(j);
+			if(imageList2!=null && imageList2.size()>0){
+				image1 = imageList2.get(0).getName();
+			}
+			pro2.setProject_img(image1);
 			if(pro2!=null){
 				projectList2.add(pro2);
 			}
