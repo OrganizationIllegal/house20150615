@@ -569,10 +569,10 @@ public class SearchListDao extends BaseDao {
 		    	xuequ=rs.getString("xuequ");
 		    	baozu=rs.getString("baozu");
 		    	daxue=rs.getString("daxue");
-		    	gps = rs.getString("gps");
-		    	project_nation = rs.getString("project_nation");
+/*		    	gps = rs.getString("gps");*/
+		    	/*project_nation = rs.getString("project_nation");
 		    	project_city = rs.getString("project_city");
-		    	project_price = rs.getString("project_price");
+		    	project_price = rs.getString("project_price");*/
 		    	center=rs.getString("center");
 		    	traffic=rs.getString("traffic");
 		    	xianfang=rs.getString("xianfang");
