@@ -64,7 +64,14 @@ public class SearchController {
 	
 	private static List<BrokerInfoQuyu> seachBrokerListResult;
 	private static List<HouseProject> typeListResult;
+	private static List<HouseProject> typeListResultShengxu;
+	private static List<HouseProject> typeListResultJiangxu;
+	
 	private static List<HouseProject>  seachListResult1;
+	private static List<HouseProject>  seachListResult1Shengxu;
+	private static List<HouseProject>  seachListResult1Jiangxu;
+	
+	
 	private static int flagInfo = 0;
 	private static int orderFlag = 0;
 	//鏈嶅姟鍥㈤槦鎼滅储
@@ -384,6 +391,7 @@ public class SearchController {
 		    	String project_logo = item.getProject_logo();
 		    	String developer_id_name = item.getDeveloper_id_name();
 		    	String project_price_int_qi_str = item.getProject_price_qi();
+		    	String bijiao = item.getBijiao();
 		    /*	int project_price_int_qi=Integer.parseInt(project_price_int_qi_str);*/
 		    	String project_desc = item.getProject_desc();
 		    	gps = item.getGps();
@@ -419,7 +427,7 @@ public class SearchController {
 		    	project_key=bingMapDao.findProjectKeyByNum(project_num);
 		    	
 		        
-		    	SearchList data=new SearchList(id,project_name_short,project_area,project_type,gps,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,project_lan_en,mianji,project_address,project_logo,developer_id_name,xinkaipan1,huaren1,remen1,xuequ1,baozu1,daxue1,center1,traffic1,xianfang1,maidi1,project_price_int_qi_str,project_desc,project_key,project_address_short,project_city);
+		    	SearchList data=new SearchList(id,bijiao,project_name_short,project_area,project_type,gps,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,project_lan_en,mianji,project_address,project_logo,developer_id_name,xinkaipan1,huaren1,remen1,xuequ1,baozu1,daxue1,center1,traffic1,xianfang1,maidi1,project_price_int_qi_str,project_desc,project_key,project_address_short,project_city);
 		    	searchList.add(data);
 			}
 			seachListResult = searchList;
@@ -527,12 +535,15 @@ public class SearchController {
 		}
 		
 		
+		
+		
 		@RequestMapping({"/OrderByPrice01"})
 		public String OrderByPrice(HttpServletRequest req,HttpServletResponse resp){
 			orderFlag = 1;
 			int order=Integer.parseInt(req.getParameter("order"));
 			
 			List<SearchList> searchList = seachListResult;
+			
 			List<HouseProject> typeList = typeListResult;
 			List<HouseProject> filterList = seachListResult1;
 			
@@ -540,67 +551,47 @@ public class SearchController {
 				if(order==1){
 					Collections.sort(searchList,new Comparator<SearchList>(){  
 			            public int compare(SearchList arg0, SearchList arg1) { 
-			            	String a = String.valueOf(arg0.getProject_price_int_qi());
-			            	String b = String.valueOf(arg1.getProject_price_int_qi());
+			            	Integer a = Integer.parseInt(arg0.getBijiao());
+			            	Integer b =  Integer.parseInt(arg1.getBijiao());
 			                return a.compareTo(b);  
 			            }  
 			        });  
-					
+					req.setAttribute("bingMapList", searchList);
 				}
 				else{
 					Collections.sort(searchList,Collections.reverseOrder(new Comparator<SearchList>(){  
 			            public int compare(SearchList arg0, SearchList arg1) { 
-			            	String a = String.valueOf(arg0.getProject_price_int_qi());
-			            	String b = String.valueOf(arg1.getProject_price_int_qi());
+			            	Integer a = Integer.parseInt(arg0.getBijiao());
+			            	Integer b =  Integer.parseInt(arg1.getBijiao());
 			                return a.compareTo(b);  
 			            }  
 			        }));
+					req.setAttribute("bingMapList", searchList);
 				}
-				req.setAttribute("bingMapList", searchList);
+				
 			}
+			
 			else if(flagInfo == 2){
 				if(order==1){
-					Collections.sort(typeList,new Comparator<HouseProject>(){  
-			            public int compare(HouseProject arg0, HouseProject arg1) { 
-			            	String a = String.valueOf(arg0.getProject_price_int_qi());
-			            	String b = String.valueOf(arg1.getProject_price_int_qi());
-			                return a.compareTo(b);  
-			            }  
-			        });  
+					req.setAttribute("bingMapList", typeListResultShengxu);
+					 
 					
 				}
 				else{
-					Collections.sort(typeList,Collections.reverseOrder(new Comparator<HouseProject>(){  
-			            public int compare(HouseProject arg0, HouseProject arg1) { 
-			            	String a = String.valueOf(arg0.getProject_price_int_qi());
-			            	String b = String.valueOf(arg1.getProject_price_int_qi());
-			                return a.compareTo(b);  
-			            }  
-			        }));
+					req.setAttribute("bingMapList", typeListResultJiangxu);
 				}
-				req.setAttribute("bingMapList", typeList);
+				
 			}
 			else{
 				if(order==1){
-					Collections.sort(filterList,new Comparator<HouseProject>(){  
-			            public int compare(HouseProject arg0, HouseProject arg1) { 
-			            	String a = String.valueOf(arg0.getProject_price_int_qi_str());
-			            	String b = String.valueOf(arg1.getProject_price_int_qi_str());
-			                return a.compareTo(b);  
-			            }  
-			        });  
+					req.setAttribute("bingMapList", seachListResult1Shengxu);
+					
 					
 				}
 				else{
-					Collections.sort(filterList,Collections.reverseOrder(new Comparator<HouseProject>(){  
-			            public int compare(HouseProject arg0, HouseProject arg1) { 
-			            	String a = String.valueOf(arg0.getProject_price_int_qi_str());
-			            	String b = String.valueOf(arg1.getProject_price_int_qi_str());
-			                return a.compareTo(b);  
-			            }  
-			        }));
+					req.setAttribute("bingMapList", seachListResult1Jiangxu);
 				}
-				req.setAttribute("bingMapList", filterList);
+				
 			}
 		
 			List<String> areaNameSet=bingMapDao.getAreaName();
@@ -799,10 +790,12 @@ public class SearchController {
 			JSONArray arrayCentermoren = new JSONArray();
 			List<String> city=new ArrayList<String>();
 			int type=Integer.parseInt(req.getParameter("house_type"));
-			List<HouseProject> list = bingMapDao.filterByHouseType2(type);
+			List<HouseProject> list = bingMapDao.filterByHouseType2(type,0);
 			typeListResult = list;    //根据类型查询结果集合
+			typeListResultShengxu = bingMapDao.filterByHouseType2(type,1);    //根据类型查询结果集合
+			typeListResultJiangxu = bingMapDao.filterByHouseType2(type,2);    //根据类型查询结果集合
 			
-			array = bingMapService.filterByHouseType2(type);
+			array = bingMapService.filterByHouseType2(type,0);
 			
 			arrayCenter=bingMapService.jsonMapCenter();
 			int lenCenter=arrayCenter.size();
@@ -866,10 +859,12 @@ public class SearchController {
 			String area=req.getParameter("area");
 			String city1=req.getParameter("city");
 			String address=req.getParameter("address");
-			array = bingMapService.filterByKeyWord(area,city1,address);
+			array = bingMapService.filterByKeyWord(area,city1,address,0);
 			
-			List<HouseProject> list = bingMapDao.filterByKeyWord(area,city1,address);
+			List<HouseProject> list = bingMapDao.filterByKeyWord(area,city1,address,0);
 			seachListResult1 = list;
+			seachListResult1Shengxu = bingMapDao.filterByKeyWord(area,city1,address,1);
+			seachListResult1Jiangxu = bingMapDao.filterByKeyWord(area,city1,address,2);
 			
 			arrayCenter=bingMapService.jsonMapCenter();
 			int lenCenter=arrayCenter.size();

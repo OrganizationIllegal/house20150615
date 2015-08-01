@@ -1,10 +1,17 @@
 package com.kate.app.model;
 
-public class SearchList {
+public class SearchList implements Comparable<SearchList>{
 	private int id;
 	private String project_img;
 	private String project_name;
 	private String project_name_short;
+	
+	public int compareTo(SearchList arg0) {
+        return this.getProject_name_short().compareTo(arg0.getProject_name_short());
+    }
+	
+	
+	
 	public String getProject_name_short() {
 		return project_name_short;
 	}
@@ -27,8 +34,14 @@ public class SearchList {
     private String project_area;
     private String project_type;
     private String project_address_short;
-    
+    private String bijiao;
    
+	public String getBijiao() {
+		return bijiao;
+	}
+	public void setBijiao(String bijiao) {
+		this.bijiao = bijiao;
+	}
 	public String getProject_address_short() {
 		return project_address_short;
 	}
@@ -251,7 +264,7 @@ public class SearchList {
 		this.project_zhou = project_zhou;
 		this.project_area=project_area;
 		this.project_type=project_type;
-		
+		//this.bijiao = bijiao;
 		this.mianji=mianji;
 		this.project_address=project_address;
 		this.project_logo=project_logo;
@@ -290,7 +303,7 @@ public class SearchList {
 	
 	
 	
-	public SearchList(int id, String project_name_short, String project_area,String project_type,String gps, String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String project_lan_en,String mianji,String project_address,String project_logo,String developer_id_name ,String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue, String center,String traffic,String xianfang,String maidi,String project_price_int_qi_str,String project_desc,String project_key,String project_address_short,String project_city){
+	public SearchList(int id, String bijiao, String project_name_short, String project_area,String project_type,String gps, String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String project_lan_en,String mianji,String project_address,String project_logo,String developer_id_name ,String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue, String center,String traffic,String xianfang,String maidi,String project_price_int_qi_str,String project_desc,String project_key,String project_address_short,String project_city){
 		this.id=id;
 		this.project_num = project_num;
 		this.project_img=project_img;
@@ -305,7 +318,7 @@ public class SearchList {
 		this.project_lan_en=project_lan_en;
 		this.project_area=project_area;
 		this.project_type=project_type;
-		
+		this.bijiao = bijiao;
 		this.mianji=mianji;
 		this.project_address=project_address;
 		this.project_logo=project_logo;

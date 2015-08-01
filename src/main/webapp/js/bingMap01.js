@@ -420,7 +420,7 @@
     		 		success:function(data){
     		 		data=$.parseJSON(data);
     		 		//alert(data)
-    		 		var html = getHtml2(data.List);
+    		 		var html = getHtml1(data.List);
 			 		 $("#left").html(html); 
     		 		    var items=data.List;
     		 		    var items2=data.List2;

@@ -540,14 +540,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}//else
 /* 		
 	}); */
-	
-
-				
-					
-					
-					
-				
-});
+	});
 
     </script>
 

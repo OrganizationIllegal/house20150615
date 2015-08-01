@@ -90,10 +90,10 @@ public class BingMapService {
 		}
 		return array;
 	}
-	public JSONArray filterByHouseType2(int type){
+	public JSONArray filterByHouseType2(int type,int order){
 		JSONArray array = new JSONArray();
 		DecimalFormat df = new DecimalFormat("#,###,###");
-		List<HouseProject> list = bingMapDao.filterByHouseType2(type);
+		List<HouseProject> list = bingMapDao.filterByHouseType2(type,order);
 		
 		for(HouseProject data : list){
 			JSONObject obj = new JSONObject();
@@ -146,10 +146,10 @@ public class BingMapService {
 		}
 		return array;
 	}
-	public JSONArray filterByKeyWord(String area,String city,String addr){
+	public JSONArray filterByKeyWord(String area,String city,String addr,int order){
 		JSONArray array = new JSONArray();
 		DecimalFormat df = new DecimalFormat("#,###,###");
-		List<HouseProject> list = bingMapDao.filterByKeyWord(area,city,addr);
+		List<HouseProject> list = bingMapDao.filterByKeyWord(area,city,addr,order);
 		for(HouseProject data : list){
 			JSONObject obj = new JSONObject();
 			obj.put("id", data.getId());
