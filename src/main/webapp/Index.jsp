@@ -216,7 +216,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a class="f-l main_lab f-yahei s-14 city" style="cursor:pointer;font-size:16px;">阿德莱德</a>
 					<a class="f-l main_lab f-yahei s-14 city" style="cursor:pointer;font-size:16px;">珀斯</a>
 				  </div>
-				  <div class="cp" style="position:relative;top:-25px;left:415px;width:65px;height:20px;">
+				  <div class="btn_more" style="position:relative;top:-39px;left:415px;width:65px;height:20px;">
 				  <img src="images/index/gaoji.png" style="width:65px;height:20px;">
 				  </div>
 				  
@@ -460,25 +460,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	         <img src="images/index/lunbo2.jpg" alt="Second slide" style="width:1190px;height:500px;">
 	         <div class="carousel-caption"></div>
 	      </div>
-	      <!-- <div class="item">
-	        <img src="pic/90.jpg" alt="Third slide"> 
 	     
-	          <div id="map"  alt="Third slide">
-	         	<div></div>
-	         	<div  style="margin-top:150px">
-	         		<div><span style="font-family:微软雅黑;font-size:25px">海景房源</span></div>
-	         		<div><span style="font-family:微软雅黑;font-weight:bolder;font-size:46px">10000+公寓/别墅</span></div>
-	         		<div><span style="font-family:微软雅黑;font-size:15px">海房优选提供超过300个澳洲优选项目</span></div>
-	         		<div><span style="font-family:微软雅黑;font-size:15px">超过10000套真实房源</span></div>
-	         		<div><span style="font-family:微软雅黑;font-size:15px">每天实时更新最新房源</span></div>
-	         	</div>
-	         	<div style="margin-top:100px" ><img src="pic/pomap.jpg" style="width:400px;"/></div>
-	         	<div ></div>
-	         	
-	         </div>
-	   
-	         <div class="carousel-caption"></div>
-	      </div> -->
 	   	</div>
 		</div>
    </div>
