@@ -285,9 +285,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<input type="checkbox" name="maidi" value="买地建房"class="f-l main_more_check">
 							<a class="f-l f-yahei s-12 main_more_name">买地建房</a>
 						</div>
-						<div class="c-fix f-l main_more_line" style="border-width:0px;text-align:center">
-							<input  type="button" id="moretijiao" value="提交" style="background-color:#ff6600;width:50px;height:30px;font-family:微软雅黑;line-height: normal;"/>
-							<input type="button" id="morequxiao" value="取消 " style="background-color:#ff6600;width:50px;height:30px;font-family:微软雅黑;line-height: normal;"/>
+						<div class="c-fix f-l main_more_line" style="border-width:0px;text-align:center;height:33px">
+							<input  type="button" id="moretijiao" value="提交" style="background-color:#ff6600;width:50px;height:24px;font-family:微软雅黑;line-height: normal;"/>
+							<input type="button" id="morequxiao" value="取消 " style="background-color:#ff6600;width:50px;height:24px;font-family:微软雅黑;line-height: normal;"/>
 						</div>
 					</div>
 				</form>
