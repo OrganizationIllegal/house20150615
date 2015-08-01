@@ -24,7 +24,7 @@
 					</div>
 				</div>
 				<div style="display:block;width:90px;float:left;margin-top:30px;">
-					<img src="images/footer_qr.png" style="display:block;width:90px;"></img>
+					<img  src="images/erweima.jpg" style="display:block;width:105px;height:105px"></img>
 				</div>
 			</div>
 		</div> 
@@ -34,6 +34,9 @@
    $("#weixin").click(function(){
    		$('#weixinmodal').modal('show');
   })
+    $("#weixin").click(function(){
+   		$('#weixinmodal').modal('show');
+  })
    })
   </script>
   
@@ -41,10 +44,10 @@
   <!-- weixin start -->
 <div class="modal fade" id="weixinmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
    <div class="modal-dialog" style="margin-top:100px;">
-     <div class="modal-content" style="margin:0 auto;height:200px;width:150px;margin-top:50px">
-     		<div style="margin:0 auto;margin-top:30px;margin-left:22px">
-     			<img src="images/erweima.jpg"></img>
-     		</div>
+     <div class="modal-content" style="margin:0 auto;height:400px;width:400px;margin-top:50px">
+     		<!-- <div style="margin:0 auto;margin-top:30px;margin-left:22px"> -->
+     			<img src="images/erweima.jpg" style="width:300px;height:300px;margin:50px 50px"></img>
+     		<!-- </div> -->
       </div>
    </div>
  </div>
