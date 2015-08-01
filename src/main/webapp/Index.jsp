@@ -221,7 +221,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				  </div>
 				  
 				  
-						<div class="c-fix f-l main_more" style="display:none;">
+						<div class="c-fix f-l main_more" style="display:none;position: absolute;top: 73px;z-index: 10;left: -22px;">
 						<div class="c-fix f-l main_more_line">
 							<a class="c-fix f-l f-yahei s-12 main_more_title">国家</a>
 							<input type="radio" name="country" value="" class="f-l main_more_radio more" checked="checked">
@@ -496,21 +496,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<span class="f-r large_icon_lab3 f-yahei s-14"><a class="fw" style="color:black">难以置信的收益：</a>在海房优选购买房产，我们提供高达70%现金返还。</span> -->
 				<div class="c-fix f-l f-yahei" style="width:396px;height:375px;text-align:center;">
 				    <div class="f-yahei fw" style="color:#4a494a;font-size:35px;margin-top:15px;margin-bottom:5px;">华人区</div>
-				    <a href="#"><img src="images/index/01.png" style="width:230px;height:230px;"></a>
+				    <a href="/IndexSearch?huaren=华人区"><img src="images/index/01.png" style="width:230px;height:230px;"></a>
 				    <div class="f-yahei" style="color:#888889;font-size:25px;margin-top:5px;">华人聚集地，优质房源</div>
-				    <div class="f-yahei cp fw" style="color:#1763ac;font-size:30px;"><a href="#">去找房</a></div>
+				    <div class="f-yahei cp fw" style="color:#1763ac;font-size:30px;"><a href="/IndexSearch?huaren=华人区">去找房</a></div>
 				</div>
 				<div class="f-l f-yahei" style="width:396px;height:375px;text-align:center;">
 				    <div class="f-yahei fw" style="color:#4a494a;font-size:35px;margin-top:15px;margin-bottom:5px;">学区房</div>
-				    <a href="#"><img src="images/index/02.png" style="width:230px;height:230px;"></a>
+				    <a href="/IndexSearch?xuequ=优秀学区"><img src="images/index/02.png" style="width:230px;height:230px;"></a>
 				    <div class="f-yahei" style="color:#888889;font-size:25px;margin-top:5px;">热门学区，海外置业首选</div>
-				    <div class="f-yahei cp fw" style="color:#1763ac;font-size:30px;"><a href="#">去找房</a></div>
+				    <div class="f-yahei cp fw" style="color:#1763ac;font-size:30px;"><a href="/IndexSearch?xuequ=优秀学区">去找房</a></div>
 				</div>
 				<div class="f-l f-yahei" style="width:396px;height:375px;text-align:center;">
 				    <div class="f-yahei fw" style="color:#4a494a;font-size:35px;margin-top:15px;margin-bottom:5px;">市中心</div>
-				    <a href="#"><img src="images/index/02.png" style="width:230px;height:230px;"></a>
+				    <a href="/IndexSearch?center=城市中心"><img src="images/index/02.png" style="width:230px;height:230px;"></a>
 				    <div class="f-yahei" style="color:#888889;font-size:25px;margin-top:5px;">城市中心，稀缺房产资源</div>
-				    <div class="f-yahei cp fw" style="color:#1763ac;font-size:30px;"><a href="#">去找房</a></div>
+				    <div class="f-yahei cp fw" style="color:#1763ac;font-size:30px;"><a href="/IndexSearch?center=城市中心">去找房</a></div>
 				</div>
 			</div>
 	</div>
