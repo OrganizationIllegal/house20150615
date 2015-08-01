@@ -4,8 +4,8 @@
 .main_nav{display:block;width:80px;height:40px;line-height:40px;margin-top:15px;text-align:center;color:#666;}
 .main_nav:hover{color:rgb(63,129,215)}
 .main_nav_sel{color:rgb(63,129,215)}
-.nav_icon1{display:block;background-image:url(../res/images/nav_icon.jpg);width:50px;height:50px;margin-top:10px;}
-.nav_icon2{display:block;background-image:url(../res/images/nav_icon.jpg);width:50px;height:50px;background-position:-50px 0px;margin-top:10px;}
+.nav_icon1{display:block;background-image:url(../images/nav_icon2.png);width:50px;height:50px;margin-top:10px;}
+.nav_icon2{display:block;background-image:url(../images/nav_icon1.png);width:50px;height:50px;background-position:-50px 0px;margin-top:10px;}
 .main_phone{display:block;height:50px;line-height:50px;margin-top:10px;color:#999;}
 .main_login{display:block;height:50px;line-height:50px;margin-top:10px;color:rgb(63,129,215)}
 .main_sep{display:block;height:50px;line-height:50px;margin-top:10px;color:rgb(63,129,215);margin-left:2px;margin-right:2px;}
