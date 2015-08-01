@@ -532,7 +532,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		
 		 <!-- *************************************** main_bkg6 ************************************************** -->
-		 <div class="main_bkg6" style="-background:#ECEAEB url(../pic/indexbg7.png) repeat-x 0 -666px;">
+		 <div class="main_bkg6" style="-background:#ECEAEB url(../pic/indexbg7.png) repeat-x 0 -666px;padding-bottom:15px;">
 			<div style="width:1190px; margin:0 auto; background:#ECEAEB url(../pic/indexbg7.png) repeat-x 0 -666px;">
 			<div class="main_bkg6_div">
 			<c:if test="${!empty projectList }">
