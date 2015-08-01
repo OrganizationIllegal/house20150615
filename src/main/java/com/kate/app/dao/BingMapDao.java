@@ -935,6 +935,11 @@ public class BingMapDao extends BaseDao {
 		    	coordinates.setGps(rs.getString("gps"));
 		    	coordinates.setProject_name(rs.getString("project_name"));
 		    	coordinates.setProject_img(rs.getString("project_img"));
+		    	
+		    	
+		    	
+		    	
+		    	
 		    	coordinates.setProject_price(rs.getString("project_price"));
 		    	String project_num = rs.getString("project_num");
 		    	
