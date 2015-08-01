@@ -508,7 +508,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="f-l f-yahei" style="width:396px;height:375px;text-align:center;">
 				    <div class="f-yahei fw" style="color:#4a494a;font-size:35px;margin-top:15px;margin-bottom:5px;">市中心</div>
-				    <a href="/IndexSearch?center=城市中心"><img src="images/index/02.png" style="width:230px;height:230px;"></a>
+				    <a href="/IndexSearch?center=城市中心"><img src="images/index/03.png" style="width:230px;height:230px;"></a>
 				    <div class="f-yahei" style="color:#888889;font-size:25px;margin-top:5px;">城市中心，稀缺房产资源</div>
 				    <div class="f-yahei cp fw" style="color:#1763ac;font-size:30px;"><a href="/IndexSearch?center=城市中心">去找房</a></div>
 				</div>

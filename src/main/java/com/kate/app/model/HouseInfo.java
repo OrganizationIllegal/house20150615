@@ -21,6 +21,13 @@ public class HouseInfo {
 	private String jianzhu_area;
 	private String house_size_out;
 	private String project_num;
+	private String update_time;
+	public String getUpdate_time() {
+		return update_time;
+	}
+	public void setUpdate_time(String update_time) {
+		this.update_time = update_time;
+	}
 	public int getId() {
 		return id;
 	}
