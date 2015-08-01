@@ -632,7 +632,7 @@ var e=$('#input2').val();
 				<!-- <img class="f-r p_adv" src="images/ad1.png"></img> -->
 
 				<!-- <img class="f-r p_adv" src="images/index/proinfo.png"></img> -->
-				<img class="f-r p_adv" src="<%=application.getInitParameter("imagedir")%>/${ad1}"></img>
+				<img style="height:340px;" class="f-r p_adv" src="<%=application.getInitParameter("imagedir")%>/${ad1}"></img>
 				
 
 			</div>
@@ -703,7 +703,7 @@ var e=$('#input2').val();
 				</c:forEach>
 				<div class="c-fix f-r btn_full cp" onclick="pop2()"></div>
 				<div class="f-r btn_price cp" onclick="pop1()"></div>
-				<a class="c-fix f-r p_update f-yahei">最近更新时间:${fn:substring(timeResule,0,10)}</a>
+				<a class="c-fix f-r p_update f-yahei">最近更新时间:${fn:substring(updateTime,0,10)}</a>
 			</div>
 		</div>
 		</c:if>
@@ -800,7 +800,7 @@ var e=$('#input2').val();
 			<div class="c-fix p_panel_4">
 				<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:930px;">学校和周边</a>
 				<div class="c-fix" style="background-image:url('images/proindex/schoolbac.png');height:225px;width:960px;margin:0 auto;border-bottom: 1px solid rgb(238,238,238);">
-				<div style="position:relative;left:260px;top:50px;height:70px;width:70px;font-size:40px;color:#004169;">${HouseProject.walk_num }</div>
+				<div style="position:relative;left:248px;top:50px;height:70px;width:70px;font-size:40px;color:#004169;text-align:center;">${HouseProject.walk_num }</div>
 				</div>
 				<%-- <div class="c-fix f-l p_left">
 					<img src="images/walk_score.jpg" class="c-fix f-l icon_walk"></img>
