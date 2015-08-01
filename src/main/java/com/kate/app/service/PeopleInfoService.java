@@ -33,11 +33,11 @@ public class PeopleInfoService {
 			}
 			if(c2.contains("0.")){
 				float f2=Float.parseFloat(c3)*100;
-				list.get(i).setColumn2("%"+df1.format(f2));
+				list.get(i).setColumn2(df1.format(f2)+"%");
 			}
 			if(c3.contains("0.")){
 				float f3=Float.parseFloat(c3)*100;
-				list.get(i).setColumn3("%"+df1.format(f3));
+				list.get(i).setColumn3(df1.format(f3)+"%");
 			}
 		}
 		return list;
