@@ -1176,22 +1176,31 @@ var e=$('#input2').val();
 				</div>
 						</div>
 				<c:if test="${!empty dulirateVo && !empty youngfamilyVo && !empty oldfamilyVo}">
-				<div class="c-fix bkg3" style="margin:0 auto;height:265px;width:990px;position:relative;">
+				<div class="c-fix bkg3" style="margin:0 auto;height:310px;width:990px;position:relative;">
 				<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:950px;margin-bottom:10px;">${area_name} 区域家庭情况构成</a>
-				<div class="c-fix f-l p_family" style="margin-left:72px;-margin-top:20px;height:184px">
-					<a class="c-fix f-l family_lab f-yahei s-14 fw">${dulirateVo}</a>
+				<div class="c-fix f-l p_family" style="margin-left:46px;-margin-top:20px;height:187px">
+					<a class="c-fix f-l family_lab f-yahei s-14 fw" style="margin-left: 151px;    margin-top: 102px;">${dulirateVo}</a>
 				</div>
-				<div class=" f-l p_family2" style="margin-left:144px;-margin-top:20px;height:184px">
-					<a class="c-fix f-l family_lab f-yahei s-14 fw">${youngfamilyVo}</a>
+				<div class=" f-l p_family2" style="margin-left:84px;-margin-top:20px;height:187px">
+					<a class="c-fix f-l family_lab f-yahei s-14 fw" style="margin-top: 0px;margin-left: 145px;">${youngfamilyVo}</a>
 				</div>
-				<div class="f-l  p_family3" style="margin-left:144px;-margin-top:20px;height:184px">
-					<a class="c-fix f-l family_lab f-yahei s-14 fw">${oldfamilyVo}</a>
+				<div class="f-l  p_family3" style="margin-left:84px;-margin-top:20px;height:187px">
+					<a class="c-fix f-l family_lab f-yahei s-14 fw" style="margin-left: 148px;    margin-top: 102px;">${oldfamilyVo}</a>
 				</div>
-				<div class="c-" style="margin-right:20px;float:rgiht;height:20px">
+				<div style="position:absolute; width:100%;height:242px;" id="zonefamily_pie">
+					<div id="zonefamily_pie1" style="width:33%;height:100%;float: left;display: block;"></div>
+					<div id="zonefamily_pie2" style="width:33%;height:100%;float: left;display: block;"></div>
+					<div id="zonefamily_pie3" style="width:33%;height:100%;float: left;display: block;"></div>
+				</div>
+				<div class="c-fix" style="margin-right:20px;float:rgiht;height:40px">
+					<span class="c-fix f-yahei s-19 fw f-l" style="padding-left: 105px;font-size:17px;    margin-top: 8px;">独立青年</span>
+					<span class=" f-yahei s-19 fw f-l" style="padding-left: 261px;font-size:17px;    margin-top: 8px;">青年家庭</span>
+					<span class=" f-yahei s-19 fw f-l" style="padding-left: 253px;font-size:17px;    margin-top: 8px;">老年家庭</span>
+				</div>
+				<div class="c-fix" style="margin-right:20px;float:rgiht;height:20px">
 					<span class="c-fix f-yahei s-12 fw f-r">数据来源：${family_datasource }&nbsp;&nbsp; 更新日期：${fn:substring(family_date,0,10)}</span>
 				</div>
-				<div style="position:absolute; width:100%;height:233px" id="zonefamily_pie">
-				</div>
+				
 				</div> 
 				</c:if>
 			<!-- </div>
@@ -1880,7 +1889,8 @@ function popmodal(){
  </c:if>
  <script src="/js/cost.js" charset="utf-8"></script>
  <script src="/js/news.js"></script>
-  <script src="/js/familyStatus.js"></script>
+ <!--  <script src="/js/familyStatus.js"></script> -->
+<script src="/js/family731.js"></script>
  <script type="text/javascript">
  	$(function () {
   		$('[data-toggle="popover"]').popover()
