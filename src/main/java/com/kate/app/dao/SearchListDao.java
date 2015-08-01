@@ -18,6 +18,7 @@ import org.springframework.stereotype.Repository;
 import com.kate.app.model.BrokerInfoQuyu;
 import com.kate.app.model.HouseProject;
 import com.kate.app.model.LeiXing;
+import com.kate.app.model.ProjectDescImage;
 import com.kate.app.model.ProjectKey;
 import com.kate.app.model.SearchList;
 
@@ -940,7 +941,7 @@ public class SearchListDao extends BaseDao {
 		PreparedStatement pstmt = null;
 		List<HouseProject> houseProjectList=new ArrayList<HouseProject>();
 		try {
-			String sql = "select *,i.image_name from house_project t join project_desc_image i on t.project_num=i.project_num where t.isSeen=1 and i.view_shunxu=1 and t.project_name like '%" +city1+ "%' or t.project_city like '%" +city1+ "%'";
+			String sql = "select * from house_project where isSeen=1 and project_name like '%" +city1+ "%' or project_city like '%" +city1+ "%'";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
 		    while(rs.next()){
@@ -955,7 +956,7 @@ public class SearchListDao extends BaseDao {
 				projectInfo.setProject_name_short(project_name_short);
 				
 				
-				projectInfo.setProject_img(rs.getString("image_name"));
+				//projectInfo.setProject_img(rs.getString("image_name"));
 				projectInfo.setProject_logo(rs.getString("project_logo"));
 				projectInfo.setProject_nation(rs.getString("project_nation"));
 				
@@ -966,7 +967,20 @@ public class SearchListDao extends BaseDao {
 		    	}		
 		    	projectInfo.setProject_address(project_address);
 		    	projectInfo.setProject_address_short(project_addresse_short);
+		    	projectInfo.setProject_num(rs.getString("project_num"));
+		    	String project_num = rs.getString("project_num");
+		    	String project_img = "";
+		    	if(project_num!=null && !"".equals(project_num)){
+		    		List<ProjectDescImage> imageList = HouseProjectImageList(project_num);
+					if(imageList!=null && imageList.size()>0){
+						project_img = imageList.get(0).getName();
+					}
+					else{
+						project_img = "";
+					}
+		    	}
 		    	
+		    	projectInfo.setProject_img(project_img);
 		    	
 				projectInfo.setProject_area(rs.getString("project_area"));
 				//projectInfo.setProject_price_qi(rs.getString("project_price_qi"));
@@ -991,7 +1005,7 @@ public class SearchListDao extends BaseDao {
 				projectInfo.setProject_price(rs.getString("project_price"));
 				projectInfo.setProject_lan_cn(rs.getString("project_lan_cn"));
 				projectInfo.setProject_lan_en(rs.getString("project_lan_en"));
-				projectInfo.setProject_num(rs.getString("project_num"));
+				
 				projectInfo.setProject_vedio(rs.getString("project_vedio"));
 				projectInfo.setProject_zhou(rs.getString("project_zhou"));
 				projectInfo.setArea_qujian(rs.getString("area_qujian"));
@@ -1098,14 +1112,15 @@ public class SearchListDao extends BaseDao {
 	
 	
 	
-	public List<HouseProject> indexSericeList(String city, String type, String minimumprice, String maximumprice, String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue,String center,String traffic,String xianfang,String maidi){
-		NumberFormat df = new DecimalFormat("#,###,###");
+	public List<HouseProject> indexSericeList(String city, String type, String minimumprice, String maximumprice, String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue,String center,String traffic,String xianfang,String maidi){		NumberFormat df = new DecimalFormat("#,###,###");
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<HouseProject> houseProjectList=new ArrayList<HouseProject>();
 		try {
-			String sql = "sselect *,i.image_name from house_project t join project_desc_image i on t.project_num=i.project_num  where t.isSeen=1";
+			/*String sql = "select *,i.image_name from house_project t join project_desc_image i on t.project_num=i.project_num  where t.isSeen=1";
+			String sql1 = "select project_num from project_key where ";*/
+			String sql = "select * from house_project where isSeen=1 ";
 			String sql1 = "select project_num from project_key where ";
 			int i=0;
 			int j=0;
@@ -1257,7 +1272,7 @@ public class SearchListDao extends BaseDao {
 					}
 				}
 				if(j==0){
-					sql = "select *,i.image_name from house_project t join project_desc_image i on t.project_num=i.project_num  where t.isSeen=1 and t.project_num in (" +sql1+ ")";
+					sql = "select * from house_project where isSeen=1 and project_num in (" +sql1+ ")";
 				}
 				stmt = con.createStatement();
 				rs = stmt.executeQuery(sql);
@@ -1275,7 +1290,7 @@ public class SearchListDao extends BaseDao {
 				projectInfo.setProject_name_short(project_name_short);
 				
 				
-				projectInfo.setProject_img(rs.getString("image_name"));
+				//projectInfo.setProject_img(rs.getString("image_name"));
 				projectInfo.setProject_logo(rs.getString("project_logo"));
 				projectInfo.setProject_nation(rs.getString("project_nation"));
 				
@@ -1289,7 +1304,24 @@ public class SearchListDao extends BaseDao {
 		    	projectInfo.setBijiao(rs.getString("project_price_int_qi"));   // 比较
 		    	
 				projectInfo.setProject_area(rs.getString("project_area"));
-			
+				projectInfo.setProject_num(rs.getString("project_num"));
+
+				String project_num = rs.getString("project_num");
+		    	String project_img = "";
+		    	if(project_num!=null && !"".equals(project_num)){
+		    		List<ProjectDescImage> imageList = HouseProjectImageList(project_num);
+					if(imageList!=null && imageList.size()>0){
+						project_img = imageList.get(0).getName();
+					}
+					else{
+						project_img = "";
+					}
+		    	}
+		    	
+		    	projectInfo.setProject_img(project_img);
+				
+				
+				
 				
 				 if(rs.getString("project_price_int_qi")!=null){
 					 projectInfo.setProject_price_qi(df.format(Integer.parseInt(rs.getString("project_price_int_qi"))));
@@ -1310,7 +1342,7 @@ public class SearchListDao extends BaseDao {
 				projectInfo.setProject_price(rs.getString("project_price"));
 				projectInfo.setProject_lan_cn(rs.getString("project_lan_cn"));
 				projectInfo.setProject_lan_en(rs.getString("project_lan_en"));
-				projectInfo.setProject_num(rs.getString("project_num"));
+				
 				projectInfo.setProject_vedio(rs.getString("project_vedio"));
 				projectInfo.setProject_zhou(rs.getString("project_zhou"));
 				projectInfo.setArea_qujian(rs.getString("area_qujian"));
@@ -1648,6 +1680,54 @@ public class SearchListDao extends BaseDao {
 		return projectKey;
 	} 
 
+	public List<ProjectDescImage> HouseProjectImageList(String pro_num){
+		DecimalFormat df = new DecimalFormat("#,###,###");
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
+		List<ProjectDescImage> imageList = new ArrayList<ProjectDescImage>();
+		
+		try{
+			String sql = "select * from project_desc_image where project_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pro_num);
+			  rs = pstmt.executeQuery();
+			while(rs.next()){
+				ProjectDescImage image = new ProjectDescImage();
+				image.setName(rs.getString("image_name"));
+				imageList.add(image);
+			}
+			
+		}catch (Exception e) {
+			 e.printStackTrace();
+        }
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return imageList;
+	}
 	
 	
 }
