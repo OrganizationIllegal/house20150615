@@ -70,7 +70,12 @@ public class SearchListController {
 		int zongjiamax=Integer.parseInt(zongjiaarray[1]);
 		int danjiamin=Integer.parseInt(danjiaarray[0]);
 		int danjiamax=Integer.parseInt(danjiaarray[1]);
-		String woshi=req.getParameter("woshi");
+		
+		String woshitemp=req.getParameter("woshi");
+		String[] woshiarray=woshitemp.split(";");
+		int woshimin=Integer.parseInt(woshiarray[0]);
+		int woshimax=Integer.parseInt(woshiarray[1]);
+		
 		
 		String xinaipan=req.getParameter("xinaipan");
 		String remen=req.getParameter("remen");
@@ -89,7 +94,7 @@ public class SearchListController {
 		String pageSize_str  = req.getParameter("pageSize");  //姣忛〉閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓锟�
 		int pageSize  = pageSize_str==null? 0 :Integer.parseInt(pageSize_str);
 		
-		List<SearchList> searchList=searchListDao.filterSearchList(projecttype, zongjiamin, zongjiamax,danjiamin,danjiamax,xinaipan,remen,youxiu,center,baozu,huaren,zuixin,daxue,xianfang,traffic);
+		List<SearchList> searchList=searchListDao.filterSearchList(projecttype, zongjiamin, zongjiamax,danjiamin,danjiamax,xinaipan,remen,youxiu,center,baozu,huaren,zuixin,daxue,xianfang,traffic,woshimin,woshimax);
 		int total = searchList.size();
 		int pageEnd = pageNum * pageSize;
 		int end = pageEnd < total ? pageEnd : total;

@@ -218,6 +218,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    			 type: "double",
    			 min: 0,
     		 max: 6,
+    		 step: 1
    			 //grid: true
 		});
         var pageIndex = 0;     //页面索引初始值   
@@ -269,6 +270,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  						 
  						var zongjia=$("#zongjia").val();
  						 var danjia=$("#danjia").val();
+ 						 var woshi=$("#woshi").val();
+ 						 alert(woshi);
  						 var keylist=document.getElementsByName('key');
  						 for(var i=0;i<keylist.length;i++){
  						 	if(keylist[i].checked==true){
@@ -315,7 +318,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						                        type: "POST",  
 						                        async: false,
 						                        dataType: "json",  
-						                        url: '/FilterList?projecttype='+projecttype+'&zongjia='+zongjia+"&danjia="+danjia+'&xinaipan='+xinaipan+'&remen='+remen+'&youxiu='+youxiu+'&center='+center+'&baozu='+baozu+'&huaren='+huaren+'&zuixin='+zuixin+'&daxue='+daxue+'&xianfang='+xianfang+'&traffic='+traffic,      //提交到一般处理程序请求数据   
+						                        url: '/FilterList?projecttype='+projecttype+'&zongjia='+zongjia+"&danjia="+danjia+'&xinaipan='+xinaipan+'&remen='+remen+'&youxiu='+youxiu+'&center='+center+'&baozu='+baozu+'&huaren='+huaren+'&zuixin='+zuixin+'&daxue='+daxue+'&xianfang='+xianfang+'&traffic='+traffic+'&woshi='+woshi,      //提交到一般处理程序请求数据   
 						                        data: { pageIndex : pageIndex2, pageSize : 10},
 						                        success: function(data) {
 						                        count = data.total;

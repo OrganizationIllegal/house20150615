@@ -148,15 +148,16 @@ public class SearchListDao extends BaseDao {
 		return searchInfoList;
 	} 
 	//鎸夋潯浠惰繃婊�
-	public List<SearchList> filterSearchList(String projecttype,int zongjiamin,int zongjiamax,int danjiamin,int danjiamax,String xinaipan1,String remen1,String youxiu1,String center1,String baozu1,String huaren1,String zuixin1,String daxue1,String xianfang1,String traffic1){
+	public List<SearchList> filterSearchList(String projecttype,int zongjiamin,int zongjiamax,int danjiamin,int danjiamax,String xinaipan1,String remen1,String youxiu1,String center1,String baozu1,String huaren1,String zuixin1,String daxue1,String xianfang1,String traffic1,int woshimin,int woshimax){
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
+		//找出項目编号所对应的户型及价格中卧室数量的最大值和最小值
 		List<SearchList> searchInfoList=new ArrayList<SearchList>();
 		try {
-			String sql = "select t.id,t.gps,t.project_nation,t.project_area,t.project_type,t.project_city,t.project_price,t.project_zhou,t.project_num,t.project_desc,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi,i.image_name from house_project t left join project_key p on t.project_num=p.project_num join project_desc_image i on i.project_num=t.project_num where i.view_shunxu=1";
+			String sql = "select t.id,t.gps,t.project_nation,t.project_area,t.project_type,t.project_city,t.project_price,t.project_zhou,t.project_num,t.project_desc,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi,i.image_name from house_project t left join project_key p on t.project_num=p.project_num join project_desc_image i on i.project_num=t.project_num join house_info h on h.project_num=t.project_num where i.view_shunxu=1 and";
 			if(projecttype!=null && !"".equals(projecttype)){
-				sql+=" t.project_type like ";
+				sql+=" and t.project_type like ";
 				sql+=" '"+projecttype+"'";
 				sql+=" and ABS(`project_high_price`)<"+zongjiamax;
 			}
@@ -166,6 +167,9 @@ public class SearchListDao extends BaseDao {
 			sql+=" and ABS(`project_min_price`)>"+zongjiamin;
 			sql+=" and project_price_int_qi >"+danjiamin;
 			sql+=" and project_price_int_qi <"+danjiamax;
+			sql+=" and project_price_int_qi >"+danjiamin;
+			
+			
 			if(xinaipan1.equals("1")){
 				sql+=" and p.xinkaipan='1'";//閫変腑
 			}
@@ -196,7 +200,9 @@ public class SearchListDao extends BaseDao {
 			if(traffic1.equals("1")){
 				sql+=" and p.traffic='1'";//閫変腑
 			}
-			
+			sql+=" GROUP BY h.project_num";
+			sql+=" HAVING (MIN(h.house_room_num) >"+woshimin;
+			sql+=" and MAX(h.house_room_num) <"+woshimax+")";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
 		    int id=0;
@@ -316,6 +322,94 @@ public class SearchListDao extends BaseDao {
 		return searchInfoList;
 		
 	}
+	//	//找出項目编号所对应的户型及价格中卧室数量的最大值和最小值
+	public int findMaxNumByPro(String project_num){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+        int max=0;
+		try {
+			String sql = "select MAX(t.house_room_num) as max  from house_info t where t.project_num='"+project_num+"'";
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
+		    
+		    while(rs.next()){
+		    	max=rs.getInt("max");
+		    } 
+		  
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return max;
+	} 
+//	//找出項目编号所对应的户型及价格中卧室数量的最小值
+	public int findMinNumByPro(String project_num){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+        int min=0;
+		try {
+			String sql = "select MIN(t.house_room_num) as min  from house_info t where t.project_num='"+project_num+"'";
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
+		    
+		    while(rs.next()){
+		    	min=rs.getInt("min");
+		    } 
+		  
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return min;
+	} 
 	//鎸夋帹鑽愬害鎺掑簭
 	public List<SearchList> OrderlistSearchList(){
 		Statement stmt = null;
@@ -505,7 +599,7 @@ public class SearchListDao extends BaseDao {
 		PreparedStatement pstmt = null;
 		SearchList  searchList=new SearchList();
 		try {
-			String sql = "select t.id,t.project_area,t.project_type,t.project_lan_cn,t.project_desc,t.project_num,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi,i.image_name from house_project t left join project_key p on t.project_num=p.project_num where i.view_shunxu=1t.project_num='"+ProNum+"'";
+			String sql = "select t.id,t.project_area,t.project_type,t.project_lan_cn,t.project_desc,t.project_num,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi,i.image_name from house_project t left join project_key p on t.project_num=p.project_num join project_desc_image i on t.project_num=i.project_num where i.view_shunxu=1 and t.project_num='"+ProNum+"'";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
 		    int id=0;
