@@ -115,9 +115,9 @@
 .p_header3{display:block;height:65px;padding-left:20px;padding-right:20px;width:100%;background-color:rgb(169,193,217);color:#333;line-height:50px;margin-top:20px;}
 .p_tab2{display:block;width:710px;min-height:20px;}
 .p_tab2 table{margin-bottom:0px !important;}
-.p_family{display:block;width:186px;height:184px;background-image:url(../images/icon_family.jpg)}
-.p_family2{display:block;width:186px;height:184px;background-image:url(../images/icon_family.jpg);background-position:-186px 0px}
-.p_family3{display:block;width:186px;height:184px;background-image:url(../images/icon_family.jpg);background-position:-372px 0px}
+.p_family{display:block;width:246px;height:187px;background-image:url(../pic/family3.png)}
+.p_family2{display:block;width:240px;height:187px;background-image:url(../pic/family5.png);}
+.p_family3{display:block;width:242px;height:187px;background-image:url(../pic/family7.png);}
 .family_lab{display:block;width:186px;margin-top:140px;text-align:center;color:#333;}
 .p_panel_5{display:block;width:100%;min-height:20px;padding-top:10px;padding-bottom:10px;}
 .p_inner{display:block;width:990px;min-height:20px;position:relative;-left:50%;-margin-left:-495px;background-color:rgb(169,193,217);margin:0 auto;}
