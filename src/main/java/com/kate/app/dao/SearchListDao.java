@@ -382,19 +382,19 @@ public class SearchListDao extends BaseDao {
 		    	project_logo=rs.getString("project_logo");
 		    	developer_id_name=rs.getString("developer_id_name");
 		    	project_desc=rs.getString("project_desc");
-		    	gps = rs.getString("gps");
-		    	project_nation = rs.getString("project_nation");
-		    	project_city = rs.getString("project_city");
+		    	/*gps = rs.getString("gps");*/
+		    	/*project_nation = rs.getString("project_nation");*/
+		    /*	project_city = rs.getString("project_city");
 		    	project_price = rs.getString("project_price");
-		    	project_zhou = rs.getString("project_zhou");
+		    	project_zhou = rs.getString("project_zhou");*/
 		    	xinkaipan=rs.getString("xinkaipan");
 		    	huaren=rs.getString("huaren");
 		    	remen=rs.getString("remen");
 		    	xuequ=rs.getString("xuequ");
 		    	baozu=rs.getString("baozu");
 		    	daxue=rs.getString("daxue");
-		    	project_area=rs.getString("project_area");
-		    	project_type=rs.getString("project_type");
+		    	/*project_area=rs.getString("project_area");
+		    	project_type=rs.getString("project_type");*/
 		    	
 		    	center=rs.getString("center");
 		    	traffic=rs.getString("traffic");
@@ -1109,720 +1109,121 @@ public class SearchListDao extends BaseDao {
 			int i=0;
 			int j=0;
 			if(xinkaipan!=null && !"".equals(xinkaipan)){
-				sql1+="xinkaipan like '%"+xinkaipan+"%'";
-				sql+= "and project_num in (" +sql1+ ") and ";
-				if(city!=null && !"".equals(city)){
-					sql+="project_city like '%"+city+"%'";
-					j=1;
-				}
-				if(type!=null && !"".equals(type)){
-					if(j==1){
-						sql+="and project_type like '%"+type+"%'";
-					}
-					else{
-						sql+="project_type like '%"+type+"%'";
-						j=1;
-					}
-				}
-				if(minimumprice!=null && !"".equals(minimumprice)){
-					if(j==1){
-						sql+="and project_min_price like '%"+minimumprice+"%'";
-					}
-					else{
-						sql+="project_min_price like '%"+minimumprice+"%'";
-						j=1;
-					}
-				}
-				if(maximumprice!=null && !"".equals(maximumprice)){
-					if(j==1){
-						sql+="and project_high_price like '%"+maximumprice+"%'";
-					}
-					else{
-						sql+="project_high_price like '%"+maximumprice+"%'";
-						j=1;
-					}
-				}
-				if(j==0){
-					sql+= "project_num in (" +sql1+ ")";
-				}
+				xinkaipan = "1";
+				sql1+="xinkaipan="+xinkaipan;
+				//sql+= "and project_num in (" +sql1+ ") ";
 				i=1;
 			}
 			if(huaren!=null &&!"".equals(huaren)){
+				huaren = "1";
 				if(i==1){
-					sql1+="and huaren like '%"+type+"%'";
-					
-					if(city!=null && !"".equals(city)){
-						sql+="project_city like '%"+city+"%'";
-						j=1;
-					}
-					if(type!=null && !"".equals(type)){
-						if(j==1){
-							sql+="and project_type like '%"+type+"%'";
-						}
-						else{
-							sql+="project_type like '%"+type+"%'";
-							j=1;
-						}
-					}
-					if(minimumprice!=null && !"".equals(minimumprice)){
-						if(j==1){
-							sql+="and project_min_price like '%"+minimumprice+"%'";
-						}
-						else{
-							sql+="project_min_price like '%"+minimumprice+"%'";
-							j=1;
-						}
-					}
-					if(maximumprice!=null && !"".equals(maximumprice)){
-						if(j==1){
-							sql+="and project_high_price like '%"+maximumprice+"%'";
-						}
-						else{
-							sql+="project_high_price like '%"+maximumprice+"%'";
-							j=1;
-						}
-					}
-					if(j==0){
-						sql+= "project_num in (" +sql1+ ")";
-					}
-					
+					sql1+=" and huaren="+huaren;
 				}
 				else{
-					sql1+="huaren like '%"+huaren+"%'";
-					if(city!=null && !"".equals(city)){
-						sql+="project_city like '%"+city+"%'";
-						j=1;
-					}
-					if(type!=null && !"".equals(type)){
-						if(j==1){
-							sql+="and project_type like '%"+type+"%'";
-						}
-						else{
-							sql+="project_type like '%"+type+"%'";
-							j=1;
-						}
-					}
-					if(minimumprice!=null && !"".equals(minimumprice)){
-						if(j==1){
-							sql+="and project_min_price like '%"+minimumprice+"%'";
-						}
-						else{
-							sql+="project_min_price like '%"+minimumprice+"%'";
-							j=1;
-						}
-					}
-					if(maximumprice!=null && !"".equals(maximumprice)){
-						if(j==1){
-							sql+="and project_high_price like '%"+maximumprice+"%'";
-						}
-						else{
-							sql+="project_high_price like '%"+maximumprice+"%'";
-							j=1;
-						}
-					}
-					if(j==0){
-						sql+= "project_num in (" +sql1+ ")";
-					}
+					sql1+=" huaren="+huaren;
 					i=1;
 				}
 			}
-			
 			if(remen!=null &&!"".equals(remen)){
+				remen = "1";
 				if(i==1){
-					sql1+="and remen like '%"+remen+"%'";
-					if(city!=null && !"".equals(city)){
-						sql+="project_city like '%"+city+"%'";
-						j=1;
-					}
-					if(type!=null && !"".equals(type)){
-						if(j==1){
-							sql+="and project_type like '%"+type+"%'";
-						}
-						else{
-							sql+="project_type like '%"+type+"%'";
-							j=1;
-						}
-					}
-					if(minimumprice!=null && !"".equals(minimumprice)){
-						if(j==1){
-							sql+="and project_min_price like '%"+minimumprice+"%'";
-						}
-						else{
-							sql+="project_min_price like '%"+minimumprice+"%'";
-							j=1;
-						}
-					}
-					if(maximumprice!=null && !"".equals(maximumprice)){
-						if(j==1){
-							sql+="and project_high_price like '%"+maximumprice+"%'";
-						}
-						else{
-							sql+="project_high_price like '%"+maximumprice+"%'";
-							j=1;
-						}
-					}
-				
+					sql1+=" and remen="+remen;
 				}
 				else{
-					sql1+="remen like '%"+remen+"%'";
-					if(city!=null && !"".equals(city)){
-						sql+="project_city like '%"+city+"%'";
-						j=1;
-					}
-					if(type!=null && !"".equals(type)){
-						if(j==1){
-							sql+="and project_type like '%"+type+"%'";
-						}
-						else{
-							sql+="project_type like '%"+type+"%'";
-							j=1;
-						}
-					}
-					if(minimumprice!=null && !"".equals(minimumprice)){
-						if(j==1){
-							sql+="and project_min_price like '%"+minimumprice+"%'";
-						}
-						else{
-							sql+="project_min_price like '%"+minimumprice+"%'";
-							j=1;
-						}
-					}
-					if(maximumprice!=null && !"".equals(maximumprice)){
-						if(j==1){
-							sql+="and project_high_price like '%"+maximumprice+"%'";
-						}
-						else{
-							sql+="project_high_price like '%"+maximumprice+"%'";
-							j=1;
-						}
-					}
-					if(j==0){
-						sql+= "project_num in (" +sql1+ ")";
-					}
+					sql1+=" remen="+remen;
 					i=1;
 				}
 			}
 			if(xuequ!=null &&!"".equals(xuequ)){
+				xuequ = "1";
 				if(i==1){
-					sql1+="and xuequ like '%"+xuequ+"%'";
-					if(city!=null && !"".equals(city)){
-						sql+="project_city like '%"+city+"%'";
-						j=1;
-					}
-					if(type!=null && !"".equals(type)){
-						if(j==1){
-							sql+="and project_type like '%"+type+"%'";
-						}
-						else{
-							sql+="project_type like '%"+type+"%'";
-							j=1;
-						}
-					}
-					if(minimumprice!=null && !"".equals(minimumprice)){
-						if(j==1){
-							sql+="and project_min_price like '%"+minimumprice+"%'";
-						}
-						else{
-							sql+="project_min_price like '%"+minimumprice+"%'";
-							j=1;
-						}
-					}
-					if(maximumprice!=null && !"".equals(maximumprice)){
-						if(j==1){
-							sql+="and project_high_price like '%"+maximumprice+"%'";
-						}
-						else{
-							sql+="project_high_price like '%"+maximumprice+"%'";
-							j=1;
-						}
-					}
+					sql1+=" and xuequ="+xuequ;
+					
 				}
 				else{
-					sql1+="xuequ like '%"+xuequ+"%'";
-					if(city!=null && !"".equals(city)){
-						sql+="project_city like '%"+city+"%'";
-						j=1;
-					}
-					if(type!=null && !"".equals(type)){
-						if(j==1){
-							sql+="and project_type like '%"+type+"%'";
-						}
-						else{
-							sql+="project_type like '%"+type+"%'";
-							j=1;
-						}
-					}
-					if(minimumprice!=null && !"".equals(minimumprice)){
-						if(j==1){
-							sql+="and project_min_price like '%"+minimumprice+"%'";
-						}
-						else{
-							sql+="project_min_price like '%"+minimumprice+"%'";
-							j=1;
-						}
-					}
-					if(maximumprice!=null && !"".equals(maximumprice)){
-						if(j==1){
-							sql+="and project_high_price like '%"+maximumprice+"%'";
-						}
-						else{
-							sql+="project_high_price like '%"+maximumprice+"%'";
-							j=1;
-						}
-					}
-					if(j==0){
-						sql+= "project_num in (" +sql1+ ")";
-					}
+					sql1+=" xuequ="+xuequ;
+					
 					i=1;
 				}
 			}
 			if(baozu!=null &&!"".equals(baozu)){
+				baozu = "1";
 				if(i==1){
-					sql+="and baozu like '%"+baozu+"%'";
-					if(city!=null && !"".equals(city)){
-						sql+="project_city like '%"+city+"%'";
-						j=1;
-					}
-					if(type!=null && !"".equals(type)){
-						if(j==1){
-							sql+="and project_type like '%"+type+"%'";
-						}
-						else{
-							sql+="project_type like '%"+type+"%'";
-							j=1;
-						}
-					}
-					if(minimumprice!=null && !"".equals(minimumprice)){
-						if(j==1){
-							sql+="and project_min_price like '%"+minimumprice+"%'";
-						}
-						else{
-							sql+="project_min_price like '%"+minimumprice+"%'";
-							j=1;
-						}
-					}
-					if(maximumprice!=null && !"".equals(maximumprice)){
-						if(j==1){
-							sql+="and project_high_price like '%"+maximumprice+"%'";
-						}
-						else{
-							sql+="project_high_price like '%"+maximumprice+"%'";
-							j=1;
-						}
-					}
+					sql1 +=" and baozu="+baozu;
+					
 				}
 				else{
-					sql1+="baozu like '%"+baozu+"%'";
-					if(city!=null && !"".equals(city)){
-						sql+="project_city like '%"+city+"%'";
-						j=1;
-					}
-					if(type!=null && !"".equals(type)){
-						if(j==1){
-							sql+="and project_type like '%"+type+"%'";
-						}
-						else{
-							sql+="project_type like '%"+type+"%'";
-							j=1;
-						}
-					}
-					if(minimumprice!=null && !"".equals(minimumprice)){
-						if(j==1){
-							sql+="and project_min_price like '%"+minimumprice+"%'";
-						}
-						else{
-							sql+="project_min_price like '%"+minimumprice+"%'";
-							j=1;
-						}
-					}
-					if(maximumprice!=null && !"".equals(maximumprice)){
-						if(j==1){
-							sql+="and project_high_price like '%"+maximumprice+"%'";
-						}
-						else{
-							sql+="project_high_price like '%"+maximumprice+"%'";
-							j=1;
-						}
-					}
-					if(j==0){
-						sql+= "project_num in (" +sql1+ ")";
-					}
+					sql1+=" baozu="+baozu;
+					
 					i=1;
 				}
 			}
 			if(daxue!=null &&!"".equals(daxue)){
+				daxue = "1";
 				if(i==1){
-					sql1+="and daxue like '%"+daxue+"%'";
-					if(city!=null && !"".equals(city)){
-						sql+="project_city like '%"+city+"%'";
-						j=1;
-					}
-					if(type!=null && !"".equals(type)){
-						if(j==1){
-							sql+="and project_type like '%"+type+"%'";
-						}
-						else{
-							sql+="project_type like '%"+type+"%'";
-							j=1;
-						}
-					}
-					if(minimumprice!=null && !"".equals(minimumprice)){
-						if(j==1){
-							sql+="and project_min_price like '%"+minimumprice+"%'";
-						}
-						else{
-							sql+="project_min_price like '%"+minimumprice+"%'";
-							j=1;
-						}
-					}
-					if(maximumprice!=null && !"".equals(maximumprice)){
-						if(j==1){
-							sql+="and project_high_price like '%"+maximumprice+"%'";
-						}
-						else{
-							sql+="project_high_price like '%"+maximumprice+"%'";
-							j=1;
-						}
-					}
+					sql1+=" and daxue="+daxue;
+					
 				}
 				else{
-					sql1+="daxue like '%"+daxue+"%'";
-					if(city!=null && !"".equals(city)){
-						sql+="project_city like '%"+city+"%'";
-						j=1;
-					}
-					if(type!=null && !"".equals(type)){
-						if(j==1){
-							sql+="and project_type like '%"+type+"%'";
-						}
-						else{
-							sql+="project_type like '%"+type+"%'";
-							j=1;
-						}
-					}
-					if(minimumprice!=null && !"".equals(minimumprice)){
-						if(j==1){
-							sql+="and project_min_price like '%"+minimumprice+"%'";
-						}
-						else{
-							sql+="project_min_price like '%"+minimumprice+"%'";
-							j=1;
-						}
-					}
-					if(maximumprice!=null && !"".equals(maximumprice)){
-						if(j==1){
-							sql+="and project_high_price like '%"+maximumprice+"%'";
-						}
-						else{
-							sql+="project_high_price like '%"+maximumprice+"%'";
-							j=1;
-						}
-					}
-					if(j==0){
-						sql+= "project_num in (" +sql1+ ")";
-					}
+					sql1 += " daxue="+daxue;
+					
 					i=1;
 				}
 			}
 			if(center!=null &&!"".equals(center)){
+				center = "1";
 				if(i==1){
-					sql1+="and center like '%"+center+"%'";
-					if(city!=null && !"".equals(city)){
-						sql+="project_city like '%"+city+"%'";
-						j=1;
-					}
-					if(type!=null && !"".equals(type)){
-						if(j==1){
-							sql+="and project_type like '%"+type+"%'";
-						}
-						else{
-							sql+="project_type like '%"+type+"%'";
-							j=1;
-						}
-					}
-					if(minimumprice!=null && !"".equals(minimumprice)){
-						if(j==1){
-							sql+="and project_min_price like '%"+minimumprice+"%'";
-						}
-						else{
-							sql+="project_min_price like '%"+minimumprice+"%'";
-							j=1;
-						}
-					}
-					if(maximumprice!=null && !"".equals(maximumprice)){
-						if(j==1){
-							sql+="and project_high_price like '%"+maximumprice+"%'";
-						}
-						else{
-							sql+="project_high_price like '%"+maximumprice+"%'";
-							j=1;
-						}
-					}
+					sql1+=" and center="+center;
+					
 				}
 				else{
-					sql1+="center like '%"+center+"%'";
-					if(city!=null && !"".equals(city)){
-						sql+="project_city like '%"+city+"%'";
-						j=1;
-					}
-					if(type!=null && !"".equals(type)){
-						if(j==1){
-							sql+="and project_type like '%"+type+"%'";
-						}
-						else{
-							sql+="project_type like '%"+type+"%'";
-							j=1;
-						}
-					}
-					if(minimumprice!=null && !"".equals(minimumprice)){
-						if(j==1){
-							sql+="and project_min_price like '%"+minimumprice+"%'";
-						}
-						else{
-							sql+="project_min_price like '%"+minimumprice+"%'";
-							j=1;
-						}
-					}
-					if(maximumprice!=null && !"".equals(maximumprice)){
-						if(j==1){
-							sql+="and project_high_price like '%"+maximumprice+"%'";
-						}
-						else{
-							sql+="project_high_price like '%"+maximumprice+"%'";
-							j=1;
-						}
-					}
-					if(j==0){
-						sql+= "project_num in (" +sql1+ ")";
-					}
+					sql1 += " center="+center;
+					
 					i=1;
 				}
 			}
 			if(traffic!=null &&!"".equals(traffic)){
+				traffic = "1";
 				if(i==1){
-					sql1+="and traffic like '%"+traffic+"%'";
-					if(city!=null && !"".equals(city)){
-						sql+="project_city like '%"+city+"%'";
-						j=1;
-					}
-					if(type!=null && !"".equals(type)){
-						if(j==1){
-							sql+="and project_type like '%"+type+"%'";
-						}
-						else{
-							sql+="project_type like '%"+type+"%'";
-							j=1;
-						}
-					}
-					if(minimumprice!=null && !"".equals(minimumprice)){
-						if(j==1){
-							sql+="and project_min_price like '%"+minimumprice+"%'";
-						}
-						else{
-							sql+="project_min_price like '%"+minimumprice+"%'";
-							j=1;
-						}
-					}
-					if(maximumprice!=null && !"".equals(maximumprice)){
-						if(j==1){
-							sql+="and project_high_price like '%"+maximumprice+"%'";
-						}
-						else{
-							sql+="project_high_price like '%"+maximumprice+"%'";
-							j=1;
-						}
-					}
+					sql1+=" and traffic="+traffic;
+					
 				}
 				else{
-					sql1+="traffic like '%"+traffic+"%'";
-					if(city!=null && !"".equals(city)){
-						sql+="project_city like '%"+city+"%'";
-						j=1;
-					}
-					if(type!=null && !"".equals(type)){
-						if(j==1){
-							sql+="and project_type like '%"+type+"%'";
-						}
-						else{
-							sql+="project_type like '%"+type+"%'";
-							j=1;
-						}
-					}
-					if(minimumprice!=null && !"".equals(minimumprice)){
-						if(j==1){
-							sql+="and project_min_price like '%"+minimumprice+"%'";
-						}
-						else{
-							sql+="project_min_price like '%"+minimumprice+"%'";
-							j=1;
-						}
-					}
-					if(maximumprice!=null && !"".equals(maximumprice)){
-						if(j==1){
-							sql+="and project_high_price like '%"+maximumprice+"%'";
-						}
-						else{
-							sql+="project_high_price like '%"+maximumprice+"%'";
-							j=1;
-						}
-					}
-					if(j==0){
-						sql+= "project_num in (" +sql1+ ")";
-					}
+					sql1+=" traffic="+traffic;
+					
 					i=1;
 				}
 			}
 			if(xianfang!=null &&!"".equals(xianfang)){
+				xianfang = "1";
 				if(i==1){
-					sql1+="and xianfang like '%"+xianfang+"%'";
-					if(city!=null && !"".equals(city)){
-						sql+="project_city like '%"+city+"%'";
-						j=1;
-					}
-					if(type!=null && !"".equals(type)){
-						if(j==1){
-							sql+="and project_type like '%"+type+"%'";
-						}
-						else{
-							sql+="project_type like '%"+type+"%'";
-							j=1;
-						}
-					}
-					if(minimumprice!=null && !"".equals(minimumprice)){
-						if(j==1){
-							sql+="and project_min_price like '%"+minimumprice+"%'";
-						}
-						else{
-							sql+="project_min_price like '%"+minimumprice+"%'";
-							j=1;
-						}
-					}
-					if(maximumprice!=null && !"".equals(maximumprice)){
-						if(j==1){
-							sql+="and project_high_price like '%"+maximumprice+"%'";
-						}
-						else{
-							sql+="project_high_price like '%"+maximumprice+"%'";
-							j=1;
-						}
-					}
+					sql1+=" and xianfang="+xianfang;
+					
 				}
 				else{
-					sql1+="xianfang like '%"+xianfang+"%'";
-					if(city!=null && !"".equals(city)){
-						sql+="project_city like '%"+city+"%'";
-						j=1;
-					}
-					if(type!=null && !"".equals(type)){
-						if(j==1){
-							sql+="and project_type like '%"+type+"%'";
-						}
-						else{
-							sql+="project_type like '%"+type+"%'";
-							j=1;
-						}
-					}
-					if(minimumprice!=null && !"".equals(minimumprice)){
-						if(j==1){
-							sql+="and project_min_price like '%"+minimumprice+"%'";
-						}
-						else{
-							sql+="project_min_price like '%"+minimumprice+"%'";
-							j=1;
-						}
-					}
-					if(maximumprice!=null && !"".equals(maximumprice)){
-						if(j==1){
-							sql+="and project_high_price like '%"+maximumprice+"%'";
-						}
-						else{
-							sql+="project_high_price like '%"+maximumprice+"%'";
-							j=1;
-						}
-					}
-					if(j==0){
-						sql+= "project_num in (" +sql1+ ")";
-					}
+					sql1+=" xianfang="+xianfang;
+					
 					i=1;
 				}
 			}
 			if(maidi!=null &&!"".equals(maidi)){
+				maidi = "1";
 				if(i==1){
-					sql1+="and maidi like '%"+maidi+"%'";
-					if(city!=null && !"".equals(city)){
-						sql+="project_city like '%"+city+"%'";
-						j=1;
-					}
-					if(type!=null && !"".equals(type)){
-						if(j==1){
-							sql+="and project_type like '%"+type+"%'";
-						}
-						else{
-							sql+="project_type like '%"+type+"%'";
-							j=1;
-						}
-					}
-					if(minimumprice!=null && !"".equals(minimumprice)){
-						if(j==1){
-							sql+="and project_min_price like '%"+minimumprice+"%'";
-						}
-						else{
-							sql+="project_min_price like '%"+minimumprice+"%'";
-							j=1;
-						}
-					}
-					if(maximumprice!=null && !"".equals(maximumprice)){
-						if(j==1){
-							sql+="and project_high_price like '%"+maximumprice+"%'";
-						}
-						else{
-							sql+="project_high_price like '%"+maximumprice+"%'";
-							j=1;
-						}
-					}
+					sql1+=" and maidi="+maidi;
+					
 				}
 				else{
-					sql1+="maidi like '%"+maidi+"%'";
-					if(city!=null && !"".equals(city)){
-						sql+="project_city like '%"+city+"%'";
-						j=1;
-					}
-					if(type!=null && !"".equals(type)){
-						if(j==1){
-							sql+="and project_type like '%"+type+"%'";
-						}
-						else{
-							sql+="project_type like '%"+type+"%'";
-							j=1;
-						}
-					}
-					if(minimumprice!=null && !"".equals(minimumprice)){
-						if(j==1){
-							sql+="and project_min_price like '%"+minimumprice+"%'";
-						}
-						else{
-							sql+="project_min_price like '%"+minimumprice+"%'";
-							j=1;
-						}
-					}
-					if(maximumprice!=null && !"".equals(maximumprice)){
-						if(j==1){
-							sql+="and project_high_price like '%"+maximumprice+"%'";
-						}
-						else{
-							sql+="project_high_price like '%"+maximumprice+"%'";
-							j=1;
-						}
-					}
-					if(j==0){
-						sql+= "project_num in (" +sql1+ ")";
-					}
+					sql1+=" maidi="+maidi;
+					
 					i=1;
 				}
 			}
+			if(i==0){
+				sql1 = "select project_num from project_key";
+			}
 			
-			if(i == 0){
-				sql = "select * from house_project where isSeen=1 ";
+			sql+= "and project_num in (" +sql1+ ") ";
+
 				if(city!=null && !"".equals(city)){
 					sql+="and project_city like '%"+city+"%'";
 					j=1;
@@ -1855,12 +1256,12 @@ public class SearchListDao extends BaseDao {
 					}
 				}
 				if(j==0){
-					sql = "select * from house_project where isSeen=1";
+					sql = "select * from house_project where isSeen=1 and project_num in (" +sql1+ ")";
 				}
-			}
+				stmt = con.createStatement();
+				rs = stmt.executeQuery(sql);
 			
-			  stmt = con.createStatement();
-			  rs = stmt.executeQuery(sql);
+			  
 		    while(rs.next()){
 		    	HouseProject projectInfo = new HouseProject();
 		    	String project_name = rs.getString("project_name");

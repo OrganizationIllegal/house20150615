@@ -1437,7 +1437,7 @@ var e=$('#input2').val();
                data-dismiss="modal" aria-hidden="true">
                   &times;
             </button>
-            <div class="modal-title" id="title">
+            <div class="modal-title" id="titleHouse">
                
             </div>
          </div>
@@ -1797,6 +1797,7 @@ function pop(type,img){
 	 $('#registernewPro').modal('show');
  }
  else{
+	
 	 $('#title').empty();	
 	  $('#title').append("<h4>户型"+type+"</h4>");
 	  $('#image').attr("src",img);
@@ -1806,12 +1807,14 @@ function pop(type,img){
    
 }
 function pop6(type,img){
+	
 	if(kk==0){
 		 $('#registernewPro').modal('show');
 	}
 	else{
-		$('#title').empty();	
-		  $('#title').append("<h4>户型"+type+"</h4>");
+		  //alert($('#titleHouse').text())
+		  $('#titleHouse').empty();	
+		  $('#titleHouse').append("<h4>户型"+type+"</h4>");
 		  $('#image').attr("src",img);
 		  $('#housestyle').modal('show');
 	}

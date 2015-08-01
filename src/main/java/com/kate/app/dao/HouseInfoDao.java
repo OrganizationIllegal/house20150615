@@ -4,12 +4,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.kate.app.model.BrokerInfo;
 import com.kate.app.model.HouseInfo;
+import com.kate.app.model.HouseProject;
 @Repository 
 public class HouseInfoDao extends BaseDao{
 	public List<HouseInfo> HouseInfoDao(String proNum){
@@ -17,16 +20,19 @@ public class HouseInfoDao extends BaseDao{
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<HouseInfo> list=new ArrayList<HouseInfo>();
+		String item = HouseTypeByNumDao(proNum);
 		try{
 			String sql = " select * from house_info where project_num=? ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, proNum);
-			  rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			
 			while(rs.next()){
 				HouseInfo houseInfo = new HouseInfo();
 				//houseInfo.setHouse_type("house_type");
-				houseInfo.setHouse_type(rs.getString("house_type"));
+				if(item!=null && !"".equals(item)){
+					houseInfo.setHouse_type(item);
+				}
 				houseInfo.setHouse_name(rs.getString("house_name"));
 				houseInfo.setHouse_room_num(rs.getInt("house_room_num"));
 				houseInfo.setHouse_toilet_num(rs.getInt("house_toilet_num"));
@@ -68,5 +74,51 @@ public class HouseInfoDao extends BaseDao{
         }
 		return list;
 	}
+	public String HouseTypeByNumDao(String pro_num){
+		DecimalFormat df = new DecimalFormat("#,###,###");
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		String project_type = "";
+		try{
+			String sql = "select * from house_project where project_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pro_num);
+			  rs = pstmt.executeQuery();
+			while(rs.next()){
+				
+				project_type = rs.getString("project_type");
+				
 
+			}
+			
+		}catch (Exception e) {
+			 e.printStackTrace();
+        }
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return project_type;
+	}
 }

@@ -27,21 +27,21 @@ public class Index01Controller {
 	
 	@RequestMapping({"/","/index01" })
 	public String index01(HttpServletRequest req,HttpServletResponse resp){
-		List<Integer> list = index01Dao.getTuijian();
-		List<Integer> list2 = index01Dao.getTuijian2();
+		List<String> list = index01Dao.getTuijian();
+		List<String> list2 = index01Dao.getTuijian2();
 		List<NewsBoke> newsList = zhiYeDao.selectNewsBoke();
 		List<HouseProject> projectList = new ArrayList<HouseProject>();
 		List<HouseProject> projectList2 = new ArrayList<HouseProject>();
-		for(Integer i : list){
+		for(String i : list){
 			HouseProject pro = new HouseProject();
-			pro = houseProjectDao.HouseProjectDao(i);
+			pro = houseProjectDao.HouseProjectByNumDao(i);
 			if(pro!=null){
 				projectList.add(pro);
 			}
 		}
-		for(Integer j : list2){
+		for(String j : list2){
 			HouseProject pro2 = new HouseProject();
-			pro2 = houseProjectDao.HouseProjectDao(j);
+			pro2 = houseProjectDao.HouseProjectByNumDao(j);
 			if(pro2!=null){
 				projectList2.add(pro2);
 			}
