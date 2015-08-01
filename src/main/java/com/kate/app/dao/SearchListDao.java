@@ -979,7 +979,9 @@ public class SearchListDao extends BaseDao {
 			    	else{
 			    		projectInfo.setProject_price_qi("N/A");
 			    	}
-				
+				 String price = rs.getString("project_price_int_qi")==null?"0":rs.getString("project_price_int_qi").trim();
+				 
+					projectInfo.setBijiao(price);
 				projectInfo.setProject_type(rs.getString("project_type"));
 				projectInfo.setProject_sales_remain(rs.getInt("project_sales_remain"));
 				//projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));
@@ -1285,11 +1287,10 @@ public class SearchListDao extends BaseDao {
 		    	}		
 		    	projectInfo.setProject_address(project_address);
 		    	projectInfo.setProject_address_short(project_addresse_short);
-		    	
+		    	projectInfo.setBijiao(rs.getString("project_price_int_qi"));   // 比较
 		    	
 				projectInfo.setProject_area(rs.getString("project_area"));
-				//projectInfo.setProject_price_qi(rs.getString("project_price_qi"));
-				//projectInfo.setProject_price_int_qi(rs.getInt("project_price_int_qi"));
+			
 				
 				 if(rs.getString("project_price_int_qi")!=null){
 					 projectInfo.setProject_price_qi(df.format(Integer.parseInt(rs.getString("project_price_int_qi"))));
@@ -1297,7 +1298,9 @@ public class SearchListDao extends BaseDao {
 			    	else{
 			    		projectInfo.setProject_price_qi("N/A");
 			    	}
-				
+				 String price = rs.getString("project_price_int_qi")==null?"0":rs.getString("project_price_int_qi").trim();
+				 
+					projectInfo.setBijiao(price);
 				projectInfo.setProject_type(rs.getString("project_type"));
 				projectInfo.setProject_sales_remain(rs.getInt("project_sales_remain"));
 				//projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));
@@ -1385,7 +1388,6 @@ public class SearchListDao extends BaseDao {
 				projectInfo.setProject_name(project_name);
 				projectInfo.setProject_name_short(project_name_short);
 				
-				
 				projectInfo.setProject_img(rs.getString("project_img"));
 				projectInfo.setProject_logo(rs.getString("project_logo"));
 				projectInfo.setProject_nation(rs.getString("project_nation"));
@@ -1400,8 +1402,7 @@ public class SearchListDao extends BaseDao {
 		    	
 		    	
 				projectInfo.setProject_area(rs.getString("project_area"));
-				//projectInfo.setProject_price_qi(rs.getString("project_price_qi"));
-				//projectInfo.setProject_price_int_qi(rs.getInt("project_price_int_qi"));
+
 				
 				 if(rs.getString("project_price_int_qi")!=null){
 					 projectInfo.setProject_price_qi(df.format(Integer.parseInt(rs.getString("project_price_int_qi"))));
@@ -1409,6 +1410,10 @@ public class SearchListDao extends BaseDao {
 			    	else{
 			    		projectInfo.setProject_price_qi("N/A");
 			    	}
+				 
+				 String price = rs.getString("project_price_int_qi")==null?"0":rs.getString("project_price_int_qi").trim();
+				 
+				projectInfo.setBijiao(price);
 				
 				projectInfo.setProject_type(rs.getString("project_type"));
 				projectInfo.setProject_sales_remain(rs.getInt("project_sales_remain"));
@@ -1497,11 +1502,15 @@ public class SearchListDao extends BaseDao {
 		    			
 				projectInfo.setProject_name(project_name);
 				projectInfo.setProject_name_short(project_name_short);
-				
+				projectInfo.setBijiao(rs.getString("project_price_int_qi"));   // 比较
 				
 				projectInfo.setProject_img(rs.getString("project_img"));
 				projectInfo.setProject_logo(rs.getString("project_logo"));
 				projectInfo.setProject_nation(rs.getString("project_nation"));
+				
+				 String price = rs.getString("project_price_int_qi")==null?"0":rs.getString("project_price_int_qi").trim();
+				 
+					projectInfo.setBijiao(price);
 				
 				String project_address = rs.getString("project_address");
 				String project_addresse_short = "";

@@ -37,8 +37,12 @@ public class BingMapController {
 
 	
 	private static List<HouseProject>  seachListResult;
+	private static List<HouseProject>  seachListResultShengxu;
+	private static List<HouseProject>  seachListResultJiangxu;
 	
 	private static List<HouseProject> typeListResult;
+	private static List<HouseProject> typeListResultShengxu;
+	private static List<HouseProject> typeListResultJiangxu;
 	
 	private static List<HouseProject> listResult;
 	
@@ -239,146 +243,220 @@ public class BingMapController {
 		int order=Integer.parseInt(req.getParameter("order"));
 		List<BingMapVo> bingMapList = new ArrayList<BingMapVo>();
 		if(flagInfo==2){
-			for(HouseProject item : seachListResult){
-				DecimalFormat df = new DecimalFormat("#,###,###");
-				int id = item.getId();
-				String project_img = item.getProject_img();
-				String project_num = item.getProject_num();
-				String project_address_short = item.getProject_address();
-				
-			
-				if(project_address_short!=null && !"".equals(project_address_short)){
-					if(project_address_short.length()>40){
-						project_address_short = project_address_short.substring(0, 40);
-					}
-				}
-				String project_address = item.getProject_address()==null?"":item.getProject_address();
-				
-				
-				String project_name_short = item.getProject_name();
-				if(project_name_short!=null && !"".equals(project_name_short)){
-					if(project_name_short.length()>20){
-						project_name_short = project_name_short.substring(0, 20);
-					}
-				}
-				String project_name = item.getProject_name()==null?"":item.getProject_name();
-		
-				int project_sales_remain = item.getProject_sales_remain();
-				int maxarea = item.getMax_area();
-				int minarea = item.getMin_area();
-				String project_price = item.getProject_price();
-				String project_price_int_qi = item.getProject_price_int_qi_str();
-				String house_type = item.getProject_house_type();
-				String tempPrice = item.getProject_min_price();
-				String project_min_price = item.getProject_min_price();
-				String project_high_price = item.getProject_high_price();
-				String mianji = item.getMianji();
-				String return_money = item.getReturn_money();
-				
-				String project_key = "";
-				if(project_num!=null && !"".equals(project_num)){
-					project_key =bingMapDao.findProjectKeyByNum(project_num);
-				}
-				BingMapVo  bingMapVo=new BingMapVo(id,project_name,project_img,project_num,project_address, project_name_short, project_price,minarea, maxarea, project_sales_remain, project_price_int_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key,project_address_short);
-				bingMapList.add(bingMapVo);
-				
-			}
-			
-			if(order==1){
-				Collections.sort(bingMapList,new Comparator<BingMapVo>(){  
-		            public int compare(BingMapVo arg0, BingMapVo arg1) { 
-		            	String a = String.valueOf(arg0.getProject_price_int_qi());
-		            	String b = String.valueOf(arg1.getProject_price_int_qi());
-		                return a.compareTo(b);  
-		            }  
-		        });  
-				
+			if(seachListResultShengxu==null || seachListResultShengxu.size()<=0){
+				req.setAttribute("bingMapList", null);
 			}
 			else{
-				Collections.sort(bingMapList,Collections.reverseOrder(new Comparator<BingMapVo>(){  
-		            public int compare(BingMapVo arg0, BingMapVo arg1) { 
-		            	String a = String.valueOf(arg0.getProject_price_int_qi());
-		            	String b = String.valueOf(arg1.getProject_price_int_qi());
-		                return a.compareTo(b);  
-		            }  
-		        }));
+				if(order==1){
+					for(HouseProject item : seachListResultShengxu){
+						DecimalFormat df = new DecimalFormat("#,###,###");
+						int id = item.getId();
+						String project_img = item.getProject_img();
+						String project_num = item.getProject_num();
+						String project_address_short = item.getProject_address();
+						
+					
+						if(project_address_short!=null && !"".equals(project_address_short)){
+							if(project_address_short.length()>40){
+								project_address_short = project_address_short.substring(0, 40);
+							}
+						}
+						String project_address = item.getProject_address()==null?"":item.getProject_address();
+						
+						
+						String project_name_short = item.getProject_name();
+						if(project_name_short!=null && !"".equals(project_name_short)){
+							if(project_name_short.length()>20){
+								project_name_short = project_name_short.substring(0, 20);
+							}
+						}
+						String project_name = item.getProject_name()==null?"":item.getProject_name();
+				
+						int project_sales_remain = item.getProject_sales_remain();
+						int maxarea = item.getMax_area();
+						int minarea = item.getMin_area();
+						String project_price = item.getProject_price();
+						String project_price_int_qi = item.getProject_price_int_qi_str();
+						String house_type = item.getProject_house_type();
+						String tempPrice = item.getProject_min_price();
+						String project_min_price = item.getProject_min_price();
+						String project_high_price = item.getProject_high_price();
+						String mianji = item.getMianji();
+						String return_money = item.getReturn_money();
+						String bijiao = item.getBijiao();
+						String project_key = "";
+						if(project_num!=null && !"".equals(project_num)){
+							project_key =bingMapDao.findProjectKeyByNum(project_num);
+						}
+						BingMapVo  bingMapVo=new BingMapVo(id,bijiao, project_name,project_img,project_num,project_address, project_name_short, project_price,minarea, maxarea, project_sales_remain, project_price_int_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key,project_address_short);
+						bingMapList.add(bingMapVo); 
+					}
+					req.setAttribute("bingMapList", bingMapList);
+				}
+				else{
+					for(HouseProject item : seachListResultJiangxu){
+						DecimalFormat df = new DecimalFormat("#,###,###");
+						int id = item.getId();
+						String project_img = item.getProject_img();
+						String project_num = item.getProject_num();
+						String project_address_short = item.getProject_address();
+						
+					
+						if(project_address_short!=null && !"".equals(project_address_short)){
+							if(project_address_short.length()>40){
+								project_address_short = project_address_short.substring(0, 40);
+							}
+						}
+						String project_address = item.getProject_address()==null?"":item.getProject_address();
+						
+						
+						String project_name_short = item.getProject_name();
+						if(project_name_short!=null && !"".equals(project_name_short)){
+							if(project_name_short.length()>20){
+								project_name_short = project_name_short.substring(0, 20);
+							}
+						}
+						String project_name = item.getProject_name()==null?"":item.getProject_name();
+				
+						int project_sales_remain = item.getProject_sales_remain();
+						int maxarea = item.getMax_area();
+						int minarea = item.getMin_area();
+						String project_price = item.getProject_price();
+						String project_price_int_qi = item.getProject_price_int_qi_str();
+						String house_type = item.getProject_house_type();
+						String tempPrice = item.getProject_min_price();
+						String project_min_price = item.getProject_min_price();
+						String project_high_price = item.getProject_high_price();
+						String mianji = item.getMianji();
+						String return_money = item.getReturn_money();
+						String bijiao = item.getBijiao();
+						String project_key = "";
+						if(project_num!=null && !"".equals(project_num)){
+							project_key =bingMapDao.findProjectKeyByNum(project_num);
+						}
+						BingMapVo  bingMapVo=new BingMapVo(id,bijiao, project_name,project_img,project_num,project_address, project_name_short, project_price,minarea, maxarea, project_sales_remain, project_price_int_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key,project_address_short);
+						bingMapList.add(bingMapVo); 
+					}
+					req.setAttribute("bingMapList", bingMapList);
+				}
 			}
+			
 		}
 		else if(flagInfo==1){
-			for(HouseProject item : typeListResult){
-				DecimalFormat df = new DecimalFormat("#,###,###");
-				int id = item.getId();
-				String project_img = item.getProject_img();
-				String project_num = item.getProject_num();
-				String project_address_short = item.getProject_address();
-				
-			
-				if(project_address_short!=null && !"".equals(project_address_short)){
-					if(project_address_short.length()>40){
-						project_address_short = project_address_short.substring(0, 40);
-					}
-				}
-				String project_address = item.getProject_address()==null?"":item.getProject_address();
-				
-				
-				String project_name_short = item.getProject_name();
-				if(project_name_short!=null && !"".equals(project_name_short)){
-					if(project_name_short.length()>20){
-						project_name_short = project_name_short.substring(0, 20);
-					}
-				}
-				String project_name = item.getProject_name()==null?"":item.getProject_name();
-		
-				int project_sales_remain = item.getProject_sales_remain();
-				int maxarea = item.getMax_area();
-				int minarea = item.getMin_area();
-				String project_price = item.getProject_price();
-				String house_type = item.getProject_house_type();
-				/*String project_min_price = item.getProject_min_price()==null?"N/A":df.format(Integer.parseInt(item.getProject_min_price()));
-				String project_high_price = item.getProject_high_price()==null?"N/A":df.format(Integer.parseInt(item.getProject_high_price()));*/
-				
-				String project_min_price = item.getProject_min_price();
-				String project_high_price = item.getProject_high_price();
-				
-				String mianji = item.getMianji();
-				String return_money = item.getReturn_money();
-				/*String project_price_int_qi = item.getProject_price_int_qi()==0?"N/A":df.format(item.getProject_price_int_qi());*/
-				String project_price_int_qi = item.getProject_price_int_qi_str();
-				String project_key = "";
-				if(project_num!=null && !"".equals(project_num)){
-					project_key =bingMapDao.findProjectKeyByNum(project_num);
-				}
-				BingMapVo  bingMapVo=new BingMapVo(id,project_name,project_img,project_num,project_address, project_name_short, project_price,minarea, maxarea, project_sales_remain, project_price_int_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key,project_address_short);
-				bingMapList.add(bingMapVo);
-				
-			}
-			
-			if(order==1){
-				Collections.sort(bingMapList,new Comparator<BingMapVo>(){  
-		            public int compare(BingMapVo arg0, BingMapVo arg1) { 
-		            	String a = String.valueOf(arg0.getProject_price_int_qi());
-		            	String b = String.valueOf(arg1.getProject_price_int_qi());
-		                return a.compareTo(b);  
-		            }  
-		        });  
-				
+			if(typeListResultShengxu==null || typeListResultShengxu.size()<=0){
+				req.setAttribute("bingMapList", null);
 			}
 			else{
-				Collections.sort(bingMapList,Collections.reverseOrder(new Comparator<BingMapVo>(){  
-		            public int compare(BingMapVo arg0, BingMapVo arg1) { 
-		            	String a = String.valueOf(arg0.getProject_price_int_qi());
-		            	String b = String.valueOf(arg1.getProject_price_int_qi());
-		                return a.compareTo(b);  
-		            }  
-		        }));
+				if(order==1){
+					for(HouseProject item : typeListResultShengxu){
+						DecimalFormat df = new DecimalFormat("#,###,###");
+						int id = item.getId();
+						String project_img = item.getProject_img();
+						String project_num = item.getProject_num();
+						String project_address_short = item.getProject_address();
+						
+					
+						if(project_address_short!=null && !"".equals(project_address_short)){
+							if(project_address_short.length()>40){
+								project_address_short = project_address_short.substring(0, 40);
+							}
+						}
+						String project_address = item.getProject_address()==null?"":item.getProject_address();
+						
+						
+						String project_name_short = item.getProject_name();
+						if(project_name_short!=null && !"".equals(project_name_short)){
+							if(project_name_short.length()>20){
+								project_name_short = project_name_short.substring(0, 20);
+							}
+						}
+						String project_name = item.getProject_name()==null?"":item.getProject_name();
+				
+						int project_sales_remain = item.getProject_sales_remain();
+						int maxarea = item.getMax_area();
+						int minarea = item.getMin_area();
+						String project_price = item.getProject_price();
+						String house_type = item.getProject_house_type();
+						/*String project_min_price = item.getProject_min_price()==null?"N/A":df.format(Integer.parseInt(item.getProject_min_price()));
+						String project_high_price = item.getProject_high_price()==null?"N/A":df.format(Integer.parseInt(item.getProject_high_price()));*/
+						
+						String project_min_price = item.getProject_min_price();
+						String project_high_price = item.getProject_high_price();
+						
+						String mianji = item.getMianji();
+						String return_money = item.getReturn_money();
+						/*String project_price_int_qi = item.getProject_price_int_qi()==0?"N/A":df.format(item.getProject_price_int_qi());*/
+						String project_price_int_qi = item.getProject_price_int_qi_str();
+						String project_key = "";
+						if(project_num!=null && !"".equals(project_num)){
+							project_key =bingMapDao.findProjectKeyByNum(project_num);
+						}
+						String bijiao = item.getBijiao();
+						BingMapVo  bingMapVo=new BingMapVo(id,bijiao,project_name,project_img,project_num,project_address, project_name_short, project_price,minarea, maxarea, project_sales_remain, project_price_int_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key,project_address_short);
+						bingMapList.add(bingMapVo);
+					}
+					req.setAttribute("bingMapList", bingMapList);
+				}
+				else{
+					for(HouseProject item : typeListResultJiangxu){
+						DecimalFormat df = new DecimalFormat("#,###,###");
+						int id = item.getId();
+						String project_img = item.getProject_img();
+						String project_num = item.getProject_num();
+						String project_address_short = item.getProject_address();
+						
+					
+						if(project_address_short!=null && !"".equals(project_address_short)){
+							if(project_address_short.length()>40){
+								project_address_short = project_address_short.substring(0, 40);
+							}
+						}
+						String project_address = item.getProject_address()==null?"":item.getProject_address();
+						
+						
+						String project_name_short = item.getProject_name();
+						if(project_name_short!=null && !"".equals(project_name_short)){
+							if(project_name_short.length()>20){
+								project_name_short = project_name_short.substring(0, 20);
+							}
+						}
+						String project_name = item.getProject_name()==null?"":item.getProject_name();
+				
+						int project_sales_remain = item.getProject_sales_remain();
+						int maxarea = item.getMax_area();
+						int minarea = item.getMin_area();
+						String project_price = item.getProject_price();
+						String house_type = item.getProject_house_type();
+						/*String project_min_price = item.getProject_min_price()==null?"N/A":df.format(Integer.parseInt(item.getProject_min_price()));
+						String project_high_price = item.getProject_high_price()==null?"N/A":df.format(Integer.parseInt(item.getProject_high_price()));*/
+						
+						String project_min_price = item.getProject_min_price();
+						String project_high_price = item.getProject_high_price();
+						
+						String mianji = item.getMianji();
+						String return_money = item.getReturn_money();
+						/*String project_price_int_qi = item.getProject_price_int_qi()==0?"N/A":df.format(item.getProject_price_int_qi());*/
+						String project_price_int_qi = item.getProject_price_int_qi_str();
+						String project_key = "";
+						if(project_num!=null && !"".equals(project_num)){
+							project_key =bingMapDao.findProjectKeyByNum(project_num);
+						}
+						String bijiao = item.getBijiao();
+						BingMapVo  bingMapVo=new BingMapVo(id,bijiao,project_name,project_img,project_num,project_address, project_name_short, project_price,minarea, maxarea, project_sales_remain, project_price_int_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key,project_address_short);
+						bingMapList.add(bingMapVo);
+					}
+					req.setAttribute("bingMapList", bingMapList);
+				}
 			}
+			
 		}
 		else{
 			bingMapList=bingMapService.orderByPrice(order);
+			req.setAttribute("bingMapList", bingMapList);
 		}
 		
 		
-		req.setAttribute("bingMapList", bingMapList);
+		
 		List<String> areaNameSet=bingMapDao.getAreaName();
 		req.setAttribute("areaNameSet", areaNameSet);
 		List<String> cityNameSet=bingMapDao.getCityName();
@@ -515,10 +593,12 @@ public class BingMapController {
 		JSONArray arrayCentermoren = new JSONArray();
 		List<String> city=new ArrayList<String>();
 		int type=Integer.parseInt(req.getParameter("house_type"));
-		List<HouseProject> list = bingMapDao.filterByHouseType2(type);
+		List<HouseProject> list = bingMapDao.filterByHouseType2(type,0);
 		typeListResult = list;    //根据类型查询结果集合
+		typeListResultShengxu = bingMapDao.filterByHouseType2(type,1);   //升序
+		typeListResultJiangxu = bingMapDao.filterByHouseType2(type,2);   //降序
 		
-		array = bingMapService.filterByHouseType2(type);
+		array = bingMapService.filterByHouseType2(type,0);
 		
 		arrayCenter=bingMapService.jsonMapCenter();
 		int lenCenter=arrayCenter.size();
@@ -580,10 +660,12 @@ public class BingMapController {
 		String area=req.getParameter("area");
 		String city1=req.getParameter("city");
 		String address=req.getParameter("address");
-		array = bingMapService.filterByKeyWord(area,city1,address);
+		array = bingMapService.filterByKeyWord(area,city1,address,0);
 		
-		List<HouseProject> list = bingMapDao.filterByKeyWord(area,city1,address);
+		List<HouseProject> list = bingMapDao.filterByKeyWord(area,city1,address,0);
 		seachListResult = list;
+		seachListResultShengxu = bingMapDao.filterByKeyWord(area,city1,address,1);
+		seachListResultJiangxu = bingMapDao.filterByKeyWord(area,city1,address,2);
 		
 		arrayCenter=bingMapService.jsonMapCenter();
 		int lenCenter=arrayCenter.size();
