@@ -35,7 +35,7 @@
 
 .main_bkg4{display:block;width:100%;background-color:#fff;height:400px;background-color:rgb(236,234,235)}
 .main_bkg4_div{display:block;width:1190px;height:400px; margin:0 auto;position:relative;-left:50%;-margin-left:-450px;}
-.main_title{display:block;width:1140px;height:100px;line-height:100px;color:rgb(89,87,88);text-align:center;}
+.main_title{display:block;width:1140px;height:70px;line-height:50px;color:rgb(89,87,88);text-align:center;}
 .large_icon{display:block;width:170px;height:159px;background-image:url(../images/large_icon.jpg);margin-left:55px;}
 .large_icon2{display:block;width:170px;height:159px;background-image:url(../images/large_icon.jpg);background-position:-170px 0px;position:relative;left:50%;margin-left:-310px;}
 .large_icon3{display:block;width:170px;height:159px;background-image:url(../images/large_icon.jpg);background-position:-340px 0px;margin-right:55px;}
@@ -53,12 +53,12 @@
 .main_bkg5_line{display:block;width:900px;position:relative;left:50%;margin-left:-450px;}
 .middle_lab2{display:block;width:100%;text-align:center;color:#666;margin-top:10px;}
 
-.main_bkg6{display:block;width:100%;height:880px;background-color:rgb(236,234,235);}   /*修改*/
+.main_bkg6{display:block;width:100%;-height:880px;background-color:rgb(236,234,235);}   /*修改*/
 .main_bkg6_div{display:block;width:1140px;margin:0 auto;height:575px;background-color:rgb(236,234,235);position:relative;}
 .main_lab2{display:block;color:#666;line-height:30px;width:100%;border-bottom:1px solid #666;margin-top:20px;}
 .main_node{display:block;width:360px;margin-top:5px;}
 .main_node_img{display:block;width:360px;}
-.main_node_bkg{width:360px;height:70px;background-color:#000;opacity:0.6;position:relative;bottom:70px;}
+.main_node_bkg{width:360px;height:70px;background-color:#000;opacity:0.8;position:relative;bottom:70px;}
 .main_node_lab{display:block;margin-left:10px;height:20px;line-height:20px;color:#fff;}
 
 .main_bkg7{display:block;width:100%;min-height:460px;background-color:#fff;}

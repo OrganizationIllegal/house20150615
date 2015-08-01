@@ -361,6 +361,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										              },
 							                  ]
 							          },
+							          {
+								            text: '项目页广告管理',	
+								            color: '#ffffff', 
+								            backColor:'rgb(59,94,132)',   
+								            href:'#title',          
+								            nodes: [
+
+										              {
+										                text: '项目页广告管理',
+											            href:'#title'	                
+										              },
+							                  ]
+							          },
+							          {
+								            text: '首页项目推荐管理',	
+								            color: '#ffffff', 
+								            backColor:'rgb(59,94,132)',   
+								            href:'#title',          
+								            nodes: [
+
+										              {
+										                text: '首页项目推荐管理',
+											            href:'#title'	                
+										              },
+							                  ]
+							          },
 
 								          {
 									            text: '留言列表',	
@@ -458,7 +484,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	           else if(node.text=="区域列表"){
 		           $("#showlist").load("areaList.jsp");
 		       }
-	           
+	           else if(node.text=="项目页广告管理"){
+	        	   window.open("/adEdit","项目页广告管理");
+		       }
+	           else if(node.text=="首页项目推荐管理"){
+	        	   window.open("/IndexRecoEdit","首页项目推荐管理");
+		       }
 	           else if(node.text=="用户列表"){
 	        	   if(item==2){
 	        		   //$("#showlist").load("userList.jsp");

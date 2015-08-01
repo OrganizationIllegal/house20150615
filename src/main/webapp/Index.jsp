@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	height:0;
 	display:block;
 }
-
+.chengshi a:hover{color:white}
 </style>
  <script type="text/javascript">
    		$().ready(function(){
@@ -201,7 +201,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			                </div>
                 		</div>
                 		
-                		<div style="width:370px;height:30px;margin-top:15px;">
+                		<div style="width:370px;height:30px;margin-top:15px;" class="chengshi">
 					<div id="divselect" onclick="test()" style="width:76px;" class="divselect">
       					<cite style="width:70px; font-family:微软雅黑; -font-size:14px;font-size:16px">澳洲</cite>
 				      <ul id="test1" style="width:74px;">
@@ -532,7 +532,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		
 		 <!-- *************************************** main_bkg6 ************************************************** -->
-		 <div class="main_bkg6" style="-background:#ECEAEB url(../pic/indexbg7.png) repeat-x 0 -666px;">
+		 <div class="main_bkg6" style="-background:#ECEAEB url(../pic/indexbg7.png) repeat-x 0 -666px;padding-bottom:15px;">
 			<div style="width:1190px; margin:0 auto; background:#ECEAEB url(../pic/indexbg7.png) repeat-x 0 -666px;">
 			<div class="main_bkg6_div">
 			<c:if test="${!empty projectList }">
