@@ -22,6 +22,7 @@ import com.kate.app.dao.AdDao;
 import com.kate.app.dao.AjaxDao;
 import com.kate.app.dao.AreaInfoDao;
 import com.kate.app.dao.BrokerInfoDao;
+import com.kate.app.dao.HouseProjectDao;
 import com.kate.app.dao.InvestDataDao;
 import com.kate.app.dao.MiddlePriceDao;
 import com.kate.app.dao.NewsBokeDao;
@@ -52,6 +53,7 @@ import com.kate.app.model.NewsBoke;
 import com.kate.app.model.PeopleForeign;
 import com.kate.app.model.PeopleInfo;
 import com.kate.app.model.PeopleNation;
+import com.kate.app.model.ProjectDescImage;
 import com.kate.app.model.ProjectImage;
 import com.kate.app.model.RecoProject;
 import com.kate.app.model.User;
@@ -123,7 +125,8 @@ public class MyController {
 	private SearchListDao searchListDao;
 	@Autowired
 	private AdDao addao;
-	
+	@Autowired
+	private HouseProjectDao houseProjectDao;
 	int proid=0;
 	
 	@RequestMapping({"/Index" })
@@ -205,6 +208,12 @@ public class MyController {
 		/*if(areaNum!=null && !"".equals(areaNum)){
 			areaId = utilDao.getAreaId(areaNum);
 		}*/
+		List<ProjectDescImage> imageList2 = houseProjectDao.HouseProjectImageList(proNum);
+		String image1 = "";
+		if(imageList2!=null && imageList2.size()>0){
+			image1 = imageList2.get(0).getName();
+		}
+		project.setProject_img(image1);
 		
 		 ProjectImage(req,resp,proNum);
 		 ProjectPeitaoImage(req,resp,proNum);

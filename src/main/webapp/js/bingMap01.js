@@ -84,7 +84,7 @@
 	 		   
 	 		},
 	 		error:function(){
-	 			alert("addDefaultPushpin error")
+	 			//alert("addDefaultPushpin error")
 	 		}
         });		 
       }
@@ -128,7 +128,7 @@
 		 	    },
 		 
 		 		error:function(){
-		 			alert("addDefaultPushpin error")
+		 			//alert("addDefaultPushpin error")
 		 		}
 	        });		 
       }
@@ -220,7 +220,7 @@
 		 		   
 		 		},
 		 		error:function(){
-		 			alert("addDefaultPushpin error")
+		 			//alert("addDefaultPushpin error")
 		 		}
 	        });		 
       }
@@ -308,7 +308,7 @@
 	 		   
 	 		},
 	 		error:function(){
-	 			alert("addDefaultPushpin error")
+	 			//alert("addDefaultPushpin error")
 	 		}
         });		 
       }
@@ -400,7 +400,7 @@
 			 		   
 			 		},
 			 		error:function(){
-			 			alert("addDefaultPushpin error")
+			 			//alert("addDefaultPushpin error")
 			 		}
 		        });		 
       }
@@ -667,7 +667,7 @@
     		 		   
     		 		},
     		 		error:function(){
-    		 			alert("addDefaultPushpin error")
+    		 			//alert("addDefaultPushpin error")
     		 		}
     	        });	
       }

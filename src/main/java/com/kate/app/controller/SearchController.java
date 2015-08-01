@@ -791,10 +791,57 @@ public class SearchController {
 			List<String> city=new ArrayList<String>();
 			int type=Integer.parseInt(req.getParameter("house_type"));
 			List<HouseProject> list = bingMapDao.filterByHouseType2(type,0);
+			for(HouseProject item : list){
+				if(item!=null){
+					if(item.getProject_num()!=null && !"".equals(item.getProject_num())){
+						String project_img = "";
+						List<ProjectDescImage> imageList = projectInputDao.getProjectImageByProNum(item.getProject_num());
+						if(imageList!=null && imageList.size()>0){
+							project_img = imageList.get(0).getName();
+						}
+						else{
+							project_img = "";
+						}
+						item.setProject_img(project_img);
+					}
+				}
+				
+			}
 			typeListResult = list;    //根据类型查询结果集合
 			typeListResultShengxu = bingMapDao.filterByHouseType2(type,1);    //根据类型查询结果集合
+			for(HouseProject item : typeListResultShengxu){
+				if(item!=null){
+					if(item.getProject_num()!=null && !"".equals(item.getProject_num())){
+						String project_img = "";
+						List<ProjectDescImage> imageList = projectInputDao.getProjectImageByProNum(item.getProject_num());
+						if(imageList!=null && imageList.size()>0){
+							project_img = imageList.get(0).getName();
+						}
+						else{
+							project_img = "";
+						}
+						item.setProject_img(project_img);
+					}
+				}
+				
+			}
 			typeListResultJiangxu = bingMapDao.filterByHouseType2(type,2);    //根据类型查询结果集合
-			
+			for(HouseProject item : typeListResultJiangxu){
+				if(item!=null){
+					if(item.getProject_num()!=null && !"".equals(item.getProject_num())){
+						String project_img = "";
+						List<ProjectDescImage> imageList = projectInputDao.getProjectImageByProNum(item.getProject_num());
+						if(imageList!=null && imageList.size()>0){
+							project_img = imageList.get(0).getName();
+						}
+						else{
+							project_img = "";
+						}
+						item.setProject_img(project_img);
+					}
+				}
+				
+			}
 			array = bingMapService.filterByHouseType2(type,0);
 			
 			arrayCenter=bingMapService.jsonMapCenter();

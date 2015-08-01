@@ -23,8 +23,11 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.kate.app.dao.BingMapDao;
+import com.kate.app.dao.HouseProjectDao;
+import com.kate.app.dao.ProjectInputDao;
 import com.kate.app.model.BingMapVo;
 import com.kate.app.model.HouseProject;
+import com.kate.app.model.ProjectDescImage;
 import com.kate.app.model.SearchList;
 import com.kate.app.service.BingMapService;
 import com.mysql.jdbc.StreamingNotifiable;
@@ -34,7 +37,11 @@ public class BingMapController {
 	private BingMapService bingMapService;
 	@Autowired
 	private BingMapDao bingMapDao;
-
+	@Autowired
+	private HouseProjectDao houseProjectDao;
+	@Autowired
+	private ProjectInputDao projectInputDao;
+	
 	
 	private static List<HouseProject>  seachListResult;
 	private static List<HouseProject>  seachListResultShengxu;
@@ -251,8 +258,18 @@ public class BingMapController {
 					for(HouseProject item : seachListResultShengxu){
 						DecimalFormat df = new DecimalFormat("#,###,###");
 						int id = item.getId();
-						String project_img = item.getProject_img();
 						String project_num = item.getProject_num();
+						String project_img = item.getProject_img();
+						if(project_img==null || "".equals(project_img)){
+							List<ProjectDescImage> imageList = houseProjectDao.HouseProjectImageList(project_num);
+							if(imageList!=null && imageList.size()>0){
+								project_img = imageList.get(0).getName();
+							}
+							else{
+								project_img = "";
+							}
+						}
+						
 						String project_address_short = item.getProject_address();
 						
 					
@@ -299,6 +316,17 @@ public class BingMapController {
 						int id = item.getId();
 						String project_img = item.getProject_img();
 						String project_num = item.getProject_num();
+						if(project_img==null || "".equals(project_img)){
+							List<ProjectDescImage> imageList = houseProjectDao.HouseProjectImageList(project_num);
+							if(imageList!=null && imageList.size()>0){
+								project_img = imageList.get(0).getName();
+							}
+							else{
+								project_img = "";
+							}
+						}
+						
+						
 						String project_address_short = item.getProject_address();
 						
 					
@@ -351,8 +379,18 @@ public class BingMapController {
 					for(HouseProject item : typeListResultShengxu){
 						DecimalFormat df = new DecimalFormat("#,###,###");
 						int id = item.getId();
-						String project_img = item.getProject_img();
 						String project_num = item.getProject_num();
+						String project_img = item.getProject_img();
+						if(project_img==null || "".equals(project_img)){
+							List<ProjectDescImage> imageList = houseProjectDao.HouseProjectImageList(project_num);
+							if(imageList!=null && imageList.size()>0){
+								project_img = imageList.get(0).getName();
+							}
+							else{
+								project_img = "";
+							}
+						}
+						
 						String project_address_short = item.getProject_address();
 						
 					
@@ -401,8 +439,18 @@ public class BingMapController {
 					for(HouseProject item : typeListResultJiangxu){
 						DecimalFormat df = new DecimalFormat("#,###,###");
 						int id = item.getId();
-						String project_img = item.getProject_img();
 						String project_num = item.getProject_num();
+						String project_img = item.getProject_img();
+						if(project_img==null || "".equals(project_img)){
+							List<ProjectDescImage> imageList = houseProjectDao.HouseProjectImageList(project_num);
+							if(imageList!=null && imageList.size()>0){
+								project_img = imageList.get(0).getName();
+							}
+							else{
+								project_img = "";
+							}
+						}
+						
 						String project_address_short = item.getProject_address();
 						
 					
@@ -664,8 +712,56 @@ public class BingMapController {
 		
 		List<HouseProject> list = bingMapDao.filterByKeyWord(area,city1,address,0);
 		seachListResult = list;
+		for(HouseProject item : seachListResult){
+			if(item!=null){
+				if(item.getProject_num()!=null && !"".equals(item.getProject_num())){
+					String project_img = "";
+					List<ProjectDescImage> imageList = projectInputDao.getProjectImageByProNum(item.getProject_num());
+					if(imageList!=null && imageList.size()>0){
+						project_img = imageList.get(0).getName();
+					}
+					else{
+						project_img = "";
+					}
+					item.setProject_img(project_img);
+				}
+			}
+			
+		}
 		seachListResultShengxu = bingMapDao.filterByKeyWord(area,city1,address,1);
+		for(HouseProject item : seachListResultShengxu){
+			if(item!=null){
+				if(item.getProject_num()!=null && !"".equals(item.getProject_num())){
+					String project_img = "";
+					List<ProjectDescImage> imageList = projectInputDao.getProjectImageByProNum(item.getProject_num());
+					if(imageList!=null && imageList.size()>0){
+						project_img = imageList.get(0).getName();
+					}
+					else{
+						project_img = "";
+					}
+					item.setProject_img(project_img);
+				}
+			}
+			
+		}
 		seachListResultJiangxu = bingMapDao.filterByKeyWord(area,city1,address,2);
+		for(HouseProject item : seachListResultJiangxu){
+			if(item!=null){
+				if(item.getProject_num()!=null && !"".equals(item.getProject_num())){
+					String project_img = "";
+					List<ProjectDescImage> imageList = projectInputDao.getProjectImageByProNum(item.getProject_num());
+					if(imageList!=null && imageList.size()>0){
+						project_img = imageList.get(0).getName();
+					}
+					else{
+						project_img = "";
+					}
+					item.setProject_img(project_img);
+				}
+			}
+			
+		}
 		
 		arrayCenter=bingMapService.jsonMapCenter();
 		int lenCenter=arrayCenter.size();

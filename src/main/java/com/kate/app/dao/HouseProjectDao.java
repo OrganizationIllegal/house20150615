@@ -14,6 +14,7 @@ import com.kate.app.model.BrokerInfo;
 import com.kate.app.model.DeveloperInfo;
 import com.kate.app.model.HouseProject;
 import com.kate.app.model.Project;
+import com.kate.app.model.ProjectDescImage;
 import com.kate.app.model.ProjectImage;
 @Repository 
 public class HouseProjectDao extends BaseDao{
@@ -189,6 +190,58 @@ public class HouseProjectDao extends BaseDao{
         }
 		return projectInfo;
 	}
+	
+	
+	
+	public List<ProjectDescImage> HouseProjectImageList(String pro_num){
+		DecimalFormat df = new DecimalFormat("#,###,###");
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
+		List<ProjectDescImage> imageList = new ArrayList<ProjectDescImage>();
+		
+		try{
+			String sql = "select * from project_desc_image where project_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pro_num);
+			  rs = pstmt.executeQuery();
+			while(rs.next()){
+				ProjectDescImage image = new ProjectDescImage();
+				image.setName(rs.getString("image_name"));
+				imageList.add(image);
+			}
+			
+		}catch (Exception e) {
+			 e.printStackTrace();
+        }
+		finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return imageList;
+	}
+	
 	
 	
 	/*
