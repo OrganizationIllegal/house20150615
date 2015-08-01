@@ -271,7 +271,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  						var zongjia=$("#zongjia").val();
  						 var danjia=$("#danjia").val();
  						 var woshi=$("#woshi").val();
- 						 alert(woshi);
+ 						/*  alert(woshi); */
  						 var keylist=document.getElementsByName('key');
  						 for(var i=0;i<keylist.length;i++){
  						 	if(keylist[i].checked==true){
