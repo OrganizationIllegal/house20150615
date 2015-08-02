@@ -45,6 +45,7 @@ public class BrokerInfoController {
 			req.setAttribute("error", 1);
 			return "/QuanxianError.jsp";
 		}*/
+		
 		List<String> typeList=brokerInfoDao.getBrokerTypeList();
 		List<String> regionList=brokerInfoDao.getBrokerRegionList();
 		Set<String> languageList=brokerInfoDao.getBrokerLanguageList();

@@ -388,7 +388,7 @@ $('#broker_experience').blur(function() {
 	}
 	});
 function saveBroker(){
-	var broker;
+	var broker={};
 	/* broker=DataDeal.formToJson(data= decodeURIComponent($("#brokerinfo").serialize(),true));
 	broker=eval("("+broker+")"); */
 	broker.broker_num=$("#broker_num").val();

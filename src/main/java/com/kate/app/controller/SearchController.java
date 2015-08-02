@@ -97,7 +97,13 @@ public class SearchController {
 			fuwuarea = "";
 		}
 		if(fuwuarea!=null && !"".equals(fuwuarea)){
-			area_code = areaInfoDao.getAreaNum(fuwuarea);
+			String[] strs = fuwuarea.split(",");
+			String areaName = "";
+			if(strs.length>0){
+				areaName = strs[0]; 
+			}
+			
+			area_code = areaInfoDao.getAreaNum(areaName);
 		}
 		List<String> brokerNumList = searchListDao.searchSericeList(brokerName, type, suozaiarea, area_code, lang);
 		List<BrokerInfo> brokerInfoList = new ArrayList<BrokerInfo>();
@@ -135,7 +141,7 @@ public class SearchController {
 					List<LeiXing> list = searchListDao.searchSericeListBroker(broker_num);
 					if (list!=null && list.size()>0) {
 						data.setLeixingInfo(list);
-						System.out.println(list.size()+data.getBroker_name()+"fffffffffffff");
+						
 					}
 					//得到该经纪人的服务区域
 					List<String> fuwuArea = searchListDao.findFuwuAreaByNum(broker_num);
@@ -149,13 +155,7 @@ public class SearchController {
 			
 		}
 		
-		for(BrokerInfoQuyu i : resultListQuyu){
-			if(i!=null){
-				if(i.getLeixingInfo()!=null && i.getLeixingInfo().size()>0)
-				  System.out.println(i.getLeixingInfo().size()+"11111111111111111111");
-			}
-			
-		}
+	
 		
 		seachBrokerListResult = resultListQuyu;
 		if(count>=10){
@@ -187,6 +187,23 @@ public class SearchController {
 		List<String> serviceregionList=brokerInfoDao.getServiceRegionList();
 		List<String> liveregionlist=brokerInfoDao.getLiveRegionList();
 
+		
+		List<String> numList = brokerInfoDao.getServiceRegionNumList();
+		List<String> resultListRegion = new ArrayList<String>();
+		for(String num : numList){
+			AreaInfo item = brokerInfoDao.getAreaInfo(num);
+			String result = "";
+			if(item!=null){
+				String name = item.getArea_name();
+				String city = item.getArea_city();
+				String zhou = item.getArea_zhou();
+				String code = item.getArea_postcode();
+				result = name+","+city+","+zhou+","+code;
+			}
+			resultListRegion.add(result);
+		}
+		
+		
 		req.setAttribute("typeList", typeList);
 		req.setAttribute("regionList", regionList);
 		req.setAttribute("languageList", languageList);
@@ -194,7 +211,7 @@ public class SearchController {
 		req.setAttribute("brokerInfoList",brokerInfoList);
 		req.setAttribute("userList", userList);
 		req.setAttribute("count", count);
-		req.setAttribute("serviceregionlist", serviceregionList);
+		req.setAttribute("serviceregionlist", resultListRegion);
 		req.setAttribute("liveregionlist", liveregionlist);
 		return "/serviceTeam.jsp";
 		
@@ -293,7 +310,11 @@ public class SearchController {
 				flag = 1;
 				if(searchcity.indexOf(",") >= 0){      //包含逗号的情况
 					String[] strs = searchcity.split(",");
-					String areaName = strs[0];
+					String areaName = "";
+					if(strs.length>0){
+						areaName = strs[0];
+					}
+					
 					AreaInfo areaInfo = areaInfoDao.getAreaInfo(areaName);
 					if(areaInfo!=null){
 						areaNum = areaInfo.getArea_num();
