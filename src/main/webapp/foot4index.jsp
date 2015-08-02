@@ -18,7 +18,7 @@
 						<span style="display:block;width:100%;text-align:center;line-height:40px;color:#666;">©2015 北京海房优选科技有限公司.  All right reserved. 京ICP备15039436</span>
 					</div>
 					<div style="display:block;width:150px;float:right;min-height:30px;position:relative;left:-80px;"> 
-						<div style="display:block;width:33px;height:26px;float:left;margin-top:10px;cursor:pointer;" ><a href="http://wpa.qq.com/msgrd?v=3&uin=718406390&site=sina&menu=yes" id="qq" ><img src="images/qqlogo.png" ></img></a></div>
+						<div style="display:block;width:33px;height:26px;float:left;margin-top:10px;cursor:pointer;" ><a href="http://wpa.qq.com/msgrd?v=3&uin=3316371256&site=sina&menu=yes" id="qq" ><img src="images/qqlogo.png" ></img></a></div>
 						<div style="display:block;width:33px;height:26px;background-position:-20px 0px;float:left;margin-top:10px;margin-left:10px;cursor:pointer"><a href="#" id="weixin" ><img src="images/weixinlogo.png"></img></a></div>
 						<div style="display:block;width:33px;height:26px;background-position:-53px 0px;float:left;margin-top:10px;margin-left:10px;cursor:pointer"><a href="#" id="weibo" ><img src="images/weibo.png"></img></a></div>
 					</div>
