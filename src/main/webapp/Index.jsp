@@ -546,13 +546,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    <div class="f-yahei" style="color:#888889;font-size:25px;margin-top:5px;">华人聚集地，优质房源</div>
 				    <div class="f-yahei cp fw" style="color:#1763ac;font-size:20px;"><a href="/IndexSearch?huaren=华人区">去找房</a></div>
 				</div>
-				<div class="f-l f-yahei" style="width:292px;height:375px;text-align:center;margin-left: 124px;">
+				<div class="f-l f-yahei" style="width:292px;height:375px;text-align:center;margin-left: 174px;">
 				    <div class="f-yahei fw" style="color:#4a494a;font-size:35px;margin-top:15px;margin-bottom:5px;">学区房</div>
 				    <a href="/IndexSearch?xuequ=优秀学区"><img src="images/index/02.png" style="width:230px;height:230px;"></a>
 				    <div class="f-yahei" style="color:#888889;font-size:25px;margin-top:5px;">热门学区，海外置业首选</div>
 				    <div class="f-yahei cp fw" style="color:#1763ac;font-size:20px;"><a href="/IndexSearch?xuequ=优秀学区">去找房</a></div>
 				</div>
-				<div class="f-l f-yahei" style="width:278px;height:375px;text-align:center;margin-left: 117px;">
+				<div class="f-l f-yahei" style="width:278px;height:375px;text-align:center;margin-left: 146px;">
 				    <div class="f-yahei fw" style="color:#4a494a;font-size:35px;margin-top:15px;margin-bottom:5px;">市中心</div>
 				    <a href="/IndexSearch?center=城市中心"><img src="images/index/03.png" style="width:230px;height:230px;"></a>
 				    <div class="f-yahei" style="color:#888889;font-size:25px;margin-top:5px;">城市中心，稀缺房产资源</div>
@@ -593,7 +593,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			      <div class="f-yahei" style="color:rgb(162,162,162);font-size:19px;margin-top:15px;margin-bottom:5px;">基于专业背景、本地经验、服务区域、精通语言，</div>
 			     <div class="f-yahei" style="color:rgb(162,162,162);font-size:19px;margin-top:10px;margin-bottom:5px;">多维度的找到适合自己需求的经纪人</div>
 			</div>
-			<div class="f-l" style="width:595px;text-align:center;"><img src="images/index/broker.png"></div>
+			<div class="f-l" style="width:595px;"><img src="images/index/broker.png" style="margin-left: 98px;"></div>
 			</div>
 		 </div>
 		
