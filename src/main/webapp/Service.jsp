@@ -65,14 +65,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<c:forEach var="item" items="${areaList}" varStatus="stat">
 	<div style="width:190px;height:30px;background-color:rgba(246, 241, 238, 1);margin-top:10px;padding-left:15px;">
 	
-		<img alt="shu" src="images/service/pic1.png" style="float:left;">
+		<img alt="shu" src="images/area11.png" style="float:left;margin-top:3px">
 		<div style="float:left;font-size:13px;margin-top:5px;margin-left:5px;">${item}</div>
 	</div>
 	</c:forEach>
 
 	 <div style="font-size:20px;font-weight:bold;">所在区域</div>
 	<div style="width:190px;height:30px;background-color:rgba(246, 241, 238, 1);margin-top:10px;padding-left:15px;">
-		<img alt="shu" src="images/service/pic1.png" style="float:left;">
+		<img alt="shu" src="images/service/pic1.png" style="float:left;margin-top:3px">
 		<div style="float:left;font-size:13px;margin-top:5px;margin-left:5px;">${brokerInfo.broker_region}</div>
 	</div> 
 

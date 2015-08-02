@@ -603,27 +603,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div style="width:1190px; margin:0 auto; background:#ECEAEB url(../pic/indexbg7.png) repeat-x 0 -666px;">
 			<div class="main_bkg6_div">
 			<c:if test="${!empty projectList }">
-				<a class="c-fix f-l f-yahei s-16 main_lab2">墨尔本</a>
+				<span class="c-fix f-l f-yahei s-16 main_lab2">墨尔本</span>
 				<c:forEach var="item" items="${projectList}" varStatus="stat">
 				<div class="f-l main_node" <c:if test="${stat.index != 0}">style="margin-left:30px;"</c:if>>
 					<a href="/Index?proNum=${item.project_num}"><img src="<%=application.getInitParameter("imagedir")%>/${item.project_img }" class="c-fix f-l main_node_img"></img></a>
 						<div class="c-fix f-l main_node_bkg" onclick="location.href='/Index?proNum=${item.project_num}'">
-							<a class="c-fix f-l main_node_lab f-yahei s-14" style="margin-top:5px;" href="/Index?proNum=${item.project_num}">${item.project_name}</a>
-							<a class="c-fix f-l main_node_lab f-yahei s-14" style="font-style:italic;color:red">$${item.project_min_price}-$${item.project_high_price}</a>
-							<a class="c-fix f-l main_node_lab f-yahei s-14">${item.project_area},${item.project_city}</a>
+							<a class="c-fix f-l main_node_lab f-yahei s-14" style="margin-top:5px;text-decoration: none;color:white" href="/Index?proNum=${item.project_num}">${item.project_name}</a>
+							<a class="c-fix f-l main_node_lab f-yahei s-14" style="font-style:italic;color:red;text-decoration: none;color:white">$${item.project_min_price}-$${item.project_high_price}</a>
+							<a class="c-fix f-l main_node_lab f-yahei s-14" style="text-decoration: none;">${item.project_area},${item.project_city}</a>
 						</div>
 				</div>
 			</c:forEach>
 			</c:if>
 				<c:if test="${!empty projectList2 }">
-					<a class="c-fix f-l f-yahei s-16 main_lab2" style="margin-top:-60px;">悉尼</a>
+					<span class="c-fix f-l f-yahei s-16 main_lab2" style="margin-top:-60px;">悉尼</span>
 					<c:forEach var="item" items="${projectList2}" varStatus="stat">
 						<div class="f-l main_node" style="margin-top:-20px;<c:if test="${stat.index != 0}">margin-left:30px;</c:if>">
 						  <a href="/Index?proNum=${item.project_num}"><img src="<%=application.getInitParameter("imagedir")%>/${item.project_img }" class="c-fix f-l main_node_img"></img></a>
 							<div class="c-fix f-l main_node_bkg" onclick="location.href='/Index?proNum=${item.project_num}'">
-								<a class="c-fix f-l main_node_lab f-yahei s-14" style="margin-top:5px;" href="/Index?proNum=${item.project_num}">${item.project_name}</a>
-								<a class="c-fix f-l main_node_lab f-yahei s-14" style="font-style:italic;color:red">$${item.project_min_price}-$${item.project_high_price}</a>
-								<a class="c-fix f-l main_node_lab f-yahei s-14">${item.project_area},${item.project_city}</a>
+								<a class="c-fix f-l main_node_lab f-yahei s-14" style="margin-top:5px;text-decoration: none;" href="/Index?proNum=${item.project_num}">${item.project_name}</a>
+								<a class="c-fix f-l main_node_lab f-yahei s-14" style="font-style:italic;color:red;text-decoration: none;">$${item.project_min_price}-$${item.project_high_price}</a>
+								<a class="c-fix f-l main_node_lab f-yahei s-14" style="text-decoration: none;">${item.project_area},${item.project_city}</a>
 							</div>
 						</div>
 					</c:forEach>
