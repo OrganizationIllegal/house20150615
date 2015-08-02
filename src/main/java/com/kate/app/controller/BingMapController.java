@@ -78,9 +78,6 @@ public class BingMapController {
 	@RequestMapping({"/BingMap"})    //首页加载
 	public String listBingMap(HttpServletRequest req,HttpServletResponse resp){
 		List<BingMapVo> bingMapList=bingMapService.listBingMap();
-		for(int i=0;i<bingMapList.size();i++){
-			System.out.println(bingMapList.get(i).getProject_key().size());
-		}
 		req.setAttribute("bingMapList", bingMapList);
 		
 		
