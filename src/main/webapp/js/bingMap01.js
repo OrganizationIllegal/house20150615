@@ -52,7 +52,7 @@
 	 	 	 		        var maxprice=items[i].project_high_price;*/
 	 	 	 		        var city=items[i].project_city;
 	 	 	 		       // alert(city)
-	 	 	 		        var price=items[i].project_price_int_qi_str;
+	 	 	 		        var price=items[i].project_price_int_qi;
 	 	 	 		        var type=items[i].project_type;
 	 	 	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:-45px;left:-15px;'><div style='color:red;font-size:12px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin2.png' style='width:20px;height:20px;'/></div>"}; 
 	 	 	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);

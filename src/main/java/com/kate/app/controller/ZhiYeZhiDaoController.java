@@ -40,7 +40,8 @@ public class ZhiYeZhiDaoController {
 		}
 		
 		List<NewsBoke> newsList = zhiYeDao.selectNewsBoke();
-		int total = zhiYeDao.countZhiYe();
+		/*int total = zhiYeDao.countZhiYe();*/
+		int total = zhiYeList.size();
 		int pageCount = total%PAGE_SIZE == 0 ? total/PAGE_SIZE: total/PAGE_SIZE+1;
 		List<ZhiYeZhiDao> lastestList = new ArrayList<ZhiYeZhiDao>();
 		/*if(zhiYeList!=null){
