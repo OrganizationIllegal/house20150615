@@ -201,12 +201,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%--  <jsp:include page="head4.jsp" /> --%>
 
 	<!-- *************************************** main_bkg1 ************************************************** -->
+
 		 <div class="main_bkg" style="background:url(images/海房_index_top.jpg) no-repeat;width: 100%;/* background-attachment: fixed; */
     background-position: center 0;height:480px;background-position-y: 0px;"">
 		    <!-- <img  src="images/海房_index_top.jpg" style="width:100%;height:480px;margin:0 auto;min-width:1190px;"> -->
 		    <!-- <div style="background:url(images/海房_index_top.jpg) no-repeat;width: 100%;background-attachment: fixed;
     background-position: center 0;"></div> -->
     		<div style="width:1190px;height:480px;"></div>
+
 		    <div style="position:relative;top:-330px;margin:0 auto;width:630px;height:90px;text-align: center;">
 		    <!--  <img  src="images/index/font1.png" style="width:630px;height:90px;"> -->
 		    	<span class="mainfont">聪明海外置业</span>

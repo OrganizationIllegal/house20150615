@@ -321,8 +321,11 @@ body{
                	html+="<span class='f-r f-yahei s-12 node_val'>"+items[j].return_money+"</span>"; */
                	html+="<span class='c-fix f-l f-yahei s-12 node_title'>起价</span>";
                	html+="<span class='f-r f-yahei s-12 node_val'>$"+items[j].project_price_int_qi+"</span>";
-            	html+="<span class='c-fix f-l f-yahei s-12 node_title'>"+items[j].project_key+"</span>";
-               	html+="</div></div>";
+               	for(var i=0; i<items[j].project_key.length;i++){
+               		html+="<div class='c-fix'>";
+               		html+="<span class='f-l f-yahei s-12 node_title'>"+items[j].project_key[i]+"</span>";
+               	}
+         		html+="</div></div>";
                	
            	}
            }
