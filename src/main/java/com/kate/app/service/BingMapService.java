@@ -188,7 +188,7 @@ public class BingMapService {
 			obj.put("minArea", data.getMin_area()==0?0:data.getMin_area());
 			obj.put("maxArea", data.getMax_area()==0?0:data.getMax_area());
 			String project_num = data.getProject_num()==null?"":data.getProject_num();
-			String project_key = "";
+			List<String> project_key = new ArrayList<String>();
 			if(project_num!=null && !"".equals(project_num)){
 				project_key = bingMapDao.findProjectKeyByNum(project_num);
 			}

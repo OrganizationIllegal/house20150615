@@ -49,7 +49,7 @@ public class BingMapDao extends BaseDao {
 		    String return_money=null; 
 		    /*int project_price_int_qi=0;*/
 		    String project_price_int_qi=null;
-		    String project_key=null;
+		    List<String> project_key=null;
 		    while(rs.next()){
 		    	id=rs.getInt("id");
 		    	//project_img=rs.getString("project_img");
@@ -128,12 +128,13 @@ public class BingMapDao extends BaseDao {
 		return bingMapList;
 	} 
 	//根据项目编号查找project_key
-	public String findProjectKeyByNum(String proNum){
+	public List<String> findProjectKeyByNum(String proNum){
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<BingMapVo> bingMapList=new ArrayList<BingMapVo>();
 		String project_key=null;
+		 List<String> keyList=new ArrayList<String>();
 		try {
 			String sql = "select * from project_key where  project_num='"+proNum+"'";
 			  stmt = con.createStatement();
@@ -148,6 +149,7 @@ public class BingMapDao extends BaseDao {
 			  String daxue="";//大学附近
 			  String xianfang="";//现房项目
 			  String traffic="";//轨道交通
+			 
 		    while(rs.next()){
 		    	xinkaipan=rs.getString("xinkaipan")==null?"":rs.getString("xinkaipan");
 		    	remen=rs.getString("remen")==null?"":rs.getString("remen");
@@ -162,38 +164,47 @@ public class BingMapDao extends BaseDao {
 		    }
 		    if(xinkaipan.equals("1")){
 		    	project_key="新开盘";
+		    	keyList.add(project_key);
 		    }
 		    else if(remen.equals("1")){
 		    	project_key="热门项目";
+		    	keyList.add(project_key);
 		    }
 		    else if(xuequ.equals("1")){
 		    	project_key="优秀学区";
+		    	keyList.add(project_key);
 		    }
 		    else if(center.equals("1")){
 		    	project_key="城市中心";
+		    	keyList.add(project_key);
 		    }
 		    else if(baozu.equals("1")){
 		    	project_key="包租项目";
+		    	keyList.add(project_key);
 		    }
 		    else if(huaren.equals("1")){
 		    	project_key="华人区";
+		    	keyList.add(project_key);
 		    }
 		    else if(maidi.equals("1")){
 		    	project_key="最新项目";
+		    	keyList.add(project_key);
 		    }
 		    else if(daxue.equals("1")){
 		    	project_key="大学附近";
+		    	keyList.add(project_key);
 		    }
 		    else if(xianfang.equals("1")){
 		    	project_key="现房项目";
 		    }
 		    else if(traffic.equals("1")){
 		    	project_key="轨道交通";
+		    	keyList.add(project_key);
 		    }
 		    else{
 		    	project_key="";
 		    }
-		    
+		   
 		  
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -223,7 +234,7 @@ public class BingMapDao extends BaseDao {
 			     } 
 
         }
-		return project_key;
+		return  keyList.size()>2?keyList.subList(0, 2):keyList;
 	}
 	
 	
@@ -267,7 +278,7 @@ public class BingMapDao extends BaseDao {
 		    String return_money=null; 
 		   /* int project_price_int_qi=0;*/
 		    String project_price_int_qi=null;
-		    String project_key=null;
+		    List<String> project_key=null;
 		    String project_address_short=null;
 		    while(rs.next()){
 		    	id=rs.getInt("id");
@@ -377,7 +388,7 @@ public class BingMapDao extends BaseDao {
 		    String return_money=null; 
 		   /* int project_price_int_qi=0;*/
 		    String project_price_int_qi=null;
-		    String project_key=null;
+		    List<String> project_key=null;
 		    String project_address_short=null;
 		    while(rs.next()){
 		    	id=rs.getInt("id");
@@ -487,7 +498,7 @@ public class BingMapDao extends BaseDao {
 		    String return_money=null; 
 		   /* int project_price_int_qi=0;*/
 		    String project_price_int_qi=null;
-		    String project_key=null;
+		    List<String> project_key=null;
 		    String project_address_short=null;
 		    while(rs.next()){
 		    	id=rs.getInt("id");
@@ -808,7 +819,7 @@ public class BingMapDao extends BaseDao {
 		    	}
 		    	
 		    	//获取项目关键字，根据项目编号查找项目关键字
-		    	String project_key=findProjectKeyByNum(project_num);
+		    	List<String> project_key=findProjectKeyByNum(project_num);
 		    	coordinates.setProject_key(project_key);
 		    	
 		    	
@@ -1106,7 +1117,7 @@ public class BingMapDao extends BaseDao {
 		    	
 		    	
 		    	//获取项目关键字，根据项目编号查找项目关键字
-		    	String project_key=findProjectKeyByNum(project_num);
+		    	List<String> project_key=findProjectKeyByNum(project_num);
 		    	coordinates.setProject_key(project_key);
 		    	
 		    	coordinatesList.add(coordinates);

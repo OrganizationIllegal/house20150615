@@ -453,7 +453,7 @@ public class SearchController {
 		    		maidi1 = p.getMaidi();
 		    	}
 
-		    	String project_key=null;
+		    	List<String> project_key = new ArrayList<String>();
 		    	project_key=bingMapDao.findProjectKeyByNum(project_num);
 		    	
 		        

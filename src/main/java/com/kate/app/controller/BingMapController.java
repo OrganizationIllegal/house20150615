@@ -78,8 +78,12 @@ public class BingMapController {
 	@RequestMapping({"/BingMap"})    //首页加载
 	public String listBingMap(HttpServletRequest req,HttpServletResponse resp){
 		List<BingMapVo> bingMapList=bingMapService.listBingMap();
-		
+		for(int i=0;i<bingMapList.size();i++){
+			System.out.println(bingMapList.get(i).getProject_key().size());
+		}
 		req.setAttribute("bingMapList", bingMapList);
+		
+		
 		List<String> areaNameSet=bingMapDao.getAreaName();
 		req.setAttribute("areaNameSet", areaNameSet);
 		List<String> cityNameSet=bingMapDao.getCityName();
@@ -301,7 +305,7 @@ public class BingMapController {
 						String mianji = item.getMianji();
 						String return_money = item.getReturn_money();
 						String bijiao = item.getBijiao();
-						String project_key = "";
+						List<String> project_key = new ArrayList<String>();
 						if(project_num!=null && !"".equals(project_num)){
 							project_key =bingMapDao.findProjectKeyByNum(project_num);
 						}
@@ -358,7 +362,7 @@ public class BingMapController {
 						String mianji = item.getMianji();
 						String return_money = item.getReturn_money();
 						String bijiao = item.getBijiao();
-						String project_key = "";
+						List<String> project_key = new ArrayList<String>();
 						if(project_num!=null && !"".equals(project_num)){
 							project_key =bingMapDao.findProjectKeyByNum(project_num);
 						}
@@ -425,7 +429,7 @@ public class BingMapController {
 						String return_money = item.getReturn_money();
 						/*String project_price_int_qi = item.getProject_price_int_qi()==0?"N/A":df.format(item.getProject_price_int_qi());*/
 						String project_price_int_qi = item.getProject_price_int_qi_str();
-						String project_key = "";
+						List<String> project_key = new ArrayList<String>();
 						if(project_num!=null && !"".equals(project_num)){
 							project_key =bingMapDao.findProjectKeyByNum(project_num);
 						}
@@ -485,7 +489,7 @@ public class BingMapController {
 						String return_money = item.getReturn_money();
 						/*String project_price_int_qi = item.getProject_price_int_qi()==0?"N/A":df.format(item.getProject_price_int_qi());*/
 						String project_price_int_qi = item.getProject_price_int_qi_str();
-						String project_key = "";
+						List<String> project_key = new ArrayList<String>();
 						if(project_num!=null && !"".equals(project_num)){
 							project_key =bingMapDao.findProjectKeyByNum(project_num);
 						}

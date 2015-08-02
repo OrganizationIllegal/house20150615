@@ -1,6 +1,7 @@
 package com.kate.app.model;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class HouseProject implements Comparable<HouseProject>{
 	private int id;
@@ -25,7 +26,7 @@ public class HouseProject implements Comparable<HouseProject>{
 	 * @author wenruijie
 	 * @time   20150730
 	 */
-	private String project_key;
+	private List<String> project_key;
 	private String project_address_short;
 	
 	
@@ -35,13 +36,14 @@ public class HouseProject implements Comparable<HouseProject>{
 	public void setProject_address_short(String project_address_short) {
 		this.project_address_short = project_address_short;
 	}
-	public String getProject_key() {
+	
+
+	public List<String> getProject_key() {
 		return project_key;
 	}
-	public void setProject_key(String project_key) {
+	public void setProject_key(List<String> project_key) {
 		this.project_key = project_key;
 	}
-
 	public String getProject_logo() {
 		return project_logo;
 	}
