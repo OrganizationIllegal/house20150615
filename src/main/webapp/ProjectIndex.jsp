@@ -1372,7 +1372,7 @@ var e=$('#input2').val();
                索取完整价格单
             </h4>
          </div>
-         <div class="modal-body" style="padding-top:30px;background-color:#EEEEE0;">
+         <div class="modal-body" style="padding-top:30px;background-color:#EEEEE0;height:437px">
        <%--      <form class="form-horizontal" role="form" action="/indexSuoJia/MessageSubmit" method="post">  --%>
             <c:forEach items="${userList}"  var="item">
    <div class="form-group">
@@ -1420,7 +1420,8 @@ var e=$('#input2').val();
    </div>
    <div class="form-group" style="padding-bottom:40px;">
    	   <div class="col-sm-7"></div>
-      <div class="col-sm-5">
+     <!--  <div class="col-sm-5"> -->
+     <div class="col-sm-offset-1 col-sm-10">
        <!--   <button type="submit" class="btn btn-default" style="width:105px;background-color:red;color:white;" type="submit" id="submit">提交</button> -->
         <button type="button" class="btn btn-default" style="width:105px;background-color:red;color:white;"  onclick="submitMessageForPrice()">提交</button>
 
@@ -1475,7 +1476,7 @@ var e=$('#input2').val();
                最新价格
             </h4>
          </div>
-         <div class="modal-body" style="padding-top:30px;background-color:#EEEEE0;">
+         <div class="modal-body" style="padding-top:30px;background-color:#EEEEE0;height:437px">
          <%--    <form class="form-horizontal" role="form" action="/UserInfo/AddNewestPrice" method="post"> --%>
    <c:forEach items="${userList}"  var="item">
    <div class="form-group" style="margin-bottom:0px;">
@@ -1523,7 +1524,7 @@ var e=$('#input2').val();
    </div>
    <div class="form-group">
       <div class="col-sm-offset-1 col-sm-10">
-         <button type="submit" class="btn btn-default" onclick="submitForLatestPrice()">发送</button>
+         <button type="submit" class="btn btn-default" style="width:105px;background-color:red;color:white;"  onclick="submitForLatestPrice()">发送</button>
       </div>
       <div class="col-sm-1"></div>
    </div>
@@ -1552,7 +1553,7 @@ var e=$('#input2').val();
                完整户型
             </h4>
          </div>
-         <div class="modal-body" style="padding-top:30px;background-color:#EEEEE0;">
+         <div class="modal-body" style="padding-top:30px;background-color:#EEEEE0;height:437px">
            <%--  <form class="form-horizontal" role="form" action="/UserInfo/AddHouseType" method="post"> --%>
     <c:forEach items="${userList}"  var="item">
    <div class="form-group" style="margin-bottom:0px;">
@@ -1600,7 +1601,7 @@ var e=$('#input2').val();
    </div>
    <div class="form-group">
       <div class="col-sm-offset-1 col-sm-10">
-         <button type="button" class="btn btn-default" onclick="submitForHuxing()">发送</button>
+         <button type="button" class="btn btn-default" style="width:105px;background-color:red;color:white;"   onclick="submitForHuxing()">发送</button>
       </div>
       <div class="col-sm-1"></div>
    </div>
@@ -1627,7 +1628,7 @@ var e=$('#input2').val();
               	   详情咨询
             </h4>
          </div>
-         <div class="modal-body" style="padding-top:30px;background-color:#EEEEE0;">
+         <div class="modal-body" style="padding-top:30px;background-color:#EEEEE0;height:437px">
            <%--  <form class="form-horizontal" role="form" action="/UserInfo/AddAsk" method="post"> --%>
             <c:forEach items="${userList}"  var="item">
    <div class="form-group" style="margin-bottom:0px;">
@@ -1675,7 +1676,7 @@ var e=$('#input2').val();
    </div>
    <div class="form-group">
       <div class="col-sm-offset-1 col-sm-10">
-         <button type="button" class="btn btn-default"  onclick="submitForInfo()">发送</button>
+         <button type="button" class="btn btn-default"  style="width:105px;background-color:red;color:white;"  onclick="submitForInfo()">发送</button>
       </div>
       <div class="col-sm-1"></div>
    </div>

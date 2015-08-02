@@ -409,9 +409,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div style="margin-top:10px;font-size:14px;font-family:微软雅黑;font-weight:bold"><span>更多决策依据</span></div>
 				<div style="margin-top:10px;font-size:12px;text-align:center;color:#858384;"><span>大量、全面，及时更新的房产信息，辅助客户对比后决策选择</span></div>
 			</div>
-			<div style="width:45px;height:45px;float:left;margin-left:140px;margin-top:-135px;"><img  src="../images/cc1.png"></div>
-			<div style="width:45px;height:45px;float:left;margin-left:470px;margin-top:-135px;"><img  src="../images/cc1.png"></div>
-			<div style="width:45px;height:45px;float:left;margin-left:800px;margin-top:-135px;"><img  src="../images/cc1.png"></div>
+			<div style="width:54px;height:45px;float:left;margin-left:140px;margin-top:-135px;"><img  src="../images/cc1.png" style="margin-top:16px"></div>
+			<div style="width:72px;height:45px;float:left;margin-left:470px;margin-top:-135px;"><img  src="../images/cc1.png" style="margin-top:16px"></div>
+			<div style="width:86px;height:45px;float:left;margin-left:800px;margin-top:-135px;"><img  src="../images/cc1.png" style="margin-top:16px"></div>
 		</div>
 		
 	
