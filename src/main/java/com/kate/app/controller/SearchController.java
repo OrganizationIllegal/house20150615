@@ -137,7 +137,7 @@ public class SearchController {
 					data.setBroker_num(item.getBroker_num()==null?"":item.getBroker_num());
 					data.setBroker_type(item.getBroker_type()==null?"":item.getBroker_type());
 					data.setBroker_region(item.getBroker_region()==null?"":item.getBroker_region());
-					data.setBroker_language(item.getBroker_language()==null?"":item.getBroker_language());
+					data.setBroker_language(item.getBroker_language()==null?"":item.getBroker_language().replace("+", " "));
 					List<LeiXing> list = searchListDao.searchSericeListBroker(broker_num);
 					if (list!=null && list.size()>0) {
 						data.setLeixingInfo(list);

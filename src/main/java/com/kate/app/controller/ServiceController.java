@@ -38,6 +38,12 @@ public class ServiceController {
 			brokerId = Integer.parseInt(brokerId_str);
 		}
 		BrokerInfoQuyu data = brokerInfoDao.getBrokerInfo(brokerId);
+		//for(BrokerInfoQuyu item : data){
+			String yuyan = data.getBroker_language();
+			yuyan = yuyan.replace("+", " ");
+			data.setBroker_language(yuyan);
+			
+		//}
 		String broker_num = brokerInfoDao.findBrokerInfo(brokerId);
 		
 		List<String> areaList = data.getAreaList();
