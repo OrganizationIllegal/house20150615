@@ -201,8 +201,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%--  <jsp:include page="head4.jsp" /> --%>
 
 	<!-- *************************************** main_bkg1 ************************************************** -->
-		 <div class="main_bkg" style="-background:rgb(255,180,2) url(../pic/indexbg2.png) repeat-x 0 -666px;">
-		    <img  src="images/mian_bkg1.jpg" style="width:1920;height:480px;margin:0 auto;min-width:1190px;">
+		 <div class="main_bkg" style="background:url(images/海房_index_top.jpg) no-repeat;width: 100%;/* background-attachment: fixed; */
+    background-position: center 0;height:480px;background-position-y: 0px;">
+		    <!-- <img  src="images/海房_index_top.jpg" style="width:100%;height:480px;margin:0 auto;min-width:1190px;"> -->
+		    <!-- <div style="background:url(images/海房_index_top.jpg) no-repeat;width: 100%;background-attachment: fixed;
+    background-position: center 0;"></div> -->
+    		<div style="width:1190px;height:480px;"></div>
 		    <div style="position:relative;top:-330px;margin:0 auto;width:630px;height:90px;text-align: center;">
 		    <!--  <img  src="images/index/font1.png" style="width:630px;height:90px;"> -->
 		    	<span class="mainfont">聪明海外置业</span>
@@ -216,7 +220,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    <span style="color:white;font-size:19px;padding-left:2px;font-family: Microsoft Yahei;/* position: absolute; */">新房在售</span>
 		    </div>
 		    <div style="position:relative;top:-130px;left:30px;">
-		        <form role="form" name="searchForm" action="/IndexSearch" method="get"  target="_blank">
+		        <form role="form" name="searchForm" action="/IndexSearch" method="get"  target="_blank" id="housesousuo">
 						<input type="text" class="c-fix f-l inp_search" placeholder="请输入期望的城市（区域）" id="searchTerritory" name="searchcity" autocomplete="off" style="background-color:white;width:365px;"></input>
 						<!-- <input class="f-l btn_search cp" style="border:none; " type="submit" id="search" target="blank" value=""> -->
 						<div class="cp" style="margin-left:15px;width:100px;height:30px;position:relative;top:-30px;left:365px;" id="search" target="blank">
@@ -667,6 +671,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$("#moretijiao").val("提交");
 			$("#morequxiao").val("取消");
 			$(".btn_more").data("open",false);
+			$("#housesousuo").submit();
 			});
 		$("#morequxiao").click(function(){
 			$(".main_more input:radio").attr("checked",false);
