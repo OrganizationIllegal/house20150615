@@ -204,7 +204,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	    <img src="/images/serviceteam/b5.jpg">
                 	  <c:if test="${!empty item.areaList}">
                 	     <div style="float:right">
-                	         <img  src="/images/serviceteam/b3.png"/>
+                	         <img  src="/images/area11.png" style="width:17px;height:23px;margin-left:4px"/>
                 	         <c:forEach var="item1" items="${item.areaList }"  varStatus="stat">
                 	         <c:if test="${stat.index<2}">
                 	   	        <span style="padding-left:5px">${item1}</span>
@@ -492,7 +492,7 @@ var pageNum = (totleSize+9)/10;
                 	   
                 	   // html+="<hr style='height:1px;border:none;border-top:2px dashed #666666;margin-top:0px;margin-bottom:0px;' />";
                 	    html+="<img src='/images/serviceteam/b5.jpg'>";
-                	    html+"  <div style='float:right'><img  src='/images/serviceteam/b3.png'/>";
+                	    html+"  <div style='float:right'><img  src='/images/area11.png' style='width:17px;height:23px'/>";
                 	    for(var k = 0; k < items[j].areaList.length; k++){
                 	    	html+="<span style='padding-left:5px'>"+items[j].areaList[k]+"</span>";
                 	    } 
@@ -531,7 +531,7 @@ var pageNum = (totleSize+9)/10;
                 	   html+="<div style='font-size:13px;' ><img  src='/images/serviceteam/b3.png'/><span style='padding-left:10px'>"+items[j].broker_region+"</span></div>";
                 	   // html+="<hr style='height:1px;border:none;border-top:2px dashed #666666;margin-top:0px;margin-bottom:0px;' />";
                 	    html+="<img src='/images/serviceteam/b5.jpg'>";
-                	    html+="  <div style='float:right'><img  src='/images/serviceteam/b3.png'/>";
+                	    html+="  <div ><img  src='/images/area11.png'/>";
                 	    for(var k = 0; k < items[j].areaList.length; k++){
                 	    	html+="<span style='padding-left:5px'>"+items[j].areaList[k]+"</span>";
                 	    } 
