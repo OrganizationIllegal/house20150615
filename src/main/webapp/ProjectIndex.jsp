@@ -858,7 +858,7 @@ var e=$('#input2').val();
       <li class="active"><a href="#home" data-toggle="tab" style="font-weight:bold;">购房税费</a></li>
       <li><a href="#profile" data-toggle="tab" style="font-weight:bold;">持有成本</a></li>
       <li class="navbar-text navbar-right">&nbsp;&nbsp;&nbsp;&nbsp;</li>
-      <p class="navbar-text navbar-right"><b>以总价50万澳币估算</b></p>
+      <p class="navbar-text navbar-right"><b><!-- 以总价50万澳币估算 --></b></p>
       
     </ul>
     
@@ -1302,7 +1302,7 @@ var e=$('#input2').val();
 					<div class="c-fix f-l p_project_node">
 						<a href="Index?proNum=${RecommendProject1.project_num}" target='_blank'><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject1.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
 						<a href="Index?proNum=${RecommendProject1.project_num}" target='_blank' class="c-fix f-l f-yahei s-14 project_desc fw">
-						<span>${RecommendProject1.project_name}</span><span style="float: right;">$${RecommendProject1.project_price_int_qi_str}</span><br/>
+						<span>${RecommendProject1.project_name}</span><span style="float: right;">From:$${RecommendProject1.project_min_price}</span><br/>
 						
 						
 						<div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;word-break:break-all">
@@ -1311,14 +1311,14 @@ var e=$('#input2').val();
 					<div class="f-l p_project_node" style="margin-left:25px;">
 						<a href="Index?proNum=${RecommendProject2.project_num}" target='_blank'><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject2.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
 						<a href="Index?proNum=${RecommendProject2.project_num}" target='_blank' class="c-fix f-l f-yahei s-14 project_desc fw">
-						<span>${RecommendProject2.project_name}</span><span style="float: right;">$${RecommendProject2.project_price_int_qi_str}</span><br/>
+						<span>${RecommendProject2.project_name}</span><span style="float: right;">From:$${RecommendProject2.project_min_price}</span><br/>
 						
 						<div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;word-break:break-all">${RecommendProject2.project_desc}</div></a>
 					</div>
 					<div class="f-l p_project_node" style="margin-left:25px;">
 						<a href="Index?proNum=${RecommendProject3.project_num}" target='_blank'><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject3.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
 						<a href="Index?proNum=${RecommendProject3.project_num}" target='_blank' class="c-fix f-l f-yahei s-14 project_desc fw">
-						<span>${RecommendProject3.project_name}</span><span style="float: right;">$${RecommendProject3.project_price_int_qi_str}</span><br/>
+						<span>${RecommendProject3.project_name}</span><span style="float: right;">From:$${RecommendProject3.project_min_price}</span><br/>
 						<div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;word-break:break-all">${RecommendProject3.project_desc}</div></a>
 					</div>
 				</div>
