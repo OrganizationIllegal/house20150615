@@ -693,7 +693,7 @@ $("#searchTerritory").on('focus',function(e){
 
 $("#searchTerritory").on('click',function(e){
 	 if($('#searchTerritory').val()==""){
-		 input_suggest_recommend();
+		 //input_suggest_recommend();
 	 }
 	 
 });

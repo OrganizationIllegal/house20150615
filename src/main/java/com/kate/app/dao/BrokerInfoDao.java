@@ -45,7 +45,7 @@ public class BrokerInfoDao extends BaseDao {
 		List<String> regionlist=new ArrayList<String>();
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		String sql="SELECT DISTINCT area_name   from area_info";
+		String sql="SELECT DISTINCT area_name from area_info";
 		try {
 			ps=con.prepareStatement(sql);
 			rs=ps.executeQuery();
@@ -60,6 +60,48 @@ public class BrokerInfoDao extends BaseDao {
 		return regionlist;
 	}
 	
+	
+	public List<String> getServiceRegionNumList(){
+		List<String> regionlist=new ArrayList<String>();
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		String sql="SELECT DISTINCT area_num from area_info";
+		try {
+			ps=con.prepareStatement(sql);
+			rs=ps.executeQuery();
+			while(rs.next()){
+				String area_num;
+				area_num=rs.getString(1);
+				regionlist.add(area_num);
+			}
+		} catch (Exception e) {
+			
+		}
+		return regionlist;
+	}
+	
+	public AreaInfo getAreaInfo(String area_num){
+		AreaInfo item = null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		String sql="SELECT * from area_info where area_num='"+area_num+"'";
+		try {
+			ps=con.prepareStatement(sql);
+			rs=ps.executeQuery();
+			while(rs.next()){
+				item = new AreaInfo();
+				item.setArea_city(rs.getString("area_city"));
+				item.setArea_zhou(rs.getString("area_zhou"));
+				item.setArea_postcode(rs.getString("area_postcode"));
+				item.setArea_name(rs.getString("area_name"));
+				
+				
+			}
+		} catch (Exception e) {
+			
+		}
+		return item;
+	}
 	
 	
 	public int isDuplicate(String broker_num){

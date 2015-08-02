@@ -33,6 +33,47 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    font-size: 12px !important;
 			}
        </style>
+       
+       <style style="text/css">		
+	.suglist{
+	width:233px;
+	list-style:none;
+	font-size:14px;
+	padding:4px 0;
+	float:left;
+	margin:0px;
+}
+.suglist li{
+	padding:0 9px;
+	cursor:pointer;
+	zoom:1;
+	height:27px;
+	line-height:27px;
+}
+
+.suglist li.cur, .slhover {
+	background:#F3F3F3;
+	color:#1E8D00;
+}
+
+.nobg , .suginner{background:#fff;}
+.nobg , .suglist{width:200px;}   /*宽度修改*/
+
+.suginner_nobg {
+	background:none;
+}
+.suginner:after {
+	clear:both;
+	content:" ";
+	visibility:hidden;
+	overflow:hidden;
+	height:0;
+	display:block;
+}
+.chengshi a:hover{color:white}
+</style>
+
+
         <!--<style>
       		 .pagination .prev{position:absolute;left:40px;}
   			.pagination .next{position:absolute;right:40px;}
@@ -82,7 +123,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</select>
 			 	 </div>
 			 	 <div style="width:200px;height:32px;float:left;margin-right:10px;" >
-			 	 	<!-- <input type="text" class="form-control" name="suozaiarea" placeholder="所在区域"> -->
+			 	 	 <!-- <input type="text" class="form-control" name="suozaiarea" id="suozai" placeholder="所在区域"  autocomplete="off" >
+			 	 	 <div id="_suggestion" class="suggestion nobg" style="position:absolute;left: 538px; top: 296px; display: none; z-index:999;">			                
+						<div class="suginner">
+			                    <ul class="suglist"></ul>
+			                </div>
+                		</div> -->
 			 	 	  <select name="suozaiarea" style="  width: 161px;height: 32px; " class="chosen-select">
          					<option>所在区域</option>
         					 <c:forEach items="${liveregionlist}" var="item">
@@ -92,7 +138,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			 	 </div>
 			 	 
 			 	 <div style="width:200px;height:32px;float:left;margin-right:10px;" >
-			 	 	<!-- <input type="text" class="form-control" name="fuwuarea" placeholder="服务区域"> -->
+			 	 	<!-- <input type="text" class="form-control" name="fuwuarea" id="fuwu" placeholder="服务区域"  autocomplete="off" >
+			 	 	<div id="_suggestion1" class="suggestion nobg" style="position:absolute;left: 753px; top: 296px; display: none; z-index:999;">			                
+						<div class="suginner">
+			                    <ul class="suglist"></ul>
+			                </div>
+                		</div> -->
+                		
 			 	 	 <select name="fuwuarea" style="  width: 161px;height: 32px; " class="chosen-select">
          					<option>服务区域</option>
         					 <c:forEach items="${serviceregionlist}" var="item">
@@ -432,7 +484,7 @@ var pageNum = (totleSize+9)/10;
                 	   // html+="<hr style='height:1px;border:none;border-top:2px dashed #666666;margin-top:0px;margin-bottom:0px;' />";
                 	    html+="<img src='/images/serviceteam/b5.jpg'>";
                 	    html+="<div style='font-size:13px;' ><div style='float:left;width:235px'><img  src='/images/serviceteam/b4.png'/><span style='padding-left:10px'>"+items[j].broker_language+"</span></div><span >";
-                	    for(var k = 0; k < items[j].leixingInfo.length; k++){
+                	    for(var k = 0; k < items[j].leixing_list.length; k++){
                 	    	html+="<img  src='<%=application.getInitParameter("imagedir")%>/"+items[j].leixing_list[k].leixingImg+"' width=26px height=30px/>";
                 	    }
                 	  
@@ -464,7 +516,7 @@ var pageNum = (totleSize+9)/10;
                 	   // html+="<hr style='height:1px;border:none;border-top:2px dashed #666666;margin-top:0px;margin-bottom:0px;' />";
                 	    html+="<img src='/images/serviceteam/b5.jpg'>";
                 	    html+="<div style='font-size:13px;' ><div style='float:left;width:235px'><img  src='/images/serviceteam/b4.png'/><span style='padding-left:10px'>"+items[j].broker_language+"</span></div><span>";
-                	    for(var k = 0; k < items[j].leixingInfo.length; k++){
+                	    for(var k = 0; k < items[j].leixing_list.length; k++){
                 	    	html+="<img  src='<%=application.getInitParameter("imagedir")%>/"+items[j].leixing_list[k].leixingImg+"' width=26px height=30px/>";
                 	    }
                 	    
@@ -548,5 +600,401 @@ var pageNum = (totleSize+9)/10;
 </html>
 
 
+<script>
+
+var value = $("#suozai").val();
+var value1 = $("#fuwu").val();		 
+ 
+   		$(document).ready(function(){
+   			
+   		
+	   		$('.carousel').carousel({
+	     		interval: 2000
+	    	})
+		    if($('#suozai').val()==""){
+		    	$('#suozai').focus();
+		    	$("#_suggestion").hide();
+		    }
+	   	 if($('#fuwu').val()==""){
+		    	$('#fuwu').focus();
+		    	$("#_suggestion1").hide();
+		    }
+		    	
+
+})
+
+
+//IE和firefox
+if(navigator.userAgent.toLowerCase().indexOf('msie')>0 || navigator.userAgent.toLowerCase().indexOf('firefox')>0){
+    $('#suozai').bind('keyup',function(event){
+        if(event.keyCode != "9" && event.keyCode != "38" && event.keyCode!='40') {
+            input_suggest();
+        }
+    });
+}else{
+    $("#suozai").on('input',function(e){
+    	
+    
+        input_suggest();
+    });
+}
+
+   		
+   	//IE和firefox
+   		if(navigator.userAgent.toLowerCase().indexOf('msie')>0 || navigator.userAgent.toLowerCase().indexOf('firefox')>0){
+   		    $('#fuwu').bind('keyup',function(event){
+   		        if(event.keyCode != "9" && event.keyCode != "38" && event.keyCode!='40') {
+   		            input_suggest();
+   		        }
+   		    });
+   		}else{
+   		    $("#fuwu").on('input',function(e){
+   		    	input_suggest_fuwu();
+   		    });
+   		}
+   	
+   	
+$("#suozai").on('focus',function(e){
+	 if($('#suozai').val()==""){
+	 	
+		 $("#_suggestion").hide();
+		 
+	 }
+	 else{
+		input_suggest();
+	 }
+});
+
+$("#fuwu").on('focus',function(e){
+	 if($('#fuwu').val()==""){
+	 	
+		 $("#_suggestion1").hide();
+		 
+	 }
+	 else{
+		input_suggest_fuwu();
+	 }
+});
+
+
+
+$("#suozai").on('click',function(e){
+	 if($('#suozai').val()==""){
+		 //input_suggest_recommend();
+	 }
+	 
+});
+
+$("#fuwu").on('click',function(e){
+	 if($('#fuwu').val()==""){
+		 //input_suggest_recommend();
+	 }
+	 
+});
+
+
+
+$("#suozai").on('blur',function(e){      //焦点 
+    if(e.target.id!='query' && e.target.className.indexOf("slide")<0){
+        //$("#_suggestion").hide();
+    }
+});
+
+$("#fuwu").on('blur',function(e){      //焦点 
+    if(e.target.id!='query' && e.target.className.indexOf("slide")<0){
+        //$("#_suggestion").hide();
+    }
+});
+
+
+var input_suggest = function(){
+	value = $('#suozai').val();
+    $.ajax({
+        type:"get",
+        url:"/getSuggestionSuozai",
+        dataType:"json",
+        async:true,
+        data:{query:value},
+        success:function(data){
+     
+            if(data.success && data.list.length>0){
+           
+                var _html = "";
+                 
+                for(var i = 0 ; i<10 && i < data.list.length;i++){
+                    var _text = data.list[i];
+                    if(_text=='' || _text==undefined){
+                        continue;
+                    }
+                    if(_text.length>30){
+                        _text = _text.substring(0,30);
+                    }
+                    var _text = data.list[i];
+               //alert(_text.indexOf(value))
+                    _html += "<li>";
+                    /* var arr=new Array();   
+                    arr = _text.split(',');
+               
+                    for(var i=0; i<arr.length; i++){
+                    	var item = $.trim(arr[i]);  
+                    	if(item.indexOf(value)==0){
+                    		_html += "<strong>"+arr[i]+"</strong>";
+                    	}
+                    	else{
+                    		_html += arr[i];
+                    	}
+                    		
+                    } */
+                    //var txt=$.trim(_text);  
+                    //alert(txt.indexOf(value));
+                   if(_text.indexOf(value)==0){
+                	   
+                        _text = _text.substring(value.length,_text.length);
+                        _html += value+"<strong>"+_text+"</strong>";
+                   }/* else if(_text.indexOf(value)==_text.length-4){
+                	   var tempText = _text.substring(_text.indexOf(value),_text.length);
+                       _html += "<strong>"+_text.substring(0,_text.indexOf(value))+"</strong>"+tempText;
+                   } */
+                   
+                   else{
+                        _html += _text;
+                   }
+                    _html += "</li>"; 
+                }
+                $("#_suggestion div ul").html(_html);
+                
+				
+                $("#_suggestion div ul li").each(function(){
+                
+					$(this).on('click',function(event){
+						var info = $(this).text();
+						$('#searchTerritory').val(info);
+						//window.open("/IndexSearch?searchcity="+encodeURIComponent($(this).text()),"_blank");
+					});
+                }); 
+                $("#_suggestion").show();
+               
+                suggLis = $("#_suggestion div ul li");
+                highlight_li = -1;
+                hoverFunc('#_suggestion div ul li', 'cur');
+            }else{
+                $("#_suggestion").hide();
+            }
+        },
+        error:function(){}
+    });
+};
+
+
+var input_suggest_fuwu = function(){
+	value = $('#fuwu').val();
+    $.ajax({
+        type:"get",
+        url:"/getSuggestionFuwu",
+        dataType:"json",
+        async:true,
+        data:{},
+        success:function(data){
+       
+            if(data.success && data.list.length>0){
+           
+                var _html = "";
+                 
+                for(var i = 0 ; i<10 && i < data.list.length;i++){
+                    var _text = data.list[i];
+                    if(_text=='' || _text==undefined){
+                        continue;
+                    }
+                    if(_text.length>30){
+                        _text = _text.substring(0,30);
+                    }
+                    var _text = data.list[i];
+               //alert(_text.indexOf(value))
+                    _html += "<li>";
+                    
+                   if(_text.indexOf(value)==0){
+                	   
+                        _text = _text.substring(value.length,_text.length);
+                        _html += value+"<strong>"+_text+"</strong>";
+                   }/* else if(_text.indexOf(value)==_text.length-4){
+                	   var tempText = _text.substring(_text.indexOf(value),_text.length);
+                       _html += "<strong>"+_text.substring(0,_text.indexOf(value))+"</strong>"+tempText;
+                   } */
+                   
+                   else{
+                        _html += _text;
+                   }
+                    _html += "</li>"; 
+                }
+                $("#_suggestion1 div ul").html(_html);
+                
+				
+                $("#_suggestion1 div ul li").each(function(){
+                
+					$(this).on('click',function(event){
+						var info = $(this).text();
+						$('#fuwu').val(info);
+						//window.open("/IndexSearch?searchcity="+encodeURIComponent($(this).text()),"_blank");
+					});
+                }); 
+                $("#_suggestio1n").show();
+               
+                suggLis = $("#_suggestion1 div ul li");
+                highlight_li = -1;
+                hoverFunc('#_suggestion1 div ul li', 'cur');
+            }else{
+                $("#_suggestion1").hide();
+            }
+        },
+        error:function(){}
+    });
+};
+
+function stopEvent(evt){
+    if(evt.preventDefault){
+        evt.preventDefault()
+    }
+    evt.cancelBubble=true;
+    return evt.returnValue=false
+}
+//keydown的处理
+function keydown(evt){
+    evt = evt||window.event;
+    if (evt.keyCode == 27){ //Esc
+       $("#_suggestion").hide();
+       $("#_suggestion1").hide();
+        return stopEvent(evt);
+    }else if(evt.keyCode==0x1){
+    	alert("zuojian");
+    }
+    else if(evt.keyCode == 13){ //Enter
+    }else{
+        if($("#_suggestion").css("display")=="block"){
+            if (evt.keyCode == 38){
+                upKey();
+                return stopEvent(evt);
+            }else if (evt.keyCode == 9 || evt.keyCode == 40){
+                downKey();
+                return stopEvent(evt);
+            }
+        }else{
+            if ((evt.keyCode == 38)||(evt.keyCode == 40)){
+                highlight_li = -1;
+                clearHighlight();
+                $("#_suggestion").show();
+            }
+        }
+        
+        if($("#_suggestion1").css("display")=="block"){
+            if (evt.keyCode == 38){
+                upKey();
+                return stopEvent(evt);
+            }else if (evt.keyCode == 9 || evt.keyCode == 40){
+                downKey();
+                return stopEvent(evt);
+            }
+        }else{
+            if ((evt.keyCode == 38)||(evt.keyCode == 40)){
+                highlight_li = -1;
+                clearHighlight();
+                $("#_suggestion1").show();
+            }
+        }
+        
+    }
+}
+$(document).click(function(e){
+    if(e.target.id!='suozai' && e.target.className.indexOf("slide")<0){
+        $("#_suggestion").hide();
+    }
+});
+
+$(document).click(function(e){
+    if(e.target.id!='fuwu' && e.target.className.indexOf("slide")<0){
+        $("#_suggestion1").hide();
+    }
+});
+
+
+$(document).bind('keydown',function(event){
+    keydown(event);
+});
+
+
+function highlight(){
+    clearHighlight();
+    if(highlight_li>=0){
+        suggLis[highlight_li].className="cur";
+        $("#suozai").val($(suggLis[highlight_li]).text());
+        $("#fuwu").val($(suggLis[highlight_li]).text());
+       
+    }else{
+        $("#suozai").val(default_query);
+        $("#fuwu").val(default_query);
+    }
+}
+
+function clearHighlight(){
+    for(var i=0;i<suggLis.length;i++){
+    	suggLis[i].className="";
+    }
+}
+
+function upKey(){
+    clearHighlight();
+    highlight_li--;
+    if(highlight_li==-2){
+        highlight_li=Math.min(suggLis.length,10)-1
+    }
+    highlight()
+}
+
+function downKey(){
+    clearHighlight();
+    highlight_li++;
+    if(highlight_li==Math.min(suggLis.length,10)){
+        highlight_li=-1
+    }
+    highlight()
+}
+function hoverFunc(select, css){
+    $(select).hover(
+        function(){
+            $(this).addClass(css);
+        },
+        function(){
+            $(this).removeClass(css);
+        }
+    )
+}
+
+    function checkForm(){
+        var _input=$("#suozai").val();
+        if(_input.length>40){
+            _input = _input.substring(0,40);
+            $("#suozai").val(_input);
+        }
+        
+        var _input1=$("#fuwu").val();
+        if(_input1.length>40){
+            _input1 = _input1.substring(0,40);
+            $("#fuwu").val(_input1);
+        }
+        
+    }
+    
+    $(function(){
+    	$("#search").click(function(){
+    		
+    		document.searchForm.submit();
+    	})
+	/* $('#_suggestion >.suginner > .suglist').on('click', 'li', function () {
+		window.location.href="/IndexSearch"+encodeURIComponent($(this).text());
+				}); */
+	/* /* $('#_suggestion .suginner ').delegate('ul', 'click', function () {
+    	alert("ok"); */
+	//}); */
+});
+    </script>
 
   
