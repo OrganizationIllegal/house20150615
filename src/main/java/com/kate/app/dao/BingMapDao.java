@@ -763,6 +763,7 @@ public class BingMapDao extends BaseDao {
 						project_img = "";
 					}
 		    	}
+
 		    	coordinates.setProject_img(project_img);
 		    	coordinates.setProject_price(rs.getString("project_price"));
 		    	coordinates.setProject_num(rs.getString("project_num"));

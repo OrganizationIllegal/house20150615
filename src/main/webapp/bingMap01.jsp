@@ -313,7 +313,10 @@ body{
                	html+="<a class='f-r f-yahei s-12 node_val'>"+items[j].fanxian+"</a>"; */
                	html+="<span class='c-fix f-l f-yahei s-12 node_title'>起价</span>";
                	html+="<span class='f-r f-yahei s-12 node_val'>$"+items[j].project_price_int_qi+"</span>";
-            	html+="<span class='c-fix f-l f-yahei s-12 node_title'>"+items[j].project_key+"</span>";
+               	for(var i=0; i<items[j].project_key.length;i++){
+               		html+="<div class='c-fix'>";
+               		html+="<span class='f-l f-yahei s-12 node_title'>"+items[j].project_key[i]+"</span>";
+               	}
               /*  	html+="<a class='f-r f-yahei s-12 node_val'>$"+items[j].project_key+"</a>"; */
                	html+="</div></div>";
                	
@@ -348,6 +351,10 @@ body{
                	html+="<span class='f-r f-yahei s-12 node_val'>"+items[j].return_money+"</span>";
                	html+="<span class='c-fix f-l f-yahei s-12 node_title'>起价</span>";
                	html+="<span class='f-r f-yahei s-12 node_val'>$"+items[j].project_price_int_qi+"</span>";
+               	for(var i=0; i<items[j].project_key.length;i++){
+               		html+="<div class='c-fix'>";
+               		html+="<span class='f-l f-yahei s-12 node_title'>"+items[j].project_key[i]+"</span>";
+               	}
                	html+="</div></div>";
                	
            	}
@@ -470,7 +477,11 @@ body{
 						<a class="f-r f-yahei s-12 node_val">${item.fanxian}</a> --%>
 						<span class="c-fix f-l f-yahei s-12 node_title">起价</span>
 						<span class="f-r f-yahei s-12 node_val">$${item.project_price_int_qi_str}</span>
-						<span class="c-fix f-l f-yahei s-12 node_title">${item.project_key}</span>
+						 <c:forEach  var="item3" items="${item.project_key}">
+						    <div class="c-fix ">
+						    <span class=" f-l f-yahei s-12 node_title" style="margin-right:16px;">${item3}</span>
+						    </div>
+						 </c:forEach>
 					</div>
 				</div>
 			 </c:forEach> 
