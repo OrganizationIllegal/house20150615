@@ -182,7 +182,9 @@ public class SearchController {
 		List<String> regionList=brokerInfoDao.getBrokerRegionList();
 		Set<String> languageList=brokerInfoDao.getBrokerLanguageList();
 
-		req.setAttribute("resultListQuyu", resultListQuyu);
+	/*	req.setAttribute("resultListQuyu", resultListQuyu);*/
+		req.setAttribute("resultListQuyu", resultList);
+		
 
 		List<String> serviceregionList=brokerInfoDao.getServiceRegionList();
 		List<String> liveregionlist=brokerInfoDao.getLiveRegionList();
@@ -223,6 +225,7 @@ public class SearchController {
 		if(pageStart <= end){
 			List<BrokerInfoQuyu> resultList=brokerList.subList(start, end);
 			for(BrokerInfoQuyu item : resultList){
+				String broker_num=item.getBroker_num();
 				JSONObject obj = new JSONObject();
 				obj.put("broker_zizhi", item.getBroker_zizhi()==null?"":item.getBroker_zizhi());
 				obj.put("leixing_list", item.getLeixingInfo()==null?"":item.getLeixingInfo());
@@ -236,6 +239,12 @@ public class SearchController {
 				obj.put("broker_num", item.getBroker_num()==null?"":item.getBroker_num());
 				obj.put("broker_experience", item.getBroker_experience());
 				obj.put("broker_type", item.getBroker_type()==null?"":item.getBroker_type());
+				
+				
+				List<String> fuwuArea = searchListDao.findFuwuAreaByNum(broker_num);
+			/*	if (fuwuArea!=null && fuwuArea.size()>0) {*/
+					obj.put("areaList", fuwuArea);
+			/*	}*/
 				
 				
 				array.add(obj);

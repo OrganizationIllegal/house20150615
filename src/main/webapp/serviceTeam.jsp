@@ -108,9 +108,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			 	 		<!--<input type="text" class="form-control" name="lang" placeholder="语言">-->
 			 	 		 <select id="type" name="lang" value="" class="form-control" style="height:32px;">
          					<option>语言</option>
-        					 <c:forEach items="${languageList}" var="item">
-        					<option>${item}</option>
-       					   </c:forEach>
+        					<%--  <c:forEach items="${languageList}" var="item">
+        					<option>${item}</option> --%>
+        					<option value="中文">中文</option>
+        					<option value="英文">英文</option>
+        					<option value="中英文">中英文</option>
+       					  <%--  </c:forEach> --%>
                      	</select>
 			 	 </div>
 			 	 <div  ><button type="submit" class="btn btn-default" style="margin-right:80px;width:90px;background-color:rgb(192,59,72);color:white;margin-top:0px;  padding-top: 0px;" onclick="shaixuan()">搜索</button></div>
@@ -130,14 +133,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div  style="float:left;margin-right:34px">
 				<div id="list">
 				<c:forEach items="${resultListQuyu}"  var="item">
-					 <div id="item1" style="width:502px;height:155px;padding:15px 10px;margin-top:10px;margin-bottom:10px;border:1px solid rgb(207,201,201)">
+					 <div id="item1" style="width:502px;height:162px;padding:15px 10px;margin-top:10px;margin-bottom:10px;border:1px solid rgb(207,201,201)">
                 	  <div style="float:left">
                 	  <a href="Service?brokerId=${item.id}" target="_blank"><img src="<%=application.getInitParameter("imagedir")%>/${item.broker_img }" style="width:126px;height:124px;"/></a>
                 	  </div>
                 	   <div style="width:354px;float:left;font-family:微软雅黑;padding-left:15px">
                 	   <div style="font-size:18px;font-weight:bolder"><a href="Service?brokerId=${item.id}" target="_blank">${item.broker_name}</a></div>
                 	  <div style="font-size:13px;"><img  src="/images/serviceteam/b2.jpg"/><span style="padding-left:10px">${item.broker_type }</span></div>
-                	   <div style="font-size:13px; width:314px; height:20px; overflow:hidden;"><span style="padding-left:32px;font-style: italic;">${item.introduction}</span></div>
+                	 <%--   <div style="font-size:13px; width:314px; height:20px; overflow:hidden;"><span style="padding-left:32px;font-style: italic;">${item.introduction}</span></div> --%>
                 	  <!--  <hr style="height:1px;border:none;border-top:2px dashed #666666;margin-top:0px;margin-bottom:0px;"/> -->
                 	    <img src="/images/serviceteam/b5.jpg">
                 	  <div style="font-size:13px;">
@@ -145,21 +148,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	         <img  src="/images/serviceteam/b3.png"/>
                 	         <span style="padding-left:10px">${item.broker_region}</span>
                 	     </div>
-                	     <c:if test="${!empty item.areaList}">
+                	  </div>
+                	    <img src="/images/serviceteam/b5.jpg">
+                	  <c:if test="${!empty item.areaList}">
                 	     <div style="float:right">
                 	         <img  src="/images/serviceteam/b3.png"/>
-
                 	         <c:forEach var="item1" items="${item.areaList }"  varStatus="stat">
                 	         <c:if test="${stat.index<2}">
                 	   	        <span style="padding-left:5px">${item1}</span>
-</c:if>
-                	         </c:forEach>
-                	         
+                             </c:if>
+                	         </c:forEach> 
+                	         <img src="/images/serviceteam/b5.jpg">
                 	     </div>
-                	     </c:if>
-                	  </div>
+                	   </c:if>
+                	  
                 	   <!-- <hr style="height:1px;border:none;border-top:2px dashed #666666;margin-top:0px;margin-bottom:0px;"/> -->
-                	    <img src="/images/serviceteam/b5.jpg">
+                	 
                 	   <div style="font-size:13px;"><div style="float:left;width:235px"><img  src="/images/serviceteam/b4.png"/>
 
                 	   <span style="padding-left:10px;height:20px;width:50px;">${item.broker_language}</span></div>
@@ -429,17 +433,25 @@ var pageNum = (totleSize+9)/10;
                 	   html+="<div style='width:354px;float:left;font-family:微软雅黑;padding-left:15px'>";
                 	   html+="<div style='font-size:18px;font-weight:bolder' >"+items[j].broker_name+"</div>";
                 	   html+="<div style='font-size:13px;' ><img  src='/images/serviceteam/b2.jpg'/><span style='padding-left:10px'>"+items[j].broker_type+"</span></div>";
-                	   html+="<div style='font-size:13px;' ><span style='padding-left:32px;font-style:italic'>"+items[j].introduction+"</span></div>";
+                	/*    html+="<div style='font-size:13px;' ><span style='padding-left:32px;font-style:italic'>"+items[j].introduction+"</span></div>"; */
                 	    //html+="<hr style='height:1px;border:none;border-top:2px dashed #666666;margin-top:0px;margin-bottom:0px;' />";
-                	    html+="<img src='/images/serviceteam/b5.jpg'>";
+                	   html+="<img src='/images/serviceteam/b5.jpg'>";
                 	   html+="<div style='font-size:13px;' ><img  src='/images/serviceteam/b3.png'/><span style='padding-left:10px'>"+items[j].broker_region+"</span></div>";
+                	   
                 	   // html+="<hr style='height:1px;border:none;border-top:2px dashed #666666;margin-top:0px;margin-bottom:0px;' />";
                 	    html+="<img src='/images/serviceteam/b5.jpg'>";
-                	    html+="<div style='font-size:13px;' ><div style='float:left;width:235px'><img  src='/images/serviceteam/b4.png'/><span style='padding-left:10px'>"+items[j].broker_language+"</span></div><span >";
-                	    for(var k = 0; k < items[j].leixingInfo.length; k++){
-                	    	html+="<img  src='<%=application.getInitParameter("imagedir")%>/"+items[j].leixing_list[k].leixingImg+"' width=26px height=30px/>";
-                	    }
+                	    html+"  <div style='float:right'><img  src='/images/serviceteam/b3.png'/>";
+                	    for(var k = 0; k < items[j].areaList.length; k++){
+                	    	html+="<span style='padding-left:5px'>"+items[j].areaList[k]+"</span>";
+                	    } 
                 	  
+                	    html+"<img  src='/images/serviceteam/b5.jpg'/></div>" 
+                	    /* html+="<div style='float:right'>"; */
+                	    html+="<div style='font-size:13px;' ><div style='float:left;width:235px'><img  src='/images/serviceteam/b4.png'/><span style='padding-left:10px'>"+items[j].broker_language+"</span></div><span >";
+                	      for(var k = 0; k < items[j].leixing_list.length; k++){
+                	    	html+="<img  src='<%=application.getInitParameter("imagedir")%>/"+items[j].leixing_list[k].leixingImg+"' width=26px height=30px/>";
+                	    }  
+                	    
                 		html+="</span></div></div>";
                 		html+="</div>";
                 	}
@@ -454,24 +466,30 @@ var pageNum = (totleSize+9)/10;
                 var html="";
                 if(items!=null){
                 	 for(var j=0;j<items.length;j++){
-                	   html+="<div id='item1' style='width:502px;height:155px;padding:15px 10px;margin-top:10px;margin-bottom:10px;border:1px solid rgb(207,201,201)'>";
+                	   html+="<div id='item1' style='width:502px;height:162px;padding:15px 10px;margin-top:10px;margin-bottom:10px;border:1px solid rgb(207,201,201)'>";
                 	   html+="<div style='float:left'>";
                 	  html+="<a href='Service?brokerId="+items[j].id+"' target='_blank'><img src='<%=application.getInitParameter("imagedir")%>/"+items[j].broker_img+"' style='width:126px;height:124px;'/></a>";
                 	   html+="</div>";
                 	   html+="<div style='width:354px;float:left;font-family:微软雅黑;padding-left:15px'>";
                 	   html+="<div style='font-size:18px;font-weight:bolder' >"+items[j].broker_name+"</div>";
                 	   html+="<div style='font-size:13px;' ><img  src='/images/serviceteam/b2.jpg'/><span style='padding-left:10px'>"+items[j].broker_type+"</span></div>";
-                	   html+="<div style='font-size:13px; width:314px; height:20px; overflow:hidden;' ><span style='padding-left:32px;font-style: italic;'>"+items[j].introduction+"</span></div>";
+                	  /*  html+="<div style='font-size:13px; width:314px; height:20px; overflow:hidden;' ><span style='padding-left:32px;font-style: italic;'>"+items[j].introduction+"</span></div>"; */
                 	    //html+="<hr style='height:1px;border:none;border-top:2px dashed #666666;margin-top:0px;margin-bottom:0px;' />";
                 	    html+="<img src='/images/serviceteam/b5.jpg'>";
                 	   html+="<div style='font-size:13px;' ><img  src='/images/serviceteam/b3.png'/><span style='padding-left:10px'>"+items[j].broker_region+"</span></div>";
                 	   // html+="<hr style='height:1px;border:none;border-top:2px dashed #666666;margin-top:0px;margin-bottom:0px;' />";
                 	    html+="<img src='/images/serviceteam/b5.jpg'>";
+                	    html+="  <div style='float:right'><img  src='/images/serviceteam/b3.png'/>";
+                	    for(var k = 0; k < items[j].areaList.length; k++){
+                	    	html+="<span style='padding-left:5px'>"+items[j].areaList[k]+"</span>";
+                	    } 
+                	  
+                	    html+="<img  src='/images/serviceteam/b5.jpg'/></div>" ;
                 	    html+="<div style='font-size:13px;' ><div style='float:left;width:235px'><img  src='/images/serviceteam/b4.png'/><span style='padding-left:10px'>"+items[j].broker_language+"</span></div><span>";
-                	    for(var k = 0; k < items[j].leixingInfo.length; k++){
+                	    for(var k = 0; k < items[j].leixing_list.length; k++){
                 	    	html+="<img  src='<%=application.getInitParameter("imagedir")%>/"+items[j].leixing_list[k].leixingImg+"' width=26px height=30px/>";
-                	    }
-                	    
+                	    } 
+                	  
                 		html+="</span></div></div>";
                 		html+="</div>";
                 	}
