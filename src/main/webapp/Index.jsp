@@ -540,22 +540,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<span class="c-fix f-l large_icon_lab f-yahei s-14"><a class="fw" style="color:black">互联网科技：</a>我们通过互联网科技提供完整、详细、及时的房源及细节信息，使你更聪明，更方便的购买你所需的房产。</span>
 				<span class="f-l large_icon_lab2 f-yahei s-14"><a class="fw" style="color:black">完整的购房服务：</a>7*24小时全天候在线，全方位服务的专业代理服务。我们提供了基于您的满意付费房地产经纪人。</span>
 				<span class="f-r large_icon_lab3 f-yahei s-14"><a class="fw" style="color:black">难以置信的收益：</a>在海房优选购买房产，我们提供高达70%现金返还。</span> -->
-				<div class="c-fix f-l f-yahei" style="width:396px;height:375px;text-align:center;">
+				<div class="c-fix f-l f-yahei" style="width:250px;px;height:375px;text-align:center;margin-left: 25px;">
 				    <div class="f-yahei fw" style="color:#4a494a;font-size:35px;margin-top:15px;margin-bottom:5px;">华人区</div>
 				    <a href="/IndexSearch?huaren=华人区"><img src="images/index/01.png" style="width:230px;height:230px;"></a>
-				    <div class="f-yahei" style="color:#888889;font-size:22px;margin-top:5px;">华人聚集地，优质房源</div>
+				    <div class="f-yahei" style="color:#888889;font-size:25px;margin-top:5px;">华人聚集地，优质房源</div>
 				    <div class="f-yahei cp fw" style="color:#1763ac;font-size:20px;"><a href="/IndexSearch?huaren=华人区">去找房</a></div>
 				</div>
-				<div class="f-l f-yahei" style="width:396px;height:375px;text-align:center;">
+				<div class="f-l f-yahei" style="width:292px;height:375px;text-align:center;margin-left: 174px;">
 				    <div class="f-yahei fw" style="color:#4a494a;font-size:35px;margin-top:15px;margin-bottom:5px;">学区房</div>
 				    <a href="/IndexSearch?xuequ=优秀学区"><img src="images/index/02.png" style="width:230px;height:230px;"></a>
-				    <div class="f-yahei" style="color:#888889;font-size:22px;margin-top:5px;">热门学区，海外置业首选</div>
+				    <div class="f-yahei" style="color:#888889;font-size:25px;margin-top:5px;">热门学区，海外置业首选</div>
 				    <div class="f-yahei cp fw" style="color:#1763ac;font-size:20px;"><a href="/IndexSearch?xuequ=优秀学区">去找房</a></div>
 				</div>
-				<div class="f-l f-yahei" style="width:396px;height:375px;text-align:center;">
+				<div class="f-l f-yahei" style="width:278px;height:375px;text-align:center;margin-left: 146px;">
 				    <div class="f-yahei fw" style="color:#4a494a;font-size:35px;margin-top:15px;margin-bottom:5px;">市中心</div>
 				    <a href="/IndexSearch?center=城市中心"><img src="images/index/03.png" style="width:230px;height:230px;"></a>
-				    <div class="f-yahei" style="color:#888889;font-size:22px;margin-top:5px;">城市中心，稀缺房产资源</div>
+				    <div class="f-yahei" style="color:#888889;font-size:25px;margin-top:5px;">城市中心，稀缺房产资源</div>
 				    <div class="f-yahei cp fw" style="color:#1763ac;font-size:20px;"><a href="/IndexSearch?center=城市中心">去找房</a></div>
 				</div>
 			</div>
@@ -581,7 +581,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<a class="c-fix f-l middle_lab2 f-yahei s-16" style="margin-top:5px;">最高可获得高达70%的佣金返还</a>
 			<a class="c-fix f-l middle_lab2 f-yahei s-12" style="margin-top:20px;">*以房价50万元澳币房产计算</a> -->
 			<div class=" main_bkg4_div">
-			<div class="c-fix f-l f-yahei" style="width:595px;height:300px;margin-top:100px;padding-left:80px;">
+			<div class="c-fix f-l f-yahei" style="width:595px;height:300px;margin-top:100px;padding-left:25px;">
 			     <div class="f-yahei" style="color:rgb(74,74,74);font-size:30px;margin-top:15px;margin-bottom:5px;">最适合你的优秀经纪</div>
 			     <a href="/SearchService" style="text-decoration: none;">
 			          <!-- <img src="images/index/btn3.png" style="width:450px;height:70px;margin-top:5px;"> -->
@@ -593,7 +593,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			      <div class="f-yahei" style="color:rgb(162,162,162);font-size:19px;margin-top:15px;margin-bottom:5px;">基于专业背景、本地经验、服务区域、精通语言，</div>
 			     <div class="f-yahei" style="color:rgb(162,162,162);font-size:19px;margin-top:10px;margin-bottom:5px;">多维度的找到适合自己需求的经纪人</div>
 			</div>
-			<div class="f-l" style="width:595px;text-align:center;"><img src="images/index/broker.png"></div>
+			<div class="f-l" style="width:595px;"><img src="images/index/broker.png" style="margin-left: 98px;"></div>
 			</div>
 		 </div>
 		
@@ -603,27 +603,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div style="width:1190px; margin:0 auto; background:#ECEAEB url(../pic/indexbg7.png) repeat-x 0 -666px;">
 			<div class="main_bkg6_div">
 			<c:if test="${!empty projectList }">
-				<a class="c-fix f-l f-yahei s-16 main_lab2">墨尔本</a>
+				<span class="c-fix f-l f-yahei s-16 main_lab2">墨尔本</span>
 				<c:forEach var="item" items="${projectList}" varStatus="stat">
 				<div class="f-l main_node" <c:if test="${stat.index != 0}">style="margin-left:30px;"</c:if>>
 					<a href="/Index?proNum=${item.project_num}"><img src="<%=application.getInitParameter("imagedir")%>/${item.project_img }" class="c-fix f-l main_node_img"></img></a>
 						<div class="c-fix f-l main_node_bkg" onclick="location.href='/Index?proNum=${item.project_num}'">
-							<a class="c-fix f-l main_node_lab f-yahei s-14" style="margin-top:5px;" href="/Index?proNum=${item.project_num}">${item.project_name}</a>
-							<a class="c-fix f-l main_node_lab f-yahei s-14" style="font-style:italic;color:red">$${item.project_min_price}-$${item.project_high_price}</a>
-							<a class="c-fix f-l main_node_lab f-yahei s-14">${item.project_area},${item.project_city}</a>
+							<a class="c-fix f-l main_node_lab f-yahei s-14" style="margin-top:5px;text-decoration: none;color:white" href="/Index?proNum=${item.project_num}">${item.project_name}</a>
+							<a class="c-fix f-l main_node_lab f-yahei s-14" style="font-style:italic;color:red;text-decoration: none;color:white">$${item.project_min_price}-$${item.project_high_price}</a>
+							<a class="c-fix f-l main_node_lab f-yahei s-14" style="text-decoration: none;">${item.project_area},${item.project_city}</a>
 						</div>
 				</div>
 			</c:forEach>
 			</c:if>
 				<c:if test="${!empty projectList2 }">
-					<a class="c-fix f-l f-yahei s-16 main_lab2" style="margin-top:-60px;">悉尼</a>
+					<span class="c-fix f-l f-yahei s-16 main_lab2" style="margin-top:-60px;">悉尼</span>
 					<c:forEach var="item" items="${projectList2}" varStatus="stat">
 						<div class="f-l main_node" style="margin-top:-20px;<c:if test="${stat.index != 0}">margin-left:30px;</c:if>">
 						  <a href="/Index?proNum=${item.project_num}"><img src="<%=application.getInitParameter("imagedir")%>/${item.project_img }" class="c-fix f-l main_node_img"></img></a>
 							<div class="c-fix f-l main_node_bkg" onclick="location.href='/Index?proNum=${item.project_num}'">
-								<a class="c-fix f-l main_node_lab f-yahei s-14" style="margin-top:5px;" href="/Index?proNum=${item.project_num}">${item.project_name}</a>
-								<a class="c-fix f-l main_node_lab f-yahei s-14" style="font-style:italic;color:red">$${item.project_min_price}-$${item.project_high_price}</a>
-								<a class="c-fix f-l main_node_lab f-yahei s-14">${item.project_area},${item.project_city}</a>
+								<a class="c-fix f-l main_node_lab f-yahei s-14" style="margin-top:5px;text-decoration: none;" href="/Index?proNum=${item.project_num}">${item.project_name}</a>
+								<a class="c-fix f-l main_node_lab f-yahei s-14" style="font-style:italic;color:red;text-decoration: none;">$${item.project_min_price}-$${item.project_high_price}</a>
+								<a class="c-fix f-l main_node_lab f-yahei s-14" style="text-decoration: none;">${item.project_area},${item.project_city}</a>
 							</div>
 						</div>
 					</c:forEach>
