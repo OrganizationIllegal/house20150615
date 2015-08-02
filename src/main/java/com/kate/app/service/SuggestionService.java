@@ -31,6 +31,8 @@ public class SuggestionService {
 	private  final static String SUGGESTION = "data1.txt";
 	private  final static String SUGGESTIONRECO = "dataReco.txt";
 	private  final static String SUGGESTIONMap = "dataMap.txt";
+	private  final static String SUGGESTIONFuwu = "dataFuwu.txt";
+	private  final static String SUGGESTIONSuozai = "dataSuozai.txt";
 	private final static String URL = "D:/";
 	
 	public List<String>  getSuggestion(String query) throws IOException{
@@ -145,7 +147,7 @@ public class SuggestionService {
 				list.add(data);
 			}
 			
-			for(Suggestion item : list){     //区域名称
+			/*for(Suggestion item : list){     //区域名称
 				p.append(item.getArea_name()+"\r\n");
 			}
 			for(String zhou : zhouList){
@@ -153,7 +155,7 @@ public class SuggestionService {
 			}
 			for(String city : cityList){
 				p.append(city+"\r\n");
-			}
+			}*/
 			for(SuggestionProject item : projectList){
 				p.append(item.getProject_name()+"\r\n");
 			}
@@ -224,6 +226,50 @@ public class SuggestionService {
 			return listLast;
 	}
 	
+	
+	public List<String>  getSuggestionFuwu(String query) throws IOException{
+		List<String[]> list = new ArrayList<String[]>();
+		String path = URL + SUGGESTIONFuwu;
+		
+		List<String> resultList = new ArrayList<String>();
+		List<String> listLast = new ArrayList<String>();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(path), "gbk"));
+		//BufferedReader reader = new BufferedReader(new FileReader(path));
+		while (reader.ready()) {
+			String line = reader.readLine();
+			resultList.add(line);
+		}
+		reader.close();
+		for(String e: resultList){
+			if(e.trim().toUpperCase().startsWith(query.toUpperCase())){
+				listLast.add(e);
+				System.out.println(e);
+			}
+		}
+			return listLast;
+	}
+	
+	public List<String>  getSuggestionSuozai(String query) throws IOException{
+		List<String[]> list = new ArrayList<String[]>();
+		String path = URL + SUGGESTIONSuozai;
+		
+		List<String> resultList = new ArrayList<String>();
+		List<String> listLast = new ArrayList<String>();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(path), "gbk"));
+		//BufferedReader reader = new BufferedReader(new FileReader(path));
+		while (reader.ready()) {
+			String line = reader.readLine();
+			resultList.add(line);
+		}
+		reader.close();
+		for(String e: resultList){
+			if(e.trim().toUpperCase().startsWith(query.toUpperCase())){
+				listLast.add(e);
+				System.out.println(e);
+			}
+		}
+			return listLast;
+	}
 	public void writeFileByMap() {
 		File docFile = new File("D:/dataMap.txt");
 		try {
@@ -232,6 +278,49 @@ public class SuggestionService {
 			PrintStream p = new PrintStream(txtfile);
 			
 			List<String> addList = suggestionDao.getProjectAdd();
+
+			for(String add : addList){
+				p.append(add+"\r\n");
+			}
+
+			txtfile.close();
+			p.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void writeFileByFuwu() {
+		File docFile = new File("D:/dataFuwu.txt");
+		try {
+			docFile.createNewFile();
+			FileOutputStream txtfile = new FileOutputStream(docFile);
+			PrintStream p = new PrintStream(txtfile);
+			
+			List<String> addList = suggestionDao.getFuwuQuyu();
+
+			for(String add : addList){
+				p.append(add+"\r\n");
+			}
+
+			txtfile.close();
+			p.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	public void writeFileBySuozai() {
+		File docFile = new File("D:/dataSuozai.txt");
+		try {
+			docFile.createNewFile();
+			FileOutputStream txtfile = new FileOutputStream(docFile);
+			PrintStream p = new PrintStream(txtfile);
+			
+			List<String> addList = suggestionDao.getSuozaiQuyu();
 
 			for(String add : addList){
 				p.append(add+"\r\n");

@@ -104,6 +104,98 @@ public class SuggestionDao extends BaseDao {
 	}
 	
 	
+	
+	public List<String> getSuozaiQuyu(){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		List<String> zhouList = new ArrayList<String>();
+		try{
+			String sql = "select distinct  broker_region from broker_info";
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				String data = new String();
+				data = rs.getString("broker_region");
+				zhouList.add(data);
+			}
+			
+		}catch (Exception e) {
+			 e.printStackTrace();
+        }finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return zhouList;
+	}
+	
+	
+	public List<String> getFuwuQuyu(){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		List<String> zhouList = new ArrayList<String>();
+		try{
+			String sql = "select distinct  a.area_name from area_info a, broker_service_area b where a.area_num = b.area_code";
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				String data = new String();
+				data = rs.getString("area_name");
+				zhouList.add(data);
+			}
+			
+		}catch (Exception e) {
+			 e.printStackTrace();
+        }finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return zhouList;
+	}
+	
+	
+	
 	public List<String> getProjectAdd(){
 		Statement stmt = null;
 		ResultSet rs = null;

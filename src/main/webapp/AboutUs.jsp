@@ -37,11 +37,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      $(function(){
     	 $("li").css("text-decoration","");
          
-        var can = document.getElementById("circle1");
+       /*  var can = document.getElementById("circle1");
         var can2 = document.getElementById("circle2");
         var can3 = document.getElementById("circle3");
         var can4 = document.getElementById("circle4");
-        var can5 = document.getElementById("circle5");
+        var can5 = document.getElementById("circle5"); */
         //var can6 = document.getElementById("circle6");
         /* var can7 = document.getElementById("circle7");
         var can8 = document.getElementById("circle8");
@@ -62,10 +62,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
         
         //var ctx = can.getContext("2d");   
-        var ctx2 = can2.getContext("2d");   
+        /* var ctx2 = can2.getContext("2d");   
         var ctx3 = can3.getContext("2d");   
         var ctx4 = can4.getContext("2d"); 
-        var ctx5 = can5.getContext("2d");   
+        var ctx5 = can5.getContext("2d");  */  
         //var ctx6 = can6.getContext("2d");  
         /* var ctx7 = can7.getContext("2d");   
         var ctx8 = can8.getContext("2d");  
@@ -110,7 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        /*  img.onload = function (){
              ctx.drawImage(img, 0, 0, 70, 70);
              } */
-        img2.onload = function (){
+       /*  img2.onload = function (){
              ctx2.drawImage(img2, 0, 0, 70, 70);
              }
         img3.onload = function (){
@@ -121,7 +121,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
              }
         img5.onload = function (){
              ctx5.drawImage(img5, 0, 0, 70, 70);
-             }
+             } */
         /* img6.onload = function (){
              ctx6.drawImage(img6, 0, 0, 70, 70);
              } */
@@ -197,10 +197,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
         
         //begin(ctx); 
-        begin(ctx2);  
+        /* begin(ctx2);  
         begin(ctx3); 
         begin(ctx4);  
-        begin(ctx5); 
+        begin(ctx5); */ 
         //begin(ctx6);
        /*  begin(ctx7);  
         begin(ctx8); 
@@ -281,6 +281,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			   <br/>
 			    <div style="width:155px; height:50px;">
 			     <img  src="../images/00.png" id="register_aboutus">
+
 			    <!-- <button type="button" style="margin:0 auto; border:0; width:136px; height:46px; background:#d7253f; font-size:28px; color:#fff;"  id="register_aboutus">注册</button> -->
 			     </div>
 				 
@@ -320,24 +321,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		   		<!-- <div style="font-size:13px;font-family:微软雅黑; margin-bottom:4px;">投资者</div> -->
 		   </div>
 		   <div id="jignjiren2"  style="margin:9px 30px;width:100px;height:100px;float:left;">
-		   		<div><canvas id="circle2" width="70" height="70"  ></canvas></div>
-		   		<div style="font-size:13px;font-family:微软雅黑; margin-bottom:4px;">国内经纪人</div>
-		   		<div ><span style="font-size:13px;font-family:微软雅黑;color:#fff;background:#d62541;padding:4px 4px;-webkit-border-radius: 4px;-moz-border-radius: 4px;">1%手续费</span></div>
+		   		<div><img src="../images/people.png" width="60" height="55" style="margin-top:8px;margin-bottom:6px;"></div>
+		   		
+		   		<div style="font-size:13px;font-family:微软雅黑; margin-bottom:7px;">国内经纪人</div>
+		   		<div ><span style="font-size:13px;font-family:微软雅黑;color:#fff;background:#d62541;padding:0px 12px;-webkit-border-radius: 4px;-moz-border-radius: 4px;">有限服务</span></div>
 		   </div>
 		    <div id="dailigongsi"  style="margin:9px 30px;width:100px;height:100px;float:left;">
-		   		<div><canvas id="circle3" width="70" height="70"></canvas></div>
-		   		<div style="font-size:13px;font-family:微软雅黑; margin-bottom:4px;">代理经纪公司</div>
-		   		<div ><span style="font-size:13px;font-family:微软雅黑;color:white;background:#d62541;padding:4px 4px;-webkit-border-radius: 4px;-moz-border-radius: 4px;">1%手续费</span></div>
+		   		<div><img src="../images/people.png" width="60" height="55" style="margin-top:8px;margin-bottom:6px;"></div>
+		   		<div style="font-size:13px;font-family:微软雅黑; margin-bottom:7px;">代理经纪公司</div>
+		   		<div ><span style="font-size:13px;font-family:微软雅黑;color:white;background:#d62541;padding:0px 12px;-webkit-border-radius: 4px;-moz-border-radius: 4px;">销售向导</span></div>
 		   </div>
 		     <div id="haiwaigongsi"  style="margin:9px 30px;width:100px;height:100px;float:left;">
-		   		<div><canvas id="circle4" width="70" height="70"  ></canvas></div>
-		   		<div style="font-size:13px;font-family:微软雅黑; margin-bottom:4px;">海外经纪公司</div>
-		   		<div ><span style="font-size:13px;font-family:微软雅黑;color:white;background:#d62541;padding:4px 4px;-webkit-border-radius: 4px;-moz-border-radius: 4px;">1%手续费</span></div>
+		   		<div><img src="../images/people.png" width="60" height="55" style="margin-top:8px;margin-bottom:6px;"></div>
+		   		<div style="font-size:13px;font-family:微软雅黑; margin-bottom:7px;">海外经纪公司</div>
+		   		<div ><span style="font-size:13px;font-family:微软雅黑;color:white;background:#d62541;padding:0px 12px;-webkit-border-radius: 4px;-moz-border-radius: 4px;">很少房源</span></div>
 		   </div>
 		    <div id="jingjishang"  style="margin:9px 30px;width:100px;height:100px;float:left;">
-		   		<div><canvas id="circle5" width="70" height="70"></canvas></div>
-		   		<div style="font-size:13px;font-family:微软雅黑; margin-bottom:4px;">房地产经纪商</div>
-		   		<div ><span style="font-size:13px;font-family:微软雅黑;color:white;background:#d62541;padding:4px 4px;-webkit-border-radius: 4px;-moz-border-radius: 4px;">1-2%手续费</span></div>
+		   		<div><img src="../images/people.png" width="60" height="55" style="margin-top:8px;margin-bottom:6px;"></div>
+		   		<div style="font-size:13px;font-family:微软雅黑; margin-bottom:7px;">房地产经纪商</div>
+		   		<div ><span style="font-size:13px;font-family:微软雅黑;color:white;background:#d62541;padding:0px 12px;-webkit-border-radius: 4px;-moz-border-radius: 4px;">销售向导</span></div>
 		   </div>
 		     <div id="fangchan" style="margin:0 30px;width:100px;height:100px;float:left;">
 		     	<img src="../images/fangyuan.png">

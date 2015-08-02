@@ -844,16 +844,41 @@ public class BingMapDao extends BaseDao {
         }
 		return coordinatesList;
 	}
-/*	public List<HouseProject> filterByKeyWord(String key){
+	/*public List<HouseProject> filterByKeyWord(String key,int order){
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-
+		String sql=null;
 		List<HouseProject> coordinatesList=new ArrayList<HouseProject>();
 		try {
-			String sql = "SELECT * FROM `house_project` WHERE gps!='' and project_address like '%"+key+"%'";
-			  stmt = con.createStatement();
-			  rs = stmt.executeQuery(sql);
+			 if(key.contains(",")){
+				 sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_address=? ";
+				 if(order==1){
+					  sql+="order by project_price_int_qi";
+				  }
+				  else if(order==2){
+					  sql+="order by project_price_int_qi desc";
+				  }
+			 }else if(key.contains("")){
+				 sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_city=? ";
+				 if(order==1){
+					  sql+="order by project_price_int_qi";
+				  }
+				  else if(order==2){
+					  sql+="order by project_price_int_qi desc";
+				  }
+			 }else if("".equals(key)){
+				 sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1";
+				 if(order==1){
+					  sql+="order by project_price_int_qi";
+				  }
+				  else if(order==2){
+					  sql+="order by project_price_int_qi desc";
+				  }
+			 }
+			  pstmt = con.prepareStatement(sql);
+			  pstmt.setString(1, key);
+			  rs = pstmt.executeQuery();
 			while(rs.next()){
 		    	HouseProject coordinates=new HouseProject();
 		    	coordinates.setId(rs.getInt("id"));
@@ -869,7 +894,13 @@ public class BingMapDao extends BaseDao {
 		    	coordinates.setProject_nation(rs.getString("project_nation"));
 		    	coordinates.setProject_area(rs.getString("project_area"));
 		    	coordinates.setProject_price_int_qi(rs.getInt("project_price_int_qi"));
+		    	
+		    	coordinates.setMax_area(rs.getInt("max_area"));
+		    	coordinates.setMin_area(rs.getInt("min_area"));
 		    	coordinates.setProject_type(rs.getString("project_type"));
+		    	coordinates.setProject_address(rs.getString("project_address"));
+		    	coordinates.setMianji(rs.getString("mianji"));
+		    	coordinates.setReturn_money(rs.getString("return_money"));
 		    	coordinatesList.add(coordinates);
 		    }
 		} catch (Exception e) {
@@ -911,7 +942,7 @@ public class BingMapDao extends BaseDao {
 		List<HouseProject> coordinatesList=new ArrayList<HouseProject>();
 		try {
 			  if(!"".equals(area)&&!"".equals(city)&&!"".equals(addr)){
-				  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_area=? and project_city=? and project_address=? ";
+				  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_area=? and project_city=? and project_address like ?";
 				  if(order==1){
 					  sql+="order by project_price_int_qi";
 				  }
@@ -921,7 +952,7 @@ public class BingMapDao extends BaseDao {
 				  pstmt = con.prepareStatement(sql);
 				  pstmt.setString(1, area);
 				  pstmt.setString(2, city);
-				  pstmt.setString(3, addr);
+				  pstmt.setString(3, "%"+addr);
 			  }
 			  else if(!"".equals(area)&&"".equals(city)&&"".equals(addr)){
 				  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_area=? ";
@@ -946,7 +977,7 @@ public class BingMapDao extends BaseDao {
 					  pstmt.setString(1, city);
 			  }
 			  else if("".equals(area)&&"".equals(city)&&!"".equals(addr)){
-						  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_address=? ";
+						  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_address like ?";
 						  if(order==1){
 							  sql+="order by project_price_int_qi";
 						  }
@@ -954,7 +985,7 @@ public class BingMapDao extends BaseDao {
 							  sql+="order by project_price_int_qi desc";
 						  }
 						  pstmt = con.prepareStatement(sql);
-						  pstmt.setString(1, addr);
+						  pstmt.setString(1, "%"+addr);
 						  }
 			  else if(!"".equals(area)&&!"".equals(city)&&"".equals(addr)){
 							  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_area=? and project_city=? ";
@@ -969,7 +1000,7 @@ public class BingMapDao extends BaseDao {
 							  pstmt.setString(2, city);
 							  }
 			  else if(!"".equals(area)&&"".equals(city)&&!"".equals(addr)){
-								  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_area=? and project_address=? ";
+								  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_area=? and project_address like ?";
 								  if(order==1){
 									  sql+="order by project_price_int_qi";
 								  }
@@ -978,10 +1009,10 @@ public class BingMapDao extends BaseDao {
 								  }
 								  pstmt = con.prepareStatement(sql);
 								  pstmt.setString(1, area);
-								  pstmt.setString(2, addr);
+								  pstmt.setString(2, "%"+addr);
 								  }
 			  else if("".equals(area)&&!"".equals(city)&&!"".equals(addr)){
-									  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_city=? and project_address=? ";
+									  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_city=? and project_address like ?";
 									  if(order==1){
 										  sql+="order by project_price_int_qi";
 									  }
@@ -990,7 +1021,7 @@ public class BingMapDao extends BaseDao {
 									  }
 									  pstmt = con.prepareStatement(sql);
 									  pstmt.setString(1, city);
-									  pstmt.setString(2, addr);
+									  pstmt.setString(2, "%"+addr);
 									  }
 			  else{
 						sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 ";
@@ -1180,6 +1211,57 @@ public class BingMapDao extends BaseDao {
         }
 		return coordinatesList;
 	}
+	//得到区域、城市、邮编联合字段
+	public List<String> getKeyWord(){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		List<String> keyWordSet=new ArrayList<String>();
+		try {
+			String sql ="select distinct area_name,area_city,area_postcode from area_info order by area_name";
+			 pstmt = con.prepareStatement(sql);
+			  rs = pstmt.executeQuery();
+			while(rs.next()){
+				String areaName=rs.getString("area_name");
+				String cityName=rs.getString("area_city");
+				String postCode=rs.getString("area_postcode");
+				String keyWord;
+				if("".equals(areaName)&&"".equals(cityName)&&"".equals(postCode)){
+					keyWord="";
+				}else{
+				keyWord=areaName+","+cityName+","+postCode;
+				}
+				keyWordSet.add(keyWord);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return keyWordSet;
+	}
 	//得到区域名称
 	public List<String> getAreaName(){
 		Statement stmt = null;
@@ -1187,12 +1269,20 @@ public class BingMapDao extends BaseDao {
 		PreparedStatement pstmt = null;
 		List<String> areaNameSet=new ArrayList<String>();
 		try {
-			String sql ="select distinct project_area from house_project order by project_area";
+			String sql ="select distinct area_name,area_city,area_postcode from area_info order by area_name";
 			 pstmt = con.prepareStatement(sql);
 			  rs = pstmt.executeQuery();
 			while(rs.next()){
-				String areaName_str=rs.getString("project_area");
-				areaNameSet.add(areaName_str);
+				String areaName=rs.getString("area_name");
+				String cityName=rs.getString("area_city");
+				String postCode=rs.getString("area_postcode");
+				String keyWord;
+				if("".equals(areaName)&&"".equals(cityName)&&"".equals(postCode)){
+					keyWord="";
+				}else{
+				keyWord=areaName+","+cityName+","+postCode;
+				}
+				areaNameSet.add(keyWord);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -1230,12 +1320,20 @@ public class BingMapDao extends BaseDao {
 			PreparedStatement pstmt = null;
 			List<String> cityNameSet=new ArrayList<String>();
 			try {
-				String sql ="select distinct project_city from house_project order by project_city";
+				String sql ="select distinct area_name,area_city,area_postcode from area_info order by area_city";
 				 pstmt = con.prepareStatement(sql);
 				  rs = pstmt.executeQuery();
 				while(rs.next()){
-					String cityName_str=rs.getString("project_city");
-					cityNameSet.add(cityName_str);
+					String areaName=rs.getString("area_name");
+					String cityName=rs.getString("area_city");
+					String postCode=rs.getString("area_postcode");
+					String keyWord;
+					if("".equals(areaName)&&"".equals(cityName)&&"".equals(postCode)){
+						keyWord="";
+					}else{
+					keyWord=cityName+","+areaName+","+postCode;
+					}
+					cityNameSet.add(keyWord);
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -1273,12 +1371,20 @@ public class BingMapDao extends BaseDao {
 			PreparedStatement pstmt = null;
 			List<String> addressNameSet=new ArrayList<String>();
 			try {
-				String sql ="select distinct project_address from house_project order by project_address";
+				String sql ="select distinct area_name,area_city,area_postcode from area_info order by area_postcode";
 				 pstmt = con.prepareStatement(sql);
 				  rs = pstmt.executeQuery();
 				while(rs.next()){
-					String addressName_str=rs.getString("project_address");
-					addressNameSet.add(addressName_str);
+					String areaName=rs.getString("area_name");
+					String cityName=rs.getString("area_city");
+					String postCode=rs.getString("area_postcode");
+					String keyWord;
+					if("".equals(areaName)&&"".equals(cityName)&&"".equals(postCode)){
+						keyWord="";
+					}else{
+					keyWord=postCode+","+areaName+","+cityName;
+					}
+					addressNameSet.add(keyWord);
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
