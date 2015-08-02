@@ -128,6 +128,8 @@ public class HouseProjectDao extends BaseDao{
 				projectInfo.setProject_area(rs.getString("project_area"));
 				projectInfo.setProject_price_qi(rs.getString("project_price_qi"));
 				projectInfo.setProject_price_int_qi(rs.getInt("project_price_int_qi"));
+				projectInfo.setProject_price_int_qi_str(rs.getString("project_price_int_qi")==null?"N/A":df.format(Integer.parseInt(rs.getString("project_price_int_qi"))));
+				
 				projectInfo.setProject_type(rs.getString("project_type"));
 				projectInfo.setProject_sales_remain(rs.getInt("project_sales_remain"));
 				//projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));

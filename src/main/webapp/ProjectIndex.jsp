@@ -597,7 +597,7 @@ var e=$('#input2').val();
 				<div class="f-l p_panel_2" style="height:390px">
 					<a class="c-fix f-l f-yahei s-16 p_panel_lab fw" style="-margin-top:30px;margin-left:10px;">想要了解更多？</a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_lab fw" style="margin-top:5px;margin-left:10px;">填写信息我们会有专业人士一对一服务</a>
-				<c:if test="${!empty userList }">
+				<c:if test="${!empty userList }"> --%>
                   <c:forEach items="${userList}"  var="item">
 					<input type="text" class="c-fix f-l p_inp" style="margin-top:20px;" placeholder="姓名"  id="name2" value=${item.nick_name}></input>
 					<input type="text" class="c-fix f-l p_inp" placeholder="邮箱" id="email2"value=${item.email}></input>
@@ -607,16 +607,16 @@ var e=$('#input2').val();
 					<button type="button" class="f-l p_btn_submit cp" value="提交"  onclick="submitXuqiuMessage()">提交</button>
 				</c:forEach>
 				</c:if>
-				<c:if test="${empty userList }">
+				 <c:if test="${empty userList }">
               
 					<input type="text" class="c-fix f-l p_inp" style="margin-top:20px;" placeholder="姓名"  id="name2" ></input>
 					<input type="text" class="c-fix f-l p_inp" placeholder="邮箱" id="email2"></input>
 					<input type="text" class="c-fix f-l p_inp" placeholder="电话" id="tel2" ></input>
 					<!-- <input type="text" class="c-fix f-l p_inp" style="margin-top:10px;" placeholder="需求"></input> -->
-					<textarea class="c-fix f-l p_txt s-14" style="margin-top:10px;" placeholder="留言"></textarea>
-					<button type="button" class="f-l p_btn_submit cp" value="提交" onclick="popmodal()" >提交</button>
+					<textarea class="c-fix f-l p_txt s-14" style="margin-top:10px;" id="message_content2" placeholder="留言"></textarea>
+					<button type="button" class="f-l p_btn_submit cp" value="提交" onclick="submitXuqiuMessage()" >提交</button>
 
-				</c:if>
+				</c:if> 
 					
 				</div>
 			</div>
@@ -947,7 +947,7 @@ var e=$('#input2').val();
 			<div class="c-fix p_panel_4">
 				<%-- <a class="c-fix f-l p_inves_name f-yahei s-18 fw">${HouseProject.project_area}${HouseProject.project_type}投资数据</a> --%>
 				<a class="c-fix f-l p_inves_name f-yahei s-18 fw">${area_name}${HouseProject.project_type}投资数据</a>
-				<a class="c-fix f-l p_inves_name f-yahei s-14" style="border-bottom:1px solid #999;padding-bottom:20px;">投资数据参考 公寓房产</a>
+				<a class="c-fix f-l p_inves_name f-yahei s-14" style="border-bottom:1px solid #999;padding-bottom:20px;">投资数据参考 ${HouseProject.project_type}房产</a>
 				<div class="c-fix f-l p_inves_div">
 					<a class="c-fix f-l p_inves_lab f-yahei s-14 fw">年增长率</a>
 					<a class="c-fix f-l p_inves_lab f-yahei s-18" style="color:rgb(21,63,101);margin-top:10px;">${data.year_increment_rate}</a>
@@ -1300,15 +1300,25 @@ var e=$('#input2').val();
 					<a class="c-fix f-l f-yahei s-14 p_panel_title4 fw" style="width:950px;margin-bottom:10px;">推荐项目</a>
 					<div class="c-fix f-l p_project_node">
 						<a href="Index?proNum=${RecommendProject1.project_num}" target='_blank'><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject1.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
-						<a href="Index?proNum=${RecommendProject1.project_num}" target='_blank' class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject1.project_name}<br/><div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;word-break:break-all">${RecommendProject1.project_desc}</div></a>
+						<a href="Index?proNum=${RecommendProject1.project_num}" target='_blank' class="c-fix f-l f-yahei s-14 project_desc fw">
+						<span>${RecommendProject1.project_name}</span><span style="float: right;">$${RecommendProject1.project_price_int_qi_str}</span><br/>
+						
+						
+						<div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;word-break:break-all">
+						${RecommendProject1.project_desc}</div></a>
 					</div>
 					<div class="f-l p_project_node" style="margin-left:25px;">
 						<a href="Index?proNum=${RecommendProject2.project_num}" target='_blank'><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject2.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
-						<a href="Index?proNum=${RecommendProject2.project_num}" target='_blank' class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject2.project_name}<br/><div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;word-break:break-all">${RecommendProject2.project_desc}</div></a>
+						<a href="Index?proNum=${RecommendProject2.project_num}" target='_blank' class="c-fix f-l f-yahei s-14 project_desc fw">
+						<span>${RecommendProject2.project_name}</span><span style="float: right;">$${RecommendProject2.project_price_int_qi_str}</span><br/>
+						
+						<div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;word-break:break-all">${RecommendProject2.project_desc}</div></a>
 					</div>
 					<div class="f-l p_project_node" style="margin-left:25px;">
 						<a href="Index?proNum=${RecommendProject3.project_num}" target='_blank'><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject3.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
-						<a href="Index?proNum=${RecommendProject3.project_num}" target='_blank' class="c-fix f-l f-yahei s-14 project_desc fw">${RecommendProject3.project_name}<br/><div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;word-break:break-all">${RecommendProject3.project_desc}</div></a>
+						<a href="Index?proNum=${RecommendProject3.project_num}" target='_blank' class="c-fix f-l f-yahei s-14 project_desc fw">
+						<span>${RecommendProject3.project_name}</span><span style="float: right;">$${RecommendProject3.project_price_int_qi_str}</span><br/>
+						<div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;word-break:break-all">${RecommendProject3.project_desc}</div></a>
 					</div>
 				</div>
 			</div>
@@ -1316,7 +1326,7 @@ var e=$('#input2').val();
 		</c:if>
 		<div class="c-fix f-l bottom_bkg">
 			<div class="c-fix f-l triangle"></div>
-			<a class="c-fix f-l bottom_lab f-yahei fw">为您提供最好的海外购房服务</a>
+			<a class="c-fix f-l bottom_lab f-yahei fw">聪明海外置业</a>
 			<a id="xiangmuZhuce" class="c-fix f-l bottom_reg f-yahei cp">注册</a>
 		</div>
 		<jsp:include page="foot4index.jsp" />
@@ -1808,16 +1818,16 @@ function pop(type,img){
 }
 function pop6(type,img){
 	
-	if(kk==0){
+	/* if(kk==0){
 		 $('#registernewPro').modal('show');
 	}
-	else{
+	else{ */
 		  //alert($('#titleHouse').text())
 		  $('#titleHouse').empty();	
 		  $('#titleHouse').append("<h4>户型"+type+"</h4>");
 		  $('#image').attr("src",img);
 		  $('#housestyle').modal('show');
-	}
+	//}
 	
 }
 function pop1(){
@@ -1857,7 +1867,7 @@ function popInfo(){
   
 }
 function popmodal(){
-	 $('#registernewPro').modal('show');
+	 //$('#registernewPro').modal('show');
 }
 
 
@@ -2012,6 +2022,7 @@ function popmodal(){
   
   function submitXuqiuMessage()
   {
+	 
 	  var username=$("#name2").val();
 	  var email1=$("#email2").val();
 	  var tel=$("#tel2").val();

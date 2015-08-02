@@ -144,12 +144,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                            	</span>
                           
                           </li>
-                         <!-- <li class="media">
-                           <a href="/BlogList?type='退税技巧'" target="_blank"><span style="font-family:微软雅黑; color:rgba(140, 181, 225, 1); font-size: 13px;padding-right: 10px;text-decoration: underline;">退税技巧</span></a>
+                         <li class="media">
+                         <c:choose>
+			                        <c:when test="${type==0}">
+			            				<a href="/ZhiYeInfo?type=${zhiYeDetail.fenlei}" target="_blank"><span style="font-family:微软雅黑; color:rgba(140, 181, 225, 1); font-size: 13px;padding-right: 10px;text-decoration: underline;">${zhiYeDetail.fenlei}</span></a>
+			            			</c:when>
+			            			<c:otherwise>
+			            				<a href="/BlogList?type=${newsBokeDetail.news_fenlei}" target="_blank"><span style="font-family:微软雅黑; color:rgba(140, 181, 225, 1); font-size: 13px;padding-right: 10px;text-decoration: underline;">${newsBokeDetail.news_fenlei}</span></a>
+			            			</c:otherwise>
+			            		</c:choose>
+                           <!-- <a href="/BlogList?type='退税技巧'" target="_blank"><span style="font-family:微软雅黑; color:rgba(140, 181, 225, 1); font-size: 13px;padding-right: 10px;text-decoration: underline;">退税技巧</span></a>
                             <a href="/BlogList?type='房地产'" target="_blank"><span style="font-family:微软雅黑; color:rgba(140, 181, 225, 1); font-size: 13px;padding-right: 10px;text-decoration: underline;">个人投资</span></a>
                          		<a href="/BlogList?type='市场'" target="_blank"><span style="font-family:微软雅黑; color:rgba(140, 181, 225, 1);font-size: 13px;padding-right: 10px;text-decoration: underline; ">房地产</span></a>
-                         <a href="/BlogList?type=''" target="_blank"><span style="font-family:微软雅黑; color:rgba(140, 181, 225, 1); font-size: 13px;padding-right: 10px;text-decoration: underline;">市场</span></a>
-                          </li> -->
+                         <a href="/BlogList?type=''" target="_blank"><span style="font-family:微软雅黑; color:rgba(140, 181, 225, 1); font-size: 13px;padding-right: 10px;text-decoration: underline;">市场</span></a> -->
+                          </li> 
                         
                          <li class="media" style="margin-top:15px;border-bottom-width: 1px; border-bottom-style: solid;
 		  border-bottom-color: rgba(0,0,0,0);">
