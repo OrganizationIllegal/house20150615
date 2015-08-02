@@ -1,5 +1,6 @@
 package com.kate.app.service;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,27 @@ public class PeopleInfoService {
 	
 	public List<AreaPeopleInfo> getAreaPeopleInfo(String area_code){
 		List<AreaPeopleInfo> list=regionPeopleDao.getAreaPeopleInfo(area_code);
+		DecimalFormat df = new DecimalFormat("#,###,###");
+		DecimalFormat df1=new DecimalFormat("0.00");
+		for(int i=0;i<list.size();i++){
+			String c1=list.get(i).getColumn1();
+			String c2=list.get(i).getColumn2();
+			String c3=list.get(i).getColumn3();
+			if("周薪".equals(c1)){
+				String zx2=df.format(Integer.parseInt(c2));
+				String zx3=df.format(Integer.parseInt(c3));
+				list.get(i).setColumn2(zx2);
+				list.get(i).setColumn3(zx3);			
+			}
+			if(c2.contains("0.")){
+				float f2=Float.parseFloat(c3)*100;
+				list.get(i).setColumn2(df1.format(f2)+"%");
+			}
+			if(c3.contains("0.")){
+				float f3=Float.parseFloat(c3)*100;
+				list.get(i).setColumn3(df1.format(f3)+"%");
+			}
+		}
 		return list;
 	}
 	

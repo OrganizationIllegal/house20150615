@@ -147,9 +147,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 		
 			 	 	 <select name="fuwuarea" style="  width: 161px;height: 32px; " class="chosen-select">
          					<option>服务区域</option>
+         					
         					 <c:forEach items="${serviceregionlist}" var="item">
         					<option  value="${item}">${item}</option>
        					   </c:forEach>
+       					  
                      </select>
 			 	 </div>
 			 	 
@@ -199,10 +201,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	     <div style="float:right">
                 	         <img  src="/images/serviceteam/b3.png"/>
 
-                	         <c:forEach var="item1" items="${item.areaList }"  varStatus="stat"> 
+                	         <c:forEach var="item1" items="${item.areaList }"  varStatus="stat">
+                	         <c:if test="${stat.index<2}">
                 	   	        <span style="padding-left:5px">${item1}</span>
-
+</c:if>
                 	         </c:forEach>
+                	         
                 	     </div>
                 	     </c:if>
                 	  </div>
