@@ -1035,7 +1035,7 @@ public class SearchListDao extends BaseDao {
 		PreparedStatement pstmt = null;
 		List<HouseProject> houseProjectList=new ArrayList<HouseProject>();
 		try {
-			String sql = "select * from house_project where isSeen=1 and project_name like '%" +city1+ "%' or project_city like '%" +city1+ "%'";
+			String sql = "select * from house_project where isSeen=1 and gps!='' and gps like '%,%' and project_name like '%" +city1+ "%' or project_city like '%" +city1+ "%'";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
 		    while(rs.next()){
@@ -1214,7 +1214,7 @@ public class SearchListDao extends BaseDao {
 		try {
 			/*String sql = "select *,i.image_name from house_project t join project_desc_image i on t.project_num=i.project_num  where t.isSeen=1";
 			String sql1 = "select project_num from project_key where ";*/
-			String sql = "select * from house_project where isSeen=1 ";
+			String sql = "select * from house_project where isSeen=1 and gps!='' and gps like '%,%' ";
 			String sql1 = "select project_num from project_key where ";
 			int i=0;
 			int j=0;
@@ -1366,7 +1366,7 @@ public class SearchListDao extends BaseDao {
 					}
 				}
 				if(j==0){
-					sql = "select * from house_project where isSeen=1 and project_num in (" +sql1+ ")";
+					sql = "select * from house_project where isSeen=1 and gps!='' and gps like '%,%' and project_num in (" +sql1+ ")";
 				}
 				stmt = con.createStatement();
 				rs = stmt.executeQuery(sql);
@@ -1498,7 +1498,7 @@ public class SearchListDao extends BaseDao {
 
 		List<HouseProject> houseProjectList=new ArrayList<HouseProject>();
 		try {
-			String sql = "select *,i.image_name from house_project t join project_desc_image i on t.project_num=i.project_num  where t.isSeen=1 and area_num=?";
+			String sql = "select *,i.image_name from house_project t join project_desc_image i on t.project_num=i.project_num  where t.isSeen=1 and t.gps!='' and t.gps like '%,%' and t.area_num=?";
 			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, areaNum);
 			  rs = pstmt.executeQuery();
@@ -1613,7 +1613,7 @@ public class SearchListDao extends BaseDao {
 
 		List<HouseProject> houseProjectList=new ArrayList<HouseProject>();
 		try {
-			String sql = "select *,i.image_name from house_project t join project_desc_image i on t.project_num=i.project_num  where t.isSeen=1 and i.view_shunxu=1 and t.project_name=?";
+			String sql = "select *,i.image_name from house_project t join project_desc_image i on t.project_num=i.project_num  where t.isSeen=1 and t.gps!='' and t.gps like '%,%' and i.view_shunxu=1 and t.project_name=?";
 			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, proName);
 			  rs = pstmt.executeQuery();
