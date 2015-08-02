@@ -1,5 +1,7 @@
 package com.kate.app.model;
 
+import java.util.List;
+
 public class SearchList implements Comparable<SearchList>{
 	private int id;
 	private String project_img;
@@ -103,7 +105,7 @@ public class SearchList implements Comparable<SearchList>{
     private String project_desc;
     private int isCollected;//鏄惁琚綋鍓嶇敤鎴锋敹钘忥紝0琛ㄧず鏈敹钘忥紝1琛ㄧず琚綋鍓嶇敤鎴锋敹钘�
     private String gps;
-    private String project_key;
+    private List<String> project_key;
     
 	
 	public String getProject_price_int_qi_str() {
@@ -112,12 +114,19 @@ public class SearchList implements Comparable<SearchList>{
 	public void setProject_price_int_qi_str(String project_price_int_qi_str) {
 		this.project_price_int_qi_str = project_price_int_qi_str;
 	}
-	public String getProject_key() {
+	
+	public List<String> getProject_key() {
 		return project_key;
 	}
-	public void setProject_key(String project_key) {
+
+
+
+	public void setProject_key(List<String> project_key) {
 		this.project_key = project_key;
 	}
+
+
+
 	public String getGps() {
 		return gps;
 	}
@@ -303,7 +312,7 @@ public class SearchList implements Comparable<SearchList>{
 	
 	
 	
-	public SearchList(int id, String bijiao, String project_name_short, String project_area,String project_type,String gps, String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String project_lan_en,String mianji,String project_address,String project_logo,String developer_id_name ,String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue, String center,String traffic,String xianfang,String maidi,String project_price_int_qi_str,String project_desc,String project_key,String project_address_short,String project_city){
+	public SearchList(int id, String bijiao, String project_name_short, String project_area,String project_type,String gps, String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String project_lan_en,String mianji,String project_address,String project_logo,String developer_id_name ,String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue, String center,String traffic,String xianfang,String maidi,String project_price_int_qi_str,String project_desc,List<String> project_key,String project_address_short,String project_city){
 		this.id=id;
 		this.project_num = project_num;
 		this.project_img=project_img;
@@ -342,7 +351,7 @@ public class SearchList implements Comparable<SearchList>{
 	}
 	
 	
-	public SearchList(int id, String project_area,String project_type,String gps, String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String project_lan_en,String mianji,String project_address,String project_logo,String developer_id_name ,String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue, String center,String traffic,String xianfang,String maidi,int project_price_int_qi,String project_desc,String project_key,String project_address_short){
+	public SearchList(int id, String project_area,String project_type,String gps, String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String project_lan_en,String mianji,String project_address,String project_logo,String developer_id_name ,String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue, String center,String traffic,String xianfang,String maidi,int project_price_int_qi,String project_desc,List<String> project_key,String project_address_short){
 
 
 
@@ -380,7 +389,7 @@ public class SearchList implements Comparable<SearchList>{
 		this.project_key=project_key;
 		this.project_address_short=project_address_short;
 	}
-	public SearchList(int id, String project_area,String project_type,String gps, String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String project_lan_en,String mianji,String project_address,String project_logo,String developer_id_name ,String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue, String center,String traffic,String xianfang,String maidi,String project_price_int_qi_str,String project_desc,String project_key,String project_address_short){
+	public SearchList(int id, String project_area,String project_type,String gps, String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String project_lan_en,String mianji,String project_address,String project_logo,String developer_id_name ,String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue, String center,String traffic,String xianfang,String maidi,String project_price_int_qi_str,String project_desc,List<String> project_key,String project_address_short){
 		this.id=id;
 		this.project_num = project_num;
 		this.project_img=project_img;

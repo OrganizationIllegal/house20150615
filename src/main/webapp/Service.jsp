@@ -29,16 +29,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 <div style="margin-top:10px;"><!-- <img alt="btn" src="images/service/btn1.png"> -->
 	<c:if test="${not empty brokerInfo.phone}">
-	  <div style="width:50%;float:left;font-weight:bold">电话：${brokerInfo.phone}</div>
+	  <div style="width:50%;float:left;font-weight:bold"><img src="images/tel.png">${brokerInfo.phone}</div>
 	</c:if>
 	<c:if test="${not empty brokerInfo.email}">
-	  <div style="width:50%;float:left;font-weight:bold">Email：${brokerInfo.email}</div>
+	  <div style="width:50%;float:left;font-weight:bold"><img src="images/email.png">${brokerInfo.email}</div>
 	</c:if>
 	<c:if test="${not empty brokerInfo.wechat}">
-	  <div style="width:50%;float:left;font-weight:bold">微信：${brokerInfo.wechat}</div>
+	  <div style="width:50%;float:left;font-weight:bold"><img src="images/weixin.png">${brokerInfo.wechat}</div>
 	</c:if>
 	<c:if test="${not empty brokerInfo.qq}">
-	  <div style="width:50%;float:left;font-weight:bold">QQ：${brokerInfo.qq}</div>
+	  <div style="width:50%;float:left;font-weight:bold"><img src="images/qq.png">${brokerInfo.qq}</div>
 	</c:if>
 </div>
 </div>

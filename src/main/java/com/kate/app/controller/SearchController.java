@@ -137,7 +137,7 @@ public class SearchController {
 					data.setBroker_num(item.getBroker_num()==null?"":item.getBroker_num());
 					data.setBroker_type(item.getBroker_type()==null?"":item.getBroker_type());
 					data.setBroker_region(item.getBroker_region()==null?"":item.getBroker_region());
-					data.setBroker_language(item.getBroker_language()==null?"":item.getBroker_language());
+					data.setBroker_language(item.getBroker_language()==null?"":item.getBroker_language().replace("+", " "));
 					List<LeiXing> list = searchListDao.searchSericeListBroker(broker_num);
 					if (list!=null && list.size()>0) {
 						data.setLeixingInfo(list);
@@ -453,7 +453,7 @@ public class SearchController {
 		    		maidi1 = p.getMaidi();
 		    	}
 
-		    	String project_key=null;
+		    	List<String> project_key = new ArrayList<String>();
 		    	project_key=bingMapDao.findProjectKeyByNum(project_num);
 		    	
 		        
@@ -655,6 +655,7 @@ public class SearchController {
 					obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
 					obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
 					obj.put("project_price_int_qi", data.getProject_price_int_qi()==0?"N/A":df.format(data.getProject_price_int_qi()));
+					obj.put("project_price_int_qi", data.getProject_price_int_qi_str());
 					obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
 					array.add(obj);
 				}
@@ -716,7 +717,7 @@ public class SearchController {
 					obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
 					obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
 					obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
-					obj.put("project_price_int_qi", data.getProject_price_int_qi()==0?"N/A":df.format(data.getProject_price_int_qi()));
+					obj.put("project_price_int_qi", data.getProject_price_int_qi_str());
 					obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
 					array.add(obj);
 				}

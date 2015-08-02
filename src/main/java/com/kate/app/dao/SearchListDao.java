@@ -1227,7 +1227,7 @@ public class SearchListDao extends BaseDao {
 			if(huaren!=null &&!"".equals(huaren)){
 				huaren = "1";
 				if(i==1){
-					sql1+=" and huaren="+huaren;
+					sql1+=" or huaren="+huaren;
 				}
 				else{
 					sql1+=" huaren="+huaren;
@@ -1237,7 +1237,7 @@ public class SearchListDao extends BaseDao {
 			if(remen!=null &&!"".equals(remen)){
 				remen = "1";
 				if(i==1){
-					sql1+=" and remen="+remen;
+					sql1+=" or remen="+remen;
 				}
 				else{
 					sql1+=" remen="+remen;
@@ -1247,7 +1247,7 @@ public class SearchListDao extends BaseDao {
 			if(xuequ!=null &&!"".equals(xuequ)){
 				xuequ = "1";
 				if(i==1){
-					sql1+=" and xuequ="+xuequ;
+					sql1+=" or xuequ="+xuequ;
 					
 				}
 				else{
@@ -1259,7 +1259,7 @@ public class SearchListDao extends BaseDao {
 			if(baozu!=null &&!"".equals(baozu)){
 				baozu = "1";
 				if(i==1){
-					sql1 +=" and baozu="+baozu;
+					sql1 +=" or baozu="+baozu;
 					
 				}
 				else{
@@ -1271,7 +1271,7 @@ public class SearchListDao extends BaseDao {
 			if(daxue!=null &&!"".equals(daxue)){
 				daxue = "1";
 				if(i==1){
-					sql1+=" and daxue="+daxue;
+					sql1+=" or daxue="+daxue;
 					
 				}
 				else{
@@ -1283,7 +1283,7 @@ public class SearchListDao extends BaseDao {
 			if(center!=null &&!"".equals(center)){
 				center = "1";
 				if(i==1){
-					sql1+=" and center="+center;
+					sql1+=" or center="+center;
 					
 				}
 				else{
@@ -1295,7 +1295,7 @@ public class SearchListDao extends BaseDao {
 			if(traffic!=null &&!"".equals(traffic)){
 				traffic = "1";
 				if(i==1){
-					sql1+=" and traffic="+traffic;
+					sql1+=" or traffic="+traffic;
 					
 				}
 				else{
@@ -1307,7 +1307,7 @@ public class SearchListDao extends BaseDao {
 			if(xianfang!=null &&!"".equals(xianfang)){
 				xianfang = "1";
 				if(i==1){
-					sql1+=" and xianfang="+xianfang;
+					sql1+=" or xianfang="+xianfang;
 					
 				}
 				else{
@@ -1319,7 +1319,7 @@ public class SearchListDao extends BaseDao {
 			if(maidi!=null &&!"".equals(maidi)){
 				maidi = "1";
 				if(i==1){
-					sql1+=" and maidi="+maidi;
+					sql1+=" or maidi="+maidi;
 					
 				}
 				else{
