@@ -708,9 +708,9 @@ public class BingMapController {
 		String area=req.getParameter("area");
 		String city1=req.getParameter("city");
 		String address=req.getParameter("address");
-		array = bingMapService.filterByKeyWord(area,city1,address,0);
+		array = bingMapService.filterByKeyWord(area, city1, address, 0);
 		
-		List<HouseProject> list = bingMapDao.filterByKeyWord(area,city1,address,0);
+		List<HouseProject> list = bingMapDao.filterByKeyWord(area, city1, address, 0);
 		seachListResult = list;
 		/*for(HouseProject item : seachListResult){
 			if(item!=null){
@@ -728,7 +728,7 @@ public class BingMapController {
 			}
 			
 		}*/
-		seachListResultShengxu = bingMapDao.filterByKeyWord(area,city1,address,1);
+		seachListResultShengxu = bingMapDao.filterByKeyWord(area, city1, address,1);
 		for(HouseProject item : seachListResultShengxu){
 			if(item!=null){
 				if(item.getProject_num()!=null && !"".equals(item.getProject_num())){
@@ -745,7 +745,7 @@ public class BingMapController {
 			}
 			
 		}
-		seachListResultJiangxu = bingMapDao.filterByKeyWord(area,city1,address,2);
+		seachListResultJiangxu = bingMapDao.filterByKeyWord(area, city1, address,2);
 		for(HouseProject item : seachListResultJiangxu){
 			if(item!=null){
 				if(item.getProject_num()!=null && !"".equals(item.getProject_num())){

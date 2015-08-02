@@ -906,12 +906,13 @@ public class SearchController {
 			String area=req.getParameter("area");
 			String city1=req.getParameter("city");
 			String address=req.getParameter("address");
-			array = bingMapService.filterByKeyWord(area,city1,address,0);
+			//String key=req.getParameter("keyword");
+			array = bingMapService.filterByKeyWord(area, city1, address,0);
 			
-			List<HouseProject> list = bingMapDao.filterByKeyWord(area,city1,address,0);
+			List<HouseProject> list = bingMapDao.filterByKeyWord(area, city1, address,0);
 			seachListResult1 = list;
-			seachListResult1Shengxu = bingMapDao.filterByKeyWord(area,city1,address,1);
-			seachListResult1Jiangxu = bingMapDao.filterByKeyWord(area,city1,address,2);
+			seachListResult1Shengxu = bingMapDao.filterByKeyWord(area, city1, address,1);
+			seachListResult1Jiangxu = bingMapDao.filterByKeyWord(area, city1, address,2);
 			
 			arrayCenter=bingMapService.jsonMapCenter();
 			int lenCenter=arrayCenter.size();

@@ -416,8 +416,8 @@ body{
         		   		<option value="${item}">${item}</option>
    					    </c:forEach>
 	                </select>
-	                <select data-placeholder="请选择地址..." class="chosen-select" id="project_address" name="project_address" style="width:200px;" tabindex="4">
-		 	            <option value="">请选择地址...</option>
+	                <select data-placeholder="请选择邮编..." class="chosen-select" id="project_address" name="project_address" style="width:200px;" tabindex="4">
+		 	            <option value="">请选择邮编...</option>
 		  	            <c:forEach items="${addressNameSet}" var="item">
         		   		<option value="${item}">${item}</option>
    					    </c:forEach>

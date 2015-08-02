@@ -410,7 +410,19 @@
         	 var area=$("#project_area").val();
         	 var city=$("#project_city").val();
         	 var address=$("#project_address").val();
+        	 var arrArea=new Array();
+        	 arrArea=area.split(",");
+        	 area=arrArea[0];
+        	 var arrCity=new Array();
+        	 arrCity=city.split(",");
+        	 city=arrCity[0];
+        	 var arrAddr=new Array();
+        	 arrAddr=address.split(",");
+        	 address=arrAddr[0];
     		 map.entities.clear(); 
+    		 //alert(city);
+        	 //alert(area);
+        	 //alert(address);
     		 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
     		 $.ajax({
     		 	    type: "POST",
