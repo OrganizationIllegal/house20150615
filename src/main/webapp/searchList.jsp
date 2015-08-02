@@ -169,17 +169,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	       				
                 		</div>
                 		<div class="f-l list_node_right">
-                		<a class="c-fix f-l list_node_inner_lab f-yahei s-12"></a>
-                		<a class="f-l list_node_title fw f-yahei s-12 c-fix">最多：</a>
+                		<span class="c-fix f-l list_node_inner_lab f-yahei s-12"></span>
+                		<span class="f-l list_node_title fw f-yahei s-12 c-fix">最多：</span>
                 		<!-- <a class="f-r list_node_val f-yahei s-12">$${item.maxPrice}</a> -->
-                		 <a class="f-r list_node_val f-yahei s-12">$<f:formatNumber value="${item.maxPrice}" pattern="#,#00.#"/></a>
-                		<a class="f-l list_node_title fw f-yahei s-12 c-fix">最少：</a>
+                		 <span class="f-r list_node_val f-yahei s-12">$<f:formatNumber value="${item.maxPrice}" pattern="#,#00.#"/></span>
+                		<span class="f-l list_node_title fw f-yahei s-12 c-fix">最少：</span>
                 		<!-- <a class="f-r list_node_val f-yahei s-12">$${item.minPrice}</a> -->
-                		 <a class="f-r list_node_val f-yahei s-12">$<f:formatNumber value="${item.minPrice}" pattern="#,#00.#"/></a>
-                		<a class="f-l list_node_title fw f-yahei s-12 c-fix">面积：</a>
-                		<a class="f-r list_node_val f-yahei s-12">${item.minArea}<span>-</span>${items.maxArea}</a>
-                		<a class="f-l list_node_title fw f-yahei s-12 c-fix">起价：</a>
-                		<a class="f-r list_node_val f-yahei s-12"><span>$</span><f:formatNumber value="${items.project_price_int_qi}"  pattern="#,#00.#"/></a>
+                		 <span class="f-r list_node_val f-yahei s-12">$<f:formatNumber value="${item.minPrice}" pattern="#,#00.#"/></span>
+                		<span class="f-l list_node_title fw f-yahei s-12 c-fix">面积：</span>
+                		<span class="f-r list_node_val f-yahei s-12">${item.minArea}<span>-</span>${items.maxArea}</span>
+                		<span class="f-l list_node_title fw f-yahei s-12 c-fix">起价：</span>
+                		<span class="f-r list_node_val f-yahei s-12"><span>$</span><f:formatNumber value="${items.project_price_int_qi}"  pattern="#,#00.#"/></span>
                 		<%-- <a class="f-l list_node_title fw f-yahei s-12 c-fix">返现：</a>
 						<a class="f-r list_node_val f-yahei s-12">${item.fanxian}</a> --%>
                 		</div>
@@ -458,15 +458,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	       				}
                 		html+="</div>";
                 		html+="<div class='f-l list_node_right'>";
-                		html+="<a class='c-fix f-l list_node_inner_lab f-yahei s-12'></a>";
-                		html+="<a class='f-l list_node_title fw f-yahei s-12 c-fix'>最多：</a>";
-                		html+="<a class='f-r list_node_val f-yahei s-12'>"+"<span>$</span>"+items[j].MaxPrice+"</a>"; 
-                		html+="<a class='f-l list_node_title fw f-yahei s-12 c-fix'>最少：</a>";
-                		 html+="<a class='f-r list_node_val f-yahei s-12'>"+"<span>$</span>"+items[j].MinPrice+"</a>"; 
-                		html+="<a class='f-l list_node_title fw f-yahei s-12 c-fix'>面积(M<sup><span style='font-size:8px'>2</span></sup>)：</a>";
-                		html+="<a class='f-r list_node_val f-yahei s-12'>"+items[j].MinArea+"<span>-</span>"+items[j].MaxArea+"</a>";
-                		html+="<a class='f-l list_node_title fw f-yahei s-12 c-fix'>起价：</a>";
-                		 html+="<a class='f-r list_node_val f-yahei s-12' id='qimoney'>"+"<span>$</span>"+items[j].project_price_int_qi+"</a>"; 
+                		html+="<span class='c-fix f-l list_node_inner_lab f-yahei s-12'></span>";
+                		html+="<span class='f-l list_node_title fw f-yahei s-12 c-fix'>最多：</span>";
+                		html+="<span class='f-r list_node_val f-yahei s-12'>"+"<span>$</span>"+items[j].MaxPrice+"</span>"; 
+                		html+="<span class='f-l list_node_title fw f-yahei s-12 c-fix'>最少：</span>";
+                		 html+="<span class='f-r list_node_val f-yahei s-12'>"+"<span>$</span>"+items[j].MinPrice+"</span>"; 
+                		html+="<span class='f-l list_node_title fw f-yahei s-12 c-fix'>面积(M<sup><span style='font-size:8px'>2</span></sup>)：</span>";
+                		html+="<span class='f-r list_node_val f-yahei s-12'>"+items[j].MinArea+"<span>-</span>"+items[j].MaxArea+"</span>";
+                		html+="<span class='f-l list_node_title fw f-yahei s-12 c-fix'>起价：</span>";
+                		 html+="<span class='f-r list_node_val f-yahei s-12' id='qimoney'>"+"<span>$</span>"+items[j].project_price_int_qi+"</span>"; 
                 		/* html+="<a class='f-l list_node_title fw f-yahei s-12 c-fix'>返现：</a>";
                 		html+="<a class='f-r list_node_val f-yahei s-12'>"+items[j].Fanxian+"</a>"; */
                 		html+="</div>";

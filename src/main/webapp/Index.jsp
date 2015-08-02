@@ -546,7 +546,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    <div class="f-yahei" style="color:#888889;font-size:25px;margin-top:5px;">华人聚集地，优质房源</div>
 				    <div class="f-yahei cp fw" style="color:#1763ac;font-size:20px;"><a href="/IndexSearch?huaren=华人区">去找房</a></div>
 				</div>
-				<div class="f-l f-yahei" style="width:292px;height:375px;text-align:center;margin-left: 124px;">
+				<div class="f-l f-yahei" style="width:292px;height:375px;text-align:center;margin-left: 160px;">
 				    <div class="f-yahei fw" style="color:#4a494a;font-size:35px;margin-top:15px;margin-bottom:5px;">学区房</div>
 				    <a href="/IndexSearch?xuequ=优秀学区"><img src="images/index/02.png" style="width:230px;height:230px;"></a>
 				    <div class="f-yahei" style="color:#888889;font-size:25px;margin-top:5px;">热门学区，海外置业首选</div>
