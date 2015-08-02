@@ -70,7 +70,8 @@ $(function(){
                           icon : 'image://pic/legendicon.jpg',
                           textStyle:{
                         	  fontFamily:'Microsoft YaHei',
-                        	  fontSize:16
+                        	  fontSize:14,
+                        	  fontWeight:'bold',
                           }
                       };
             	  item.name=value;
@@ -249,7 +250,8 @@ $('#costTabs a').click(function (e) {
                           name:'',
                           icon : 'image://pic/legendicon.jpg',
                           textStyle:{fontFamily:'Microsoft YaHei',
-                        	  fontSize:16
+                        	  fontSize:14,
+                        	  fontWeight:'bold'
                         	  }
                       };
             	  item.name=value;

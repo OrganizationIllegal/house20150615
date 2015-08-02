@@ -325,7 +325,9 @@ padding-left:40px; text-align:left;
             <div class="row">
                 <div class="col-md-6 item_left" style="-padding-left:150px;padding-left:0px; padding-top:50px;text-align:left;padding-right:10px;">
                      <h2 class="divf1">经纪人</h2>
-                     <div class="divf3" style="font-size:16px;">您将可获得海外优选合作海外新盘代理权，进行新盘销售，获取销售佣金提成；并通过海房优选电子化佣金结算系统，更智能、更快捷、更高效地进行佣金结算；海房优选聚集了大批普通购房者，与海房优选合作，您将获得更为丰富的客户资源！</div>
+                     <div class="divf3" style="font-size:16px;">
+                     	您将可获得海外优选合作海外新盘代理权，进行新盘销售，海房优选聚集了大批普通购房者，与海房优选合作，您将获得更为丰富的客户资源！
+                     <!-- 您将可获得海外优选合作海外新盘代理权，进行新盘销售，获取销售佣金提成；并通过海房优选电子化佣金结算系统，更智能、更快捷、更高效地进行佣金结算；海房优选聚集了大批普通购房者，与海房优选合作，您将获得更为丰富的客户资源！ --></div>
                 </div>
                 <div class="col-md-6 item_right" style="padding-left:40px; text-align:left;">
                     <img src="images/business/2.png" style="width:540px;height:360px"/>
@@ -359,7 +361,9 @@ padding-left:40px; text-align:left;
             <div class="row">
                 <div class="col-md-6 item_left" style="-padding-left:150px;padding-left:0px; padding-top:50px;text-align:left;padding-right:12px;">
                      <h2 class="divf1">服务商</h2>
-                     <div style="font-size:16px;">海房优选聚集了大批有海外生活服务需求的会员用户，成为海外优选签约服务商，您将获得更多优质的潜在用户；成为海房优选签约服务商，您将可获得海房优选客户直接的需求派单；并在抢单后通过海房优选电子化佣金结算系统，更智能、更便捷、更高效地进行佣金结算；</div>
+                     <div style="font-size:16px;">
+                     	海房优选聚集了大批直接购房者，成为海外优选签约服务商，您将获得更多优质的潜在用户，并能够和购房者直接联系，高效服务
+                     <!-- 海房优选聚集了大批有海外生活服务需求的会员用户，成为海外优选签约服务商，您将获得更多优质的潜在用户；成为海房优选签约服务商，您将可获得海房优选客户直接的需求派单；并在抢单后通过海房优选电子化佣金结算系统，更智能、更便捷、更高效地进行佣金结算； --></div>
                 </div>
                 <div class="col-md-6 item_right" style="padding-left:40px; text-align:left;">
                     <img src="images/business/5.png" style="width:540px;height:360px"/>
