@@ -202,7 +202,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<!-- *************************************** main_bkg1 ************************************************** -->
 		 <div class="main_bkg" style="-background:rgb(255,180,2) url(../pic/indexbg2.png) repeat-x 0 -666px;">
-		    <img  src="images/main_bkg.png" style="width:100%;height:480px;margin:0 auto;min-width:1190px;">
+		    <img  src="images/mian_bkg1.jpg" style="width:1920;height:480px;margin:0 auto;min-width:1190px;">
 		    <div style="position:relative;top:-330px;margin:0 auto;width:630px;height:90px;text-align: center;">
 		    <!--  <img  src="images/index/font1.png" style="width:630px;height:90px;"> -->
 		    	<span class="mainfont">聪明海外置业</span>
