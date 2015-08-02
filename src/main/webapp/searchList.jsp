@@ -73,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a class="c-fix f-l f-yahei s-14 btn cp hover" style="padding:4px 6px;border:2px solid rgb(245,161,27)" href="/BingMap">地图找房</a>
 				<a class="f-l f-yahei s-14 btn cp btn_sel hover" style="margin-left:1px;padding:4px 6px;" href="/searchList.jsp">列表找房</a>
 				<!-- <div class="c-fix f-l" style="color:#617c97;font-size:16px;font-weight:bold;margin-bottom:10px;margin-top:45px;font-family:微软雅黑;">进一步搜索</div> -->
-				<a class="c-fix f-l f-yahei s-14" style="color:#333;margin-top:60px;">类型</a>
+				<span class="c-fix f-l f-yahei s-14" style="color:#333;margin-top:60px;">类型</span>
 				<select style="width:100%;height:30px;line-height:30px;margin-top:3px;font-family:微软雅黑" id="projecttype" name="projecttype">
 					<option value="0">请选择</option>
 					<option value="1">公寓</option>
@@ -81,13 +81,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<option value="3">联排别墅</option>
 				</select>
 				<div class="c-fix f-l f-yahei s-14" style="display:block;width:100%;min-height:20px;margin-top:20px;">
-					<div style="margin-bottom:20px"><a style="display:block;color:#333;font-size:14px;float:left;">总价</a></div>
+					<div style="margin-bottom:20px"><span style="display:block;color:#333;font-size:14px;float:left;">总价</span></div>
 					<!-- <a style="display:block;color:#ff6600;font-size:14px;float:right">100k-2M+</a> -->
 					<!-- <input type="range" name="zongjia" id="zongjia" class="c-fix f-l" style="display:block;width:100%;margin-top:5px;margin-left:0px;" min="100000" max="2000000"></input> -->
 					<input type="text" id="zongjia" name="zongjia" value="0;5000000" style="margin-top:20px"/>
 				</div> 
 				<div class="c-fix f-l f-yahei s-14" style="display:block;width:100%;min-height:20px;margin-top:20px;">
-					<div style="margin-bottom:20px"><a style="display:block;color:#333;font-size:14px;float:left;">单价</a></div>
+					<div style="margin-bottom:20px"><span style="display:block;color:#333;font-size:14px;float:left;">单价</span></div>
 					<!-- <a style="display:block;color:#ff6600;font-size:14px;float:right">0k-20,000+</a> -->
 					<!-- <input type="range" name="danjia" id="danjia" class="c-fix f-l" style="display:block;width:100%;margin-top:5px;margin-left:0px;" min="0" max="2000"></input> -->
 					<input type="text" id="danjia" name="danjia" value="0;200000" style="margin-top:20px"/>
@@ -95,38 +95,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="c-fix f-l f-yahei s-14" style="display:block;width:100%;min-height:20px;margin-top:20px;">
 					<!-- <a style="display:block;color:#333;font-size:14px;float:left;">卧室</a>
 					<a style="display:block;color:#ff6600;font-size:14px;float:right">0k-4+</a> -->
-					<div style="margin-bottom:20px"><a style="display:block;color:#333;font-size:14px;float:left;">卧室</a></div>
+					<div style="margin-bottom:20px"><span style="display:block;color:#333;font-size:14px;float:left;">卧室</span></div>
 					<!-- <input type="range" name="woshi" class="c-fix f-l" style="display:block;width:100%;margin-top:5px;margin-left:0px;" min="0" max="4"></input> -->
 					<input type="text" id="woshi" name="woshi" value="0;6" style="margin-top:20px"/>
 				</div> 
 				<div style="display:block;width:100%;min-height:20px;margin-top:10px;float:left;clear:both">
-					<a style="display:block;color:#333;font-size:14px;float:left;">用途</a>
+					<span style="display:block;color:#333;font-size:14px;float:left;">用途</span>
 					<div style="display:block;width:100%;height:1px;background-color:#666;clear:both;float:left;margin-top:3px;margin-bottom:3px"></div>
 
 					<input style="display:block;clear:both;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="xinaipan"  />
-					<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">新开盘</a>
+					<span style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">新开盘</span>
 					<input style="display:block;float:left;height:30px" type="checkbox" name="key" id="remen" />
-					<a style="display:block;width:50px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">热门项目</a>
+					<span style="display:block;width:50px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">热门项目</span>
 
 					<input style="display:block;clear:both;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="youxiu"/>
-					<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">优秀学区</a>
+					<span style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">优秀学区</span>
 					<input style="display:block;float:left;height:30px" type="checkbox" name="key" id="center" />
-					<a style="display:block;width:50px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;" >城市中心</a>
+					<span style="display:block;width:50px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;" >城市中心</span>
 
 					<input style="display:block;clear:both;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="baozu" />
-					<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">包租项目</a>
+					<span style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">包租项目</span>
 					<input style="display:block;float:left;height:30px" type="checkbox" name="key" id="huaren"/>
-					<a style="display:block;width:50px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">华人区</a>
+					<span style="display:block;width:50px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">华人区</span>
 
 					<input style="display:block;clear:both;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="zuixin" />
-					<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">最新项目</a>
+					<span style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">最新项目</span>
 					<input style="display:block;float:left;height:30px" type="checkbox" name="key" id="daxue" />
-					<a style="display:block;width:50px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">大学附近</a>
+					<span style="display:block;width:50px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">大学附近</span>
 
 					<input style="display:block;clear:both;float:left;height:30px;margin-left:0px" type="checkbox" name="key" id="xianfang"  />
-					<a style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">现房项目</a>
+					<span style="display:block;width:80px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">现房项目</span>
 					<input style="display:block;float:left;height:30px" type="checkbox" name="key" id="traffic" />
-					<a style="display:block;width:50px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">轨道交通</a>
+					<span style="display:block;width:50px;color:#333;float:left;line-height:35px;height:35px;margin-left:2px;font-size:12px;">轨道交通</span>
 
 					<!--<a class="c-fix f-r btn_search f-yahei s-14 cp">搜索</a>-->
 					<input type="submit" class="c-fix f-r btn_search f-yahei s-14 cp" value="搜索"/>

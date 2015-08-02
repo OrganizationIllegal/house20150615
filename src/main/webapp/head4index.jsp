@@ -159,7 +159,7 @@
 				
 				
 				<div class="f-r nav_icon2"></div>
-				<a class="f-r s-14 f-arial fw main_phone">400 810 9685</a>
+				<span class="f-r s-14 f-arial fw main_phone">400 810 9685</span>
 				<div class="f-r nav_icon1"></div>
 			</div>	
 </div>
