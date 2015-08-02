@@ -35,9 +35,11 @@ public class AdController {
 		String ad1=addao.getad1();
 		String ad2=addao.getad2();
 		String ad3=addao.getad3();
+		String ad4=addao.getad4();
 		req.setAttribute("ad1", ad1);
 		req.setAttribute("ad2", ad2);
 		req.setAttribute("ad3", ad3);
+		req.setAttribute("ad4", ad4);
 		return "/admanage.jsp";
 	}
 	@RequestMapping({"/UpdateAdImage" })
@@ -54,6 +56,9 @@ public class AdController {
 		}
 		else if(id.equals("3")){
 			result=addao.setad3(imagename);
+		}
+		else if(id.equals("4")){
+			result=addao.setad4(imagename);
 		}
 		json.put("flag", result);		
 		try{

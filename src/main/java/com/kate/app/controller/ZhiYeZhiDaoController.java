@@ -28,7 +28,17 @@ public class ZhiYeZhiDaoController {
 	private static final int PAGE_SIZE = 10;
 	@RequestMapping({"/ZhiYeInfo"})
 	public String ZhiYeInfo(HttpServletRequest req, HttpServletResponse resp){
-		List<ZhiYeZhiDao> zhiYeList=zhiYeDao.selectZhiYe();   //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
+		String fenlei = req.getParameter("type");
+		List<ZhiYeZhiDao> zhiYeList = new ArrayList<ZhiYeZhiDao>();
+		List<ZhiYeZhiDao> zhiYeList1 = new ArrayList<ZhiYeZhiDao>();
+		if(fenlei!=null && !"".equals(fenlei)){
+			zhiYeList = zhiYeDao.selectZhiYeByFenlei(fenlei);  //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
+			req.setAttribute("fenlei",fenlei);
+		}
+		else{
+			zhiYeList = zhiYeDao.selectZhiYe();
+		}
+		
 		List<NewsBoke> newsList = zhiYeDao.selectNewsBoke();
 		int total = zhiYeDao.countZhiYe();
 		int pageCount = total%PAGE_SIZE == 0 ? total/PAGE_SIZE: total/PAGE_SIZE+1;
@@ -36,21 +46,22 @@ public class ZhiYeZhiDaoController {
 		/*if(zhiYeList!=null){
 			
 		}*/
-		if(zhiYeList.size() > 3){
-			lastestList = zhiYeList.subList(0, 3);
+		if(zhiYeList1.size() > 3){
+			lastestList = zhiYeList1.subList(0, 3);
 		}
 		else{
-			lastestList = zhiYeList;
+			lastestList = zhiYeList1;
 		}
 		if(newsList.size() > 3){
 			newsList = newsList.subList(0, 3);
 		}
 		List<String> fenleiList = zhiYeDao.zhiYeFenlei();
-		System.out.println(pageCount);
+		
 		//Collections.shuffle(zhiYeList);   //闅忔満鎺掑簭
 		req.setAttribute("resultList",zhiYeList);
 		req.setAttribute("lastestList",lastestList);
 		req.setAttribute("newsList",newsList);
+		req.setAttribute("fenleiList",fenleiList);
 		req.setAttribute("fenleiList",fenleiList);
 		req.setAttribute("total",total);
 		req.setAttribute("pageCount",pageCount);
@@ -61,8 +72,19 @@ public class ZhiYeZhiDaoController {
 	
 	@RequestMapping({"/BlogList"})
 	public String BlogList(HttpServletRequest req, HttpServletResponse resp){
+		String fenlei = req.getParameter("type");
+		List<NewsBoke> newsList = new ArrayList<NewsBoke>();
+		List<NewsBoke> newsList1 = new ArrayList<NewsBoke>();
+		if(fenlei!=null && !"".equals(fenlei)){
+			newsList = zhiYeDao.selectNewsBokeByFenlei(fenlei);  //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
+			req.setAttribute("fenlei",fenlei);
+		}
+		else{
+			newsList = zhiYeDao.selectNewsBoke();
+		}
+		
 		List<ZhiYeZhiDao> zhiYeList=zhiYeDao.selectZhiYe();   //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
-		List<NewsBoke> newsList = zhiYeDao.selectNewsBoke();
+		newsList1 = zhiYeDao.selectNewsBoke();
 		int total = newsList.size();
 		int pageCount = total%PAGE_SIZE == 0 ? total/PAGE_SIZE: total/PAGE_SIZE+1;
 		List<ZhiYeZhiDao> lastestList = new ArrayList<ZhiYeZhiDao>();
@@ -76,8 +98,8 @@ public class ZhiYeZhiDaoController {
 		else{
 			lastestList = zhiYeList;
 		}
-		if(newsList.size() > 3){
-			newslastestList = newsList.subList(0, 3);
+		if(newsList1.size() > 3){
+			newslastestList = newsList1.subList(0, 3);
 		}
 		List<String> fenleiList = zhiYeDao.newsBokeFenlei();
 		System.out.println(pageCount);
@@ -146,10 +168,12 @@ public class ZhiYeZhiDaoController {
 				}
 				obj.put("newstime", newstime);
 				array.add(obj);
-				System.out.println(array.size()+"fffffffff");
+				
 			}
 			json.put("List", array);
 			json.put("total", total);
+			json.put("start", start);
+			json.put("end", end);
 			json.put("pageCount", pageCount);
 			
 		}
@@ -220,6 +244,8 @@ public class ZhiYeZhiDaoController {
 						array.add(obj);
 					}
 					json.put("List", array);
+					json.put("start", start);
+					json.put("end", end);
 					json.put("total", total);
 					json.put("pageCount", pageCount);
 					

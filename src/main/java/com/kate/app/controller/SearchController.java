@@ -655,6 +655,7 @@ public class SearchController {
 					obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
 					obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
 					obj.put("project_price_int_qi", data.getProject_price_int_qi()==0?"N/A":df.format(data.getProject_price_int_qi()));
+					obj.put("project_price_int_qi_str", data.getProject_price_int_qi_str());
 					obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
 					array.add(obj);
 				}
@@ -716,7 +717,7 @@ public class SearchController {
 					obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
 					obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
 					obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
-					obj.put("project_price_int_qi", data.getProject_price_int_qi()==0?"N/A":df.format(data.getProject_price_int_qi()));
+					obj.put("project_price_int_qi", data.getProject_price_int_qi_str());
 					obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
 					array.add(obj);
 				}

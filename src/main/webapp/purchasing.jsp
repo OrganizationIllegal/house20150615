@@ -108,7 +108,7 @@ function reLoad(){
 <div id="container" class="" style="width:100%;margin:0 auto; padding-top:10px; background:#fff;">
 
         <div  style="height:82px;border:1px solid #FFE4E1;width:100%; margin: 0 auto;background-color: white;margin-top:-10px;position:relative;">
-            <div class="" style="width:980px;font-size:24px;line-height:70px;height:100%;font-weight:bold;margin:0 auto;">置业指导</div>
+            <div class="" style="width:980px;font-size:24px;line-height:70px;height:100%;font-weight:bold;margin:0 auto;">置业百科</div>
         </div>
         <div style="padding-top: 35px;width:100%; margin: 0 auto;background-color:rgb(247,248,250);">
         <div class="row" style="width:980px; margin: 0 auto;position:relative;">
@@ -116,7 +116,19 @@ function reLoad(){
             <div class="col-md-7"  style="width:600px;float:left;">
                 <div class="row">
                     <div class="panel panel-default" id="panel-left">
-                      <div class="panel-heading" id="leftpanel" style="font-weight:bold;">1-${pageCount}的${total}篇文章</div>
+                      <div class="panel-heading" id="leftpanel" style="font-weight:bold;">
+                      1-
+                      <c:choose>
+                      	<c:when test="${total<10}">
+                      	${total}
+                      </c:when>
+                      <c:otherwise>
+                      	10
+                      </c:otherwise>
+                      </c:choose>
+                      的${total}篇文章</div>
+                      
+                      
                       <div class="panel-body">
                         <ul class="media-list" id="mainlist">
                         <c:forEach items="${resultList}" var="item" varStatus="status">
@@ -168,8 +180,9 @@ function reLoad(){
                 <select id="type" style="  width: 283px;height: 30px;">
                     <option>请选择一个类别</option>
                     <c:forEach items="${fenleiList}" var="item">
-                    	<option>${item}</option>
-                    </c:forEach>
+                   
+                    		<option <c:if test="${fenlei == item}">selected="selected"</c:if> >${item}</option>
+                     </c:forEach>
 
                 </select>
               </div>
@@ -244,7 +257,7 @@ function reLoad(){
                         data: { pageIndex : 1,type:category},
                         success: function(data) {
                        
-                            $("#leftpanel").text("1-"+data.pageCount+"的"+data.total+"篇文章");
+                            $("#leftpanel").text(data.start+1+"-"+data.end+"的"+data.total+"篇文章");
                             
                         	var html = getHtml(data.List);
                         	$("#mainlist").html(html);
@@ -287,6 +300,7 @@ function reLoad(){
                         //data: "pageIndex=" + (pageIndex) + "&pageSize=" + pageSize,          //提交两个参数：pageIndex(页面索引)，pageSize(显示条数)                   
                         success: function(data) {
 	                        count = data.total;
+	                        $("#leftpanel").text(data.start+1+"-"+data.end+"的"+data.total+"篇文章");
 	                 		var html = getHtml(data.List);
 	                        $("#mainlist").html(html);
 	                        scroll(0,0);

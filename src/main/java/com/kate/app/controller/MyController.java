@@ -156,6 +156,11 @@ public class MyController {
 		if(project!=null){
 			area_num = project.getArea_num();
 			project_type = project.getProject_type();
+			if(project_type.equals("联排别墅")){
+				project_type ="别墅";
+			}
+			project.setProject_type(project_type);
+			
 			areaInfo = areaInfoDao.getAreaInfoByNum(area_num);
 			if(areaInfo!=null){
 				area_name = areaInfo.getArea_name();
@@ -214,6 +219,7 @@ public class MyController {
 			image1 = imageList2.get(0).getName();
 		}
 		project.setProject_img(image1);
+		String project_typeInfo= project.getProject_type();
 		
 		 ProjectImage(req,resp,proNum);
 		 ProjectPeitaoImage(req,resp,proNum);
@@ -379,8 +385,13 @@ public class MyController {
 		String developer_num = null;
 		HouseProject pro = houseProjectService.getHouseProjectByNum(proNum);
 		String timeResule = null;
-		
+		String project_type = "";
 		if(pro!=null){
+			project_type = pro.getProject_type();
+			if(project_type.equals("联排别墅")){
+				project_type ="别墅";
+			}
+			pro.setProject_type(project_type);
 			developer_num = pro.getDeveloper_id_name();
 			/*Timestamp time = pro.getProject_finish_time();
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -497,6 +508,10 @@ public class MyController {
 	
 	@RequestMapping({"/Index/InvestData"})
 	public void  InvestData(HttpServletRequest req, HttpServletResponse resp,String area_num, String project_type){
+		if(project_type.equals("联排别墅")){
+			project_type = "别墅";
+		}
+		
  		InvestmentData data = investDataDao.getInvestmentDateNum(area_num,project_type);
  		String areaName = data.getArea_name();
  		String zulin = data.getZu_xuqiu();
@@ -592,6 +607,9 @@ public class MyController {
 		String proType = "";
 		if(pro!=null){
 			proType = pro.getProject_type();
+		}
+		if(proType.equals("联排别墅")){
+			proType = "别墅";
 		}
 		DecimalFormat df = new DecimalFormat("#,###,###");
 		middlePrice = middlePriceDao.getMiddlePrice(proType, areaNum);
@@ -697,6 +715,9 @@ public class MyController {
 	@RequestMapping({"/Index/AreaTrend"})
 	public void getAreaTrend(HttpServletRequest req, HttpServletResponse resp,String project_type,String area_num){
 		//閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷蜂綅閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓锟�
+		if(project_type.equals("联排别墅")){
+			project_type = "别墅";
+		}
 		List<AreaMiddle> areaMiddleList=new ArrayList<AreaMiddle>();
 		areaMiddleList=areaTrendService.getAreaMiddleTrend(project_type,area_num);
 		List<String> areaMiddleYeatList=new ArrayList<String>();
@@ -1249,6 +1270,9 @@ public class MyController {
 	   if(userid!=0){
 			result=brokerInfoDao.InsertMessage(message_content, message_time, proid, viewed, type, userid);
 		}
+	   else{
+		   result=brokerInfoDao.InsertMessage(message_content, message_time, proid, viewed, type, 0);
+	   }
 		if(result==1){
 			json.put("flag", "1");
 		}else{
