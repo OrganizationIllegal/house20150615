@@ -29,16 +29,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 <div style="margin-top:10px;"><!-- <img alt="btn" src="images/service/btn1.png"> -->
 	<c:if test="${not empty brokerInfo.phone}">
-	  <div style="width:50%;float:left;">电话：${brokerInfo.phone}</div>
+	  <div style="width:50%;float:left;font-weight:bold">电话：${brokerInfo.phone}</div>
 	</c:if>
 	<c:if test="${not empty brokerInfo.email}">
-	  <div style="width:50%;float:left;">Email：${brokerInfo.email}</div>
+	  <div style="width:50%;float:left;font-weight:bold">Email：${brokerInfo.email}</div>
 	</c:if>
 	<c:if test="${not empty brokerInfo.wechat}">
-	  <div style="width:50%;float:left;">微信：${brokerInfo.wechat}</div>
+	  <div style="width:50%;float:left;font-weight:bold">微信：${brokerInfo.wechat}</div>
 	</c:if>
 	<c:if test="${not empty brokerInfo.qq}">
-	  <div style="width:50%;float:left;">QQ：${brokerInfo.qq}</div>
+	  <div style="width:50%;float:left;font-weight:bold">QQ：${brokerInfo.qq}</div>
 	</c:if>
 </div>
 </div>
@@ -67,11 +67,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 		<img alt="shu" src="images/service/pic1.png" style="float:left;">
 		<div style="float:left;font-size:13px;margin-top:5px;margin-left:5px;">${item}</div>
-		
-	
-	
 	</div>
 	</c:forEach>
+
+	 <div style="font-size:20px;font-weight:bold;">所在区域</div>
+	<div style="width:190px;height:30px;background-color:rgba(246, 241, 238, 1);margin-top:10px;padding-left:15px;">
+		<img alt="shu" src="images/service/pic1.png" style="float:left;">
+		<div style="float:left;font-size:13px;margin-top:5px;margin-left:5px;">${brokerInfo.broker_region}</div>
+	</div> 
+
+	
 	
 	</div>
 <%-- </c:if> --%>

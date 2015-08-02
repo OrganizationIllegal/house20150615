@@ -56,7 +56,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	height:0;
 	display:block;
 }
-
 </style>
 <style type="text/css">
 body{
@@ -303,26 +302,26 @@ body{
            	for(var j=0;j<items.length;j++){
            		var imgUrl = <%=application.getInitParameter("imagedir")%>/+items[j].project_img; 
 
-               	html+=" <div class='c-fix f-l div_node'><a class='c-fix f-l f-yahei s-12 node_address' title='"+items[j].project_address+"'>"+items[j].project_address_short+"</a>";
+               	html+=" <div class='c-fix f-l div_node'><span class='c-fix f-l f-yahei s-12 node_address' title='"+items[j].project_address+"'>"+items[j].project_address_short+"</span>";
 
                	html+="<a href='/Index?proNum="+items[j].project_num+"'"+" target='_parent'>";
            		
                	html+="<img class='c-fix f-l node_img'  src='"+imgUrl+"' style='width:160px;height:100px' ></img></a>";
                	html+="<div class='f-l node_right' style='width:167px'>";
 
-               	html+="<a class='c-fix f-l f-arial s-12 fw node_name' title='"+items[j].project_name+"'>"+items[j].project_name_short+"</a>";
+               	html+="<span class='c-fix f-l f-arial s-12 fw node_name' title='"+items[j].project_name+"'>"+items[j].project_name_short+"</span>";
 
-               	html+="<a class='c-fix f-l f-yahei s-12 node_title' style='margin-top:1px'>最多</a>";
-               	html+="<a class='f-r f-yahei s-12 node_val' style='margin-top:1px'>$"+items[j].project_high_price+"</a>";
-               	html+="<a class='c-fix f-l f-yahei s-12 node_title'>最少</a>";
-               	html+="<a class='f-r f-yahei s-12 node_val'>$"+items[j].project_min_price+"</a>";
-               	html+="<a class='c-fix f-l f-yahei s-12 node_title'>面积</a>";
-               	html+="<a class='f-r f-yahei s-12 node_val'>"+items[j].minArea+"+"+items[j].maxArea+"</a>";
-               /* 	html+="<a class='c-fix f-l f-yahei s-12 node_title'>返利</a>";
-               	html+="<a class='f-r f-yahei s-12 node_val'>"+items[j].return_money+"</a>"; */
-               	html+="<a class='c-fix f-l f-yahei s-12 node_title'>起价</a>";
-               	html+="<a class='f-r f-yahei s-12 node_val'>$"+items[j].project_price_int_qi+"</a>";
-            	html+="<a class='c-fix f-l f-yahei s-12 node_title'>"+items[j].project_key+"</a>";
+               	html+="<span class='c-fix f-l f-yahei s-12 node_title' style='margin-top:1px'>最多</span>";
+               	html+="<span class='f-r f-yahei s-12 node_val' style='margin-top:1px'>$"+items[j].project_high_price+"</span>";
+               	html+="<span class='c-fix f-l f-yahei s-12 node_title'>最少</span>";
+               	html+="<span class='f-r f-yahei s-12 node_val'>$"+items[j].project_min_price+"</span>";
+               	html+="<span class='c-fix f-l f-yahei s-12 node_title'>面积</span>";
+               	html+="<span class='f-r f-yahei s-12 node_val'>"+items[j].minArea+"+"+items[j].maxArea+"</span>";
+               /* 	html+="<span class='c-fix f-l f-yahei s-12 node_title'>返利</span>";
+               	html+="<span class='f-r f-yahei s-12 node_val'>"+items[j].return_money+"</span>"; */
+               	html+="<span class='c-fix f-l f-yahei s-12 node_title'>起价</span>";
+               	html+="<span class='f-r f-yahei s-12 node_val'>$"+items[j].project_price_int_qi+"</span>";
+            	html+="<span class='c-fix f-l f-yahei s-12 node_title'>"+items[j].project_key+"</span>";
                	html+="</div></div>";
                	
            	}
@@ -416,8 +415,8 @@ body{
         		   		<option value="${item}">${item}</option>
    					    </c:forEach>
 	                </select>
-	                <select data-placeholder="请选择地址..." class="chosen-select" id="project_address" name="project_address" style="width:200px;" tabindex="4">
-		 	            <option value="">请选择地址...</option>
+	                <select data-placeholder="请选择邮编..." class="chosen-select" id="project_address" name="project_address" style="width:200px;" tabindex="4">
+		 	            <option value="">请选择邮编...</option>
 		  	            <c:forEach items="${addressNameSet}" var="item">
         		   		<option value="${item}">${item}</option>
    					    </c:forEach>
@@ -431,23 +430,23 @@ body{
 			<div class="c-fix f-l div3" style="-height:840px;overflow-y:auto;overflow-x:hidden;" id="left">
 			 <c:forEach var="item" items="${bingMapList}"> 
 				<div class="c-fix f-l div_node">
-					<a class="c-fix f-l f-yahei s-12 node_address" title="${item.project_address}">${item.project_address_short}</a>
+					<span class="c-fix f-l f-yahei s-12 node_address" title="${item.project_address}">${item.project_address_short}</span>
 					<a href="/Index?proNum=${item.project_num}" target="blank">
 					<img class="c-fix f-l node_img" src="<%=application.getInitParameter("imagedir")%>/${item.project_img}" style="width:160px;height:100px" ></img>
 					</a>
 					<div class="f-l node_right" style="width:167px">
-						<a class="c-fix f-l f-arial s-12 fw node_name" title="${item.project_name_full}">${item.project_name}</a>
-						<a class="c-fix f-l f-yahei s-12 node_title" style="margin-top:1px">最多</a>
-						<a class="f-r f-yahei s-12 node_val" style="margin-top:1px">$${item.project_high_price}</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">最少</a>
-						<a class="f-r f-yahei s-12 node_val">$${item.project_min_price}</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">面积</a>
-						<a class="f-r f-yahei s-12 node_val">${item.minArea}-${item.maxArea}</a>
+						<span class="c-fix f-l f-arial s-12 fw node_name" title="${item.project_name_full}">${item.project_name}</span>
+						<span class="c-fix f-l f-yahei s-12 node_title" style="margin-top:1px">最多</span>
+						<span class="f-r f-yahei s-12 node_val" style="margin-top:1px">$${item.project_high_price}</span>
+						<span class="c-fix f-l f-yahei s-12 node_title">最少</span>
+						<span class="f-r f-yahei s-12 node_val">$${item.project_min_price}</span>
+						<span class="c-fix f-l f-yahei s-12 node_title">面积</span>
+						<span class="f-r f-yahei s-12 node_val">${item.minArea}-${item.maxArea}</span>
 						<%-- <a class="c-fix f-l f-yahei s-12 node_title">返利</a>
 						<a class="f-r f-yahei s-12 node_val">${item.return_money}</a> --%>
-						<a class="c-fix f-l f-yahei s-12 node_title">起价</a>
-						<a class="f-r f-yahei s-12 node_val">$${item.project_price_int_qi}</a>
-						<a class="c-fix f-l f-yahei s-12 node_title">${item.project_key}</a>
+						<span class="c-fix f-l f-yahei s-12 node_title">起价</span>
+						<span class="f-r f-yahei s-12 node_val">$${item.project_price_int_qi}</span>
+						<span class="c-fix f-l f-yahei s-12 node_title">${item.project_key}</span>
 						<!-- <a class="f-r f-yahei s-12 node_val">$${item.project_price_int_qi}</a> -->
 					</div>
 				</div>

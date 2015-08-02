@@ -45,6 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="http://player.youku.com/jsapi"></script>
 <script>videojs.options.flash.swf = "/js/video-js.swf";</script>
 		<style type="text/css">
+			a:hover{color:rgba(0,0,0,1);text-decoration:none;}
 			.active a{
 				background-color: rgb(169, 193, 217)!important;
 			}
@@ -899,13 +900,13 @@ var e=$('#input2').val();
 		</c:if>
 		<div class="c-fix  bkg4" id="loc_tz"  style="margin:0 auto;height:317px;width:990px">
 			<div class="c-fix p_panel_4">
-				<a class="c-fix f-l fw que_title f-yahei">贷款每月</a>
-				<a class="c-fix f-l fw que_title2 f-yahei">还款是多少</a>
-				<a class="c-fix f-l fw que_icon f-arial">?</a>
+				<span class="c-fix f-l fw que_title f-yahei">贷款每月</span>
+				<span class="c-fix f-l fw que_title2 f-yahei">还款是多少</span>
+				<span class="c-fix f-l fw que_icon f-arial">?</span>
 				<div class="f-r que_div">
-					<a class="c-fix f-l s-14 que_lab f-yahei fw" id="input1">房款总额</a>	
-					<a class="f-l s-14 que_lab f-yahei fw" id="input2">税率</a>	
-					<a class="f-l s-14 que_lab f-yahei fw">贷款方式</a>	
+					<span class="c-fix f-l s-14 que_lab f-yahei fw" id="input1">房款总额</span>	
+					<span class="f-l s-14 que_lab f-yahei fw" id="input2">税率</span>	
+					<span class="f-l s-14 que_lab f-yahei fw">贷款方式</span>	
 					<input type="text" class="c-fix f-l que_inp" placeholder="$400,000"></input>
 					<input type="text" class="f-l que_inp" placeholder="2.48%"></input>
 					<select class="f-l que_inp" id="select1">
@@ -915,8 +916,8 @@ var e=$('#input2').val();
 					
 					
 					</select>
-					<a class="c-fix f-l s-14 que_lab f-yahei fw">首付比例</a>	
-					<a class="f-l s-14 que_lab f-yahei fw">贷款年限</a>	
+					<span class="c-fix f-l s-14 que_lab f-yahei fw">首付比例</span>	
+					<span class="f-l s-14 que_lab f-yahei fw">贷款年限</span>	
 					<select class="c-fix f-l que_inp" id="select2">
 						<option>20%</option>
 					    <option>25%</option>
@@ -932,13 +933,13 @@ var e=$('#input2').val();
 <button type="button" onclick="compute()" class="btn btn-default" style="margin-left:-20px;width:180px;font-size:15px;">计算</button>
 </div>
 					<div class="c-fix f-l que_inner">
-						<a class="c-fix f-l que_inner_lab f-yahei s-14">首付金额</a>
+						<span class="c-fix f-l que_inner_lab f-yahei s-14">首付金额</span>
 						<input type="text" class="f-l que_inner_inp"></input>
 					</div>
 					<div class="f-l que_inner2">
-						<a class="c-fix f-l que_inner_lab f-yahei s-14">首付金额</a>
+						<span class="c-fix f-l que_inner_lab f-yahei s-14">首付金额</span>
 						<input type="text" class="f-l que_inner_inp"></input>
-						<a class="f-l que_inner_lab f-yahei s-14">/月</a>
+						<span class="f-l que_inner_lab f-yahei s-14">/月</span>
 					</div>
 				</div>
 			</div>
@@ -981,32 +982,32 @@ var e=$('#input2').val();
 				<%-- <a class="c-fix f-l p_inves_name f-yahei s-18 fw">${HouseProject.project_area} ${HouseProject.project_type}中位数房价</a> --%>
 				<a class="c-fix f-l p_inves_name f-yahei s-18 fw">${area_name} ${HouseProject.project_type}中位数房价</a>
 				<div class="c-fix f-l middle_bkg">
-					<a class="c-fix f-l f-yahei fw middle_lab1">$${buy_price}</a>
-					<a class="f-l f-yahei fw middle_lab2">$${zu_price}/周</a>
+					<span class="c-fix f-l f-yahei fw middle_lab1">$${buy_price}</span>
+					<span class="f-l f-yahei fw middle_lab2">$${zu_price}/周</span>
 				</div>
 				<div class="c-fix f-l middle_inner" style="margin-left:80px;">
-					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw">${middlePrice.buy_one_name}</a>
-					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${buy_one_price}</a>
+					<span class="c-fix f-l f-yahei s-14 middle_lab3 fw">${middlePrice.buy_one_name}</span>
+					<span class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${buy_one_price}</span>
 				</div>
 				<div class="f-l middle_inner" style="margin-left:25px">
-					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw">${middlePrice.buy_two_name}</a>
-					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${buy_two_price}</a>
+					<span class="c-fix f-l f-yahei s-14 middle_lab3 fw">${middlePrice.buy_two_name}</span>
+					<span class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${buy_two_price}</span>
 				</div>
 				<div class="f-l middle_inner" style="margin-left:20px;">
-					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw">${middlePrice.buy_three_name}</a>
-					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${buy_three_price}</a>
+					<span class="c-fix f-l f-yahei s-14 middle_lab3 fw">${middlePrice.buy_three_name}</span>
+					<span class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${buy_three_price}</span>
 				</div>
 				<div class="f-l middle_inner" style="margin-left:27px;">
-					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:rgb(21,63,101)">${middlePrice.zu_one_name}</a>
-					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${zu_one_price}</a>
+					<span class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:rgb(21,63,101)">${middlePrice.zu_one_name}</span>
+					<span class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${zu_one_price}</span>
 				</div>
 				<div class="f-l middle_inner" style="margin-left:25px">
-					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:rgb(21,63,101)">${middlePrice.zu_two_name}</a>
-					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${zu_two_price}</a>
+					<span class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:rgb(21,63,101)">${middlePrice.zu_two_name}</span>
+					<span class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${zu_two_price}</span>
 				</div>
 				<div class="f-l middle_inner" style="margin-left:20px;">
-					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:rgb(21,63,101)">${middlePrice.zu_three_name}</a>
-					<a class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${zu_three_price}</a>
+					<span class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:rgb(21,63,101)">${middlePrice.zu_three_name}</span>
+					<span class="c-fix f-l f-yahei s-14 middle_lab3 fw" style="color:#333;margin-top:5px;">$${zu_three_price}</span>
 				</div>
 				<a class="c-fix f-r p_inves_source f-yahei s-12">数据来源：${middlePrice.middle_datasource }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;更新日期${fn:substring(middlePrice.middle_date,0,10) }</a>
 			</div>

@@ -33,7 +33,7 @@ body{
 <div class="area_bkg1">当前位置:广告图片管理</div>
 
 <div class="c-fix" style="padding-left:35px;">
-<span class="area_span">广告图片1</span>
+<span class="area_span">项目广告图片1(自上而下排)</span>
 <span style="float:right;"> 
 <input type="text" id="file1" value="${ad1}" style="width:619px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"><button id="file1liu" >浏览...。</button>
 <input type="file" name="ad1" id="ad1"  style="width:677px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;display:none;"/><a class="addad1" href="#" onclick="addad1">上传</a></span>
@@ -41,7 +41,7 @@ body{
 </div>
 
 <div class="c-fix" style="padding-left:35px;">
-<span class="area_span">广告图片2</span>
+<span class="area_span">项目广告图片2(自上而下排)<</span>
 <span style="float:right;"> 
 <input type="text" id="file2" value="${ad2}" style="width:619px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"><button id="file2liu" >浏览...。</button>
 <input type="file" name="ad2" id="ad2"  style="width:677px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;display:none;"/><a class="addad2" href="#" onclick="addad2">上传</a></span>
@@ -49,12 +49,19 @@ body{
 </div>
 
 <div class="c-fix" style="padding-left:35px;">
-<span class="area_span">广告图片3</span>
+<span class="area_span">项目广告图片3(自上而下排)</span>
 <span style="float:right;"> 
 <input type="text" id="file3" value="${ad3}" style="width:619px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"><button id="file3liu" >浏览...。</button>
 <input type="file" name="ad3" id="ad3"  style="width:677px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;display:none;"/><a class="addad3" href="#" onclick="addad3">上传</a></span>
 </div>
 
+
+<div class="c-fix" style="padding-left:35px;">
+<span class="area_span">服务团队广告图片</span>
+<span style="float:right;"> 
+<input type="text" id="file4" value="${ad4}" style="width:619px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;"><button id="file4liu" >浏览...。</button>
+<input type="file" name="ad4" id="ad4"  style="width:677px;border:1px solid rgb(239,235,242);float:left;margin-right:20px;display:none;"/><a class="addad4" href="#" onclick="addad4">上传</a></span>
+</div>
 
 <div>
 </div>
@@ -111,6 +118,18 @@ $(function(){
 					});
 			});
 });
+$(function(){
+	$("#file4liu").click(
+			function(){
+				$("#ad4").click();
+				$("#ad4").change(function(){
+					var filenames=$('#ad4').val().split("\\");
+					var filename=filenames[filenames.length-1];
+					$("#file4").val(filename);
+					//$("#file1").val($("#broker_img").val());
+					});
+			});
+});
 </script>
 
 
@@ -123,6 +142,7 @@ $(function(){
 $(".addad1").click(addad1);
 $(".addad2").click(addad2);
 $(".addad3").click(addad3);
+$(".addad4").click(addad4);
 function addad1(){
 	  var ad1name=$("#file1").val();
 	  UpladFile("ad1");
@@ -169,6 +189,26 @@ function addad3(){
 	  $.ajax({
 	 	    type: "POST",
 	 		data: {id:3,imagename:ad3name}, 
+	 		dataType: "json",
+	 		url: "/UpdateAdImage",
+	 		success:function(data){
+	 			if(data.flag == 1){
+	 				alert("更新成功！");
+	 			}else if(data.flag <2){
+	 				alert("更新失败！");
+	 			}
+	 		},
+	 		error:function(){
+	 			alert("error");
+	 		}
+	 	});
+	  }
+function addad4(){
+	  var ad4name=$("#file4").val();
+	  UpladFile("ad4");
+	  $.ajax({
+	 	    type: "POST",
+	 		data: {id:4,imagename:ad4name}, 
 	 		dataType: "json",
 	 		url: "/UpdateAdImage",
 	 		success:function(data){
