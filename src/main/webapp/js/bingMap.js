@@ -405,6 +405,18 @@
         	 var area=$("#project_area").val();
         	 var city=$("#project_city").val();
         	 var address=$("#project_address").val();
+        	 var arrArea=new Array();
+        	 arrArea=area.split(",");
+        	 area=arrArea[0];
+        	 var arrCity=new Array();
+        	 arrCity=city.split(",");
+        	 city=arrCity[0];
+        	 var arrAddr=new Array();
+        	 arrAddr=address.split(",");
+        	 address=arrAddr[0];
+        	 //alert(city);
+        	 //alert(area);
+        	 //alert(address);
     		 map.entities.clear(); 
     		 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
     		 $.ajax({
@@ -631,14 +643,14 @@
     		 	 	 		        var name=items[i].project_name;
     		 	 	 		        var image=items[i].project_img;
     		 	 	 		        var img=imgdir+"/"+image;	 		        
-    		 	 	 		       /* var minprice=items[i].project_min_price;
-    		 	 	 		        var maxprice=items[i].project_high_price;*/
+    		 	 	 		        var minprice=items[i].project_min_price;
+    		 	 	 		        var maxprice=items[i].project_high_price;
     		 	 	 		        var city=items[i].project_city;
     		 	 	 		        var price=items[i].project_price_int_qi;
     		 	 	 		        var type=items[i].project_type;
     		 	 	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:-45px;left:-15px;'><div style='color:red;font-size:12px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin2.png' style='width:20px;height:20px;'/></div>"}; 
     		 	 	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
-    		 	 	 		        /*var pushpin= new Microsoft.Maps.Pushpin(LA,null);*/
+    		 	 	 		       // var pushpin= new Microsoft.Maps.Pushpin(LA,null);
     		 	 	 		        add(type,img,price,num,pushpin,LA);
     		 	 				    map.entities.push(pushpin);		
     		 	 	 		    }	 	            	   
@@ -652,7 +664,7 @@
     		 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
     		 	            	        var city2=items3[j].project_city;
     		 	            	       var total=String(items2[j].city);
-    		 	            	        /*var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; */
+    		 	            	        var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; 
     		 	            	        var pushpinOptions2={text:total,width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'};
     		 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
     		 	                  	    map.entities.push(pushpin2);
@@ -667,7 +679,7 @@
     		 			//alert("addDefaultPushpin error")
     		 		}
     	        });	
-         /*var key=$("#keyWord").val();
+        /* var key=$("#keyWord").val();
          //alert("key")
 		 map.entities.clear(); 
 		 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });

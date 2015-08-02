@@ -458,7 +458,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		
 		<!-- *************************************** main_bkg2 ************************************************** -->
-	 	<div class="main_bkg2" style="background:#1763ac url(../pic/indexbg4.png) repeat-x 0 -666px;">
+	 	<!-- <div class="main_bkg2" style="background:#1763ac url(../pic/indexbg4.png) repeat-x 0 -666px;">
 			<div style="background:#1763ac url(../pic/indexbg4.png) repeat-x 0 -666px; width:1190px; margin:0 auto; height:155px;">
 				<div class="c-fix f-l main_bkg2_div">
 					<div style="color:white;font-family:微软雅黑;font-size:46px;font-weight:bolder;position:absolute;filter:alpha(opacity=60);opacity:0.6;top:20px">我们</div>
@@ -467,18 +467,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div style="color:white;font-family:微软雅黑;font-size:15px;font-weight:Regular;position:absolute;left:415px;top:73px;width:179px;">每天上百个新房源满足了越来越多的客户海外需求</div>
 				</div>
 			</div>
-		</div>  
+		</div>   -->
+		 <div class="main_bkg2" style="background:#1763ac url(../pic/indexbg4.png) repeat-x 0 -666px;">
+			<div style="background:#1763ac url(../pic/indexbg4.png) repeat-x 0 -666px; width:1190px; margin:0 auto; height:155px;">
+				<div class="c-fix f-l main_bkg2_div">
+					<!-- <div style="color:white;font-family:微软雅黑;font-size:46px;font-weight:bolder;position:absolute;filter:alpha(opacity=60);opacity:0.6;top:20px">我们</div>
+					<div style="color:white;font-family:微软雅黑;font-size:15px;font-weight:Regular;position:absolute;left:100px;margin-top:30px;">我们应用互联网思维和技术，为您提供更全、更多的海外项目信息，通过全方位服务，让您更方便、更快捷、更省钱的买到更适合的海外房产</div>
+					<div style="color:white;font-family:微软雅黑;font-size:33px;font-weight:bolder;font-family:黑体;position:absolute;filter:alpha(opacity=60);opacity:0.6;top:80px;border-top:2px solid white;letter-spacing:5px;">重新定义海外置业模式</div>
+					<div style="color:white;font-family:微软雅黑;font-size:15px;font-weight:Regular;position:absolute;left:415px;top:73px;width:179px;">每天上百个新房源满足了越来越多的客户海外需求</div> -->
+					<div style="color:white;font-family:微软雅黑;font-size:33px;font-weight:bolder;margin-top:20px;text-align:center">海外置业新工具</div>
+					<div style="color:white;font-family:微软雅黑;font-size:18px;font-weight:Regular;text-align:center;filter:alpha(opacity=60);opacity:0.6;">提供大量真实的房源，全面的房屋信息，购房者可以自由、自主、更聪明的海外置业</div>
+				</div>
+			</div>
+		</div>
 		
 		<!-- *************************************** main_bkg3 ************************************************** -->
-	<div class="main_bkg3">
+	<!-- <div class="main_bkg3">
 	   <div id="myCarousel" class="carousel slide" style="height:500px;width:1190px; margin:0 auto;">
-	   <!-- 轮播（Carousel）指标 -->
+	   轮播（Carousel）指标
 	   <ol class="carousel-indicators">
 	      <li data-target="#myCarousel" data-slide-to="0" class="active" style="background-color:#8E8E8E"></li>
 	      <li data-target="#myCarousel" data-slide-to="1" style="background-color:#8E8E8E"></li>
-	     <!--  <li data-target="#myCarousel" data-slide-to="2" style="background-color:#8E8E8E"></li> -->
+	      <li data-target="#myCarousel" data-slide-to="2" style="background-color:#8E8E8E"></li>
 	   </ol>   
-	<!--    轮播（Carousel）项目 -->
+	   轮播（Carousel）项目
 	   <div class="carousel-inner">
 	      <div class="item active">
 	         <img src="images/index/lunbo1.png" alt="First slide" style="width:1190px;height:500px;">
@@ -492,7 +504,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   	</div>
 		</div>
    </div>
- 
+  -->
+   <div class="main_bkg3" style="height:658px">
+	   <div id="myCarousel" class="carousel slide" style="height:642px;width:1190px; margin:0 auto;">
+	   <ol class="carousel-indicators">
+	      <li data-target="#myCarousel" data-slide-to="0" class="active" style="background-color:#8E8E8E"></li>
+	      <li data-target="#myCarousel" data-slide-to="1" style="background-color:#8E8E8E"></li>
+	    <!--   <li data-target="#myCarousel" data-slide-to="2" style="background-color:#8E8E8E"></li> -->
+	   </ol>   
+	   <div class="carousel-inner">
+	      <div class="item active">
+	         <img src="images/index/lunbo1.png" alt="First slide" style="width:1190px;height:642px;">
+	         <div class="carousel-caption"></div>
+	      </div>
+	      <div class="item">
+	         <img src="images/index/lunbo2.jpg" alt="Second slide" style="width:1190px;height:642px;">
+	         <div class="carousel-caption"></div>
+	      </div>
+	     
+	   	</div>
+		</div>
+   </div>
    
    <!-- *************************************** main_bkg4 ************************************************** -->
 	 <div class="main_bkg4" style="background:#ECEAEB url(../pic/indexbg6.png) repeat-x 0 -666px;">
@@ -507,20 +539,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="c-fix f-l f-yahei" style="width:396px;height:375px;text-align:center;">
 				    <div class="f-yahei fw" style="color:#4a494a;font-size:35px;margin-top:15px;margin-bottom:5px;">华人区</div>
 				    <a href="/IndexSearch?huaren=华人区"><img src="images/index/01.png" style="width:230px;height:230px;"></a>
-				    <div class="f-yahei" style="color:#888889;font-size:25px;margin-top:5px;">华人聚集地，优质房源</div>
-				    <div class="f-yahei cp fw" style="color:#1763ac;font-size:30px;"><a href="/IndexSearch?huaren=华人区">去找房</a></div>
+				    <div class="f-yahei" style="color:#888889;font-size:22px;margin-top:5px;">华人聚集地，优质房源</div>
+				    <div class="f-yahei cp fw" style="color:#1763ac;font-size:20px;"><a href="/IndexSearch?huaren=华人区">去找房</a></div>
 				</div>
 				<div class="f-l f-yahei" style="width:396px;height:375px;text-align:center;">
 				    <div class="f-yahei fw" style="color:#4a494a;font-size:35px;margin-top:15px;margin-bottom:5px;">学区房</div>
 				    <a href="/IndexSearch?xuequ=优秀学区"><img src="images/index/02.png" style="width:230px;height:230px;"></a>
-				    <div class="f-yahei" style="color:#888889;font-size:25px;margin-top:5px;">热门学区，海外置业首选</div>
-				    <div class="f-yahei cp fw" style="color:#1763ac;font-size:30px;"><a href="/IndexSearch?xuequ=优秀学区">去找房</a></div>
+				    <div class="f-yahei" style="color:#888889;font-size:22px;margin-top:5px;">热门学区，海外置业首选</div>
+				    <div class="f-yahei cp fw" style="color:#1763ac;font-size:20px;"><a href="/IndexSearch?xuequ=优秀学区">去找房</a></div>
 				</div>
 				<div class="f-l f-yahei" style="width:396px;height:375px;text-align:center;">
 				    <div class="f-yahei fw" style="color:#4a494a;font-size:35px;margin-top:15px;margin-bottom:5px;">市中心</div>
 				    <a href="/IndexSearch?center=城市中心"><img src="images/index/03.png" style="width:230px;height:230px;"></a>
-				    <div class="f-yahei" style="color:#888889;font-size:25px;margin-top:5px;">城市中心，稀缺房产资源</div>
-				    <div class="f-yahei cp fw" style="color:#1763ac;font-size:30px;"><a href="/IndexSearch?center=城市中心">去找房</a></div>
+				    <div class="f-yahei" style="color:#888889;font-size:22px;margin-top:5px;">城市中心，稀缺房产资源</div>
+				    <div class="f-yahei cp fw" style="color:#1763ac;font-size:20px;"><a href="/IndexSearch?center=城市中心">去找房</a></div>
 				</div>
 			</div>
 	</div>
@@ -547,14 +579,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class=" main_bkg4_div">
 			<div class="c-fix f-l f-yahei" style="width:595px;height:300px;margin-top:100px;padding-left:80px;">
 			     <div class="f-yahei" style="color:rgb(74,74,74);font-size:30px;margin-top:15px;margin-bottom:5px;">最适合你的优秀经纪</div>
-			     <a href="/SearchService"><img src="images/index/btn3.png" style="width:450px;height:70px;margin-top:5px;"></a>
-			     <div class="f-yahei" style="color:rgb(162,162,162);font-size:19px;margin-top:15px;margin-bottom:5px;">购房者可以通过专业背景、本地经验、服务区域、所在区域</div>
+			     <a href="/SearchService" style="text-decoration: none;">
+			          <!-- <img src="images/index/btn3.png" style="width:450px;height:70px;margin-top:5px;"> -->
+			           <div style="background-color:rgb(23,99,172);width:450px;height:70px;-webkit-border-radius: 10px;border-radius: 10px;-moz-border-radius:10px; text-align:center;padding-top:8px"class="f-yahei" ><span style="color:white;font-weight:bold;font-size:36px">自主选择经纪人</span></div>
+			     </a>
+			    <!--  <div class="f-yahei" style="color:rgb(162,162,162);font-size:19px;margin-top:15px;margin-bottom:5px;">购房者可以通过专业背景、本地经验、服务区域、所在区域</div>
 			     <div class="f-yahei" style="color:rgb(162,162,162);font-size:19px;margin-top:10px;margin-bottom:5px;">多维度的找到适合自己需求的经纪人</div>
-			     <div class="f-yahei" style="color:rgb(162,162,162);font-size:19px;margin-top:10px;margin-bottom:5px;">更简单的开启海外置业。</div>
+			     <div class="f-yahei" style="color:rgb(162,162,162);font-size:19px;margin-top:10px;margin-bottom:5px;">更简单的开启海外置业。</div> -->
+			      <div class="f-yahei" style="color:rgb(162,162,162);font-size:19px;margin-top:15px;margin-bottom:5px;">基于专业背景、本地经验、服务区域、精通语言，</div>
+			     <div class="f-yahei" style="color:rgb(162,162,162);font-size:19px;margin-top:10px;margin-bottom:5px;">多维度的找到适合自己需求的经纪人</div>
 			</div>
 			<div class="f-l" style="width:595px;text-align:center;"><img src="images/index/broker.png"></div>
 			</div>
-		</div>
+		 </div>
 		
 		
 		 <!-- *************************************** main_bkg6 ************************************************** -->
@@ -719,7 +756,7 @@ $("#searchTerritory").on('focus',function(e){
 
 $("#searchTerritory").on('click',function(e){
 	 if($('#searchTerritory').val()==""){
-		 input_suggest_recommend();
+		 //input_suggest_recommend();
 	 }
 	 
 });

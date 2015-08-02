@@ -803,7 +803,7 @@ public class SearchListDao extends BaseDao {
 		List<String> brokerInfoList=new ArrayList<String>();
 		
 			try {
-				String sql = "select distinct a.broker_num from broker_info a left join broker_service_area b on  a.broker_num = b.broker_num where ";
+				String sql = "select distinct a.broker_num from broker_info a left join broker_service_area b on a.broker_num = b.broker_num where ";
 				int i=0;
 				if(name!=null && !"".equals(name)){
 					sql+="a.broker_name like '%"+name+"%'";
@@ -846,7 +846,7 @@ public class SearchListDao extends BaseDao {
 					}
 				}
 				if(i == 0){
-					sql = "select distinct a.broker_num from broker_info a left join broker_service_area b on  a.broker_num = b.broker_num";
+					sql = "select distinct a.broker_num from broker_info a left join broker_service_area b on a.broker_num = b.broker_num";
 				}
 				  stmt = con.createStatement();
 				  rs = stmt.executeQuery(sql);

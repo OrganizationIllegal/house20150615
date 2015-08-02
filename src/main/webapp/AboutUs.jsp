@@ -37,11 +37,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      $(function(){
     	 $("li").css("text-decoration","");
          
-        var can = document.getElementById("circle1");
+       /*  var can = document.getElementById("circle1");
         var can2 = document.getElementById("circle2");
         var can3 = document.getElementById("circle3");
         var can4 = document.getElementById("circle4");
-        var can5 = document.getElementById("circle5");
+        var can5 = document.getElementById("circle5"); */
         //var can6 = document.getElementById("circle6");
         /* var can7 = document.getElementById("circle7");
         var can8 = document.getElementById("circle8");
@@ -62,10 +62,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
         
         //var ctx = can.getContext("2d");   
-        var ctx2 = can2.getContext("2d");   
+        /* var ctx2 = can2.getContext("2d");   
         var ctx3 = can3.getContext("2d");   
         var ctx4 = can4.getContext("2d"); 
-        var ctx5 = can5.getContext("2d");   
+        var ctx5 = can5.getContext("2d");  */  
         //var ctx6 = can6.getContext("2d");  
         /* var ctx7 = can7.getContext("2d");   
         var ctx8 = can8.getContext("2d");  
@@ -110,7 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        /*  img.onload = function (){
              ctx.drawImage(img, 0, 0, 70, 70);
              } */
-        img2.onload = function (){
+       /*  img2.onload = function (){
              ctx2.drawImage(img2, 0, 0, 70, 70);
              }
         img3.onload = function (){
@@ -121,7 +121,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
              }
         img5.onload = function (){
              ctx5.drawImage(img5, 0, 0, 70, 70);
-             }
+             } */
         /* img6.onload = function (){
              ctx6.drawImage(img6, 0, 0, 70, 70);
              } */
@@ -197,10 +197,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
         
         //begin(ctx); 
-        begin(ctx2);  
+        /* begin(ctx2);  
         begin(ctx3); 
         begin(ctx4);  
-        begin(ctx5); 
+        begin(ctx5); */ 
         //begin(ctx6);
        /*  begin(ctx7);  
         begin(ctx8); 
@@ -267,11 +267,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<img  src="../images/us0.png" height=450 width="100%">
 		
 			<div style="padding-top:50px;left:2%;text-align:center;color:white;font-weight:bold;-margin-top:-10px;-position:relative;-top:-501px;-left:2%;">
-				<img  src="../images/uswenzi.png" style="position: relative;top:-501px;left:2%">
+				 <!-- <img  src="../images/uswenzi.png" style="position: relative;top:-501px;left:2%"> -->
+			 <!--  <img  src="../images/us0.png" style="position: relative;top:-501px;left:2%">  -->
+			  <!--  <div style="padding-top: 6%;">
+                        <img  src="../images/00.png" id="register_aboutus">
+               </div> -->
+             
 			</div>
-			<div align=center style="position:relative; height:50px;top: -679px;/* margin: 0 auto; */left:0%;">
-			    <div style="width:136px; height:50px;">
-			    <img  src="../images/00.png" id="register_aboutus">
+			<div align=center style="position:relative; height:50px;top: -679px;/* margin: 0 auto; */left:0%;margin-top:300px">
+			   <font style="font-size:32px;font-weight:normal;color:#FFFFFF;font-family:'微软雅黑'">全新的海外置业工具</font><br/><br/>
+			   <font style="font-size:15px;font-weight:normal;color:#FFFFFF;font-family:'微软雅黑'">提供透明、全面的房产数据，辅助购房决策，多维信息自主选择经纪人</font>
+			   <br/>
+			   <br/>
+			    <div style="width:155px; height:50px;">
+			     <img  src="../images/00.png" id="register_aboutus">
+
 			    <!-- <button type="button" style="margin:0 auto; border:0; width:136px; height:46px; background:#d7253f; font-size:28px; color:#fff;"  id="register_aboutus">注册</button> -->
 			     </div>
 				 
@@ -285,7 +295,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<ul class="ab_index" style="list-style-type: none;position: relative;left: 6%;">
 				<li><a href="#youxuan"  onclick="tab1()" style="color:#425a74; text-decoration:none;">海房优选</a></li>
 				<li><a href="#story"  onclick="tab2()"  style="color:#425a74; text-decoration:none;">我们的故事</a></li>
-				<li><a href="#team"  onclick="tab3()"  style="color:#425a74; text-decoration:none;">我们的团队</a></li>
+			<!-- 	<li><a href="#team"  onclick="tab3()"  style="color:#425a74; text-decoration:none;">我们的团队</a></li> -->
 				<!-- <li><a href="#news"  onclick="tab4()"  style="color:#425a74; text-decoration:none;">新闻报道</a></li> -->
 				<li style="border-right:1px solid #dcdcdc;"><a href="#telus"  onclick="tab5()"  style="color:#425a74; text-decoration:none;">联系方式</a></li>
 			</ul>
@@ -300,7 +310,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--end我们革命性的改变了-->
 
 <!--start当前落后的购房服务 -->
-<div class="" style="padding-top:50px;text-align:center;height:500px" >
+<div class="" style="padding-top:50px;text-align:center;height:500px;display:none" >
 		<div style=""><span  style="font-size:13px;font-family:微软雅黑;text-align:center; color:#969b9f;">当前落后的购房服务</span></div>
 		<div style="margin-top:6px"><span  style="font-size:34px;text-align:center;  color:#969b9f;">大量的中间环节造成不透明,低效率的购房过程。</span></div>
 		<!--start画圆圈 -->
@@ -311,24 +321,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		   		<!-- <div style="font-size:13px;font-family:微软雅黑; margin-bottom:4px;">投资者</div> -->
 		   </div>
 		   <div id="jignjiren2"  style="margin:9px 30px;width:100px;height:100px;float:left;">
-		   		<div><canvas id="circle2" width="70" height="70"  ></canvas></div>
-		   		<div style="font-size:13px;font-family:微软雅黑; margin-bottom:4px;">国内经纪人</div>
-		   		<div ><span style="font-size:13px;font-family:微软雅黑;color:#fff;background:#d62541;padding:4px 4px;-webkit-border-radius: 4px;-moz-border-radius: 4px;">1%手续费</span></div>
+		   		<div><img src="../images/people.png" width="60" height="55" style="margin-top:8px;margin-bottom:6px;"></div>
+		   		
+		   		<div style="font-size:13px;font-family:微软雅黑; margin-bottom:7px;">国内经纪人</div>
+		   		<div ><span style="font-size:13px;font-family:微软雅黑;color:#fff;background:#d62541;padding:0px 12px;-webkit-border-radius: 4px;-moz-border-radius: 4px;">有限服务</span></div>
 		   </div>
 		    <div id="dailigongsi"  style="margin:9px 30px;width:100px;height:100px;float:left;">
-		   		<div><canvas id="circle3" width="70" height="70"></canvas></div>
-		   		<div style="font-size:13px;font-family:微软雅黑; margin-bottom:4px;">代理经纪公司</div>
-		   		<div ><span style="font-size:13px;font-family:微软雅黑;color:white;background:#d62541;padding:4px 4px;-webkit-border-radius: 4px;-moz-border-radius: 4px;">1%手续费</span></div>
+		   		<div><img src="../images/people.png" width="60" height="55" style="margin-top:8px;margin-bottom:6px;"></div>
+		   		<div style="font-size:13px;font-family:微软雅黑; margin-bottom:7px;">代理经纪公司</div>
+		   		<div ><span style="font-size:13px;font-family:微软雅黑;color:white;background:#d62541;padding:0px 12px;-webkit-border-radius: 4px;-moz-border-radius: 4px;">销售向导</span></div>
 		   </div>
 		     <div id="haiwaigongsi"  style="margin:9px 30px;width:100px;height:100px;float:left;">
-		   		<div><canvas id="circle4" width="70" height="70"  ></canvas></div>
-		   		<div style="font-size:13px;font-family:微软雅黑; margin-bottom:4px;">海外经纪公司</div>
-		   		<div ><span style="font-size:13px;font-family:微软雅黑;color:white;background:#d62541;padding:4px 4px;-webkit-border-radius: 4px;-moz-border-radius: 4px;">1%手续费</span></div>
+		   		<div><img src="../images/people.png" width="60" height="55" style="margin-top:8px;margin-bottom:6px;"></div>
+		   		<div style="font-size:13px;font-family:微软雅黑; margin-bottom:7px;">海外经纪公司</div>
+		   		<div ><span style="font-size:13px;font-family:微软雅黑;color:white;background:#d62541;padding:0px 12px;-webkit-border-radius: 4px;-moz-border-radius: 4px;">很少房源</span></div>
 		   </div>
 		    <div id="jingjishang"  style="margin:9px 30px;width:100px;height:100px;float:left;">
-		   		<div><canvas id="circle5" width="70" height="70"></canvas></div>
-		   		<div style="font-size:13px;font-family:微软雅黑; margin-bottom:4px;">房地产经纪商</div>
-		   		<div ><span style="font-size:13px;font-family:微软雅黑;color:white;background:#d62541;padding:4px 4px;-webkit-border-radius: 4px;-moz-border-radius: 4px;">1-2%手续费</span></div>
+		   		<div><img src="../images/people.png" width="60" height="55" style="margin-top:8px;margin-bottom:6px;"></div>
+		   		<div style="font-size:13px;font-family:微软雅黑; margin-bottom:7px;">房地产经纪商</div>
+		   		<div ><span style="font-size:13px;font-family:微软雅黑;color:white;background:#d62541;padding:0px 12px;-webkit-border-radius: 4px;-moz-border-radius: 4px;">销售向导</span></div>
 		   </div>
 		     <div id="fangchan" style="margin:0 30px;width:100px;height:100px;float:left;">
 		     	<img src="../images/fangyuan.png">
@@ -361,9 +372,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 <!--end当前落后的购房服务 -->
 <!--start海房优选解决方案 -->
-<div id="youxuan" class="" style="padding:40px 0 ;text-align:center;background-color:rgb(247,248,250);height:500px" >
+<div id="youxuan" class="" style="padding:40px 0 ;text-align:center;-background-color:rgb(247,248,250);background-color:white;height:500px" >
 		<div style="margin:20px 0"><span  style="font-size:14px;font-family:微软雅黑;text-align:center; color:#898c93;">海房优选解决方案</span></div>
-		<div style="margin:20px 0"><span  style="font-size:32px;text-align:center; color:#898c93;">互联网思维和技术，提供高效透明的购房服务</span></div>
+		<div style="margin:20px 0"><span  style="font-size:32px;text-align:center; color:#898c93;">自由开放的海外置业工具</span></div>
 		<!--start画圆圈 -->
 		<div id="circles" style="width:450px; margin:20px auto;height:120px">
 		   <img src="../images/haha.png">
@@ -391,12 +402,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div style="margin-top:10px;font-size:12px;text-align:center;color:#858384;"><span>购房者可以在网站查询海量房源，基于地图的搜索购房者寻找适合的房产。</span></div>
 			</div>
 			<div class="" style="font-size:13px;font-family:微软雅黑;text-align:center; float:left; width:250px; margin-left:93px;">
-				<div style="margin-top:10px;font-size:14px;font-family:微软雅黑;font-weight:bold"><span>优质购房服务</span></div>
-				<div style="margin-top:10px;font-size:12px;text-align:center;color:#858384;"><span>通过对经纪人的严格调查，购房者能够找到适合自己的，具有本地经验的专业经纪。</span></div>
+				<div style="margin-top:10px;font-size:14px;font-family:微软雅黑;font-weight:bold"><span>自主选择服务</span></div>
+				<div style="margin-top:10px;font-size:12px;text-align:center;color:#858384;"><span>多角度的经纪人介绍，辅助客户自由选择能提供优质购房服务的人员</span></div>
 			</div>
 			<div class="" style="font-size:13px;font-family:微软雅黑;text-align:center; margin-left:87px;float:left;width:250px;">
-				<div style="margin-top:10px;font-size:14px;font-family:微软雅黑;font-weight:bold"><span>聪明购房决定</span></div>
-				<div style="margin-top:10px;font-size:12px;text-align:center;color:#858384;"><span>丰富完整的房屋及街区信息，区域人口构成真实租金收益，让购房者更简单的做出明智的购房选择。</span></div>
+				<div style="margin-top:10px;font-size:14px;font-family:微软雅黑;font-weight:bold"><span>更多决策依据</span></div>
+				<div style="margin-top:10px;font-size:12px;text-align:center;color:#858384;"><span>大量、全面，及时更新的房产信息，辅助客户对比后决策选择</span></div>
 			</div>
 			<div style="width:45px;height:45px;float:left;margin-left:140px;margin-top:-135px;"><img  src="../images/cc1.png"></div>
 			<div style="width:45px;height:45px;float:left;margin-left:470px;margin-top:-135px;"><img  src="../images/cc1.png"></div>
@@ -414,12 +425,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 <!--end风景-->
 <!--start海房优选的故事 -->
-<div id="story" class="" style="width:100%; height:430px;margin:0 auto; color:#878c90; padding:20px 0 ;text-align:center;background-color:rgb(247,248,250)" >
+<div id="story" class="" style="width:100%; height:430px;margin:0 auto; color:#878c90; padding:20px 0 ;text-align:center;-background-color:rgb(247,248,250);background-color:white;" >
 		<div style="margin:20px 0"><span  style="font-size:15px;font-family:微软雅黑;text-align:center;">海房优选的故事</span></div>
-		<div style="margin:20px 0"><span  style="font-size:25px;text-align:center;">为中国人提供更好的海外购房服务</span></div>
+		<div style="margin:20px 0"><span  style="font-size:25px;text-align:center;">让中国人海外置业更聪明</span></div>
 		<!--star文字-->
 		<div id="show" style="margin:0 auto; width:1000px; height:120px;" >
-			<div class="ddfont" style="font-size:17px;font-family:微软雅黑;text-align:center;">
+			<!-- <div class="ddfont" style="font-size:17px;font-family:微软雅黑;text-align:center;">
 				<div style="margin-top:10px;text-align:left"><span>随着经济的发展，我们身边开始逐渐有了海外购房的人群<br/>相比中国房产市场，海外楼市更历史悠久更加成熟。掌握了一定技巧的购房者能够找到关于房源的详细信息、街区、学校、历史价格、人口构成、租金水平等，能够更清晰、明智的选购房产。</span></div>
 			</div>
 			<div class="ddfont" style="font-size:17px;font-family:微软雅黑;text-align:center;">
@@ -427,13 +438,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<div class="ddfont" style="font-size:17px;font-family:微软雅黑;text-align:center;">
 				<div style="margin-top:10px;text-align:left"><span>于是，我们用海房优选达成一个简单的目标，让中国人更高效、更好的海外购房，以互联网思维和全新的服务体系，减少不必要的环节，让购房者直接连接海外房源，提供真实、丰富、神志不清的房源数据，让购房者能够自己选择房源，标准的安全购房服务。高达70%的购房佣金返利，让购房者更简单、更高效购买心仪的房产。</span></div>
+			</div> -->
+			<div class="ddfont" style="font-size:17px;font-family:微软雅黑;text-align:center;">
+				<div style="margin-top:10px;text-align:left"><span>海房优选是一个全新的互联网海外置业工具网站，能够让购房者自主选择海外房产、自由选择购房服务人员，并通过数据自行做成购房决策。<br/>目前集中了澳洲70%在售的新房项目可供自由选择。<br/>每个房产项目信息涵盖了项目的位置、价格、建筑设计与规划、户型、可售房源、开
+发商信息等内容。<br/>通过区域教育、商业配套、人口及分
+				</span></div>
 			</div>
+			<div class="ddfont" style="font-size:17px;font-family:微软雅黑;text-align:center;">
+				<div style="margin-top:10px;text-align:left"><span>布、家庭年龄结构、收入水平等指标，购房人能一目了然的看到区域特点，基于子女留学、父母居住等需求购房的客户，可真正认识了解该区域是否满足居住、生活需求，做出更理智的决策选择，或为进一步咨询经纪人提供辅助决策的信息参考。<br/>我们利用互联网技术抓取官方、行业统计大数据，公开、透明化全部的市场信息，购房人可了解到每一个区域</span></div>
+			</div>
+			<div class="ddfont" style="font-size:17px;font-family:微软雅黑;text-align:center;">
+				<div style="margin-top:10px;text-align:left"><span>10年来房产售价、租金水平、回报率的变化，作为海外置业的价格对比参照。同时提供购房持有成本参考，结合历史价格和租金水平，辅助投资决策。</span></div>
+			</div> 
+			
 		</div>
 		<!--end文字-->
 </div>
 <!--end海外优选的故事 -->
 <!--start我们的团队-->
-<div id="team" class="" style="width:100%; margin:0 auto; height:587px; color:#878c90;" >
+<div id="team" class="" style="width:100%; margin:0 auto; height:587px; color:#878c90;display:none" >
 		<div style="margin-top:30px; text-align:center;"><span  style="font-size:15px;font-family:微软雅黑;text-align:center;">我们的团队</span></div>
 		<div style="margin-top:20px; text-align:center;"><span  style="font-size:25px;text-align:center;">我们的背景涵盖房地产、互联网、金融和技术</span></div>
 		<!--start画圆圈 -->

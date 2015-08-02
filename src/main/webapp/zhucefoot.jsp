@@ -76,7 +76,7 @@ $("#register2new").click(function(){
         	<img src="/pic/whiteangle.jpg"></img>
         </div> -->
         <div style="top: -50%; position: relative;margin-top: -54px;left:7px;">
-            <font style="font-size:32px;font-weight:normal;color:#FFFFFF;font-family:'微软雅黑'">为您提供最好的海外购房服务</font><br><br>
+            <font style="font-size:32px;font-weight:normal;color:#FFFFFF;font-family:'微软雅黑'">聪明海外置业</font><br><br>
             <div style="position: relative;left: 48%;margin-left: -43px;height:54px;width:86px;">
             <div style="padding-top: 6%;">
             <img  src="../images/00.png" id="register2new">
