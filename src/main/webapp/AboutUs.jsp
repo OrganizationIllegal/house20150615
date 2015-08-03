@@ -249,7 +249,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <style>
 	body{font-family:微软雅黑; color:#000;}
 	.openAcc1{position:absolute;top:2px; left:510px; width:136px;height:46px; margin-left:15px; background:#d7253f;border:none;font-size:28px; color:#fff;}
-	.ab_index li{width:134px; height:33px; float:left; font-size:14px; font-weight:bold; line-height:32px; border-left:1px solid #dcdcdc;text-align:center;}
+	.ab_index li{  width:134px;height:33px; font-size:14px; font-weight:bold; line-height:32px; border-left:1px solid #dcdcdc;text-align:center;display:inline;}
 	.ab_index{ height:33px; width:750px; margin:0 auto;}
 	#circles{color:#878c92;}
 	.tzz{float:left;-margin-left:20px;width:150px;}
@@ -264,8 +264,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <div class="" >
 		<!--<img  src="../images/bb.JPG">-->
 		<div style="width:100%;margin:0 auto;height:450px;" >
-			<img  src="../images/us0.png" height=450 width="100%">
-		
+			<!-- <img  src="../images/us0.png" height=450 width="100%"> -->
+			<div class="main_bkg" style="background:url(images/海房_index_top.jpg) no-repeat;width: 100%;/* background-attachment: fixed; */
+    background-position: center 0;height:450px;background-position-y: 0px;"></div>
 			<div style="padding-top:50px;left:2%;text-align:center;color:white;font-weight:bold;-margin-top:-10px;-position:relative;-top:-501px;-left:2%;">
 				 <!-- <img  src="../images/uswenzi.png" style="position: relative;top:-501px;left:2%"> -->
 			 <!--  <img  src="../images/us0.png" style="position: relative;top:-501px;left:2%">  -->
@@ -291,13 +292,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- <div class="row" >
 	<div> -->
 		
-		<div class="" style="width:100%; margin:0 auto; border:1px solid #dcdcdc;margin-left:37px ">
-			<ul class="ab_index" style="list-style-type: none;position: relative;left: 6%;">
-				<li><a href="#youxuan"  onclick="tab1()" style="color:#425a74; text-decoration:none;">海房优选</a></li>
-				<li><a href="#story"  onclick="tab2()"  style="color:#425a74; text-decoration:none;">我们的故事</a></li>
+		<div class="" style="width:100%; margin:0 auto; border:1px solid #dcdcdc;/* margin-left:37px */ ">
+			<ul class="ab_index" style="list-style-type: none;position: relative;text-align: center; padding-left: 0px;">
+				<li><a href="#youxuan"  onclick="tab1()" style="color:#425a74; text-decoration:none;width: 134px;height:33px;display: inline-block;">海房优选</a></li>
+				<li><a href="#story"  onclick="tab2()"  style="color:#425a74; text-decoration:none;width: 134px;height:33px;display: inline-block;">我们的故事</a></li>
 			<!-- 	<li><a href="#team"  onclick="tab3()"  style="color:#425a74; text-decoration:none;">我们的团队</a></li> -->
 				<!-- <li><a href="#news"  onclick="tab4()"  style="color:#425a74; text-decoration:none;">新闻报道</a></li> -->
-				<li style="border-right:1px solid #dcdcdc;"><a href="#telus"  onclick="tab5()"  style="color:#425a74; text-decoration:none;">联系方式</a></li>
+				<li style="border-right:1px solid #dcdcdc;"><a href="#telus"  onclick="tab5()"  style="color:#425a74; text-decoration:none;
+				width: 134px;height:33px;display: inline-block;">联系方式</a></li>
 			</ul>
 			
 		</div>

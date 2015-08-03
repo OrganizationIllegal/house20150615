@@ -274,7 +274,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				 </c:forEach>
 			  <!--   </form> -->
 				</div>
-				  <img src="/images/book.PNG" style="height:138px;width:380px;margin-top:10px">
+				  <!-- <img src="/images/book.PNG" style="height:138px;width:380px;margin-top:10px"> -->
+				  <img src="<%=application.getInitParameter("imagedir")%>/${ad}" style="height:138px;width:380px;margin-top:10px"></img>
 				</div>
 		<!--右侧end -->
 		</div>

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.kate.app.dao.AdDao;
 import com.kate.app.dao.BrokerInfoDao;
 import com.kate.app.dao.ProjectInputDao;
 import com.kate.app.dao.UserDao;
@@ -35,6 +36,8 @@ public class BrokerInfoController {
 	private UserDao userDao;
 	@Autowired
 	private ProjectInputDao projectInputDao;
+	@Autowired
+	private AdDao addao;
 	
 	@RequestMapping({"/ServiceTeam"})
 	public String listBingMap(HttpServletRequest req,HttpServletResponse resp){
@@ -55,7 +58,7 @@ public class BrokerInfoController {
 		List<User> userList=userDao.listUser(username);
 		req.setAttribute("brokerInfoList", brokerInfoList);
 		req.setAttribute("userList", userList);
-		
+		req.setAttribute("ad", addao.getad4());
 		return "/serviceTeam.jsp";
 	}
 	//鏈嶅姟鍥㈤槦鍒嗛〉

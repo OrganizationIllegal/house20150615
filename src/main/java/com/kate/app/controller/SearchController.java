@@ -23,6 +23,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.kate.app.dao.AdDao;
 import com.kate.app.dao.AjaxDao;
 import com.kate.app.dao.AreaInfoDao;
 import com.kate.app.dao.BingMapDao;
@@ -44,6 +45,8 @@ import com.kate.app.service.BingMapService;
 
 @Controller
 public class SearchController {
+	@Autowired
+	private AdDao addao;
 	@Autowired
 	private SearchListDao searchListDao;
 	@Autowired
@@ -215,6 +218,7 @@ public class SearchController {
 		req.setAttribute("count", count);
 		req.setAttribute("serviceregionlist", resultListRegion);
 		req.setAttribute("liveregionlist", liveregionlist);
+		req.setAttribute("ad", addao.getad4());
 		return "/serviceTeam.jsp";
 		
 	}
