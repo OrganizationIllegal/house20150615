@@ -72,7 +72,7 @@ $("#register2new").click(function(){
 </script>
 <div class="row" style="width:100%; margin: 0 auto;height:310px;vertical-align:middle;text-align:center;position:relative;">
         <!-- <img  src="../images/button4.png" height=310 width="100%"> -->
-        <div class="main_bkg" style="background:url(images/海房_index_top.jpg) no-repeat;width: 100%;/* background-attachment: fixed; */
+        <div class="main_bkg" style="background:url(images/关于我们end.png) no-repeat;width: 100%;/* background-attachment: fixed; */
     background-position: center 0;height:310px;background-position-y: 0px;"></div>
         <!-- <div>
         	<img src="/pic/whiteangle.jpg"></img>

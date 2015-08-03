@@ -265,7 +265,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!--<img  src="../images/bb.JPG">-->
 		<div style="width:100%;margin:0 auto;height:450px;" >
 			<!-- <img  src="../images/us0.png" height=450 width="100%"> -->
-			<div class="main_bkg" style="background:url(images/海房_index_top.jpg) no-repeat;width: 100%;/* background-attachment: fixed; */
+			<div class="main_bkg" style="background:url(images/关于我们top.png) no-repeat;width: 100%;/* background-attachment: fixed; */
     background-position: center 0;height:450px;background-position-y: 0px;"></div>
 			<div style="padding-top:50px;left:2%;text-align:center;color:white;font-weight:bold;-margin-top:-10px;-position:relative;-top:-501px;-left:2%;">
 				 <!-- <img  src="../images/uswenzi.png" style="position: relative;top:-501px;left:2%"> -->
@@ -379,7 +379,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div style="margin:20px 0"><span  style="font-size:32px;text-align:center; color:#898c93;">自由开放的海外置业工具</span></div>
 		<!--start画圆圈 -->
 		<div id="circles" style="width:450px; margin:20px auto;height:120px">
-		   <img src="../images/haha.png">
+		   <img src="../images/注册页_11.png">
 		   <%-- <div id="touzizhe"  class="tzz" >
 		   		<div><canvas id="circle7" width="70" height="70"></canvas></div>
 		   		<div style="font-size:13px;font-family:微软雅黑;">投资者</div>
