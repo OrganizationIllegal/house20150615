@@ -46,7 +46,7 @@ public class Index01Controller {
 			HouseProject pro = new HouseProject();
 			String image = "";
 			pro = houseProjectDao.HouseProjectByNumDao(i);    //通过项目编号找到项目信息
-//			imageList1 = houseProjectDao.HouseProjectImageList(i);  //通过项目编号，得到项目描述图片列表
+			imageList1 = houseProjectDao.HouseProjectImageList(i);  //通过项目编号，得到项目描述图片列表
 			if(imageList1!=null && imageList1.size()>0){
 				image = imageList1.get(0).getName();
 			}

@@ -57,7 +57,7 @@
 .main_bkg6_div{display:block;width:1140px;margin:0 auto;height:575px;background-color:rgb(236,234,235);position:relative;}
 .main_lab2{display:block;color:#666;line-height:30px;width:100%;border-bottom:1px solid #666;margin-top:20px;}
 .main_node{display:block;width:360px;margin-top:5px;}
-.main_node_img{display:block;width:360px;}
+.main_node_img{display:block;width:360px;height: 225px;}
 .main_node_bkg{width:360px;height:70px;background-color:#000;opacity:0.8;position:relative;bottom:70px;}
 .main_node_lab{display:block;margin-left:10px;height:20px;line-height:20px;color:#fff;}
 
