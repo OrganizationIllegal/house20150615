@@ -148,7 +148,7 @@ public class SearchListDao extends BaseDao {
         }
 		return searchInfoList;
 	} 
-	//鎸夋潯浠惰繃婊�
+	//项目列表页搜索
 	public List<SearchList> filterSearchList(String projecttype,int zongjiamin,int zongjiamax,int danjiamin,int danjiamax,String xinaipan1,String remen1,String youxiu1,String center1,String baozu1,String huaren1,String zuixin1,String daxue1,String xianfang1,String traffic1,int woshimin,int woshimax){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -172,34 +172,34 @@ public class SearchListDao extends BaseDao {
 			
 			
 			if(xinaipan1.equals("1")){
-				sql+=" and p.xinkaipan='1'";//閫変腑
+				sql+=" and p.xinkaipan='1'";//新开盘
 			}
 			if(remen1.equals("1")){
-				sql+=" and p.remen='1'";//閫変腑
+				sql+=" and p.remen='1'";//热门项目
 			}
 			if(youxiu1.equals("1")){
-				sql+=" and p.xuequ='1'";//閫変腑
+				sql+=" and p.xuequ='1'";//优秀学区
 			}
 			if(center1.equals("1")){
-				sql+=" and p.center='1'";//閫変腑
+				sql+=" and p.center='1'";//城市中心
 			}
 			if(baozu1.equals("1")){
-				sql+=" and p.baozu='1'";//閫変腑
+				sql+=" and p.baozu='1'";//包租项目
 			}
 			if(huaren1.equals("1")){
-				sql+=" and p.huaren='1'";//閫変腑
+				sql+=" and p.huaren='1'";//华人区
 			}
 			if(zuixin1.equals("1")){
-				sql+=" and p.maidi='1'";//閫変腑
+				sql+=" and p.maidi='1'";//最新项目
 			}
 			if(daxue1.equals("1")){
-				sql+=" and p.daxue='1'";//閫変腑
+				sql+=" and p.daxue='1'";//大学附近
 			}
 			if(xianfang1.equals("1")){
-				sql+=" and p.xianfang='1'";//閫変腑
+				sql+=" and p.xianfang='1'";//现房项目
 			}
 			if(traffic1.equals("1")){
-				sql+=" and p.traffic='1'";//閫変腑
+				sql+=" and p.traffic='1'";//轨道交通
 			}
 			sql+=" GROUP BY h.project_num";
 			sql+=" HAVING (MIN(h.house_room_num) >"+woshimin;
@@ -323,7 +323,7 @@ public class SearchListDao extends BaseDao {
 		return searchInfoList;
 		
 	}
-	//	//找出項目编号所对应的户型及价格中卧室数量的最大值和最小值
+	//找出項目编号所对应的户型及价格中卧室数量的最大值和最小值
 	public int findMaxNumByPro(String project_num){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -367,7 +367,7 @@ public class SearchListDao extends BaseDao {
         }
 		return max;
 	} 
-//	//找出項目编号所对应的户型及价格中卧室数量的最小值
+	//找出項目编号所对应的户型及价格中卧室数量的最小值
 	public int findMinNumByPro(String project_num){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -535,7 +535,6 @@ public class SearchListDao extends BaseDao {
 		return searchInfoList;
 	} 
 	
-	//鏍规嵁褰撳墠鐧诲綍鐢ㄦ埛鑾峰彇鏀惰棌琛ㄤ腑鐨刾roNum
 	/*
 	 * 根据用户id查找项目编号
 	 */
@@ -580,14 +579,10 @@ public class SearchListDao extends BaseDao {
         }
 		return proNums;
 	}
-	//鑾峰彇鏀惰棌澶逛腑鐨勯」鐩�
+	//根据用户id查找收藏项目
 	public List<SearchList> listCollectList(int userid){
 		
-		//TODO鑾峰彇褰撳墠鐧诲綍鐢ㄦ埛
-		
-		//鏍规嵁褰撳墠鐧诲綍鐢ㄦ埛鑾峰彇鏀惰棌琛ㄤ腑鐨刾roNum
 		Set<String> proNums=proNumList(userid);
-		//閬嶅巻姣忎釜proNums,鏍规嵁姣忎釜proNum寰楀埌椤圭洰淇℃伅
 		List<SearchList> searchInfoListResult=new ArrayList<SearchList>();
 		for(String proNum : proNums)
 		{
@@ -596,7 +591,7 @@ public class SearchListDao extends BaseDao {
 		}
 		return searchInfoListResult;
 	} 
-	//鏍规嵁proNum寰楀埌椤圭洰淇℃伅
+	//根据项目编号查找项目信息
 	public SearchList findInfoByProNum(String ProNum){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -715,7 +710,7 @@ public class SearchListDao extends BaseDao {
 		return searchList;
 	}
 	
-	//鐐瑰嚮鈥滄敹钘忊�锛屾敹钘忚〃涓璦dd
+	//添加收藏
 	public int AddCollect(int userid,String proNum ){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -756,7 +751,7 @@ public class SearchListDao extends BaseDao {
         }
 		return exeResult;
 	}
-	//鏀惰棌鍒楄〃鐐瑰嚮鈥滃垹闄も�锛�
+	//取消收藏
 	public int DelCollect(int userid,String proNum ){
 		Statement stmt = null;
 		ResultSet rs = null;
