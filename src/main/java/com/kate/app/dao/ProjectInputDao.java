@@ -2512,7 +2512,11 @@ public class ProjectInputDao extends BaseDao {
 			        }
 				}
 		
-				//鍒ゆ柇鎵�缁欓」鐩紪鍙锋槸鍚﹂噸澶�
+				/**
+				 * 判断项目编号是否重复
+				 * @param project_num
+				 * @return
+				 */
 				public int isDuplicateNum(String project_num){
 					Statement stmt = null;
 					ResultSet rs = null;
