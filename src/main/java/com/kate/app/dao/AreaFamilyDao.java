@@ -16,6 +16,9 @@ import com.kate.app.model.AreaFamily;
 
 @Repository 
 public class AreaFamilyDao extends BaseDao {
+	/*
+	 * 查找通过区域编号，区域家庭信息
+	 */
 	public AreaFamily getAreaFamily(String area_code){
 		Statement stmt = null;
 		ResultSet rs = null;

@@ -221,26 +221,26 @@ public class MyController {
 		project.setProject_img(image1);
 		String project_typeInfo= project.getProject_type();
 		
-		 ProjectImage(req,resp,proNum);
-		 ProjectPeitaoImage(req,resp,proNum);
-		 TheElement(req,resp,proId);
-		 getBuyInfo(req,resp,proId);
-		 ProjectInfo(req,resp,proNum);
-		 getHouseInfo(req,resp,proNum);    //閿熸枻鎷烽敓閰电》鎷烽敓妗旈潻鎷�
-		 getSchoolAndNear(req,resp,proNum);   //瀛︽牎閿熸枻鎷烽敓鏉版唻鎷�
-		 getHouseTax(req,resp,proNum);
-		 InvestData(req,resp,area_num,project_type);
-		 MiddlePriceInfo(req,resp,proId,area_num);
-		 getAreaTrend(req,resp,project_type,area_num);
-		 getAreaFeature(req,resp,area_num);    //閿熸枻鎷烽敓鏂ゆ嫹閿熸埅纰夋嫹
-		 getPeopleRegion(req,resp,area_num);
-		 getAreaFamily(req,resp,area_num);
-		 GetNewsInfo(req,resp,area_num);
-		 RecommendProject(req,resp,proId,proNum,area_num);
-		 listSuoJia(req,resp,username);
+		 ProjectImage(req,resp,proNum);  //得到项目图片
+		 ProjectPeitaoImage(req,resp,proNum);  //得到项目配套图片
+		 TheElement(req,resp,proId);   //得到页面The Element部分的数据信息
+		 getBuyInfo(req,resp,proId);   //得到页面购买信息
+		 ProjectInfo(req,resp,proNum);  //得到项目的基本
+		 getHouseInfo(req,resp,proNum);    //房屋信息
+		 getSchoolAndNear(req,resp,proNum);   //学校和附近
+		 getHouseTax(req,resp,proNum);  //购房税费
+		 InvestData(req,resp,area_num,project_type);   //投资数据
+		 MiddlePriceInfo(req,resp,proId,area_num);   //中位数房价信息
+		 getAreaTrend(req,resp,project_type,area_num);   //区域走势
+		 getAreaFeature(req,resp,area_num);    //区域特点
+		 getPeopleRegion(req,resp,area_num);   //区域人口分布
+		 getAreaFamily(req,resp,area_num);   //区域家庭
+		 GetNewsInfo(req,resp,area_num);   //推荐新闻
+		 RecommendProject(req,resp,proId,proNum,area_num);  //推荐项目
+		 listSuoJia(req,resp,username);   //索价列表
 		 //messageSubmit(req,resp,username,proId);
 		 //通过项目推荐经纪人
-		 getRecommendBroker(req,resp,proNum,area_num);
+		 getRecommendBroker(req,resp,proNum,area_num);  //推荐经纪人
 		 //获取广告图片名称
 		 ad1=addao.getad1();
 		 ad2=addao.getad2();
@@ -255,8 +255,8 @@ public class MyController {
 		 req.setAttribute("proNum", proNum);
 		 //判斷該項目是否已被收藏
 		 String  isCollected=null;
-		 int userid=userDao.findUserByEmailAndTel(username);
-		 Set<String> proNumList=searchListDao.proNumList(userid);
+		 int userid=userDao.findUserByEmailAndTel(username);  //通过用户名，查找用户信息
+		 Set<String> proNumList=searchListDao.proNumList(userid);  //根据用户id查找项目编号
 		 if(proNumList.contains(proNum)){
 			 isCollected="1";//表示已收藏
 		 }else{
@@ -278,7 +278,7 @@ public class MyController {
 		String vedio=houseProjectService.getHouseVedioImage(proNum);
 		/*List<ProjectImage> imageList = new ArrayList<ProjectImage>();
 		List<ProjectImage> vedioList = new ArrayList<ProjectImage>();*/
-		System.out.println(list.size());
+		
 		/*for(ProjectImage image : list){
 			if(image.getImage_type().equals("图片")){
 				imageList.add(image);
@@ -294,7 +294,7 @@ public class MyController {
 	
 	
 	/*
-	 * 
+	 * 得到配套图片
 	 */
 	@RequestMapping({"/Index/ProjectPeitaoImage"})
 	public void  ProjectPeitaoImage(HttpServletRequest req, HttpServletResponse resp,String proNum){

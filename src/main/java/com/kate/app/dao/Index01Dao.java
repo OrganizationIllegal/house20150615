@@ -16,7 +16,9 @@ import com.alibaba.fastjson.JSONArray;
 public class Index01Dao extends BaseDao {
 	
 	
-	
+	/*
+	 * 数据库查找首页的推荐项目列表信息
+	 */
 	public List<String> getTuijian(){
 		Statement stmt = null;
 		ResultSet rs = null;

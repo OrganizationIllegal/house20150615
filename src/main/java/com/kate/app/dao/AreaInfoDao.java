@@ -3507,6 +3507,9 @@ public class AreaInfoDao extends BaseDao {
 		return areaInfo;
 	}
 	
+	/*
+	 * 根据区域名称得到区域的信息
+	 */
 	public AreaInfo getAreaInfo(String area_name){
 		Statement stmt = null;
 		ResultSet rs = null;
