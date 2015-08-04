@@ -294,7 +294,7 @@ public class MyController {
 	
 	
 	/*
-	 * 
+	 * 得到配套图片
 	 */
 	@RequestMapping({"/Index/ProjectPeitaoImage"})
 	public void  ProjectPeitaoImage(HttpServletRequest req, HttpServletResponse resp,String proNum){

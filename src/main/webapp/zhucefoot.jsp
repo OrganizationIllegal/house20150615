@@ -71,11 +71,13 @@ $("#register2new").click(function(){
 });
 </script>
 <div class="row" style="width:100%; margin: 0 auto;height:310px;vertical-align:middle;text-align:center;position:relative;">
-        <img  src="../images/button4.png" height=310 width="100%">
+        <!-- <img  src="../images/button4.png" height=310 width="100%"> -->
+        <div class="main_bkg" style="background:url(images/关于我们end.png) no-repeat;width: 100%;/* background-attachment: fixed; */
+    background-position: center 0;height:310px;background-position-y: 0px;"></div>
         <!-- <div>
         	<img src="/pic/whiteangle.jpg"></img>
         </div> -->
-        <div style="top: -50%; position: relative;margin-top: -54px;left:7px;">
+        <div style="top: -50%; position: relative;margin-top: -54px;/* left:7px; */">
             <font style="font-size:32px;font-weight:normal;color:#FFFFFF;font-family:'微软雅黑'">聪明海外置业</font><br><br>
             <div style="position: relative;left: 48%;margin-left: -43px;height:54px;width:86px;">
             <div style="padding-top: 6%;">
