@@ -50,12 +50,18 @@ public class ZhiYeZhiDaoController {
 		/*if(zhiYeList!=null){
 			
 		}*/
-		if(zhiYeList1.size() > 3){
+		/*if(zhiYeList1.size() > 3){
 			lastestList = zhiYeList1.subList(0, 3);
 		}
 		else{
 			lastestList = zhiYeList1;
-		}
+		}*/
+		if(zhiYeList.size() > 3){
+		   lastestList = zhiYeList.subList(0, 3);
+	    }
+	    else{
+		   lastestList = zhiYeList;
+	     }
 		if(newsList.size() > 3){
 			newsList = newsList.subList(0, 3);
 		}

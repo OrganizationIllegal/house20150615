@@ -84,7 +84,7 @@ public class ProjectInputDao extends BaseDao {
         }
 		return 0;
 	}
-	//寰楀埌寮�鍙戝晢鐨勭紪鍙峰強鍚嶇О
+	//得到开发商信息
 	public List<String> getDeveloperCodeName(){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -128,7 +128,7 @@ public class ProjectInputDao extends BaseDao {
         }
 		return codeAndNameSet;
 	}
-	//寰楀埌鎵�鏈夊鏍＄殑鍚嶅瓧
+	//得到学校信息
 	public List<String> getAllSchoolName(){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -224,7 +224,7 @@ public class ProjectInputDao extends BaseDao {
 	        }
 			return key;
 		}
-	//鏍规嵁椤圭洰id寰楀埌椤圭洰缂栧彿
+	//根据项目id得到项目编号
 	public String getProNumById(int id){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -266,7 +266,7 @@ public class ProjectInputDao extends BaseDao {
         }
 		return pronum;
 	}
-	//鏍规嵁椤圭洰椤圭洰缂栧彿鑾峰彇鎴峰瀷鍙婁俊鎭�
+	//根据项目编号得到户型及价格
 	public List<HouseInfo1> getHouseInfoByProNum(String proNum){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -321,7 +321,7 @@ public class ProjectInputDao extends BaseDao {
 		return houseinfoList;
 	}
 	
-	//鏍规嵁椤圭洰椤圭洰缂栧彿鑾峰彇椤圭洰閰嶅
+	//根据项目编号得到项目配套
 		public List<ProjectPeiTao> getProjectpeiTaoByProNum(String proNum){
 			Statement stmt = null;
 			ResultSet rs = null;
@@ -367,7 +367,7 @@ public class ProjectInputDao extends BaseDao {
 	        }
 			return projectPeiTaoList;
 		}
-		//鏍规嵁椤圭洰椤圭洰缂栧彿鑾峰彇椤圭洰鍥剧墖
+		//根据项目编号查找项目图片
 				public List<ProjectDescImage> getProjectImageByProNum(String proNum){
 					Statement stmt = null;
 					ResultSet rs = null;
@@ -413,7 +413,7 @@ public class ProjectInputDao extends BaseDao {
 			        }
 					return projectImageList;
 				}
-		//鏍规嵁椤圭洰椤圭洰缂栧彿鑾峰彇闄勮繎閰嶅
+		//根据项目编号查找附近配套
 				public List<FujinPeiTao> getFujinPeiTaoByProNum(String proNum){
 					Statement stmt = null;
 					ResultSet rs = null;
@@ -511,7 +511,7 @@ public class ProjectInputDao extends BaseDao {
 			        }
 					return fujinSchoolList;
 				}
-				//鏍规嵁椤圭洰椤圭洰缂栧彿鑾峰彇闄勮繎瀛︽牎
+				//根据项目编号得到持有成本
 				public List<HoldCost> getHoldCostByProNum(String proNum){
 					Statement stmt = null;
 					ResultSet rs = null;
@@ -559,7 +559,7 @@ public class ProjectInputDao extends BaseDao {
 			        }
 					return holdCostlList;
 				}
-				//鏍规嵁椤圭洰椤圭洰缂栧彿鑾峰彇闄勮繎瀛︽牎
+				//根据项目编号得到购房税费
 				public List<HouseTax> getHouseTaxByProNum(String proNum){
 					Statement stmt = null;
 					ResultSet rs = null;
@@ -728,7 +728,7 @@ public class ProjectInputDao extends BaseDao {
 	        }
 			return brokerInfo;
 		}
-	//椤圭洰鍒楄〃
+	//得到项目列表
 	public JSONArray selectProjectList(){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -775,7 +775,7 @@ public class ProjectInputDao extends BaseDao {
         }
 		return jsonArray;
 	} 
-	//椤圭洰鍒犻櫎
+	//根据项目id删除项目
 			public int deleteProjectById(int id,String proNum){
 				Statement stmt = null;
 				ResultSet rs = null;
@@ -784,7 +784,6 @@ public class ProjectInputDao extends BaseDao {
 				
 				try {
 					con.setAutoCommit(false);
-					//鍒犻櫎椤圭洰
 					String sql1 = "delete from house_project where id=?";
 					pstmt = con.prepareStatement(sql1);
 					pstmt.setInt(1, id);
