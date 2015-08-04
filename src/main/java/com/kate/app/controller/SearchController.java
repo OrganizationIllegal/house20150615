@@ -74,7 +74,10 @@ public class SearchController {
 	
 	private static int flagInfo = 0;
 	private static int orderFlag = 0;
-	//鏈嶅姟鍥㈤槦鎼滅储
+	
+	/*
+	 * 服务团队控制层
+	 */
 	@RequestMapping({"/SearchService"})
 	public String SearchService(HttpServletRequest req, HttpServletResponse resp){
 		String username = (String)req.getSession().getAttribute("username");
@@ -103,9 +106,9 @@ public class SearchController {
 				areaName = strs[0]; 
 			}
 			
-			area_code = areaInfoDao.getAreaNum(areaName);
+			area_code = areaInfoDao.getAreaNum(areaName);  //通过区域名称查找区域信息
 		}
-		List<String> brokerNumList = searchListDao.searchSericeList(brokerName, type, suozaiarea, area_code, lang);
+		List<String> brokerNumList = searchListDao.searchSericeList(brokerName, type, suozaiarea, area_code, lang);   //经纪人信息的搜索
 		List<BrokerInfo> brokerInfoList = new ArrayList<BrokerInfo>();
 		for(String item : brokerNumList){
 			BrokerInfo data = brokerInfoDao.BrokerInfoListByNum(item);
@@ -157,7 +160,7 @@ public class SearchController {
 		
 	
 		
-		seachBrokerListResult = resultListQuyu;
+		seachBrokerListResult = resultListQuyu;   //将搜索结果赋值给静态变量
 		if(count>=10){
 			resultList = resultListQuyu.subList(0, 10);
 		}
@@ -177,17 +180,17 @@ public class SearchController {
 		}
 
 		
-		List<User> userList=userDao.listUser(username);
-		List<String> typeList=brokerInfoDao.getBrokerTypeList();
-		List<String> regionList=brokerInfoDao.getBrokerRegionList();
-		Set<String> languageList=brokerInfoDao.getBrokerLanguageList();
+		List<User> userList=userDao.listUser(username);  //通过用户名，得到用户信息
+		List<String> typeList=brokerInfoDao.getBrokerTypeList();   //查询经纪人擅长类型
+		List<String> regionList=brokerInfoDao.getBrokerRegionList();  //查询经纪人所有的所在地区
+		Set<String> languageList=brokerInfoDao.getBrokerLanguageList();   //查询经纪人的语言
 
 	/*	req.setAttribute("resultListQuyu", resultListQuyu);*/
 		req.setAttribute("resultListQuyu", resultList);
 		
 
-		List<String> serviceregionList=brokerInfoDao.getServiceRegionList();
-		List<String> liveregionlist=brokerInfoDao.getLiveRegionList();
+		List<String> serviceregionList=brokerInfoDao.getServiceRegionList();  //查询经纪人所有的服务区域
+		List<String> liveregionlist=brokerInfoDao.getLiveRegionList();  //查询经纪人所有的所在区域
 
 		
 		List<String> numList = brokerInfoDao.getServiceRegionNumList();
@@ -200,7 +203,7 @@ public class SearchController {
 				String city = item.getArea_city();
 				String zhou = item.getArea_zhou();
 				String code = item.getArea_postcode();
-				result = name+","+city+","+zhou+","+code;
+				result = name+","+city+","+zhou+","+code;   //信息的综合显示
 			}
 			resultListRegion.add(result);
 		}
@@ -219,6 +222,9 @@ public class SearchController {
 		
 	}
 	
+	/*
+	 * 分页的实现
+	 */
 	@RequestMapping({"/brokerinfoPage"})
 	public void BrokerListPage(HttpServletRequest req, HttpServletResponse resp){
 		String pageIndex = req.getParameter("pageIndex");   //閿熸枻鎷峰墠椤甸敓鏂ゆ嫹
@@ -228,8 +234,8 @@ public class SearchController {
 		/*int pageSize  = pageSize_str==null? 4 :Integer.parseInt(pageSize_str);//榛樿姣忛〉4鏉¤褰�
 */		
 		int pageSize  = pageSize_str==null? 10 :Integer.parseInt(pageSize_str);//榛樿姣忛〉4鏉¤褰�
-		List<BrokerInfoQuyu> brokerList = seachBrokerListResult;
-		
+		List<BrokerInfoQuyu> brokerList = seachBrokerListResult;   //得到经纪人的列表
+		 
 		int total = brokerList.size();
 		int pageEnd = pageNum * pageSize;
 		int end = pageEnd < total ? pageEnd : total;
@@ -289,7 +295,9 @@ public class SearchController {
 	
 	
 	
-	//棣栭〉鎼滅储
+	/*
+	 * 首页的搜索功能
+	 */
 		@RequestMapping({"/IndexSearch"})
 		public String IndexSearch(HttpServletRequest req, HttpServletResponse resp){
 			flagInfo = 1;     //搜索结果页面
@@ -324,25 +332,25 @@ public class SearchController {
 						areaName = strs[0];
 					}
 					
-					AreaInfo areaInfo = areaInfoDao.getAreaInfo(areaName);
+					AreaInfo areaInfo = areaInfoDao.getAreaInfo(areaName);   //根据区域名称得到区域的信息
 					if(areaInfo!=null){
 						areaNum = areaInfo.getArea_num();
-						list1 = searchListDao.searchIndexProject(areaNum);
+						list1 = searchListDao.searchIndexProject(areaNum);  //通过区域的名称在数据库中查找项目信息
 					}
 				}
 				else{
-					if(searchcity.indexOf("项目名称")>0){
+					if(searchcity.indexOf("项目名称")>0){   //包含项目名称字段
 						int weizhi = searchcity.indexOf("(");
 						String projectName = searchcity.substring(0,weizhi-1).trim();
 						
-						list1 = searchListDao.searchIndexProjectByPro(projectName);
+						list1 = searchListDao.searchIndexProjectByPro(projectName);  //通过前台传来的信息，在数据库中查找项目信息
 						
 					}
 					else{
-						list1 = searchListDao.searchIndexList(searchcity);
+						list1 = searchListDao.searchIndexList(searchcity);    //通过前台传来的数据，查找项目信息
 						if(list1==null || list1.size()<=0){
-							String area_num = searchListDao.searchIndexList1(searchcity);
-							list1 = searchListDao.searchIndexProject(area_num);
+							String area_num = searchListDao.searchIndexList1(searchcity);  //通过关键字段，查找区域编号
+							list1 = searchListDao.searchIndexProject(area_num);   //通过区域编号在数据库中查找项目信息
 						}
 						
 					}
@@ -352,7 +360,9 @@ public class SearchController {
 			if(city2!=null && !"".equals(city2)){
 				city = city2;
 			}
-			
+			/*
+			 * 通过城市，类型等，进一步高级搜索，在数据库中查找项目信息
+			 */
 			List<HouseProject> list = searchListDao.indexSericeList(city, type, minimumprice, maximumprice, xinkaipan, huaren, remen, xuequ, baozu, daxue, center, traffic, xianfang, maidi);
 			if(list1.size()>=0){
 				if(list1.size()>list.size()){
@@ -460,14 +470,16 @@ public class SearchController {
 		    	SearchList data=new SearchList(id,bijiao,project_name_short,project_area,project_type,gps,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,project_lan_en,mianji,project_address,project_logo,developer_id_name,xinkaipan1,huaren1,remen1,xuequ1,baozu1,daxue1,center1,traffic1,xianfang1,maidi1,project_price_int_qi_str,project_desc,project_key,project_address_short,project_city);
 		    	searchList.add(data);
 			}
-			seachListResult = searchList;
+			seachListResult = searchList;    //将查询的结果复制给静态变量
 			//req.setAttribute("searchList",searchList);
 			return "/BingMap01";
 		}
 	
 		
 		
-		
+		/*
+		 * 首页搜索结果返回项目列表
+		 */
 		@RequestMapping({"/BingMap01"})
 		public String listBingMap01(HttpServletRequest req,HttpServletResponse resp){
 			List<SearchList> searchList = seachListResult;
@@ -505,6 +517,9 @@ public class SearchController {
 			return "/bingMap01.jsp";
 		}
 		
+		/*
+		 * 对应项目列表的地图的加载
+		 */
 		@RequestMapping({ "/BingMap/Coordinates01" })    
 		public void listMap(HttpServletRequest req, HttpServletResponse resp){
 			JSONObject json = new JSONObject();
@@ -548,11 +563,6 @@ public class SearchController {
 					}
 				}
 	        }
-			/*System.out.println(array);
-			System.out.println(array2);
-			System.out.println(array3);
-			System.out.println(array2.size());
-			System.out.println(array3.size());*/
 			json.put("List", array);
 			json.put("List2", array2);
 			json.put("List3", JSONArray.parseArray(JSON.toJSONString(array3, SerializerFeature.DisableCircularReferenceDetect)));
@@ -572,13 +582,13 @@ public class SearchController {
 			orderFlag = 1;
 			int order=Integer.parseInt(req.getParameter("order"));
 			
-			List<SearchList> searchList = seachListResult;
+			List<SearchList> searchList = seachListResult;  //根据首页的搜索结果查找的项目列表
 			
-			List<HouseProject> typeList = typeListResult;
-			List<HouseProject> filterList = seachListResult1;
+			List<HouseProject> typeList = typeListResult;   //根据房屋类型查找的项目列表
+			List<HouseProject> filterList = seachListResult1;  //根据地图页面的搜索结果查找的项目列表
 			
 			if(flagInfo==1){
-				if(order==1){
+				if(order==1){  //升序
 					Collections.sort(searchList,new Comparator<SearchList>(){  
 			            public int compare(SearchList arg0, SearchList arg1) { 
 			            	Integer a = Integer.parseInt(arg0.getBijiao());
@@ -588,7 +598,7 @@ public class SearchController {
 			        });  
 					req.setAttribute("bingMapList", searchList);
 				}
-				else{
+				else{  //降序
 					Collections.sort(searchList,Collections.reverseOrder(new Comparator<SearchList>(){  
 			            public int compare(SearchList arg0, SearchList arg1) { 
 			            	Integer a = Integer.parseInt(arg0.getBijiao());
@@ -601,7 +611,7 @@ public class SearchController {
 				
 			}
 			
-			else if(flagInfo == 2){
+			else if(flagInfo == 2){   //点击房屋类型之后，按照类型结果排序
 				if(order==1){
 					req.setAttribute("bingMapList", typeListResultShengxu);
 					 
@@ -612,7 +622,7 @@ public class SearchController {
 				}
 				
 			}
-			else{
+			else{   //按照地图页面的搜索结果排序
 				if(order==1){
 					req.setAttribute("bingMapList", seachListResult1Shengxu);
 					

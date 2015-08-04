@@ -20,7 +20,7 @@ import com.kate.app.model.User;
 public class UserInfoDao extends BaseDao {
 	
 	//鍒ゆ柇鐢ㄦ埛
-		public List<User> judge(String username1) throws SQLException{
+		public List<User> judge(String username1) throws SQLException{    //通过用户名查找用户
 			Statement stmt = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
@@ -609,7 +609,7 @@ public class UserInfoDao extends BaseDao {
 				}
 				
 				//鎵嬫満娉ㄥ唽
-				public int register1(String tel,String pwd) throws SQLException{
+				public int register1(String tel,String pwd) throws SQLException{    //用户名为电话，注册
 					Statement stmt = null;
 					ResultSet rs = null;
 					PreparedStatement pstmt = null;
@@ -665,7 +665,7 @@ public class UserInfoDao extends BaseDao {
 				}
 				
 				//閭娉ㄥ唽
-				public int register2(String email,String pwd) throws SQLException{
+				public int register2(String email,String pwd) throws SQLException{    //用户输入的用户名是email
 					Statement stmt = null;
 					ResultSet rs = null;
 					PreparedStatement pstmt = null;

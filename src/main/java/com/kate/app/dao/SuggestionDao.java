@@ -14,6 +14,10 @@ import com.kate.app.model.AreaInfo;
 import com.kate.app.model.SuggestionProject;
 @Repository 
 public class SuggestionDao extends BaseDao {
+	
+	/*
+	 * 数据库查找项目名称和所在的州
+	 */
 	public List<SuggestionProject> getProjectSearch(){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -59,6 +63,10 @@ public class SuggestionDao extends BaseDao {
 		return proNameList;
 	}
 	
+	
+	/*
+	 * 查询项目所在的州
+	 */
 	public List<String> getProjectZhou(){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -104,7 +112,9 @@ public class SuggestionDao extends BaseDao {
 	}
 	
 	
-	
+	/*
+	 * 得到经纪人的所在区域
+	 */
 	public List<String> getSuozaiQuyu(){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -149,7 +159,9 @@ public class SuggestionDao extends BaseDao {
 		return zhouList;
 	}
 	
-	
+	/*
+	 * 数据库表的查询得到区域的名称
+	 */
 	public List<String> getFuwuQuyu(){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -195,7 +207,9 @@ public class SuggestionDao extends BaseDao {
 	}
 	
 	
-	
+	/*
+	 * 在项目表中查出项目的地址
+	 */
 	public List<String> getProjectAdd(){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -240,6 +254,10 @@ public class SuggestionDao extends BaseDao {
 		return addList;
 	}
 	
+	
+	/*
+	 * 查询项目所在的城市
+	 */
 	public List<String> getProjectCity(){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -288,7 +306,9 @@ public class SuggestionDao extends BaseDao {
 	
 	
 	
-	
+	/*
+	 * 得到区域的信息
+	 */
 	public List<AreaInfo> getAreaInfo(){
 		Statement stmt = null;
 		ResultSet rs = null;

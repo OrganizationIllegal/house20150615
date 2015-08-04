@@ -22,6 +22,10 @@ import com.kate.app.model.LeiXing;
 public class BrokerInfoDao extends BaseDao {
 	@Autowired
 	private SearchListDao searchListDao;
+	
+	/*
+	 * 查询经纪人所有的所在区域
+	 */
 	public List<String> getLiveRegionList(){
 		List<String> regionlist=new ArrayList<String>();
 		PreparedStatement ps=null;
@@ -40,7 +44,9 @@ public class BrokerInfoDao extends BaseDao {
 		}
 		return regionlist;
 	}
-	
+	/*
+	 * 查询经纪人所有的服务区域
+	 */
 	public List<String> getServiceRegionList(){
 		List<String> regionlist=new ArrayList<String>();
 		PreparedStatement ps=null;

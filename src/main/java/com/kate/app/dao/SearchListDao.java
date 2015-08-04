@@ -536,6 +536,9 @@ public class SearchListDao extends BaseDao {
 	} 
 	
 	//鏍规嵁褰撳墠鐧诲綍鐢ㄦ埛鑾峰彇鏀惰棌琛ㄤ腑鐨刾roNum
+	/*
+	 * 根据用户id查找项目编号
+	 */
 	public Set<String> proNumList(int userid){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -1027,7 +1030,9 @@ public class SearchListDao extends BaseDao {
 		} 
 	
 	
-	
+	/*
+	 * 通过前台传来的数据，查找项目信息
+	 */
 	public List<HouseProject> searchIndexList(String city1){
 		NumberFormat df = new DecimalFormat("#,###,###");
 		Statement stmt = null;
@@ -1154,7 +1159,9 @@ public class SearchListDao extends BaseDao {
 		return houseProjectList;
 	} 
 	
-	
+	/*
+	 * 通过关键字段，查找区域编号
+	 */
 	public String searchIndexList1(String city1){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -1205,7 +1212,9 @@ public class SearchListDao extends BaseDao {
 	}
 	
 	
-	
+	/*
+	 * 通过城市，类型等，进一步高级搜索，在数据库中查找项目信息
+	 */
 	public List<HouseProject> indexSericeList(String city, String type, String minimumprice, String maximumprice, String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue,String center,String traffic,String xianfang,String maidi){		NumberFormat df = new DecimalFormat("#,###,###");
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -1490,6 +1499,10 @@ public class SearchListDao extends BaseDao {
 		return houseProjectList;
 	}
 	
+	
+	/*
+	 * 通过区域编号在数据库中查找项目信息
+	 */
 	public List<HouseProject> searchIndexProject(String areaNum){
 		NumberFormat df = new DecimalFormat("#,###,###");
 		Statement stmt = null;
@@ -1604,7 +1617,9 @@ public class SearchListDao extends BaseDao {
 		return houseProjectList;
 	} 
 	
-	
+	/*
+	 * 通过前台传来的信息，在数据库中查找项目信息
+	 */
 	public List<HouseProject> searchIndexProjectByPro(String proName){
 		NumberFormat df = new DecimalFormat("#,###,###");
 		Statement stmt = null;

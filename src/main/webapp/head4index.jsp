@@ -106,8 +106,8 @@
 				
 <%
             String username = null;
-       		if(request.getSession().getAttribute("username")!=null){
-       			String role = request.getSession().getAttribute("role").toString();
+       		if(request.getSession().getAttribute("username")!=null){    //判断用户是否已经登录
+       			String role = request.getSession().getAttribute("role").toString();   //得到用户的角色
        			username = request.getSession().getAttribute("username").toString();
        		
 %>              <div>
@@ -129,7 +129,7 @@
 		<li><a href="/Collect.jsp">我的收藏</a></li>
 		<li><a href="/changePass.jsp">更改密码</a></li>
 		<%
-	       	 if("0".equals(role)){
+	       	 if("0".equals(role)){   //角色是管理员
 	       				
 	    %><li><a href="/treeData.jsp">后台管理</a></li>
 	    <%

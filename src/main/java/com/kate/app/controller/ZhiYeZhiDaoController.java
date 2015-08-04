@@ -26,20 +26,23 @@ public class ZhiYeZhiDaoController {
 	private ZhiYeDao zhiYeDao;
 	
 	private static final int PAGE_SIZE = 10;
+	/*
+	 * 置业百科数据信息的返回
+	 */
 	@RequestMapping({"/ZhiYeInfo"})
 	public String ZhiYeInfo(HttpServletRequest req, HttpServletResponse resp){
 		String fenlei = req.getParameter("type");
 		List<ZhiYeZhiDao> zhiYeList = new ArrayList<ZhiYeZhiDao>();
 		List<ZhiYeZhiDao> zhiYeList1 = new ArrayList<ZhiYeZhiDao>();
 		if(fenlei!=null && !"".equals(fenlei)){
-			zhiYeList = zhiYeDao.selectZhiYeByFenlei(fenlei);  //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
+			zhiYeList = zhiYeDao.selectZhiYeByFenlei(fenlei);  //查找所有分类
 			req.setAttribute("fenlei",fenlei);
 		}
 		else{
-			zhiYeList = zhiYeDao.selectZhiYe();
+			zhiYeList = zhiYeDao.selectZhiYe();   //根据时间排序，查找置业百科列表
 		}
 		
-		List<NewsBoke> newsList = zhiYeDao.selectNewsBoke();
+		List<NewsBoke> newsList = zhiYeDao.selectNewsBoke();  //根据时间排序，查找新闻博客列表
 		/*int total = zhiYeDao.countZhiYe();*/
 		int total = zhiYeList.size();
 		int pageCount = total%PAGE_SIZE == 0 ? total/PAGE_SIZE: total/PAGE_SIZE+1;
@@ -56,7 +59,7 @@ public class ZhiYeZhiDaoController {
 		if(newsList.size() > 3){
 			newsList = newsList.subList(0, 3);
 		}
-		List<String> fenleiList = zhiYeDao.zhiYeFenlei();
+		List<String> fenleiList = zhiYeDao.zhiYeFenlei();   //得到所有的分类列表
 		
 		//Collections.shuffle(zhiYeList);   //闅忔満鎺掑簭
 		req.setAttribute("resultList",zhiYeList);
@@ -70,18 +73,20 @@ public class ZhiYeZhiDaoController {
 		return "/purchasing.jsp";
 	}
 	
-	
+	/*
+	 * 新闻博客信息返回
+	 */
 	@RequestMapping({"/BlogList"})
 	public String BlogList(HttpServletRequest req, HttpServletResponse resp){
 		String fenlei = req.getParameter("type");
 		List<NewsBoke> newsList = new ArrayList<NewsBoke>();
 		List<NewsBoke> newsList1 = new ArrayList<NewsBoke>();
 		if(fenlei!=null && !"".equals(fenlei)){
-			newsList = zhiYeDao.selectNewsBokeByFenlei(fenlei);  //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
+			newsList = zhiYeDao.selectNewsBokeByFenlei(fenlei);  //查找所有分类
 			req.setAttribute("fenlei",fenlei);
 		}
 		else{
-			newsList = zhiYeDao.selectNewsBoke();
+			newsList = zhiYeDao.selectNewsBoke();  //根据时间排序，查找新闻博客列表
 		}
 		
 		List<ZhiYeZhiDao> zhiYeList=zhiYeDao.selectZhiYe();   //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
