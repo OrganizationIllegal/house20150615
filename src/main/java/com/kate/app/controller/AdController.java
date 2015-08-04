@@ -28,7 +28,7 @@ import java.sql.*;
 public class AdController {
 	@Autowired
 	private AdDao addao;
-	
+	//项目页广告管理
 	@RequestMapping({"/adEdit" })
 	public String search(HttpServletRequest req,HttpServletResponse resp){
 	
@@ -42,6 +42,7 @@ public class AdController {
 		req.setAttribute("ad4", ad4);
 		return "/admanage.jsp";
 	}
+	//项目页广告图片更新
 	@RequestMapping({"/UpdateAdImage" })
 	public void updateadimage(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();
