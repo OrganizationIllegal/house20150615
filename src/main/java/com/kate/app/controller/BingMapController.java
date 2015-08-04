@@ -55,7 +55,7 @@ public class BingMapController {
 	
 	private static int flagInfo = 0;
 	private static int orderFlag = 0;
-	
+	//地图中心点录入
 	@RequestMapping({"/MapCenterInput"})
 	public String mapCenterInput(HttpServletRequest req,HttpServletResponse resp){
 		List<String> list1= new ArrayList<String>();
@@ -74,13 +74,11 @@ public class BingMapController {
 		req.setAttribute("areacityNameSet", list1);
 		return "/GpsCenterInput.jsp";
 	}
-	
+	//右侧地图显示
 	@RequestMapping({"/BingMap"})    //首页加载
 	public String listBingMap(HttpServletRequest req,HttpServletResponse resp){
 		List<BingMapVo> bingMapList=bingMapService.listBingMap();
-		req.setAttribute("bingMapList", bingMapList);
-		
-		
+		req.setAttribute("bingMapList", bingMapList);		
 		List<String> areaNameSet=bingMapDao.getAreaName();
 		req.setAttribute("areaNameSet", areaNameSet);
 		List<String> cityNameSet=bingMapDao.getCityName();
@@ -151,7 +149,7 @@ public class BingMapController {
 			e.printStackTrace();
 		}
 	}
-	
+	//根据房屋类型搜索
 	@RequestMapping({"/BingMap/FileterType"})
 	public String filterByHouseType(HttpServletRequest req,HttpServletResponse resp){
 		int type=Integer.parseInt(req.getParameter("house_type"));
@@ -215,7 +213,6 @@ public class BingMapController {
 		}
 	}
 	
-	
 	@RequestMapping({"/OrderByTypeLeft"})
 	public String OrderByTypeLeft(HttpServletRequest req,HttpServletResponse resp){
 		String type = req.getParameter("type");
@@ -244,8 +241,8 @@ public class BingMapController {
 		return "/bingMap.jsp";
 	}
 	
-	
-	@RequestMapping({"/OrderByPrice"})            //排序
+	 //排序
+	@RequestMapping({"/OrderByPrice"})           
 	public String OrderByPrice(HttpServletRequest req,HttpServletResponse resp){
 		orderFlag = 1;
 		int order=Integer.parseInt(req.getParameter("order"));
@@ -571,6 +568,7 @@ public class BingMapController {
 			e.printStackTrace();
 		}
 	}
+	//右侧地图列表
 	@RequestMapping({ "/BingMap/Coordinates" })    
 	public void listMap(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -629,7 +627,7 @@ public class BingMapController {
 			e.printStackTrace();
 		}
 	}
-	
+	//右侧根据房屋类型搜索
 	@RequestMapping({ "/BingMap/FileterType2" })    
 	public void filterByHouseType2(HttpServletRequest req, HttpServletResponse resp){    //公寓
 		flagInfo = 1;          //根据类型进行查询
@@ -694,6 +692,7 @@ public class BingMapController {
 			e.printStackTrace();
 		}
 	}
+	//右侧根据城市、区域、邮编进行搜索
 	@RequestMapping({ "/BingMap/FileterKeyWord" })    
 	public void filterByKeyWord(HttpServletRequest req, HttpServletResponse resp){
 		flagInfo = 2;
@@ -813,7 +812,7 @@ public class BingMapController {
 		}
 	}
 	
-
+    //根据项目编号进行搜索
 	@RequestMapping({ "/BingMap/FileterProNum" })    
 	public void filterByProNum(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -884,8 +883,8 @@ public class BingMapController {
 		}
 	}
 	
-	
-	public JSONArray jsonCoordinates(){    //加载
+	//加载
+	public JSONArray jsonCoordinates(){    
 		JSONArray array = new JSONArray();
 		DecimalFormat df = new DecimalFormat("#,###,###");
 		if(orderFlag == 0){
@@ -976,7 +975,6 @@ public class BingMapController {
 		
 		return array;
 	}
-	
 	
 	public void writeJson(String json, HttpServletResponse response)throws Exception{
 	    response.setContentType("text/html");

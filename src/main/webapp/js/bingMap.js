@@ -4,6 +4,7 @@
       /*加载地图*/
       function getMap()
       {
+       //生成地图
        map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
        $.ajax({
 	 	    type: "GET",
@@ -29,6 +30,7 @@
 		 		    Zoom=5;
 	 		    } 
 	 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
+	 		    //设置地图中心点和层级
 	 		    map.setView({ zoom: Zoom, center: Center });	
 	 		    lastZoomLevel = map.getZoom();
 	 	        Microsoft.Maps.Events.addHandler(map, 'viewchangeend', function(){
@@ -50,6 +52,7 @@
 	 	 	 		        var price=items[i].project_price_int_qi;
 	 	 	 		        var type=items[i].project_type;
 	 	 	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:-45px;left:-15px;'><div style='color:red;font-size:12px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin2.png' style='width:20px;height:20px;'/></div>"}; 
+	 	 	 		        //生成地图小图钉
 	 	 	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
 	 	 	 		        /*var pushpin= new Microsoft.Maps.Pushpin(LA,null);*/
 	 	 				    add(type,img,price,num,pushpin,LA);
@@ -82,6 +85,7 @@
 	 		}
         });		 
       }
+      //生成地图消息框
       function add(type,img,price,num,pushpin,LA){
     	  Microsoft.Maps.Events.addHandler(pushpin, 'click', function(){
 		        var infoboxOptions = {width :400, height :100,offset:new Microsoft.Maps.Point(-15,20)}; 
@@ -102,7 +106,7 @@
       function display(){
     	  defaultInfobox.setOptions({ visible: false });
       }
-          
+      //添加房屋类型pushpin   
       function addPushpin()
       {
 		//alert("ffff")
