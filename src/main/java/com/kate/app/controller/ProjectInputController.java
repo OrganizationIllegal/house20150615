@@ -96,7 +96,7 @@ public class ProjectInputController {
 			
 		 return "/ProjectIndex.jsp";
 	}
-	
+	//处理图片上传的action
 	@RequestMapping(value = "/projectinput")
     public void handleFormUpload(
             @RequestParam("file") MultipartFile file, HttpServletResponse resp) {

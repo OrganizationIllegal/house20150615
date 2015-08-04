@@ -22,6 +22,7 @@ public class BusinessController {
 	private BusinessDao businessDao;
 	@Autowired
 	private UserDao userDao;
+	//商务合作页面的action
 	@RequestMapping("/Business")
 	public String Business(HttpServletRequest req,HttpServletResponse resp){
 		String username = (String)req.getSession().getAttribute("username");
@@ -29,6 +30,7 @@ public class BusinessController {
 		req.setAttribute("userList", userList);
 		return "business.jsp";
 	}
+	//接收商务合作页面提交的表单数据的action
 	@RequestMapping("/hezuoMessageSubmit")
 	public void hezuoSubmit(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();

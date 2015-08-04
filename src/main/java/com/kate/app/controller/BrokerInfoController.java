@@ -38,7 +38,7 @@ public class BrokerInfoController {
 	private ProjectInputDao projectInputDao;
 	@Autowired
 	private AdDao addao;
-	
+	//服务团队action
 	@RequestMapping({"/ServiceTeam"})
 	public String listBingMap(HttpServletRequest req,HttpServletResponse resp){
 		List<BrokerInfo> brokerInfoList=brokerInfoDao.listBrokerInfo();
@@ -61,7 +61,7 @@ public class BrokerInfoController {
 		req.setAttribute("ad", addao.getad4());
 		return "/serviceTeam.jsp";
 	}
-	//鏈嶅姟鍥㈤槦鍒嗛〉
+	//服务团队分页
 		@RequestMapping({"/brokerinfoPage1"})
 		public void BrokerListPage(HttpServletRequest req, HttpServletResponse resp){
 			String pageIndex = req.getParameter("pageIndex");   //閿熸枻鎷峰墠椤甸敓鏂ゆ嫹
@@ -115,7 +115,7 @@ public class BrokerInfoController {
 			}
 		}
 		
-	//鐐瑰嚮鎻愪氦锛屾彁浜ょ暀瑷�
+	//接收服务团队页面提交的留言
 	@RequestMapping({"/MessageSubmit"})
 	public void messageSubmit(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();

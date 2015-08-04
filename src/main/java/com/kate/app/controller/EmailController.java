@@ -27,7 +27,7 @@ public class EmailController {
 	@Autowired
 	private UserInfoDao userInfoDao;
 	
-	
+	//放松忘记密码的邮件
 	@RequestMapping({"/sendEmail"})
 	public void sendEmail(HttpServletRequest req, HttpServletResponse resp){
 		String userEmail = req.getParameter("userEmail");

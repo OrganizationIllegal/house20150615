@@ -25,7 +25,7 @@ public class ServiceController {
 	@Autowired
 	private UserDao userDao;
 	
-	
+	//经纪人详情页面action
 	@RequestMapping({"/Service"})
 	public String Service(HttpServletRequest req,HttpServletResponse resp){
 		//String projectId = req.getParameter("projectId");
