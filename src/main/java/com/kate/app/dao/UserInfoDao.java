@@ -186,7 +186,7 @@ public class UserInfoDao extends BaseDao {
 				}
 				
 	
-				//鍖哄煙鍒楄〃
+				//用户信息列表
 				public JSONArray selectUserList(){
 					Statement stmt = null;
 					ResultSet rs = null;

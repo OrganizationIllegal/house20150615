@@ -103,7 +103,7 @@ public class ProjectInfoController {
 			List<BrokerInfo> brokerSet=areaInputDao.getBrokers();
 			req.setAttribute("brokerSet", brokerSet);
 		}
-	//瀛︽牎鍒楄〃
+	//学校信息列表
 	@RequestMapping({ "/SchoolInfoList" })    
 	public void selectSchoolList(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -119,7 +119,7 @@ public class ProjectInfoController {
 			e.printStackTrace();
 		}
 	}
-	//寮�鍙戝晢鍒楄〃
+	//开发商列表
 	@RequestMapping({ "/DeveloperInfoList" })    
 	public void selectDeveloperList(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1160,7 +1160,7 @@ public class ProjectInfoController {
 		}
 		
 	
-	//娣诲姞瀛︽牎淇℃伅
+	//添加学校信息
 	@RequestMapping({ "/AddschoolInfo" })
 	public void InsertSchoolInfo(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1225,7 +1225,7 @@ public class ProjectInfoController {
 			e.printStackTrace();
 		}
 	}
-	//缂栬緫瀛︽牎淇℃伅
+	//更新学校信息
 	@RequestMapping({ "/EditSchoolInfo" })
 	public void updateSchoolInfo(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1291,6 +1291,7 @@ public class ProjectInfoController {
 			e.printStackTrace();
 		}
 	}
+	//添加开发商信息
 	@RequestMapping({ "/AddDeveloperInfo" })
 	public void InsertDeveloperInfo(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1399,7 +1400,7 @@ public class ProjectInfoController {
 				e.printStackTrace();
 		}
 	}
-	//鍒犻櫎寮�鍙戝晢淇℃伅
+	//根据id删除开发商信息
 		@RequestMapping({ "/deleteDeveloper" })
 		public void DeleteDeveloper(HttpServletRequest req,HttpServletResponse resp){
 			JSONObject json = new JSONObject();
@@ -1476,7 +1477,7 @@ public class ProjectInfoController {
 							e.printStackTrace();
 					}
 				}
-	//缂栬緫寮�鍙戝晢淇℃伅
+	//更新开发商信息
 	@RequestMapping({ "/EditDeveloperInfo" })
 	public void UpdateDeveloperInfo(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1660,22 +1661,20 @@ public class ProjectInfoController {
 		List<BrokerInfo> brokerSet=areaInputDao.getBrokers();
 		req.setAttribute("brokerSet", brokerSet);
 	}
-	//鏍规嵁id鍙栧鏍′俊鎭�
+	//根据id查找学校信息
 	@RequestMapping({ "/selectSchoolInfo" })
 	public String selectSchoolInfo(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
 		int id =Integer.parseInt(req.getParameter("id"));
-		//鏍规嵁椤圭洰id鍙栭」鐩俊鎭�
 		SchoolInfo schoolInfo=projectInputDao.selectSchoolInfo(id);
 		req.setAttribute("schoolInfo", schoolInfo);
 		return "/SchoolInfoEdit.jsp";
 	}
-	//鏍规嵁id鍙栧紑鍙戝晢淇℃伅
+	//根据id查找开发商信息
 		@RequestMapping({ "/selectDeveloperInfo" })
 		public String selectDeveloperInfo(HttpServletRequest req,HttpServletResponse resp){
 			JSONObject json = new JSONObject();
 			int id =Integer.parseInt(req.getParameter("id"));
-			//鏍规嵁椤圭洰id鍙栭」鐩俊鎭�
 			DeveloperInfo developerInfo=projectInputDao.selectDeveloperInfo(id);
 			req.setAttribute("developerInfo", developerInfo);
 			return "/DeveloperInfo.jsp";

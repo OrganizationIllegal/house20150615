@@ -942,7 +942,7 @@ public class ProjectInputDao extends BaseDao {
 
 		        }
 			}
-			//寮�鍙戝晢淇℃伅鍒犻櫎
+			//根据id删除开发商信息
 			public int deleteDeveloper(int id){
 				Statement stmt = null;
 				ResultSet rs = null;
@@ -952,7 +952,6 @@ public class ProjectInputDao extends BaseDao {
 				 
 				try {
 					con.setAutoCommit(false);
-					//鍒犻櫎椤圭洰
 					String sql1 = "delete from developer_info where id=?";
 					pstmt = con.prepareStatement(sql1);
 					pstmt.setInt(1, id);
@@ -1172,7 +1171,7 @@ public class ProjectInputDao extends BaseDao {
 		        }
 			}
 			
-	//瀛︽牎鍒楄〃
+		//学校信息列表
 		public JSONArray selectSchoolList(){
 			Statement stmt = null;
 			ResultSet rs = null;
@@ -1217,7 +1216,7 @@ public class ProjectInputDao extends BaseDao {
 	        }
 			return jsonArray;
 		} 
-		//寮�鍙戝晢鍒楄〃
+		//开发商列表
 				public JSONArray selectDeveloperList(){
 					Statement stmt = null;
 					ResultSet rs = null;
@@ -1626,7 +1625,7 @@ public class ProjectInputDao extends BaseDao {
 	        }
 			return schoolInfo;
 		} 
-		//鏍规嵁id鎵惧紑鍙戝晢
+		//根据id查找开发商信息
 				public DeveloperInfo selectDeveloperInfo(int id){
 					Statement stmt = null;
 					ResultSet rs = null;
@@ -1973,7 +1972,7 @@ public class ProjectInputDao extends BaseDao {
 		
 		
 	
-	//瀛︽牎淇℃伅Add
+	//添加学校信息
 	public boolean InsertSchoolInfo(String school_name,String school_ranking,String school_type,int school_total,int teacher_total,String school_position,String gps,String net_info,int not_en_stu_bili,String school_image,String school_desc,String nation,String city){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -2030,7 +2029,7 @@ public class ProjectInputDao extends BaseDao {
 		return flag;
 		
 	}
-	//瀛︽牎淇℃伅Update
+	//更新学校信息
 
 		public boolean UpdateSchoolInfo(int id,String school_name,String school_ranking,String school_type,int school_total,int teacher_total,String school_position,String gps,String net_info,int not_en_stu_bili,String school_image,String school_desc,String nation,String city){
 			Statement stmt = null;
@@ -2090,7 +2089,7 @@ public class ProjectInputDao extends BaseDao {
 			return flag;
 			
 		}
-	//寮�鍙戝晢淇℃伅Add
+	//添加开发商信息
 
 		public boolean InsertDeveloperInfo(String developer_name,String developer_logo,String developer_desc,String developer_num,String nation){
 			Statement stmt = null;
@@ -2139,7 +2138,7 @@ public class ProjectInputDao extends BaseDao {
 	        }
 			return flag;
 		}
-		//寮�鍙戝晢淇℃伅update
+		//更新开发商信息
 
 				public boolean UpdateDeveloperInfo(int id,String developer_name,String developer_logo,String developer_desc,String developer_num,String nation){
 					Statement stmt = null;

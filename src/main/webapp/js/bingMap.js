@@ -103,6 +103,7 @@
 			    
 		    });
       }
+      //隐藏地图消息框
       function display(){
     	  defaultInfobox.setOptions({ visible: false });
       }
