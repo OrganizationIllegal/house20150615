@@ -34,14 +34,23 @@ public class SearchListController {
 	@Autowired
 	private ProjectInputDao projectInputDao;
 	
-	//閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熷彨鎲嬫嫹閿熸枻鎷风ず
+	/**
+	 * 项目列表页
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
 	@RequestMapping({"/SearchList"})
 	public String search_controller(HttpServletRequest req, HttpServletResponse resp){
 		//List<SearchList> searchList=searchListDao.listSearchList().subList(0, 5);
 		//req.setAttribute("searchList",searchList);
 		return "/searchList.jsp";
 	}
-	//宸︿晶鎼滅储
+	/**
+	 * 列表页左侧搜索
+	 * @param req
+	 * @param resp
+	 */
 	@RequestMapping({"/FilterList"})
 	public void filter_controller(HttpServletRequest req, HttpServletResponse resp){
 		NumberFormat nf = new DecimalFormat("#,###,###");
@@ -187,7 +196,11 @@ public class SearchListController {
 	
 	
 	
-	//閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熷彨鎲嬫嫹閿熸枻鎷风ず
+/**
+ * 项目列表页  ajax分页
+ * @param req
+ * @param resp
+ */
 		@RequestMapping({"/SearchListPage"})
 		public void SearchListPage(HttpServletRequest req, HttpServletResponse resp){
 			NumberFormat nf = new DecimalFormat("#,###,###");
@@ -256,11 +269,10 @@ public class SearchListController {
 						lan = lan_en;
 					}
 					obj.put("project_lan_cn", lan);
-					//寰幆閬嶅巻褰撳墠鐢ㄦ埛鏀惰棌鐨勯」鐩紝鑻ユ湁锛屽皢isCollected缃负1,琛ㄧず褰撳墠鐢ㄦ埛鏀惰棌;鑻ユ棤锛屽皢isCollected缃负0锛岃〃绀哄綋鍓嶇敤鎴锋病鏈夋敹钘�
 					String pronum=item.getProject_num();
-					int flag=0;//娌℃湁鏀惰棌
+					int flag=0;
 					if(proNumList.contains(pronum)){
-						flag=1;//鏀惰棌
+						flag=1;
 					}
 					obj.put("isCollected", flag);
 					array.add(obj);
@@ -280,7 +292,11 @@ public class SearchListController {
 				e.printStackTrace();
 			}
 		}
-		//鎸夋帹鑽愬害鎺掑簭
+		/**
+		 * 按推荐度进行排序
+		 * @param req
+		 * @param resp
+		 */
 		@RequestMapping({"/OrderPage"})
 		public void OrderListPage(HttpServletRequest req, HttpServletResponse resp){
 			//String orderBy=req.getParameter("orderBy");
@@ -299,10 +315,10 @@ public class SearchListController {
 			
 			int start = (pageNum-1) * pageSize;
 			int pageStart = start == pageEnd ? 0 : start;
-			//寰楀埌褰撳墠鐢ㄦ埛鐨刬d
+	
 			String username = (String)req.getSession().getAttribute("username");
 			int userid=userDao.findUserByName(username);
-			//寰楀埌褰撳墠鐢ㄦ埛鏀惰棌鐨凱roNum鐨勯泦鍚�
+
 			Set<String> proNumList=searchListDao.proNumList(userid);
 			
 			JSONObject json = new JSONObject();
@@ -350,11 +366,11 @@ public class SearchListController {
 						lan = lan_en;
 					}
 					obj.put("project_lan_cn", lan);
-					//寰幆閬嶅巻褰撳墠鐢ㄦ埛鏀惰棌鐨勯」鐩紝鑻ユ湁锛屽皢isCollected缃负1,琛ㄧず褰撳墠鐢ㄦ埛鏀惰棌;鑻ユ棤锛屽皢isCollected缃负0锛岃〃绀哄綋鍓嶇敤鎴锋病鏈夋敹钘�
+					
 					String pronum=item.getProject_num();
-					int flag=0;//娌℃湁鏀惰棌
+					int flag=0;
 					if(proNumList.contains(pronum)){
-						flag=1;//鏀惰棌
+						flag=1;
 					}
 					obj.put("isCollected", flag);
 					array.add(obj);
@@ -374,7 +390,11 @@ public class SearchListController {
 				e.printStackTrace();
 			}
 		}
-		//鏀惰棌鍒楄〃鍒嗛〉
+		/**
+		 * 我的收藏列表页
+		 * @param req
+		 * @param resp
+		 */
 		@RequestMapping({"/ColloectListPage"})
 		public void CollectListPage(HttpServletRequest req, HttpServletResponse resp){
 			String pageIndex = req.getParameter("pageIndex");   //閿熸枻鎷峰墠椤甸敓鏂ゆ嫹
@@ -457,7 +477,11 @@ public class SearchListController {
 			}
 		}
 		
-		//鏀惰棌鍒楄〃娣诲姞
+		/**
+		 * 添加收藏
+		 * @param req
+		 * @param resp
+		 */
 		@RequestMapping({"/AddCollect"})
 		public void AddCollect(HttpServletRequest req, HttpServletResponse resp){
 			JSONObject json = new JSONObject();
@@ -482,10 +506,13 @@ public class SearchListController {
 				e.printStackTrace();
 			}
 		}
-		//鏀惰棌鍒楄〃鍒犻櫎
+		/**
+		 * 取消收藏
+		 * @param req
+		 * @param resp
+		 */
 		@RequestMapping({"/DelCollect"})
 		public void DelCollect(HttpServletRequest req, HttpServletResponse resp){
-			//TODO鑾峰緱session涓殑鐢ㄦ埛id
 			String proNum=req.getParameter("proNum");
 			String username = (String)req.getSession().getAttribute("username");
 			int userid=userDao.findUserByEmailAndTel(username);
@@ -493,10 +520,8 @@ public class SearchListController {
 			JSONObject json = new JSONObject();
 			if(flag==0){
 				json.put("flag", "0");
-				System.out.println("鍒犻櫎澶辫触");
 			}else{
 				json.put("flag", "1");
-				System.out.println("鍒犻櫎鎴愬姛");
 			}
 			//return "/Collect.jsp";
 			try{

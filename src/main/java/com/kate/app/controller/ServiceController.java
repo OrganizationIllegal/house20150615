@@ -40,7 +40,9 @@ public class ServiceController {
 		BrokerInfoQuyu data = brokerInfoDao.getBrokerInfo(brokerId);
 		//for(BrokerInfoQuyu item : data){
 			String yuyan = data.getBroker_language();
-			yuyan = yuyan.replace("+", " ");
+			if(yuyan!=null && !"".equals(yuyan)){
+				yuyan = yuyan.replace("+", " ");
+			}
 			data.setBroker_language(yuyan);
 			
 		//}

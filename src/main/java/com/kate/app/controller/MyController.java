@@ -1244,14 +1244,16 @@ public class MyController {
 		req.setAttribute("userList", userList);
 		
 	}
-	//提交留言
+
 	/**
-	 * type=1
-	 * type=1
-	 * type=1
-	 * type=1
-	 * type=1
-	 * type=1
+	 * 提交留言
+	 *  索取完整价格单留言列表     -----type=1
+		需求留言                   -----type=2
+		项目详情咨询留言           -----type=3
+		最新价格留言               -----type=4
+		完整户型留言               -----type=5
+		合适房产经纪人留言         -----type=6
+		合作伙伴留言               -----type=7
 	 * @param req
 	 * @param resp
 	 */
