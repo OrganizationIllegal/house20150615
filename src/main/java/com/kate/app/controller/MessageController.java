@@ -32,6 +32,11 @@ public class MessageController {
 		req.setAttribute("messageListpriceLatest", messageListpriceLatest);
 		return "/Message.jsp";
 	}*/
+	/**
+	 * 将留言的“未看”置为“已看”
+	 * @param req
+	 * @param resp
+	 */
 	@RequestMapping({ "/saveView" })    
 	public void saveView(HttpServletRequest req, HttpServletResponse resp){
 		String Id = req.getParameter("id");
@@ -55,7 +60,11 @@ public class MessageController {
 			}
 		}
 	}
-	//需求留言分页
+	/**
+	 * 需求留言分页
+	 * @param req
+	 * @param resp
+	 */
 	@RequestMapping({"/MessagePageList"})
 	public void MessageListPage(HttpServletRequest req, HttpServletResponse resp){
 		/*String pageIndex = req.getParameter("pageIndex");  //页面索引 
@@ -128,7 +137,11 @@ public class MessageController {
 		}
 		
 	}
-	//索取完整价格留言分页
+	/**
+	 * 索取完整价格留言分页
+	 * @param req
+	 * @param resp
+	 */
 	@RequestMapping({"/MessagePricePageList"})
 	public void MessagePriceListPage(HttpServletRequest req, HttpServletResponse resp){
 		/*String pageIndex = req.getParameter("pageIndex");  //页面索引 
@@ -192,7 +205,7 @@ public class MessageController {
 		int count = array.size();
 		json.put("total", count);
 		json.put("rows", array);
-		
+	
 		try{
 			writeJson(array.toJSONString(),resp);
 		}catch(Exception e){
@@ -275,7 +288,9 @@ public class MessageController {
 		}
 		
 	}
-	//项目详情留言分页
+	/**
+	 * 项目详情留言分页
+	 */
 		@RequestMapping({"/MessageInfoPageList"})
 		public void MessageForInfoListPage(HttpServletRequest req, HttpServletResponse resp){
 			/*String pageIndex = req.getParameter("pageIndex");  //页面索引 
@@ -360,7 +375,11 @@ public class MessageController {
 				e.printStackTrace();
 			}
 		}
-		//完整户型留言分页
+		/**
+		 * 完整户型留言分页
+		 * @param req
+		 * @param resp
+		 */
 				@RequestMapping({"/MessageHuXingPageList"})
 				public void MessageForHuxingListPage(HttpServletRequest req, HttpServletResponse resp){
 				/*	String pageIndex = req.getParameter("pageIndex");  //页面索引 
@@ -434,7 +453,11 @@ public class MessageController {
 					
 					
 				}
-				//推荐房产经纪留言分页
+				/**
+				 * 推荐房产经纪留言分页
+				 * @param req
+				 * @param resp
+				 */
 				@RequestMapping({"/MessageBrokerPageList"})
 				public void MessageForbrokerListPage(HttpServletRequest req, HttpServletResponse resp){
 					/*String pageIndex = req.getParameter("pageIndex");  //页面索引 
@@ -508,7 +531,11 @@ public class MessageController {
 					
 					
 				}
-				//合作伙伴留言分页
+				/**
+				 * 合作伙伴留言分页
+				 * @param req
+				 * @param resp
+				 */
 				@RequestMapping({"/MessageHezuoPageList"})
 				public void MessageForHezuoListPage(HttpServletRequest req, HttpServletResponse resp){
 					JSONObject json = new JSONObject();

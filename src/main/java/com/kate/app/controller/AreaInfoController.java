@@ -80,7 +80,12 @@ public class AreaInfoController extends BaseDao {
 	//新闻报道
 	private List<NewsZhiye> newszhiyelistbefore;
 	
-	
+	/**
+	 * 根据id删除项目
+	 * @param req
+	 * @param resp
+	 * @throws Exception
+	 */
 			@RequestMapping({ "/AreaDelete" })
 			public void deleteArea(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 				int id = Integer.parseInt(req.getParameter("id"));
@@ -106,6 +111,12 @@ public class AreaInfoController extends BaseDao {
 					e.printStackTrace();
 				}
 			}
+ /**
+  * 根据区域id得到区域信息
+  * @param req
+  * @param resp
+  * @return
+  */
 	@RequestMapping({"/AreaEdit"})
 	public String areaEidt(HttpServletRequest req,HttpServletResponse resp){
 		String id=req.getParameter("id");
@@ -233,12 +244,17 @@ public class AreaInfoController extends BaseDao {
 				e.printStackTrace();
 			}
 		}
-	//鍖哄煙褰曞叆
+	/**
+	 * 区域录入
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
 	@RequestMapping({"/AreaInput"})
 	public String areaInput(HttpServletRequest req,HttpServletResponse resp){
-		getBrokerName(req,resp);
-		getProjectName(req,resp);
-		getNewsList(req,resp);
+		getBrokerName(req,resp);//得到经纪人名称
+		getProjectName(req,resp);//得到项目名称
+		getNewsList(req,resp);//得到新闻信息
 		return "/areaLuru.jsp";
 	}
 	
@@ -262,7 +278,11 @@ public class AreaInfoController extends BaseDao {
 			req.setAttribute("newsbokelist", ConvertJson.list2json(bokelist));
 			req.setAttribute("zhiyelist", ConvertJson.list2json(projectSet));
 		}
-	//鍖哄煙鍒楄〃
+	/**
+	 * 区域列表
+	 * @param req
+	 * @param resp
+	 */
 	@RequestMapping({ "/AreaInfoList" })    
 	public void selectAreaList(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -279,7 +299,12 @@ public class AreaInfoController extends BaseDao {
 		}
 	}
 	
-	//新闻博客输入
+	/**
+	 * 新闻博客录入
+	 * @param req
+	 * @param resp
+	 * @throws Exception
+	 */
 	@RequestMapping({ "/inputNewsBoke" })
 	public void inputNewsBoke(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		String news_num = req.getParameter("news_num");
@@ -307,14 +332,24 @@ public class AreaInfoController extends BaseDao {
 		}
 		
 	}
-	
+	/**
+	 * 新闻博客录入  页面装载时
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
 	@RequestMapping({ "/NewsInput" })
 	public String inputNewsBoke2(HttpServletRequest req, HttpServletResponse resp){
 		List<String> fenleiList = zhiYeDao.newsBokeFenlei();
 		req.setAttribute("fenleiList",fenleiList);
 		return "/newsLuru.jsp";		
 	}
-	//新闻博客更新
+	/**
+	 * 新闻博客更新
+	 * @param req
+	 * @param resp
+	 * @throws Exception
+	 */
 	@RequestMapping({ "/EditNewsBoke" })
 	public void UpdateNewsBoke(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		int id=Integer.parseInt(req.getParameter("id"));
@@ -343,7 +378,12 @@ public class AreaInfoController extends BaseDao {
 		}
 	}
 	
-	//置业指导Add
+/**
+ * 置业指导添加
+ * @param req
+ * @param resp
+ * @throws Exception
+ */
 		@RequestMapping({ "/inputZhiYe" })
 		public void inputZhiYe(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 			String zhiye_num = req.getParameter("zhiye_num");
@@ -370,7 +410,12 @@ public class AreaInfoController extends BaseDao {
 				e.printStackTrace();
 			}
 		}
-		//置业指导编辑
+	/**
+	 * 置业指导编辑
+	 * @param req
+	 * @param resp
+	 * @throws Exception
+	 */
 		@RequestMapping({ "/EditZhiYe" })
 		public void UpdateZhiYe(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 			int id=Integer.parseInt(req.getParameter("id"));
@@ -623,7 +668,11 @@ public class AreaInfoController extends BaseDao {
 			
 				
 				
-				//区域信息添加
+				/**
+				 * 区域信息添加
+				 * @param req
+				 * @param resp
+				 */
 				@RequestMapping({ "/AddAreaInfo" })
 				public void AddBrokerInfo(HttpServletRequest req, HttpServletResponse resp){
 					JSONObject ajson=new JSONObject();
@@ -642,7 +691,7 @@ public class AreaInfoController extends BaseDao {
 					String projectlist = req.getParameter("projectlist");
 					String newslist = req.getParameter("newslist");
 					
-					
+					//区域信息
 					JSONObject json = JSONObject.parseObject(area);
 					String area_num = json.getString("area_num");//区域编号
 					String area_name = json.getString("area_name");
@@ -651,31 +700,11 @@ public class AreaInfoController extends BaseDao {
 					String area_nation = json.getString("area_nation");
 					String area_postcode = json.getString("area_postcode");
 					
-					
+					//投资数据  项目类型为公寓
 					/*boolean flag = areaInfoDao.addAreaInfo(area_num, area_name, area_city, area_zhou, area_nation, area_postcode);*/
 					String touzi_datasource = json.getString("touzi_datasource");
 					
 					String touzi_date = json.getString("touzi_date");
-					
-			       /* String time1 = "";
-					Timestamp ts1 = new Timestamp(System.currentTimeMillis()); 
-					if(touzi_date==null||"".equals(touzi_date)){
-						touzi_date =new SimpleDateFormat("yyyy-MM-dd").format(new Date());// "2015-05-09";
-					}
-			        try {  
-			        	time1 = touzi_date+" "+"00:00:00";
-			            ts1 = Timestamp.valueOf(time1);   
-			            
-			        } catch (Exception e) {   
-			            e.printStackTrace();   
-			        } */
-			       
-					
-					
-					
-					
-					
-					
 					String year_increment_rate = json.getString("year_increment_rate");
 					String middle_price = json.getString("middle_price");
 					String middle_zu_price = json.getString("middle_zu_price");
@@ -683,7 +712,7 @@ public class AreaInfoController extends BaseDao {
 					String price_review = json.getString("price_review");
 					String zu_xuqiu = json.getString("zu_xuqiu");
 					String pro_type = json.getString("pro_type");
-					
+					//投资数据  项目类型为别墅
 					String touzi_datasource1 = json.getString("touzi_datasource1");
 					String touzi_date1 = json.getString("touzi_date1");
 					String year_increment_rate1 = json.getString("year_increment_rate1");
@@ -697,7 +726,7 @@ public class AreaInfoController extends BaseDao {
 					String data_exam = null;
 					
 					/*boolean result1 = areaInfoDao.addTouziData(touzi_datasource, touzi_date, middle_price, middle_zu_price, price_review, year_increment_rate, zu_house_rate, zu_xuqiu, data_exam, area_num, area_name);*/
-					
+					//区域家庭构成
 					String family_datasource = json.getString("family_datasource");
 					String family_date = json.getString("family_date");
 					String family_one = json.getString("family_one");
@@ -708,11 +737,11 @@ public class AreaInfoController extends BaseDao {
 					String family_three_rate = json.getString("family_three_rate");
 					/*boolean resultFamily = areaInfoDao.addAreaFamily(area_num, family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, family_datasource, family_date);*/
 					
-					
+					//区域中位数房价
 					JSONArray middlepriceArray = JSONArray.parseArray(middleprice);
 					List<MiddlePrice2> middlepriceList=new ArrayList<MiddlePrice2>();
 					for (int i=0; i<middlepriceArray.size(); i++){
-						 JSONObject object = (JSONObject)middlepriceArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+						 JSONObject object = (JSONObject)middlepriceArray.get(i); 
 						 MiddlePrice2 e = (MiddlePrice2) JSONToObj(object.toString(), MiddlePrice2.class);
 						 middlepriceList.add(e);
 					}
@@ -721,11 +750,11 @@ public class AreaInfoController extends BaseDao {
 						boolean resultMiddle = areaInfoDao.addMiddlePrice(item, area_num);
 					}*/
 					
-					
+					//区域房价中位数走势
 					JSONArray middletrendArray = JSONArray.parseArray(middletrend);
 					List<AreaMiddle2> middletrendList=new ArrayList<AreaMiddle2>();
 					for (int i=0; i<middletrendArray.size(); i++){
-						 JSONObject object = (JSONObject)middletrendArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+						 JSONObject object = (JSONObject)middletrendArray.get(i); 
 						 AreaMiddle2 e = (AreaMiddle2) JSONToObj(object.toString(), AreaMiddle2.class);
 						 middletrendList.add(e);
 					}
@@ -734,11 +763,11 @@ public class AreaInfoController extends BaseDao {
 						boolean resultMiddle = areaInfoDao.addMiddleTrend(item, area_num);
 					}*/
 					
-					
+					//区域租金走势
 					JSONArray zujintrendlistArray = JSONArray.parseArray(zujintrendlist);
 					List<AreaZujin2> zujintrendlistList=new ArrayList<AreaZujin2>();
 					for (int i=0; i<zujintrendlistArray.size(); i++){
-						 JSONObject object = (JSONObject)zujintrendlistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
+						 JSONObject object = (JSONObject)zujintrendlistArray.get(i);  
 						 AreaZujin2 e = (AreaZujin2) JSONToObj(object.toString(), AreaZujin2.class);
 						 zujintrendlistList.add(e);
 					}
@@ -750,7 +779,7 @@ public class AreaInfoController extends BaseDao {
 					JSONArray huibaotrendlistArray = JSONArray.parseArray(huibaotrendlist);
 					List<AreaZhikong2> huibaotrendlistList=new ArrayList<AreaZhikong2>();
 					for (int i=0; i<huibaotrendlistArray.size(); i++){
-						 JSONObject object = (JSONObject)huibaotrendlistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
+						 JSONObject object = (JSONObject)huibaotrendlistArray.get(i);  
 						 AreaZhikong2 e = (AreaZhikong2) JSONToObj(object.toString(), AreaZhikong2.class);
 						 huibaotrendlistList.add(e);
 					}
@@ -762,7 +791,7 @@ public class AreaInfoController extends BaseDao {
 					JSONArray tedianlistArray = JSONArray.parseArray(tedianlist);
 					List<AreaTeDian2> tedianlistList=new ArrayList<AreaTeDian2>();
 					for (int i=0; i<tedianlistArray.size(); i++){
-						 JSONObject object = (JSONObject)tedianlistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
+						 JSONObject object = (JSONObject)tedianlistArray.get(i);  
 						 AreaTeDian2 e = (AreaTeDian2) JSONToObj(object.toString(), AreaTeDian2.class);
 						 tedianlistList.add(e);
 					}
@@ -776,7 +805,7 @@ public class AreaInfoController extends BaseDao {
 					JSONArray peoplelistArray = JSONArray.parseArray(peoplelist);
 					List<AreaPeopleInfo2> peoplelistList=new ArrayList<AreaPeopleInfo2>();
 					for (int i=0; i<peoplelistArray.size(); i++){
-						 JSONObject object = (JSONObject)peoplelistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
+						 JSONObject object = (JSONObject)peoplelistArray.get(i);  
 						 AreaPeopleInfo2 e = (AreaPeopleInfo2) JSONToObj(object.toString(), AreaPeopleInfo2.class);
 						 peoplelistList.add(e);
 					}
@@ -790,32 +819,32 @@ public class AreaInfoController extends BaseDao {
 					
 					List<BrokerInfo> brokerlistList=new ArrayList<BrokerInfo>();
 					for (int i = 0; i < length; i++){
-						 JSONObject object = (JSONObject)brokerlistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
+						 JSONObject object = (JSONObject)brokerlistArray.get(i); 
 						 BrokerInfo e = (BrokerInfo) JSONToObj(object.toString(), BrokerInfo.class);
 						 brokerlistList.add(e);
 					}
 					/*boolean resultTuijianBroker = areaInfoDao.addAreaTuijianBroker(brokerlistList, area_num);*/
-
+                     //推荐项目
 					JSONArray projectlistArray = JSONArray.parseArray(projectlist);
 					int length1 = projectlistArray.size() >= 3 ? 3: projectlistArray.size();
 					
 					List<String> projectlistList=new ArrayList<String>();
 					for (int i = 0; i < length1; i++){
-						 JSONObject object = (JSONObject)projectlistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
+						 JSONObject object = (JSONObject)projectlistArray.get(i);  
 						 String project_name = object.getString("project_name");
 						 //HouseProject e = (HouseProject) JSONToObj(object.toString(), HouseProject.class);
 						 projectlistList.add(project_name);
 					}
 					/*boolean resultTuijianPro = areaInfoDao.addAreaTuijianPro(projectlistList, area_num);*/
 
-					
+					//推荐新闻
 					JSONArray newslistArray = JSONArray.parseArray(newslist);
 					//int length2 = newslistArray.size() >= 3 ? 3: newslistArray.size();
 					
 					List<String> newslistList=new ArrayList<String>();
 					List<String> list = new ArrayList<String>();
 					for (int i = 0; i < newslistArray.size(); i++){
-						 JSONObject object = (JSONObject)newslistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
+						 JSONObject object = (JSONObject)newslistArray.get(i);  
 						 if(object.containsKey("title")){
 							 String title = object.getString("title");
 							 //ZhiYeZhiDao e = (ZhiYeZhiDao) JSONToObj(object.toString(), ZhiYeZhiDao.class);
@@ -857,7 +886,11 @@ public class AreaInfoController extends BaseDao {
 					    
 					
 			}
-			//区域信息编辑
+		    /**
+		     * 更新区域信息
+		     * @param req
+		     * @param resp
+		     */
 			@RequestMapping({ "/EditAreaInfo" })
 			public void UpdateBrokerInfo(HttpServletRequest req, HttpServletResponse resp){
 				JSONObject ajson=new JSONObject();

@@ -154,7 +154,11 @@ public class BrokerInfoController {
 	}
 	
 
-//经纪人录入
+/**
+ *经纪人录入
+ * @param req
+ * @param resp
+ */
 		@RequestMapping({ "/AddBrokerInfo" })
 		public void AddBrokerInfo(HttpServletRequest req, HttpServletResponse resp){
 			JSONObject json=new JSONObject();
