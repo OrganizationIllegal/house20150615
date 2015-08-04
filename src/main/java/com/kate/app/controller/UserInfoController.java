@@ -60,13 +60,18 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		}
 		return "/overseas.jsp"; 
 	}
-	/*瀵拷鐝涚拹锔藉煕*/
+
+
+	/*
+	 * 用户推出账号
+	 * 
+	 */
 	@RequestMapping({ "/logout" })
 	public void logout(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		JSONObject json = new JSONObject();
 		HttpSession session = req.getSession();
 		String url = req.getParameter("url");
-		session.invalidate();
+		session.invalidate();     //session失效
 		
 		json.put("flag", 1);
 		try{
@@ -118,11 +123,7 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		String ask = req.getParameter("ask");
 		String msg = req.getParameter("msg");
 		int flag = userInfoDao.addAsk(nick_name, pwd, tel, email, ask, msg);
-		if(flag==0){
-			System.out.println("濞ｈ濮炴径杈Е閿涳拷");
-		}else{
-			System.out.println("濞ｈ濮為幋鎰閿涳拷");
-		}
+		
 	}
 	
 	/*閺堬拷鏌婃禒閿嬬壐*/
@@ -135,11 +136,7 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		String newestprice = req.getParameter("newestprice");
 		String msg = req.getParameter("msg");
 		int flag = userInfoDao.addNewestPrice(nick_name, pwd, tel, email, newestprice, msg);
-		if(flag==0){
-			System.out.println("濞ｈ濮炴径杈Е閿涳拷");
-		}else{
-			System.out.println("濞ｈ濮為幋鎰閿涳拷");
-		}
+		
 	}
 	
 	/*鐎瑰本鏆ｉ幋宄扮�*/
@@ -152,14 +149,13 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		String housetype = req.getParameter("housetype");
 		String msg = req.getParameter("msg");
 		int flag = userInfoDao.addHouseType(nick_name, pwd, tel, email, housetype, msg);
-		if(flag==0){
-			System.out.println("濞ｈ濮炴径杈Е閿涳拷:");
-		}else{
-			System.out.println("濞ｈ濮為幋鎰閿涳拷");
-		}
+		
 	}
 	
-	/*濞夈劌鍞界拹锔藉煕*/
+	
+	/*
+	 * 用户注册
+	 */
 	@RequestMapping({ "/Register" })
 	public String register(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		HttpSession session = req.getSession();
@@ -168,16 +164,16 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		int flag = 1;
 		List<User> userList = new ArrayList<User>();
 		String telemail = req.getParameter("telemail");
-		String url = req.getParameter("urlInfoReg");
+		String url = req.getParameter("urlInfoReg");   //当前页面的url
 		String pwd = req.getParameter("pwd");
-		if(isEmail(telemail)){
+		if(isEmail(telemail)){   //判断用户输入的是email
 			flag1=userInfoDao.register2(telemail, pwd);
 			if(flag1==1){
-				userList = userInfoDao.judge(telemail);
+				userList = userInfoDao.judge(telemail);   //查找用户
 				if(userList.size()>0){
-					role = userList.get(0).getRole();
+					role = userList.get(0).getRole();   //得到用户角色
 					
-					flag = userList.get(0).getFlag();
+					flag = userList.get(0).getFlag();    //得到管理员登等级
 				}
 				session.setAttribute("role", role);
 				session.setAttribute("flag", flag);
@@ -189,8 +185,8 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 				session.setAttribute("username", "");
 			}
 			
-		}else if(isPhoneNumberValid(telemail)){
-			flag=userInfoDao.register1(telemail, pwd);
+		}else if(isPhoneNumberValid(telemail)){    //如果用户名是电话
+			flag=userInfoDao.register1(telemail, pwd);   //用户注册
 			if(flag==1){
 				userList = userInfoDao.judge(telemail);
 				if(userList.size()>0){
@@ -209,19 +205,19 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 			}
 			
 		}
-		if(flag==0){
-			System.out.println("娉ㄥ唽澶辫触");
-		}else{
-			System.out.println("娉ㄥ唽鎴愬姛");
-		}
+		
 		String resultUrl = url.substring(url.lastIndexOf("/"));
-		System.out.println(resultUrl);
-		return resultUrl;
-	}
+		
+		return resultUrl;   //返回到当前页面，并且显示登录后的信息
+	} 
 	
+	
+	/*
+	 * Ajax调用，实现用户的登录（ProjectIndex页面底部的注册调用）
+	 */
 	@RequestMapping({ "/Register2" })
 	public void register2(HttpServletRequest req, HttpServletResponse resp) throws Exception{
-		HttpSession session = req.getSession();
+		HttpSession session = req.getSession();  //逻辑同Register
 		int flag1=-1;
 		int flag=0;
 		int role = 1;
@@ -276,9 +272,13 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		
 	}
 	
-	@RequestMapping({ "/login" })
+	/*
+	 * 用户登录
+	 * 
+	 */
+	@RequestMapping({ "/login" }) 
 	public String login(HttpServletRequest req, HttpServletResponse resp) throws Exception{
-		HttpSession session = req.getSession();
+		HttpSession session = req.getSession();     //获得session
 		//String username1 = (String)session.getAttribute("username");
 		//session.getAttributeNames();
 		//String name = HttpSession.getAttribute(username);
@@ -286,7 +286,8 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		String password = req.getParameter("password1");
 		String username_mode = req.getParameter("username_mode1");
 		String password_mode = req.getParameter("password_mode1");
-		String url = req.getParameter("urlInfoLog");
+		String url = req.getParameter("urlInfoLog");     //保存当前页面的URL
+		
 		byte [] username_str = null;
 		byte [] password_str = null;
 		byte [] username_mode_str = null;
@@ -303,11 +304,11 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		
 		if(username!=null && !"".equals(username)){
 			
-			username_str = decode(username);
+			username_str = decode(username);     //对用户名编码（后面没有用到）
 			str_username = new String(username_str);
 		}
 		if(password!=null && !"".equals(password)){
-			password_str = decode(password);
+			password_str = decode(password);    //对用户名编码（后面没有用到）
 			str_password = new String(password_str);
 		}
 		if(username_mode!=null && !"".equals(username_mode)){
@@ -321,29 +322,29 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		}
 		if(str_username!=null && !"".equals(str_username)){
 			tempName = str_username;
-			session.setAttribute("username", str_username);
+			session.setAttribute("username", str_username);    //将用户名写入session，保留用户会话期间
 		}
 		else if(str_username_mode!=null && !"".equals(str_username_mode)){
 			tempName = str_username_mode;
-			session.setAttribute("username", str_username_mode);
+			session.setAttribute("username", str_username_mode);   //将用户名写入session，保留用户会话期间
 		}
 		else{
-			session.setAttribute("username", "");
+			session.setAttribute("username", "");    //将用户名写入session，保留用户会话期间
 		}
-		userList = userInfoDao.judge(tempName);
+		userList = userInfoDao.judge(tempName);    //判断用户是否存在
 		int role = 1;
 		int flag = 0;
 		if(userList.size()>0){
-			role = userList.get(0).getRole();
+			role = userList.get(0).getRole();   //获得用户的角色  0管理员  1普通用户
 			
-			flag = userList.get(0).getFlag();
+			flag = userList.get(0).getFlag();   //获得管理员的权限  0普通管理员  1超级管理员
 		}
 		session.setAttribute("role", role);
 		session.setAttribute("flag", flag);
 		String resultUrl = url.substring(url.lastIndexOf("/"));
-		System.out.println(resultUrl);
+		
 		resp.sendRedirect(resultUrl);      //重定向
-		return resultUrl;
+		return resultUrl;    //返回当前页面
 		/*if(role == 0){
 			return "/treeData.jsp";
 		}
@@ -392,23 +393,29 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 			}
 		}
 	
+		
+	/*
+	 * 用户登录的判断
+	 */
+	
+		
 	@RequestMapping({ "/loginPanduan" })
 	public void loginPanduan(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
-		List<User> list = userInfoDao.judge(username);
+		List<User> list = userInfoDao.judge(username);    //判断用户是否存在
 		JSONObject json = new JSONObject();
-		if(isEmail(username) || isPhoneNumberValid(username)){
+		if(isEmail(username) || isPhoneNumberValid(username)){    //判断用户名是否为正确的email地址或者是手机号码
 			json.put("flag", "1");        //鐢ㄦ埛鍚嶅拰瀵嗙爜涓嶇
 		}else{
 			json.put("flag", "-1");        //鐢ㄦ埛鍚嶅拰瀵嗙爜涓嶇
 		}
 		
 		
-		if(list.size()<=0){
+		if(list.size()<=0){     //判断用户是否存在
 			json.put("user", "0");        //鐢ㄦ埛鍚嶄笉瀛樺湪
 		}
-		else if(list.size()>0 && password.equals(list.get(0).getPwd())){
+		else if(list.size()>0 && password.equals(list.get(0).getPwd())){    //判断用户名是否和密码相匹配
 			json.put("user", "1");        //鐢ㄦ埛鐧诲綍鎴愬姛
 			if(list.get(0).getRole()==0){
 				json.put("role", "0");        //绠＄悊鍛�
@@ -427,20 +434,25 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		}
 	}
 	
+	
+	/*
+	 * 用户注册合法信息的检验
+	 * 
+	 */
 	@RequestMapping({ "/registerPanduan" })
 	public void registerPanduan(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
-		List<User> list = userInfoDao.judge(username);
+		List<User> list = userInfoDao.judge(username);  //判断用户是否存在
 		JSONObject json = new JSONObject();
 		if(!isEmail(username) && !isPhoneNumberValid(username)){
-			json.put("user", "-1");        //鐢ㄦ埛鍚嶅拰瀵嗙爜涓嶇
+			json.put("user", "-1");        //用户名不合法的检验
 		}
 		else if(list.size()>0){
-			json.put("user", "0");        //鐢ㄦ埛宸插瓨鍦�
+			json.put("user", "0");        //用户名已经存在，不可注册
 		}
 		else{			
-			json.put("user", "1");        //鐢ㄦ埛鍙互杩涜娉ㄥ唽			
+			json.put("user", "1");        //可以进行注册			
 		}
 		try{
 			writeJson(json.toJSONString(),resp);
@@ -449,6 +461,10 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		}
 	}
 	
+	/*
+	 * 编码的调用，后期没用用到
+	 * 
+	 */
 	public static byte[] decode(String str) {
         byte[] data = str.getBytes();
         int len = data.length;
@@ -510,8 +526,10 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 	    out.close();
 	}
 	
-	/*鍒ゆ柇鏄惁涓烘墜鏈哄彿*/
-	public boolean isPhoneNumberValid(String phoneNumber) {
+	/*
+	 * 用户名输入电话号码的合法检验
+	 */
+	public boolean isPhoneNumberValid(String phoneNumber) {    
 		boolean isValid = false;
 		String expression = "((^(13|15|18)[0-9]{9}$)|(^0[1,2]{1}\\d{1}-?\\d{8}$)|(^0[3-9] {1}\\d{2}-?\\d{7,8}$)|(^0[1,2]{1}\\d{1}-?\\d{8}-(\\d{1,4})$)|(^0[3-9]{1}\\d{2}-? \\d{7,8}-(\\d{1,4})$))";
 		CharSequence inputStr = phoneNumber;
@@ -525,7 +543,9 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 
 	}
 	
-	
+	/*
+	 * 用户名输入email的合法检验
+	 */
 	public boolean isEmail(String email) {
 		String str = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";
 		Pattern p = Pattern.compile(str);

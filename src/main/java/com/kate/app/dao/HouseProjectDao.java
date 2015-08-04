@@ -18,6 +18,9 @@ import com.kate.app.model.ProjectDescImage;
 import com.kate.app.model.ProjectImage;
 @Repository 
 public class HouseProjectDao extends BaseDao{
+	/*
+	 * 通过id查找项目信息
+	 */
 	public HouseProject HouseProjectDao(int id){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -103,6 +106,10 @@ public class HouseProjectDao extends BaseDao{
 		return projectInfo;
 	}
 	
+	
+	/*
+	 * 通过项目编号寻找项目信息
+	 */
 	public HouseProject HouseProjectByNumDao(String pro_num){
 		DecimalFormat df = new DecimalFormat("#,###,###");
 		Statement stmt = null;
@@ -194,7 +201,9 @@ public class HouseProjectDao extends BaseDao{
 	}
 	
 	
-	
+	/*
+	 * 通过项目编号，得到项目描述图片列表
+	 */
 	public List<ProjectDescImage> HouseProjectImageList(String pro_num){
 		DecimalFormat df = new DecimalFormat("#,###,###");
 		Statement stmt = null;
@@ -508,7 +517,9 @@ public class HouseProjectDao extends BaseDao{
 		return list;
 	}
 	
-	
+	/*
+	 * 通过区域编号查找项目信息
+	 */
 	public HouseProject HouseProjectByAreaNumDao(String areaNum){
 		Statement stmt = null;
 		ResultSet rs = null;

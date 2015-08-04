@@ -26,11 +26,17 @@ public class Index01Controller {
 	@Autowired
 	private ZhiYeDao zhiYeDao;
 	
+	
+	/*
+	 * 首页的控制器，返回数据
+	 */
 	@RequestMapping({"/","/index01" })
 	public String index01(HttpServletRequest req,HttpServletResponse resp){
-		List<String> list = index01Dao.getTuijian();
-		List<String> list2 = index01Dao.getTuijian2();
-		List<NewsBoke> newsList = zhiYeDao.selectNewsBoke();
+		List<String> list = index01Dao.getTuijian();   //首页的墨尔本推荐项目
+		List<String> list2 = index01Dao.getTuijian2();   //首页的悉尼推荐项目
+		
+		List<NewsBoke> newsList = zhiYeDao.selectNewsBoke();  //首页的新闻博客列表
+		
 		List<HouseProject> projectList = new ArrayList<HouseProject>();
 		List<HouseProject> projectList2 = new ArrayList<HouseProject>();
 		List<ProjectDescImage> imageList1 = new ArrayList<ProjectDescImage>();
@@ -39,8 +45,8 @@ public class Index01Controller {
 		for(String i : list){
 			HouseProject pro = new HouseProject();
 			String image = "";
-			pro = houseProjectDao.HouseProjectByNumDao(i);
-			imageList1 = houseProjectDao.HouseProjectImageList(i);
+			pro = houseProjectDao.HouseProjectByNumDao(i);    //通过项目编号找到项目信息
+//			imageList1 = houseProjectDao.HouseProjectImageList(i);  //通过项目编号，得到项目描述图片列表
 			if(imageList1!=null && imageList1.size()>0){
 				image = imageList1.get(0).getName();
 			}
@@ -62,7 +68,7 @@ public class Index01Controller {
 				projectList2.add(pro2);
 			}
 		}
-		if(newsList.size() > 3){
+		if(newsList.size() > 3){   //取得前三个新闻
 			newsList = newsList.subList(0, 3);
 		}
 		req.setAttribute("projectList", projectList);

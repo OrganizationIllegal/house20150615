@@ -10,6 +10,9 @@ import org.springframework.stereotype.Repository;
 import com.kate.app.model.BuyInfo;
 @Repository 
 public class BuyInfoDao extends BaseDao{
+	/*
+	 * 查找返现
+	 */
 	public int BuyInfoDao(int houseProId){
 		Statement stmt = null;
 		ResultSet rs = null;

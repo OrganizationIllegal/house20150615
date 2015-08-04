@@ -19,8 +19,11 @@ import com.kate.app.model.HouseProject;
 import com.kate.app.model.ProjectDescImage;
 @Repository 
 public class BingMapDao extends BaseDao {
-	//加载地图找房调用
-	public List<BingMapVo> listBingMap(){    
+	
+	/*
+	 * 查询数据库，得到项目信息
+	 */
+	public List<BingMapVo> listBingMap(){    //加载地图找房调用
 		NumberFormat nf = new DecimalFormat("#,###,###");
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -352,6 +355,10 @@ public class BingMapDao extends BaseDao {
         }
 		return bingMapList;
 	}
+	
+	/*
+	 * 排序
+	 */
 	public List<BingMapVo> orderByPrice(int order){
 		NumberFormat nf = new DecimalFormat("#,###,###");
 		Statement stmt = null;
@@ -701,7 +708,9 @@ public class BingMapDao extends BaseDao {
         }
 		return mapCenterList;
 	} 
-	//根据房屋类型搜索及根据价格排序
+	/*
+	 * 根据类型查找项目列表
+	 */
 	public List<HouseProject> filterByHouseType2(int type, int order){    //根据类型查找
 		NumberFormat nf = new DecimalFormat("#,###,###");
 		Statement stmt = null;
@@ -946,7 +955,9 @@ public class BingMapDao extends BaseDao {
         }
 		return coordinatesList;
 	}*/
-	//根据区域、城市、邮编搜索及根据价格排序
+	/*
+	 * 根据搜索结果返回项目列表
+	 */
 	public List<HouseProject> filterByKeyWord(String area,String city,String addr,int order){
 		NumberFormat nf = new DecimalFormat("#,###,###");
 		Statement stmt = null;

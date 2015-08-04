@@ -67,6 +67,9 @@ import com.kate.app.model.ZhiYeZhiDao;
 			return 0;
 		}
 		
+		/*
+		 * 根据时间排序，查找置业百科列表
+		 */
 		public List<ZhiYeZhiDao> selectZhiYe(){
 			Statement stmt = null;
 			ResultSet rs = null;
@@ -312,6 +315,9 @@ import com.kate.app.model.ZhiYeZhiDao;
 			return list;
 		}
 		
+		/*
+		 * 根据时间排序，查找新闻博客列表
+		 */
 		public List<NewsBoke> selectNewsBoke(){
 			Statement stmt = null;
 			ResultSet rs = null;

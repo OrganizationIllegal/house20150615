@@ -14,6 +14,9 @@ import com.kate.app.model.User;
 
 @Repository 
 public class UserDao extends BaseDao {
+	/*
+	 * 通过用户名，得到用户信息
+	 */
 	public List<User> listUser(String username1){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -124,7 +127,9 @@ public class UserDao extends BaseDao {
 
 		return id;
 	} 
-
+/*
+ * 通过用户名，查找用户信息
+ */
 	public int findUserByEmailAndTel(String username){
 		Statement stmt = null;
 		ResultSet rs = null;

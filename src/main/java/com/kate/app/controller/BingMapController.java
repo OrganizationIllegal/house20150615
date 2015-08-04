@@ -77,13 +77,17 @@ public class BingMapController {
 	//右侧地图显示
 	@RequestMapping({"/BingMap"})    //首页加载
 	public String listBingMap(HttpServletRequest req,HttpServletResponse resp){
-		List<BingMapVo> bingMapList=bingMapService.listBingMap();
-		req.setAttribute("bingMapList", bingMapList);		
-		List<String> areaNameSet=bingMapDao.getAreaName();
+
+		List<BingMapVo> bingMapList=bingMapService.listBingMap();   //查询数据库，得到项目信息
+		
+		req.setAttribute("bingMapList", bingMapList);
+		
+		
+		List<String> areaNameSet=bingMapDao.getAreaName();  //得到区域名称
 		req.setAttribute("areaNameSet", areaNameSet);
-		List<String> cityNameSet=bingMapDao.getCityName();
+		List<String> cityNameSet=bingMapDao.getCityName();  //得到城市名称
 		req.setAttribute("cityNameSet", cityNameSet);
-		List<String> addressNameSet=bingMapDao.getAddressName();
+		List<String> addressNameSet=bingMapDao.getAddressName();  //得到地址名称
 		req.setAttribute("addressNameSet", addressNameSet);
 		return "/bingMap.jsp";
 	}
@@ -157,6 +161,8 @@ public class BingMapController {
 		req.setAttribute("bingMapList", bingMapList);
 		return "/bingMap.jsp";
 	}
+	
+	
 	@RequestMapping({"/BingMapFilterPageList"})
 	public void BingMapFilterPageList(HttpServletRequest req,HttpServletResponse resp){
 		int type=Integer.parseInt(req.getParameter("house_type"));
@@ -252,7 +258,7 @@ public class BingMapController {
 				req.setAttribute("bingMapList", null);
 			}
 			else{
-				if(order==1){
+				if(order==1){    //升序
 					for(HouseProject item : seachListResultShengxu){
 						DecimalFormat df = new DecimalFormat("#,###,###");
 						int id = item.getId();
@@ -308,7 +314,7 @@ public class BingMapController {
 					}
 					req.setAttribute("bingMapList", bingMapList);
 				}
-				else{
+				else{  //降序
 					for(HouseProject item : seachListResultJiangxu){
 						DecimalFormat df = new DecimalFormat("#,###,###");
 						int id = item.getId();
@@ -368,7 +374,7 @@ public class BingMapController {
 			}
 			
 		}
-		else if(flagInfo==1){
+		else if(flagInfo==1){   //选择房屋类型之后的排序
 			if(typeListResultShengxu==null || typeListResultShengxu.size()<=0){
 				req.setAttribute("bingMapList", null);
 			}
@@ -568,7 +574,9 @@ public class BingMapController {
 			e.printStackTrace();
 		}
 	}
-	//右侧地图列表
+	/*
+	 * 首页地图加载时候，返回项目列表
+	 */
 	@RequestMapping({ "/BingMap/Coordinates" })    
 	public void listMap(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -627,7 +635,10 @@ public class BingMapController {
 			e.printStackTrace();
 		}
 	}
-	//右侧根据房屋类型搜索
+	
+	/*
+	 * 根据类型查找结果列表
+	 */
 	@RequestMapping({ "/BingMap/FileterType2" })    
 	public void filterByHouseType2(HttpServletRequest req, HttpServletResponse resp){    //公寓
 		flagInfo = 1;          //根据类型进行查询
@@ -640,7 +651,7 @@ public class BingMapController {
 		JSONArray arrayCentermoren = new JSONArray();
 		List<String> city=new ArrayList<String>();
 		int type=Integer.parseInt(req.getParameter("house_type"));
-		List<HouseProject> list = bingMapDao.filterByHouseType2(type,0);
+		List<HouseProject> list = bingMapDao.filterByHouseType2(type,0);  //根据类型查找项目列表
 		typeListResult = list;    //根据类型查询结果集合
 		typeListResultShengxu = bingMapDao.filterByHouseType2(type,1);   //升序
 		typeListResultJiangxu = bingMapDao.filterByHouseType2(type,2);   //降序
@@ -692,7 +703,9 @@ public class BingMapController {
 			e.printStackTrace();
 		}
 	}
-	//右侧根据城市、区域、邮编进行搜索
+	/*
+	 * 搜索得到项目列表
+	 */
 	@RequestMapping({ "/BingMap/FileterKeyWord" })    
 	public void filterByKeyWord(HttpServletRequest req, HttpServletResponse resp){
 		flagInfo = 2;
@@ -710,7 +723,7 @@ public class BingMapController {
 		String address=req.getParameter("address");
 		array = bingMapService.filterByKeyWord(area, city1, address, 0);
 		
-		List<HouseProject> list = bingMapDao.filterByKeyWord(area, city1, address, 0);
+		List<HouseProject> list = bingMapDao.filterByKeyWord(area, city1, address, 0);  //根据搜索结果返回项目列表,0不排序
 		seachListResult = list;
 		/*for(HouseProject item : seachListResult){
 			if(item!=null){
@@ -728,7 +741,7 @@ public class BingMapController {
 			}
 			
 		}*/
-		seachListResultShengxu = bingMapDao.filterByKeyWord(area, city1, address,1);
+		seachListResultShengxu = bingMapDao.filterByKeyWord(area, city1, address,1);  //根据搜索结果返回项目列表,1升序
 		for(HouseProject item : seachListResultShengxu){
 			if(item!=null){
 				if(item.getProject_num()!=null && !"".equals(item.getProject_num())){
@@ -745,7 +758,7 @@ public class BingMapController {
 			}
 			
 		}
-		seachListResultJiangxu = bingMapDao.filterByKeyWord(area, city1, address,2);
+		seachListResultJiangxu = bingMapDao.filterByKeyWord(area, city1, address,2);  //根据搜索结果返回项目列表,2降序
 		for(HouseProject item : seachListResultJiangxu){
 			if(item!=null){
 				if(item.getProject_num()!=null && !"".equals(item.getProject_num())){
