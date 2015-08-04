@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.alibaba.fastjson.JSONArray;
 @Repository 
 public class AdDao extends BaseDao{
+	//根据id查找第一个广告图片
 	 public String getad1(){
 		 String ad1="";
 		 Statement stmt = null;
@@ -44,6 +45,7 @@ public class AdDao extends BaseDao{
 	        }
 			return ad1;
 		} 
+	//根据id查找第二个广告图片
 	 public String getad2(){
 		 String ad1="";
 		 Statement stmt = null;
@@ -77,6 +79,7 @@ public class AdDao extends BaseDao{
 	        }
 			return ad1;
 		}
+	//根据id查找第三个广告图片
 	 public String getad3(){
 		 String ad1="";
 		 Statement stmt = null;
@@ -110,6 +113,7 @@ public class AdDao extends BaseDao{
 	        }
 			return ad1;
 		}
+	//根据id查找第四个个广告图片
 	 public String getad4(){
 		 String ad1="";
 		 Statement stmt = null;
@@ -143,6 +147,7 @@ public class AdDao extends BaseDao{
 	        }
 			return ad1;
 		}
+	 //更新第一个广告位
 	 public int setad1(String ad1){
 		 int result=0;
 		 PreparedStatement stmt = null;
@@ -175,6 +180,7 @@ public class AdDao extends BaseDao{
 	        }
 			return result;
 		}
+	//更新第二个广告位
 	 public int setad2(String ad2){
 		 int result=0;
 		 PreparedStatement stmt = null;
@@ -207,7 +213,7 @@ public class AdDao extends BaseDao{
 	        }
 			return result;
 		}
-	 
+	//更新第三个广告位
 	 public int setad3(String ad3){
 		 int result=0;
 		 PreparedStatement stmt = null;
@@ -240,6 +246,7 @@ public class AdDao extends BaseDao{
 	        }
 			return result;
 		}
+	//更新第四个广告位
 	 public int setad4(String ad4){
 		 int result=0;
 		 PreparedStatement stmt = null;

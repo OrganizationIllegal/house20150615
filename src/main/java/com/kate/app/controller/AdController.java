@@ -28,7 +28,9 @@ import java.sql.*;
 public class AdController {
 	@Autowired
 	private AdDao addao;
+
 	//显示后台管理广告编辑页面（里面管理项目页面3个广告和服务团队1个广告）
+
 	@RequestMapping({"/adEdit" })
 	public String search(HttpServletRequest req,HttpServletResponse resp){
 	
@@ -42,7 +44,9 @@ public class AdController {
 		req.setAttribute("ad4", ad4);
 		return "/admanage.jsp";
 	}
+
 	//接受后台管理广告页面修改后的提交数据处理
+
 	@RequestMapping({"/UpdateAdImage" })
 	public void updateadimage(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();

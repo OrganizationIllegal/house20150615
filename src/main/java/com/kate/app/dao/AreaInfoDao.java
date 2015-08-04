@@ -1346,7 +1346,11 @@ public class AreaInfoDao extends BaseDao {
         }
 		return areaInfo;
 	}
-	//鍒ゆ柇鍖哄煙缂栧彿鏄惁閲嶅
+	/**
+	 * 判断区域编号是否重复
+	 * @param area_num
+	 * @return
+	 */
 	public int isDuplicate(String area_num){
 		Statement stmt = null;
 		ResultSet rs = null;

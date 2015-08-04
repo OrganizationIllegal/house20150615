@@ -30,7 +30,11 @@ public class IndexRecommendManageController {
 	@Autowired
 	private IndexRecoProManageDao indexrecodao;
 	
+
 	//后台编辑首页推荐项目的action
+
+	//首页项目推荐管理
+
 	@RequestMapping({"/IndexRecoEdit" })
 	public String search(HttpServletRequest req,HttpServletResponse resp){
 		List<String> recos=new ArrayList<String>();
@@ -43,7 +47,11 @@ public class IndexRecommendManageController {
 		req.setAttribute("sreco3", recos.get(5));
 		return "/IndexRecommendProjects.jsp";
 	}
+
 	//接收后台编辑首页推荐项目的ajax action
+
+	//首页项目推荐更新
+
 	@RequestMapping({"/UpdateIndexRecoPro" })
 	public void updateadimage(HttpServletRequest req, HttpServletResponse resp){
 		List<String> recos=new ArrayList<String>();

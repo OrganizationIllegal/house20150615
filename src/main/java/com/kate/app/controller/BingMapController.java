@@ -55,7 +55,7 @@ public class BingMapController {
 	
 	private static int flagInfo = 0;
 	private static int orderFlag = 0;
-	
+	//地图中心点录入
 	@RequestMapping({"/MapCenterInput"})
 	public String mapCenterInput(HttpServletRequest req,HttpServletResponse resp){
 		List<String> list1= new ArrayList<String>();
@@ -74,7 +74,7 @@ public class BingMapController {
 		req.setAttribute("areacityNameSet", list1);
 		return "/GpsCenterInput.jsp";
 	}
-	
+	//右侧地图显示
 	@RequestMapping({"/BingMap"})    //首页加载
 	public String listBingMap(HttpServletRequest req,HttpServletResponse resp){
 
@@ -153,7 +153,7 @@ public class BingMapController {
 			e.printStackTrace();
 		}
 	}
-	
+	//根据房屋类型搜索
 	@RequestMapping({"/BingMap/FileterType"})
 	public String filterByHouseType(HttpServletRequest req,HttpServletResponse resp){
 		int type=Integer.parseInt(req.getParameter("house_type"));
@@ -219,7 +219,6 @@ public class BingMapController {
 		}
 	}
 	
-	
 	@RequestMapping({"/OrderByTypeLeft"})
 	public String OrderByTypeLeft(HttpServletRequest req,HttpServletResponse resp){
 		String type = req.getParameter("type");
@@ -248,8 +247,8 @@ public class BingMapController {
 		return "/bingMap.jsp";
 	}
 	
-	
-	@RequestMapping({"/OrderByPrice"})            //排序
+	 //排序
+	@RequestMapping({"/OrderByPrice"})           
 	public String OrderByPrice(HttpServletRequest req,HttpServletResponse resp){
 		orderFlag = 1;
 		int order=Integer.parseInt(req.getParameter("order"));
@@ -575,7 +574,6 @@ public class BingMapController {
 			e.printStackTrace();
 		}
 	}
-	
 	/*
 	 * 首页地图加载时候，返回项目列表
 	 */
@@ -637,7 +635,6 @@ public class BingMapController {
 			e.printStackTrace();
 		}
 	}
-	
 	
 	/*
 	 * 根据类型查找结果列表
@@ -706,7 +703,6 @@ public class BingMapController {
 			e.printStackTrace();
 		}
 	}
-	
 	/*
 	 * 搜索得到项目列表
 	 */
@@ -829,7 +825,7 @@ public class BingMapController {
 		}
 	}
 	
-
+    //根据项目编号进行搜索
 	@RequestMapping({ "/BingMap/FileterProNum" })    
 	public void filterByProNum(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -900,8 +896,8 @@ public class BingMapController {
 		}
 	}
 	
-	
-	public JSONArray jsonCoordinates(){    //加载
+	//加载
+	public JSONArray jsonCoordinates(){    
 		JSONArray array = new JSONArray();
 		DecimalFormat df = new DecimalFormat("#,###,###");
 		if(orderFlag == 0){
@@ -992,7 +988,6 @@ public class BingMapController {
 		
 		return array;
 	}
-	
 	
 	public void writeJson(String json, HttpServletResponse response)throws Exception{
 	    response.setContentType("text/html");

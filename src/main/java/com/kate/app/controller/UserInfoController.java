@@ -376,7 +376,7 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		return "/index01";
 	}
 	
-	//鍖哄煙鍒楄〃
+	//用户信息列表
 		@RequestMapping({ "/UserInfoList" })    
 		public void selectUserList(HttpServletRequest req, HttpServletResponse resp){
 			JSONObject json = new JSONObject();

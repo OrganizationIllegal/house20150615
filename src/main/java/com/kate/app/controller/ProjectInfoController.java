@@ -103,7 +103,11 @@ public class ProjectInfoController {
 			List<BrokerInfo> brokerSet=areaInputDao.getBrokers();
 			req.setAttribute("brokerSet", brokerSet);
 		}
+<<<<<<< HEAD
 	//ajax获取学校信息的List
+=======
+	//学校信息列表
+>>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
 	@RequestMapping({ "/SchoolInfoList" })    
 	public void selectSchoolList(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -119,7 +123,11 @@ public class ProjectInfoController {
 			e.printStackTrace();
 		}
 	}
+<<<<<<< HEAD
 	//ajax获取开发上的jsonList
+=======
+	//开发商列表
+>>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
 	@RequestMapping({ "/DeveloperInfoList" })    
 	public void selectDeveloperList(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -135,7 +143,15 @@ public class ProjectInfoController {
 			e.printStackTrace();
 		}
 	}
+<<<<<<< HEAD
 	//获取新闻列表
+=======
+	/**
+	 * 新闻博客列表
+	 * @param req
+	 * @param resp
+	 */
+>>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
 		@RequestMapping({ "/newsList" })    
 		public void selectnewsList(HttpServletRequest req, HttpServletResponse resp){
 			JSONObject json = new JSONObject();
@@ -151,7 +167,15 @@ public class ProjectInfoController {
 				e.printStackTrace();
 			}
 		}
+<<<<<<< HEAD
 		//获取置业指导列表
+=======
+	/**
+	 * 置业指导列表
+	 * @param req
+	 * @param resp
+	 */
+>>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
 				@RequestMapping({ "/zhiyeList" })    
 				public void selectzhiyeList(HttpServletRequest req, HttpServletResponse resp){
 					JSONObject json = new JSONObject();
@@ -167,7 +191,15 @@ public class ProjectInfoController {
 						e.printStackTrace();
 					}
 				}
+<<<<<<< HEAD
 				//获取经纪人列表
+=======
+				/**
+				 * 经纪人列表
+				 * @param req
+				 * @param resp
+				 */
+>>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
 				@RequestMapping({ "/brokerList" })    
 				public void selectBrokerList(HttpServletRequest req, HttpServletResponse resp){
 					JSONObject json = new JSONObject();
@@ -1050,33 +1082,40 @@ public class ProjectInfoController {
 		
 	}
 	
+<<<<<<< HEAD
 	//后台编辑经纪人信息。
+=======
+	/**
+	 * 经纪人编辑
+	 * @param req
+	 * @param resp
+	 */
+>>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
 		@RequestMapping({ "/EditBrokerInfo" })
 		public void  EditBroker(HttpServletRequest req,HttpServletResponse resp){
-			//鎺ユ敹缁忕邯浜篿d
 			JSONObject json=new JSONObject();
 			String idstr=req.getParameter("id");
 			int id=Integer.parseInt(req.getParameter("id"));
 			
-			//缁忕邯浜轰俊鎭�
+			//经济人基本信息
 			String brokerinfo=req.getParameter("broker");
 			JSONObject brokerInfo = JSONObject.parseObject(brokerinfo);
 			Broker broker= (Broker) JSONToObj(brokerInfo.toString(), Broker.class);
 		
-			//缁忕邯浜烘湇鍔″尯鍩�
+			//经纪人服务区域
 		    String arealist=req.getParameter("arealist");
 			JSONArray areaArray = JSONArray.parseArray(arealist);
-			List<ServiceArea> serviceArealist=new ArrayList<ServiceArea>();//瀛樻斁瑕佺紪杈戠殑椤�
-			List<ServiceArea> serviceArealist2=new ArrayList<ServiceArea>();//瀛樻斁鏂版坊鍔犵殑椤�
-			List<ServiceArea> serviceArealistdelete=new ArrayList<ServiceArea>();//瀛樻斁鏂版坊鍔犵殑椤�
+			List<ServiceArea> serviceArealist=new ArrayList<ServiceArea>();
+			List<ServiceArea> serviceArealist2=new ArrayList<ServiceArea>();
+			List<ServiceArea> serviceArealistdelete=new ArrayList<ServiceArea>();
 			for (int i=0;i<areaArray.size();i++){
-					JSONObject object = (JSONObject)areaArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+					JSONObject object = (JSONObject)areaArray.get(i);
 					ServiceArea e = (ServiceArea) JSONToObj(object.toString(), ServiceArea.class);
 				    if(e.getId()==0){
-				    	serviceArealist2.add(e);//鐢ㄤ簬娣诲姞
+				    	serviceArealist2.add(e);//用于添加
 				    }
 				    else{
-				    	serviceArealist.add(e);//鐢ㄤ簬缂栬緫
+				    	serviceArealist.add(e);//用于更新
 				    }
 				}
 			//服务区域，和修改之前的服务区域列表做列表，把删除的服务区域item存在deletelist列表里，然后再dao层做删除。
@@ -1092,17 +1131,21 @@ public class ProjectInfoController {
 					serviceArealistdelete.add(brokerServiceAreaListbefore.get(i));
 				}
 			}
+<<<<<<< HEAD
 			//经纪人擅长的类型。
+=======
+			//经纪人擅长类型
+>>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
 			String typelist=req.getParameter("typelist");
 			JSONArray typeArray = JSONArray.parseArray(typelist);
-			List<BrokerType> brokerTypelist=new ArrayList<BrokerType>();//瀛樻斁瑕佺紪杈戠殑椤�
-			List<BrokerType> brokerTypelist2=new ArrayList<BrokerType>();//瀛樻斁鏂版坊鍔犵殑椤�
-			List<BrokerType> brokerTypelistdelete=new ArrayList<BrokerType>();//瀛樻斁鏂版坊鍔犵殑椤�
+			List<BrokerType> brokerTypelist=new ArrayList<BrokerType>();
+			List<BrokerType> brokerTypelist2=new ArrayList<BrokerType>();
+			List<BrokerType> brokerTypelistdelete=new ArrayList<BrokerType>();
 			for (int i=0;i<typeArray.size();i++){
-					JSONObject object = (JSONObject)typeArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
+					JSONObject object = (JSONObject)typeArray.get(i); 
 					BrokerType e = (BrokerType) JSONToObj(object.toString(), BrokerType.class);
 				    if(e.getId()==0){
-				    	brokerTypelist2.add(e);//鐢ㄤ簬娣诲姞
+				    	brokerTypelist2.add(e);//用于添加
 				    }
 				    else{
 				    	if("公寓".equals(e.getInterested_num())){
@@ -1112,13 +1155,17 @@ public class ProjectInfoController {
 						}else if("联排别墅".equals(e.getInterested_num())){
 							e.setInterested_num("house_03");
 						}
-				    	brokerTypelist.add(e);//鐢ㄤ簬缂栬緫
+				    	brokerTypelist.add(e);//用于更新
 				    }
 				}
+<<<<<<< HEAD
 			/*if(brokerTypelist.size()==0){
 				brokerTypelistdelete=brokerIntegertypeListbefore;
 			}*/
 			//擅长类型，和修改之前的擅长类型的列表做对比，把删除的擅长类型保存在deletelist，然后再dao层做删除。
+=======
+			
+>>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
 			for (int i=0;i<brokerIntegertypeListbefore.size();i++){
 				boolean flag=false;
 				for(int j=0;j<brokerTypelist.size();j++){
@@ -1131,9 +1178,6 @@ public class ProjectInfoController {
 					brokerTypelistdelete.add(brokerIntegertypeListbefore.get(i));
 				}
 			}
-			/*brokerIntegertypeListbefore.removeAll(brokerTypelist);
-			brokerTypelistdelete=brokerIntegertypeListbefore;*/
-			//鏇存柊
 			int isDuplicate=0;//brokerInfoDao.isDuplicate(broker.getBroker_num());
 			if (isDuplicate==1) {
 				json.put("isDuplicate", "1");
@@ -1162,7 +1206,11 @@ public class ProjectInfoController {
 		}
 		
 	
+<<<<<<< HEAD
 	//后台接受添加学校的action
+=======
+	//添加学校信息
+>>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
 	@RequestMapping({ "/AddschoolInfo" })
 	public void InsertSchoolInfo(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1227,7 +1275,11 @@ public class ProjectInfoController {
 			e.printStackTrace();
 		}
 	}
+<<<<<<< HEAD
 	//后台编辑学校信息 ，  接收修改后的学校信息的action
+=======
+	//更新学校信息
+>>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
 	@RequestMapping({ "/EditSchoolInfo" })
 	public void updateSchoolInfo(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1293,7 +1345,11 @@ public class ProjectInfoController {
 			e.printStackTrace();
 		}
 	}
+<<<<<<< HEAD
 	//后台添加开发商信息的action，接收新的开发商数据
+=======
+	//添加开发商信息
+>>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
 	@RequestMapping({ "/AddDeveloperInfo" })
 	public void InsertDeveloperInfo(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1347,7 +1403,15 @@ public class ProjectInfoController {
 				e.printStackTrace();
 		}
 	}
+<<<<<<< HEAD
 	//后台项目列表上架项目
+=======
+	/**
+	 * 上架一个项目
+	 * @param req
+	 * @param resp
+	 */
+>>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
 	@RequestMapping({ "/ShowProject" })
 	public void ShowProject(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1366,7 +1430,15 @@ public class ProjectInfoController {
 				e.printStackTrace();
 		}
 	}
+<<<<<<< HEAD
 	//后台项目列表下架项目
+=======
+	/**
+	 * 下架一个项目
+	 * @param req
+	 * @param resp
+	 */
+>>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
 	@RequestMapping({ "/UnShowProject" })
 	public void UnShowProject(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1404,7 +1476,11 @@ public class ProjectInfoController {
 				e.printStackTrace();
 		}
 	}
+<<<<<<< HEAD
 	//后台开发商列表，删除指定的开发商
+=======
+	//根据id删除开发商信息
+>>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
 		@RequestMapping({ "/deleteDeveloper" })
 		public void DeleteDeveloper(HttpServletRequest req,HttpServletResponse resp){
 			JSONObject json = new JSONObject();
@@ -1442,7 +1518,15 @@ public class ProjectInfoController {
 							e.printStackTrace();
 					}
 				}
+<<<<<<< HEAD
 				//后台经纪人列表，删除指定的经纪人
+=======
+				/**
+				 * 根据id删除经纪人
+				 * @param req
+				 * @param resp
+				 */
+>>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
 				@RequestMapping({ "/deleteBroker" })
 				public void DeleteBroker(HttpServletRequest req,HttpServletResponse resp){
 					JSONObject json = new JSONObject();
@@ -1462,7 +1546,15 @@ public class ProjectInfoController {
 							e.printStackTrace();
 					}
 				}
+<<<<<<< HEAD
 				//后台新闻博客列表，删除指定的新闻
+=======
+				/**
+				 * 根据id删除新闻博客
+				 * @param req
+				 * @param resp
+				 */
+>>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
 				@RequestMapping({ "/deleteNewsBoke" })
 				public void DeleteNewsBoke(HttpServletRequest req,HttpServletResponse resp){
 					JSONObject json = new JSONObject();
@@ -1481,7 +1573,11 @@ public class ProjectInfoController {
 							e.printStackTrace();
 					}
 				}
+<<<<<<< HEAD
 	//后台编辑开发商信息
+=======
+	//更新开发商信息
+>>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
 	@RequestMapping({ "/EditDeveloperInfo" })
 	public void UpdateDeveloperInfo(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1666,39 +1762,46 @@ public class ProjectInfoController {
 		List<BrokerInfo> brokerSet=areaInputDao.getBrokers();
 		req.setAttribute("brokerSet", brokerSet);
 	}
-	//鏍规嵁id鍙栧鏍′俊鎭�
+	//根据id查找学校信息
 	@RequestMapping({ "/selectSchoolInfo" })
 	public String selectSchoolInfo(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
 		int id =Integer.parseInt(req.getParameter("id"));
-		//鏍规嵁椤圭洰id鍙栭」鐩俊鎭�
 		SchoolInfo schoolInfo=projectInputDao.selectSchoolInfo(id);
 		req.setAttribute("schoolInfo", schoolInfo);
 		return "/SchoolInfoEdit.jsp";
 	}
-	//鏍规嵁id鍙栧紑鍙戝晢淇℃伅
+	//根据id查找开发商信息
 		@RequestMapping({ "/selectDeveloperInfo" })
 		public String selectDeveloperInfo(HttpServletRequest req,HttpServletResponse resp){
 			JSONObject json = new JSONObject();
 			int id =Integer.parseInt(req.getParameter("id"));
-			//鏍规嵁椤圭洰id鍙栭」鐩俊鎭�
 			DeveloperInfo developerInfo=projectInputDao.selectDeveloperInfo(id);
 			req.setAttribute("developerInfo", developerInfo);
 			return "/DeveloperInfo.jsp";
 		}
-		//鏍规嵁id鍙栨柊闂诲崥瀹俊鎭�
+		/**
+		 * 根据id查找新闻博客信息
+		 * @param req
+		 * @param resp
+		 * @return
+		 */
 				@RequestMapping({ "/selectNewsBokeInfo" })
 				public String selectNewsbokeInfo(HttpServletRequest req,HttpServletResponse resp){
 					JSONObject json = new JSONObject();
 					int id =Integer.parseInt(req.getParameter("id"));
-					//鏍规嵁椤圭洰id鍙栭」鐩俊鎭�
 					NewsBoke newsBoke=projectInputDao.selectNewsBokeInfo(id);
 					List<String> fenleiList = zhiYeDao.newsBokeFenlei();
 					req.setAttribute("fenleiList",fenleiList);
 					req.setAttribute("newsBoke", newsBoke);
 					return "/newsInfoEdit.jsp";
 				}
-				//鏍规嵁id鍙栫疆涓氭寚瀵间俊鎭�
+				/**
+				 * 根据id查找置业指导信息
+				 * @param req
+				 * @param resp
+				 * @return
+				 */
 				@RequestMapping({ "/selectZhiyeInfo" })
 				public String selectZhiyeInfo(HttpServletRequest req,HttpServletResponse resp){
 					JSONObject json = new JSONObject();
@@ -1708,23 +1811,28 @@ public class ProjectInfoController {
 					req.setAttribute("zhiYeZhiDao", zhiYeZhiDao);
 					return "/zhiyeInfo.jsp";
 				}
-				//鏍规嵁id鍙栫粡绾汉淇℃伅
+				/**
+				 * 根据id查找经纪人相关信息
+				 * @param req
+				 * @param resp
+				 * @return
+				 */
 				@RequestMapping({ "/selectBroker" })
 				public String selectBroker(HttpServletRequest req,HttpServletResponse resp){
 					JSONObject json = new JSONObject();
 					int id =Integer.parseInt(req.getParameter("id"));
-					//鏍规嵁椤圭洰id鍙栭」鐩俊鎭�
+					//根据id查找经纪人基本信息
 					Broker broker=projectInputDao.selectBroker(id);
 					req.setAttribute("broker", broker);
-					//鑾峰彇缁忕邯浜虹紪鍙�
+					//根据id查找经纪人编号
 					String broker_num=projectInputDao.findBrokerNumById(id);
-					//鑾峰彇缁忕邯浜烘湇鍔″尯鍩�
+					//根据经纪人编号查找经纪人服务区域
 					List<ServiceArea> brokerServiceAreaList=projectInputDao.findBrokerAreaList(broker_num);
 					brokerServiceAreaListbefore=projectInputDao.findBrokerAreaList(broker_num);
 					
 					req.setAttribute("brokerServiceAreaList", brokerServiceAreaList);
 					req.setAttribute("brokerServiceAreaListJson", ConvertJson.list2json(brokerServiceAreaList).replace(" ", "&nbsp;").replace("'", "&#39;"));
-					//鑾峰彇缁忕邯浜烘搮闀跨被鍨�
+					//根据经济人编号得到经纪人擅长类型
 					List<BrokerType> brokerIntegertypeList=projectInputDao.findBrokerTypeList(broker_num);
 					for(int i=0;i<brokerIntegertypeList.size();i++){
 						String num=brokerIntegertypeList.get(i).getInterested_num();
