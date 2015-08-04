@@ -88,6 +88,7 @@
 	 		}
         });		 
       }
+      //生成地图消息框
       function add(type,img,price,num,pushpin,LA){
     	  Microsoft.Maps.Events.addHandler(pushpin, 'click', function(){
 		        var infoboxOptions = {width :400, height :100,offset:new Microsoft.Maps.Point(-15,20)}; 
@@ -105,10 +106,11 @@
 			    
 		    });
       }
+      //隐藏地图消息框
       function display(){
     	  defaultInfobox.setOptions({ visible: false });
       }
-          
+     //添加房屋类型pushpin   
       function addPushpin()
       {
 		

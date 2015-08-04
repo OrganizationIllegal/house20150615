@@ -17,16 +17,20 @@ import com.kate.app.model.HouseProject;
 public class BingMapService {
 	@Autowired
 	private BingMapDao bingMapDao;
-	public List<BingMapVo> listBingMap(){    //加载列出所有列表
+	
+	//加载左侧项目列表
+	public List<BingMapVo> listBingMap(){    
 		List<BingMapVo> bingMapList=new ArrayList<BingMapVo>();
 		bingMapList=bingMapDao.listBingMap();
 		return bingMapList;
 	}
+	//左侧根据房屋类型搜索
 	public List<BingMapVo> filterByHouseType(int type){
 		List<BingMapVo> bingMapList=new ArrayList<BingMapVo>();
 		bingMapList=bingMapDao.filterByHouseType(type);
 		return bingMapList;
 	}
+	//左侧根据价格排序
 	public List<BingMapVo> orderByPrice(int order){
 		List<BingMapVo> bingMapList=new ArrayList<BingMapVo>();
 		bingMapList=bingMapDao.orderByPrice(order);
@@ -90,6 +94,7 @@ public class BingMapService {
 		}
 		return array;
 	}
+	//根据房屋类型搜索及根据价格排序
 	public JSONArray filterByHouseType2(int type,int order){
 		JSONArray array = new JSONArray();
 		DecimalFormat df = new DecimalFormat("#,###,###");
@@ -146,6 +151,7 @@ public class BingMapService {
 		}
 		return array;
 	}
+	//根据城市、区域、邮编搜索以及根据价格排序
 	public JSONArray filterByKeyWord(String area,String city,String addr,int order){
 		JSONArray array = new JSONArray();
 		DecimalFormat df = new DecimalFormat("#,###,###");
@@ -240,6 +246,7 @@ public class BingMapService {
 		}
 		return array;
 	}*/
+	//根据项目名搜索
 	public JSONArray filterByproNum(String pro){
 		JSONArray array = new JSONArray();
 		DecimalFormat df = new DecimalFormat("#,###,###");

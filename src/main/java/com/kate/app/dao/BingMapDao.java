@@ -583,7 +583,7 @@ public class BingMapDao extends BaseDao {
 	}
 	
 	
-	//缁忕含搴﹀強鍏剁浉鍏充俊鎭�
+	//地图加载
 	public List<HouseProject> listMap(){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -708,7 +708,6 @@ public class BingMapDao extends BaseDao {
         }
 		return mapCenterList;
 	} 
-	
 	/*
 	 * 根据类型查找项目列表
 	 */
@@ -1167,6 +1166,7 @@ public class BingMapDao extends BaseDao {
         }
 		return coordinatesList;
 	}
+	//根据项目编号查找
 	public List<HouseProject> filterByproNum(String pro){
 		Statement stmt = null;
 		ResultSet rs = null;
