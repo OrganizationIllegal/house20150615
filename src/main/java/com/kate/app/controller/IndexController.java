@@ -23,7 +23,7 @@ import java.sql.*;
 public class IndexController {
 	@Autowired
 	private SearchService searchService;
-	
+	//这个action弃用了
 	@RequestMapping({"/index02" })
 	public String search(HttpServletRequest req,HttpServletResponse resp){
 		

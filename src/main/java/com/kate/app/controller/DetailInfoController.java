@@ -27,6 +27,7 @@ public class DetailInfoController {
 	private ZhiYeDao zhiYeDao;
 	
 	private static final int PAGE_SIZE = 6;
+	//置业指导详情和新闻详情的action
 	@RequestMapping({"/Detail"})
 	public String ZhiYeInfo(HttpServletRequest req, HttpServletResponse resp){
 		String id = req.getParameter("id");

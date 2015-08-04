@@ -1339,6 +1339,49 @@ public class BingMapDao extends BaseDao {
         }
 		return areaNameSet;
 	}
+	//得到区域名称集合
+		public List<String> getAreaName1(){
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+			List<String> areaNameSet=new ArrayList<String>();
+			try {
+				String sql ="select distinct area_name from area_info order by area_name";
+				 pstmt = con.prepareStatement(sql);
+				  rs = pstmt.executeQuery();
+				while(rs.next()){
+					String areaName=rs.getString("area_name");
+					areaNameSet.add(areaName);
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+				if(rs != null){   // 关闭记录集   
+			        try{   
+			            rs.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			          }   
+			      if(stmt != null){   // 关闭声明   
+			        try{   
+			            stmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+			      if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+
+	        }
+			return areaNameSet;
+		}
 	//得到城市名称
 		public List<String> getCityName(){
 			Statement stmt = null;
@@ -1390,6 +1433,49 @@ public class BingMapDao extends BaseDao {
 	        }
 			return cityNameSet;
 		}
+		//得到城市名称集合
+				public List<String> getCityName1(){
+					Statement stmt = null;
+					ResultSet rs = null;
+					PreparedStatement pstmt = null;
+					List<String> cityNameSet=new ArrayList<String>();
+					try {
+						String sql ="select distinct area_city from area_info order by area_city";
+						 pstmt = con.prepareStatement(sql);
+						  rs = pstmt.executeQuery();
+						while(rs.next()){
+							String cityName=rs.getString("area_city");
+							cityNameSet.add(cityName);
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}finally{
+						if(rs != null){   // 关闭记录集   
+					        try{   
+					            rs.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					          }   
+					      if(stmt != null){   // 关闭声明   
+					        try{   
+					            stmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+					      if(pstmt != null){   // 关闭声明   
+						        try{   
+						            pstmt.close() ;   
+						        }catch(SQLException e){   
+						            e.printStackTrace() ;   
+						        }   
+						     } 
+
+			        }
+					return cityNameSet;
+				}
 		//得到地址名称
 		public List<String> getAddressName(){
 			Statement stmt = null;

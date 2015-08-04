@@ -97,13 +97,17 @@ public class ProjectInfoController {
 		getBrokerName(req,resp);
 		return "/ProjectInputBroker.jsp";
 	}
-	//寰楀埌缁忕邯浜虹殑濮撳悕
+	//项目录入的
 		@RequestMapping({"/ProjectInput/Broker"})
 		public void getBrokerName(HttpServletRequest req,HttpServletResponse resp){
 			List<BrokerInfo> brokerSet=areaInputDao.getBrokers();
 			req.setAttribute("brokerSet", brokerSet);
 		}
+
+	//ajax获取学校信息的List
+
 	//学校信息列表
+
 	@RequestMapping({ "/SchoolInfoList" })    
 	public void selectSchoolList(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -119,7 +123,11 @@ public class ProjectInfoController {
 			e.printStackTrace();
 		}
 	}
+
+	//ajax获取开发上的jsonList
+
 	//开发商列表
+
 	@RequestMapping({ "/DeveloperInfoList" })    
 	public void selectDeveloperList(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -135,11 +143,15 @@ public class ProjectInfoController {
 			e.printStackTrace();
 		}
 	}
+
+	//获取新闻列表
+
 	/**
 	 * 新闻博客列表
 	 * @param req
 	 * @param resp
 	 */
+
 		@RequestMapping({ "/newsList" })    
 		public void selectnewsList(HttpServletRequest req, HttpServletResponse resp){
 			JSONObject json = new JSONObject();
@@ -155,11 +167,15 @@ public class ProjectInfoController {
 				e.printStackTrace();
 			}
 		}
+
+		//获取置业指导列表
+
 	/**
 	 * 置业指导列表
 	 * @param req
 	 * @param resp
 	 */
+
 				@RequestMapping({ "/zhiyeList" })    
 				public void selectzhiyeList(HttpServletRequest req, HttpServletResponse resp){
 					JSONObject json = new JSONObject();
@@ -175,11 +191,15 @@ public class ProjectInfoController {
 						e.printStackTrace();
 					}
 				}
+
+				//获取经纪人列表
+
 				/**
 				 * 经纪人列表
 				 * @param req
 				 * @param resp
 				 */
+
 				@RequestMapping({ "/brokerList" })    
 				public void selectBrokerList(HttpServletRequest req, HttpServletResponse resp){
 					JSONObject json = new JSONObject();
@@ -499,18 +519,18 @@ public class ProjectInfoController {
 		
 	}
 /**
- * 项目编辑  经纪人是按区域进行推荐的
+ * 项目编辑  经纪人是按区域进行推荐的（现在经纪人是在项目里推荐的，区域里现在在后台不填了）现在这个action弃用了，下面的EditProject2是最新的，EditProject2包括了推荐经纪人的处理。EditPorject不包括推荐经纪人的处理。
  * @param req
  * @param resp
  */
 	@RequestMapping({ "/EditProject" })
 	public void  EditProject(HttpServletRequest req,HttpServletResponse resp){
-		//鎺ユ敹椤圭洰缂栧彿鍙傛暟
+		//
 		//String project_num=req.getParameter("project_num");
 		JSONObject json=new JSONObject();
-		//鎺ユ敹椤圭洰id
+		//
 		int id=Integer.parseInt(req.getParameter("id"));
-		//椤圭洰淇℃伅
+		//
 		String project=req.getParameter("project");
 		JSONArray projectArray = JSONArray.parseArray(project);
 		List<Project> projectlist=new ArrayList<Project>();
@@ -520,7 +540,7 @@ public class ProjectInfoController {
 			    projectlist.add(e);
 		  }
 		System.out.println("projectlist.length():"+projectlist.size());
-		//鎴峰瀷鍙婁环鏍�
+		//
 	    String huxing=req.getParameter("huxinglist");
 		JSONArray huxingArray = JSONArray.parseArray(huxing);
 		List<HouseInfo1> houseInfolist=new ArrayList<HouseInfo1>();//瀛樻斁瑕佺紪杈戠殑椤�
@@ -554,7 +574,7 @@ public class ProjectInfoController {
 			    	imagelist.add(e);
 			    }
 			}
-
+		//项目图片，和修改之前的项目图片list做对比，然后把删除了的项目图片item保存到deleteList里，然后传到dao层删除。
 		for (int i=0;i<projectImageListbefore.size();i++){
 			boolean flag=false;
 
@@ -585,7 +605,7 @@ public class ProjectInfoController {
 				    	peitaolist.add(e);
 				    }
 				}
-
+			//项目配套，和修改之前的项目配套做对比，然后把删除的项目配套item的保存到deletelist，然后再dao层做删除
 			for (int i=0;i<projectPeiTaoListbefore.size();i++){
 				boolean flag=false;
 
@@ -617,7 +637,7 @@ public class ProjectInfoController {
 					 fujinpeitaoList.add(e);//鍚﹀垯锛岀紪杈�
 				 }
 		}
-
+		//附近配套，和修改之前的附近配套做对比。把删除的附近配套item保存到deletelist，然后再传到dao层做删除
 		for (int i=0;i<fujinPeitaoListbefore.size();i++){
 			boolean flag=false;
 			for(int j=0;j<fujinpeitaoList.size();j++){
@@ -633,7 +653,7 @@ public class ProjectInfoController {
 
 		System.out.println("fujinpeitaoList.length():"+fujinpeitaoList.size());
 		System.out.println("fujinpeitaoList2.length():"+fujinpeitaoList2.size());
-		//闄勮繎瀛︽牎
+		//学校信息
 		String schoolInfo=req.getParameter("schoollist");
 		JSONArray schoolArray = JSONArray.parseArray(schoolInfo);
 		List<FujinSchool> fujinSchoolList=new ArrayList<FujinSchool>();//鐢ㄤ簬缂栬緫鐨勯」
@@ -649,7 +669,7 @@ public class ProjectInfoController {
 							 fujinSchoolList.add(e);
 						 }
 		   }
-
+		//附近学校，和修改之前的学习list做对比。把删除的附近学校的item保存到deletelist里，然后传到dao层删除。
 		for (int i=0;i<fujinSchoolListbefore.size();i++){
 			boolean flag=false;
 			for(int j=0;j<fujinSchoolList.size();j++){
@@ -665,7 +685,7 @@ public class ProjectInfoController {
 		}
 		System.out.println("fujinSchoolList.length():"+fujinSchoolList.size());
 		System.out.println("fujinSchoolList2.length():"+fujinSchoolList2.size());
-		//鎸佹湁鎴愭湰
+		//持有成本
 		String holdingcost=req.getParameter("holdingcostlist");
 		JSONArray holdCostArray = JSONArray.parseArray(holdingcost);
 		List<HoldCost> holdCostList=new ArrayList<HoldCost>();//鐢ㄤ簬缂栬緫鐨勯」
@@ -681,7 +701,7 @@ public class ProjectInfoController {
 			    	holdCostList.add(e);//娣诲姞鐨勯」
 			    }
 			}
-
+		//持有成本，和修改之前的持有成本list做对比，把 删除的持有成本保存到deletelist列表里，然后再dao层做删除。
 		for (int i=0;i<holdCostListbefore.size();i++){
 			boolean flag=false;
 			for(int j=0;j<holdCostList.size();j++){
@@ -713,6 +733,7 @@ public class ProjectInfoController {
 						 houseTaxList.add(e);//鐢ㄤ簬缂栬緫
 					}
 		}
+		//购房税费，和修改之前的购房税费做对比，把删除的购房税费的item保存到购房税费deletelist，然后再dao层做删除。
 		for (int i=0;i<houseTaxListbefore.size();i++){
 			boolean flag=false;
 
@@ -799,7 +820,7 @@ public class ProjectInfoController {
 			    	houseInfolist.add(e);
 			    }
 			}
-
+		//户型价格，和修改之前的户型价格list做对比，然后把删除了的户型价格item保存到deleteList里，然后传到dao层删除。
 		for (int i=0;i<houseInfoListbefore.size();i++){
 			boolean flag=false;
 
@@ -832,7 +853,7 @@ public class ProjectInfoController {
 			    	imagelist.add(e);
 			    }
 			}
-
+		//项目图片，和修改之前的项目图片list做对比，然后把删除了的项目图片item保存到deleteList里，然后传到dao层删除。
 		for (int i=0;i<projectImageListbefore.size();i++){
 			boolean flag=false;
 
@@ -863,7 +884,7 @@ public class ProjectInfoController {
 				    	peitaolist.add(e);
 				    }
 				}
-
+			//项目配套，和修改之前的项目配套做对比，然后把删除的项目配套item的保存到deletelist，然后再dao层做删除
 			for (int i=0;i<projectPeiTaoListbefore.size();i++){
 				boolean flag=false;
 
@@ -895,7 +916,7 @@ public class ProjectInfoController {
 					 fujinpeitaoList.add(e);//鍚﹀垯锛岀紪杈�
 				 }
 		}
-
+		//附近配套，和修改之前的附近配套做对比。把删除的附近配套item保存到deletelist，然后再传到dao层做删除
 		for (int i=0;i<fujinPeitaoListbefore.size();i++){
 			boolean flag=false;
 			for(int j=0;j<fujinpeitaoList.size();j++){
@@ -927,7 +948,7 @@ public class ProjectInfoController {
 							 fujinSchoolList.add(e);
 						 }
 		   }
-
+		//附近学校，和修改之前的学习list做对比。把删除的附近学校的item保存到deletelist里，然后传到dao层删除。
 		for (int i=0;i<fujinSchoolListbefore.size();i++){
 			boolean flag=false;
 			for(int j=0;j<fujinSchoolList.size();j++){
@@ -959,7 +980,7 @@ public class ProjectInfoController {
 			    	holdCostList.add(e);//娣诲姞鐨勯」
 			    }
 			}
-
+		//持有成本，和修改之前的持有成本list做对比，把 删除的持有成本保存到deletelist列表里，然后再dao层做删除。
 		for (int i=0;i<holdCostListbefore.size();i++){
 			boolean flag=false;
 			for(int j=0;j<holdCostList.size();j++){
@@ -991,6 +1012,7 @@ public class ProjectInfoController {
 						 houseTaxList.add(e);//鐢ㄤ簬缂栬緫
 					}
 		}
+		//购房税费，和修改之前的购房税费做对比，把删除的购房税费的item保存到购房税费deletelist，然后再dao层做删除。
 		for (int i=0;i<houseTaxListbefore.size();i++){
 			boolean flag=false;
 
@@ -1060,11 +1082,15 @@ public class ProjectInfoController {
 		
 	}
 	
+
+	//后台编辑经纪人信息。
+
 	/**
 	 * 经纪人编辑
 	 * @param req
 	 * @param resp
 	 */
+
 		@RequestMapping({ "/EditBrokerInfo" })
 		public void  EditBroker(HttpServletRequest req,HttpServletResponse resp){
 			JSONObject json=new JSONObject();
@@ -1092,7 +1118,7 @@ public class ProjectInfoController {
 				    	serviceArealist.add(e);//用于更新
 				    }
 				}
-			
+			//服务区域，和修改之前的服务区域列表做列表，把删除的服务区域item存在deletelist列表里，然后再dao层做删除。
 			for (int i=0;i<brokerServiceAreaListbefore.size();i++){
 				boolean flag=false;
 				for(int j=0;j<serviceArealist.size();j++){
@@ -1105,7 +1131,11 @@ public class ProjectInfoController {
 					serviceArealistdelete.add(brokerServiceAreaListbefore.get(i));
 				}
 			}
+
+			//经纪人擅长的类型。
+
 			//经纪人擅长类型
+
 			String typelist=req.getParameter("typelist");
 			JSONArray typeArray = JSONArray.parseArray(typelist);
 			List<BrokerType> brokerTypelist=new ArrayList<BrokerType>();
@@ -1128,7 +1158,14 @@ public class ProjectInfoController {
 				    	brokerTypelist.add(e);//用于更新
 				    }
 				}
+
+			/*if(brokerTypelist.size()==0){
+				brokerTypelistdelete=brokerIntegertypeListbefore;
+			}*/
+			//擅长类型，和修改之前的擅长类型的列表做对比，把删除的擅长类型保存在deletelist，然后再dao层做删除。
+
 			
+
 			for (int i=0;i<brokerIntegertypeListbefore.size();i++){
 				boolean flag=false;
 				for(int j=0;j<brokerTypelist.size();j++){
@@ -1169,7 +1206,11 @@ public class ProjectInfoController {
 		}
 		
 	
+
+	//后台接受添加学校的action
+
 	//添加学校信息
+
 	@RequestMapping({ "/AddschoolInfo" })
 	public void InsertSchoolInfo(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1234,7 +1275,11 @@ public class ProjectInfoController {
 			e.printStackTrace();
 		}
 	}
+
+	//后台编辑学校信息 ，  接收修改后的学校信息的action
+
 	//更新学校信息
+
 	@RequestMapping({ "/EditSchoolInfo" })
 	public void updateSchoolInfo(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1300,7 +1345,11 @@ public class ProjectInfoController {
 			e.printStackTrace();
 		}
 	}
+
+	//后台添加开发商信息的action，接收新的开发商数据
+
 	//添加开发商信息
+
 	@RequestMapping({ "/AddDeveloperInfo" })
 	public void InsertDeveloperInfo(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1354,11 +1403,15 @@ public class ProjectInfoController {
 				e.printStackTrace();
 		}
 	}
+
+	//后台项目列表上架项目
+
 	/**
 	 * 上架一个项目
 	 * @param req
 	 * @param resp
 	 */
+
 	@RequestMapping({ "/ShowProject" })
 	public void ShowProject(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1377,11 +1430,15 @@ public class ProjectInfoController {
 				e.printStackTrace();
 		}
 	}
+
+	//后台项目列表下架项目
+
 	/**
 	 * 下架一个项目
 	 * @param req
 	 * @param resp
 	 */
+
 	@RequestMapping({ "/UnShowProject" })
 	public void UnShowProject(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1419,7 +1476,11 @@ public class ProjectInfoController {
 				e.printStackTrace();
 		}
 	}
+
+	//后台开发商列表，删除指定的开发商
+
 	//根据id删除开发商信息
+
 		@RequestMapping({ "/deleteDeveloper" })
 		public void DeleteDeveloper(HttpServletRequest req,HttpServletResponse resp){
 			JSONObject json = new JSONObject();
@@ -1438,7 +1499,7 @@ public class ProjectInfoController {
 					e.printStackTrace();
 			}
 		}
-		//鍒犻櫎缃笟鎸囧
+		//后台置业指导列表，删除指定的职业指导信息。
 				@RequestMapping({ "/deleteZhiye" })
 				public void DeleteZhiye(HttpServletRequest req,HttpServletResponse resp){
 					JSONObject json = new JSONObject();
@@ -1457,11 +1518,15 @@ public class ProjectInfoController {
 							e.printStackTrace();
 					}
 				}
+
+				//后台经纪人列表，删除指定的经纪人
+
 				/**
 				 * 根据id删除经纪人
 				 * @param req
 				 * @param resp
 				 */
+
 				@RequestMapping({ "/deleteBroker" })
 				public void DeleteBroker(HttpServletRequest req,HttpServletResponse resp){
 					JSONObject json = new JSONObject();
@@ -1481,11 +1546,15 @@ public class ProjectInfoController {
 							e.printStackTrace();
 					}
 				}
+
+				//后台新闻博客列表，删除指定的新闻
+
 				/**
 				 * 根据id删除新闻博客
 				 * @param req
 				 * @param resp
 				 */
+
 				@RequestMapping({ "/deleteNewsBoke" })
 				public void DeleteNewsBoke(HttpServletRequest req,HttpServletResponse resp){
 					JSONObject json = new JSONObject();
@@ -1504,7 +1573,11 @@ public class ProjectInfoController {
 							e.printStackTrace();
 					}
 				}
+
+	//后台编辑开发商信息
+
 	//更新开发商信息
+
 	@RequestMapping({ "/EditDeveloperInfo" })
 	public void UpdateDeveloperInfo(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1534,7 +1607,7 @@ public class ProjectInfoController {
 				e.printStackTrace();
 		}
 	}
-
+	//ckeditor控件里的上传图片的处理action
 	@RequestMapping(value = "/ckimageupload",produces = {"application/html;charset=UTF-8"})
     public void handleFormUpload(
             @RequestParam("upload") MultipartFile file,HttpServletRequest request, HttpServletResponse resp) {
@@ -1579,6 +1652,7 @@ public class ProjectInfoController {
 			e.printStackTrace();
 		}
     }
+	//处理后台上传图片的action
 	@RequestMapping(value = "/imageupload")
     public void handleFormUpload(
             @RequestParam("file") MultipartFile file, HttpServletResponse resp) {

@@ -89,7 +89,7 @@ public class ZhiYeZhiDaoController {
 			newsList = zhiYeDao.selectNewsBoke();  //根据时间排序，查找新闻博客列表
 		}
 		
-		List<ZhiYeZhiDao> zhiYeList=zhiYeDao.selectZhiYe();   //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
+		List<ZhiYeZhiDao> zhiYeList=zhiYeDao.selectZhiYe();   //获取置业指导list
 		newsList1 = zhiYeDao.selectNewsBoke();
 		int total = newsList.size();
 		int pageCount = total%PAGE_SIZE == 0 ? total/PAGE_SIZE: total/PAGE_SIZE+1;
@@ -109,26 +109,26 @@ public class ZhiYeZhiDaoController {
 		}
 		List<String> fenleiList = zhiYeDao.newsBokeFenlei();
 		System.out.println(pageCount);
-		//Collections.shuffle(zhiYeList);   //闅忔満鎺掑簭
-		req.setAttribute("resultList",zhiYeList);//缃笟鎸囧  鎵�湁璁板綍
-		req.setAttribute("lastestList",lastestList);//缃笟鎸囧  鏈�柊
-		req.setAttribute("newsList",newsList);//鏂伴椈鍗氬鎵�湁
-		req.setAttribute("newslastestList",newslastestList);//鏂伴椈鍗氬  鏈�柊
+		//Collections.shuffle(zhiYeList);   
+		req.setAttribute("resultList",zhiYeList);//
+		req.setAttribute("lastestList",lastestList);//
+		req.setAttribute("newsList",newsList);//
+		req.setAttribute("newslastestList",newslastestList);//
 		req.setAttribute("fenleiList",fenleiList);
 		req.setAttribute("total",total);
 		req.setAttribute("pageCount",pageCount);
 		
 		return "/BlogList.jsp";
 	}
-	
+	//新闻列表分页控制
 	@RequestMapping({"/NewsBokeFenYe"})
 	public void NewsBokeFenYe(HttpServletRequest req, HttpServletResponse resp){
-		String pageIndex = req.getParameter("pageIndex");   //閿熸枻鎷峰墠椤甸敓鏂ゆ嫹
+		String pageIndex = req.getParameter("pageIndex");   //
 		int pageNum  = pageIndex==null? 0 :Integer.parseInt(pageIndex);
 		List<NewsBoke> newsBokeList = new ArrayList(); 
 		String fenlei = req.getParameter("type");
 		if(fenlei==null||"".equals(fenlei)||fenlei.equals("请选择一个类别")){
-			newsBokeList = zhiYeDao.selectNewsBoke();  //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
+			newsBokeList = zhiYeDao.selectNewsBoke();  //
 		}
 		else{
 			newsBokeList = zhiYeDao.selectNewsBokeByFenlei(fenlei);
@@ -199,15 +199,15 @@ public class ZhiYeZhiDaoController {
 	
 	
 	
-	//閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熷彨鎲嬫嫹閿熸枻鎷风ず
+	//置业指导分页ajax
 			@RequestMapping({"/ZhiYeFenYe"})
 			public void ZhiYeFenYe(HttpServletRequest req, HttpServletResponse resp){
-				String pageIndex = req.getParameter("pageIndex");   //閿熸枻鎷峰墠椤甸敓鏂ゆ嫹
+				String pageIndex = req.getParameter("pageIndex");   //
 				int pageNum  = pageIndex==null? 0 :Integer.parseInt(pageIndex);
 				List<ZhiYeZhiDao> zhiYeList = new ArrayList(); 
 				String fenlei = req.getParameter("type");
 				if(fenlei==null||"".equals(fenlei)||fenlei.equals("请选择一个类别")){
-					zhiYeList = zhiYeDao.selectZhiYe();   //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
+					zhiYeList = zhiYeDao.selectZhiYe();   //
 				}
 				else{
 					zhiYeList = zhiYeDao.selectZhiYeByFenlei(fenlei);
@@ -270,7 +270,7 @@ public class ZhiYeZhiDaoController {
 				}
 			}
 			
-			
+			//新闻详情和职业指导详情页面显示分类列表list的时候分页ajax
 			@RequestMapping({"/DetailFenYe"})
 			public void DetailFenYe(HttpServletRequest req, HttpServletResponse resp){
 				String pageIndex = req.getParameter("pageIndex");   //閿熸枻鎷峰墠椤甸敓鏂ゆ嫹
@@ -283,19 +283,19 @@ public class ZhiYeZhiDaoController {
 				
 				if(fenlei==null||"".equals(fenlei)||fenlei.equals("请选择一个类别")){
 					if(leixing.equals("0")){
-						zhiYeList = zhiYeDao.selectZhiYe();   //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
+						zhiYeList = zhiYeDao.selectZhiYe();   
 					}
 					else{
-						newsBokeList = zhiYeDao.selectNewsBoke();  //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
+						newsBokeList = zhiYeDao.selectNewsBoke();  //
 					}
 					
 				}
 				else{
 					if(leixing.equals("0")){
-						zhiYeList = zhiYeDao.selectZhiYeByFenlei(fenlei);   //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
+						zhiYeList = zhiYeDao.selectZhiYeByFenlei(fenlei);   //
 					}
 					else{
-						newsBokeList = zhiYeDao.selectNewsBokeByFenlei(fenlei);  //寰楀埌鎵�湁鐨勪俊鎭紝鎸夋椂闂存帓搴�
+						newsBokeList = zhiYeDao.selectNewsBokeByFenlei(fenlei);  //
 					}
 					
 				}
@@ -389,7 +389,7 @@ public class ZhiYeZhiDaoController {
 				}
 			}
 			
-			
+			//特殊字符处理filter
 			public String filter(String text){
 				String theString = text.replace(">", "&gt;");  
 		        theString = theString.replace("<", "&lt;");  
@@ -407,7 +407,7 @@ public class ZhiYeZhiDaoController {
 			
 			
 			
-			
+			//返回json公用写方法
 			public void writeJson(String json, HttpServletResponse response)throws Exception{
 			    response.setContentType("text/html");
 			    response.setCharacterEncoding("UTF-8");

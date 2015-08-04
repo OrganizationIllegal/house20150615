@@ -59,13 +59,13 @@ public class BingMapController {
 	@RequestMapping({"/MapCenterInput"})
 	public String mapCenterInput(HttpServletRequest req,HttpServletResponse resp){
 		List<String> list1= new ArrayList<String>();
-		List<String> areaNameSet=bingMapDao.getAreaName();
+		List<String> areaNameSet=bingMapDao.getAreaName1();
 		for(String i:areaNameSet){  
 	        if(!list1.contains(i)){  
 	        	list1.add(i);  
 	        }  
 	    }  
-		List<String> cityNameSet=bingMapDao.getCityName();
+		List<String> cityNameSet=bingMapDao.getCityName1();
 		for(String j:cityNameSet){  
 	        if(!list1.contains(j)){  
 	        	list1.add(j);  

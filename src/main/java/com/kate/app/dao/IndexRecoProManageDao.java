@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.alibaba.fastjson.JSONArray;
 @Repository 
 public class IndexRecoProManageDao extends BaseDao{
+	//根据项目编号查找推荐项目
 	 public List<String> getRecos(){
 		 List<String> recos=new ArrayList<String>();
 		 Statement stmt = null;
@@ -51,7 +52,7 @@ public class IndexRecoProManageDao extends BaseDao{
 	        }
 			return recos;
 		} 
-	
+	 //更新首页推荐项目编号
 	 public int setRecos(List<String> recos){
 		 int result=0;
 		 PreparedStatement stmt = null;

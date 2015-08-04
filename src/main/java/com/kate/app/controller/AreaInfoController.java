@@ -60,7 +60,7 @@ public class AreaInfoController extends BaseDao {
 	@Autowired
 	private AjaxDao ajaxDao;
 	
-	
+	//以下带before的list是后台编辑之前保存的区域的关联表的list数据，为编辑完之后和返回的区域相关list数据做对比，把删除现有的list的item在dao层删除。
 	//区域中位数房价   
 	private List<MiddlePrice2> middlepricebackendlistbefore;
 	//区域房价中位数走势
@@ -80,12 +80,16 @@ public class AreaInfoController extends BaseDao {
 	//新闻报道
 	private List<NewsZhiye> newszhiyelistbefore;
 	
+
+			//弃用的action
+
 	/**
 	 * 根据id删除项目
 	 * @param req
 	 * @param resp
 	 * @throws Exception
 	 */
+
 			@RequestMapping({ "/AreaDelete" })
 			public void deleteArea(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 				int id = Integer.parseInt(req.getParameter("id"));
@@ -111,12 +115,16 @@ public class AreaInfoController extends BaseDao {
 					e.printStackTrace();
 				}
 			}
+
+			//后台区域编辑页面action
+
  /**
   * 根据区域id得到区域信息
   * @param req
   * @param resp
   * @return
   */
+
 	@RequestMapping({"/AreaEdit"})
 	public String areaEidt(HttpServletRequest req,HttpServletResponse resp){
 		String id=req.getParameter("id");
@@ -197,7 +205,7 @@ public class AreaInfoController extends BaseDao {
 	}
 	
 	
-	//ajax 鑾峰彇鎸囧畾id鍊煎拰type绫诲瀷鐨勭疆涓氭寚瀵兼垨鑰呮柊闂诲崥瀹㈢殑淇℃伅
+	//ajax 后台区域编辑推荐新闻时选择推荐新闻后，ajax查询新闻的详细信息给后台前端显示在list列表里。
 	@RequestMapping({ "/getnewsinfo" })    
 	public void getnewsinfo(HttpServletRequest req, HttpServletResponse resp){
 		String id=req.getParameter("id");
@@ -220,7 +228,7 @@ public class AreaInfoController extends BaseDao {
 			e.printStackTrace();
 		}
 	}
-	//ajax 鑾峰彇鎸囧畾id鍊肩殑缁忔祹浜轰俊鎭�
+	//ajax 后台区域编辑推荐经纪人时选择经纪人后，ajax查询详细的经纪人信息返回给后台页面前端显示在list列表里
 	@RequestMapping({ "/getjingjireninfo" })    
 	public void getjingjireninfo(HttpServletRequest req, HttpServletResponse resp){
 		String id=req.getParameter("id");
@@ -232,7 +240,7 @@ public class AreaInfoController extends BaseDao {
 			e.printStackTrace();
 		}
 	}
-	//ajax 鑾峰彇鎸囧畾id鍊肩殑椤圭洰淇℃伅
+	//ajax 后台区域编辑的推荐项目时，选择项目后，ajax查询返回详细的项目信息给后台前端页面在list列表里。
 		@RequestMapping({ "/getprojectinfo" })    
 		public void getprojectinfo(HttpServletRequest req, HttpServletResponse resp){
 			String id=req.getParameter("id");
@@ -244,12 +252,16 @@ public class AreaInfoController extends BaseDao {
 				e.printStackTrace();
 			}
 		}
+
+	//后台区域录入的action
+
 	/**
 	 * 区域录入
 	 * @param req
 	 * @param resp
 	 * @return
 	 */
+
 	@RequestMapping({"/AreaInput"})
 	public String areaInput(HttpServletRequest req,HttpServletResponse resp){
 		getBrokerName(req,resp);//得到经纪人名称
@@ -258,19 +270,19 @@ public class AreaInfoController extends BaseDao {
 		return "/areaLuru.jsp";
 	}
 	
-	//寰楀埌缁忕邯浜虹殑濮撳悕
+	//后台区域录入action
 	@RequestMapping({"/AreaInput/Broker"})
 	public void getBrokerName(HttpServletRequest req,HttpServletResponse resp){
 		List<BrokerInfo> brokerSet=areaInputDao.getBrokers();
 		req.setAttribute("brokerSet", brokerSet);
 	}
-	//寰楀埌椤圭洰鐨勫悕绉�
+	//后台区域录入action
 		@RequestMapping({"/AreaInput/Project"})
 		public void getProjectName(HttpServletRequest req,HttpServletResponse resp){
 			List<HouseProject> projectSet=areaInputDao.getProjectInfos();
 			req.setAttribute("projectSet", projectSet);
 		}
-	//鑾峰緱鏂伴椈鍗氬鍜岃亴涓氭寚瀵肩殑鏂伴椈淇℃伅
+	//后台区域录入action
 		@RequestMapping({"/AreaInput/newslist"})
 		public void getNewsList(HttpServletRequest req,HttpServletResponse resp){
 			List<ZhiYeZhiDao> projectSet=areaInputDao.getZhiyezhidaos();
@@ -278,11 +290,15 @@ public class AreaInfoController extends BaseDao {
 			req.setAttribute("newsbokelist", ConvertJson.list2json(bokelist));
 			req.setAttribute("zhiyelist", ConvertJson.list2json(projectSet));
 		}
+
+	//ajax获取区域列表
+
 	/**
 	 * 区域列表
 	 * @param req
 	 * @param resp
 	 */
+
 	@RequestMapping({ "/AreaInfoList" })    
 	public void selectAreaList(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -299,12 +315,16 @@ public class AreaInfoController extends BaseDao {
 		}
 	}
 	
+
+	//接收新闻博客输入
+
 	/**
 	 * 新闻博客录入
 	 * @param req
 	 * @param resp
 	 * @throws Exception
 	 */
+
 	@RequestMapping({ "/inputNewsBoke" })
 	public void inputNewsBoke(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		String news_num = req.getParameter("news_num");
@@ -332,12 +352,16 @@ public class AreaInfoController extends BaseDao {
 		}
 		
 	}
+
+	//后台新闻录入action
+
 	/**
 	 * 新闻博客录入  页面装载时
 	 * @param req
 	 * @param resp
 	 * @return
 	 */
+
 	@RequestMapping({ "/NewsInput" })
 	public String inputNewsBoke2(HttpServletRequest req, HttpServletResponse resp){
 		List<String> fenleiList = zhiYeDao.newsBokeFenlei();
@@ -668,11 +692,15 @@ public class AreaInfoController extends BaseDao {
 			
 				
 				
+
+				//区域信息添加（接收后台区域录入所有数据）
+
 				/**
 				 * 区域信息添加
 				 * @param req
 				 * @param resp
 				 */
+
 				@RequestMapping({ "/AddAreaInfo" })
 				public void AddBrokerInfo(HttpServletRequest req, HttpServletResponse resp){
 					JSONObject ajson=new JSONObject();
@@ -886,11 +914,15 @@ public class AreaInfoController extends BaseDao {
 					    
 					
 			}
+
+			//区域信息编辑（接收后台区域编辑所有数据）
+
 		    /**
 		     * 更新区域信息
 		     * @param req
 		     * @param resp
 		     */
+
 			@RequestMapping({ "/EditAreaInfo" })
 			public void UpdateBrokerInfo(HttpServletRequest req, HttpServletResponse resp){
 				JSONObject ajson=new JSONObject();
@@ -991,6 +1023,7 @@ public class AreaInfoController extends BaseDao {
 						 middlepriceList.add(e);
 					 }
 				}
+				//区域中位数房价和编辑之前的数据做对比，如果删除了原来的数据，保存删除的数据item，之后传到dao层删除区域中位数房价的数据
 				for (int i=0;i<middlepricebackendlistbefore.size();i++){
 					boolean flag=false;
 					for(int j=0;j<middlepriceList.size();j++){
@@ -1022,6 +1055,7 @@ public class AreaInfoController extends BaseDao {
 						 middletrendList.add(e);
 					 }
 				}
+				//区域中位数走势，和编辑之前的区域中位数走势做对比，如果删除了之前的区域中位数走势item，保存到deleteList里，传到dao层做删除
 				for (int i=0;i<areamiddlelistbefore.size();i++){
 					boolean flag=false;
 					for(int j=0;j<middletrendList.size();j++){
@@ -1053,6 +1087,7 @@ public class AreaInfoController extends BaseDao {
 						 zujintrendlistList.add(e);
 					 }
 				}
+				//区域租金走势，和修改之前的区域租金走势list做对比，如果删除了之前的区域租金item，保存到deleteList里，然后传到dao层做删除。
 				for (int i=0;i<zujinlistbefore.size();i++){
 					boolean flag=false; 
 					for(int j=0;j<zujintrendlistList.size();j++){
@@ -1083,6 +1118,7 @@ public class AreaInfoController extends BaseDao {
 						 huibaotrendlistList.add(e);
 					 }
 				}
+				//区域回报率，和修改之前的区域回报list做对比，如果删除了之前的区域回报item，删除的都保存到deletelist里，然后在dao层做删除。
 				for (int i=0;i<huibaolistbefore.size();i++){
 					boolean flag=false;
 					for(int j=0;j<huibaotrendlistList.size();j++){
@@ -1113,6 +1149,7 @@ public class AreaInfoController extends BaseDao {
 						 tedianlistList.add(e);
 					 }
 				}
+				//区域特点，和修改之前的区域特点做比较，把删除的区域特点item都保存到deleteList里，然后再dao层做删除。
 				for (int i=0;i<tedianlistbefore.size();i++){
 					boolean flag=false;
 					for(int j=0;j<tedianlistList.size();j++){
@@ -1145,6 +1182,7 @@ public class AreaInfoController extends BaseDao {
 					 }
 					
 				}
+				//区域人口，和修改之前的区域人口做比较，把删除的区域人口item都保存到deleteList里，然后在dao层做删除。
 				for (int i=0;i<peoplelistbefore.size();i++){
 					boolean flag=false;
 					for(int j=0;j<peoplelistList.size();j++){
