@@ -103,11 +103,11 @@ public class ProjectInfoController {
 			List<BrokerInfo> brokerSet=areaInputDao.getBrokers();
 			req.setAttribute("brokerSet", brokerSet);
 		}
-<<<<<<< HEAD
+
 	//ajax获取学校信息的List
-=======
+
 	//学校信息列表
->>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
+
 	@RequestMapping({ "/SchoolInfoList" })    
 	public void selectSchoolList(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -123,11 +123,11 @@ public class ProjectInfoController {
 			e.printStackTrace();
 		}
 	}
-<<<<<<< HEAD
+
 	//ajax获取开发上的jsonList
-=======
+
 	//开发商列表
->>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
+
 	@RequestMapping({ "/DeveloperInfoList" })    
 	public void selectDeveloperList(HttpServletRequest req, HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -143,15 +143,15 @@ public class ProjectInfoController {
 			e.printStackTrace();
 		}
 	}
-<<<<<<< HEAD
+
 	//获取新闻列表
-=======
+
 	/**
 	 * 新闻博客列表
 	 * @param req
 	 * @param resp
 	 */
->>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
+
 		@RequestMapping({ "/newsList" })    
 		public void selectnewsList(HttpServletRequest req, HttpServletResponse resp){
 			JSONObject json = new JSONObject();
@@ -167,15 +167,15 @@ public class ProjectInfoController {
 				e.printStackTrace();
 			}
 		}
-<<<<<<< HEAD
+
 		//获取置业指导列表
-=======
+
 	/**
 	 * 置业指导列表
 	 * @param req
 	 * @param resp
 	 */
->>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
+
 				@RequestMapping({ "/zhiyeList" })    
 				public void selectzhiyeList(HttpServletRequest req, HttpServletResponse resp){
 					JSONObject json = new JSONObject();
@@ -191,15 +191,15 @@ public class ProjectInfoController {
 						e.printStackTrace();
 					}
 				}
-<<<<<<< HEAD
+
 				//获取经纪人列表
-=======
+
 				/**
 				 * 经纪人列表
 				 * @param req
 				 * @param resp
 				 */
->>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
+
 				@RequestMapping({ "/brokerList" })    
 				public void selectBrokerList(HttpServletRequest req, HttpServletResponse resp){
 					JSONObject json = new JSONObject();
@@ -1082,15 +1082,15 @@ public class ProjectInfoController {
 		
 	}
 	
-<<<<<<< HEAD
+
 	//后台编辑经纪人信息。
-=======
+
 	/**
 	 * 经纪人编辑
 	 * @param req
 	 * @param resp
 	 */
->>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
+
 		@RequestMapping({ "/EditBrokerInfo" })
 		public void  EditBroker(HttpServletRequest req,HttpServletResponse resp){
 			JSONObject json=new JSONObject();
@@ -1131,11 +1131,11 @@ public class ProjectInfoController {
 					serviceArealistdelete.add(brokerServiceAreaListbefore.get(i));
 				}
 			}
-<<<<<<< HEAD
+
 			//经纪人擅长的类型。
-=======
+
 			//经纪人擅长类型
->>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
+
 			String typelist=req.getParameter("typelist");
 			JSONArray typeArray = JSONArray.parseArray(typelist);
 			List<BrokerType> brokerTypelist=new ArrayList<BrokerType>();
@@ -1158,14 +1158,14 @@ public class ProjectInfoController {
 				    	brokerTypelist.add(e);//用于更新
 				    }
 				}
-<<<<<<< HEAD
+
 			/*if(brokerTypelist.size()==0){
 				brokerTypelistdelete=brokerIntegertypeListbefore;
 			}*/
 			//擅长类型，和修改之前的擅长类型的列表做对比，把删除的擅长类型保存在deletelist，然后再dao层做删除。
-=======
+
 			
->>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
+
 			for (int i=0;i<brokerIntegertypeListbefore.size();i++){
 				boolean flag=false;
 				for(int j=0;j<brokerTypelist.size();j++){
@@ -1206,11 +1206,11 @@ public class ProjectInfoController {
 		}
 		
 	
-<<<<<<< HEAD
+
 	//后台接受添加学校的action
-=======
+
 	//添加学校信息
->>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
+
 	@RequestMapping({ "/AddschoolInfo" })
 	public void InsertSchoolInfo(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1275,11 +1275,11 @@ public class ProjectInfoController {
 			e.printStackTrace();
 		}
 	}
-<<<<<<< HEAD
+
 	//后台编辑学校信息 ，  接收修改后的学校信息的action
-=======
+
 	//更新学校信息
->>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
+
 	@RequestMapping({ "/EditSchoolInfo" })
 	public void updateSchoolInfo(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1345,11 +1345,11 @@ public class ProjectInfoController {
 			e.printStackTrace();
 		}
 	}
-<<<<<<< HEAD
+
 	//后台添加开发商信息的action，接收新的开发商数据
-=======
+
 	//添加开发商信息
->>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
+
 	@RequestMapping({ "/AddDeveloperInfo" })
 	public void InsertDeveloperInfo(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1403,15 +1403,15 @@ public class ProjectInfoController {
 				e.printStackTrace();
 		}
 	}
-<<<<<<< HEAD
+
 	//后台项目列表上架项目
-=======
+
 	/**
 	 * 上架一个项目
 	 * @param req
 	 * @param resp
 	 */
->>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
+
 	@RequestMapping({ "/ShowProject" })
 	public void ShowProject(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1430,15 +1430,15 @@ public class ProjectInfoController {
 				e.printStackTrace();
 		}
 	}
-<<<<<<< HEAD
+
 	//后台项目列表下架项目
-=======
+
 	/**
 	 * 下架一个项目
 	 * @param req
 	 * @param resp
 	 */
->>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
+
 	@RequestMapping({ "/UnShowProject" })
 	public void UnShowProject(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
@@ -1476,11 +1476,11 @@ public class ProjectInfoController {
 				e.printStackTrace();
 		}
 	}
-<<<<<<< HEAD
+
 	//后台开发商列表，删除指定的开发商
-=======
+
 	//根据id删除开发商信息
->>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
+
 		@RequestMapping({ "/deleteDeveloper" })
 		public void DeleteDeveloper(HttpServletRequest req,HttpServletResponse resp){
 			JSONObject json = new JSONObject();
@@ -1518,15 +1518,15 @@ public class ProjectInfoController {
 							e.printStackTrace();
 					}
 				}
-<<<<<<< HEAD
+
 				//后台经纪人列表，删除指定的经纪人
-=======
+
 				/**
 				 * 根据id删除经纪人
 				 * @param req
 				 * @param resp
 				 */
->>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
+
 				@RequestMapping({ "/deleteBroker" })
 				public void DeleteBroker(HttpServletRequest req,HttpServletResponse resp){
 					JSONObject json = new JSONObject();
@@ -1546,15 +1546,15 @@ public class ProjectInfoController {
 							e.printStackTrace();
 					}
 				}
-<<<<<<< HEAD
+
 				//后台新闻博客列表，删除指定的新闻
-=======
+
 				/**
 				 * 根据id删除新闻博客
 				 * @param req
 				 * @param resp
 				 */
->>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
+
 				@RequestMapping({ "/deleteNewsBoke" })
 				public void DeleteNewsBoke(HttpServletRequest req,HttpServletResponse resp){
 					JSONObject json = new JSONObject();
@@ -1573,11 +1573,11 @@ public class ProjectInfoController {
 							e.printStackTrace();
 					}
 				}
-<<<<<<< HEAD
+
 	//后台编辑开发商信息
-=======
+
 	//更新开发商信息
->>>>>>> 1a99db03d4766fd9269dbadb272ea87db4d3e94c
+
 	@RequestMapping({ "/EditDeveloperInfo" })
 	public void UpdateDeveloperInfo(HttpServletRequest req,HttpServletResponse resp){
 		JSONObject json = new JSONObject();
