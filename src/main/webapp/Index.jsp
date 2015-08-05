@@ -206,12 +206,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    <!-- <img  src="images/海房_index_top.jpg" style="width:100%;height:480px;margin:0 auto;min-width:1190px;"> -->
 		    <!-- <div style="background:url(images/海房_index_top.jpg) no-repeat;width: 100%;background-attachment: fixed;
     background-position: center 0;"></div> -->
-    		<div style="width:1190px;height:480px;"></div>
-		    <div style="position:relative;top:-330px;margin:0 auto;width:630px;height:90px;text-align: center;">
+    		<!-- <div style="width:1190px;height:480px;"></div> -->
+		    <div style="position:relative;top:130px;margin:0 auto;width:630px;height:90px;text-align: center;">
 		    <!--  <img  src="images/index/font1.png" style="width:630px;height:90px;"> -->
 		    	<span class="mainfont">聪明海外置业</span>
 		    </div>
-		    <div style="position:relative;top:-315px;width:540px;height:150px;margin:0 auto;"><img  src="images/index/lankuang.png" style="width:535px;height:150px;">
+		    <div style="position:relative;top:160px;width:540px;height:150px;margin:0 auto;"><img  src="images/index/lankuang.png" style="width:535px;height:150px;">
 		    <div style="position:relative;top:-135px;left:30px;width:360px;height:40px;">
 		    <!-- <img src="images/index/font2.png" style="width:330px;height:35px;"> -->
 		    <span style="font-size:19px;padding-left:10px;color:white;vertical-align: top;font-family: Microsoft Yahei;font-weight: bold;/* position: absolute; */">[澳洲]</span>

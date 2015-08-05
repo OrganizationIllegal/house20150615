@@ -62,7 +62,7 @@ if(request.getSession().getAttribute("flag")!=null){
         <tr>
             <th data-formatter="countFormatter"></th>
             <th data-field="id" data-sortable="true" data-visible="false">ID</th>
-            <th data-field="nick_name" data-sortable="true">用户姓名</th>
+            <th data-field="nick_name"  data-sortable="true">用户姓名</th>
             <th data-field="email" data-sortable="true">用户邮箱</th>
             <th data-field="tel" data-sortable="true">用户电话</th>
             <th data-field="role" data-sortable="true">用户角色</th>

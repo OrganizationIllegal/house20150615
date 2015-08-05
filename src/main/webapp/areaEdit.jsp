@@ -920,10 +920,9 @@ body{
 	</div> --%>
 	<div><div class='area_left3'>
 	<span style='display:none;'>${status.index + 1}</span>
-	<span class='area_span'  style='width: 336px;'>${project.project_name}</span>
-	<span class='area_span'>${project.project_area}</span>
-	<span class='area_span'>${project.project_price_qi}</span>
-	<span class='area_span'  style='width: 40px;'>${project.project_type}</span>
+	<span class='area_span'  style='width: 300px;'>${project.project_name}</span>
+	<span class='area_span'  style='width: 150px;'>${project.project_area}</span>
+	<span class='area_span'  style='width: 100px;'>${project.project_type}</span>
 	</div>
 	<div class='area_right3'>
 	<span class='area_span5'><a href='#' class='deleteproject'>删除</a></span>
@@ -1238,7 +1237,7 @@ $(function(){
 			}
 		});
 	$("#middlepricelist").on("click",".deletemiddleprice",function(){
-		middlepricelist.splice($(this).parent().parent().prevAll().length,1);
+		middlepricelist.splice($(this).parent().parent().parent().prevAll().length,1);
 		$(this).parent().parent().parent().empty();
 		middlepricecount--;
 		});
@@ -1418,7 +1417,7 @@ $(function(){
 			}
 		});
 	$("#middletrendlist").on("click",".deletemiddletrend",function(){
-		middletrendlist.splice($(this).parent().parent().prevAll().length,1);
+		middletrendlist.splice($(this).parent().parent().parent().prevAll().length,1);
 		$(this).parent().parent().parent().remove();
 		middletrendcount--;
 		});
@@ -1764,7 +1763,7 @@ $(function(){
 			}
 		});
 	$("#tedianlist").on("click",".deletetedian",function(){
-		tedianlist.splice($(this).parent().parent().prevAll().length,1);
+		tedianlist.splice($(this).parent().parent().parent().prevAll().length,1);
 		$(this).parent().parent().parent().remove();
 		tediancount--;
 		});
@@ -1879,7 +1878,7 @@ $(function(){
 			}
 		});
 	$("#peoplelist").on("click",".deletepeople",function(){
-		peoplelist.splice($(this).parent().parent().prevAll().length,1);
+		peoplelist.splice($(this).parent().parent().parent().prevAll().length,1);
 		$(this).parent().parent().parent().remove();
 		peoplecount--;
 		});
@@ -2009,7 +2008,7 @@ $(function(){
 				  dataType: "json",
 				  success:function (data,textStatus,jqXHR){
 					  projectlist.push(data);
-					  $('#projectlist').append("<div><div class='area_left3'><span style='display:none;'>"+(++projectcount)+"</span><span class='area_span'  style='width: 340px;'>"+projectlist[projectcount-1].project_name+"</span><span class='area_span'>"+projectlist[projectcount-1].project_area+"</span><span class='area_span'>"+projectlist[projectcount-1].project_price_qi+"</span><span class='area_span'  style='width: 40px;'>"+projectlist[projectcount-1].project_type+"</span></div><div class='area_right3'><span class='area_span5'><a href='#' class='deleteproject'>删除</a></span></div></div>");
+					  $('#projectlist').append("<div><div class='area_left3'><span style='display:none;'>"+(++projectcount)+"</span><span class='area_span'  style='width: 300px;'>"+projectlist[projectcount-1].project_name+"</span><span class='area_span' style='width: 150px;'>"+projectlist[projectcount-1].project_area+"</span><span class='area_span'  style='width: 100px;'>"+projectlist[projectcount-1].project_type+"</span></div><div class='area_right3'><span class='area_span5'><a href='#' class='deleteproject'>删除</a></span></div></div>");
 					  }
 				});
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;

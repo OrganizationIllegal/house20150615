@@ -53,9 +53,9 @@ if(request.getSession().getAttribute("flag")!=null){
             <th data-formatter="countFormatter"
                 ></th>
             <th data-field="id" data-sortable="true" data-visible="false">ID</th>
-            <th data-field="project_num"  data-searchable="true">项目编号</th>
-            <th data-field="project_name"  data-searchable="true">项目名称</th>
-            <th data-field="isSeen"  data-formatter="showFormatter" data-events="operateEvents2">是否上架</th> 
+            <th data-field="project_num"  data-sortable="true" data-searchable="true">项目编号</th>
+            <th data-field="project_name"  data-sortable="true" data-searchable="true">项目名称</th>
+            <th data-field="isSeen"  data-sortable="true" data-formatter="showFormatter" data-events="operateEvents2">是否上架</th> 
             <th data-field="operate"
                 data-formatter="operateFormatter"
                 data-events="operateEvents">Item Operate</th>

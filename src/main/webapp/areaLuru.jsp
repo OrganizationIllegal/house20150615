@@ -1844,7 +1844,7 @@ $(function(){
 				  dataType: "json",
 				  success:function (data,textStatus,jqXHR){
 					  projectlist.push(data);
-					  $('#projectlist').append("<div><div class='area_left3'><span style='display:none;'>"+(++projectcount)+"</span><span class='area_span'  style='width: 340px;'>"+projectlist[projectcount-1].project_name+"</span><span class='area_span'>"+projectlist[projectcount-1].project_area+"</span><span class='area_span'>"+projectlist[projectcount-1].project_price_qi+"</span><span class='area_span'  style='width: 40px;'>"+projectlist[projectcount-1].project_type+"</span></div><div class='area_right3'><span class='area_span5'><a href='#' class='deleteproject'>删除</a></span></div></div>");
+					  $('#projectlist').append("<div><div class='area_left3'><span style='display:none;'>"+(++projectcount)+"</span><span class='area_span'  style='width: 300px;'>"+projectlist[projectcount-1].project_name+"</span><span class='area_span' style='width: 150px;'>"+projectlist[projectcount-1].project_area+"</span><span class='area_span'  style='width: 100px;'>"+projectlist[projectcount-1].project_type+"</span></div><div class='area_right3'><span class='area_span5'><a href='#' class='deleteproject'>删除</a></span></div></div>");
 					  }
 				});
 			/* huxing["houseimg"]=filename *//* $('#projectimage').val() */;
