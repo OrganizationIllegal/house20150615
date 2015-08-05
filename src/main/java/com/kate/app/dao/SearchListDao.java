@@ -30,7 +30,7 @@ public class SearchListDao extends BaseDao {
 		PreparedStatement pstmt = null;
 		List<SearchList> searchInfoList=new ArrayList<SearchList>();
 		try {
-			String sql = "select t.id,t.project_type,t.gps,t.project_price,t.project_zhou,t.project_nation,t.project_city,t.project_num,t.project_desc,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi,i.image_name from house_project t left join project_key p on t.project_num=p.project_num  join project_desc_image i on t.project_num=i.project_num   where t.isSeen=1 and i.view_shunxu=1";
+			String sql = "select t.id,t.project_type,t.gps,t.project_price,t.project_zhou,t.project_nation,t.project_city,t.project_num,t.project_desc,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi from house_project t left join project_key p on t.project_num=p.project_num  where t.isSeen=1";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
 		    int id=0;
@@ -72,7 +72,7 @@ public class SearchListDao extends BaseDao {
 		    
 		    while(rs.next()){
 		    	id=rs.getInt("id");
-		    	project_img=rs.getString("image_name");
+		    	//project_img=rs.getString("image_name");
 		    	project_name=rs.getString("project_name");
 		    	project_sales_remain=rs.getInt("project_sales_remain");
 		    	maxPrice=rs.getString("maxprice");
@@ -1035,7 +1035,7 @@ public class SearchListDao extends BaseDao {
 		PreparedStatement pstmt = null;
 		List<HouseProject> houseProjectList=new ArrayList<HouseProject>();
 		try {
-			String sql = "select * from house_project where isSeen=1 and gps!='' and gps like '%,%' and project_name like '%" +city1+ "%' or project_city like '%" +city1+ "%'";
+			String sql = "select * from house_project where isSeen=1 and gps!='' and gps like '%,%' and project_name ='" +city1+ "' or project_city='" +city1+ "'";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
 		    while(rs.next()){

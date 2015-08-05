@@ -64,6 +64,101 @@ public class SchoolNearDao extends BaseDao {
         }
 		return list;
 	}
+	
+	
+	public List<NearSchool> getNearSchoolInfoNew(String proNum){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		List<NearSchool> list=new ArrayList<NearSchool>();
+		try {
+			String sql = "select * from near_school where project_num = ?";
+			 pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, proNum);
+			  rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				NearSchool data = new NearSchool();
+				data.setId(rs.getInt("id"));
+				data.setSchool_name(rs.getString("school_name"));
+				data.setSchool_distance(rs.getInt("school_distance"));
+				
+				list.add(data);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return list;
+	}
+	
+	public String getNearSchoolInfoByType(String schoolName){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		String schoolType="";
+		try {
+			String sql = "select school_type from school_info where school_name = ?";
+			 pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, schoolName);
+			  rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				schoolType = rs.getString("school_type");
+				
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			if(rs != null){   // 关闭记录集   
+		        try{   
+		            rs.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		          }   
+		      if(stmt != null){   // 关闭声明   
+		        try{   
+		            stmt.close() ;   
+		        }catch(SQLException e){   
+		            e.printStackTrace() ;   
+		        }   
+		     } 
+		      if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+
+        }
+		return schoolType;
+	}
 	public List<NearPeiTao> getNearSchoolFacilityInfo(String proNum){
 		Statement stmt = null;
 		ResultSet rs = null;

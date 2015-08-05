@@ -130,7 +130,7 @@ $('#trendTabs a').click(function (e) {
 			            type : 'value',
 			            precision: 3,
 			            splitNumber: 9,
-			            boundaryGap: [0.001, 0.009], 
+			            boundaryGap: [0.001, 0.001], 
 		                splitArea: { show: true } 
 			        }
 			    ],

@@ -32,7 +32,7 @@ public class PeopleInfoService {
 				list.get(i).setColumn3(zx3);			
 			}
 			if(c2.contains("0.")){
-				float f2=Float.parseFloat(c3)*100;
+				float f2=Float.parseFloat(c2)*100;
 				list.get(i).setColumn2(df1.format(f2)+"%");
 			}
 			if(c3.contains("0.")){

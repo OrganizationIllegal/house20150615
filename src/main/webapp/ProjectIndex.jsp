@@ -546,7 +546,7 @@ var e=$('#input2').val();
 					<div class="f-l p_btn_get cp" onclick="pop3()"></div>
 				</div>
 				<!-- <div class="f-r p_btn_return">返现金额：$${project.return_money}</div> -->
-				<div class="f-r p_btn_return">400-810-9685</div>
+				<div class="f-r p_btn_return">400-606-1935</div>
 				<input type="hidden" id="projectNum" value="${proNum}">
 				<div class="f-r" style="height:30px;width:100px;margin-top:20px">
 				<%--  <c:if test="${isCollected=='0'}">
@@ -633,7 +633,7 @@ var e=$('#input2').val();
 				<!-- <img class="f-r p_adv" src="images/ad1.png"></img> -->
 
 				<!-- <img class="f-r p_adv" src="images/index/proinfo.png"></img> -->
-				<img style="height:340px;" class="f-r p_adv" src="<%=application.getInitParameter("imagedir")%>/${ad1}"></img>
+				<a href="http://${ad1href}" target="_blank"><img style="height:340px;" class="f-r p_adv" src="<%=application.getInitParameter("imagedir")%>/${ad1}"></img></a>
 				
 
 			</div>
@@ -1171,8 +1171,8 @@ var e=$('#input2').val();
 					</div>
 					<%-- <img class="f-r p_adv" src="images/ad1.png"></img><%=application.getInitParameter("imagedir")%>/${add1}
 				<img class="f-r p_adv2" src="images/adv.jpg"></img> --%>
-				<img class="f-r p_adv" src="<%=application.getInitParameter("imagedir")%>/${ad2}"></img>
-				<img class="f-r p_adv2" src="<%=application.getInitParameter("imagedir")%>/${ad3}"></img>
+				<a href="http://${ad2href}" target="_blank"><img class="f-r p_adv" src="<%=application.getInitParameter("imagedir")%>/${ad2}"></img></a>
+				<a href="http://${ad3href}" target="_blank"><img class="f-r p_adv2" src="<%=application.getInitParameter("imagedir")%>/${ad3}"></img></a>
 				</c:if>
 				</div>
 						</div>
@@ -1194,9 +1194,9 @@ var e=$('#input2').val();
 					<div id="zonefamily_pie3" style="width:33%;height:100%;float: left;display: block;"></div>
 				</div>
 				<div class="c-fix" style="margin-right:20px;float:rgiht;height:40px">
-					<span class="c-fix f-yahei s-19 fw f-l" style="padding-left: 105px;font-size:17px;    margin-top: 8px;">独立青年</span>
-					<span class=" f-yahei s-19 fw f-l" style="padding-left: 261px;font-size:17px;    margin-top: 8px;">青年家庭</span>
-					<span class=" f-yahei s-19 fw f-l" style="padding-left: 253px;font-size:17px;    margin-top: 8px;">老年家庭</span>
+					<span class="c-fix f-yahei s-19 fw f-l" style="padding-left: 105px;font-size:17px;    margin-top: 8px;">${dataFamily.family_one }</span>
+					<span class=" f-yahei s-19 fw f-l" style="padding-left: 261px;font-size:17px;    margin-top: 8px;">${dataFamily.family_two }</span>
+					<span class=" f-yahei s-19 fw f-l" style="padding-left: 253px;font-size:17px;    margin-top: 8px;">${dataFamily.family_three }</span>
 				</div>
 				<div class="c-fix" style="margin-right:20px;float:rgiht;height:20px">
 					<span class="c-fix f-yahei s-12 fw f-r">数据来源：${family_datasource }&nbsp;&nbsp; 更新日期：${fn:substring(family_date,0,10)}</span>
@@ -1344,7 +1344,7 @@ var e=$('#input2').val();
 					</div>
 					<div style="display:block;width:98%;height:1px;background-color:#333;clear:both"></div>
 					<div style="display:block;width:660px;min-height:20px;float:left;clear:both">
-						<a style="display:block;width:100%;text-align:center;line-height:40px;color:#666;">热线：400-810-9685&nbsp;&nbsp;邮箱：Business@5zfang.com</a>
+						<a style="display:block;width:100%;text-align:center;line-height:40px;color:#666;">热线：400-606-1935&nbsp;&nbsp;邮箱：Business@5zfang.com</a>
 						<a style="display:block;width:100%;text-align:center;line-height:40px;color:#666;">c2014-2015北京胜义行有限公司 . All rights reserved. 京ICP备1234567</a>
 					</div>
 					<div style="display:block;width:150px;float:right;min-height:30px;position:relative;left:-80px;"> 
