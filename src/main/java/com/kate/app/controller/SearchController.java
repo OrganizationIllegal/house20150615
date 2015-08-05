@@ -221,7 +221,8 @@ public class SearchController {
 		req.setAttribute("count", count);
 		req.setAttribute("serviceregionlist", resultListRegion);
 		req.setAttribute("liveregionlist", liveregionlist);
-		req.setAttribute("ad", addao.getad4());
+		req.setAttribute("ad", addao.getad4().get(0));
+		req.setAttribute("adhref", addao.getad4().get(1));
 		return "/serviceTeam.jsp";
 		
 	}

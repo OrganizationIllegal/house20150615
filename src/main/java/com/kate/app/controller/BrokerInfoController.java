@@ -58,7 +58,8 @@ public class BrokerInfoController {
 		List<User> userList=userDao.listUser(username);
 		req.setAttribute("brokerInfoList", brokerInfoList);
 		req.setAttribute("userList", userList);
-		req.setAttribute("ad", addao.getad4());
+		req.setAttribute("ad", addao.getad4().get(0));
+		req.setAttribute("adhref", addao.getad4().get(1));
 		return "/serviceTeam.jsp";
 	}
 	//服务团队分页
