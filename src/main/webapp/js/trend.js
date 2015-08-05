@@ -128,9 +128,9 @@ $('#trendTabs a').click(function (e) {
 			    yAxis : [
 			        {
 			            type : 'value',
-			            precision: 2,
+			            precision: 3,
 			            splitNumber: 9,
-			            boundaryGap: [0.01, 0.01], 
+			            boundaryGap: [0.001, 0.009], 
 		                splitArea: { show: true } 
 			        }
 			    ],

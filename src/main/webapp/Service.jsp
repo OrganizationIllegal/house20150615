@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <body style="font-family:Microsoft YaHei;background-color:rgb(232, 233, 234);">
 	<jsp:include page="head4index.jsp" />
-<div style="width:1190px;height:1000px;padding:20px 50px;margin:0px auto;background-color:white;">
+<div style="width:1190px;height:auto;padding:20px 50px;margin:0px auto;background-color:white;overflow:hidden;">
 <div style="width:1060px;height:200px;padding:15px;background-color:rgba(245, 244, 244, 1);margin:0px auto;">
 <div style="width:168px;height:168px;-border:5px solid white;float:left;"><img alt="经纪人图片" src="<%=application.getInitParameter("imagedir")%>/${brokerInfo.broker_img}" style="width:168px;height:168px;"></div>
 <div style="width:500px;height:110px;float:left;margin-left:20px;margin-top:40px;">
@@ -154,9 +154,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div style="width:470px;-height:160px;margin-left:250px;margin-top:40px;">
 	<div style="font-size:20px;font-weight:bold;float:left;margin-top:0px;">自我描述</div>
 	<img alt="jiantou" src="images/service/pic2.png" style="float:left;margin-top:5px;">
-	<div style="font-size:15px;float:left;margin-top:20px;">${brokerInfo.introduction}</div>
+	<div style="font-size:15px;float:left;margin-top:20px;width:470px;">${brokerInfo.introduction}</div>
 </div>
-<div style="width:240px;height:375px; float:right; margin-top:-160px; margin-right:15px;">
+<div style="width:240px;height:375px; float:right; margin-top:-235px; margin-right:15px;">
 	<div style="width:240px;height:100px;background-color:rgba(88, 79, 63, 1);text-align:center;font-size:18px;color:white;">
 	<div style="padding-top:30px;">让我们推荐一个最适合</div>
 	<div>您的房产经纪</div>
