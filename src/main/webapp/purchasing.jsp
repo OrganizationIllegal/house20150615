@@ -293,7 +293,7 @@ function reLoad(){
         	prev:'<上一页',
         	page:1
 	    }).on("page", function(event, num){
-	    
+	    	 var type = $('#type').val();
 	         $.ajax({   
                         type: "POST",  
                         dataType: "json",  

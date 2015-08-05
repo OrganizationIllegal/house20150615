@@ -130,6 +130,7 @@ public class ZhiYeZhiDaoController {
 	//新闻列表分页控制
 	@RequestMapping({"/NewsBokeFenYe"})
 	public void NewsBokeFenYe(HttpServletRequest req, HttpServletResponse resp){
+
 		String pageIndex = req.getParameter("pageIndex");   //
 		int pageNum  = pageIndex==null? 0 :Integer.parseInt(pageIndex);
 		List<NewsBoke> newsBokeList = new ArrayList(); 

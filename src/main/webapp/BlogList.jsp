@@ -284,7 +284,7 @@ if(request.getSession().getAttribute("flag")!=null){
    <script type="text/javascript">
    var item = <%=flag%>
 	    // init bootpag
-	    var type = $('#type').val();
+	    
 	    var category="";
    		$(function(){
    			
@@ -331,13 +331,14 @@ if(request.getSession().getAttribute("flag")!=null){
 	    });
 	    
 	    $('#page-selection').bootpag({
+	    	
 	        total: "${pageCount}",
 	        next:'下一页',
         	prev:'上一页',
         	/* maxVisible: 0, */
         	leaps: true  
 	    }).on("page", function(event, num){
-	    
+	    	var type = $('#type').val();
 	         $.ajax({   
                         type: "POST",  
                         dataType: "json",  
@@ -345,7 +346,9 @@ if(request.getSession().getAttribute("flag")!=null){
                         data: { pageIndex : num, type:type},
                         //data: "pageIndex=" + (pageIndex) + "&pageSize=" + pageSize,          //提交两个参数：pageIndex(页面索引)，pageSize(显示条数)                   
                         success: function(data) {
+                        	alert("feffqwefwe")
 	                        count = data.total;
+	                        alert(count+"ffff")
 	                        $("#leftpanel").text(data.start+1+"-"+data.end+"的"+data.total+"篇文章");
 	                 		var html = getHtml(data.List);
 	                 		$("#mainlist").html(html);
@@ -357,7 +360,10 @@ if(request.getSession().getAttribute("flag")!=null){
 	            					}
 	            				});
 	            			
-                     }
+                     },
+                        error:function(data){
+                        	alert("fewqeeeeeeeeeeee")
+                        }
                         
                   }); 
 	         location.hash="#";  

@@ -70,6 +70,7 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 	public void logout(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		JSONObject json = new JSONObject();
 		HttpSession session = req.getSession();
+		session.setMaxInactiveInterval(60 * 60);
 		String url = req.getParameter("url");
 		session.invalidate();     //session失效
 		
@@ -159,6 +160,7 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 	@RequestMapping({ "/Register" })
 	public String register(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		HttpSession session = req.getSession();
+		session.setMaxInactiveInterval(60 * 60);
 		int flag1=0;
 		int role = 1;
 		int flag = 1;
@@ -218,6 +220,7 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 	@RequestMapping({ "/Register2" })
 	public void register2(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		HttpSession session = req.getSession();  //逻辑同Register
+		session.setMaxInactiveInterval(60 * 60);
 		int flag1=-1;
 		int flag=0;
 		int role = 1;
@@ -279,6 +282,7 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 	@RequestMapping({ "/login" }) 
 	public String login(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		HttpSession session = req.getSession();     //获得session
+		session.setMaxInactiveInterval(60 * 60);
 		//String username1 = (String)session.getAttribute("username");
 		//session.getAttributeNames();
 		//String name = HttpSession.getAttribute(username);
@@ -357,6 +361,7 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 	@RequestMapping({ "/loginPassChange" })
 	public String loginPassChange(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		HttpSession session = req.getSession();
+		session.setMaxInactiveInterval(60 * 60);
 		//String username1 = (String)session.getAttribute("username");
 		//session.getAttributeNames();
 		//String name = HttpSession.getAttribute(username);
