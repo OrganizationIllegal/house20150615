@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kate.app.dao.AjaxDao;
+import com.kate.app.dao.HouseProjectDao;
 import com.kate.app.dao.ProjectInputDao;
 import com.kate.app.dao.SearchListDao;
 import com.kate.app.dao.UserDao;
@@ -33,6 +34,9 @@ public class SearchListController {
 	private UserDao userDao;
 	@Autowired
 	private ProjectInputDao projectInputDao;
+	@Autowired
+	private HouseProjectDao houseProjectDao;
+	
 	
 	/**
 	 * 项目列表页
@@ -211,7 +215,21 @@ public class SearchListController {
 			int pageSize  = pageSize_str==null? 0 :Integer.parseInt(pageSize_str);
 			
 			List<SearchList> searchList=searchListDao.listSearchList();
-			
+			for(SearchList item : searchList){
+				if(item!=null){
+					String image1 = "";
+					String proNum = item.getProject_num();
+					if(proNum!=null && !"".equals(proNum)){
+						List<ProjectDescImage> imageList2 = houseProjectDao.HouseProjectImageList(proNum);
+						
+						if(imageList2!=null && imageList2.size()>0){
+							image1 = imageList2.get(0).getName();
+						}
+					}
+					item.setProject_img(image1);
+				}
+				
+			}
 			int total = searchList.size();
 			int pageEnd = pageNum * pageSize;
 			int end = pageEnd < total ? pageEnd : total;

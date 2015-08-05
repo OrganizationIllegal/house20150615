@@ -850,7 +850,7 @@ var input_suggest = function(){
 };
 
 
-var input_suggest_recommend = function(){
+/* var input_suggest_recommend = function(){
 	value = $('#searchTerritory').val();
     $.ajax({
         type:"get",
@@ -890,7 +890,7 @@ var input_suggest_recommend = function(){
                     } */
                     //var txt=$.trim(_text);  
                     //alert(txt.indexOf(value));
-                   if(_text.indexOf(value)==0){
+                   /* if(_text.indexOf(value)==0){
                 	   
                         _text = _text.substring(value.length,_text.length);
                         _html += value+"<strong>"+_text+"</strong>";
@@ -899,7 +899,7 @@ var input_suggest_recommend = function(){
                        _html += "<strong>"+_text.substring(0,_text.indexOf(value))+"</strong>"+tempText;
                    } */
                    
-                   else{
+                  /*  else{
                         _html += _text;
                    }
                     _html += "</li>"; 
@@ -911,9 +911,9 @@ var input_suggest_recommend = function(){
                 
 					$(this).on('click',function(event){
 						var info = $(this).text();
-						$('#searchTerritory').val(info);
+						$('#searchTerritory').val(info); */
 						//window.open("/IndexSearch?searchcity="+encodeURIComponent($(this).text()),"_blank");
-					});
+				/* 	});
                 }); 
                 $("#_suggestion").show();
                
@@ -926,7 +926,7 @@ var input_suggest_recommend = function(){
         },
         error:function(){}
     });
-};
+}; */
 
 function stopEvent(evt){
     if(evt.preventDefault){
