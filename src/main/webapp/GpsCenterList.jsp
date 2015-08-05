@@ -52,10 +52,10 @@ if(request.getSession().getAttribute("flag")!=null){
         <thead>
         <tr>
             <th data-formatter="countFormatter"></th>
-            <th data-field="id" data-visible="false">ID</th>
-            <th data-field="name" >名称</th>
-            <th data-field="type" >类型</th>
-            <th data-field="gps" >gps</th>
+            <th data-field="id"  data-sortable="true" data-visible="false">ID</th>
+            <th data-field="name" data-sortable="true">名称</th>
+            <th data-field="type" data-sortable="true" >类型</th>
+            <th data-field="gps" data-sortable="true">gps</th>
             <th data-field="operate"
                 data-formatter="operateFormatter"
                 data-events="operateEvents">Item Operate</th>

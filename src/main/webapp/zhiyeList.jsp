@@ -51,9 +51,9 @@ if(request.getSession().getAttribute("flag")!=null){
         <thead>
         <tr>
             <th data-formatter="countFormatter"></th>
-            <th data-field="id" data-visible="false">ID</th>
-            <th data-field="zhiye_num" >置业指导编号</th>
-             <th data-field="title" >职业指导标题</th>
+            <th data-field="id" data-sortable="true"  data-visible="false">ID</th>
+            <th data-field="zhiye_num" data-sortable="true">置业指导编号</th>
+             <th data-field="title" data-sortable="true" >职业指导标题</th>
             <th data-field="operate"
                 data-formatter="operateFormatter"
                 data-events="operateEvents">Item Operate</th>

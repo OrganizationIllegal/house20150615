@@ -50,8 +50,8 @@ if(request.getSession().getAttribute("flag")!=null){
         <thead>
         <tr>
             <th data-formatter="countFormatter"></th>
-            <th data-field="id" data-visible="false">ID</th>
-            <th data-field="school_name" >学校名称</th>
+            <th data-field="id" data-visible="false" data-sortable="true">ID</th>
+            <th data-field="school_name" data-sortable="true">学校名称</th>
             <th data-field="operate"
                 data-formatter="operateFormatter"
                 data-events="operateEvents">Item Operate</th>

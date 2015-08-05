@@ -52,9 +52,9 @@ if(request.getSession().getAttribute("flag")!=null){
         <thead>
         <tr>
             <th data-formatter="countFormatter"></th>
-            <th data-field="id" data-visible="false">ID</th>
-            <th data-field="developer_num" >开发商编号</th>
-             <th data-field="developer_name" >开发名称</th>
+            <th data-field="id" data-sortable="true"  data-visible="false">ID</th>
+            <th data-field="developer_num" data-sortable="true">开发商编号</th>
+             <th data-field="developer_name" data-sortable="true">开发名称</th>
             <th data-field="operate"
                 data-formatter="operateFormatter"
                 data-events="operateEvents">Item Operate</th>

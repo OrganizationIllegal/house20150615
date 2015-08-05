@@ -55,9 +55,9 @@ if(request.getSession().getAttribute("flag")!=null){
         <thead>
         <tr>
             <th data-formatter="countFormatter"></th>
-            <th data-field="id" data-visible="false">ID</th>
-            <th data-field="broker_num">经纪人编号</th>
-            <th data-field="broker_name">经纪人姓名</th>
+            <th data-field="id" data-sortable="true" data-visible="false">ID</th>
+            <th data-field="broker_num" data-sortable="true">经纪人编号</th>
+            <th data-field="broker_name" data-sortable="true">经纪人姓名</th>
             <th data-field="operate"
                 data-formatter="operateFormatter"
                 data-events="operateEvents">Item Operate</th>

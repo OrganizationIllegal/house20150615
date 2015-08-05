@@ -75,7 +75,6 @@ if(request.getSession().getAttribute("flag")!=null){
            data-page-size="20"
            data-page-number=1
            data-show-export="true"
-          
            >
         <thead>
         <tr>
