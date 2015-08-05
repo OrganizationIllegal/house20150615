@@ -34,14 +34,18 @@ public class AdController {
 	@RequestMapping({"/adEdit" })
 	public String search(HttpServletRequest req,HttpServletResponse resp){
 	
-		String ad1=addao.getad1();
-		String ad2=addao.getad2();
-		String ad3=addao.getad3();
-		String ad4=addao.getad4();
-		req.setAttribute("ad1", ad1);
-		req.setAttribute("ad2", ad2);
-		req.setAttribute("ad3", ad3);
-		req.setAttribute("ad4", ad4);
+		List<String> ad1=addao.getad1();
+		List<String> ad2=addao.getad2();
+		List<String> ad3=addao.getad3();
+		List<String> ad4=addao.getad4();
+		req.setAttribute("ad1", ad1.get(0));
+		req.setAttribute("ad2", ad2.get(0));
+		req.setAttribute("ad3", ad3.get(0));
+		req.setAttribute("ad4", ad4.get(0));
+		req.setAttribute("ad1href", ad1.get(1));
+		req.setAttribute("ad2href", ad2.get(1));
+		req.setAttribute("ad3href", ad3.get(1));
+		req.setAttribute("ad4href", ad4.get(1));
 		return "/admanage.jsp";
 	}
 
@@ -53,17 +57,18 @@ public class AdController {
 		int result=0;
 		String id=req.getParameter("id");
 		String imagename=req.getParameter("imagename");
+		String href=req.getParameter("href");
 		if(id.equals("1")){
-			result=addao.setad1(imagename);
+			result=addao.setad1(imagename,href);
 		}
 		else if(id.equalsIgnoreCase("2")){
-			result=addao.setad2(imagename);
+			result=addao.setad2(imagename,href);
 		}
 		else if(id.equals("3")){
-			result=addao.setad3(imagename);
+			result=addao.setad3(imagename,href);
 		}
 		else if(id.equals("4")){
-			result=addao.setad4(imagename);
+			result=addao.setad4(imagename,href);
 		}
 		json.put("flag", result);		
 		try{

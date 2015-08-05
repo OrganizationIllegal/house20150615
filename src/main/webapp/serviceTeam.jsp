@@ -275,7 +275,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			  <!--   </form> -->
 				</div>
 				  <!-- <img src="/images/book.PNG" style="height:138px;width:380px;margin-top:10px"> -->
-				  <img src="<%=application.getInitParameter("imagedir")%>/${ad}" style="height:138px;width:380px;margin-top:10px"></img>
+				  <a href="http://${adhref}" target="_blank"><img src="<%=application.getInitParameter("imagedir")%>/${ad}" style="height:138px;width:380px;margin-top:10px"></img></a>
 				</div>
 		<!--右侧end -->
 		</div>

@@ -242,12 +242,18 @@ public class MyController {
 		 //通过项目推荐经纪人
 		 getRecommendBroker(req,resp,proNum,area_num);  //推荐经纪人
 		 //获取广告图片名称
-		 ad1=addao.getad1();
-		 ad2=addao.getad2();
-		 ad3=addao.getad3();
+		 ad1=addao.getad1().get(0);
+		 ad2=addao.getad2().get(0);
+		 ad3=addao.getad3().get(0);
+		 String ad1href=addao.getad1().get(1);
+		 String ad2href=addao.getad2().get(1);
+		 String ad3href=addao.getad3().get(1);
 		 req.setAttribute("ad1", ad1);
 		 req.setAttribute("ad2", ad2);
 		 req.setAttribute("ad3", ad3);
+		 req.setAttribute("ad1href", ad1href);
+		 req.setAttribute("ad2href", ad2href);
+		 req.setAttribute("ad3href", ad3href);
 		//通过区域推荐经纪人
 		/* getRecommendBroker(req,resp,area_num);*/
 		 req.setAttribute("area_name", area_name);
@@ -529,7 +535,7 @@ public class MyController {
 			
  		if(middlePrice!=null && !"".equals(middlePrice)){
  			int middleTemp = Integer.parseInt(middlePrice);
- 			middlePrice = "$"+df1.format(middleTemp)+"K";
+ 			middlePrice = "$"+df1.format(middleTemp)+"";
  			/*if(middlePrice.length()>=3){
  				middlePrice = middlePrice.substring(0,middlePrice.length()-3)+"K";
  				data.setMiddle_price(middlePrice);
@@ -783,7 +789,7 @@ public class MyController {
 		for(AreaZhikong areaZhikong:areaZhikongList){
 			String year=areaZhikong.getHeng();
 			//int rate=areaZhikong.getZong()/1000;
-			DecimalFormat df =new DecimalFormat("#####0.0");
+			DecimalFormat df =new DecimalFormat("#####0.000");
 			float rate=areaZhikong.getZong();
 			double rate_double = rate;
 			String rate_str = df.format(rate_double);
