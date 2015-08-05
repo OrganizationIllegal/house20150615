@@ -24,7 +24,7 @@ public class SuggestionDao extends BaseDao {
 		PreparedStatement pstmt = null;
 		List<SuggestionProject> proNameList = new ArrayList<SuggestionProject>();
 		try{
-			String sql = "select * from house_project";
+			String sql = "select * from house_project where isSeen=1";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
 			while(rs.next()){

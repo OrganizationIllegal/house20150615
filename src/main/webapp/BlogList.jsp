@@ -284,6 +284,7 @@ if(request.getSession().getAttribute("flag")!=null){
    <script type="text/javascript">
    var item = <%=flag%>
 	    // init bootpag
+	    var type = $('#type').val();
 	    var category="";
    		$(function(){
    			
@@ -341,7 +342,7 @@ if(request.getSession().getAttribute("flag")!=null){
                         type: "POST",  
                         dataType: "json",  
                         url: '/NewsBokeFenYe',      //提交到一般处理程序请求数据   
-                        data: { pageIndex : num},
+                        data: { pageIndex : num, type:type},
                         //data: "pageIndex=" + (pageIndex) + "&pageSize=" + pageSize,          //提交两个参数：pageIndex(页面索引)，pageSize(显示条数)                   
                         success: function(data) {
 	                        count = data.total;

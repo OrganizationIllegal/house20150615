@@ -1194,9 +1194,9 @@ var e=$('#input2').val();
 					<div id="zonefamily_pie3" style="width:33%;height:100%;float: left;display: block;"></div>
 				</div>
 				<div class="c-fix" style="margin-right:20px;float:rgiht;height:40px">
-					<span class="c-fix f-yahei s-19 fw f-l" style="padding-left: 105px;font-size:17px;    margin-top: 8px;">独立青年</span>
-					<span class=" f-yahei s-19 fw f-l" style="padding-left: 261px;font-size:17px;    margin-top: 8px;">青年家庭</span>
-					<span class=" f-yahei s-19 fw f-l" style="padding-left: 253px;font-size:17px;    margin-top: 8px;">老年家庭</span>
+					<span class="c-fix f-yahei s-19 fw f-l" style="padding-left: 105px;font-size:17px;    margin-top: 8px;">${dataFamily.family_one }</span>
+					<span class=" f-yahei s-19 fw f-l" style="padding-left: 261px;font-size:17px;    margin-top: 8px;">${dataFamily.family_two }</span>
+					<span class=" f-yahei s-19 fw f-l" style="padding-left: 253px;font-size:17px;    margin-top: 8px;">${dataFamily.family_three }</span>
 				</div>
 				<div class="c-fix" style="margin-right:20px;float:rgiht;height:20px">
 					<span class="c-fix f-yahei s-12 fw f-r">数据来源：${family_datasource }&nbsp;&nbsp; 更新日期：${fn:substring(family_date,0,10)}</span>

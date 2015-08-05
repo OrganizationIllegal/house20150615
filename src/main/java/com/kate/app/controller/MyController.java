@@ -861,12 +861,12 @@ public class MyController {
 	@RequestMapping({"/Index/AreaFamily"})
 	public void  getAreaFamily(HttpServletRequest req, HttpServletResponse resp,String area_code){
 		//閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鐤ュ閿熸枻鎷�
-		AreaFamily data = areaFamilyService.getAreaFamily(area_code);
+		AreaFamily dataFamily = areaFamilyService.getAreaFamily(area_code);
 		String family_datasource = "";
 		Timestamp family_date = null;
-		if(data!=null){
-			family_datasource = data.getFamily_datasource();
-			family_date = data.getFamily_date();
+		if(dataFamily!=null){
+			family_datasource = dataFamily.getFamily_datasource();
+			family_date = dataFamily.getFamily_date();
 		}
 		
 		Integer dulirate = 0;
@@ -882,8 +882,8 @@ public class MyController {
 		String youngfamilyVo_str = null;
 		String oldfamilyVo_str = null;
 		DecimalFormat df = new DecimalFormat("0.0%");
-		if(data!=null){
-			 dulirateVo = data.getFamily_one_rate();                    //独立青年
+		if(dataFamily!=null){
+			 dulirateVo = dataFamily.getFamily_one_rate();                    //独立青年
 			 if(dulirateVo == null || "".equals(dulirateVo)){
 				 dulirateVo_str = "0.0%";
 			 }
@@ -893,7 +893,7 @@ public class MyController {
 			 }
 			 
 			 
-			 youngfamilyVo = data.getFamily_two_rate();        //青年家庭
+			 youngfamilyVo = dataFamily.getFamily_two_rate();        //青年家庭
 			 if(youngfamilyVo==null || "".equals(youngfamilyVo)){
 				 youngfamilyVo_str = "0.0%";
 			 }
@@ -904,7 +904,7 @@ public class MyController {
 			 
 			 
 			 
-			 oldfamilyVo = data.getFamily_three_rate();       //老年家庭
+			 oldfamilyVo = dataFamily.getFamily_three_rate();       //老年家庭
 			 if(oldfamilyVo == null || "".equals(oldfamilyVo)){
 				 oldfamilyVo_str = "0.0%";
 			 }
@@ -913,26 +913,8 @@ public class MyController {
 				 oldfamilyVo_str = df.format(oldfamilyVoDo);
 			 }
 			 
-			 
-			 /*String duliqingnian = String.valueOf(dulirateVoDo);
-			 String tempDuLi = "";
-			 if(duliqingnian.length()>2){
-				 tempDuLi = duliqingnian.substring(0,4);
-			 }
-			 else{
-				 tempDuLi = duliqingnian+".0";
-			 }*/
-			 
-			/* dulirateStr=dulirate.toString();
-			 dulirateVo=dulirateStr;*/
-			 //youngfamilyVo = data.getFamily_two_rate();
-			 /*youngfamilystr=youngfamilyrate.toString();
-			 youngfamilyVo=youngfamilystr;*/
-			 //oldfamilyVo = data.getFamily_three_rate();
-			 /*oldfamilystr=oldfamilyrate.toString();
-			 oldfamilyVo=oldfamilystr;*/
 		}
-		
+		req.setAttribute("dataFamily", dataFamily);
 		req.setAttribute("family_datasource", family_datasource);
 		req.setAttribute("family_date", family_date);
 		req.setAttribute("dulirateVo", dulirateVo_str);

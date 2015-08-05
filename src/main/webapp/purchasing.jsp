@@ -246,6 +246,8 @@ function reLoad(){
     </div>
    <script type="text/javascript">
 	    // init bootpag
+	    var type = $('#type').val();
+	    //alert(type)
 	    var category="";
    		$(function(){
   			$('#type').change(function(){ 
@@ -296,7 +298,7 @@ function reLoad(){
                         type: "POST",  
                         dataType: "json",  
                         url: '/ZhiYeFenYe',      //提交到一般处理程序请求数据   
-                        data: { pageIndex : num},
+                        data: { pageIndex : num, type:type},
                         //data: "pageIndex=" + (pageIndex) + "&pageSize=" + pageSize,          //提交两个参数：pageIndex(页面索引)，pageSize(显示条数)                   
                         success: function(data) {
 	                        count = data.total;
