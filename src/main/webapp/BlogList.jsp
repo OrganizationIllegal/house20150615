@@ -10,7 +10,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-   <title>HousePurchasing</title>
+   <title>海外新闻-海房优选-海外房产优选</title> 
+   <meta name="description" content="海外新闻-海房优选-海外房产优选" />
+   <meta name="keywords" content="海外买房,澳洲买房,海外房产投资新工具" />
    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
    <link href="/css/pagination.css" rel="stylesheet">
    <script src="/js/jquery.min.js"></script>
