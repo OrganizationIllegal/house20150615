@@ -90,7 +90,7 @@
      <div class="main_header" style="background-color:white; width:1190px; margin:0 auto; border:0; border-bottom:1px solid rgba(238, 238, 238, 1);">
 			<div class="c-fix f-l main_header_div" id="title" style="left:0; margin-left:0;">
 				<img src="images/LOGO3.png" class="c-fix f-l" style="width:175px;height:55px;margin-top:5px;"></img>
-				<a id="t1" href="/index01" class="f-l f-yahei s-14 main_nav cp fw ">首页</a>
+				<a id="t1" href="/index01" class="f-l f-yahei s-14 main_nav cp fw " style="padding-left:20px;">首页</a>
 				<div>
 				<a id="t2" href="/SearchList" class="f-l f-yahei s-14 main_nav cp fw">房源列表</a>
 				<!-- <div style="position:relative;">

@@ -384,8 +384,8 @@ body{
 		
 			<div class="c-fix f-l div1">
 			
-				<select id="house1" onchange="housetype1(this)" class="c-fix f-l sel_type" style="background:none;border:none;font-family:微软雅黑;padding-left:10px">
-					<option value="0">房屋类型</option>
+				<select id="house1" onchange="housetype1(this)" class="c-fix f-l sel_type" style="background:none;border:none;font-family:微软雅黑;padding-left:25px">
+					<option value="0">类型</option>
 					<option value="1">公寓</option>
 					<option value="2">别墅</option>
 				    <option value="3">联排别墅</option>
