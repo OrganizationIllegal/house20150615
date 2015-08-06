@@ -280,12 +280,12 @@ body{
 <!-- <input type="text" id="zu_one_name" name="zu_one_name" class="area_input"> -->
 <select data-placeholder="请选择..." class="chosen-select" id="zu_one_name" name="zu_one_name" style="width:220px;" tabindex="1">
  	 <option value=""></option>
-  	<option  value="一居室">一居室</option>
+  	 <option  value="一居室">一居室</option>
   	  <option  value="二居室">二居室</option>
   	   <option  value="三居室">三居室</option>
   	    <option  value="四居室">四居室</option>
   	     <option  value="五居室">五居室</option>
-  	      <option  value="六居室">六居室</option>
+  	      <option  value="六居室">六居室</option>  
  </select>
 </span>
 </div>
