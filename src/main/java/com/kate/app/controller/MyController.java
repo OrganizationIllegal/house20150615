@@ -790,7 +790,7 @@ public class MyController {
 			String year=areaZhikong.getHeng();
 			//int rate=areaZhikong.getZong()/1000;
 			DecimalFormat df =new DecimalFormat("#####0.000");
-			float rate=areaZhikong.getZong();
+			float rate=areaZhikong.getZong()*100;
 			double rate_double = rate;
 			String rate_str = df.format(rate_double);
 			
