@@ -89,7 +89,7 @@
 
      <div class="main_header" style="background-color:white; width:1190px; margin:0 auto; border:0; border-bottom:1px solid rgba(238, 238, 238, 1);">
 			<div class="c-fix f-l main_header_div" id="title" style="left:0; margin-left:0;">
-				<img src="images/LOGO2.png" class="c-fix f-l main_logo"></img>
+				<img src="images/LOGO3.png" class="c-fix f-l" style="width:175px;height:55px;margin-top:5px;"></img>
 				<a id="t1" href="/index01" class="f-l f-yahei s-14 main_nav cp fw ">首页</a>
 				<div>
 				<a id="t2" href="/SearchList" class="f-l f-yahei s-14 main_nav cp fw">房源列表</a>
@@ -158,9 +158,15 @@
 
 				
 				
-				<div class="f-r nav_icon2"></div>
+				<!-- <div class="f-r nav_icon2"></div> -->
+				<div style="width:25px;height:25px;float:right;margin:20px;margin-right:10px;">
+				<img src="images/nav_icon11.png" style="width:25px;height:25px;">
+				</div>
 				<span class="f-r s-14 f-arial fw main_phone">400 606 1935</span>
-				<div class="f-r nav_icon1"></div>
+				<!-- <div class="f-r nav_icon1"></div> -->
+				<div style="width:25px;height:25px;float:right;margin:20px;margin-right:10px;">
+				<img src="images/nav_icon22.png" style="width:25px;height:25px;">
+				</div>
 			</div>	
 </div>
 </div>
