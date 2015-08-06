@@ -8,7 +8,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-   <title>HousePurchasing</title>
+	 <c:choose>
+            	<c:when test="${type==0}">
+            	<title>${zhiYeDetail.title}-海房优选-海外房产优选</title> 
+            	<meta name="description" content="${zhiYeDetail.title}-海房优选-海外房产优选" />
+            	</c:when>
+            	<c:otherwise>
+            	<title>${newsBokeDetail.news_title}-海房优选-海外房产优选</title> 
+            	<meta name="description" content="${newsBokeDetail.news_title}-海房优选-海外房产优选" />
+            	</c:otherwise>
+     </c:choose>
+   <meta name="description" content="加入我们-海房优选-海外房产优选" />
+   <meta name="keywords" content="海外买房,澳洲买房,海外房产投资新工具" />
    <link rel="stylesheet" type="text/css" href="css/base.css" />
    <link rel="stylesheet" type="text/css" href="css/main.css" />
     <link href="/css/pagination.css" rel="stylesheet">

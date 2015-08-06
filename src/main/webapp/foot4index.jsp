@@ -14,7 +14,7 @@
 					</div>
 					<div style="display:block;width:98%;height:1px;background-color:#333;clear:both"></div>
 					<div style="display:block;width:660px;min-height:20px;float:left;clear:both">
-						<span style="display:block;width:100%;text-align:center;line-height:40px;color:#666;">热线：400-810-9685&nbsp;&nbsp;邮箱：info@haifangbest.com</span>
+						<span style="display:block;width:100%;text-align:center;line-height:40px;color:#666;">热线：400-606-1935&nbsp;&nbsp;邮箱：info@haifangbest.com</span>
 						<span style="display:block;width:100%;text-align:center;line-height:40px;color:#666;">©2015 北京海房优选科技有限公司.  All right reserved. 京ICP备15039436</span>
 					</div>
 					<div style="display:block;width:150px;float:right;min-height:30px;position:relative;left:-80px;"> 
