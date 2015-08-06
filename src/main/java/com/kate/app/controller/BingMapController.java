@@ -910,8 +910,8 @@ public class BingMapController {
 				obj.put("project_img", data.getProject_img()==null?"":data.getProject_img());
 				obj.put("project_price", data.getProject_price()==null?"":data.getProject_price());
 				obj.put("project_num", data.getProject_num()==null?"":data.getProject_num());
-				obj.put("project_min_price", data.getMinPrice()==null?"":data.getMinPrice());
-				obj.put("project_high_price", data.getMaxPrice()==null?"":data.getMaxPrice());
+				obj.put("project_min_price", data.getProject_min_price()==null?"":df.format(Long.parseLong(data.getProject_min_price())));
+				obj.put("project_high_price", data.getProject_high_price()==null?"":data.getProject_high_price());
 				obj.put("project_zhou", data.getProject_zhou()==null?"":data.getProject_zhou());
 				obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
 				obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
@@ -930,8 +930,8 @@ public class BingMapController {
 				obj.put("project_img", data.getProject_img()==null?"":data.getProject_img());
 				obj.put("project_price", data.getProject_price()==null?"":data.getProject_price());
 				obj.put("project_num", data.getProject_num()==null?"":data.getProject_num());
-				obj.put("project_min_price", data.getMinPrice()==null?"":data.getMinPrice());
-				obj.put("project_high_price", data.getMaxPrice()==null?"":data.getMaxPrice());
+				obj.put("project_min_price", data.getProject_min_price()==null?"":df.format(Long.parseLong(data.getProject_min_price())));
+				obj.put("project_high_price", data.getProject_high_price()==null?"":data.getProject_high_price());
 				obj.put("project_zhou", data.getProject_zhou()==null?"":data.getProject_zhou());
 				obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
 				obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
