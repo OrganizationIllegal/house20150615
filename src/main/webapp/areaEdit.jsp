@@ -349,7 +349,7 @@ body{
   	   <option  value="三居室">三居室</option>
   	    <option  value="四居室">四居室</option>
   	     <option  value="五居室">五居室</option>
-  	      <option  value="六居室">六居室</option> 
+  	      <option  value="六居室">六居室</option>
  </select>
 </span>
 </div>
@@ -383,7 +383,7 @@ body{
   	   <option  value="三居室">三居室</option>
   	    <option  value="四居室">四居室</option>
   	     <option  value="五居室">五居室</option>
-  	      <option  value="六居室">六居室</option>
+  	      <option  value="六居室">六居室</option> 
  </select>
 </span>
 </div>
@@ -400,7 +400,7 @@ body{
   	   <option  value="三居室">三居室</option>
   	    <option  value="四居室">四居室</option>
   	     <option  value="五居室">五居室</option>
-  	      <option  value="六居室">六居室</option> 
+  	      <option  value="六居室">六居室</option>
  </select>
 </span>
 </div>
@@ -434,7 +434,7 @@ body{
   	   <option  value="三居室">三居室</option>
   	    <option  value="四居室">四居室</option>
   	     <option  value="五居室">五居室</option>
-  	      <option  value="六居室">六居室</option> 
+  	      <option  value="六居室">六居室</option>
  </select>
 </span>
 </div>
