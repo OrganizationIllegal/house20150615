@@ -1266,8 +1266,8 @@ var e=$('#input2').val();
 				
 				
 					<div class="c-fix f-l p_left3">
-						<a class="c-fix f-l p_ask f-yahei fw">你是否需要房产经纪人</a>
-						<a class="f-l p_ask fw f-yahei" style="font-size:65px;height:70px;line-height:70px;">?</a>
+						<span class="c-fix f-l p_ask f-yahei fw">你是否需要房产经纪人</span>
+						<sapn class="f-l p_ask fw f-yahei" style="font-size:65px;height:70px;line-height:70px;">?</span>
 					</div>
 					<div class="f-r p_right2">
 					<c:forEach var="item" items="${recommendBroker}" varStatus="stat">
