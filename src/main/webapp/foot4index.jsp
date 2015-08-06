@@ -5,12 +5,12 @@
 				<div style="display:block;width:810px;float:left;min-height:40px;margin-top:30px;">
 					<img src="images/LOGO2.png" style="display:block;width:200px;float:left"></img>
 					<div style="display:block;height:50px;float:left">
-						<a style="display:block;width:110px;height:50px;line-height:50px;text-align:center;color:#666;font-size:12px;cursor:pointer;float:left" href="/AboutUs.jsp">关于我们</a>
+						<a style="display:block;-width:110px;margin-left:50px;margin-right:50px;height:50px;line-height:50px;text-align:center;color:#666;font-size:12px;cursor:pointer;float:left" href="/AboutUs.jsp">关于我们</a>
 						<!-- <a style="display:block;width:110px;height:50px;line-height:50px;text-align:center;color:#666;font-size:12px;cursor:pointer;float:left" href="/business.jsp">商务合作</a> -->
-						 <a style="display:block;width:110px;height:50px;line-height:50px;text-align:center;color:#666;font-size:12px;cursor:pointer;float:left" href="/Business">商务合作</a>
-						<a style="display:block;width:110px;height:50px;line-height:50px;text-align:center;color:#666;font-size:12px;cursor:pointer;float:left" href="/ServiceProtocol.jsp">服务协议</a>
-						<a style="display:block;width:110px;height:50px;line-height:50px;text-align:center;color:#666;font-size:12px;cursor:pointer;float:left" href="/PrivacyPolicy.jsp">使用条款&隐私政策</a>
-						<a style="display:block;width:110px;height:50px;line-height:50px;text-align:center;color:#666;font-size:12px;cursor:pointer;float:left" href="/Joinus.jsp">加入我们</a>
+						 <a style="display:block;-width:110px;margin-right:50px;height:50px;line-height:50px;text-align:center;color:#666;font-size:12px;cursor:pointer;float:left" href="/Business">商务合作</a>
+						<a style="display:block;-width:110px;margin-right:50px;height:50px;line-height:50px;text-align:center;color:#666;font-size:12px;cursor:pointer;float:left" href="/ServiceProtocol.jsp">服务协议</a>
+						<a style="display:block;-width:110px;margin-right:50px;height:50px;line-height:50px;text-align:center;color:#666;font-size:12px;cursor:pointer;float:left" href="/PrivacyPolicy.jsp">使用条款&隐私政策</a>
+						<a style="display:block;-width:110px;margin-right:50px;height:50px;line-height:50px;text-align:center;color:#666;font-size:12px;cursor:pointer;float:left" href="/Joinus.jsp">加入我们</a>
 					</div>
 					<div style="display:block;width:98%;height:1px;background-color:#333;clear:both"></div>
 					<div style="display:block;width:660px;min-height:20px;float:left;clear:both">
