@@ -888,7 +888,10 @@ $('#houseTaxprice').blur(function() {
 		return false;
 	}
 	});
-
+$('#update_time').datepicker({
+    language: "zh-CN",
+    format: "yyyy-mm-dd"
+});
 $(function(){
 	$.ajaxSetup({  
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
