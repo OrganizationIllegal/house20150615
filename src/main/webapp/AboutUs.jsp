@@ -301,7 +301,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<li><a href="#story"  onclick="tab2()"  style="color:#425a74; text-decoration:none;width: 134px;height:33px;display: inline-block;">我们的故事</a></li>
 			<!-- 	<li><a href="#team"  onclick="tab3()"  style="color:#425a74; text-decoration:none;">我们的团队</a></li> -->
 				<!-- <li><a href="#news"  onclick="tab4()"  style="color:#425a74; text-decoration:none;">新闻报道</a></li> -->
-				<li style="border-right:1px solid #dcdcdc;"><a href="#telus"  onclick="tab5()"  style="color:#425a74; text-decoration:none;
+				<li style="border-right:1px solid #dcdcdc;"><a href="mailto:info@haifangbest.com"  style="color:#425a74; text-decoration:none;
 				width: 134px;height:33px;display: inline-block;">联系方式</a></li>
 			</ul>
 			

@@ -170,44 +170,42 @@ public class BingMapDao extends BaseDao {
 		    	project_key="新开盘";
 		    	keyList.add(project_key);
 		    }
-		    else if(remen.equals("1")){
+		     if(remen.equals("1")){
 		    	project_key="热门项目";
 		    	keyList.add(project_key);
 		    }
-		    else if(xuequ.equals("1")){
+		     if(xuequ.equals("1")){
 		    	project_key="优秀学区";
 		    	keyList.add(project_key);
 		    }
-		    else if(center.equals("1")){
+		     if(center.equals("1")){
 		    	project_key="城市中心";
 		    	keyList.add(project_key);
 		    }
-		    else if(baozu.equals("1")){
+		     if(baozu.equals("1")){
 		    	project_key="包租项目";
 		    	keyList.add(project_key);
 		    }
-		    else if(huaren.equals("1")){
+		     if(huaren.equals("1")){
 		    	project_key="华人区";
 		    	keyList.add(project_key);
 		    }
-		    else if(maidi.equals("1")){
+		     if(maidi.equals("1")){
 		    	project_key="最新项目";
 		    	keyList.add(project_key);
 		    }
-		    else if(daxue.equals("1")){
+		     if(daxue.equals("1")){
 		    	project_key="大学附近";
 		    	keyList.add(project_key);
 		    }
-		    else if(xianfang.equals("1")){
+		     if(xianfang.equals("1")){
 		    	project_key="现房项目";
 		    }
-		    else if(traffic.equals("1")){
+		     if(traffic.equals("1")){
 		    	project_key="轨道交通";
 		    	keyList.add(project_key);
 		    }
-		    else{
-		    	project_key="";
-		    }
+		  
 		   
 		  
 		} catch (Exception e) {
