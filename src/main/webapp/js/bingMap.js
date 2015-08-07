@@ -49,7 +49,8 @@
 	 	 	 		       /* var minprice=items[i].project_min_price;
 	 	 	 		        var maxprice=items[i].project_high_price;*/
 	 	 	 		        var city=items[i].project_city;
-	 	 	 		        var price=items[i].project_price_int_qi;
+	 	 	 		        //var price=items[i].project_price_int_qi;
+	 	 	 		     var price=items[i].project_min_price;
 	 	 	 		        var type=items[i].project_type;
 	 	 	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:-45px;left:-15px;'><div style='color:red;font-size:12px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin2.png' style='width:20px;height:20px;'/></div>"}; 
 	 	 	 		        //生成地图小图钉
@@ -99,7 +100,7 @@
 			    defaultInfobox = new Microsoft.Maps.Infobox(LA, infoboxOptions);
 			    //alert(defaultInfobox.getId())
 			    map.entities.push(defaultInfobox); 
-			    defaultInfobox.setHtmlContent('<div id="infoboxText" style="background-color:White;min-height:100px;width:240px;"><a href="/Index?proNum='+num1+'" target="blank"><img src="'+img1+'" width="110" height="80" style="position:absolute;left:10px;top:10px;"></a><b id="infoboxTitle" style="position:absolute; top:30px; left:125px; width:250px;font-size:13px;font-family:Microsoft YaHei;">起价：$'+price1+'</b><a href="/Index?proNum='+num1+'" target="blank" id="infoboxDescription" style="position:absolute; top:50px; left:125px; width:250px;font-size:13px;font-family:Microsoft YaHei;">项目类型:'+type1+'</a><img src="images/close1.gif" onclick="display()" style="position:absolute;left:210px;cursor:default;"></div>'); 
+			    defaultInfobox.setHtmlContent('<div id="infoboxText" style="background-color:White;min-height:100px;width:240px;"><a href="/Index?proNum='+num1+'" target="blank"><img src="'+img1+'" width="110" height="80" style="position:absolute;left:10px;top:10px;"></a><b id="infoboxTitle" style="position:absolute; top:30px; left:125px; width:250px;font-size:13px;font-family:Microsoft YaHei;">起价：$'+price1+'</b><a href="/Index?proNum='+num1+'" target="blank" id="infoboxDescription" style="position:absolute; top:50px; left:125px; width:250px;font-size:13px;font-family:Microsoft YaHei;">类型:'+type1+'</a><img src="images/close1.gif" onclick="display()" style="position:absolute;left:210px;cursor:default;"></div>'); 
 			    
 		    });
       }
@@ -189,7 +190,8 @@
 		 	 	 		       /* var minprice=items[i].project_min_price;
 		 	 	 		        var maxprice=items[i].project_high_price;*/
 		 	 	 		        var city=items[i].project_city;
-		 	 	 		        var price=items[i].project_price_int_qi;
+		 	 	 		        //var price=items[i].project_price_int_qi;
+		 	 	 		        var price=items[i].project_min_price;
 		 	 	 		        var type=items[i].project_type;
 		 	 	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:-45px;left:-15px;'><div style='color:red;font-size:12px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin2.png' style='width:20px;height:20px;'/></div>"}; 
 		 	 	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
@@ -277,7 +279,8 @@
 	 	 	 		       /* var minprice=items[i].project_min_price;
 	 	 	 		        var maxprice=items[i].project_high_price;*/
 	 	 	 		        var city=items[i].project_city;
-	 	 	 		        var price=items[i].project_price_int_qi;
+	 	 	 		        //var price=items[i].project_price_int_qi;
+	 	 	 		        var price=items[i].project_min_price;
 	 	 	 		        var type=items[i].project_type;
 	 	 	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:-45px;left:-15px;'><div style='color:red;font-size:12px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin2.png' style='width:20px;height:20px;'/></div>"}; 
 	 	 	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
@@ -369,7 +372,8 @@
 			 	 	 		       /* var minprice=items[i].project_min_price;
 			 	 	 		        var maxprice=items[i].project_high_price;*/
 			 	 	 		        var city=items[i].project_city;
-			 	 	 		        var price=items[i].project_price_int_qi;
+			 	 	 		        //var price=items[i].project_price_int_qi;
+			 	 	 		     var price=items[i].project_min_price;
 			 	 	 		        var type=items[i].project_type;
 			 	 	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:-45px;left:-15px;'><div style='color:red;font-size:12px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin2.png' style='width:20px;height:20px;'/></div>"}; 
 			 	 	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
@@ -651,7 +655,8 @@
     		 	 	 		        var minprice=items[i].project_min_price;
     		 	 	 		        var maxprice=items[i].project_high_price;
     		 	 	 		        var city=items[i].project_city;
-    		 	 	 		        var price=items[i].project_price_int_qi;
+    		 	 	 		        //var price=items[i].project_price_int_qi;
+    		 	 	 		     var price=items[i].project_min_price;
     		 	 	 		        var type=items[i].project_type;
     		 	 	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:-45px;left:-15px;'><div style='color:red;font-size:12px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin2.png' style='width:20px;height:20px;'/></div>"}; 
     		 	 	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
@@ -804,7 +809,7 @@
    			    defaultInfobox = new Microsoft.Maps.Infobox(LA, infoboxOptions);
    			    //alert(defaultInfobox.getId())
    			    map.entities.push(defaultInfobox); 
-   			    defaultInfobox.setHtmlContent('<div id="infoboxText" style="background-color:White;min-height:100px;width:230px;"><a href="/Index?proNum='+num1+'" target="blank"><img src="'+img1+'" width="110" height="80" style="position:absolute;left:10px;top:10px;"></a><b id="infoboxTitle" style="position:absolute; top:30px; left:125px; width:250px;font-size:13px;font-family:Microsoft YaHei;">起价：$'+price1+'</b><a href="/Index?proNum='+num1+'" target="blank" id="infoboxDescription" style="position:absolute; top:50px; left:125px; width:250px;font-size:13px;font-family:Microsoft YaHei;">项目类型:'+type1+'</a><img src="images/close1.gif" onclick="display()" style="position:absolute;left:200px;cursor:default;"></div>'); 
+   			    defaultInfobox.setHtmlContent('<div id="infoboxText" style="background-color:White;min-height:100px;width:230px;"><a href="/Index?proNum='+num1+'" target="blank"><img src="'+img1+'" width="110" height="80" style="position:absolute;left:10px;top:10px;"></a><b id="infoboxTitle" style="position:absolute; top:30px; left:125px; width:250px;font-size:13px;font-family:Microsoft YaHei;">起价：$'+price1+'</b><a href="/Index?proNum='+num1+'" target="blank" id="infoboxDescription" style="position:absolute; top:50px; left:125px; width:250px;font-size:13px;font-family:Microsoft YaHei;">类型:'+type1+'</a><img src="images/close1.gif" onclick="display()" style="position:absolute;left:200px;cursor:default;"></div>'); 
    			    
    		    });
          }*/

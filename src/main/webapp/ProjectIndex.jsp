@@ -1195,10 +1195,10 @@ var e=$('#input2').val();
 					<div id="zonefamily_pie2" style="width:33%;height:100%;float: left;display: block;"></div>
 					<div id="zonefamily_pie3" style="width:33%;height:100%;float: left;display: block;"></div>
 				</div>
-				<div class="c-fix" style="margin-right:20px;float:rgiht;height:40px">
-					<span class="c-fix f-yahei s-19 fw f-l" style="padding-left: 105px;font-size:17px;    margin-top: 8px;">${dataFamily.family_one }</span>
-					<span class=" f-yahei s-19 fw f-l" style="padding-left: 261px;font-size:17px;    margin-top: 8px;">${dataFamily.family_two }</span>
-					<span class=" f-yahei s-19 fw f-l" style="padding-left: 253px;font-size:17px;    margin-top: 8px;">${dataFamily.family_three }</span>
+				<div class="c-fix" style="-margin-right:20px;float:rgiht;height:40px;text-align:center;">
+					<span class="c-fix f-yahei s-19 fw f-l" style="margin-left: 45px;font-size:17px;margin-top: 8px;width:190px;">${dataFamily.family_one }</span>
+					<span class=" f-yahei s-19 fw f-l" style="margin-left: 142px;font-size:17px;margin-top: 8px;width:190px;">${dataFamily.family_two }</span>
+					<span class=" f-yahei s-19 fw f-l" style="margin-left: 132px;font-size:17px;margin-top: 8px;width:190px;">${dataFamily.family_three }</span>
 				</div>
 				<div class="c-fix" style="margin-right:20px;float:rgiht;height:20px">
 					<span class="c-fix f-yahei s-12 fw f-r">数据来源：${family_datasource }&nbsp;&nbsp; 更新日期：${fn:substring(family_date,0,10)}</span>
@@ -1266,17 +1266,17 @@ var e=$('#input2').val();
 				
 				
 					<div class="c-fix f-l p_left3">
-						<a class="c-fix f-l p_ask f-yahei fw">你是否需要房产经纪人</a>
-						<a class="f-l p_ask fw f-yahei" style="font-size:65px;height:70px;line-height:70px;">?</a>
+						<span class="c-fix f-l p_ask f-yahei fw">你是否需要房产经纪人</span>
+						<sapn class="f-l p_ask fw f-yahei" style="font-size:65px;height:70px;line-height:70px;">?</span>
 					</div>
 					<div class="f-r p_right2">
 					<c:forEach var="item" items="${recommendBroker}" varStatus="stat">
 						<c:if test="${stat.index<3}">
 							<div class="c-fix f-l agent_node" style="height:156px;"<c:if test="${stat.index!=0 }">style="margin-top:10px;"</c:if>>
 								<%-- <img src="<%=application.getInitParameter("imagedir")%>/${item.broker_img}" height="143" class="c-fix f-l agent_avatar"></img> --%>
-								<a href="Service?brokerId=${item.id}"><img src="<%=application.getInitParameter("imagedir")%>/${item.broker_img}" height="143" class="c-fix f-l agent_avatar"></img></a>
+								<a href="Service?brokerId=${item.id}"><img src="<%=application.getInitParameter("imagedir")%>/${item.broker_img}" class="c-fix f-l agent_avatar" style="width:120px;height:120px;margin-top:17px;"></img></a>
 								<a class="f-l agent_name f-yahei s-16 fw">${item.broker_name }</a>
-								<a class="f-l agent_lab f-yahei s-14" style="margin-top:15px;">从业经验：${item.broker_experience }年</a>
+								<a class="f-l agent_lab f-yahei s-14" style="margin-top:5px;">从业经验：${item.broker_experience }年</a>
 								<a class="f-l agent_lab f-yahei s-14">语言：${item.broker_language }</a>
 								<a class="f-l agent_lab f-yahei s-14">区域：${item.broker_region }</a>
 								<!-- <div class="f-l icon1 cp"></div>
@@ -1284,7 +1284,7 @@ var e=$('#input2').val();
 								<div class="f-l icon3 cp"></div> -->
 								  <span style="height:20px;width:50px;">
                 	                   <c:forEach var="item3" items="${item.leixingInfo }"  varStatus="stat"> 
-                	   	                   <img  src="<%=application.getInitParameter("imagedir")%>/${item3.leixingImg }" style="width:26px;height:20px;margin-left:5px"/>
+                	   	                   <img  src="<%=application.getInitParameter("imagedir")%>/${item3.leixingImg }" style="width:26px;height:20px;margin-left:20px"/>
                 	                   </c:forEach>
                                  </span>
 							</div>

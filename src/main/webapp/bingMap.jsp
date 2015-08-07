@@ -8,7 +8,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-   <title>HouseSale</title>
+   <title>地图找房-海房优选-海外房产优选</title> 
+   <meta name="description" content="地图找房-海房优选-海外房产优选" />
+   <meta name="keywords" content="海外买房,澳洲买房,海外房产投资新工具" />
    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
    <link rel="stylesheet" type="text/css" href="css/base.css" />
@@ -321,8 +323,9 @@ body{
                	html+="<span class='f-r f-yahei s-12 node_val'>"+items[j].return_money+"</span>"; */
                	html+="<span class='c-fix f-l f-yahei s-12 node_title'>起价</span>";
                	html+="<span class='f-r f-yahei s-12 node_val'>$"+items[j].project_price_int_qi+"</span>";
+            	html+="<div class='c-fix'>";
                	for(var i=0; i<items[j].project_key.length;i++){
-               		html+="<div class='c-fix'>";
+               	
                		html+="<span class='f-l f-yahei s-12 node_title'>"+items[j].project_key[i]+"</span>";
                	}
          		html+="</div></div>";
@@ -382,7 +385,9 @@ body{
 		
 			<div class="c-fix f-l div1">
 			
-				<select id="house1" onchange="housetype1(this)" class="c-fix f-l sel_type" style="background:none;border:none;font-family:微软雅黑;padding-left:10px">
+
+				<select id="house1" onchange="housetype1(this)" class="c-fix f-l sel_type" style="background:none;border:none;font-family:微软雅黑;padding-left:25px">
+
 					<option value="0">类型</option>
 					<option value="1">公寓</option>
 					<option value="2">别墅</option>
@@ -450,12 +455,13 @@ body{
 						<span class="c-fix f-l f-yahei s-12 node_title">起价</span>
 						<span class="f-r f-yahei s-12 node_val">$${item.project_price_int_qi}</span>
 						<%-- <span class="c-fix f-l f-yahei s-12 node_title">${item.project_key}</span> --%>
-						 
+						   <div class="c-fix ">
 						 <c:forEach  var="item3" items="${item.project_key}">
-						    <div class="c-fix ">
+						  
 						    <span class=" f-l f-yahei s-12 node_title" style="margin-right:16px;">${item3}</span>
-						    </div>
+						 
 						 </c:forEach>
+						    </div>
 						<!-- <a class="f-r f-yahei s-12 node_val">$${item.project_price_int_qi}</a> -->
 					</div>
 				</div>

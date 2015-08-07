@@ -208,7 +208,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	     <div style="float:right">
                 	         <img  src="/images/area11.png" style="width:17px;height:23px;margin-left:4px"/>
                 	         <c:forEach var="item1" items="${item.areaList }"  varStatus="stat">
-                	         <c:if test="${stat.index<2}">
+                	         <c:if test="${stat.index<3}">
                 	   	        <span style="padding-left:5px">${item1}</span>
                              </c:if>
                 	         </c:forEach> 
