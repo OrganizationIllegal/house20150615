@@ -412,7 +412,9 @@ body{
 		
 			<div class="c-fix f-l div1">
 			
+
 				<select id="house1" onchange="housetype1(this)" class="c-fix f-l sel_type" style="background:none;border:none;font-family:微软雅黑;padding-left:25px">
+
 					<option value="0">类型</option>
 					<option value="1">公寓</option>
 					<option value="2">别墅</option>
@@ -456,8 +458,8 @@ body{
 	                </select>
                 </div>
                 <div class="f-l f-yahei btn_search cp" onclick="addPushpinsearch()">搜索</div>
-				<a class="f-r f-yahei s-14 btn cp hover" style="padding:4px 6px;border:2px solid rgb(245,161,27)" href="/SearchList">列表找房</a>
-				<a class="f-r f-yahei s-14 btn btn_sel cp hover" style="padding:4px 6px"  href="#">地图找房</a>
+				<a class="f-r f-yahei s-14 btn cp hover" style="padding:0px 6px; margin-top:5px; border:2px solid rgb(245,161,27)" href="/SearchList">列表找房</a>
+				<a class="f-r f-yahei s-14 btn btn_sel cp hover" style="padding:0px 6px; margin-top:5px;"  href="#">地图找房</a>
 				
 			</div>
 			<div class="c-fix f-l div3" style="-height:840px;overflow-y:auto;overflow-x:hidden;" id="left">

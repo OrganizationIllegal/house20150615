@@ -1322,7 +1322,7 @@ public class MyController {
 			List<BrokerInfoQuyu> recommendBroker = null;
 			recommendBroker = brokerInfoDao.getRecommendBroke2(project_num);
 			if(recommendBroker == null){
-				recommendBroker = brokerInfoDao.getRecommendBroke2(project_num);
+				recommendBroker = brokerInfoDao.getRecommendBrokeByAreaNum(area_num);
 			}
 			req.setAttribute("recommendBroker", recommendBroker);
 		}

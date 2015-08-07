@@ -766,6 +766,83 @@ public class BrokerInfoDao extends BaseDao {
 			
 		}
 	
+		
+		//根据项目推荐经纪人 add 擅长服务类型
+				public List<BrokerInfoQuyu> getRecommendBrokeByAreaNum(String area_code){
+					Statement stmt = null;
+					ResultSet rs = null;
+					PreparedStatement pstmt = null;
+					List<BrokerInfoQuyu> recommendbrokerList = new ArrayList<BrokerInfoQuyu>();
+					try {
+						String sql = "select * from area_recommend_broker where area_code = ?";
+						pstmt = con.prepareStatement(sql);
+						pstmt.setString(1, area_code);
+						  rs = pstmt.executeQuery();
+					    while(rs.next()){
+					    	String broker1=rs.getString("broker_code1");
+					    	String broker2=rs.getString("broker_code2");
+					    	String broker3=rs.getString("broker_code3");
+					    	if(broker1!=null && !"".equals(broker1)){
+					    		BrokerInfoQuyu brokerInfo1=findBrokerbyId2(broker1);
+					    		List<LeiXing> list = searchListDao.searchSericeListBroker(broker1);
+								if (list!=null && list.size()>0) {
+									brokerInfo1.setLeixingInfo(list);
+									System.out.println(list.size()+brokerInfo1.getBroker_name()+"fffffffffffff");
+								}
+					    		recommendbrokerList.add(brokerInfo1);
+					    	}
+					    	if(broker2!=null && !"".equals(broker2)){
+					    		BrokerInfoQuyu brokerInfo2=findBrokerbyId2(broker2);
+					    		List<LeiXing> list = searchListDao.searchSericeListBroker(broker2);
+								if (list!=null && list.size()>0) {
+									brokerInfo2.setLeixingInfo(list);
+									System.out.println(list.size()+brokerInfo2.getBroker_name()+"fffffffffffff");
+								}
+					    		recommendbrokerList.add(brokerInfo2);
+					    	}
+					    	if(broker3!=null && !"".equals(broker3)){
+					    		BrokerInfoQuyu brokerInfo3=findBrokerbyId2(broker3);
+					    		List<LeiXing> list = searchListDao.searchSericeListBroker(broker3);
+								if (list!=null && list.size()>0) {
+									brokerInfo3.setLeixingInfo(list);
+									System.out.println(list.size()+brokerInfo3.getBroker_name()+"fffffffffffff");
+								}
+					    		recommendbrokerList.add(brokerInfo3);
+					    	}
+					    }
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					finally{
+						if(rs != null){   // 关闭记录集   
+					        try{   
+					            rs.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					          }   
+					      if(stmt != null){   // 关闭声明   
+					        try{   
+					            stmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+					      if(pstmt != null){   // 关闭声明   
+						        try{   
+						            pstmt.close() ;   
+						        }catch(SQLException e){   
+						            e.printStackTrace() ;   
+						        }   
+						     } 
+
+			        }
+					return recommendbrokerList;
+					
+				}
+				
+				
 	//根据区域推荐经纪人
 		public List<BrokerInfo> getRecommendBrokerByArea(String area_code){
 			Statement stmt = null;

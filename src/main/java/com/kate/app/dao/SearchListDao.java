@@ -1035,7 +1035,7 @@ public class SearchListDao extends BaseDao {
 		PreparedStatement pstmt = null;
 		List<HouseProject> houseProjectList=new ArrayList<HouseProject>();
 		try {
-			String sql = "select * from house_project where isSeen=1 and gps!='' and gps like '%,%' and project_name ='" +city1+ "' or project_city='" +city1+ "'";
+			String sql = "select * from house_project where isSeen=1 and gps!='' and gps like '%,%' and project_name ='" +city1+ "' or project_city like '%" +city1+ "%'";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
 		    while(rs.next()){
