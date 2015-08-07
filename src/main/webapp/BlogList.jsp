@@ -120,7 +120,7 @@ if(request.getSession().getAttribute("flag")!=null){
 	<div class="" style="-margin-top:61px;">
        <!-- <div class="row" style="height:36px;background-color:rgb(20,51,82);width:1190px;  margin: 0 auto;">
             <div class="col-md-1"  style="width:142px;float:left;"></div>
-            <div class="col-md-3" style="width:340px;height:100%;line-height:37px;color:white;"><a href="/index01" style="color: #FFE4B5;padding-right: 10px;">首页</a><a href="/BlogList" style="color: white;padding-right: 10px;">新闻博客 </a><a href="/ZhiYeInfo" style="color: #FFE4B5;padding-right: 10px;">置业指导</a></div>
+            <div class="col-md-3" style="width:340px;height:100%;line-height:37px;color:white;"><a href="/index01" style="color: #FFE4B5;padding-right: 10px;">首页</a><a href="/BlogList" style="color: white;padding-right: 10px;">海外新闻 </a><a href="/ZhiYeInfo" style="color: #FFE4B5;padding-right: 10px;">置业百科</a></div>
         </div> -->
         <div  style="height:82px;border:1px solid #FFE4E1;width:100%; margin: 0 auto;background-color: white;margin-top:-10px;position:relative;">
             <div class="" style="width:980px;font-size:24px;line-height:70px;height:100%;font-weight:bold;margin:0 auto;">海外新闻</div>
@@ -184,8 +184,8 @@ if(request.getSession().getAttribute("flag")!=null){
               
                <div class=""> 
               	<div style="padding-bottom: 5px;font-size:13px;font-family:'微软雅黑';">置业<span style="width:283px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;/* margin-left:30px; */"></span></div>
-	               	<div style="padding-bottom: 5px;font-size:13px;font-family:'微软雅黑';padding-top:5px;"><a href="/ZhiYeInfo" style="display:block;">置业指导</a></div>
-	                <div style="font-size:13px;font-family:'微软雅黑';"><a href="/BlogList">新闻博客</a></div>
+	               	<div style="padding-bottom: 5px;font-size:13px;font-family:'微软雅黑';padding-top:5px;"><a href="/ZhiYeInfo" style="display:block;">置业百科</a></div>
+	                <div style="font-size:13px;font-family:'微软雅黑';"><a href="/BlogList">海外新闻</a></div>
               </div>
             </div>
             <div class="" style="padding-left: 10px;padding-top: 30px;font-size:13px;font-family:'微软雅黑';">
@@ -231,7 +231,7 @@ if(request.getSession().getAttribute("flag")!=null){
         	<div class="" style="  padding-top: 41px;padding-left: 9px;font-size:13px;font-family:'微软雅黑';">
               
               <div class=""> 
-              	<div style="padding-bottom: 11px;">置业指导&nbsp;<span style="width: 252px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
+              	<div style="padding-bottom: 11px;">置业百科&nbsp;<span style="width: 252px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
                 <ul class="media-list">
 
                 	 <c:forEach items="${lastestList}" var="item" varStatus="status">
@@ -256,7 +256,7 @@ if(request.getSession().getAttribute("flag")!=null){
             <%-- <div class="" style="  padding-top: 41px;padding-left: 9px;font-size:13px;font-family:'微软雅黑';">
               
               <div class=""> 
-             <div style="padding-bottom: 11px;">置业指导&nbsp;<span style="width: 259px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
+             <div style="padding-bottom: 11px;">置业百科&nbsp;<span style="width: 259px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
                 <ul class="media-list">
 
                 	 <c:forEach items="${lastestList}" var="item" varStatus="status">
