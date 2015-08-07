@@ -4477,7 +4477,8 @@ public class ProjectInputDao extends BaseDao {
 		        for(int i=0;i<holdCostList.size();i++){
 		        	HoldCost holdcost=holdCostList.get(i);
 		            String type=holdcost.getHoldcosttype();
-		            String price=holdcost.getHoldcostprice();
+		            /*String price=holdcost.getHoldcostprice();*/
+		            String price=holdcost.getHoldcostprice()==""?"0":holdcost.getHoldcostprice();
 		            String description=holdcost.getHoldcostdesc();
 		            String housename=holdcost.getHoldcost_housename();
 		            int Id=holdcost.getId();
@@ -4507,7 +4508,8 @@ public class ProjectInputDao extends BaseDao {
 		        for(int i=0;i<holdCostList2.size();i++){
 		        	HoldCost holdcost=holdCostList2.get(i);
 		            String type=holdcost.getHoldcosttype();
-		            String price=holdcost.getHoldcostprice();
+		          /*  String price=holdcost.getHoldcostprice();*/
+		            String price=holdcost.getHoldcostprice()==""?"0":holdcost.getHoldcostprice();
 		            String description=holdcost.getHoldcostdesc();
 		            String housename=holdcost.getHoldcost_housename();
 		            pstmt.setString(1, type);
@@ -4535,7 +4537,8 @@ public class ProjectInputDao extends BaseDao {
 		        for(int i=0;i<houseTaxList.size();i++){
 		        	HouseTax housetax=houseTaxList.get(i);
 		            String type=housetax.getHouseTaxtype();
-		            String price=housetax.getHouseTaxprice();
+		           /* String price=housetax.getHouseTaxprice();*/
+		            String price=housetax.getHouseTaxprice()==""?"0":housetax.getHouseTaxprice();
 		            String description=housetax.getHouseTaxdesc();
 		          /*  String housename=housetax.getHouseTax_housename();*/
 		            int Id=housetax.getId();
@@ -4565,7 +4568,8 @@ public class ProjectInputDao extends BaseDao {
 		        for(int i=0;i<houseTaxList2.size();i++){
 		        	HouseTax housetax=houseTaxList2.get(i);
 		            String type=housetax.getHouseTaxtype();
-		            String price=housetax.getHouseTaxprice();
+		           /* String price=housetax.getHouseTaxprice();*/
+		            String price=housetax.getHouseTaxprice()==""?"0":housetax.getHouseTaxprice();
 		            String description=housetax.getHouseTaxdesc();
 		          /*  String housename=housetax.getHouseTax_housename();*/
 		            pstmt.setString(1, type);
