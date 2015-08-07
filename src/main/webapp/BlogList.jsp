@@ -184,8 +184,8 @@ if(request.getSession().getAttribute("flag")!=null){
               
                <div class=""> 
               	<div style="padding-bottom: 5px;font-size:13px;font-family:'微软雅黑';">置业<span style="width:283px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;/* margin-left:30px; */"></span></div>
-	               	<div style="padding-bottom: 5px;font-size:13px;font-family:'微软雅黑';padding-top:5px;"><a href="/ZhiYeInfo" style="display:block;">置业指导</a></div>
-	                <div style="font-size:13px;font-family:'微软雅黑';"><a href="/BlogList">新闻博客</a></div>
+	               	<div style="padding-bottom: 5px;font-size:13px;font-family:'微软雅黑';padding-top:5px;"><a href="/ZhiYeInfo" style="display:block;">置业百科</a></div>
+	                <div style="font-size:13px;font-family:'微软雅黑';"><a href="/BlogList">海外新闻</a></div>
               </div>
             </div>
             <div class="" style="padding-left: 10px;padding-top: 30px;font-size:13px;font-family:'微软雅黑';">

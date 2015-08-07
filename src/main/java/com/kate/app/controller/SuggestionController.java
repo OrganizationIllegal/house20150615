@@ -70,10 +70,10 @@ public class SuggestionController {
 		String query = req.getParameter("query");   //用户输入关键字
 		JSONObject json = new JSONObject();
 		List <String> array = new ArrayList<String>();
-		Timer timer=new Timer();
+		/*Timer timer=new Timer();
 	      //五秒后调用RunTest()这个类，并执行run()方法
-	      timer.schedule(new MyTimerTask(),86400000);
-		
+	      timer.schedule(new MyTimerTask(),86400000);*/
+	    suggestionService.writeFileByName();
 		array = suggestionService.getSuggestion(query);   //得到匹配的array数组
 		
 		json.put("list", array);
