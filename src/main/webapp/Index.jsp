@@ -624,7 +624,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						  <a href="/Index?proNum=${item.project_num}"><img src="<%=application.getInitParameter("imagedir")%>/${item.project_img }" class="c-fix f-l main_node_img"></img></a>
 							<div class="c-fix f-l main_node_bkg" onclick="location.href='/Index?proNum=${item.project_num}'">
 								<a class="c-fix f-l main_node_lab f-yahei s-14" style="margin-top:5px;text-decoration: none;" href="/Index?proNum=${item.project_num}">${item.project_name}</a>
-								<a class="c-fix f-l main_node_lab f-yahei s-14" style="font-style:italic;color:red;text-decoration: none;">$${item.project_min_price}-$${item.project_high_price}</a>
+								<a class="c-fix f-l main_node_lab f-yahei s-14" style="font-style:italic;color:white;text-decoration: none;">$${item.project_min_price}-$${item.project_high_price}</a>
 								<a class="c-fix f-l main_node_lab f-yahei s-14" style="text-decoration: none;">${item.project_area},${item.project_city}</a>
 							</div>
 						</div>
