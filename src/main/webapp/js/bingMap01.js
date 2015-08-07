@@ -108,7 +108,7 @@
 		    });
       }
       //隐藏地图消息框
-      function display(){
+      function display(){ 
     	  defaultInfobox.setOptions({ visible: false });
       }
      //添加房屋类型pushpin   
