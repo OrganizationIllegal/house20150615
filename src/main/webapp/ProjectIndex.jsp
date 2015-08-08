@@ -88,7 +88,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.title{
 				background:none;
 			}
-			
+			#xiangmuZhuce:hover{
+				color:white;
+			}
 			
 		</style>
 <script type="text/javascript">
@@ -1329,7 +1331,7 @@ var e=$('#input2').val();
 		</c:if>
 		<div class="c-fix f-l bottom_bkg">
 			<div class="c-fix f-l triangle"></div>
-			<a class="c-fix f-l bottom_lab f-yahei fw">聪明海外置业</a>
+			<span class="c-fix f-l bottom_lab f-yahei fw">聪明海外置业</span>
 			<a id="xiangmuZhuce" class="c-fix f-l bottom_reg f-yahei cp">注册</a>
 		</div>
 		<jsp:include page="foot4index.jsp" />
