@@ -373,8 +373,8 @@ public class BingMapDao extends BaseDao2 {
 		    	project_price=rs.getString("project_price_qi");//锟剿达拷锟斤拷目锟桔革拷目前锟斤拷锟斤拷锟斤拷锟侥科斤拷锟桔革拷
 		    	project_price_qi=rs.getString("project_price_qi");
 		    	house_type=rs.getString("project_type");
-		    	project_min_price=rs.getString("project_min_price")==null?"N/A":nf.format(Integer.parseInt(rs.getString("project_min_price")));
-		    	project_high_price=rs.getString("project_high_price")==null?"N/A":nf.format(Integer.parseInt(rs.getString("project_high_price")));
+		    	project_min_price=(rs.getString("project_min_price")==null || rs.getString("project_min_price").equals(""))?"N/A":nf.format(Integer.parseInt(rs.getString("project_min_price")));
+		    	project_high_price=(rs.getString("project_high_price")==null || rs.getString("project_min_price").equals(""))?"N/A":nf.format(Integer.parseInt(rs.getString("project_high_price")));
 		    	mianji=rs.getString("mianji");
 		        return_money=rs.getString("return_money"); 
 		        String bijiao = rs.getString("project_price_int_qi");

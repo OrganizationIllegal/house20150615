@@ -1723,7 +1723,7 @@ public class ProjectInfoController {
 		List<FujinSchool> fujinSchoolList=projectInputDao.getFujinSchoolByProNum(pronum);
 		fujinSchoolListbefore=projectInputDao.getFujinSchoolByProNum(pronum);
 		req.setAttribute("fujinSchoolList",fujinSchoolList );
-		req.setAttribute("fujinSchoolListJson", ConvertJson.list2json(fujinSchoolList).replace(" ", "&nbsp;").replace("'", "&#39;"));
+		req.setAttribute("fujinSchoolListJson", ConvertJson.list2json(fujinSchoolList).replace("&nbsp;", " ").replace("&#39;", "\\'").replace("'", "\\'"));
 		//根据项目编号获取持有成本信息
 		List<HoldCost> holdCostList=projectInputDao.getHoldCostByProNum(pronum);
 		holdCostListbefore=projectInputDao.getHoldCostByProNum(pronum);
