@@ -1,5 +1,6 @@
 package com.kate.app.dao;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,15 +15,15 @@ import com.alibaba.fastjson.JSONArray;
 import com.kate.app.model.LatestSaleInfoVo;
 
 @Repository 
-public class LatestSaleInfoListDao extends BaseDao {
+public class LatestSaleInfoListDao extends BaseDao2 {
 	public List<LatestSaleInfoVo> getLatestSaleInfo(){
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-
+		Connection con = null;
 		List<LatestSaleInfoVo> latestSaleList=new ArrayList<LatestSaleInfoVo>();
 		int houseProId=1;
-		try {
+		try {con = dataSource.getConnection();
 			String sql = " select address,price,sales_type,sales_time,house_type from sucess_info t where  t.house_pro_id="+houseProId;
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -44,38 +45,21 @@ public class LatestSaleInfoListDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { } 
 
         }
 		return latestSaleList;
 	}
 	//��������ɽ���� List
 	public JSONArray listSuccessInfo(){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		JSONArray jsonArray=new JSONArray();
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "select t.id,t.address,t.price,t.sales_type, t.sales_time,t.house_type,t.house_pro_id,h.project_name from sucess_info t LEFT JOIN house_project h on t.house_pro_id=h.id";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -84,27 +68,10 @@ public class LatestSaleInfoListDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return jsonArray;
@@ -114,9 +81,10 @@ public class LatestSaleInfoListDao extends BaseDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
+		Connection con = null;
 
 		int exeResult=0;
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "insert into sucess_info(address,price,sales_type,sales_time,house_type,house_pro_id) values(?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, address);
@@ -130,38 +98,23 @@ public class LatestSaleInfoListDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
+
 
         }
 		return exeResult;
 	}
 	//��������ɽ���� update
 	public int updateSuccessInfo(int id,String address,int price,String sales_type,java.util.Date sales_time,int house_type,int house_pro_id){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		int exeResult=0;
 		try {
+			con = dataSource.getConnection();
 			String sql = "update sucess_info set address=?,price=?,sales_type=?,sales_time=?,house_type=? where id=? and house_pro_id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, address);
@@ -176,27 +129,10 @@ public class LatestSaleInfoListDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return exeResult;
@@ -206,9 +142,10 @@ public class LatestSaleInfoListDao extends BaseDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
+		Connection con = null;
 
 		int exeResult=0;
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "delete from sucess_info where id="+id;
 			  stmt = con.createStatement();
 			exeResult = stmt.executeUpdate(sql);
@@ -216,28 +153,10 @@ public class LatestSaleInfoListDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
         }
 		return exeResult;
 	}

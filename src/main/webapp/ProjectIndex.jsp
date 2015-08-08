@@ -88,7 +88,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.title{
 				background:none;
 			}
-			
+			#xiangmuZhuce:hover{
+				color:white;
+			}
 			
 		</style>
 <script type="text/javascript">
@@ -1195,11 +1197,11 @@ var e=$('#input2').val();
 					<div id="zonefamily_pie2" style="width:33%;height:100%;float: left;display: block;"></div>
 					<div id="zonefamily_pie3" style="width:33%;height:100%;float: left;display: block;"></div>
 				</div>
-				<div class="c-fix" style="-margin-right:20px;float:rgiht;height:40px;text-align:center;">
+			 	<div class="c-fix" style="-margin-right:20px;float:rgiht;height:40px;text-align:center;">
 					<span class="c-fix f-yahei s-19 fw f-l" style="margin-left: 45px;font-size:17px;margin-top: 8px;width:190px;">${dataFamily.family_one }</span>
 					<span class=" f-yahei s-19 fw f-l" style="margin-left: 142px;font-size:17px;margin-top: 8px;width:190px;">${dataFamily.family_two }</span>
 					<span class=" f-yahei s-19 fw f-l" style="margin-left: 132px;font-size:17px;margin-top: 8px;width:190px;">${dataFamily.family_three }</span>
-				</div>
+				</div> 
 				<div class="c-fix" style="margin-right:20px;float:rgiht;height:20px">
 					<span class="c-fix f-yahei s-12 fw f-r">数据来源：${family_datasource }&nbsp;&nbsp; 更新日期：${fn:substring(family_date,0,10)}</span>
 				</div>
@@ -1329,7 +1331,7 @@ var e=$('#input2').val();
 		</c:if>
 		<div class="c-fix f-l bottom_bkg">
 			<div class="c-fix f-l triangle"></div>
-			<a class="c-fix f-l bottom_lab f-yahei fw">聪明海外置业</a>
+			<span class="c-fix f-l bottom_lab f-yahei fw">聪明海外置业</span>
 			<a id="xiangmuZhuce" class="c-fix f-l bottom_reg f-yahei cp">注册</a>
 		</div>
 		<jsp:include page="foot4index.jsp" />

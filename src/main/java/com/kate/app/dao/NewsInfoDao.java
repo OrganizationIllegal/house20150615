@@ -1,5 +1,6 @@
 package com.kate.app.dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,13 +14,14 @@ import com.kate.app.model.NewsInfo;
 
 
 	@Repository 
-	public class NewsInfoDao extends BaseDao{
+	public class NewsInfoDao extends BaseDao2{
 		public List<NewsInfo> getNewsInfo(String project_num){
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
+
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			List <NewsInfo> newsList = new ArrayList<NewsInfo>();
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " select * from news_info where project_num=?";
 				 pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, project_num);
@@ -39,27 +41,10 @@ import com.kate.app.model.NewsInfo;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return newsList;

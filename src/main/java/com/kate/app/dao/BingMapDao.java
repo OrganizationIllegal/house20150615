@@ -1,5 +1,6 @@
 package com.kate.app.dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,7 +19,7 @@ import com.kate.app.model.BingMapVo;
 import com.kate.app.model.HouseProject;
 import com.kate.app.model.ProjectDescImage;
 @Repository 
-public class BingMapDao extends BaseDao {
+public class BingMapDao extends BaseDao2 {
 	
 	/*
 	 * 查询数据库，得到项目信息
@@ -26,10 +27,10 @@ public class BingMapDao extends BaseDao {
 	public List<BingMapVo> listBingMap(){    //加载地图找房调用
 		NumberFormat nf = new DecimalFormat("#,###,###");
 		Statement stmt = null;
-		ResultSet rs = null;
+		ResultSet rs = null;Connection con = null;
 		PreparedStatement pstmt = null;
 		List<BingMapVo> bingMapList=new ArrayList<BingMapVo>();
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "select t.id,t.project_num,t.project_name,t.project_address,t.project_type,t.project_price_qi,t.project_price,t.project_min_price,t.project_high_price,t.mianji,t.project_img,t.project_lan_cn,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_price_int_qi from house_project t where t.isSeen=1 and t.gps!='' and t.gps like '%,%'";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -106,40 +107,24 @@ public class BingMapDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 鍏抽棴璁板綍闆�   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 鍏抽棴澹版槑   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 鍏抽棴澹版槑   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return bingMapList;
 	} 
 	//根据项目编号查找project_key
 	public List<String> findProjectKeyByNum(String proNum){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<BingMapVo> bingMapList=new ArrayList<BingMapVo>();
 		String project_key=null;
 		 List<String> keyList=new ArrayList<String>();
-		try {
+		try {con = dataSource.getConnection();
+
 			String sql = "select * from project_key where  project_num='"+proNum+"'";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -213,27 +198,10 @@ public class BingMapDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 鍏抽棴璁板綍闆�   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 鍏抽棴澹版槑   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 鍏抽棴澹版槑   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return  keyList.size()>2?keyList.subList(0, 2):keyList;
@@ -242,7 +210,7 @@ public class BingMapDao extends BaseDao {
 	
 	public List<BingMapVo> filterByHouseType(int type){
 		NumberFormat nf = new DecimalFormat("#,###,###");
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		String housetype=null;
@@ -259,7 +227,7 @@ public class BingMapDao extends BaseDao {
 			break;
 		}
 		List<BingMapVo> bingMapList=new ArrayList<BingMapVo>();
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "select t.id,t.project_num,t.project_name,t.project_address,t.project_type,t.project_price_qi,t.project_price,t.project_min_price,t.project_high_price,t.mianji,t.project_img,t.project_lan_cn,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_price_int_qi from house_project t where t.project_type= '"+housetype+"'";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -328,27 +296,10 @@ public class BingMapDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 鍏抽棴璁板綍闆�   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 鍏抽棴澹版槑   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 鍏抽棴澹版槑   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return bingMapList;
@@ -359,7 +310,8 @@ public class BingMapDao extends BaseDao {
 	 */
 	public List<BingMapVo> orderByPrice(int order){
 		NumberFormat nf = new DecimalFormat("#,###,###");
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
+
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 	    String orderstr=null;
@@ -373,7 +325,7 @@ public class BingMapDao extends BaseDao {
 			break;
 		}
 		List<BingMapVo> bingMapList=new ArrayList<BingMapVo>();
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "select t.id,t.project_num,t.project_name,t.project_address,t.project_type,t.project_price_qi,t.project_price,t.project_min_price,t.project_high_price,t.mianji,t.project_img,t.project_lan_cn,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_price_int_qi from house_project t order by t.project_price_int_qi "+orderstr;
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -421,8 +373,8 @@ public class BingMapDao extends BaseDao {
 		    	project_price=rs.getString("project_price_qi");//锟剿达拷锟斤拷目锟桔革拷目前锟斤拷锟斤拷锟斤拷锟侥科斤拷锟桔革拷
 		    	project_price_qi=rs.getString("project_price_qi");
 		    	house_type=rs.getString("project_type");
-		    	project_min_price=rs.getString("project_min_price")==null?"N/A":nf.format(Integer.parseInt(rs.getString("project_min_price")));
-		    	project_high_price=rs.getString("project_high_price")==null?"N/A":nf.format(Integer.parseInt(rs.getString("project_high_price")));
+		    	project_min_price=(rs.getString("project_min_price")==null || rs.getString("project_min_price").equals(""))?"N/A":nf.format(Integer.parseInt(rs.getString("project_min_price")));
+		    	project_high_price=(rs.getString("project_high_price")==null || rs.getString("project_min_price").equals(""))?"N/A":nf.format(Integer.parseInt(rs.getString("project_high_price")));
 		    	mianji=rs.getString("mianji");
 		        return_money=rs.getString("return_money"); 
 		        String bijiao = rs.getString("project_price_int_qi");
@@ -444,27 +396,10 @@ public class BingMapDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 鍏抽棴璁板綍闆�   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 鍏抽棴澹版槑   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 鍏抽棴澹版槑   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return bingMapList;
@@ -474,13 +409,14 @@ public class BingMapDao extends BaseDao {
 	
 	public List<BingMapVo> orderByTypeLeft(String housetype){
 		NumberFormat nf = new DecimalFormat("#,###,###");
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 	    String orderstr=null;
 		
 		List<BingMapVo> bingMapList=new ArrayList<BingMapVo>();
-		try {
+		try {con = dataSource.getConnection();
+
 			String sql = "select t.id,t.project_num,t.project_name,t.project_address,t.project_type,t.project_price_qi,t.project_price,t.project_min_price,t.project_high_price,t.mianji,t.project_img,t.project_lan_cn,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_price_int_qi from house_project t ";
 			if(!housetype.equals("") ){
 				sql += "where project_type = '"+housetype+"'";
@@ -554,27 +490,10 @@ public class BingMapDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 鍏抽棴璁板綍闆�   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 鍏抽棴澹版槑   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 鍏抽棴澹版槑   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return bingMapList;
@@ -583,11 +502,11 @@ public class BingMapDao extends BaseDao {
 	
 	//地图加载
 	public List<HouseProject> listMap(){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<HouseProject> coordinatesList=new ArrayList<HouseProject>();
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -631,38 +550,22 @@ public class BingMapDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 鍏抽棴璁板綍闆�   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 鍏抽棴澹版槑   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 鍏抽棴澹版槑   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return coordinatesList;
 	} 
 	//查找地图中心点
 	public List<BingMapCenter> listMapCenter(){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
+
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<BingMapCenter> mapCenterList=new ArrayList<BingMapCenter>();
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "SELECT * FROM `bingmap_center` WHERE gps!='' and gps like '%,%'";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -681,27 +584,10 @@ public class BingMapDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 鍏抽棴璁板綍闆�   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 鍏抽棴澹版槑   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 鍏抽棴澹版槑   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return mapCenterList;
@@ -711,11 +597,11 @@ public class BingMapDao extends BaseDao {
 	 */
 	public List<HouseProject> filterByHouseType2(int type, int order){    //根据类型查找
 		NumberFormat nf = new DecimalFormat("#,###,###");
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<HouseProject> coordinatesList=new ArrayList<HouseProject>();
-		try {
+		try {con = dataSource.getConnection();
 			String housetype=null;
 			switch(type)
 			{
@@ -839,27 +725,10 @@ public class BingMapDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 鍏抽棴璁板綍闆�   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 鍏抽棴澹版槑   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 鍏抽棴澹版槑   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return coordinatesList;
@@ -958,12 +827,12 @@ public class BingMapDao extends BaseDao {
 	 */
 	public List<HouseProject> filterByKeyWord(String area,String city,String addr,int order){
 		NumberFormat nf = new DecimalFormat("#,###,###");
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
         String sql=null;
 		List<HouseProject> coordinatesList=new ArrayList<HouseProject>();
-		try {
+		try {con = dataSource.getConnection();
 			  if(!"".equals(area)&&!"".equals(city)&&!"".equals(addr)){
 				  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_area=? and project_city=? and project_address like ?";
 				  if(order==1){
@@ -1139,39 +1008,22 @@ public class BingMapDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 鍏抽棴璁板綍闆�   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 鍏抽棴澹版槑   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 鍏抽棴澹版槑   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return coordinatesList;
 	}
 	//根据项目编号查找
 	public List<HouseProject> filterByproNum(String pro){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 
 		List<HouseProject> coordinatesList=new ArrayList<HouseProject>();
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "SELECT * FROM `house_project` WHERE gps!='' and project_num = '"+pro+"'";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -1210,38 +1062,21 @@ public class BingMapDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 鍏抽棴璁板綍闆�   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 鍏抽棴澹版槑   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 鍏抽棴澹版槑   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return coordinatesList;
 	}
 	//得到区域、城市、邮编联合字段
 	public List<String> getKeyWord(){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<String> keyWordSet=new ArrayList<String>();
-		try {
+		try {con = dataSource.getConnection();
 			String sql ="select distinct area_name,area_city,area_postcode from area_info order by area_name";
 			 pstmt = con.prepareStatement(sql);
 			  rs = pstmt.executeQuery();
@@ -1261,38 +1096,21 @@ public class BingMapDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return keyWordSet;
 	}
 	//得到区域名称
 	public List<String> getAreaName(){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<String> areaNameSet=new ArrayList<String>();
-		try {
+		try {con = dataSource.getConnection();
 			String sql ="select distinct area_name,area_city,area_postcode from area_info order by area_name";
 			 pstmt = con.prepareStatement(sql);
 			  rs = pstmt.executeQuery();
@@ -1312,38 +1130,21 @@ public class BingMapDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return areaNameSet;
 	}
 	//得到区域名称集合
 		public List<String> getAreaName1(){
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			List<String> areaNameSet=new ArrayList<String>();
-			try {
+			try {con = dataSource.getConnection();
 				String sql ="select distinct area_name from area_info order by area_name";
 				 pstmt = con.prepareStatement(sql);
 				  rs = pstmt.executeQuery();
@@ -1355,38 +1156,22 @@ public class BingMapDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { } 
 
 	        }
 			return areaNameSet;
 		}
 	//得到城市名称
 		public List<String> getCityName(){
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
+
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			List<String> cityNameSet=new ArrayList<String>();
-			try {
+			try {con = dataSource.getConnection();
 				String sql ="select distinct area_name,area_city,area_postcode from area_info order by area_city";
 				 pstmt = con.prepareStatement(sql);
 				  rs = pstmt.executeQuery();
@@ -1406,38 +1191,21 @@ public class BingMapDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return cityNameSet;
 		}
 		//得到城市名称集合
 				public List<String> getCityName1(){
-					Statement stmt = null;
+					Statement stmt = null;Connection con = null;
 					ResultSet rs = null;
 					PreparedStatement pstmt = null;
 					List<String> cityNameSet=new ArrayList<String>();
-					try {
+					try {con = dataSource.getConnection();
 						String sql ="select distinct area_city from area_info order by area_city";
 						 pstmt = con.prepareStatement(sql);
 						  rs = pstmt.executeQuery();
@@ -1449,38 +1217,21 @@ public class BingMapDao extends BaseDao {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}finally{
-						if(rs != null){   // 关闭记录集   
-					        try{   
-					            rs.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					          }   
-					      if(stmt != null){   // 关闭声明   
-					        try{   
-					            stmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
-					      if(pstmt != null){   // 关闭声明   
-						        try{   
-						            pstmt.close() ;   
-						        }catch(SQLException e){   
-						            e.printStackTrace() ;   
-						        }   
-						     } 
+						 try { if (rs != null) rs.close(); } catch(Exception e) { }
+						 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+						 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+						 try { if (con != null) con.close(); } catch(Exception e) { }
 
 			        }
 					return cityNameSet;
 				}
 		//得到地址名称
 		public List<String> getAddressName(){
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			List<String> addressNameSet=new ArrayList<String>();
-			try {
+			try {con = dataSource.getConnection();
 				String sql ="select distinct area_name,area_city,area_postcode from area_info order by area_postcode";
 				 pstmt = con.prepareStatement(sql);
 				  rs = pstmt.executeQuery();
@@ -1500,38 +1251,22 @@ public class BingMapDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return addressNameSet;
 		}
 		//地图中心点录入
 		public boolean InsertMapCenter(String name,String gps,String type){
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
+
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 	        boolean flag=true;
-			try {
+			try {con = dataSource.getConnection();
 				String sql = "insert into bingmap_center(name,gps,type) values(?,?,?)";
 				pstmt = con.prepareStatement(sql);
 
@@ -1546,27 +1281,10 @@ public class BingMapDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return flag;
@@ -1577,9 +1295,9 @@ public class BingMapDao extends BaseDao {
 			Statement stmt = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
-
+			Connection con = null;
 			JSONArray jsonArray=new JSONArray();
-			try {
+			try {con = dataSource.getConnection();
 				String sql = " select * from bingmap_center";
 				  stmt = con.createStatement();
 				  rs = stmt.executeQuery(sql);
@@ -1595,39 +1313,21 @@ public class BingMapDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 	        }
 
 			return jsonArray;
 		} 
 		//地图中心点删除
 		public boolean deleteMapCenter(int id){
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;	
 			boolean flag=true;
-			try {
+			try {con = dataSource.getConnection();
 				String sql = "delete from bingmap_center where id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
@@ -1639,27 +1339,10 @@ public class BingMapDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return flag;
@@ -1670,10 +1353,11 @@ public class BingMapDao extends BaseDao {
 			Statement stmt = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
-
+			Connection con = null;
 			List<ProjectDescImage> imageList = new ArrayList<ProjectDescImage>();
 			
 			try{
+				con = dataSource.getConnection();
 				String sql = "select * from project_desc_image where project_num=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, pro_num);
@@ -1688,27 +1372,10 @@ public class BingMapDao extends BaseDao {
 				 e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return imageList;

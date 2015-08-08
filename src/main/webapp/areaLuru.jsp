@@ -1109,7 +1109,7 @@ $(function(){
 			}
 		}
 		$('#zu_two_name').trigger('chosen:updated');
-		$("#zu_two_name").val(middlepriceedititem.zu_tow_name);
+		$("#zu_two_name").val(middlepriceedititem.zu_two_name);
 		$("#zu_two_price").val(middlepriceedititem.zu_two_price);
 		var selectCount = document.getElementById("zu_three_name");
 		for(var i = 0 ; i<selectCount.length;i++){

@@ -417,7 +417,7 @@ body{
   	   <option  value="三居室">三居室</option>
   	    <option  value="四居室">四居室</option>
   	     <option  value="五居室">五居室</option>
-  	      <option  value="六居室">六居室</option> 
+  	      <option  value="六居室">六居室</option>
  </select>
 </span>
 </div>
@@ -1305,7 +1305,7 @@ $(function(){
 			}
 		}
 		$('#zu_two_name').trigger('chosen:updated');
-		$("#zu_two_name").val(middlepriceedititem.zu_tow_name);
+		$("#zu_two_name").val(middlepriceedititem.zu_two_name);
 		$("#zu_two_price").val(middlepriceedititem.zu_two_price);
 		var selectCount = document.getElementById("zu_three_name");
 		for(var i = 0 ; i<selectCount.length;i++){
@@ -2259,114 +2259,7 @@ function savepro(){
 <script type="text/javascript">
 CKEDITOR.replace( 'detail' );
 </script>
-<script type="text/javascript">
-function addMiddlePrice(){
-	  var buy_price=$("#buy_price").val();
-	  var zu_price=$("#zu_price").val();
-	  var buy_one_name=$("#buy_one_name").val();
-	  var buy_one_price=$("#buy_one_price").val();
-	  var buy_two_name=$("#buy_two_name").val();
-	  var buy_two_price=$("#buy_two_price").val();
-	  var buy_three_name=$("#buy_three_name").val();
-	  var buy_three_price=$("#buy_three_price").val();
-	  var zu_one_name=$("#zu_one_name").val();
-	  var zu_one_price=$("#zu_one_price").val();
-	  var zu_two_name=$("#zu_two_name").val();
-	  var zu_two_price=$("#zu_two_price").val();
-	  var zu_three_name=$("#zu_three_name").val();
-	  var zu_three_price=$("#zu_three_price").val();
-	  var project_type=$("#project_type").val();
-	  var area_quyu=$("#area_quyu").val();
-	  $.ajax({
-	 	    type: "POST",
-	 		data: { buy_price : buy_price,zu_price : zu_price,buy_one_name : buy_one_name,buy_one_price : buy_one_price,buy_two_name : buy_two_name,buy_two_price : buy_two_price,buy_three_name : buy_three_name,buy_three_price : buy_three_price,zu_one_name : zu_one_name,zu_one_price : zu_one_price,zu_two_name : zu_two_name,zu_two_price : zu_two_price,zu_three_name : zu_three_name,zu_three_price : zu_three_price,project_type : project_type,area_quyu : area_quyu}, 
-	 		dataType: "json",
-	 		url: "/addMiddlePrice",
-	 		success:function(data){
-	 			if(data.flag == 1){
-	 				alert("添加成功！");
-	 			}else if(data.flag ==0){
-	 				alert("添加失败！");
-	 			}
-	 		},
-	 		error:function(){
-	 			alert("error")
-	 		}
-	 	});
-	  }
 
-function addMidTrend(){
-	  var heng=$("#heng2").val();
-	  var zong=$("#zong2").val();
-	  var view_shunxu=$("#view_shunxu2").val();
-	  var project_type=$("#project_type2").val();
-	  var area_code=$("#area_code").val();
-	  $.ajax({
-	 	    type: "POST",
-	 		data: { heng : heng,zong : zong,view_shunxu : view_shunxu,project_type : project_type,area_code : area_code}, 
-	 		dataType: "json",
-	 		url: "/addMidTrend",
-	 		success:function(data){
-	 			if(data.flag == 1){
-	 				alert("添加成功！");
-	 			}else if(data.flag == 0){
-	 				alert("添加失败！");
-	 			}
-	 		},
-	 		error:function(){
-	 			alert("error")
-	 		}
-	 	});
-	  }
-function addZujinTrend(){
-	  var heng=$("#heng3").val();
-	  var zong=$("#zong3").val();
-	  var view_shunxu=$("#view_shunxu3").val();
-	  var project_type=$("#project_type3").val();
-	  var area_code=$("#area_code").val();
-	  $.ajax({
-	 	    type: "POST",
-	 		data: { heng : heng,zong : zong,view_shunxu : view_shunxu,project_type : project_type,area_code : area_code}, 
-	 		dataType: "json",
-	 		url: "/addZujinTrend",
-	 		success:function(data){
-	 			if(data.flag == 1){
-	 				alert("添加成功！");
-	 			}else if(data.flag == 0){
-	 				alert("添加失败！");
-	 			}
-	 		},
-	 		error:function(){
-	 			alert("error")
-	 		}
-	 	});
-	  }
-function addHuibaoTrend(){
-	  var heng=$("#heng4").val();
-	  var zong=$("#zong4").val();
-	  var view_shunxu=$("#view_shunxu4").val();
-	  var project_type=$("#project_type4").val();
-	  var area_code=$("#area_code").val();
-	  $.ajax({
-	 	    type: "POST",
-	 		data: { heng : heng,zong : zong,view_shunxu : view_shunxu,project_type : project_type,area_code : area_code}, 
-	 		dataType: "json",
-	 		url: "/addHuibaoTrend",
-	 		success:function(data){
-	 			if(data.flag == 1){
-	 				alert("添加成功！");
-	 			}else if(data.flag == 0){
-	 				alert("添加失败！");
-	 			}
-	 			
-	 		},
-	 		error:function(){
-	 			alert("error");
-	 			window.close();
-	 		}
-	 	});
-	  }
-</script>
  <script src="/js/chosen.jquery.js" type="text/javascript"></script>
  <script src="/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
  <script type="text/javascript">

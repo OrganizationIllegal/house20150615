@@ -31,6 +31,8 @@
     <context:component-scan base-package="com.kate.app.controller" />
     <context:component-scan base-package="com.kate.app.service" />
     <context:component-scan base-package="com.kate.app.dao" />
+     <context:component-scan base-package="com.kate.app.model" />
+    
     <mvc:default-servlet-handler />
 
     <!-- <mvc:annotation-driven /> -->
@@ -64,11 +66,33 @@
         <property name="username" value="root"/>
         <property name="password" value="admin"/>
     </bean> -->
-     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://54.187.200.118:3306/house"/>
-        <property name="username" value="root"/>
-        <property name="password" value="admin"/>
+        <property name="url" value="jdbc:mysql://101.200.174.253:3306/gethouse"/>
+        <property name="username" value="dboperator1"/>
+        <property name="password" value="gethouse"/>
+      
+        <property name="maxActive">  
+                <value>100</value>
+  		</property>
+  		<property name="maxWait">
+     			<value>1000</value>
+  		</property>
+  		<property name="maxIdle">
+     			<value>30</value>
+  		</property>
+  		<property name="defaultAutoCommit">
+     			<value>true</value>  
+  		</property>
+  		<property name="removeAbandoned"> 
+     			<value>true</value> 
+  		</property>
+  		<property name="removeAbandonedTimeout">
+     			<value>60</value> 
+ 		 </property>
+        
+        
+        
     </bean>
     <!--配置hibernate-->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
