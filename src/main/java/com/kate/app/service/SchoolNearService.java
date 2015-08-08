@@ -20,6 +20,8 @@ public class SchoolNearService {
 				String name = item.getSchool_name();
 				if(name!=null && !"".equals(name)){
 					name = name.replace("&nbsp;", " ");
+					name = name.replace("&#39;", "\'");
+					
 				}
 				item.setSchool_name(name);
 				String name1 = item.getSchool_name();

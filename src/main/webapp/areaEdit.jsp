@@ -417,7 +417,7 @@ body{
   	   <option  value="三居室">三居室</option>
   	    <option  value="四居室">四居室</option>
   	     <option  value="五居室">五居室</option>
-  	      <option  value="六居室">六居室</option> 
+  	      <option  value="六居室">六居室</option>
  </select>
 </span>
 </div>
@@ -1305,7 +1305,7 @@ $(function(){
 			}
 		}
 		$('#zu_two_name').trigger('chosen:updated');
-		$("#zu_two_name").val(middlepriceedititem.zu_tow_name);
+		$("#zu_two_name").val(middlepriceedititem.zu_two_name);
 		$("#zu_two_price").val(middlepriceedititem.zu_two_price);
 		var selectCount = document.getElementById("zu_three_name");
 		for(var i = 0 ; i<selectCount.length;i++){
