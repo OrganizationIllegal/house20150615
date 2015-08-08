@@ -1,5 +1,6 @@
 package com.kate.app.dao;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,16 +16,19 @@ import com.alibaba.fastjson.JSONObject;
 import com.kate.app.model.AreaFamily;
 
 @Repository 
-public class AreaFamilyDao extends BaseDao {
+public class AreaFamilyDao extends BaseDao2 {
 	/*
 	 * 查找通过区域编号，区域家庭信息
 	 */
 	public AreaFamily getAreaFamily(String area_code){
+		Connection con = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		AreaFamily data = null;
 		try {
+			con = dataSource.getConnection();
+
 			String sql = " SELECT * from area_family where area_code=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, area_code);
@@ -49,39 +53,25 @@ public class AreaFamilyDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return data;
 	}
 	
 	public int getdulirate(){
+		Connection con = null;
+
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		int houseProId=1;
 		int dulirate=0;
 		try {
+			con = dataSource.getConnection();
 			String sql = " SELECT rate from area_family t where binary t.family_type='������ʿ'  AND t.house_pro_id="+houseProId;
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -93,38 +83,22 @@ public class AreaFamilyDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
         }
 		return dulirate;
 	}
 	public int getyoungfamilyrate(){
+		Connection con = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		int houseProId=1;
 		int youngfamilyrate=0;
 		try {
+			con = dataSource.getConnection();
 			String sql = " SELECT rate from area_family t where binary t.family_type='�����ͥ'  AND t.house_pro_id="+houseProId;
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -136,39 +110,25 @@ public class AreaFamilyDao extends BaseDao {
 			e.printStackTrace();
 		}
 
-finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-
+		finally{
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 	        }
 		return youngfamilyrate;
 	}
+	
+	
 	public int getoldfamilyrate(){
+		Connection con = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		int houseProId=1;
 		int oldfamilyrate=0;
 		try {
+			con = dataSource.getConnection();
 			String sql = " SELECT rate from area_family t where binary t.family_type='�����ͥ'  AND t.house_pro_id="+houseProId;
 			 stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -180,38 +140,25 @@ finally{
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return oldfamilyrate;
 	}
 	//��
 	public int InsertAreaFamily(String family_one,String family_one_rate,String family_two,String family_two_rate,String family_three,String family_three_rate,String data_source,String update_time,String area_code){
+		Connection con = null;
+
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		int exeResult=0;
 		try {
+			con = dataSource.getConnection();
+
 			String sql = "insert into area_family(family_one,family_one_rate,family_two,family_two_rate,family_three,family_three_rate,data_souce,update_time,area_code) values(?,?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, family_one);
@@ -229,27 +176,10 @@ finally{
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return exeResult;
@@ -257,12 +187,14 @@ finally{
 	}
 	//ɾ
 	public int delAreaFamily(int id){
+		Connection con = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 
 		int exeResult=0;
 		try {
+			con = dataSource.getConnection();
 			String sql = "delete from area_family where id="+id;
 			  stmt = con.createStatement();
 			exeResult = stmt.executeUpdate(sql);
@@ -271,28 +203,10 @@ finally{
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
         }
 		return exeResult;
 	}
@@ -301,9 +215,11 @@ finally{
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
+		Connection con = null;
 
 		JSONArray jsonArray=new JSONArray();
 		try {
+			con = dataSource.getConnection();
 			String sql = " select * from area_family";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -334,27 +250,10 @@ finally{
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return jsonArray;
@@ -365,7 +264,9 @@ finally{
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		int exeResult=0;
+		Connection con = null;
 		try {
+			con = dataSource.getConnection();
 			String sql = "update area_family set family_one=?,family_one_rate=?,family_two=?,family_two_rate=?,family_three=?,family_three_rate=?, data_souce=?,update_time=?,area_code=? where id="+id;
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, family_one);
@@ -383,38 +284,23 @@ finally{
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return exeResult;
 	}
 	//�����Ŀ��Ʋ�����Ŀid
 	public int findProjectIdByName(String project_name){
+		Connection con = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		int project_id=0;
 		try {
+			con = dataSource.getConnection();
 			String sql = "select t.id from house_project t where t.project_name="+"'"+project_name+"'";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -426,28 +312,10 @@ finally{
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
         }
 		return project_id;
 	}
@@ -455,9 +323,10 @@ finally{
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-
+		Connection con = null;
 		int id=0;
 		try {
+			con = dataSource.getConnection();
 			String sql = "SELECT LAST_INSERT_ID();";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -469,28 +338,10 @@ finally{
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
         }
 		return id;
 	}

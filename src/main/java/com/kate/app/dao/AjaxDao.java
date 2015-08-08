@@ -1,5 +1,6 @@
 package com.kate.app.dao;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,13 +28,13 @@ import com.kate.app.model.RecoProject;
 
 
 	@Repository 
-	public class AjaxDao extends BaseDao{
+	public class AjaxDao extends BaseDao2{
 		public List<InvestmentData> select(){  //鎼滅储鎶曡祫鏁版嵁淇℃伅
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			List<InvestmentData> list = new ArrayList<InvestmentData>();
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " select * from investment_data";
 				  stmt = con.createStatement();
 				  rs = stmt.executeQuery(sql);
@@ -57,38 +58,21 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				        	pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 	        }
 			return list;
 		}
 		
 		
 		public List<BrokerInfo> selectBrokerInfo(){  //鎼滅储缁忕邯浜轰俊鎭�
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			List<BrokerInfo> list = new ArrayList<BrokerInfo>();
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " select * from broker_info";
 				  stmt = con.createStatement();
 				  rs = stmt.executeQuery(sql);
@@ -112,27 +96,10 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				        	pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return list;
@@ -141,11 +108,12 @@ import com.kate.app.model.RecoProject;
 		
 		
 		public List<HouseInfo> selectHouseInfo(){    //鎼滅储鎴垮眿淇℃伅
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
+
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			List<HouseInfo> list = new ArrayList<HouseInfo>();
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " select * from house_info";
 				  stmt = con.createStatement();
 				  rs = stmt.executeQuery(sql);
@@ -175,39 +143,22 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 
 			return list;
 		}
 		public List<BuyInfo> selectBuyInfo(int proId){    //涓�敓鏂ゆ嫹閿熸枻鎷风洰閿熸枻鎷峰簲涓�敓鏂ゆ嫹
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			 
 			List<BuyInfo> list = new ArrayList<BuyInfo>();
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " select * from buy_info where house_pro_id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, proId);
@@ -225,27 +176,10 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return list;
@@ -253,11 +187,11 @@ import com.kate.app.model.RecoProject;
 		
 		
 		public BuyInfo getBuyInfo(int proId){    //涓�敓鏂ゆ嫹閿熸枻鎷风洰閿熸枻鎷峰簲涓�敓鏂ゆ嫹
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			BuyInfo data = new BuyInfo();
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " select * from buy_info where house_pro_id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, proId);
@@ -274,38 +208,21 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { } 
 
 	        }
 			return data;
 		}
 
 		public List<HouseProject> selectHouseProject(){    //鑾峰彇椤圭洰淇℃伅锛堝寘鎷墿涓氳垂锛�
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			List<HouseProject> list = new ArrayList<HouseProject>();
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " select * from house_project";
 				  stmt = con.createStatement();
 				  rs = stmt.executeQuery(sql);
@@ -360,27 +277,10 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return list;
@@ -390,11 +290,12 @@ import com.kate.app.model.RecoProject;
 		 * 鎸佹湁鎴愭湰淇℃伅
 		 */
 		public List<HoldingTaxVo> selectHoldFinance(String project_num){    //鑾峰彇椤圭洰淇℃伅锛堝寘鎷墿涓氳垂锛�
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			List<HoldingTaxVo> list = new ArrayList<HoldingTaxVo>();
-			try{
+			try{con = dataSource.getConnection();
+
 				String sql = " select * from holding_finace where project_num=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, project_num);
@@ -412,27 +313,10 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return list;
@@ -442,11 +326,11 @@ import com.kate.app.model.RecoProject;
 		 * 璐埧绋庤垂淇℃伅
 		 */
 		public List<HouseTaxVo> selectHouseTax(String project_num){    //鑾峰彇椤圭洰淇℃伅锛堝寘鎷墿涓氳垂锛�
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			List<HouseTaxVo> list = new ArrayList<HouseTaxVo>();
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " select * from house_tax where project_num=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, project_num);
@@ -464,27 +348,10 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return list;
@@ -500,8 +367,9 @@ import com.kate.app.model.RecoProject;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			List<RecoProject> list = new ArrayList<RecoProject>();
-			
-			try{
+			Connection con = null;
+
+			try{con = dataSource.getConnection();
 				String sql = " select * from recommend_project";
 				  stmt = con.createStatement();
 				  rs = stmt.executeQuery(sql);
@@ -518,27 +386,10 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return list;
@@ -548,11 +399,13 @@ import com.kate.app.model.RecoProject;
 		 * 鍖哄煙鐗圭偣淇℃伅
 		 */
 		public List<AreaTeDian> selectArea(){    
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
+
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			List<AreaTeDian> list = new ArrayList<AreaTeDian>();
-			try{
+			try{con = dataSource.getConnection();
+
 				String sql = " select * from area_features";
 				  stmt = con.createStatement();
 				  rs = stmt.executeQuery(sql);
@@ -572,27 +425,10 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 
@@ -602,11 +438,11 @@ import com.kate.app.model.RecoProject;
 		
 		
 		public DeveloperInfo selectDevInfo(int id){    //閫氳繃寮�彂鍟唅d鏌ユ壘寮�彂鍟嗕俊鎭�
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			DeveloperInfo deve = new DeveloperInfo();
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " select * from developer_info where id =?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
@@ -620,39 +456,22 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { } 
 
 	        }
 			return deve;
 		}
 		
 		public DeveloperInfo selectDevInfo(String developer_num){    //閫氳繃寮�彂鍟唍um鏌ユ壘寮�彂鍟嗕俊鎭�
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 
 			DeveloperInfo deve = new DeveloperInfo();
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " select * from developer_info where developer_num =?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, developer_num);
@@ -666,27 +485,10 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return deve;
@@ -701,10 +503,10 @@ import com.kate.app.model.RecoProject;
 			Statement stmt = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
-
+			Connection con = null;
 
 			List<NewsInfo> list = new ArrayList<NewsInfo>();
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " select * from news_info";
 				  stmt = con.createStatement();
 				  rs = stmt.executeQuery(sql);
@@ -725,27 +527,10 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { } 
 
 	        }
 			return list;
@@ -754,11 +539,11 @@ import com.kate.app.model.RecoProject;
 		
 		
 	       public int count(){
-	    	   Statement stmt = null;
+	    	   Statement stmt = null;Connection con = null;
 				ResultSet rs = null;
 				PreparedStatement pstmt = null;
 				int count = 0;
-				try{
+				try{con = dataSource.getConnection();
 					String sql = " select count(*) from investment_data";
 					  stmt = con.createStatement();
 					  rs = stmt.executeQuery(sql);
@@ -769,27 +554,10 @@ import com.kate.app.model.RecoProject;
 		            e.printStackTrace();
 		        }
 				finally{
-					if(rs != null){   // 关闭记录集   
-				        try{   
-				            rs.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				          }   
-				      if(stmt != null){   // 关闭声明   
-				        try{   
-				            stmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-				      if(pstmt != null){   // 关闭声明   
-					        try{   
-					            pstmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
+					 try { if (rs != null) rs.close(); } catch(Exception e) { }
+					 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+					 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+					 try { if (con != null) con.close(); } catch(Exception e) { } 
 
 		        }
 				return count;
@@ -799,9 +567,9 @@ import com.kate.app.model.RecoProject;
 	    	   Statement stmt = null;
 				ResultSet rs = null;
 				PreparedStatement pstmt = null;
-
+				Connection con = null;
 				int count = 0;
-				try{
+				try{con = dataSource.getConnection();
 					String sql = " select count(*) from broker_info";
 					  stmt = con.createStatement();
 					  rs = stmt.executeQuery(sql);
@@ -812,38 +580,21 @@ import com.kate.app.model.RecoProject;
 		            e.printStackTrace();
 		        }
 				finally{
-					if(rs != null){   // 关闭记录集   
-				        try{   
-				            rs.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				          }   
-				      if(stmt != null){   // 关闭声明   
-				        try{   
-				            stmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-				      if(pstmt != null){   // 关闭声明   
-					        try{   
-					            pstmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
+					 try { if (rs != null) rs.close(); } catch(Exception e) { }
+					 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+					 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+					 try { if (con != null) con.close(); } catch(Exception e) { } 
 
 		        }
 				return count;
 			}
 			
 			public int countHouseInfo(){
-				Statement stmt = null;
+				Statement stmt = null;Connection con = null;
 				ResultSet rs = null;
 				PreparedStatement pstmt = null;
 				int count = 0;
-				try{
+				try{con = dataSource.getConnection();
 					String sql = " select count(*) from house_info where house_project_id!=0";
 					  stmt = con.createStatement();
 					  rs = stmt.executeQuery(sql);
@@ -854,38 +605,22 @@ import com.kate.app.model.RecoProject;
 		            e.printStackTrace();
 		        }
 				finally{
-					if(rs != null){   // 关闭记录集   
-				        try{   
-				            rs.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				          }   
-				      if(stmt != null){   // 关闭声明   
-				        try{   
-				            stmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-				      if(pstmt != null){   // 关闭声明   
-					        try{   
-					            pstmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
+					 try { if (rs != null) rs.close(); } catch(Exception e) { }
+					 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+					 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+					 try { if (con != null) con.close(); } catch(Exception e) { } 
 
 		        }
 				return count;
 			}
 			
 			public int countHouseProject(){
-				Statement stmt = null;
+				Statement stmt = null;Connection con = null;
 				ResultSet rs = null;
 				PreparedStatement pstmt = null;
 				int count = 0;
-				try{
+				try{con = dataSource.getConnection();
+
 					String sql = " select count(*) from house_project";
 					  stmt = con.createStatement();
 					  rs = stmt.executeQuery(sql);
@@ -896,38 +631,22 @@ import com.kate.app.model.RecoProject;
 		            e.printStackTrace();
 		        }
 				finally{
-					if(rs != null){   // 关闭记录集   
-				        try{   
-				            rs.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				          }   
-				      if(stmt != null){   // 关闭声明   
-				        try{   
-				            stmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-				      if(pstmt != null){   // 关闭声明   
-					        try{   
-					            pstmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
+					 try { if (rs != null) rs.close(); } catch(Exception e) { }
+					 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+					 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+					 try { if (con != null) con.close(); } catch(Exception e) { }
 
 		        }
 				return count;
 			}
 			
 			public int countArea(){
-				Statement stmt = null;
+				Statement stmt = null;Connection con = null;
 				ResultSet rs = null;
 				PreparedStatement pstmt = null;
 				int count = 0;
-				try{
+				try{con = dataSource.getConnection();
+
 					String sql = " select count(*) from area_features";
 					  stmt = con.createStatement();
 					  rs = stmt.executeQuery(sql);
@@ -938,28 +657,10 @@ import com.kate.app.model.RecoProject;
 		            e.printStackTrace();
 		        }
 				finally{
-					if(rs != null){   // 关闭记录集   
-				        try{   
-				            rs.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				          }   
-				      if(stmt != null){   // 关闭声明   
-				        try{   
-				            stmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-				      if(pstmt != null){   // 关闭声明   
-					        try{   
-					            pstmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
-
+					 try { if (rs != null) rs.close(); } catch(Exception e) { }
+					 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+					 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+					 try { if (con != null) con.close(); } catch(Exception e) { }
 		        }
 				return count;
 			}
@@ -969,11 +670,13 @@ import com.kate.app.model.RecoProject;
 			 * 閿熸枻鎷烽敓鏂ゆ嫹閿熺嫛纭锋嫹閿熸枻鎷风洰閿熸枻鎷烽敓鏂ゆ嫹
 			 */
 			public int countRecomendProject(){
-				Statement stmt = null;
+				Statement stmt = null;Connection con = null;
+
 				ResultSet rs = null;
 				PreparedStatement pstmt = null;
 				int count = 0;
-				try{
+				try{con = dataSource.getConnection();
+
 					String sql = " select count(*) from recommend_project";
 					  stmt = con.createStatement();
 					  rs = stmt.executeQuery(sql);
@@ -984,27 +687,10 @@ import com.kate.app.model.RecoProject;
 		            e.printStackTrace();
 		        }
 				finally{
-					if(rs != null){   // 关闭记录集   
-				        try{   
-				            rs.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				          }   
-				      if(stmt != null){   // 关闭声明   
-				        try{   
-				            stmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-				      if(pstmt != null){   // 关闭声明   
-					        try{   
-					            pstmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
+					 try { if (rs != null) rs.close(); } catch(Exception e) { }
+					 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+					 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+					 try { if (con != null) con.close(); } catch(Exception e) { } 
 
 		        }
 				return count;
@@ -1012,11 +698,12 @@ import com.kate.app.model.RecoProject;
 			
 			
 			public int countNewsInfo(){
-				Statement stmt = null;
+				Statement stmt = null;Connection con = null;
 				ResultSet rs = null;
 				PreparedStatement pstmt = null;
 				int count = 0;
-				try{
+				try{con = dataSource.getConnection();
+
 					String sql = " select count(*) from news_info";
 					  stmt = con.createStatement();
 					  rs = stmt.executeQuery(sql);
@@ -1027,27 +714,10 @@ import com.kate.app.model.RecoProject;
 		            e.printStackTrace();
 		        }
 				finally{
-					if(rs != null){   // 关闭记录集   
-				        try{   
-				            rs.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				          }   
-				      if(stmt != null){   // 关闭声明   
-				        try{   
-				            stmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-				      if(pstmt != null){   // 关闭声明   
-					        try{   
-					            pstmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
+					 try { if (rs != null) rs.close(); } catch(Exception e) { }
+					 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+					 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+					 try { if (con != null) con.close(); } catch(Exception e) { }
 
 		        }
 				return count;
@@ -1059,9 +729,10 @@ import com.kate.app.model.RecoProject;
 			Statement stmt = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
-			 
+			Connection con = null;
+
 			HouseProject projectInfo = new HouseProject();
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " select * from house_project where id= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
@@ -1096,38 +767,22 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { } 
 
 	        }
 			return projectInfo;
 		}
 		
 		public HouseProject findProByNum(String proNum){    //閫氳繃椤圭洰缂栧彿鏌ユ壘椤圭洰淇℃伅
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
+
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			HouseProject projectInfo = new HouseProject();
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " select * from house_project where project_num= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, proNum);
@@ -1162,27 +817,10 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return projectInfo;
@@ -1194,9 +832,9 @@ import com.kate.app.model.RecoProject;
 			Statement stmt = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
-			 
+			Connection con = null;
 			boolean flag = true;
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " insert into investment_data(year_increment_rate, middle_price, middle_zu_price, zu_house_rate, zu_xuqiu, price_review, data_exam, area_num, area_name) values(?,?,?,?,?,?,?,?,?)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, year_increment_rate);
@@ -1215,27 +853,10 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return flag;
@@ -1247,9 +868,9 @@ import com.kate.app.model.RecoProject;
 			Statement stmt = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
-			 
+			Connection con = null;
 			boolean flag = true;
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " update investment_data set year_increment_rate=?, middle_price=?, middle_zu_price=?, zu_house_rate=?, zu_xuqiu=?, price_review=?, data_exam=?, area_num=?, area_name=? where id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, year_increment_rate);
@@ -1270,28 +891,10 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 	        }
 			return flag;
 	        
@@ -1301,7 +904,7 @@ import com.kate.app.model.RecoProject;
 		 * 澧炲姞鍖哄煙淇℃伅
 		 */
 		public boolean addArea(String area_code, String area_character, int view_shunxu, String data_source, String update_time) throws SQLException{
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
@@ -1318,7 +921,8 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();   
 	        }  
 	        
-			try{
+			try{con = dataSource.getConnection();
+
 				String sql = " insert into area_features(area_character, area_code, view_shunxu, data_source, update_time) values(?,?,?,?,?)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, area_character);
@@ -1335,27 +939,10 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return flag;
@@ -1364,12 +951,9 @@ import com.kate.app.model.RecoProject;
 		 * 淇敼鍖哄煙淇℃伅
 		 */
 		public boolean editArea(int id, String area_code, String area_character, int view_shunxu, String data_source, String update_time) throws SQLException{
-			try{
-				con = DriverManager.getConnection(url, username, password);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-			PreparedStatement pstmt = null;
+			 Statement stmt = null;Connection con = null;
+				ResultSet rs = null;
+				PreparedStatement pstmt = null;
 			boolean flag = true;
 			String time_str = "";
 			Timestamp ts = new Timestamp(System.currentTimeMillis()); 
@@ -1383,7 +967,7 @@ import com.kate.app.model.RecoProject;
 	        } catch (Exception e) {   
 	            e.printStackTrace();   
 	        }  
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " update area_features set area_character=?, area_code=?, view_shunxu=?, data_source=?, update_time=? where id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, area_character);
@@ -1400,20 +984,10 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();
 	        }
 			finally{  
-	            if(pstmt != null){  
-	                try {  
-	                	pstmt.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
-	            if(con != null){  
-	                try {  
-	                    con.close();  
-	                } catch (SQLException e) {  
-	                    e.printStackTrace();  
-	                }  
-	            }  
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }  
 	        }
 			return flag;
 		}
@@ -1422,11 +996,12 @@ import com.kate.app.model.RecoProject;
 		 * 鍒犻櫎鍖哄煙淇℃伅
 		 */
 		public boolean deleteArea(int id) throws SQLException{
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
-			try{
+			try{con = dataSource.getConnection();
+
 					String sql = " delete from area_features where id= ?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setInt(1, id);
@@ -1437,27 +1012,10 @@ import com.kate.app.model.RecoProject;
 				}catch (Exception e) {
 		            e.printStackTrace();
 		        }finally{
-					if(rs != null){   // 关闭记录集   
-				        try{   
-				            rs.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				          }   
-				      if(stmt != null){   // 关闭声明   
-				        try{   
-				            stmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-				      if(pstmt != null){   // 关闭声明   
-					        try{   
-					            pstmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
+		        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+		        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+		        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+		        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 		        }
 				return flag;
@@ -1472,9 +1030,10 @@ import com.kate.app.model.RecoProject;
 			Statement stmt = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
-			 
+			Connection con = null;
+
 			boolean flag = true;
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " insert into recommend_project(project_num, recommend_project_num1, recommend_project_num2, recommend_project_num3) values(?,?,?,?)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, project_num);
@@ -1488,27 +1047,10 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return flag;
@@ -1518,11 +1060,11 @@ import com.kate.app.model.RecoProject;
 		 * 閿熺潾闈╂嫹閿熺嫛纭锋嫹閿熸枻鎷风洰
 		 */
 		public boolean editRecoProject(int id, String project_num, String recommend_project_num1,String recommend_project_num2,String recommend_project_num3) throws SQLException{
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " update recommend_project set project_num=?, recommend_project_num1=?, recommend_project_num2=?, recommend_project_num3=? where id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, project_num);
@@ -1537,34 +1079,17 @@ import com.kate.app.model.RecoProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return flag;
 	        
 		}
 		public boolean addNewsInfo(String title, String source, String time, String detail, String news_img, String news_abstract,String project_num) throws SQLException{
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
@@ -1580,7 +1105,7 @@ import com.kate.app.model.RecoProject;
 	        } catch (Exception e) {   
 	            e.printStackTrace();   
 	        }  
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " insert into news_info(title, source, time, detail, news_img, news_abstract, project_num) values(?,?,?,?,?,?,?,?)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, title);
@@ -1598,27 +1123,10 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return flag;
@@ -1626,7 +1134,8 @@ import com.kate.app.model.RecoProject;
 		}
 		
 		public boolean editNewsInfo(int id, String title, String source, String time, String detail, String news_img, String news_abstract,String project_num) throws SQLException{
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
+
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
@@ -1642,7 +1151,8 @@ import com.kate.app.model.RecoProject;
 	        } catch (Exception e) {   
 	            e.printStackTrace();   
 	        }  
-			try{
+			try{con = dataSource.getConnection();
+
 				String sql = " update news_info set title=?, source=?, time=?, detail=?, news_img=?, news_abstract=?, project_num=? where id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, title);
@@ -1661,28 +1171,11 @@ import com.kate.app.model.RecoProject;
 	            e.printStackTrace();
 	        }
 
-finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+			finally{
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return flag;
@@ -1692,11 +1185,13 @@ finally{
 		
 		
 		public boolean addHouseInfo(String house_type, int house_room_num, int house_toilet_num, int house_size, String house_price, String house_img, String project_num) throws SQLException{
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
+
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
-			try{
+			try{con = dataSource.getConnection();
+
 				String sql = " insert into house_info(house_type, house_room_num, house_toilet_num, house_size, house_price, house_img, project_num) values(?,?,?,?,?,?,?)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, house_type);
@@ -1713,27 +1208,10 @@ finally{
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return flag;
@@ -1743,11 +1221,11 @@ finally{
 		 * 閿熸枻鎷烽敓鎺ュ尅鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎭�
 		 */
 		public boolean addDeveInfo(String developer_name, String developer_logo, String developer_desc) throws SQLException{
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " insert into developer_info(developer_name, developer_logo, developer_desc) values(?,?,?)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, developer_name);
@@ -1760,27 +1238,10 @@ finally{
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return flag;
@@ -1792,11 +1253,11 @@ finally{
 		 * 閿熸枻鎷烽敓鎺ュ尅鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎭�
 		 */
 		public boolean addBrokerInfo(String broker_name, String broker_language, String broker_region, String broker_img,String broker_experience, String broker_num, String broker_type, String broker_zizhi, String introduction, String office) throws SQLException{
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " insert into broker_info(broker_name, broker_language, broker_region, broker_img, broker_experience, broker_num, broker_type, broker_zizhi, introduction, office) values(?,?,?,?,?,?,?,?,?,?)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, broker_name);
@@ -1816,28 +1277,10 @@ finally{
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 	        }
 			return flag;
 	        
@@ -1849,9 +1292,10 @@ finally{
 			Statement stmt = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
-
+			Connection con = null;
 			boolean flag = true;
-			try{
+			try{con = dataSource.getConnection();
+
 				String sql = " update house_info set house_type=?, house_room_num=?, house_toilet_num=?, house_size=?, house_price=?, house_img=?, project_num=? where id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, house_type);
@@ -1870,27 +1314,10 @@ finally{
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 
@@ -1906,9 +1333,9 @@ finally{
 			Statement stmt = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
-
+			Connection con = null;
 			boolean flag = true;
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " delete from investment_data where id= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
@@ -1919,39 +1346,21 @@ finally{
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 	        }
 			return flag;
 	        
 		}
 		
 		public boolean deleteBrokerInfo(int id){     //鍒犻敓鏂ゆ嫹鎶曢敓鏂ゆ嫹閿熸枻鎷烽敓锟�
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " delete from broker_info where id= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
@@ -1962,27 +1371,10 @@ finally{
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return flag;
@@ -1991,11 +1383,11 @@ finally{
 		
 		
 		public boolean deleteHouseInfo(int id){    //鍒犻敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎭�
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " delete from house_info where id= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
@@ -2006,27 +1398,10 @@ finally{
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return flag;
@@ -2034,11 +1409,13 @@ finally{
 		}
 		
 		public boolean deleteHouseProject(int id){    //鍒犻敓鏂ゆ嫹閿熸枻鎷风洰閿熸枻鎷锋伅
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
+
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
-			try{
+			try{con = dataSource.getConnection();
+
 				String sql = " delete  from house_project where id= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
@@ -2049,28 +1426,10 @@ finally{
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 	        }
 			return flag;
 	        
@@ -2080,11 +1439,11 @@ finally{
 		 * 閿熺嫛纭锋嫹閿熸枻鎷风洰鍒犻敓鏂ゆ嫹
 		 */
 		public boolean deleteRecomHouseProject(int id){
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " delete from recommend_project where id= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
@@ -2095,27 +1454,11 @@ finally{
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
+
 
 	        }
 			return flag;
@@ -2124,11 +1467,12 @@ finally{
 		
 		
 		public boolean findById(int id){
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
+
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = false;
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " select count(*) from investment_data where house_pro_id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
@@ -2139,27 +1483,10 @@ finally{
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return flag;
@@ -2169,7 +1496,7 @@ finally{
 		
 		//娣诲姞椤圭洰
 		public boolean addPro(String project_name, String project_img, String project_nation, String project_address, String project_area, String project_price_qi, String project_type, int project_sales_remain, String project_finish_time, String project_desc, String project_city, String project_house_type, String project_high, String project_price, String project_lan_cn, String project_lan_en, String project_num, String project_vedio, String project_zhou, String area_qujian, String gps, String return_money, int walk_num, String mianji, String project_min_price, String project_high_price, int tuijiandu, String housePrice_update_time, String buytaxInfo, String holdInfo, int min_area, int max_area, String area_num, String developer_num) throws SQLException{
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
@@ -2200,7 +1527,7 @@ finally{
 	            e.printStackTrace();   
 	        } 
 			
-			try{
+			try{con = dataSource.getConnection();
 				//String sql = " insert into house_project(project_name, project_img, project_nation, project_address, project_area, project_price_qi, project_type, project_sales_remain,  project_finish_time, project_desc, project_city, project_house_type, project_high, project_price, project_lan_cn, project_lan_en, project_num, project_vedio, project_zhou, area_qujian, gps, return_money, walk_num, mianji, project_min_price, project_high_price, tuijiandu, housePrice_update_time, buytaxInfo, holdInfo, min_area, max_area, area_num, developer_id_num) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				String sql = " insert into house_project(project_name, project_img, project_nation, project_address, project_area, project_price_qi, project_type, project_sales_remain,  project_finish_time, project_desc, project_city, project_house_type, project_high, project_price, project_lan_cn, project_lan_en, project_num, project_vedio, project_zhou, area_qujian, gps, return_money, walk_num, mianji, project_min_price, project_high_price, tuijiandu, housePrice_update_time, buytaxInfo, holdInfo, min_area, max_area, area_num, developer_id_name) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				pstmt = con.prepareStatement(sql);
@@ -2247,27 +1574,10 @@ finally{
 	            e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return flag;
@@ -2276,7 +1586,7 @@ finally{
 		
 		
 		public boolean editPro(int id, String project_name, String project_img, String project_nation, String project_address, String project_area, String project_price_qi, String project_type, int project_sales_remain, String project_finish_time, String project_desc, String project_city, String project_house_type, String project_high, String project_price, String project_lan_cn, String project_lan_en, String project_num, String project_vedio, String project_zhou, String area_qujian, String gps, String return_money, int walk_num, String mianji, String project_min_price, String project_high_price, int tuijiandu, String housePrice_update_time, String buytaxInfo, String holdInfo, int min_area, int max_area, String area_num, String developer_num) throws SQLException{
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
@@ -2305,7 +1615,7 @@ finally{
 	        } catch (Exception e) {   
 	            e.printStackTrace();   
 	        } 
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " update house_project set project_name=?,  project_img=?, project_nation=?, project_address=?, project_area=?, project_price_qi=?, project_type=?, project_sales_remain=?, project_finish_time=?, project_desc=?, project_city=?, project_house_type=?, project_high=?, project_price=?, project_lan_cn=?, project_lan_en=?, project_num=?, project_vedio=?, project_zhou=?, area_qujian=?, gps=?, return_money=?, walk_num=?, mianji=?, project_min_price=?, project_high_price=?, tuijiandu=?, housePrice_update_time=?, buytaxInfo=?, holdInfo=?, min_area=?, max_area=?, area_num=?, developer_id_name=? where id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, project_name);
@@ -2351,27 +1661,10 @@ finally{
 	            e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return flag;
@@ -2381,11 +1674,11 @@ finally{
 		 * 閿熺潾鏀瑰尅鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎭�
 		 */
 		public boolean editDeveloperInfo(int deveId, String developer_name, String developer_logo, String developer_desc) throws SQLException{
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " update developer_info set developer_name=?, developer_logo=?, developer_desc=? where id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, developer_name);
@@ -2401,27 +1694,10 @@ finally{
 	            e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return flag;  
@@ -2433,11 +1709,11 @@ finally{
 		 * 閿熺潾鏀瑰尅鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎭�
 		 */
 		public boolean editBrokerInfo(int id, String broker_name, String broker_language, String broker_region, String broker_img,String broker_experience, String broker_num, String broker_type, String broker_zizhi, String introduction, String office) throws SQLException{
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " update broker_info set broker_name=?, broker_language=?, broker_region=?, broker_img=?, broker_experience=?, broker_num=?, broker_type=?, broker_zizhi=?, introduction=?, office=? where id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, broker_name);
@@ -2459,27 +1735,10 @@ finally{
 	            e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return flag;  
@@ -2488,11 +1747,11 @@ finally{
 		
 		
 		public boolean deletePro(int proid) throws SQLException{
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " delete from house_project where id= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, proid);
@@ -2504,27 +1763,10 @@ finally{
 	            e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return flag;
@@ -2533,11 +1775,11 @@ finally{
 		
 		
 		public boolean deleteNewsInfo(int id) throws SQLException{
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " delete from news_info where id= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
@@ -2549,27 +1791,10 @@ finally{
 	            e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { } 
 
 	        }
 			return flag;
@@ -2578,11 +1803,12 @@ finally{
 		
 		
 		public int findProByName(String name) throws SQLException{   //閫氶敓鏂ゆ嫹閿熸枻鎷锋拠閿熸枻鎷烽敓绲燿
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
+
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			HouseProject projectInfo = new HouseProject();
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " select id from house_project where project_name= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, name);
@@ -2594,27 +1820,10 @@ finally{
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return projectInfo.getId();
@@ -2622,11 +1831,11 @@ finally{
 		}
 		
 		public int countAreaInfo(String area_num){
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			int count = 0;
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " select count(*) from area_info where area_num=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, area_num);
@@ -2638,27 +1847,10 @@ finally{
 	            e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return count;
@@ -2667,11 +1859,12 @@ finally{
 		 * 閫氶敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎾囬敓鏂ゆ嫹閿熺禒d
 		 */
 		public int findDeveByName(String name) throws SQLException{   //閫氶敓鏂ゆ嫹閿熸枻鎷锋拠閿熸枻鎷烽敓绲燿
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			DeveloperInfo developerInfo = new DeveloperInfo();
-			try{
+			try{con = dataSource.getConnection();
+
 				String sql = " select id from developer_info where developer_name= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, name);
@@ -2683,27 +1876,10 @@ finally{
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return developerInfo.getId();
@@ -2714,9 +1890,9 @@ finally{
 			Statement stmt = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
-
+			Connection con = null;
 			DeveloperInfo developerInfo = new DeveloperInfo();
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " select id from developer_info where developer_num= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, num);
@@ -2728,27 +1904,10 @@ finally{
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return developerInfo.getId();

@@ -31,6 +31,8 @@
     <context:component-scan base-package="com.kate.app.controller" />
     <context:component-scan base-package="com.kate.app.service" />
     <context:component-scan base-package="com.kate.app.dao" />
+     <context:component-scan base-package="com.kate.app.model" />
+    
     <mvc:default-servlet-handler />
 
     <!-- <mvc:annotation-driven /> -->
@@ -71,7 +73,7 @@
         <property name="password" value="gethouse"/>
       
         <property name="maxActive">  
-                <value>1000</value>
+                <value>100</value>
   		</property>
   		<property name="maxWait">
      			<value>1000</value>

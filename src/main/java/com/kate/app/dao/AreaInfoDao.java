@@ -1,5 +1,6 @@
 ﻿package com.kate.app.dao;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,14 +32,16 @@ import com.kate.app.model.InvestmentDataBackEnd;
 import com.kate.app.model.MiddlePrice2;
 import com.kate.app.model.NewsZhiye;
 @Repository 
-public class AreaInfoDao extends BaseDao {
+public class AreaInfoDao extends BaseDao2 {
 	//閫氳繃id鍒犻櫎鍖哄煙鎺ㄨ崘鏂伴椈
 			public int deleteNewsBoke(String area_num){
+				Connection con = null;
 				Statement stmt = null;
 				ResultSet rs = null;
 				PreparedStatement pstmt = null;
 				int exeResult=0;
 				try{
+					con = dataSource.getConnection();
 						String sql = " delete from recommend_news where area_code= ?";
 						pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, area_num);
@@ -47,27 +50,10 @@ public class AreaInfoDao extends BaseDao {
 			            e.printStackTrace();
 			        }
 				finally{
-					if(rs != null){   // 关闭记录集   
-				        try{   
-				            rs.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				          }   
-				      if(stmt != null){   // 关闭声明   
-				        try{   
-				            stmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-				      if(pstmt != null){   // 关闭声明   
-					        try{   
-					            pstmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
+					 try { if (rs != null) rs.close(); } catch(Exception e) { }
+					 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+					 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+					 try { if (con != null) con.close(); } catch(Exception e) { }
 
 		        }
 				    return exeResult;
@@ -77,9 +63,11 @@ public class AreaInfoDao extends BaseDao {
 			Statement stmt = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
+			Connection con = null;
 
 			int exeResult=0;
 			try{
+				con = dataSource.getConnection();
 					String sql = " delete from recommend_project where area_code= ?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, area_num);
@@ -88,38 +76,23 @@ public class AreaInfoDao extends BaseDao {
 		            e.printStackTrace();
 		        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			    return exeResult;
 		}	
 	//閫氳繃id鍒犻櫎鍖哄煙缁忕邯浜�
 	public int deleteBroker(String area_num){
+		Connection con = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		int exeResult=0;
 		try{
+			con = dataSource.getConnection();
 				String sql = " delete from area_recommend_broker where area_code= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, area_num);
@@ -128,38 +101,23 @@ public class AreaInfoDao extends BaseDao {
 	            e.printStackTrace();
 	        }
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		    return exeResult;
 	}	
 	//閫氳繃id鍒犻櫎鍖哄煙浜哄彛鍒嗗竷璧板娍
 			public int deletePeople(String area_num){
+				Connection con = null;
 				Statement stmt = null;
 				ResultSet rs = null;
 				PreparedStatement pstmt = null;
 				int exeResult=0;
 				try{
+					con = dataSource.getConnection();
 						String sql = " delete from area_people where area_code= ?";
 						pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, area_num);
@@ -168,27 +126,10 @@ public class AreaInfoDao extends BaseDao {
 			            e.printStackTrace();
 			        }
 				finally{
-					if(rs != null){   // 关闭记录集   
-				        try{   
-				            rs.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				          }   
-				      if(stmt != null){   // 关闭声明   
-				        try{   
-				            stmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-				      if(pstmt != null){   // 关闭声明   
-					        try{   
-					            pstmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
+					 try { if (rs != null) rs.close(); } catch(Exception e) { }
+					 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+					 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+					 try { if (con != null) con.close(); } catch(Exception e) { }
 
 		        }
 				    return exeResult;
@@ -199,7 +140,9 @@ public class AreaInfoDao extends BaseDao {
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			int exeResult=0;
+			Connection con = null;
 			try{
+				con = dataSource.getConnection();
 					String sql = " delete from area_features where area_code= ?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, area_num);
@@ -208,38 +151,23 @@ public class AreaInfoDao extends BaseDao {
 		            e.printStackTrace();
 		        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			    return exeResult;
 		}	
 	//閫氳繃id鍒犻櫎鍖哄煙绉熷洖鎶ヨ蛋鍔�
 	public int deleteHuibao(String area_num){
+		Connection con = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		int exeResult=0;
 		try{
+			con = dataSource.getConnection();
 				String sql = " delete from area_kongzhi where area_code= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, area_num);
@@ -248,38 +176,24 @@ public class AreaInfoDao extends BaseDao {
 	            e.printStackTrace();
 	        }
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		    return exeResult;
 	}	
 	//閫氳繃id鍒犻櫎鍖哄煙绉熼噾璧板娍
 			public int deleteZujin(String area_num){
+				Connection con = null;
+
 				Statement stmt = null;
 				ResultSet rs = null;
 				PreparedStatement pstmt = null;
 				int exeResult=0;
 				try{
+					con = dataSource.getConnection();
 						String sql = " delete from area_zujin where area_code= ?";
 						pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, area_num);
@@ -288,38 +202,24 @@ public class AreaInfoDao extends BaseDao {
 			            e.printStackTrace();
 			        }
 				finally{
-					if(rs != null){   // 关闭记录集   
-				        try{   
-				            rs.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				          }   
-				      if(stmt != null){   // 关闭声明   
-				        try{   
-				            stmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-				      if(pstmt != null){   // 关闭声明   
-					        try{   
-					            pstmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
+					 try { if (rs != null) rs.close(); } catch(Exception e) { }
+					 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+					 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+					 try { if (con != null) con.close(); } catch(Exception e) { }
 
 		        }
 				    return exeResult;
 			}	
 	//閫氳繃id鍒犻櫎鍖哄煙鎴夸环涓綅鏁拌蛋鍔�
 		public int deleteMiddleTrend(String area_num){
+			Connection con = null;
+
 			Statement stmt = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			int exeResult=0;
 			try{
+				con = dataSource.getConnection();
 					String sql = " delete from area_middle where area_code= ?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, area_num);
@@ -328,27 +228,10 @@ public class AreaInfoDao extends BaseDao {
 		            e.printStackTrace();
 		        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			    return exeResult;
@@ -358,9 +241,11 @@ public class AreaInfoDao extends BaseDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
+		Connection con = null;
 
 		int exeResult=0;
 		try{
+			con = dataSource.getConnection();
 				String sql = " delete from area_middle_price where area_quyu= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, area_num);
@@ -369,27 +254,10 @@ public class AreaInfoDao extends BaseDao {
 	            e.printStackTrace();
 	        }
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		    return exeResult;
@@ -399,9 +267,12 @@ public class AreaInfoDao extends BaseDao {
 				Statement stmt = null;
 				ResultSet rs = null;
 				PreparedStatement pstmt = null;
+				Connection con = null;
 
 				int exeResult=0;
 				try{
+
+con = dataSource.getConnection();
 						String sql = " delete from area_family where area_code= ?";
 						pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, area_num);
@@ -410,28 +281,10 @@ public class AreaInfoDao extends BaseDao {
 			            e.printStackTrace();
 			        }
 				finally{
-					if(rs != null){   // 关闭记录集   
-				        try{   
-				            rs.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				          }   
-				      if(stmt != null){   // 关闭声明   
-				        try{   
-				            stmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-				      if(pstmt != null){   // 关闭声明   
-					        try{   
-					            pstmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
-
+					 try { if (rs != null) rs.close(); } catch(Exception e) { }
+					 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+					 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+					 try { if (con != null) con.close(); } catch(Exception e) { }
 		        }
 				    return exeResult;
 			}
@@ -441,7 +294,8 @@ public class AreaInfoDao extends BaseDao {
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			int exeResult=0;
-			try{
+			Connection con = null;
+			try{con = dataSource.getConnection();
 					String sql = " delete from investment_data where area_num= ?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, area_num);
@@ -450,28 +304,10 @@ public class AreaInfoDao extends BaseDao {
 		            e.printStackTrace();
 		        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 	        }
 			    return exeResult;
 		}
@@ -480,8 +316,9 @@ public class AreaInfoDao extends BaseDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		int exeResult=0;
-		try{
+		int exeResult=0;Connection con = null;
+
+		try{con = dataSource.getConnection();
 				String sql = " delete from area_info where id= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
@@ -490,33 +327,16 @@ public class AreaInfoDao extends BaseDao {
 	            e.printStackTrace();
 	        }
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
         }
 		    return exeResult;
 	}
 	//閫氳繃鍖哄煙id鑾峰彇鏂伴椈鎶ラ亾淇℃伅
 		public List<NewsZhiye> getAreaNewsBokeList(String area_num){
+			Connection con = null;
 			Statement stmt = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
@@ -524,6 +344,7 @@ public class AreaInfoDao extends BaseDao {
 			AreaTuijianNews areaInfo=new AreaTuijianNews();
 			NewsZhiye newsZhiyeInfo = new NewsZhiye();
 			try {
+				con = dataSource.getConnection();
 				String sql = " SELECT * from recommend_news where area_code=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1,area_num);
@@ -539,27 +360,10 @@ public class AreaInfoDao extends BaseDao {
 				e.printStackTrace();
 			}
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			String news1=areaInfo.getReco_news_num_1();
@@ -597,7 +401,8 @@ public class AreaInfoDao extends BaseDao {
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			NewsZhiye newsBokeInfo = new NewsZhiye();
-			try {
+			Connection con = null;
+			try {con = dataSource.getConnection();
 				String sql = " SELECT * from news_boke where news_num=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1,news_num);
@@ -613,27 +418,10 @@ public class AreaInfoDao extends BaseDao {
 				e.printStackTrace();
 			}
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return newsBokeInfo;
@@ -643,8 +431,8 @@ public class AreaInfoDao extends BaseDao {
 			Statement stmt = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
-			NewsZhiye zhiyeInfo = new NewsZhiye();
-			try {
+			NewsZhiye zhiyeInfo = new NewsZhiye();Connection con = null;
+			try {con = dataSource.getConnection();
 				String sql = " SELECT * from zhiye_zhidao where zhiye_num=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1,zhiye_num);
@@ -660,41 +448,25 @@ public class AreaInfoDao extends BaseDao {
 				e.printStackTrace();
 			}
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 	        }
 
 			return zhiyeInfo;
 		}
 	//閫氳繃鍖哄煙id鑾峰彇鎺ㄨ崘椤圭洰淇℃伅
 	public List<HouseProject> getAreaProjectList(String area_num){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
+
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<HouseProject> areaInfolist = new ArrayList<HouseProject>();
 		AreaTuijianProject areaInfo=new AreaTuijianProject();
 		HouseProject projectInfo = new HouseProject();
-		try {
+		try {con = dataSource.getConnection();
+
 			String sql = " SELECT * from recommend_project where area_code=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,area_num);
@@ -710,28 +482,10 @@ public class AreaInfoDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
         }
 		String pro1=areaInfo.getRecommend_num_1();
 		String pro2=areaInfo.getRecommend_num_2();
@@ -746,11 +500,13 @@ public class AreaInfoDao extends BaseDao {
 	}
 	
 	public HouseProject getProjectList(String project_num){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
+
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		HouseProject projectInfo = new HouseProject();
-		try {
+		try {con = dataSource.getConnection();
+
 			String sql = " SELECT * from house_project where project_num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,project_num);
@@ -767,27 +523,10 @@ public class AreaInfoDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return projectInfo;
@@ -797,11 +536,13 @@ public class AreaInfoDao extends BaseDao {
 				Statement stmt = null;
 				ResultSet rs = null;
 				PreparedStatement pstmt = null;
+				Connection con = null;
 
 				List<BrokerInfo> areaInfolist = new ArrayList<BrokerInfo>();
 				AreaTuijianBroker areaInfo = new AreaTuijianBroker();
 				BrokerInfo brokerInfo=new BrokerInfo();
-				try {
+				try {con = dataSource.getConnection();
+
 					String sql = " SELECT * from area_recommend_broker where area_code=?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1,area_num);
@@ -818,27 +559,10 @@ public class AreaInfoDao extends BaseDao {
 					e.printStackTrace();
 				}
 				finally{
-					if(rs != null){   // 关闭记录集   
-				        try{   
-				            rs.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				          }   
-				      if(stmt != null){   // 关闭声明   
-				        try{   
-				            stmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-				      if(pstmt != null){   // 关闭声明   
-					        try{   
-					            pstmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
+					 try { if (rs != null) rs.close(); } catch(Exception e) { }
+					 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+					 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+					 try { if (con != null) con.close(); } catch(Exception e) { }
 
 		        }
 				String broker1=areaInfo.getBroker_code1();
@@ -854,11 +578,12 @@ public class AreaInfoDao extends BaseDao {
 			}
 			
 			public BrokerInfo getBrokerList(String broker_num){
-				Statement stmt = null;
+				Statement stmt = null;Connection con = null;
+
 				ResultSet rs = null;
 				PreparedStatement pstmt = null;
 				BrokerInfo brokerInfo = new BrokerInfo();
-				try {
+				try {con = dataSource.getConnection();
 					String sql = " SELECT * from broker_info where broker_num=?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1,broker_num);
@@ -875,38 +600,22 @@ public class AreaInfoDao extends BaseDao {
 					e.printStackTrace();
 				}
 				finally{
-					if(rs != null){   // 关闭记录集   
-				        try{   
-				            rs.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				          }   
-				      if(stmt != null){   // 关闭声明   
-				        try{   
-				            stmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-				      if(pstmt != null){   // 关闭声明   
-					        try{   
-					            pstmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
+					 try { if (rs != null) rs.close(); } catch(Exception e) { }
+					 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+					 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+					 try { if (con != null) con.close(); } catch(Exception e) { }
 
 		        }
 				return brokerInfo;
 			}
 	//閫氳繃鍖哄煙id鑾峰彇鍖哄煙浜哄彛鍒嗗竷淇℃伅
 		public List<AreaPeopleInfo2> getAreaPeopleList(String area_num){
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
+
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			List<AreaPeopleInfo2> areaInfolist = new ArrayList<AreaPeopleInfo2>();
-			try {
+			try {con = dataSource.getConnection();
 				String sql = " SELECT * from area_people where area_code=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1,area_num);
@@ -929,39 +638,23 @@ public class AreaInfoDao extends BaseDao {
 				e.printStackTrace();
 			}
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return areaInfolist;
 		}
 	//閫氳繃鍖哄煙id鑾峰彇鍖哄煙鐗圭偣淇℃伅
 	public List<AreaTeDian2> getAreaTedianList(String area_num){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
+
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 
 		List<AreaTeDian2> areaInfolist = new ArrayList<AreaTeDian2>();
-		try {
+		try {con = dataSource.getConnection();
 			String sql = " SELECT * from area_features where area_code=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,area_num);
@@ -981,38 +674,20 @@ public class AreaInfoDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
         }
 		return areaInfolist;
 	}
 	//閫氳繃鍖哄煙id鑾峰彇鍖哄煙绉熼噾鍥炴姤璧板娍淇℃伅
 			public List<AreaZhikong2> getAreaKongzhiList(String area_num){
-				Statement stmt = null;
+				Statement stmt = null;Connection con = null;
 				ResultSet rs = null;
 				PreparedStatement pstmt = null;
 				List<AreaZhikong2> areaInfolist = new ArrayList<AreaZhikong2>();
-				try {
+				try {con = dataSource.getConnection();
 					String sql = " SELECT * from area_kongzhi where area_code=?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1,area_num);
@@ -1034,27 +709,10 @@ public class AreaInfoDao extends BaseDao {
 					e.printStackTrace();
 				}
 				finally{
-					if(rs != null){   // 关闭记录集   
-				        try{   
-				            rs.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				          }   
-				      if(stmt != null){   // 关闭声明   
-				        try{   
-				            stmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-				      if(pstmt != null){   // 关闭声明   
-					        try{   
-					            pstmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
+					 try { if (rs != null) rs.close(); } catch(Exception e) { }
+					 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+					 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+					 try { if (con != null) con.close(); } catch(Exception e) { }
 
 		        }
 				return areaInfolist;
@@ -1062,11 +720,12 @@ public class AreaInfoDao extends BaseDao {
 			
 	//閫氳繃鍖哄煙id鑾峰彇鍖哄煙绉熼噾璧板娍淇℃伅
 		public List<AreaZujin2> getAreaZujinList(String area_num){
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
+
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			List<AreaZujin2> areaInfolist = new ArrayList<AreaZujin2>();
-			try {
+			try {con = dataSource.getConnection();
 				String sql = " SELECT * from area_zujin where area_code=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1,area_num);
@@ -1088,27 +747,10 @@ public class AreaInfoDao extends BaseDao {
 				e.printStackTrace();
 			}
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return areaInfolist;
@@ -1119,9 +761,9 @@ public class AreaInfoDao extends BaseDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		
+		Connection con = null;
 		List<AreaMiddle2> areaInfolist = new ArrayList<AreaMiddle2>();
-		try {
+		try {con = dataSource.getConnection();
 			String sql = " SELECT * from area_middle where area_code=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,area_num);
@@ -1143,27 +785,10 @@ public class AreaInfoDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return areaInfolist;
@@ -1173,9 +798,10 @@ public class AreaInfoDao extends BaseDao {
 				Statement stmt = null;
 				ResultSet rs = null;
 				PreparedStatement pstmt = null;
+				Connection con = null;
 
 				List<MiddlePrice2> areaInfolist = new ArrayList<MiddlePrice2>();
-				try {
+				try {con = dataSource.getConnection();
 					String sql = " SELECT * from area_middle_price where area_quyu=?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1,area_num);
@@ -1209,27 +835,10 @@ public class AreaInfoDao extends BaseDao {
 					e.printStackTrace();
 				}
 				finally{
-					if(rs != null){   // 关闭记录集   
-				        try{   
-				            rs.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				          }   
-				      if(stmt != null){   // 关闭声明   
-				        try{   
-				            stmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-				      if(pstmt != null){   // 关闭声明   
-					        try{   
-					            pstmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
+					 try { if (rs != null) rs.close(); } catch(Exception e) { }
+					 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+					 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+					 try { if (con != null) con.close(); } catch(Exception e) { } 
 
 		        }
 				return areaInfolist;
@@ -1240,9 +849,10 @@ public class AreaInfoDao extends BaseDao {
 			Statement stmt = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
+			Connection con = null;
 
 			AreaFamilyBackEnd areaInfo = new AreaFamilyBackEnd();
-			try {
+			try {con = dataSource.getConnection();
 				String sql = " SELECT * from area_family where area_code=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1,area_num);
@@ -1264,27 +874,10 @@ public class AreaInfoDao extends BaseDao {
 				e.printStackTrace();
 			}
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return areaInfo;
@@ -1294,8 +887,9 @@ public class AreaInfoDao extends BaseDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
+		Connection con = null;
 		InvestmentDataBackEnd areaInfo = new InvestmentDataBackEnd();
-		try {
+		try {con = dataSource.getConnection();
 			String sql = " SELECT * from investment_data where area_num=? and area_type=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,area_num);
@@ -1321,27 +915,10 @@ public class AreaInfoDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return areaInfo;
@@ -1352,11 +929,11 @@ public class AreaInfoDao extends BaseDao {
 	 * @return
 	 */
 	public int isDuplicate(String area_num){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		HashSet<String> areaNumSet=new HashSet<String>();
-		try {
+		try {con = dataSource.getConnection();
 			String sql = " SELECT area_num from area_info";
 			pstmt = con.prepareStatement(sql);
 			  rs = pstmt.executeQuery();
@@ -1372,37 +949,20 @@ public class AreaInfoDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return 0;
 	}
 	//鍖哄煙褰曞叆
 	public int AddArea(String area_num,String area_name,String area_city,String area_zhou,String area_nation,String area_postcode,String touzi_datasource,String touzi_datasource1,String touzi_date,String touzi_date1,String middle_price,String middle_price1,String middle_zu_price,String middle_zu_price1, String price_review, String price_review1, String year_increment_rate, String year_increment_rate1, String zu_house_rate,String zu_house_rate1, String zu_xuqiu,String zu_xuqiu1,String pro_type, String pro_type1, String data_exam,String data_exam1,String family_one,String family_one_rate,String family_two,String family_two_rate,String family_three,String family_three_rate,String family_datasource,String family_date,List<MiddlePrice2> middlepriceList,List<AreaMiddle2> middletrendList,List<AreaZujin2> zujintrendlistList,List<AreaZhikong2> huibaotrendlistList,List<AreaTeDian2> tedianlistList,List<AreaPeopleInfo2> peoplelistList,List<BrokerInfo> brokerlistList,List<String> projectlistList,List<String> newslistList,List<String> list) throws SQLException{
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		try {
+		try {con = dataSource.getConnection();
 			con.setAutoCommit(false);
 			//鍖哄煙淇℃伅
 			boolean flagquyu;
@@ -2145,27 +1705,10 @@ public class AreaInfoDao extends BaseDao {
             return -1;
         }
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 	}
@@ -2178,10 +1721,11 @@ public class AreaInfoDao extends BaseDao {
 				,List<MiddlePrice2> middlepriceListdelete,List<AreaMiddle2> middletrendListdelete,List<AreaZujin2> zujintrendlistListdelete
 				,List<AreaZhikong2> huibaotrendlistListdelete,List<AreaTeDian2> tedianlistListdelete,List<AreaPeopleInfo2> peoplelistListdelete) throws SQLException{
 
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
+
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
-			try {
+			try {con = dataSource.getConnection();
 				con.setAutoCommit(false);
 				//鍖哄煙淇℃伅
 				boolean flagquyu;
@@ -3313,37 +2857,20 @@ public class AreaInfoDao extends BaseDao {
 	            return -1;
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 		}
 	//Area缂栬緫妯″潡鐨勬煡璇reaInfo淇℃伅
 	public AreaInfo getAreaInfoBackEnd(int id){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		AreaInfo areaInfo = new AreaInfo();
-		try {
+		try {con = dataSource.getConnection();
 			String sql = " SELECT * from area_info where id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, id);
@@ -3363,27 +2890,10 @@ public class AreaInfoDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 
@@ -3392,11 +2902,12 @@ public class AreaInfoDao extends BaseDao {
 	
 	
 	public AreaInfo getAreaInfo(int id){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
+
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		AreaInfo areaInfo = new AreaInfo();
-		try {
+		try {con = dataSource.getConnection();
 			String sql = " SELECT * from area_info where id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, id);
@@ -3416,27 +2927,10 @@ public class AreaInfoDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return areaInfo;
@@ -3446,9 +2940,9 @@ public class AreaInfoDao extends BaseDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-
+		Connection con = null;
 		AreaInfo areaInfo = new AreaInfo();
-		try {
+		try {con = dataSource.getConnection();
 			String sql = " SELECT * from area_info where area_num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, area_num);
@@ -3485,27 +2979,10 @@ public class AreaInfoDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return areaInfo;
@@ -3515,11 +2992,14 @@ public class AreaInfoDao extends BaseDao {
 	 * 根据区域名称得到区域的信息
 	 */
 	public AreaInfo getAreaInfo(String area_name){
+		Connection con = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		AreaInfo areaInfo = new AreaInfo();
+
 		try {
+			con = dataSource.getConnection();
 			String sql = " SELECT * from area_info where area_name=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, area_name);
@@ -3539,27 +3019,10 @@ public class AreaInfoDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return areaInfo;
@@ -3568,11 +3031,11 @@ public class AreaInfoDao extends BaseDao {
 	
 	
 	public String getAreaNum(String area_name){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		String area_code = "";
-		try {
+		try {con = dataSource.getConnection();
 			String sql = " SELECT * from area_info where area_name=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, area_name);
@@ -3587,27 +3050,10 @@ public class AreaInfoDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return area_code;
@@ -3615,11 +3061,11 @@ public class AreaInfoDao extends BaseDao {
 	
 	
 	public String getAreaName(String area_num){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		String area_code = "";
-		try {
+		try {con = dataSource.getConnection();
 			String sql = " SELECT * from area_info where area_name=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, area_num);
@@ -3634,27 +3080,10 @@ public class AreaInfoDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return area_code;
@@ -3665,9 +3094,9 @@ public class AreaInfoDao extends BaseDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-
+		Connection con = null;
 		boolean flag = true;
-		try{
+		try{con = dataSource.getConnection();
 			String sql = " insert into area_info(area_num, area_name, area_city, area_zhou, area_nation, area_postcode) values(?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, area_num);
@@ -3685,27 +3114,10 @@ public class AreaInfoDao extends BaseDao {
             e.printStackTrace();
         }
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return flag;
@@ -3715,7 +3127,7 @@ public class AreaInfoDao extends BaseDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		
+		Connection con = null;
 		boolean flag = true;
 		String time_str = "";
 		Timestamp ts = new Timestamp(System.currentTimeMillis()); 
@@ -3730,7 +3142,7 @@ public class AreaInfoDao extends BaseDao {
             e.printStackTrace();   
         }  
 		
-		try{
+		try{con = dataSource.getConnection();
 			String sql = " insert into investment_data(year_increment_rate, middle_price, middle_zu_price, zu_house_rate, zu_xuqiu, price_review, data_exam, area_num, area_name, touzi_datasource, touzi_date) values(?,?,?,?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, year_increment_rate);
@@ -3751,27 +3163,10 @@ public class AreaInfoDao extends BaseDao {
 		}catch (Exception e) {
             e.printStackTrace();
         }finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return flag;
@@ -3783,7 +3178,7 @@ public class AreaInfoDao extends BaseDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-
+		Connection con = null;
 		boolean flag = true;
 		String time_str = "";
 		Timestamp ts = new Timestamp(System.currentTimeMillis()); 
@@ -3798,7 +3193,7 @@ public class AreaInfoDao extends BaseDao {
             e.printStackTrace();   
         }  
         
-		try{
+		try{con = dataSource.getConnection();
 			String sql = " insert into area_family(family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, area_code, family_datasource, family_date) values(?,?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, family_one);
@@ -3820,27 +3215,10 @@ public class AreaInfoDao extends BaseDao {
             e.printStackTrace();
         }
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return flag;
@@ -3850,7 +3228,7 @@ public class AreaInfoDao extends BaseDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-
+		Connection con = null;
 		boolean flag = true;
 		int buy_price = obj.getBuy_price();
 		int zu_price = obj.getZu_price();
@@ -3874,7 +3252,7 @@ public class AreaInfoDao extends BaseDao {
 		}
 		
         
-		try{
+		try{con = dataSource.getConnection();
 			String sql = " insert into area_middle_price(buy_price, zu_price, " +
 					"buy_one_name, buy_one_price, buy_two_name, buy_two_price, " +
 					"buy_three_name, buy_three_price, zu_one_name, zu_one_price, " +
@@ -3909,27 +3287,10 @@ public class AreaInfoDao extends BaseDao {
             e.printStackTrace();
         }
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { } 
 
         }
 		return flag;
@@ -3937,7 +3298,8 @@ public class AreaInfoDao extends BaseDao {
 	
 	
 	public boolean addMiddleTrend(AreaMiddle2 obj, String area_code){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
+
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		boolean flag = true;
@@ -3954,7 +3316,8 @@ public class AreaInfoDao extends BaseDao {
 		}
 		
         
-		try{
+		try{con = dataSource.getConnection();
+
 			String sql = " insert into area_middle(heng, zong, " +
 					"view_shunxu, project_type, area_code, middle_zoushi_datasource, " +
 					"middle_zoushi_date) values(?,?,?,?,?,?,?)";
@@ -3974,34 +3337,17 @@ public class AreaInfoDao extends BaseDao {
             e.printStackTrace();
         }
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return flag;
 	}
 	
 	public boolean addMiddleZujin(AreaZujin2 obj, String area_code){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		boolean flag = true;
@@ -4018,7 +3364,7 @@ public class AreaInfoDao extends BaseDao {
 		}
 		
         
-		try{
+		try{con = dataSource.getConnection();
 			String sql = " insert into area_zujin(heng, zong, " +
 					"view_shunxu, project_type, area_code, zujin_datasource, " +
 					"zujin_date) values(?,?,?,?,?,?,?)";
@@ -4038,34 +3384,17 @@ public class AreaInfoDao extends BaseDao {
             e.printStackTrace();
         }
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return flag;
 	}
 	
 	public boolean addAreaZhikong(AreaZhikong2 obj, String area_code){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		boolean flag = true;
@@ -4082,7 +3411,7 @@ public class AreaInfoDao extends BaseDao {
 		}
 		
         
-		try{
+		try{con = dataSource.getConnection();
 			String sql = " insert into area_kongzhi(heng, zong, " +
 					"view_shunxu, project_type, area_code, zujin_huibao_datasource, " +
 					"zujin_huibao_date) values(?,?,?,?,?,?,?)";
@@ -4102,27 +3431,10 @@ public class AreaInfoDao extends BaseDao {
             e.printStackTrace();
         }
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return flag;
@@ -4130,7 +3442,8 @@ public class AreaInfoDao extends BaseDao {
 	
 	
 	public boolean addAreaTeDian(AreaTeDian2 obj, String area_code){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
+
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		boolean flag = true;
@@ -4144,7 +3457,7 @@ public class AreaInfoDao extends BaseDao {
 		}
 		
         
-		try{
+		try{con = dataSource.getConnection();
 			String sql = " insert into area_features(area_character, view_shunxu, " +
 					"area_code, data_source, update_time ) values(?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
@@ -4162,27 +3475,10 @@ public class AreaInfoDao extends BaseDao {
             e.printStackTrace();
         }
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return flag;
@@ -4190,7 +3486,8 @@ public class AreaInfoDao extends BaseDao {
 	
 	
 	public boolean addAreaPeople(AreaPeopleInfo2 obj, String area_code){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
+
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		boolean flag = true;
@@ -4206,7 +3503,7 @@ public class AreaInfoDao extends BaseDao {
 		}
 		
         
-		try{
+		try{con = dataSource.getConnection();
 			String sql = " insert into area_people(column1, column2, " +
 					"column3, view_shunxu, area_code, people_datasource, people_date) values(?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
@@ -4225,34 +3522,17 @@ public class AreaInfoDao extends BaseDao {
             e.printStackTrace();
         }
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return flag;
 	}
 	
 	public boolean addAreaTuijianBroker(List<BrokerInfo> brokerlistList, String area_code){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		boolean flag = true;
@@ -4279,7 +3559,7 @@ public class AreaInfoDao extends BaseDao {
 			broker_code2 = findBrokerbyName(name2);
 			broker_code3 = findBrokerbyName(name3);
 		}
-		try{
+		try{con = dataSource.getConnection();
 			String sql = " insert into area_recommend_broker(broker_code1, broker_code2, " +
 					"broker_code3, area_code) values(?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
@@ -4296,28 +3576,10 @@ public class AreaInfoDao extends BaseDao {
             e.printStackTrace();
         }
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
         }
 		return flag;
 	}
@@ -4328,7 +3590,8 @@ public class AreaInfoDao extends BaseDao {
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		boolean flag = true;
-		
+		Connection con = null;
+
 		String recommend_num_1 = "";
 		String recommend_num_2 = "";
 		String recommend_num_3 = "";
@@ -4352,7 +3615,7 @@ public class AreaInfoDao extends BaseDao {
 			recommend_num_2 = findProByName(name2);
 			recommend_num_3 = findProByName(name3);
 		}
-		try{
+		try{con = dataSource.getConnection();
 			String sql = " insert into recommend_project(recommend_num_1, recommend_num_2, " +
 					"recommend_num_3, area_code) values(?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
@@ -4369,27 +3632,10 @@ public class AreaInfoDao extends BaseDao {
             e.printStackTrace();
         }
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 
@@ -4400,7 +3646,7 @@ public class AreaInfoDao extends BaseDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		
+		Connection con = null;
 		boolean flag = true;
 		String reco_news_num_1 = "";
 		String reco_news_num_2 = "";
@@ -4429,7 +3675,7 @@ public class AreaInfoDao extends BaseDao {
 			reco_news_num_2 = resultList.get(1);
 			reco_news_num_3 = resultList.get(2);
 		}
-		try{
+		try{con = dataSource.getConnection();
 			String sql = " insert into recommend_news(reco_news_num_1, reco_news_num_2, " +
 					"reco_news_num_3, area_code) values(?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
@@ -4446,38 +3692,21 @@ public class AreaInfoDao extends BaseDao {
             e.printStackTrace();
         }
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return flag;
 	}
 	
 	public String findBrokerbyName(String broker_name){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		String brokerNum=null;
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "select * from broker_info where broker_name = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, broker_name);
@@ -4493,27 +3722,10 @@ public class AreaInfoDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return brokerNum;
@@ -4522,11 +3734,13 @@ public class AreaInfoDao extends BaseDao {
 	
 	
 	public String findProByName(String Name){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
+
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		String num = null;
-		try{
+		try{con = dataSource.getConnection();
+
 			String sql = "select * from house_project where project_name=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, Name);
@@ -4539,38 +3753,22 @@ public class AreaInfoDao extends BaseDao {
 			 e.printStackTrace();
         }
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return num;
 	}
 	
 	public String findBokeByName(String Name){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
+
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		String num = null;
-		try{
+		try{con = dataSource.getConnection();
 			String sql = "select * from news_boke where news_title=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, Name);
@@ -4583,38 +3781,21 @@ public class AreaInfoDao extends BaseDao {
 			 e.printStackTrace();
         }
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return num;
 	}
 	
 	public String findZhiYeByName(String Name){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		String num = null;
-		try{
+		try{con = dataSource.getConnection();
 			String sql = "select * from zhiye_zhidao where title=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, Name);
@@ -4627,27 +3808,10 @@ public class AreaInfoDao extends BaseDao {
 			 e.printStackTrace();
         }
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { } 
 
         }
 		return num;

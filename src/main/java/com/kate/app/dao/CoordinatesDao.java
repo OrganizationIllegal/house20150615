@@ -1,5 +1,6 @@
 package com.kate.app.dao;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,9 +11,9 @@ import org.springframework.stereotype.Repository;
 
 import com.alibaba.fastjson.JSONArray;
 @Repository 
-public class CoordinatesDao extends BaseDao{
+public class CoordinatesDao extends BaseDao2{
 	 public JSONArray listCoordinates(){
-		 Statement stmt = null;
+		 Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			JSONArray jsonArray=new JSONArray();
@@ -26,37 +27,22 @@ public class CoordinatesDao extends BaseDao{
 				e.printStackTrace();
 			}
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return jsonArray;
 		} 
 	 public int InsertCoordinates(float longitude,float latitude,String place,int house_pro_id){
-		 Statement stmt = null;
+		 Statement stmt = null;Connection con = null;
+
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 		 int exeResult=0;
 			try {
+				con = dataSource.getConnection();
 				String sql = "insert into coordinates(longitude,latitude,place,house_project_id) values(?,?,?,?)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setFloat(1, longitude);
@@ -69,27 +55,10 @@ public class CoordinatesDao extends BaseDao{
 				e.printStackTrace();
 			}
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return exeResult;
@@ -98,9 +67,10 @@ public class CoordinatesDao extends BaseDao{
 		 Statement stmt = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
+			Connection con = null;
 
 		 int exeResult=0;
-			try {
+			try {con = dataSource.getConnection();
 				String sql = "update coordinates set longitude=?,latitude=?,place=?,house_project_id=? where id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setFloat(1, longitude);
@@ -114,38 +84,21 @@ public class CoordinatesDao extends BaseDao{
 				e.printStackTrace();
 			}
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 
 			return exeResult;
 		}
 	 public int delCoordinates(int id){
-		 Statement stmt = null;
+		 Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			int exeResult=0;
-			try {
+			try {con = dataSource.getConnection();
 				String sql = "delete from coordinates where id="+id;
 				  stmt = con.createStatement();
 				exeResult = stmt.executeUpdate(sql);
@@ -154,27 +107,10 @@ public class CoordinatesDao extends BaseDao{
 				e.printStackTrace();
 			}
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return exeResult;

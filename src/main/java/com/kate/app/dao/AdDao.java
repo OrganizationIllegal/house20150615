@@ -1,6 +1,6 @@
 package com.kate.app.dao;
 
-import java.sql.DriverManager;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,17 +8,23 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import org.springframework.stereotype.Repository;
 
-import com.alibaba.fastjson.JSONArray;
 @Repository 
-public class AdDao extends BaseDao{
+public class AdDao extends BaseDao2{
 	//根据id查找第一个广告图片
 	 public List<String> getad1(){
+		 Connection con = null;
 		 List<String> rl=new ArrayList<String>();
 		 Statement stmt = null;
+		 PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			try {
+				
+				con = dataSource.getConnection();
+				
 				String sql = "select adimage,href from ad where id=1";
 				  stmt = con.createStatement();
 				  rs = stmt.executeQuery(sql);
@@ -31,29 +37,26 @@ public class AdDao extends BaseDao{
 				e.printStackTrace();
 			}
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-	        }
+				
+		            try { if (rs != null) rs.close(); } catch(Exception e) { }
+		            try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+		            try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+		            try { if (con != null) con.close(); } catch(Exception e) { }
+		        }
+	       
 			return rl;
 		} 
 	//根据id查找第二个广告图片
 	 public List<String> getad2(){
+		 Connection con = null;
 		 List<String> rl=new ArrayList<String>();
 		 Statement stmt = null;
+		 PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			try {
+				
+				con = dataSource.getConnection();
+				
 				String sql = "select adimage,href from ad where id=2";
 				  stmt = con.createStatement();
 				  rs = stmt.executeQuery(sql);
@@ -66,29 +69,24 @@ public class AdDao extends BaseDao{
 				e.printStackTrace();
 			}
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+				try { if (rs != null) rs.close(); } catch(Exception e) { }
+	            try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	            try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	            try { if (con != null) con.close(); } catch(Exception e) { }
 	        }
 			return rl;
 		}
 	//根据id查找第三个广告图片
 	 public List<String> getad3(){
+		 Connection con = null;
 		 List<String> rl=new ArrayList<String>();
 		 Statement stmt = null;
+		 PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			try {
+			
+				con = dataSource.getConnection();
+				
 				String sql = "select adimage,href from ad where id=3";
 				  stmt = con.createStatement();
 				  rs = stmt.executeQuery(sql);
@@ -101,20 +99,10 @@ public class AdDao extends BaseDao{
 				e.printStackTrace();
 			}
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+				try { if (rs != null) rs.close(); } catch(Exception e) { }
+	            try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	            try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	            try { if (con != null) con.close(); } catch(Exception e) { }
 	        }
 			return rl;
 		}
@@ -123,7 +111,13 @@ public class AdDao extends BaseDao{
 		 List<String> rl=new ArrayList<String>();
 		 Statement stmt = null;
 			ResultSet rs = null;
+			Connection con = null;
+
+			PreparedStatement pstmt = null;
 			try {
+				
+				con = dataSource.getConnection();
+				
 				String sql = "select adimage,href from ad where id=4";
 				  stmt = con.createStatement();
 				  rs = stmt.executeQuery(sql);
@@ -136,20 +130,10 @@ public class AdDao extends BaseDao{
 				e.printStackTrace();
 			}
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+				try { if (rs != null) rs.close(); } catch(Exception e) { }
+	            try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	            try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	            try { if (con != null) con.close(); } catch(Exception e) { }
 	        }
 			return rl;
 		}
@@ -158,7 +142,13 @@ public class AdDao extends BaseDao{
 		 int result=0;
 		 PreparedStatement stmt = null;
 			ResultSet rs = null;
+			Connection con = null;
+
+			PreparedStatement pstmt = null;
 			try {//update coordinates set longitude=?,latitude=?,place=?,house_project_id=? where id=?
+				
+				con = dataSource.getConnection();
+				
 				String sql = "update ad set adimage=?,href=? where id=?";
 				  stmt = con.prepareStatement(sql);
 				  stmt.setString(1,ad1);
@@ -170,20 +160,10 @@ public class AdDao extends BaseDao{
 				e.printStackTrace();
 			}
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+				try { if (rs != null) rs.close(); } catch(Exception e) { }
+	            try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	            try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	            try { if (con != null) con.close(); } catch(Exception e) { }
 	        }
 			return result;
 		}
@@ -192,7 +172,14 @@ public class AdDao extends BaseDao{
 		 int result=0;
 		 PreparedStatement stmt = null;
 			ResultSet rs = null;
+			Connection con = null;
+
+			PreparedStatement pstmt = null;
+
 			try {//update coordinates set longitude=?,latitude=?,place=?,house_project_id=? where id=?
+				
+				con = dataSource.getConnection();
+				
 				String sql = "update ad set adimage=?,href=? where id=?";
 				  stmt = con.prepareStatement(sql);
 				  stmt.setString(1,ad2);
@@ -204,20 +191,10 @@ public class AdDao extends BaseDao{
 				e.printStackTrace();
 			}
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+				try { if (rs != null) rs.close(); } catch(Exception e) { }
+	            try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	            try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	            try { if (con != null) con.close(); } catch(Exception e) { }
 	        }
 			return result;
 		}
@@ -226,7 +203,13 @@ public class AdDao extends BaseDao{
 		 int result=0;
 		 PreparedStatement stmt = null;
 			ResultSet rs = null;
+			Connection con = null;
+
+			PreparedStatement pstmt = null;
 			try {//update coordinates set longitude=?,latitude=?,place=?,house_project_id=? where id=?
+				
+				con = dataSource.getConnection();
+				
 				String sql = "update ad set adimage=?,href=? where id=?";
 				  stmt = con.prepareStatement(sql);
 				  stmt.setString(1,ad3);
@@ -238,20 +221,10 @@ public class AdDao extends BaseDao{
 				e.printStackTrace();
 			}
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+				try { if (rs != null) rs.close(); } catch(Exception e) { }
+	            try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	            try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	            try { if (con != null) con.close(); } catch(Exception e) { }
 	        }
 			return result;
 		}
@@ -260,7 +233,14 @@ public class AdDao extends BaseDao{
 		 int result=0;
 		 PreparedStatement stmt = null;
 			ResultSet rs = null;
+			Connection con = null;
+
+			PreparedStatement pstmt = null;
+
 			try {//update coordinates set longitude=?,latitude=?,place=?,house_project_id=? where id=?
+			 
+				con = dataSource.getConnection();
+				
 				String sql = "update ad set adimage=?,href=? where id=?";
 				  stmt = con.prepareStatement(sql);
 				  stmt.setString(1,ad4);
@@ -272,20 +252,10 @@ public class AdDao extends BaseDao{
 				e.printStackTrace();
 			}
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+				try { if (rs != null) rs.close(); } catch(Exception e) { }
+	            try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	            try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	            try { if (con != null) con.close(); } catch(Exception e) { }
 	        }
 			return result;
 		}

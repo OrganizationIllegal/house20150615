@@ -1,5 +1,6 @@
 package com.kate.app.dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,14 +10,15 @@ import org.springframework.stereotype.Repository;
 
 import com.kate.app.model.HistorySearch;
 @Repository 
-public class SearchDao extends BaseDao{
+public class SearchDao extends BaseDao2{
 	
 	public int InsertSearch(HistorySearch his_search){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		int exeResult=0;
-		try {
+		try {con = dataSource.getConnection();
+
 			String sql = "insert into history_search(search_content,search_time,userid,housetype,minprice,maxprice,advance_option1,advance_option2,advance_option3,advance_option4,advance_option5,advance_option6,advance_option7,advance_option8,advance_option9,advance_option10,advance_option11) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, his_search.getSearch_content());
@@ -41,27 +43,11 @@ public class SearchDao extends BaseDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
+
 
         }
 		return exeResult;

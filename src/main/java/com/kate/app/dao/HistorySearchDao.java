@@ -1,5 +1,6 @@
 package com.kate.app.dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,10 +13,11 @@ import org.springframework.stereotype.Repository;
 import com.kate.app.model.HistorySearch;
 import com.kate.app.model.UserInfo;
 @Repository 
-public class HistorySearchDao extends BaseDao {
+public class HistorySearchDao extends BaseDao2 {
 
 	public List<HistorySearch> searchHistory(int userId){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
+
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<HistorySearch> list = new ArrayList<HistorySearch>();
@@ -55,27 +57,11 @@ public class HistorySearchDao extends BaseDao {
             e.printStackTrace();
         }
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
+
 
         }
 		return list;
@@ -84,9 +70,9 @@ public class HistorySearchDao extends BaseDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-
+		Connection con = null;
 		UserInfo userInfo = new UserInfo();
-		try{
+		try{con = dataSource.getConnection();
 			String sql = " select * from user where id = ?;";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, userId);
@@ -103,27 +89,11 @@ public class HistorySearchDao extends BaseDao {
             e.printStackTrace();
         }
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
+
 
         }
 		return userInfo;

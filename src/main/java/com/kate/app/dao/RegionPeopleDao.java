@@ -1,5 +1,6 @@
 package com.kate.app.dao;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,13 +18,14 @@ import com.kate.app.model.PeopleForeign;
 import com.kate.app.model.PeopleInfo;
 import com.kate.app.model.PeopleNation;
 @Repository 
-public class RegionPeopleDao extends BaseDao {
+public class RegionPeopleDao extends BaseDao2 {
 	public List<AreaPeopleInfo> getAreaPeopleInfo(String area_code){   //通过区域id查找区域人口信息
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<AreaPeopleInfo> list = new ArrayList<AreaPeopleInfo>();
-		try {
+		try {con = dataSource.getConnection();
+
 			String sql = "select * from area_people where area_code=?";
 			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, area_code);
@@ -45,27 +47,10 @@ public class RegionPeopleDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 
@@ -75,13 +60,13 @@ public class RegionPeopleDao extends BaseDao {
 	
 	
 	
-	public List<PeopleInfo> getPeopleInfo(){
+	public List<PeopleInfo> getPeopleInfo(){Connection con = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<PeopleInfo> peopleInfoList=new ArrayList<PeopleInfo>();
 		int houseProId=1;
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "select people_count,area,city from people_info t where t.house_pro_id="+houseProId;
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -99,39 +84,22 @@ public class RegionPeopleDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return peopleInfoList;
 	}
 	public List<PeopleNation> getPeopleNation(){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 
 		List<PeopleNation> peopleNationList=new ArrayList<PeopleNation>();
 		int houseProId=1;
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "select born_city,area,city from born_nation t where t.house_pro_id="+houseProId;
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -149,38 +117,23 @@ public class RegionPeopleDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { } 
 
         }
 		return peopleNationList;
 	}
 	public List<PeopleForeign> getPeopleForeign(){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
+
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<PeopleForeign> peopleForeignList=new ArrayList<PeopleForeign>();
 		int houseProId=1;
-		try {
+		try {con = dataSource.getConnection();
+
 			String sql = "select t.born_foreign,t.area,t.city from born_foreigns t where t.house_pro_id="+houseProId;
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -199,38 +152,21 @@ public class RegionPeopleDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return peopleForeignList;
 	}
 	public List<FamilyIncome> getFamilyIncome(){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<FamilyIncome> familyIncomeList=new ArrayList<FamilyIncome>();
 		int houseProId=1;
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "select t.family_income,t.area,t.city from family_income t where t.house_pro_id="+houseProId;
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -248,38 +184,23 @@ public class RegionPeopleDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return familyIncomeList;
 	}
 	//锟剿匡拷锟斤拷锟斤拷  锟斤拷
 	public int InsertPeople(String people_count,int area,int city,int house_pro_id){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
+
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		int exeResult=0;
-		try {
+		try {con = dataSource.getConnection();
+
 			String sql = "insert into people_info(people_count,area,city,house_pro_id) values("+"'"+people_count+"'"+","+area+","+city+","+house_pro_id+") ";
 			  stmt = con.createStatement();
 			exeResult = stmt.executeUpdate(sql);
@@ -287,39 +208,22 @@ public class RegionPeopleDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return exeResult;
 	}
 	//锟剿匡拷锟斤拷锟斤拷  删
 	public int DelPeopleInfo(int id){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 
 		int exeResult=0;
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "delete from people_info where id="+id;
 			  stmt = con.createStatement();
 			exeResult = stmt.executeUpdate(sql);
@@ -327,38 +231,21 @@ public class RegionPeopleDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { } 
 
         }
 		return exeResult;
 	}
 	//锟剿匡拷锟斤拷锟斤拷  锟斤拷
 	public JSONArray listPeopleInfo(){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		JSONArray jsonArray=new JSONArray();
-		try {
+		try {con = dataSource.getConnection();
 			String sql = " select t.id,t.people_count,t.area,t.city,t.house_pro_id,h.project_name from people_info t LEFT JOIN house_project h on t.house_pro_id=h.id;";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -367,38 +254,22 @@ public class RegionPeopleDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
+
 
         }
 		return jsonArray;
 	} 
 	//锟剿匡拷锟斤拷锟斤拷  锟斤拷
 	public int updateAreaFamily(int id,String people_count,int area,int city,int house_pro_id){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		int exeResult=0;
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "update people_info set people_count=?,area=?,city=? where id=? and house_pro_id=?";
 			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, people_count);
@@ -411,39 +282,23 @@ public class RegionPeopleDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return exeResult;
 	}
 	//锟斤拷锟斤拷锟斤拷 锟斤拷
 	public int InsertPeopleNation(String born_city,int area,int city,int house_pro_id){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
+
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 
 		int exeResult=0;
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "insert into born_nation(born_city,area,city,house_pro_id) values(?,?,?,?)";
 			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, born_city);
@@ -455,27 +310,10 @@ public class RegionPeopleDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return exeResult;
@@ -485,10 +323,10 @@ public class RegionPeopleDao extends BaseDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-
+		Connection con = null;
 
 		int exeResult=0;
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "delete from born_nation where id="+id;
 			  stmt = con.createStatement();
 			exeResult = stmt.executeUpdate(sql);
@@ -496,38 +334,21 @@ public class RegionPeopleDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return exeResult;
 	}
 	//锟斤拷锟斤拷锟斤拷 锟斤拷
 	public JSONArray listPeopleNation(){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		JSONArray jsonArray=new JSONArray();
-		try {
+		try {con = dataSource.getConnection();
 			String sql = " select t.id,t.born_city,t.area,t.city,t.house_pro_id,h.project_name from born_nation t LEFT JOIN house_project h on t.house_pro_id=h.id;";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -536,27 +357,10 @@ public class RegionPeopleDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return jsonArray;
@@ -566,9 +370,9 @@ public class RegionPeopleDao extends BaseDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-
+		Connection con = null;
 		int exeResult=0;
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "update born_nation set born_city=?,area=?,city=? where id=? and house_pro_id=?";
 			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, born_city);
@@ -582,28 +386,10 @@ public class RegionPeopleDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
         }
 
 		return exeResult;
@@ -613,9 +399,10 @@ public class RegionPeopleDao extends BaseDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
+		Connection con = null;
 
 		int exeResult=0;
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "insert into born_foreigns(born_foreign,area,city,house_pro_id) values(?,?,?,?)";
 			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, born_foreign);
@@ -627,38 +414,21 @@ public class RegionPeopleDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return exeResult;
 	}
 	//锟斤拷锟斤拷锟斤拷锟�删
 	public int DelPeopleForeign(int id){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		int exeResult=0;
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "delete from born_foreigns where id="+id;
 			  stmt = con.createStatement();
 			exeResult = stmt.executeUpdate(sql);
@@ -666,27 +436,10 @@ public class RegionPeopleDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return exeResult;
@@ -696,10 +449,10 @@ public class RegionPeopleDao extends BaseDao {
 			Statement stmt = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
-
+			Connection con = null;
 
 			JSONArray jsonArray=new JSONArray();
-			try {
+			try {con = dataSource.getConnection();
 				String sql = " select t.id,t.born_foreign,t.area,t.city,t.house_pro_id,h.project_name from born_foreigns t LEFT JOIN house_project h on t.house_pro_id=h.id;";
 				  stmt = con.createStatement();
 				  rs = stmt.executeQuery(sql);
@@ -708,38 +461,22 @@ public class RegionPeopleDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return jsonArray;
 		} 
 	//锟斤拷锟斤拷锟斤拷锟�锟斤拷
 		public int updatePeopleForeign(int id,String born_foreign,int area,int city,int house_pro_id){
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			int exeResult=0;
-			try {
+			try {con = dataSource.getConnection();
+
 				String sql = "update born_foreigns set born_foreign=?,area=?,city=? where id=? and house_pro_id=?";
 				 pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, born_foreign);
@@ -752,38 +489,21 @@ public class RegionPeopleDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { } 
 
 	        }
 			return exeResult;
 		}
 		//平锟斤拷锟酵ワ拷锟斤拷锟�锟斤拷
 		public int InsertFamilyIncome(String family_income,int area,int city,int house_pro_id){
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			int exeResult=0;
-			try {
+			try {con = dataSource.getConnection();
 				String sql = "insert into family_income(family_income,area,city,house_pro_id) values(?,?,?,?)";
 				 pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, family_income);
@@ -795,27 +515,10 @@ public class RegionPeopleDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return exeResult;
@@ -825,9 +528,9 @@ public class RegionPeopleDao extends BaseDao {
 			Statement stmt = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
-
+			Connection con = null;
 			int exeResult=0;
-			try {
+			try {con = dataSource.getConnection();
 				String sql = "delete from family_income where id="+id;
 				  stmt = con.createStatement();
 				exeResult = stmt.executeUpdate(sql);
@@ -835,28 +538,10 @@ public class RegionPeopleDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 	        }
 			return exeResult;
 		}
@@ -865,9 +550,9 @@ public class RegionPeopleDao extends BaseDao {
 			Statement stmt = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
-
+			Connection con = null;
 			JSONArray jsonArray=new JSONArray();
-			try {
+			try {con = dataSource.getConnection();
 				String sql = " select t.id,t.family_income,t.area,t.city,t.house_pro_id,h.project_name from family_income t LEFT JOIN house_project h on t.house_pro_id=h.id;";
 				  stmt = con.createStatement();
 				  rs = stmt.executeQuery(sql);
@@ -876,38 +561,22 @@ public class RegionPeopleDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return jsonArray;
 		} 	
 		//平锟斤拷锟酵ワ拷锟斤拷锟�锟斤拷
 		public int updateFamilyIncome(int id,String family_income,int area,int city,int house_pro_id){
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			int exeResult=0;
-			try {
+			try {con = dataSource.getConnection();
+
 				String sql = "update family_income set family_income=?,area=?,city=? where id=? and house_pro_id=?";
 				 pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, family_income);
@@ -920,27 +589,10 @@ public class RegionPeopleDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return exeResult;

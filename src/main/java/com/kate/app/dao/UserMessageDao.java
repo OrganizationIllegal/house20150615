@@ -1,5 +1,6 @@
 package com.kate.app.dao;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Repository;
 import com.kate.app.model.MessageVo;
 
 @Repository 
-public class UserMessageDao extends BaseDao {
+public class UserMessageDao extends BaseDao2 {
 	/*public List<MessageVo> getUserMessage(String username){
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -203,11 +204,11 @@ public class UserMessageDao extends BaseDao {
 		return messageList;
 	}*/
 	public boolean saveView(int id){   //0是未查看�?是已经查�?
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		boolean flag = false;
-		try{
+		try{con = dataSource.getConnection();
 			String sql = " update message set viewed=? where id=?";
 			 pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, 1);
@@ -219,27 +220,10 @@ public class UserMessageDao extends BaseDao {
 		}catch (Exception e) {
             e.printStackTrace();
         }finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return flag;
