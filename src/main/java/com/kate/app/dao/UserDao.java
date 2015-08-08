@@ -1,5 +1,6 @@
 package com.kate.app.dao;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,16 +14,16 @@ import org.springframework.stereotype.Repository;
 import com.kate.app.model.User;
 
 @Repository 
-public class UserDao extends BaseDao {
+public class UserDao extends BaseDao2 {
 	/*
 	 * 通过用户名，得到用户信息
 	 */
 	public List<User> listUser(String username1){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<User> userList=new ArrayList<User>();
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "select t.pwd,t.email,t.tel,t.role,t.flag from user t where t.email=? or t.tel=?";
 			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, username1);
@@ -50,38 +51,21 @@ public class UserDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 鍏抽棴璁板綍闆�  
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 鍏抽棴澹版槑   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 鍏抽棴澹版槑   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return userList;
 	} 
 	
 	public int findUserByName(String username1){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		int id = 0;
-		try {
+		try {con = dataSource.getConnection();
 			//String sql = "select * from user  where nick_name=?";
 			String sql = "select * from user  where email=?";
 			 pstmt = con.prepareStatement(sql);
@@ -101,27 +85,10 @@ public class UserDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 鍏抽棴璁板綍闆�  
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 鍏抽棴澹版槑   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 鍏抽棴澹版槑   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 
@@ -131,11 +98,12 @@ public class UserDao extends BaseDao {
  * 通过用户名，查找用户信息
  */
 	public int findUserByEmailAndTel(String username){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		int id = 0;
-		try {
+		try {con = dataSource.getConnection();
+
 			String sql = "select * from user  where email=? or tel=?";
 			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, username);
@@ -150,27 +118,10 @@ public class UserDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 鍏抽棴璁板綍闆�  
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 鍏抽棴澹版槑   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 鍏抽棴澹版槑   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 

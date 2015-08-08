@@ -1,6 +1,7 @@
 package com.kate.app.dao;
 
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,14 +19,14 @@ import com.kate.app.model.BrokerInfo;
 import com.kate.app.model.User;
 
 @Repository 
-public class BusinessDao extends BaseDao {
+public class BusinessDao extends BaseDao2 {
 	//
 	public int InsertMessage(String hezuo,String message_content,String time,int project_id,int viewed,int type,int userid){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		int exeResult=0;
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "insert into message(message_content,message_time,project_id,viewed,type,userid,hezuo) values (?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, message_content);
@@ -41,27 +42,10 @@ public class BusinessDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return exeResult;

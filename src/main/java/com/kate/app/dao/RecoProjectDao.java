@@ -1,5 +1,6 @@
 package com.kate.app.dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,15 +10,17 @@ import org.springframework.stereotype.Repository;
 
 import com.kate.app.model.RecoProject;
 @Repository 
-public class RecoProjectDao extends BaseDao{
+public class RecoProjectDao extends BaseDao2{
 
 	public RecoProject getRecoProjectDao(String area_num){
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
+		Connection con = null;
 
 		RecoProject data = null;
 		try{
+			con = dataSource.getConnection();
 
 			String sql = "select * from recommend_project where area_code = ? ";
 		    pstmt = con.prepareStatement(sql);
@@ -37,28 +40,10 @@ public class RecoProjectDao extends BaseDao{
 		}catch (Exception e) {
             
         }finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-
+        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+        	 try { if (con != null) con.close(); } catch(Exception e) { }
         }
 		return data;
 		

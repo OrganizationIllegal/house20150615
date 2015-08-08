@@ -1,5 +1,6 @@
 package com.kate.app.dao;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,13 +16,14 @@ import com.kate.app.model.NearPeiTao;
 import com.kate.app.model.NearSchool;
 
 @Repository 
-public class SchoolNearDao extends BaseDao {
+public class SchoolNearDao extends BaseDao2 {
 	public List<NearSchool> getNearSchoolInfo(String proNum){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
+
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<NearSchool> list=new ArrayList<NearSchool>();
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "select t.id,t.school_name,t.school_distance,s.school_type from near_school t INNER JOIN school_info s  on t.school_name=s.school_name  where project_num = ?";
 			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, proNum);
@@ -39,27 +41,11 @@ public class SchoolNearDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
+ 
 
         }
 		return list;
@@ -67,11 +53,12 @@ public class SchoolNearDao extends BaseDao {
 	
 	
 	public List<NearSchool> getNearSchoolInfoNew(String proNum){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<NearSchool> list=new ArrayList<NearSchool>();
-		try {
+		try {con = dataSource.getConnection();
+
 			String sql = "select * from near_school where project_num = ?";
 			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, proNum);
@@ -89,38 +76,22 @@ public class SchoolNearDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return list;
 	}
 	
 	public String getNearSchoolInfoByType(String schoolName){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		String schoolType="";
-		try {
+		try {con = dataSource.getConnection();
+
 			String sql = "select school_type from school_info where school_name = ?";
 			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, schoolName);
@@ -134,27 +105,10 @@ public class SchoolNearDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return schoolType;
@@ -163,11 +117,11 @@ public class SchoolNearDao extends BaseDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-
+		Connection con = null;
 
 		List<NearPeiTao> list=new ArrayList<NearPeiTao>();
 		
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "select * from near_peitao where project_num = ?";
 			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, proNum);
@@ -185,40 +139,26 @@ public class SchoolNearDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return list;
 	}
+	
+	
+	
 	//ѧУ���ܱ�->����ѧУ  List
 	 public JSONArray listNearSchool(){
 		 Statement stmt = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
-
+			Connection con = null;
 
 			JSONArray jsonArray=new JSONArray();
-			try {
+			try {con = dataSource.getConnection();
 				String sql = "select * from near_school";
 				  stmt = con.createStatement();
 				  rs = stmt.executeQuery(sql);
@@ -227,38 +167,23 @@ public class SchoolNearDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
+
 
 	        }
 			return jsonArray;
 		} 
 	//ѧУ���ܱ�->����ѧУ  Add
 	 public int InsertNearSchool(String school_name,int school_distance,String project_num){
-		 Statement stmt = null;
+		 Statement stmt = null;Connection con = null;
+
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			int exeResult=0;
-			try {
+			try {con = dataSource.getConnection();
 				String sql = "insert into near_school(school_name,school_distance,project_num) values(?,?,?)";
 				 pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, school_name);
@@ -269,38 +194,21 @@ public class SchoolNearDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return exeResult;
 		}  
 	//ѧУ���ܱ�->����ѧУ  update
 	 public int updateNearSchool(int id,String school_name,int school_distance,String  project_num){
-		 Statement stmt = null;
+		 Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 		 int exeResult=0;
-			try {
+			try {con = dataSource.getConnection();
 				String sql = "update near_school set school_name=?,school_distance=?,project_num=?  where id=?";
 				 pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, school_name);
@@ -312,39 +220,22 @@ public class SchoolNearDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return exeResult;
 		}
 	//ѧУ���ܱ�->����ѧУ  delete
 	 public int delNearSchool(int id){
-		 Statement stmt = null;
+		 Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 
 			int exeResult=0;
-			try {
+			try {con = dataSource.getConnection();
 				String sql = "delete from near_school where id="+id;
 				  stmt = con.createStatement();
 				exeResult = stmt.executeUpdate(sql);
@@ -352,27 +243,10 @@ public class SchoolNearDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { } 
 
 	        }
 			return exeResult;
@@ -380,10 +254,11 @@ public class SchoolNearDao extends BaseDao {
 	//ѧУ���ܱ�->��������  list
 	 public JSONArray listNearFacility(){
 		 Statement stmt = null;
+		 Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			JSONArray jsonArray=new JSONArray();
-			try {
+			try {con = dataSource.getConnection();
 				String sql = "select * from near_peitao";
 				  stmt = con.createStatement();
 				  rs = stmt.executeQuery(sql);
@@ -392,27 +267,10 @@ public class SchoolNearDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return jsonArray;
@@ -422,9 +280,9 @@ public class SchoolNearDao extends BaseDao {
 		 Statement stmt = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
-
+			Connection con = null;
 		 int exeResult=0;
-			try {
+			try {con = dataSource.getConnection();
 				String sql = "insert into near_peitao(market_type,market_name,market_distance,project_num) values(?,?,?,?)";
 				 pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, market_type);
@@ -436,38 +294,22 @@ public class SchoolNearDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return exeResult;
 		}  
 	//ѧУ���ܱ�->��������  update
 	 public int updateNearFacility(int id,String market_type,String market_name,int market_distance,String project_num){
-		 Statement stmt = null;
+		 Statement stmt = null;Connection con = null;
+
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 		 int exeResult=0;
-			try {
+			try {con = dataSource.getConnection();
 				String sql = "update near_peitao set market_type=?,market_name=?,market_distance=?,project_num=? where id=?";
 				 pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, market_type);
@@ -480,38 +322,23 @@ public class SchoolNearDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return exeResult;
 		}
 	//ѧУ���ܱ�->��������  delete
 	 public int delNearFacility(int id){
-		 Statement stmt = null;
+		 Statement stmt = null;Connection con = null;
+
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			int exeResult=0;
-			try {
+			try {con = dataSource.getConnection();
+
 				String sql = "delete from near_peitao where id="+id;
 				  stmt = con.createStatement();
 				exeResult = stmt.executeUpdate(sql);
@@ -519,27 +346,11 @@ public class SchoolNearDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
+ 
 
 	        }
 			return exeResult;

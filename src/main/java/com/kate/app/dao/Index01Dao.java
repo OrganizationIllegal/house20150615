@@ -13,19 +13,21 @@ import org.springframework.stereotype.Repository;
 
 import com.alibaba.fastjson.JSONArray;
 @Repository 
-public class Index01Dao extends BaseDao {
+public class Index01Dao extends BaseDao2 {
 	
 	
 	/*
 	 * 数据库查找首页的推荐项目列表信息
 	 */
 	public List<String> getTuijian(){
+		Connection con = null;
+
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 
 		List<String> list = new ArrayList<String>();
-		try {
+		try {con = dataSource.getConnection();
 			String sql = " select * from index_recommend_project";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -48,37 +50,21 @@ public class Index01Dao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return list;
 	}
 	public List<String> getTuijian2(){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
+
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<String> list = new ArrayList<String>();
-		try {
+		try {con = dataSource.getConnection();
 			String sql = " select * from index_recommend_project";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -101,27 +87,10 @@ public class Index01Dao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return list;

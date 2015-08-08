@@ -1,5 +1,6 @@
 package com.kate.app.dao;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,13 +13,13 @@ import org.springframework.stereotype.Repository;
 
 import com.alibaba.fastjson.JSONArray;
 @Repository 
-public class IndexRecoProManageDao extends BaseDao{
+public class IndexRecoProManageDao extends BaseDao2{
 	//根据项目编号查找推荐项目
 	 public List<String> getRecos(){
 		 List<String> recos=new ArrayList<String>();
-		 Statement stmt = null;
-			ResultSet rs = null;
-			try {
+		 Statement stmt = null;Connection con = null;
+			ResultSet rs = null;PreparedStatement pstmt = null;
+			try {con = dataSource.getConnection();
 				String sql = "select recommend_num_1, recommend_num_2, recommend_num_3,recommend_num_4,recommend_num_5,recommend_num_6 from index_recommend_project where id=1";
 				  stmt = con.createStatement();
 				  rs = stmt.executeQuery(sql);
@@ -35,29 +36,20 @@ public class IndexRecoProManageDao extends BaseDao{
 				e.printStackTrace();
 			}
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 	        }
 			return recos;
 		} 
 	 //更新首页推荐项目编号
 	 public int setRecos(List<String> recos){
-		 int result=0;
+		 int result=0;Connection con = null;
 		 PreparedStatement stmt = null;
-			ResultSet rs = null;
+			ResultSet rs = null;PreparedStatement pstmt = null;
 			try {//update coordinates set longitude=?,latitude=?,place=?,house_project_id=? where id=?
+				con = dataSource.getConnection();
 				String sql = "update index_recommend_project set  recommend_num_1=?, recommend_num_2=?, recommend_num_3=?,recommend_num_4=?,recommend_num_5=?,recommend_num_6=? where id=?";
 				  stmt = con.prepareStatement(sql);
 				  stmt.setString(1,recos.get(0));
@@ -73,20 +65,10 @@ public class IndexRecoProManageDao extends BaseDao{
 				e.printStackTrace();
 			}
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+				try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 	        }
 			return result;
 		}

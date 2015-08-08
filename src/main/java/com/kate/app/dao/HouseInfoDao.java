@@ -1,5 +1,6 @@
 package com.kate.app.dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,14 +15,14 @@ import com.kate.app.model.BrokerInfo;
 import com.kate.app.model.HouseInfo;
 import com.kate.app.model.HouseProject;
 @Repository 
-public class HouseInfoDao extends BaseDao{
+public class HouseInfoDao extends BaseDao2{
 	public List<HouseInfo> HouseInfoDao(String proNum){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<HouseInfo> list=new ArrayList<HouseInfo>();
 		String item = HouseTypeByNumDao(proNum);
-		try{
+		try{con = dataSource.getConnection();
 			String sql = " select * from house_info where project_num=? ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, proNum);
@@ -52,38 +53,21 @@ public class HouseInfoDao extends BaseDao{
             
         }
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return list;
 	}
 	public String HouseTypeByNumDao(String pro_num){
 		DecimalFormat df = new DecimalFormat("#,###,###");
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		String project_type = "";
-		try{
+		try{con = dataSource.getConnection();
 			String sql = "select * from house_project where project_num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, pro_num);
@@ -99,27 +83,11 @@ public class HouseInfoDao extends BaseDao{
 			 e.printStackTrace();
         }
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
+
 
         }
 		return project_type;
