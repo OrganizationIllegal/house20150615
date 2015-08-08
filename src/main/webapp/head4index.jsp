@@ -170,7 +170,7 @@
 			</div>	
 </div>
 </div>
-
+</div>
 
 <!-- login start -->
 <div class="modal fade" id="login" tabindex="-1" role="dialog" 
