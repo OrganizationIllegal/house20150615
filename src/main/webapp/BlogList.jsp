@@ -348,9 +348,7 @@ if(request.getSession().getAttribute("flag")!=null){
                         data: { pageIndex : num, type:type},
                         //data: "pageIndex=" + (pageIndex) + "&pageSize=" + pageSize,          //提交两个参数：pageIndex(页面索引)，pageSize(显示条数)                   
                         success: function(data) {
-                        	alert("feffqwefwe")
-	                        count = data.total;
-	                        alert(count+"ffff")
+                        	count = data.total;
 	                        $("#leftpanel").text(data.start+1+"-"+data.end+"的"+data.total+"篇文章");
 	                 		var html = getHtml(data.List);
 	                 		$("#mainlist").html(html);
