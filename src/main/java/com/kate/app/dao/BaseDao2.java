@@ -1,7 +1,7 @@
 package com.kate.app.dao;
 
 
-import java.security.spec.DSAGenParameterSpec;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
