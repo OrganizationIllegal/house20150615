@@ -24,10 +24,10 @@ public class BaseDao2
 	protected static DataSource dataSource = null;
 	        BaseDao2(){
 	        	System.out.println("Setting up data source.");
-	        	 url = "jdbc:mysql://101.200.174.253:3306/gethouse?autoReconnect=true";
-		            username = "dboperator1";
-		            password = "gethouse";
-		        dataSource = setupDataSource(url,username,password);
+	        	 url = "jdbc:mysql://101.200.174.253:3306/gethouse?autoReconnect=true&failOverReadOnly=false&maxReconnects=10";
+		         username = "dboperator1";
+		         password = "gethouse";
+		         dataSource = setupDataSource(url,username,password);
 		        
 		        System.out.println("Done.");
 /*
