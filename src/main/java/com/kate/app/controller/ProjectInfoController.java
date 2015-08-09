@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.kate.app.dao.AjaxDao;
 import com.kate.app.dao.AreaInputDao;
 import com.kate.app.dao.BrokerInfoDao;
@@ -1734,46 +1734,54 @@ public class ProjectInfoController {
 		List<HouseInfo1> houseInfoList=projectInputDao.getHouseInfoByProNum(pronum);
 		houseInfoListbefore=projectInputDao.getHouseInfoByProNum(pronum);
 		req.setAttribute("houseInfoList", houseInfoList);
-		req.setAttribute("houseInfoListJson",gson.toJson(houseInfoList));
+		req.setAttribute("houseInfoListJson",gson.toJson(houseInfoList,new TypeToken<List <HouseInfo1>>() {  
+        }.getType()));
 
 		//根据项目编号获取项目图片
 
 		List <ProjectPeiTao> projectPeiTaoList =projectInputDao.getProjectpeiTaoByProNum(pronum);
 		projectPeiTaoListbefore=projectInputDao.getProjectpeiTaoByProNum(pronum);
 		req.setAttribute("projectPeitaoList", projectPeiTaoList);
-		req.setAttribute("projectPeitaoListJson", gson.toJson(projectPeiTaoList));
+		req.setAttribute("projectPeitaoListJson", gson.toJson(projectPeiTaoList,new TypeToken<List <ProjectPeiTao>>() {  
+        }.getType()));
 
 		//根据项目编号获取项目配套
 		List <ProjectDescImage> projectImageList =projectInputDao.getProjectImageByProNum(pronum);
 		projectImageListbefore=projectInputDao.getProjectImageByProNum(pronum);
 		req.setAttribute("projectImageList", projectImageList);
-		req.setAttribute("projectImageListJson",gson.toJson(projectImageList));
+		req.setAttribute("projectImageListJson",gson.toJson(projectImageList,new TypeToken<List <ProjectDescImage>>() {  
+        }.getType()));
 		//根据项目编号获取附近配套
 
 		List<FujinPeiTao> fujinPeitaoList=projectInputDao.getFujinPeiTaoByProNum(pronum);
 		fujinPeitaoListbefore=projectInputDao.getFujinPeiTaoByProNum(pronum);
 		req.setAttribute("fujinPeitaoList",fujinPeitaoList );
-		req.setAttribute("fujinPeitaoListJson", gson.toJson(fujinPeitaoList));
+		req.setAttribute("fujinPeitaoListJson", gson.toJson(fujinPeitaoList,new TypeToken<List <FujinPeiTao>>() {  
+        }.getType()));
 		//根据项目编号获取附近学校信息
 		List<FujinSchool> fujinSchoolList=projectInputDao.getFujinSchoolByProNum(pronum);
 		fujinSchoolListbefore=projectInputDao.getFujinSchoolByProNum(pronum);
 		req.setAttribute("fujinSchoolList",fujinSchoolList );
-		req.setAttribute("fujinSchoolListJson",gson.toJson(fujinSchoolList));
+		req.setAttribute("fujinSchoolListJson",gson.toJson(fujinSchoolList,new TypeToken<List <FujinSchool>>() {  
+        }.getType()));
 		//根据项目编号获取持有成本信息
 		List<HoldCost> holdCostList=projectInputDao.getHoldCostByProNum(pronum);
 		holdCostListbefore=projectInputDao.getHoldCostByProNum(pronum);
 		req.setAttribute("holdCostList",holdCostList );
-		req.setAttribute("holdCostListJson",gson.toJson(holdCostList));
+		req.setAttribute("holdCostListJson",gson.toJson(holdCostList,new TypeToken<List <HoldCost>>() {  
+        }.getType()));
 		//根据项目编号获取购房税费信息
 		List<HouseTax> houseTaxList=projectInputDao.getHouseTaxByProNum(pronum);
 		houseTaxListbefore=projectInputDao.getHouseTaxByProNum(pronum);
 		req.setAttribute("houseTaxList",houseTaxList );
-		req.setAttribute("houseTaxListJson",gson.toJson(houseTaxList));
+		req.setAttribute("houseTaxListJson",gson.toJson(houseTaxList,new TypeToken<List <HouseTax>>() {  
+        }.getType()));
 		//推荐经纪人    按项目进行推荐
 		List<BrokerInfo> brokerlist=projectInputDao.getBrokerInfoByProNum(pronum);
 		brokerlistbefore=projectInputDao.getBrokerInfoByProNum(pronum);
 		req.setAttribute("brokerlist",brokerlist );
-		req.setAttribute("brokerlistJson",gson.toJson(brokerlist));
+		req.setAttribute("brokerlistJson",gson.toJson(brokerlist,new TypeToken<List <BrokerInfo>>() {  
+        }.getType()));
 
 		
 		//得到开发商信息
