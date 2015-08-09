@@ -8,6 +8,8 @@ import java.math.BigInteger;
 import java.util.Map;
 import java.util.Set;
 
+import com.alibaba.fastjson.JSON;
+
 import java.util.List;
 
 public class ConvertJson {
@@ -95,6 +97,13 @@ public class ConvertJson {
         return json.toString();
     }
  
+    
+    
+    public static String list2json1(List<?> list) {
+    	String jsonText = JSON.toJSONString(list, true);  
+        return jsonText;
+    }
+    
     /**
      * 对象数组转换为Json
      * @param array
@@ -208,5 +217,27 @@ public class ConvertJson {
         }
         return sb.toString();
     }
+    
+    
+    public static String jsonString(String s){
+        char[] temp = s.toCharArray();       
+        int n = temp.length;
+        for(int i =0;i<n;i++){
+            if(temp[i]==':'&&temp[i+1]=='"'){
+                    for(int j =i+2;j<n;j++){
+                        if(temp[j]=='"'){
+                            if(temp[j+1]!=',' &&  temp[j+1]!='}'){
+                                temp[j]='”';
+                            }else if(temp[j+1]==',' ||  temp[j+1]=='}'){
+                                break ;
+                            }
+                        }
+                    }   
+            }
+        }       
+        return new String(temp);
+    }
+    
+    
     
 }
