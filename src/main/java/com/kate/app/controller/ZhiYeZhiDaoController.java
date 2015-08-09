@@ -246,7 +246,7 @@ public class ZhiYeZhiDaoController {
 							}
 						}
 						obj.put("zhiye_abstract", abstractInfo);
-						obj.put("detail", item.getDetail());
+						//obj.put("detail", item.getDetail());
 						obj.put("image", item.getImage());
 						obj.put("title", item.getTitle());
 						String fabutime=item.getFabu_time().toString();
@@ -314,7 +314,10 @@ public class ZhiYeZhiDaoController {
 					total = newsBokeList.size();
 				}
 				
+				
 				int pageCount = total%PAGE_SIZE == 0 ? total/PAGE_SIZE: total/PAGE_SIZE+1;
+					
+				
 				int pageEnd = pageNum * PAGE_SIZE;
 				int end = pageEnd < total ? pageEnd : total;
 				
@@ -340,7 +343,7 @@ public class ZhiYeZhiDaoController {
 								}
 							}
 							obj.put("zhiye_abstract", abstractInfo);
-							obj.put("detail", item.getDetail());
+							//obj.put("detail", item.getDetail());
 							obj.put("image", item.getImage());
 							obj.put("title", item.getTitle());
 							String fabutime=item.getFabu_time().toString();
@@ -348,10 +351,11 @@ public class ZhiYeZhiDaoController {
 								fabutime = fabutime.substring(0,10);
 							}
 							obj.put("fabu_time", fabutime);
-						
 							array.add(obj);
 						}
 						json.put("List", array);
+						json.put("start", start);
+						json.put("end", end);
 						json.put("total", total);
 						json.put("pageCount", pageCount);
 						
@@ -374,7 +378,7 @@ public class ZhiYeZhiDaoController {
 								}
 							}
 							obj.put("news_abstract", abstractInfo);
-							obj.put("detail", item.getNews_detail());
+							//obj.put("detail", item.getNews_detail());
 							obj.put("image", item.getNews_image());
 							obj.put("title", item.getNews_title());
 							String newstime=item.getNews_time().toString();
@@ -385,8 +389,11 @@ public class ZhiYeZhiDaoController {
 							array.add(obj);
 						}
 						json.put("List", array);
+						json.put("start", start);
+						json.put("end", end);
 						json.put("total", total);
 						json.put("pageCount", pageCount);
+						
 						
 					}
 				}

@@ -261,7 +261,7 @@ public class SearchListController {
 					obj.put("Fanxian", item.getFanxian());
 					obj.put("Keshou", item.getKeshou());
 					obj.put("MaxArea", item.getMaxArea());
-					obj.put("MaxPrice", item.getMaxPrice()==null?"":nf.format(Integer.parseInt(item.getMaxPrice())));
+					obj.put("MaxPrice", (item.getMaxPrice()==null || "".equals(item.getMaxPrice()))?"":nf.format(Integer.parseInt(item.getMaxPrice())));
 					obj.put("MinArea", item.getMinArea());
 					obj.put("MinPrice", item.getMinPrice()==null?"":nf.format(Integer.parseInt(item.getMinPrice())));	
 					obj.put("Project_name", item.getProject_name());
