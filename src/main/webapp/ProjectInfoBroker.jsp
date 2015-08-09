@@ -581,6 +581,7 @@ body{
   	 <option value="物业费">物业费</option>
      <option value="市政费">市政费</option>
      <option value="污水费">污水费</option>
+      <option value="保险费">保险费</option>
       <option value="租赁管理费">租赁管理费</option>
  </select>
 </span>

@@ -68,13 +68,24 @@ public class BaseDao2
 	        ds.setInitialSize(10);
 	        ds.setMinIdle(5);
 	        ds.setMaxWait(5000);
+
+	        ds.setRemoveAbandoned(true);
+	        ds.setRemoveAbandonedTimeout(300);
+
 	        ds.setValidationQuery("SELECT 1");
 	        ds.setTestWhileIdle(true);
 	        ds.setTimeBetweenEvictionRunsMillis(300000);
 	        ds.setNumTestsPerEvictionRun(50);
 	        ds.setMinEvictableIdleTimeMillis(3600000);
-	      
+
 	        return ds;
+	    }
+	    
+	    public static long test(BasicDataSource a) {
+	    	long m = a.getMaxActive();
+	        
+	 
+	        return m;
 	    }
 
 	    public static void printDataSourceStats(DataSource ds) {

@@ -1157,6 +1157,10 @@ $(function(){
 				alert("区域房价中位数走势的显示顺序-请输入数字！");
 				return false;
 			}
+			else if(isNaN($('#heng2').val())){
+				alert("区域房价中位数走势的横坐标-请输入数字！");
+				return false;
+			}
 			else if(isNaN($('#zong2').val())){
 				alert("区域房价中位数走势的纵坐标-请输入数字！");
 				return false;
@@ -1204,6 +1208,10 @@ $(function(){
 		else{
 			if(isNaN($('#view_shunxu2').val())){
 				alert("区域房价中位数走势的显示顺序-请输入数字！");
+				return false;
+			}
+			else if(isNaN($('#heng2').val())){
+				alert("区域房价中位数走势的横坐标-请输入数字！");
 				return false;
 			}
 			else if(isNaN($('#zong2').val())){
