@@ -9,7 +9,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.constraints.Null;
 
 import org.apache.commons.lang3.StringUtils;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -19,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.google.gson.Gson;
 import com.kate.app.dao.AjaxDao;
 import com.kate.app.dao.AreaInputDao;
 import com.kate.app.dao.BrokerInfoDao;
@@ -1814,6 +1815,7 @@ public class ProjectInfoController {
 	 */
 	@RequestMapping({ "/selectProject" })
 	public String selectProject(HttpServletRequest req,HttpServletResponse resp){
+		Gson gson = new Gson();
 		JSONObject json = new JSONObject();
 		int id =Integer.parseInt(req.getParameter("id"));
 		//根据项目id查找项目信息
@@ -1825,48 +1827,81 @@ public class ProjectInfoController {
 		List<HouseInfo1> houseInfoList=projectInputDao.getHouseInfoByProNum(pronum);
 		houseInfoListbefore=projectInputDao.getHouseInfoByProNum(pronum);
 		req.setAttribute("houseInfoList", houseInfoList);
-		req.setAttribute("houseInfoListJson", ConvertJson.list2json(houseInfoList).replace(" ", "&nbsp;").replace("'", "&#39;"));
+		String houseInfoJson = gson.toJson(houseInfoList);
+		houseInfoJson = ConvertJson.jsonString(houseInfoJson);
+				
+		req.setAttribute("houseInfoListJson",houseInfoJson);
 
 		//根据项目编号获取项目图片
 
 		List <ProjectPeiTao> projectPeiTaoList =projectInputDao.getProjectpeiTaoByProNum(pronum);
 		projectPeiTaoListbefore=projectInputDao.getProjectpeiTaoByProNum(pronum);
 		req.setAttribute("projectPeitaoList", projectPeiTaoList);
-		req.setAttribute("projectPeitaoListJson", ConvertJson.list2json(projectPeiTaoList).replace(" ", "&nbsp;").replace("'", "&#39;"));
+		String projectPeiTaoJson = gson.toJson(projectPeiTaoList);
+		projectPeiTaoJson = ConvertJson.jsonString(projectPeiTaoJson);
+		
+		req.setAttribute("projectPeitaoListJson", projectPeiTaoJson);
 
 		//根据项目编号获取项目配套
 		List <ProjectDescImage> projectImageList =projectInputDao.getProjectImageByProNum(pronum);
 		projectImageListbefore=projectInputDao.getProjectImageByProNum(pronum);
 		req.setAttribute("projectImageList", projectImageList);
-		req.setAttribute("projectImageListJson", ConvertJson.list2json(projectImageList).replace(" ", "&nbsp;").replace("'", "&#39;"));
+		
+		String projectImageJson = gson.toJson(projectImageList);
+		projectImageJson = ConvertJson.jsonString(projectImageJson);
+		
+		req.setAttribute("projectImageListJson",projectImageJson);
 		//根据项目编号获取附近配套
 
 		List<FujinPeiTao> fujinPeitaoList=projectInputDao.getFujinPeiTaoByProNum(pronum);
 		fujinPeitaoListbefore=projectInputDao.getFujinPeiTaoByProNum(pronum);
 		req.setAttribute("fujinPeitaoList",fujinPeitaoList );
-		req.setAttribute("fujinPeitaoListJson", ConvertJson.list2json(fujinPeitaoList).replace(" ", "&nbsp;").replace("'", "&#39;"));
+		
+		String fujinPeitaoJson = gson.toJson(fujinPeitaoList);
+		projectImageJson = ConvertJson.jsonString(fujinPeitaoJson);
+		
+		req.setAttribute("fujinPeitaoListJson", fujinPeitaoJson);
 		//根据项目编号获取附近学校信息
 		List<FujinSchool> fujinSchoolList=projectInputDao.getFujinSchoolByProNum(pronum);
 		fujinSchoolListbefore=projectInputDao.getFujinSchoolByProNum(pronum);
 		req.setAttribute("fujinSchoolList",fujinSchoolList );
-		req.setAttribute("fujinSchoolListJson", ConvertJson.list2json(fujinSchoolList).replace("&nbsp;", " ").replace("&#39;", "\\'").replace("'", "\\'"));
+		
+		String fujinSchoolJson = gson.toJson(fujinSchoolList);
+		fujinSchoolJson = ConvertJson.jsonString(fujinSchoolJson);
+		
+		req.setAttribute("fujinSchoolListJson",fujinSchoolJson);
 		//根据项目编号获取持有成本信息
 		List<HoldCost> holdCostList=projectInputDao.getHoldCostByProNum(pronum);
 		holdCostListbefore=projectInputDao.getHoldCostByProNum(pronum);
 		req.setAttribute("holdCostList",holdCostList );
-		req.setAttribute("holdCostListJson", ConvertJson.list2json(holdCostList).replace(" ", "&nbsp;").replace("'", "&#39;"));
+		
+		String holdCostJson = gson.toJson(holdCostList);
+		holdCostJson = ConvertJson.jsonString(holdCostJson);
+		
+		req.setAttribute("holdCostListJson",holdCostJson);
 		//根据项目编号获取购房税费信息
 		List<HouseTax> houseTaxList=projectInputDao.getHouseTaxByProNum(pronum);
 		houseTaxListbefore=projectInputDao.getHouseTaxByProNum(pronum);
 		req.setAttribute("houseTaxList",houseTaxList );
+/*<<<<<<< HEAD
 		//req.setAttribute("houseTaxListJson", ConvertJson.list2json(houseTaxList).replace(" ", "&nbsp;").replace("'", "&#39;"));
 		req.setAttribute("houseTaxListJson", ConvertJson.list2json(houseTaxList).replace("\'", "&#39;"));
 		
+=======*/
+		String jsonInfo = gson.toJson(houseTaxList);
+		jsonInfo = ConvertJson.jsonString(jsonInfo);
+				
+		req.setAttribute("houseTaxListJson",jsonInfo);
+
 		//推荐经纪人    按项目进行推荐
 		List<BrokerInfo> brokerlist=projectInputDao.getBrokerInfoByProNum(pronum);
 		brokerlistbefore=projectInputDao.getBrokerInfoByProNum(pronum);
 		req.setAttribute("brokerlist",brokerlist );
-		req.setAttribute("brokerlistJson", ConvertJson.list2json(brokerlist).replace(" ", "&nbsp;").replace("'", "&#39;"));
+		
+		String brokerJson = gson.toJson(brokerlist);
+		brokerJson = ConvertJson.jsonString(brokerJson);
+		
+		req.setAttribute("brokerlistJson",brokerJson);
 
 		
 		//得到开发商信息
@@ -1996,5 +2031,25 @@ public class ProjectInfoController {
 			newName = newName.replaceAll("&#39;", "\'");
 			return newName;
 	}
+	
+	 public static String jsonString(String s){
+	        char[] temp = s.toCharArray();       
+	        int n = temp.length;
+	        for(int i =0;i<n;i++){
+	            if(temp[i]==':'&&temp[i+1]=='"'){
+	                    for(int j =i+2;j<n;j++){
+	                        if(temp[j]=='"'){
+	                            if(temp[j+1]!=',' &&  temp[j+1]!='}'){
+	                                temp[j]='”';
+	                            }else if(temp[j+1]==',' ||  temp[j+1]=='}'){
+	                                break ;
+	                            }
+	                        }
+	                    }   
+	            }
+	        }       
+	        return new String(temp);
+	    }
+	 
 	
 }

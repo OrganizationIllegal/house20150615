@@ -13,8 +13,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="css/main.css" /> -->
 <link rel="stylesheet" type="text/css" href="css/areaLuru.css" />
 
-<script src="/js/jquery.min.js"></script>
-<script src="/bootstrap/js/bootstrap.min.js"></script>
+<!-- <script src="/js/jquery.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script> -->
 <link rel="stylesheet" href="css/chosen.css">
 <link rel="stylesheet" type="text/css" href="/bootstrap-datepicker-1.4.0-dist/css/bootstrap-datepicker.min.css" />
   <script src="/bootstrap-datepicker-1.4.0-dist/js/bootstrap-datepicker.min.js"></script>
