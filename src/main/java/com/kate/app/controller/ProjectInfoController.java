@@ -1817,6 +1817,16 @@ public class ProjectInfoController {
 		int id =Integer.parseInt(req.getParameter("id"));
 		//根据项目id查找项目信息
 		HouseProject houseProject=projectInputDao.selectProjectInfo(id);
+		/*if(houseProject!=null){
+			String name = houseProject.getProject_name();
+			if(name!=null && !"".endsWith(name)){
+				name = ConvertJson.jsonString(name);
+			}
+			houseProject.setProject_name(name);
+		}*/
+		
+		
+		
 		req.setAttribute("houseProject", houseProject);
 		//根据项目id查找项目编号
 		String pronum=projectInputDao.getProNumById(id);

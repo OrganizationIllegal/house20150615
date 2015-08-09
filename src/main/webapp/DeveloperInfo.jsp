@@ -29,8 +29,9 @@ body{
 <!-- ****************************************************学校信息start***************************************************** -->
 <div class="area_bkg2">开发商信息录入</div>
 <div class="area_left">
-<span class="area_span">开发商名称</span><span><input type="text" id="developer_name" name="developer_name" class="area_input" value="${developerInfo.developer_name.toString().replaceAll("\"","“")
-}"></span>
+
+<span class="area_span">开发商名称</span><span><input type="text" id="developer_name" name="developer_name" class="area_input" value="${developerInfo.developer_name.toString().replaceAll("\"","“")}"></span>
+
 <input type="hidden" id="id" name="id" class="area_input" value="${developerInfo.id}">
 </div>
 <div class="area_right">

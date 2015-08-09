@@ -167,6 +167,8 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		List<User> userList = new ArrayList<User>();
 		String telemail = req.getParameter("telemail");
 		String url = req.getParameter("urlInfoReg");   //当前页面的url
+		String url1 = req.getParameter("urlInfoReg1");
+		
 		String pwd = req.getParameter("pwd");
 		if(isEmail(telemail)){   //判断用户输入的是email
 			flag1=userInfoDao.register2(telemail, pwd);
@@ -208,8 +210,14 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 			
 		}
 		
-		String resultUrl = url.substring(url.lastIndexOf("/"));
-		
+		String resultUrl = "";
+		if(url!=null && !"".equals(url)){
+			resultUrl = url.substring(url.lastIndexOf("/"));
+		}
+		else if(url1!=null && !"".equals(url1)){
+			resultUrl = url1.substring(url1.lastIndexOf("/"));
+		}
+		resp.sendRedirect(resultUrl);
 		return resultUrl;   //返回到当前页面，并且显示登录后的信息
 	} 
 	
@@ -378,7 +386,7 @@ private static byte[] base64DecodeChars = new byte[] { -1, -1, -1, -1, -1,
 		session.setAttribute("username", str_username);
 		session.setAttribute("role", role);
 		
-		return "/index01";
+		return "/index";
 	}
 	
 	//用户信息列表

@@ -853,7 +853,8 @@ var e=$('#input2').val();
 			</div>
 		</div>
 	
-		<c:if test="${!empty houseTaxStr && !empty housetaxdata && !empty holdingTaxStr && !empty holdingdata}">
+		<%-- <c:if test="${!empty houseTaxStr && !empty housetaxdata && !empty holdingTaxStr && !empty holdingdata}"> --%>
+		<c:if test="${(!empty houseTaxStr && !empty housetaxdata) || (!empty holdingTaxStr && !empty holdingdata)}">
 		<div class="c-fix bkg3"  name="loc_fy" id="loc_fy"  style="margin:0 auto;height:346px;width:990px">
 			<div class="c-fix p_panel_4">
 			
