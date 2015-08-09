@@ -68,6 +68,8 @@ public class BaseDao2
 	        ds.setInitialSize(10);
 	        ds.setMinIdle(5);
 	        ds.setMaxWait(5000);
+	        ds.setRemoveAbandoned(true);
+	        ds.setRemoveAbandonedTimeout(300);
 	        return ds;
 	    }
 
