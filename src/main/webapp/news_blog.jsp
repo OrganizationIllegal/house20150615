@@ -324,7 +324,7 @@ var typeInfo = "${type}";
                         		$("#head_title").html(titleHtml1);
                         	}
                         	
-                            $("#leftpanel").text("1-"+data.pageCount+"的"+data.total+"篇文章");
+                        	$("#leftpanel").text(data.start+1+"-"+data.end+"的"+data.total+"篇文章");
                             $("#panel-left").css("background-color","white");
                         	$("#page-selection").css("display","block");
                         	if(typeInfo==0){
