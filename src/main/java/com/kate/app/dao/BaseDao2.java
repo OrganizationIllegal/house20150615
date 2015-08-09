@@ -2,17 +2,11 @@ package com.kate.app.dao;
 
 
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
-
-import java.sql.PreparedStatement;
 
    
 public class BaseDao2

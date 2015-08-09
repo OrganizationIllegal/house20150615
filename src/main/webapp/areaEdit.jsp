@@ -1443,7 +1443,8 @@ $(function(){
 		$("#view_shunxu2").val(middletrendedititem.view_shunxu2);
 		$("#heng2").val(middletrendedititem.heng2||middletrendedititem.heng);
 		$("#zong2").val(middletrendedititem.zong2||middletrendedititem.zong);
-		$("#middle_zoushi_datasource").val(middletrendedititem.middle_zoushi_datasource.replace(/\$nbsp;/g," ").replace("&#39;","'"));
+		/* $("#middle_zoushi_datasource").val(middletrendedititem.middle_zoushi_datasource.replace(/\$nbsp;/g," ").replace("&#39;","'")); */
+		$("#middle_zoushi_datasource").val(middletrendedititem.middle_zoushi_datasource.replace(/\$nbsp;/g," ").replace("&#39;","'")); 
 		$("#middle_zoushi_date").val(middletrendedititem.middle_zoushi_date.length>=10?middletrendedititem.middle_zoushi_date.substr(0,10):middletrendedititem.middle_zoushi_date);
 		}); 
 	

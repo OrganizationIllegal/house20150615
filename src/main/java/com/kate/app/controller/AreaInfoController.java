@@ -181,9 +181,9 @@ public class AreaInfoController extends BaseDao {
 		req.setAttribute("Invest1", invest1);
 		req.setAttribute("Family", family);
 		req.setAttribute("middlepricebackendlist", middlepricebackendlist);
-		req.setAttribute("middlepricebackendlistjson", ConvertJson.list2json(middlepricebackendlist).replace("'", "&#39;"));
+		req.setAttribute("middlepricebackendlistjson", ConvertJson.list2json(middlepricebackendlist).replaceAll("'", "&#39;"));
 		req.setAttribute("areamiddlelist", areamiddlelist);
-		req.setAttribute("areamiddlelistjson", ConvertJson.list2json(areamiddlelist).replace("'", "&#39;"));
+		req.setAttribute("areamiddlelistjson", ConvertJson.list2json(areamiddlelist).replaceAll("'", "&#39;"));
 		req.setAttribute("zujinlist", zujinlist);
 		req.setAttribute("zujinlistjson", ConvertJson.list2json(zujinlist).replace("'", "&#39;"));
 		req.setAttribute("huibaolist", huibaolist);
@@ -1055,6 +1055,20 @@ public class AreaInfoController extends BaseDao {
 						 middletrendList.add(e);
 					 }
 				}
+				//特殊字符处理
+				for(AreaMiddle2 item : middletrendList2){
+					String datasource = item.getMiddle_zoushi_datasource();
+					datasource = datasource.replace("nbsp;", " ");
+					datasource = datasource.replace("&#39;", "\'");
+					item.setMiddle_zoushi_datasource(datasource);
+				}
+				for(AreaMiddle2 item : middletrendList){
+					String datasource = item.getMiddle_zoushi_datasource();
+					datasource = datasource.replace("nbsp;", " ");
+					datasource = datasource.replace("&#39;", "\'");
+					item.setMiddle_zoushi_datasource(datasource);
+				}
+				
 				//区域中位数走势，和编辑之前的区域中位数走势做对比，如果删除了之前的区域中位数走势item，保存到deleteList里，传到dao层做删除
 				for (int i=0;i<areamiddlelistbefore.size();i++){
 					boolean flag=false;
