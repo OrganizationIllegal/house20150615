@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 import org.springframework.stereotype.Repository;
 
 @Repository 
-public class AdDao extends BaseDao3{
+public class AdDao extends BaseDao2{
 	//根据id查找第一个广告图片
 	 public List<String> getad1(){
 		 Connection con = null;

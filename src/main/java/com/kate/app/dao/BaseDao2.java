@@ -64,6 +64,10 @@ public class BaseDao2
 	        ds.setUrl(connectURI);
 	        ds.setUsername(username);
 	        ds.setPassword(password);
+	        ds.setMaxActive(50);
+	        ds.setInitialSize(10);
+	        ds.setMinIdle(5);
+	        ds.setMaxWait(5000);
 	        return ds;
 	    }
 
