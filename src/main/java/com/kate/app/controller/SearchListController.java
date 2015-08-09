@@ -228,7 +228,6 @@ public class SearchListController {
 					}
 					item.setProject_img(image1);
 				}
-				
 			}
 			int total = searchList.size();
 			int pageEnd = pageNum * pageSize;
@@ -261,9 +260,9 @@ public class SearchListController {
 					obj.put("Fanxian", item.getFanxian());
 					obj.put("Keshou", item.getKeshou());
 					obj.put("MaxArea", item.getMaxArea());
-					obj.put("MaxPrice", item.getMaxPrice()==null?"":nf.format(Integer.parseInt(item.getMaxPrice())));
+					obj.put("MaxPrice", item.getMaxPrice()==null||"".equals(item.getMaxPrice())?"":nf.format(Integer.parseInt(item.getMaxPrice())));
 					obj.put("MinArea", item.getMinArea());
-					obj.put("MinPrice", item.getMinPrice()==null?"":nf.format(Integer.parseInt(item.getMinPrice())));	
+					obj.put("MinPrice", item.getMinPrice()==null||"".equals(item.getMinPrice())?"":nf.format(Integer.parseInt(item.getMinPrice())));	
 					obj.put("Project_name", item.getProject_name());
 					obj.put("project_num", item.getProject_num());
 					obj.put("project_address", item.getProject_address());
