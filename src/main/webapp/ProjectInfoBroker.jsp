@@ -1158,12 +1158,12 @@ $(function(){
 		 /* $("#houseimg").val(huxingedititem.houseimg); */
 		 $("#file1").val(huxingedititem.houseimg.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'"));
 		$("#houseprice").val(huxingedititem.houseprice.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'"));
-		$("#room_num").val(huxingedititem.room_num.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'"));
-		$("#tudi_mianji").val(huxingedititem.tudi_mianji.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'"));
-		$("#jianzhu_mianji").val(huxingedititem.jianzhu_mianji.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'"));
-		$("#shinei_mianji").val(huxingedititem.shinei_mianji.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'"));
-		$("#shiwai_mianji").val(huxingedititem.shiwai_mianji.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'"));
-		$("#wc_num").val(huxingedititem.wc_num.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'"));
+		$("#room_num").val(huxingedititem.room_num);
+		$("#tudi_mianji").val(huxingedititem.tudi_mianji);
+		$("#jianzhu_mianji").val(huxingedititem.jianzhu_mianji);
+		$("#shinei_mianji").val(huxingedititem.shinei_mianji);
+		$("#shiwai_mianji").val(huxingedititem.shiwai_mianji);
+		$("#wc_num").val(huxingedititem.wc_num);
 		}); 
 	
 });
