@@ -416,6 +416,8 @@ public class MyController {
 	@RequestMapping({"/Index/HouseInfo"})
 	public void getHouseInfo(HttpServletRequest req, HttpServletResponse resp,String proNum){
 		HouseProject pro = houseProjectService.getHouseProjectByNum(proNum);
+		Timestamp updateTimeNew = pro.getHousePrice_update_time();
+		
 		//String type = pro.getProject_type();
 		List<HouseInfo> houseInfoList=houseInfoService.getHouseInfoList(proNum);
 		DecimalFormat df1 = new DecimalFormat("#,###,###");

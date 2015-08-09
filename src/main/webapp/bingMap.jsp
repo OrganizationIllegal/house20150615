@@ -304,7 +304,7 @@ body{
            	for(var j=0;j<items.length;j++){
            		var imgUrl = <%=application.getInitParameter("imagedir")%>/+items[j].project_img; 
 
-               	html+=" <div class='c-fix f-l div_node'><span class='c-fix f-l f-yahei s-12 node_address' title='"+items[j].project_address+"'>"+items[j].project_address_short+"</span>";
+               /* 	html+=" <div class='c-fix f-l div_node'><span class='c-fix f-l f-yahei s-12 node_address' title='"+items[j].project_address+"'>"+items[j].project_address_short+"</span>";
 
                	html+="<a href='/Index?proNum="+items[j].project_num+"'"+" target='_parent'>";
            		
@@ -328,7 +328,9 @@ body{
                		
                		html+="<span class='f-l f-yahei s-12 node_title' style='margin-right:16px;'>"+items[j].project_key[i]+"</span>";
                	}
+
                	html+="</div></div></div>";
+
          		
          		 
                	

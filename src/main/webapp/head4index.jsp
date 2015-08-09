@@ -479,7 +479,7 @@ $("#forgetSend").click(function(){
 				}
 				else{
 					alert("密码已经发送您的邮箱，请注意查收！");
-					window.location.href = '/index01';
+					window.location.href = '/index';
 				}
 
 			},

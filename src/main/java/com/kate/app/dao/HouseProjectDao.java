@@ -346,7 +346,10 @@ public class HouseProjectDao extends BaseDao2{
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, proNum);
 			rs = pstmt.executeQuery();
-			vedio=rs.getString("project_vedio");			
+			while(rs.next()){
+				vedio=rs.getString("project_vedio");		
+			}
+				
 		}catch (Exception e) {
             
         }
