@@ -1963,7 +1963,7 @@ $(function(){
 		$("#column1").val(peopleedititem.column1.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		$("#column2").val(peopleedititem.column2.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		$("#column3").val(peopleedititem.column3.replace(/\$nbsp;/g," ").replace("&#39;","'"));
-		$("#view_shunxu_people").val(peopleedititem.view_shunxu_people.replace(/\$nbsp;/g," ").replace("&#39;","'"));
+		$("#view_shunxu_people").val(peopleedititem.view_shunxu_people);
 		$("#people_datasource").val(peopleedititem.people_datasource.replace(/\$nbsp;/g," ").replace("&#39;","'"));
 		$("#people_date").val(peopleedititem.people_date.length>=10?peopleedititem.people_date.substr(0,10):peopleedititem.people_date);
 		}); 
