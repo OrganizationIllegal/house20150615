@@ -311,6 +311,7 @@ public class SearchController {
 			String type = req.getParameter("type");
 			String minimumprice = req.getParameter("minimumprice");
 			String maximumprice = req.getParameter("maximumprice");
+			String country = req.getParameter("country");
 			String city2 = req.getParameter("city2");
 			String xinkaipan = req.getParameter("xinkaipan");
 			String huaren = req.getParameter("huaren");
@@ -368,7 +369,7 @@ public class SearchController {
 			/*
 			 * 通过城市，类型等，进一步高级搜索，在数据库中查找项目信息
 			 */
-			List<HouseProject> list = searchListDao.indexSericeList(city, type, minimumprice, maximumprice, xinkaipan, huaren, remen, xuequ, baozu, daxue, center, traffic, xianfang, maidi);
+			List<HouseProject> list = searchListDao.indexSericeList(country, city, type, minimumprice, maximumprice, xinkaipan, huaren, remen, xuequ, baozu, daxue, center, traffic, xianfang, maidi);
 			if(list1.size()>=0){
 				if(list1.size()>list.size()){
 					for(int i=0; i<list1.size();i++){

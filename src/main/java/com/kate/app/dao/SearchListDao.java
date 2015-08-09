@@ -984,7 +984,7 @@ public class SearchListDao extends BaseDao2 {
 	/*
 	 * 通过城市，类型等，进一步高级搜索，在数据库中查找项目信息
 	 */
-	public List<HouseProject> indexSericeList(String city, String type, String minimumprice, String maximumprice, String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue,String center,String traffic,String xianfang,String maidi){		NumberFormat df = new DecimalFormat("#,###,###");
+	public List<HouseProject> indexSericeList(String country, String city, String type, String minimumprice, String maximumprice, String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue,String center,String traffic,String xianfang,String maidi){		NumberFormat df = new DecimalFormat("#,###,###");
 		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
@@ -1121,7 +1121,7 @@ public class SearchListDao extends BaseDao2 {
 						sql+="and project_type like '%"+type+"%'";
 					}
 					else{
-						sql+="project_type like '%"+type+"%'";
+						sql+="and project_type like '%"+type+"%'";
 						j=1;
 					}
 				}
@@ -1130,7 +1130,7 @@ public class SearchListDao extends BaseDao2 {
 						sql+="and project_min_price like '%"+minimumprice+"%'";
 					}
 					else{
-						sql+="project_min_price like '%"+minimumprice+"%'";
+						sql+="and project_min_price like '%"+minimumprice+"%'";
 						j=1;
 					}
 				}
@@ -1139,7 +1139,16 @@ public class SearchListDao extends BaseDao2 {
 						sql+="and project_high_price like '%"+maximumprice+"%'";
 					}
 					else{
-						sql+="project_high_price like '%"+maximumprice+"%'";
+						sql+="and project_high_price like '%"+maximumprice+"%'";
+						j=1;
+					}
+				}
+				if(country!=null && !"".equals(country)){
+					if(j==1){
+						sql+="and project_nation like '%"+country+"%'";
+					}
+					else{
+						sql+="and project_nation like '%"+country+"%'";
 						j=1;
 					}
 				}
