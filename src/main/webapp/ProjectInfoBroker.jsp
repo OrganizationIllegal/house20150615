@@ -990,8 +990,8 @@ $(function(){
 		}); 
 	
 });
-var imagelist='${projectImageListJson}';
-imagelist=eval("("+imagelist+")"); 
+var imagelist;
+imagelist=JSON.parse('${projectImageListJson}')/* eval("("+imagelist+")") */; 
 var imageisedit=100;
 var imageedititem;
 var imagecount=imagelist.length;
