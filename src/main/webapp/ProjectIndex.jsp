@@ -602,7 +602,7 @@ var e=$('#input2').val();
 				<div class="f-l p_panel_2" style="height:390px">
 					<a class="c-fix f-l f-yahei s-16 p_panel_lab fw" style="-margin-top:30px;margin-left:10px;">想要了解更多？</a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_lab fw" style="margin-top:5px;margin-left:10px;">填写信息我们会有专业人士一对一服务</a>
-				<c:if test="${!empty userList }"> --%>
+				<c:if test="${!empty userList }">
                   <c:forEach items="${userList}"  var="item">
 					<input type="text" class="c-fix f-l p_inp" style="margin-top:20px;" placeholder="姓名"  id="name2" value=${item.nick_name}></input>
 					<input type="text" class="c-fix f-l p_inp" placeholder="邮箱" id="email2"value=${item.email}></input>

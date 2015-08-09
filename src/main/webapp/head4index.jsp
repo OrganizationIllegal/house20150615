@@ -314,7 +314,7 @@ var role;
                 	var user = $("#username").val();
                 	var pass = $("#password").val();
                 	var temp;
-                	temp = judgeReheader(user,pass);
+                	temp = judge(user,pass);
                 	
                 	if(temp==true){
 	                	var username = encode64($("#username").val());
