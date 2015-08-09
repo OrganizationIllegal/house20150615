@@ -1402,7 +1402,6 @@ function savepro(){
 	project.project_area=$("#project_area").val();
 	project.project_price_int_qi=$("#danjia").val();
 	project.project_sales_remain=$("#keshou").val();
-	alert("ooooo"+$("#finish_time").val());
 	project.project_finish_time=$("#finish_time").val();
 	project.project_desc=$("#project_desc").val();
 	project.project_city=$("#project_city").val();

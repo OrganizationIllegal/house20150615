@@ -1244,8 +1244,8 @@ $(function(){
 });
 
 
-var schoollist='${fujinSchoolListJson}';
-schoollist=eval("("+schoollist+")");
+/* '${fujinSchoolListJson}' */;
+var schoollist=JSON.parse('${fujinSchoolListJson}')/* eval("("+schoollist+")"); */
 var schooledit=100;
 var schooledititem;
 var schoolcount=schoollist.length;
@@ -1699,6 +1699,8 @@ function savepro(){
 	key.traffic=$("#traffic").val();
 	keylist.push(key);
 
+	
+	/* alert("fffffff") */
     $.ajax({
 	    type: "POST",
  		async:false, 
