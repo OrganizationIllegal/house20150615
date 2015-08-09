@@ -144,8 +144,8 @@ public class HouseProjectDao extends BaseDao2{
 				projectInfo.setReturn_money(rs.getString("return_money"));
 				projectInfo.setDeveloper_id(rs.getInt("developer_id"));
 				projectInfo.setDeveloper_id_name(rs.getString("developer_id_name"));
-				projectInfo.setProject_min_price(rs.getString("project_min_price")==null?"N/A":df.format(Integer.parseInt(rs.getString("project_min_price"))));
-				projectInfo.setProject_high_price(rs.getString("project_high_price")==null?"N/A":df.format(Integer.parseInt(rs.getString("project_high_price"))));
+				projectInfo.setProject_min_price((rs.getString("project_min_price")==null || "".equals(rs.getString("project_min_price")))?"N/A":df.format(Integer.parseInt(rs.getString("project_min_price"))));
+				projectInfo.setProject_high_price((rs.getString("project_high_price")==null|| "".equals(rs.getString("project_min_price")))?"N/A":df.format(Integer.parseInt(rs.getString("project_high_price"))));
 				projectInfo.setMax_area(rs.getInt("max_area"));
 				projectInfo.setMin_area(rs.getInt("min_area"));
 				projectInfo.setArea_id(rs.getInt("area_id"));

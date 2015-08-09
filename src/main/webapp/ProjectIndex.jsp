@@ -838,7 +838,7 @@ var e=$('#input2').val();
 					</c:forEach>
 				</div>
 				<!-- <a class="f-l f-yahei s-14 p_panel_title4 fw" style="width:455px;margin-left:60px;margin-top:-8px;">附近配套</a> -->
-				<div class="f-l p_right_bottom" style="margin-left:35px;">
+				<div class="f-l p_right_bottom" <c:if test="${empty nearSchoolList }">style="margin-left:510px;"</c:if> >
 				<c:forEach items="${nearSchoolFacility}" var="item" begin="0" end="2" step="1" varStatus="var">
 					<div class="c-fix f-l p_school_node">
 						<div class="c-fix f-l p_school_inner">
@@ -946,8 +946,10 @@ var e=$('#input2').val();
 						<input type="text" class="f-l que_inner_inp"></input>
 						<span class="f-l que_inner_lab f-yahei s-14">/月</span>
 					</div>
-				</div>
-			</div>
+				
+			
+		</div>
+		</div>
 		</div>
 		<div class="c-fix  bkg3"  style="margin:0 auto;height:280px;width:990px">
 			<div class="c-fix p_panel_4">

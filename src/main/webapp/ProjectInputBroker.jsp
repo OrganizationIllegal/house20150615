@@ -588,6 +588,16 @@ $('#update_time').datepicker({
     language: "zh-CN",
     format: "yyyy-mm-dd"
 });
+
+$('#houseprice').blur(function() {
+	if(isNaN($('#houseprice').val())){
+		alert("请输入数字！");
+		$("#houseprice").focus();
+		return false;
+	}
+	});
+	
+	
 $(function(){
 	$.ajaxSetup({  
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  
