@@ -481,11 +481,13 @@ body{
 						<a class="f-r f-yahei s-12 node_val">${item.fanxian}</a> --%>
 						<span class="c-fix f-l f-yahei s-12 node_title">起价</span>
 						<span class="f-r f-yahei s-12 node_val">$${item.project_price_int_qi_str}</span>
+						  <div class="c-fix ">
 						 <c:forEach  var="item3" items="${item.project_key}">
-						    <div class="c-fix ">
+						  
 						    <span class=" f-l f-yahei s-12 node_title" style="margin-right:16px;">${item3}</span>
-						    </div>
+						 
 						 </c:forEach>
+						    </div>
 					</div>
 				</div>
 			 </c:forEach> 
