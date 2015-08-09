@@ -1055,6 +1055,115 @@ $('#people_date').datepicker({
     language: "zh-CN",
     format: "yyyy-mm-dd"
 });
+
+$('#year_increment_rate').blur(function() {
+	if(isNaN($('#year_increment_rate').val())){
+		alert("请输入数字！");
+		$("#year_increment_rate").focus();
+		return false;
+	}
+	});
+$('#middle_price').blur(function() {
+	if(isNaN($('#middle_price').val())){
+		alert("请输入数字！");
+		$("#middle_price").focus();
+		return false;
+	}
+	});
+$('#middle_zu_price').blur(function() {
+	if(isNaN($('#middle_zu_price').val())){
+		alert("请输入数字！");
+		$("#middle_zu_price").focus();
+		return false;
+	}
+	});
+$('#zu_house_rate').blur(function() {
+	if(isNaN($('#zu_house_rate').val())){
+		alert("请输入数字！");
+		$("#zu_house_rate").focus();
+		return false;
+	}
+	});
+$('#price_review').blur(function() {
+	if(isNaN($('#price_review').val())){
+		alert("请输入数字！");
+		$("#price_review").focus();
+		return false;
+	}
+	});
+$('#zu_xuqiu').blur(function() {
+	if(isNaN($('#zu_xuqiu').val())){
+		alert("请输入数字！");
+		$("#zu_xuqiu").focus();
+		return false;
+	}
+	});
+$('#year_increment_rate1').blur(function() {
+	if(isNaN($('#year_increment_rate1').val())){
+		alert("请输入数字！");
+		$("#year_increment_rate1").focus();
+		return false;
+	}
+	});
+$('#middle_price1').blur(function() {
+	if(isNaN($('#middle_price1').val())){
+		alert("请输入数字！");
+		$("#middle_price1").focus();
+		return false;
+	}
+	});
+$('#middle_zu_price1').blur(function() {
+	if(isNaN($('#middle_zu_price1').val())){
+		alert("请输入数字！");
+		$("#middle_zu_price1").focus();
+		return false;
+	}
+	});
+$('#zu_house_rate1').blur(function() {
+	if(isNaN($('#zu_house_rate1').val())){
+		alert("请输入数字！");
+		$("#zu_house_rate1").focus();
+		return false;
+	}
+	});
+    
+
+$('#price_review1').blur(function() {
+	if(isNaN($('#price_review1').val())){
+		alert("请输入数字！");
+		$("#price_review1").focus();
+		return false;
+	}
+	});
+$('#zu_xuqiu1').blur(function() {
+	if(isNaN($('#zu_xuqiu1').val())){
+		alert("请输入数字！");
+		$("#zu_xuqiu1").focus();
+		return false;
+	}
+	});
+$('#family_one_rate').blur(function() {
+	if(isNaN($('#family_one_rate').val())){
+		alert("请输入数字！");
+		$("#family_one_rate").focus();
+		return false;
+	}
+	});
+$('#family_two_rate').blur(function() {
+	if(isNaN($('#family_two_rate').val())){
+		alert("请输入数字！");
+		$("#family_two_rate").focus();
+		return false;
+	}
+	});
+$('#family_three_rate').blur(function() {
+	if(isNaN($('#family_three_rate').val())){
+		alert("请输入数字！");
+		$("#family_three_rate").focus();
+		return false;
+	}
+	});
+
 var newstitlelist1='${newsbokelist}';
 var newstitlelist2='${zhiyelist}';
 newstitlelist1=eval("("+newstitlelist1+")");
