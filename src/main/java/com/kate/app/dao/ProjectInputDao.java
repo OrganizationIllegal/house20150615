@@ -3457,7 +3457,7 @@ public class ProjectInputDao extends BaseDao2 {
 			            e.printStackTrace() ;   
 			        }   
 			     } 
-				String sql22="insert into house_info(house_name,house_img,house_price,house_room_num,tudi_area,jianzhu_area,house_size_in,house_size_out,house_toilet_num,project_num) values(?,?,?,?,?,?,?,?,?,?) ";
+				String sql22="insert into house_info(house_name,house_img,house_price,house_room_num,tudi_area,jianzhu_area,house_size_in,house_size_out,house_toilet_num,project_num,update_time) values(?,?,?,?,?,?,?,?,?,?,?) ";
 		        pstmt = con.prepareStatement(sql22);
 		        for(int i=0;i<houseInfolist2.size();i++){
 		        	HouseInfo1 houseinfo=houseInfolist2.get(i);
@@ -3480,6 +3480,7 @@ public class ProjectInputDao extends BaseDao2 {
 		            pstmt.setString(8, shiwai_mianji);
 		            pstmt.setInt(9, wc_num);
 		            pstmt.setString(10, project_num);
+		            pstmt.setString(11, time1);
 		            pstmt.addBatch();
 		        }
 				int[] result22list=pstmt.executeBatch();
