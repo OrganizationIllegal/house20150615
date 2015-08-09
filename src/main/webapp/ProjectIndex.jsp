@@ -853,7 +853,8 @@ var e=$('#input2').val();
 			</div>
 		</div>
 	
-		<c:if test="${!empty houseTaxStr && !empty housetaxdata && !empty holdingTaxStr && !empty holdingdata}">
+		<%-- <c:if test="${!empty houseTaxStr && !empty housetaxdata && !empty holdingTaxStr && !empty holdingdata}"> --%>
+		<c:if test="${(!empty houseTaxStr && !empty housetaxdata) || (!empty holdingTaxStr && !empty holdingdata)}">
 		<div class="c-fix bkg3"  name="loc_fy" id="loc_fy"  style="margin:0 auto;height:346px;width:990px">
 			<div class="c-fix p_panel_4">
 			
@@ -1306,7 +1307,7 @@ var e=$('#input2').val();
 					<div class="c-fix f-l p_project_node">
 						<a href="Index?proNum=${RecommendProject1.project_num}" target='_blank'><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject1.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
 						<a href="Index?proNum=${RecommendProject1.project_num}" target='_blank' class="c-fix f-l f-yahei s-14 project_desc fw">
-						<span>${RecommendProject1.project_name}</span><span style="float: right;">From:$${RecommendProject1.project_min_price}</span><br/>
+						<span title="${RecommendProject1.project_name}">${fn:substring(RecommendProject1.project_name,0,12)}</span><span style="float: right;">From:$${RecommendProject1.project_min_price}</span><br/>
 						
 						
 						<div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;word-break:break-all">
@@ -1315,14 +1316,14 @@ var e=$('#input2').val();
 					<div class="f-l p_project_node" style="margin-left:25px;">
 						<a href="Index?proNum=${RecommendProject2.project_num}" target='_blank'><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject2.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
 						<a href="Index?proNum=${RecommendProject2.project_num}" target='_blank' class="c-fix f-l f-yahei s-14 project_desc fw">
-						<span>${RecommendProject2.project_name}</span><span style="float: right;">From:$${RecommendProject2.project_min_price}</span><br/>
+						<span title="${RecommendProject2.project_name}">${fn:substring(RecommendProject2.project_name,0,12)}</span><span style="float: right;">From:$${RecommendProject2.project_min_price}</span><br/>
 						
 						<div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;word-break:break-all">${RecommendProject2.project_desc}</div></a>
 					</div>
 					<div class="f-l p_project_node" style="margin-left:25px;">
 						<a href="Index?proNum=${RecommendProject3.project_num}" target='_blank'><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject3.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
 						<a href="Index?proNum=${RecommendProject3.project_num}" target='_blank' class="c-fix f-l f-yahei s-14 project_desc fw">
-						<span>${RecommendProject3.project_name}</span><span style="float: right;">From:$${RecommendProject3.project_min_price}</span><br/>
+						<span title="${RecommendProject3.project_name}">${fn:substring(RecommendProject3.project_name,0,12)}</span><span style="float: right;">From:$${RecommendProject3.project_min_price}</span><br/>
 						<div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;word-break:break-all">${RecommendProject3.project_desc}</div></a>
 					</div>
 				</div>
