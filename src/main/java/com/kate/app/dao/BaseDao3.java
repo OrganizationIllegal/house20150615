@@ -2,16 +2,38 @@ package com.kate.app.dao;
 
 
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
 
-   
+
+@Repository 
 public class BaseDao3
  {
-	        
+	@Resource        //resource注入 
+    private BasicDataSource myDataSource; 
+	
+	
+	public BasicDataSource getMyDataSource() { 
+        return myDataSource; 
+    } 
+    /*public void setMyDataSource(BasicDataSource myDataSource) { 
+        this.myDataSource = myDataSource; 
+    }*/ 
+    
+    @Autowired
+    public void setDataSource(@Qualifier("dataSource") BasicDataSource dataSource) {
+    	  this.myDataSource = dataSource; 
+    }
+    
+    
 	protected static String url = null;
 	protected static String username = null;
 	protected static String password = null;
@@ -21,16 +43,26 @@ public class BaseDao3
 	        	 /*url = "jdbc:mysql://101.200.174.253:3306/gethouse?autoReconnect=true&failOverReadOnly=false&maxReconnects=10";
 		         username = "dboperator1";
 		         password = "gethouse";*/
-	        	 BasicDataSource ds = new BasicDataSource();
-	        	 url=ds.getUrl();
-	        	 username=ds.getUsername();
-	        	 password=ds.getPassword();
+	        	// ApplicationContext context=new ClassPathXmlApplicationContext("spring-view.xml");
+	        	 //BasicDataSource ds = new BasicDataSource();
+	        	// BasicDataSource ds = (BasicDataSource)context.getBean("dataSource");
+	        	/* url=myDataSource.getUrl();
+	        	 username=myDataSource.getUsername();
+	        	 password=myDataSource.getPassword();
 	        	 System.out.println("url"+url);
 	        	 System.out.println("username"+username);
-	        	 System.out.println("password"+password);
-		         dataSource = setupDataSource(url,username,password);
-		        
+	        	 System.out.println("password"+password);*/
+		         //dataSource = setupDataSource(url,username,password);
+	        	 try{ 
+	                 //拿到连接执行操作 
+	                 /*Connection conn = myDataSource.getConnection(); 
+	             
+	                 conn.createStatement().execute("insert into dept values('6','bumen2')"); */
+	             }catch(Exception e){ 
+	                 e.printStackTrace(); 
+	             } 
 		        System.out.println("Done.");
+		        
 /*
 		       
 		        Connection conn = null;

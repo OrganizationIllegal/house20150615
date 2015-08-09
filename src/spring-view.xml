@@ -71,7 +71,7 @@
         <property name="url" value="jdbc:mysql://101.200.174.253:3306/gethouse"/>
         <property name="username" value="dboperator1"/>
         <property name="password" value="gethouse"/>
-       
+      
         <property name="maxActive">  
                 <value>100</value>
   		</property>
@@ -94,22 +94,22 @@
         
         
     </bean>
-    <!--  <bean id="baseDao" class="com.kate.app.dao.BaseDao3" >
+     <bean id="baseDao" class="com.kate.app.dao.BaseDao3" >
         <property name="dataSource" ref="dataSource"></property>
         <property name="text">
         <value>ffffffffff</value>
         </property>
-    </bean> -->
+    </bean>
     
 
- <!--   <bean id="baseDao1" class="com.kate.app.dao.BaseDao3">
+   <bean id="baseDao1" class="com.kate.app.dao.BaseDao3">
         <property name= "dataSource">
             <ref bean= "dataSource"/>
         </property>
-        <property name= ”transactionManager”>
+       <!--  <property name= ”transactionManager”>
             <ref bean= ”transactionManager”>
-        </property>
-   </bean> -->
+        </property> -->
+   </bean>
    
    
     <!--配置hibernate-->
