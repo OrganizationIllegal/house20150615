@@ -496,8 +496,8 @@ body{
 <div class="area_right">
 
 <div style="clear: both;float: right;padding-right: 55px;"><a href="#" class="addbroker">添加</a></div>
-<div id="brokerlist">
 </div>
+<div id="brokerlist">
 </div>
 <div style="float:left;">
 

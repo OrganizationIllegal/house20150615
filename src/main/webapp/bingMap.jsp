@@ -328,7 +328,7 @@ body{
                		
                		html+="<span class='f-l f-yahei s-12 node_title' style='margin-right:16px;'>"+items[j].project_key[i]+"</span>";
                	}
-               	html+="</div></div>";
+               	html+="</div></div></div>";
          		
          		 
                	
