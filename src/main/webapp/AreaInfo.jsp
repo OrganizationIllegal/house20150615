@@ -1508,15 +1508,15 @@ function clearAllInput(){
 	zujintrendlist=[];
 	middlepricelist=[];
 	middlepricelist=[];
-	$("#newslist")。empty();
-	$("#projectlist")。empty();
-	$("#brokerlist")。empty();
-	$("#peoplelist")。empty();
-	$("#tedianlist")。empty();
-	$("#huibaotrendlist")。empty();
-	$("#zujintrendlist")。empty();
-	$("#middletrendlist")。empty();
-	$("#middlepricelist")。empty();
+	$("#newslist").empty();
+	$("#projectlist").empty();
+	$("#brokerlist").empty();
+	$("#peoplelist").empty();
+	$("#tedianlist").empty();
+	$("#huibaotrendlist").empty();
+	$("#zujintrendlist").empty();
+	$("#middletrendlist").empty();
+	$("#middlepricelist").empty();
 	return false;
 }
 </script>

@@ -2230,7 +2230,7 @@ public class ProjectInputDao extends BaseDao2 {
 			String project_min_price=project.getProject_min_price();
 			String project_high_price=project.getProject_high_price();
 			int tuijiandu=project.getTuijiandu();
-			String housePrice_update_time=project.getHousePrice_update_time().toString();
+			String housePrice_update_time=project.getHousePrice_update_time();
 			/*String buytaxInfo=project.getBuytaxInfo();
 			String holdInfo=project.getHoldInfo();*/
 			String area_num=project.getArea_num();
@@ -2267,10 +2267,10 @@ public class ProjectInputDao extends BaseDao2 {
 	            e.printStackTrace();   
 	        } */
 			 String time1 = null;
-			 if(time==null || "".equals(time)){
+			 if(housePrice_update_time==null || "".equals(housePrice_update_time)){
 				 time1=null;
 			 }else{
-				 time1=time.toString();
+				 time1=housePrice_update_time.toString();
 			 }
 	       
 			try{con = dataSource.getConnection();

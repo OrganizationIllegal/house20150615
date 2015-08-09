@@ -1153,16 +1153,16 @@ $(function(){
 		//$("#projectimage").val(edititem.name+"");
 		//alert(index+"index");
 		ishuxingedit=index;
-		$("#housename").val(huxingedititem.housename.replace(/\$nbsp;/g," ").replace("&#39;","'"));
+		$("#housename").val(huxingedititem.housename.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'"));
 		 /* $("#houseimg").val(huxingedititem.houseimg); */
-		 $("#file1").val(huxingedititem.houseimg.replace(/\$nbsp;/g," ").replace("&#39;","'"));
-		$("#houseprice").val(huxingedititem.houseprice.replace(/\$nbsp;/g," ").replace("&#39;","'"));
-		$("#room_num").val(huxingedititem.room_num.replace(/\$nbsp;/g," ").replace("&#39;","'"));
-		$("#tudi_mianji").val(huxingedititem.tudi_mianji.replace(/\$nbsp;/g," ").replace("&#39;","'"));
-		$("#jianzhu_mianji").val(huxingedititem.jianzhu_mianji.replace(/\$nbsp;/g," ").replace("&#39;","'"));
-		$("#shinei_mianji").val(huxingedititem.shinei_mianji.replace(/\$nbsp;/g," ").replace("&#39;","'"));
-		$("#shiwai_mianji").val(huxingedititem.shiwai_mianji.replace(/\$nbsp;/g," ").replace("&#39;","'"));
-		$("#wc_num").val(huxingedititem.wc_num.replace(/\$nbsp;/g," ").replace("&#39;","'"));
+		 $("#file1").val(huxingedititem.houseimg.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'"));
+		$("#houseprice").val(huxingedititem.houseprice.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'"));
+		$("#room_num").val(huxingedititem.room_num.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'"));
+		$("#tudi_mianji").val(huxingedititem.tudi_mianji.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'"));
+		$("#jianzhu_mianji").val(huxingedititem.jianzhu_mianji.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'"));
+		$("#shinei_mianji").val(huxingedititem.shinei_mianji.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'"));
+		$("#shiwai_mianji").val(huxingedititem.shiwai_mianji.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'"));
+		$("#wc_num").val(huxingedititem.wc_num.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'"));
 		}); 
 	
 });
@@ -1236,16 +1236,16 @@ $(function(){
 		//$("#projectimage").val(edititem.name+"");
 		//alert(index+"index");
 		fujinedit=index;
-		$("#peitao_type").val(fujinedititem.peitao_type.replace(/\$nbsp;/g," ").replace("&#39;","'"));
-		$("#peitao_name").val(fujinedititem.peitao_name.replace(/\$nbsp;/g," ").replace("&#39;","'"));
-		$("#peitao_distance").val(fujinedititem.peitao_distance.replace(/\$nbsp;/g," ").replace("&#39;","'"));
+		$("#peitao_type").val(fujinedititem.peitao_type.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'"));
+		$("#peitao_name").val(fujinedititem.peitao_name.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'"));
+		$("#peitao_distance").val(fujinedititem.peitao_distance.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'"));
 		}); 
 	
 });
 
 
-var schoollist/* '${fujinSchoolListJson}' */;
-schoollist=JSON.parse('${fujinSchoolListJson}')/* eval("("+schoollist+")"); */
+/* '${fujinSchoolListJson}' */;
+var schoollist=JSON.parse('${fujinSchoolListJson}')/* eval("("+schoollist+")"); */
 var schooledit=100;
 var schooledititem;
 var schoolcount=schoollist.length;
@@ -1301,7 +1301,7 @@ $(function(){
 		schooledit=index;
 		var selectCount = document.getElementById("school_name");
 		for(var i = 0 ; i<selectCount.length;i++){
-			if(selectCount.options[i].value==schooledititem.school_name){			
+			if(selectCount.options[i].value==schooledititem.school_name.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'")){			
 				selectCount.options[i].selected=true;				
 			}
 		}
@@ -1309,7 +1309,7 @@ $(function(){
 		/* $("#school_name").val(schooledititem.school_name); */
 		/*  $("#school_name").find("option[text=schooledititem.school_name]").attr("selected",true); */
 		/*  $('#school_name').trigger('chosen:updated'); */
-		$("#school_distance").val(schooledititem.school_distance.replace(/\$nbsp;/g," ").replace("&#39;","'"));
+		$("#school_distance").val(schooledititem.school_distance.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'"));
 		}); 
 	
 });
@@ -1422,10 +1422,10 @@ $(function(){
 			}
 		}
 		$('#holdcosttype').trigger('chosen:updated');
-		$("#holdcosttype").val(holdingcostedititem.holdcosttype.replace(/\$nbsp;/g," ").replace("&#39;","'"));
-		$("#holdcostprice").val(holdingcostedititem.holdcostprice.replace(/\$nbsp;/g," ").replace("&#39;","'"));
-		$("#holdcostdesc").val(holdingcostedititem.holdcostdesc.replace(/\$nbsp;/g," ").replace("&#39;","'"));
-		$("#holdcost_housename").val(holdingcostedititem.holdcost_housename.replace(/\$nbsp;/g," ").replace("&#39;","'"));
+		$("#holdcosttype").val(holdingcostedititem.holdcosttype.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'"));
+		$("#holdcostprice").val(holdingcostedititem.holdcostprice.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'"));
+		$("#holdcostdesc").val(holdingcostedititem.holdcostdesc.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'"));
+		$("#holdcost_housename").val(holdingcostedititem.holdcost_housename.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"'"));
 
 		}); 
 	
@@ -1537,8 +1537,9 @@ $(function(){
 		}
 		$('#houseTaxtype').trigger('chosen:updated');
 		/* $("#houseTaxtype").val(housetaxformedititem.houseTaxtype); */
-		$("#houseTaxprice").val(housetaxformedititem.houseTaxprice.replace(/\$nbsp;/g," ").replace("&#39;","'"));
-		$("#houseTaxdesc").val(housetaxformedititem.houseTaxdesc.replace(/\$nbsp;/g," ").replace("&#39;","'"));
+		//alert($("#houseTaxdesc").val())
+		$("#houseTaxprice").val(housetaxformedititem.houseTaxprice.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"\'"));
+		$("#houseTaxdesc").val(housetaxformedititem.houseTaxdesc.replace(/\&nbsp;/g," ").replace(/\&#39;/g,"\'"));
 	/* 	$("#houseTax_housename").val(housetaxformedititem.houseTax_housename); */
 		}); 
 	
@@ -1700,7 +1701,7 @@ function savepro(){
 	keylist.push(key);
 
 	
-	alert("fffffff")
+	/* alert("fffffff") */
     $.ajax({
 	    type: "POST",
  		async:false, 

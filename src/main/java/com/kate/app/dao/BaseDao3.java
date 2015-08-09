@@ -9,18 +9,25 @@ import javax.sql.DataSource;
 import org.apache.commons.dbcp.BasicDataSource;
 
    
-public class BaseDao2
+public class BaseDao3
  {
 	        
 	protected static String url = null;
 	protected static String username = null;
 	protected static String password = null;
 	protected static DataSource dataSource = null;
-	        BaseDao2(){
+	        BaseDao3(){
 	        	System.out.println("Setting up data source.");
-	        	 url = "jdbc:mysql://101.200.174.253:3306/gethouse?autoReconnect=true&failOverReadOnly=false&maxReconnects=10";
+	        	 /*url = "jdbc:mysql://101.200.174.253:3306/gethouse?autoReconnect=true&failOverReadOnly=false&maxReconnects=10";
 		         username = "dboperator1";
-		         password = "gethouse";
+		         password = "gethouse";*/
+	        	 BasicDataSource ds = new BasicDataSource();
+	        	 url=ds.getUrl();
+	        	 username=ds.getUsername();
+	        	 password=ds.getPassword();
+	        	 System.out.println("url"+url);
+	        	 System.out.println("username"+username);
+	        	 System.out.println("password"+password);
 		         dataSource = setupDataSource(url,username,password);
 		        
 		        System.out.println("Done.");
