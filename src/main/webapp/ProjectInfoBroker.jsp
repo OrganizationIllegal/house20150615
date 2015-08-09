@@ -1699,6 +1699,8 @@ function savepro(){
 	key.traffic=$("#traffic").val();
 	keylist.push(key);
 
+	
+	alert("fffffff")
     $.ajax({
 	    type: "POST",
  		async:false, 

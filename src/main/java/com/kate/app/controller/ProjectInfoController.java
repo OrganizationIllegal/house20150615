@@ -916,6 +916,22 @@ public class ProjectInfoController {
 					 fujinpeitaoList.add(e);//鍚﹀垯锛岀紪杈�
 				 }
 		}
+		
+		for(FujinPeiTao item : fujinpeitaoList){
+			String peitaoName = item.getPeitao_name();
+			peitaoName = peitaoName.replace("nbsp;", " ");
+			peitaoName = peitaoName.replace("&#39;", "\'");
+			item.setPeitao_name(peitaoName);
+		}
+		
+		for(FujinPeiTao item : fujinpeitaoList2){
+			String peitaoName = item.getPeitao_name();
+			peitaoName = peitaoName.replace("nbsp;", " ");
+			peitaoName = peitaoName.replace("&#39;", "\'");
+			item.setPeitao_name(peitaoName);
+		}
+		
+		
 		//附近配套，和修改之前的附近配套做对比。把删除的附近配套item保存到deletelist，然后再传到dao层做删除
 		for (int i=0;i<fujinPeitaoListbefore.size();i++){
 			boolean flag=false;
@@ -948,6 +964,23 @@ public class ProjectInfoController {
 							 fujinSchoolList.add(e);
 						 }
 		   }
+		
+		
+		
+		for(FujinSchool item : fujinSchoolList){
+			String schoolName = item.getSchool_name();
+			schoolName = schoolName.replace("nbsp;", " ");
+			schoolName = schoolName.replace("&#39;", "\'");
+			item.setSchool_name(schoolName);
+		}
+		
+		for(FujinSchool item : fujinSchoolList){
+			String schoolName = item.getSchool_name();
+			schoolName = schoolName.replace("nbsp;", " ");
+			schoolName = schoolName.replace("&#39;", "\'");
+			item.setSchool_name(schoolName);
+		}
+		
 		//附近学校，和修改之前的学习list做对比。把删除的附近学校的item保存到deletelist里，然后传到dao层删除。
 		for (int i=0;i<fujinSchoolListbefore.size();i++){
 			boolean flag=false;
