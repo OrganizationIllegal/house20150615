@@ -90,28 +90,8 @@
   		<property name="removeAbandonedTimeout">
      			<value>60</value> 
  		 </property>
-        
-        
-        
-    </bean>
-    <!--  <bean id="baseDao" class="com.kate.app.dao.BaseDao3" >
-        <property name="dataSource" ref="dataSource"></property>
-        <property name="text">
-        <value>ffffffffff</value>
-        </property>
-    </bean> -->
-    
-
- <!--   <bean id="baseDao1" class="com.kate.app.dao.BaseDao3">
-        <property name= "dataSource">
-            <ref bean= "dataSource"/>
-        </property>
-        <property name= ”transactionManager”>
-            <ref bean= ”transactionManager”>
-        </property>
-   </bean> -->
-   
-   
+     </bean>
+  
     <!--配置hibernate-->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"></property>

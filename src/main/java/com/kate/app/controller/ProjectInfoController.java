@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.kate.app.dao.AjaxDao;
 import com.kate.app.dao.AreaInputDao;
 import com.kate.app.dao.BrokerInfoDao;
@@ -820,10 +821,7 @@ public class ProjectInfoController {
 			    	houseInfolist.add(e);
 			    }
 			}
-		
-		
-		
-		for(HouseInfo1 item : houseInfolist){
+		/*for(HouseInfo1 item : houseInfolist){
 			String name = item.getHousename();
 			filter(name);
 			item.setHousename(name);
@@ -838,7 +836,7 @@ public class ProjectInfoController {
 			String img = item.getHouseimg();
 			filter(img);
 			item.setHouseimg(img);
-		}
+		}*/
 		
 		
 		//户型价格，和修改之前的户型价格list做对比，然后把删除了的户型价格item保存到deleteList里，然后传到dao层删除。
@@ -876,7 +874,7 @@ public class ProjectInfoController {
 			}
 		
 
-		for(ProjectDescImage item : imagelist){
+		/*for(ProjectDescImage item : imagelist){
 			String name = item.getName();
 			filter(name);
 			item.setName(name);
@@ -887,7 +885,7 @@ public class ProjectInfoController {
 			filter(name);
 			item.setName(name);
 			
-		}
+		}*/
 		
 		
 		//项目图片，和修改之前的项目图片list做对比，然后把删除了的项目图片item保存到deleteList里，然后传到dao层删除。
@@ -922,7 +920,7 @@ public class ProjectInfoController {
 				    }
 				}
 			
-			for(ProjectPeiTao item : peitaolist){
+			/*for(ProjectPeiTao item : peitaolist){
 				String name = item.getName();
 				filter(name);
 				item.setName(name);
@@ -933,7 +931,7 @@ public class ProjectInfoController {
 				filter(name);
 				item.setName(name);
 				
-			}
+			}*/
 			//项目配套，和修改之前的项目配套做对比，然后把删除的项目配套item的保存到deletelist，然后再dao层做删除
 			for (int i=0;i<projectPeiTaoListbefore.size();i++){
 				boolean flag=false;
@@ -967,7 +965,7 @@ public class ProjectInfoController {
 				 }
 		}
 		
-		for(FujinPeiTao item : fujinpeitaoList){
+		/*for(FujinPeiTao item : fujinpeitaoList){
 			String peitaoName = item.getPeitao_name();
 			filter(peitaoName);
 			item.setPeitao_name(peitaoName);
@@ -977,7 +975,7 @@ public class ProjectInfoController {
 			String peitaoName = item.getPeitao_name();
 			filter(peitaoName);
 			item.setPeitao_name(peitaoName);
-		}
+		}*/
 		
 		
 		//附近配套，和修改之前的附近配套做对比。把删除的附近配套item保存到deletelist，然后再传到dao层做删除
@@ -1015,7 +1013,7 @@ public class ProjectInfoController {
 		
 		
 		
-		for(FujinSchool item : fujinSchoolList){
+	/*	for(FujinSchool item : fujinSchoolList){
 			String schoolName = item.getSchool_name();
 			filter(schoolName);
 			item.setSchool_name(schoolName);
@@ -1025,7 +1023,7 @@ public class ProjectInfoController {
 			String schoolName = item.getSchool_name();
 			filter(schoolName);
 			item.setSchool_name(schoolName);
-		}
+		}*/
 		
 		//附近学校，和修改之前的学习list做对比。把删除的附近学校的item保存到deletelist里，然后传到dao层删除。
 		for (int i=0;i<fujinSchoolListbefore.size();i++){
@@ -1060,7 +1058,7 @@ public class ProjectInfoController {
 			    }
 			}
 		
-		for(HoldCost item : holdCostList){
+		/*for(HoldCost item : holdCostList){
 			String name = item.getHoldcostdesc();
 			filter(name);
 			item.setHoldcostdesc(name);
@@ -1070,7 +1068,7 @@ public class ProjectInfoController {
 			String name = item.getHoldcostdesc();
 			filter(name);
 			item.setHoldcostdesc(name);
-		}
+		}*/
 		
 		//持有成本，和修改之前的持有成本list做对比，把 删除的持有成本保存到deletelist列表里，然后再dao层做删除。
 		for (int i=0;i<holdCostListbefore.size();i++){
@@ -1106,7 +1104,7 @@ public class ProjectInfoController {
 		}
 		
 		
-		for(HouseTax item : houseTaxList){
+		/*for(HouseTax item : houseTaxList){
 			String name = item.getHouseTaxdesc();
 			System.out.println(name+"购房税费1");
 			filter(name);
@@ -1121,7 +1119,7 @@ public class ProjectInfoController {
 			System.out.println(name+"购房税费4");
 			item.setHouseTaxdesc(name);
 		}
-		
+		*/
 		
 		//购房税费，和修改之前的购房税费做对比，把删除的购房税费的item保存到购房税费deletelist，然后再dao层做删除。
 		for (int i=0;i<houseTaxListbefore.size();i++){
@@ -1158,7 +1156,7 @@ public class ProjectInfoController {
 				/*List<BrokerInfo> brokerlistListdelete=new ArrayList<BrokerInfo>();*/
 				
 				
-
+/*
 				for(BrokerInfo item : brokerlistList){
 					String name = item.getBroker_name();
 					filter(name);
@@ -1168,7 +1166,7 @@ public class ProjectInfoController {
 					String name = item.getBroker_name();
 					filter(name);
 					item.setBroker_name(name);
-				}
+				}*/
 				
 				
 				for (int i = 0; i < length; i++){
@@ -1826,6 +1824,7 @@ public class ProjectInfoController {
 		List<HouseInfo1> houseInfoList=projectInputDao.getHouseInfoByProNum(pronum);
 		houseInfoListbefore=projectInputDao.getHouseInfoByProNum(pronum);
 		req.setAttribute("houseInfoList", houseInfoList);
+
 		String houseInfoJson = gson.toJson(houseInfoList);
 		houseInfoJson = ConvertJson.jsonString(houseInfoJson);
 				
@@ -1836,71 +1835,79 @@ public class ProjectInfoController {
 		List <ProjectPeiTao> projectPeiTaoList =projectInputDao.getProjectpeiTaoByProNum(pronum);
 		projectPeiTaoListbefore=projectInputDao.getProjectpeiTaoByProNum(pronum);
 		req.setAttribute("projectPeitaoList", projectPeiTaoList);
+
 		String projectPeiTaoJson = gson.toJson(projectPeiTaoList);
 		projectPeiTaoJson = ConvertJson.jsonString(projectPeiTaoJson);
 		
 		req.setAttribute("projectPeitaoListJson", projectPeiTaoJson);
 
+
 		//根据项目编号获取项目配套
 		List <ProjectDescImage> projectImageList =projectInputDao.getProjectImageByProNum(pronum);
 		projectImageListbefore=projectInputDao.getProjectImageByProNum(pronum);
 		req.setAttribute("projectImageList", projectImageList);
+
 		
 		String projectImageJson = gson.toJson(projectImageList);
 		projectImageJson = ConvertJson.jsonString(projectImageJson);
 		
 		req.setAttribute("projectImageListJson",projectImageJson);
+
 		//根据项目编号获取附近配套
 
 		List<FujinPeiTao> fujinPeitaoList=projectInputDao.getFujinPeiTaoByProNum(pronum);
 		fujinPeitaoListbefore=projectInputDao.getFujinPeiTaoByProNum(pronum);
 		req.setAttribute("fujinPeitaoList",fujinPeitaoList );
+
 		
 		String fujinPeitaoJson = gson.toJson(fujinPeitaoList);
 		projectImageJson = ConvertJson.jsonString(fujinPeitaoJson);
 		
 		req.setAttribute("fujinPeitaoListJson", fujinPeitaoJson);
+
 		//根据项目编号获取附近学校信息
 		List<FujinSchool> fujinSchoolList=projectInputDao.getFujinSchoolByProNum(pronum);
 		fujinSchoolListbefore=projectInputDao.getFujinSchoolByProNum(pronum);
 		req.setAttribute("fujinSchoolList",fujinSchoolList );
+
 		
 		String fujinSchoolJson = gson.toJson(fujinSchoolList);
 		fujinSchoolJson = ConvertJson.jsonString(fujinSchoolJson);
 		
 		req.setAttribute("fujinSchoolListJson",fujinSchoolJson);
+
 		//根据项目编号获取持有成本信息
 		List<HoldCost> holdCostList=projectInputDao.getHoldCostByProNum(pronum);
 		holdCostListbefore=projectInputDao.getHoldCostByProNum(pronum);
 		req.setAttribute("holdCostList",holdCostList );
+
 		
 		String holdCostJson = gson.toJson(holdCostList);
 		holdCostJson = ConvertJson.jsonString(holdCostJson);
 		
 		req.setAttribute("holdCostListJson",holdCostJson);
+
 		//根据项目编号获取购房税费信息
 		List<HouseTax> houseTaxList=projectInputDao.getHouseTaxByProNum(pronum);
 		houseTaxListbefore=projectInputDao.getHouseTaxByProNum(pronum);
 		req.setAttribute("houseTaxList",houseTaxList );
-/*<<<<<<< HEAD
-		//req.setAttribute("houseTaxListJson", ConvertJson.list2json(houseTaxList).replace(" ", "&nbsp;").replace("'", "&#39;"));
-		req.setAttribute("houseTaxListJson", ConvertJson.list2json(houseTaxList).replace("\'", "&#39;"));
-		
-=======*/
 		String jsonInfo = gson.toJson(houseTaxList);
 		jsonInfo = ConvertJson.jsonString(jsonInfo);
 				
 		req.setAttribute("houseTaxListJson",jsonInfo);
 
+
 		//推荐经纪人    按项目进行推荐
 		List<BrokerInfo> brokerlist=projectInputDao.getBrokerInfoByProNum(pronum);
 		brokerlistbefore=projectInputDao.getBrokerInfoByProNum(pronum);
 		req.setAttribute("brokerlist",brokerlist );
+
 		
 		String brokerJson = gson.toJson(brokerlist);
 		brokerJson = ConvertJson.jsonString(brokerJson);
 		
 		req.setAttribute("brokerlistJson",brokerJson);
+
 
 		
 		//得到开发商信息
@@ -1981,6 +1988,7 @@ public class ProjectInfoController {
 				 */
 				@RequestMapping({ "/selectBroker" })
 				public String selectBroker(HttpServletRequest req,HttpServletResponse resp){
+					Gson gson =new Gson();
 					JSONObject json = new JSONObject();
 					int id =Integer.parseInt(req.getParameter("id"));
 					//根据id查找经纪人基本信息
@@ -1993,7 +2001,10 @@ public class ProjectInfoController {
 					brokerServiceAreaListbefore=projectInputDao.findBrokerAreaList(broker_num);
 					
 					req.setAttribute("brokerServiceAreaList", brokerServiceAreaList);
-					req.setAttribute("brokerServiceAreaListJson", ConvertJson.list2json(brokerServiceAreaList).replace(" ", "&nbsp;").replace("'", "&#39;"));
+					String brokerServiceAreaListJson = gson.toJson(brokerServiceAreaList);
+					brokerServiceAreaListJson = ConvertJson.jsonString(brokerServiceAreaListJson);
+					req.setAttribute("brokerServiceAreaListJson",brokerServiceAreaListJson);
+					
 					//根据经济人编号得到经纪人擅长类型
 					List<BrokerType> brokerIntegertypeList=projectInputDao.findBrokerTypeList(broker_num);
 					for(int i=0;i<brokerIntegertypeList.size();i++){
@@ -2008,7 +2019,9 @@ public class ProjectInfoController {
 					}
 					brokerIntegertypeListbefore=projectInputDao.findBrokerTypeList(broker_num);
 					req.setAttribute("brokerIntegertypeList", brokerIntegertypeList);
-					req.setAttribute("brokerIntegertypeListJson", ConvertJson.list2json(brokerIntegertypeList).replace(" ", "&nbsp;").replace("'", "&#39;"));
+					String brokerIntegertypeListJson = gson.toJson(brokerIntegertypeList);
+					brokerIntegertypeListJson = ConvertJson.jsonString(brokerIntegertypeListJson);
+					req.setAttribute("brokerIntegertypeListJson",brokerIntegertypeListJson);
 					return "/brokerInfo.jsp";
 				}
 	
