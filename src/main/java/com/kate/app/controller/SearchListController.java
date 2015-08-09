@@ -108,6 +108,15 @@ public class SearchListController {
 		int pageSize  = pageSize_str==null? 0 :Integer.parseInt(pageSize_str);
 		
 		List<SearchList> searchList=searchListDao.filterSearchList(projecttype, zongjiamin, zongjiamax,danjiamin,danjiamax,xinaipan,remen,youxiu,center,baozu,huaren,zuixin,daxue,xianfang,traffic,woshimin,woshimax);
+		for(SearchList a:searchList){
+			String project_num=a.getProject_num();
+			List<ProjectDescImage> imageList2 = houseProjectDao.HouseProjectImageList(project_num);
+			String image1 = "";
+			if(imageList2!=null && imageList2.size()>0){
+				image1 = imageList2.get(0).getName();
+			}
+			a.setProject_img(image1);
+		}
 		int total = searchList.size();
 		int pageEnd = pageNum * pageSize;
 		int end = pageEnd < total ? pageEnd : total;

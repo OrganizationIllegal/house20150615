@@ -142,19 +142,20 @@ public class SearchListDao extends BaseDao2 {
 		//找出項目编号所对应的户型及价格中卧室数量的最大值和最小值
 		List<SearchList> searchInfoList=new ArrayList<SearchList>();
 		try {con = dataSource.getConnection();
-			String sql = "select t.id,t.gps,t.project_nation,t.project_area,t.project_type,t.project_city,t.project_price,t.project_zhou,t.project_num,t.project_desc,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi,i.image_name from house_project t left join project_key p on t.project_num=p.project_num join project_desc_image i on i.project_num=t.project_num join house_info h on h.project_num=t.project_num where i.view_shunxu=1 and";
-			if(projecttype!=null && !"".equals(projecttype)){
+			/*String sql = "select t.id,t.gps,t.project_nation,t.project_area,t.project_type,t.project_city,t.project_price,t.project_zhou,t.project_num,t.project_desc,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi,i.image_name from house_project t  join project_key p on t.project_num=p.project_num join project_desc_image i on i.project_num=t.project_num join house_info h on h.project_num=t.project_num where i.view_shunxu=1 and t.isSeen=1 and";*/
+		String sql="select t.id,t.gps,t.project_nation,t.project_area,t.project_type,t.project_city,t.project_price,t.project_zhou,t.project_num,t.project_desc,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi from house_project t  join project_key p on t.project_num=p.project_num  join house_info h on h.project_num=t.project_num where t.isSeen=1 and"; 	
+		if(projecttype!=null && !"".equals(projecttype)){
 				sql+="  t.project_type like ";
 				sql+=" '"+projecttype+"'";
-				sql+=" and ABS(`project_high_price`)<"+zongjiamax;
+				sql+=" and ABS(`project_high_price`)<="+zongjiamax;
 			}
 			else{
-				sql+=" ABS(`project_high_price`)<"+zongjiamax;
+				sql+=" ABS(`project_high_price`)<="+zongjiamax;
 			}
-			sql+=" and ABS(`project_min_price`)>"+zongjiamin;
-			sql+=" and project_price_int_qi >"+danjiamin;
-			sql+=" and project_price_int_qi <"+danjiamax;
-			sql+=" and project_price_int_qi >"+danjiamin;
+			sql+=" and ABS(`project_min_price`)>="+zongjiamin;
+			sql+=" and project_price_int_qi >="+danjiamin;
+			sql+=" and project_price_int_qi <="+danjiamax;
+			sql+=" and project_price_int_qi >="+danjiamin;
 			
 			
 			if(xinaipan1.equals("1")){
@@ -188,8 +189,8 @@ public class SearchListDao extends BaseDao2 {
 				sql+=" and p.traffic='1'";//轨道交通
 			}
 			sql+=" GROUP BY h.project_num";
-			sql+=" HAVING (MIN(h.house_room_num) >"+woshimin;
-			sql+=" and MAX(h.house_room_num) <"+woshimax+")";
+			sql+=" HAVING (MIN(h.house_room_num) >="+woshimin;
+			sql+=" and MAX(h.house_room_num) <="+woshimax+")";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
 		    int id=0;
@@ -233,7 +234,8 @@ public class SearchListDao extends BaseDao2 {
 		    
 		    while(rs.next()){
 		    	id=rs.getInt("id");
-		    	project_img=rs.getString("image_name");
+		    	/*project_img=rs.getString("image_name");*/
+		    	project_img=null;
 		    	project_name=rs.getString("project_name");
 		    	project_sales_remain=rs.getInt("project_sales_remain");
 		    	maxPrice=rs.getString("maxprice");
@@ -353,7 +355,7 @@ public class SearchListDao extends BaseDao2 {
 		PreparedStatement pstmt = null;
 		List<SearchList> searchInfoList=new ArrayList<SearchList>();
 		try {con = dataSource.getConnection();
-			String sql = "select t.id,t.project_num,t.project_desc,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi,i.image_name from house_project t left join project_key p on t.project_num=p.project_num join project_desc_image i on t.project_num=i.project_num  where i.view_shunxu=1  ORDER BY t.tuijiandu DESC";
+			String sql = "select t.id,t.project_num,t.project_desc,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi from house_project t left join project_key p on t.project_num=p.project_num   where  t.isSeen=1  ORDER BY t.tuijiandu DESC";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
 		    int id=0;
@@ -395,7 +397,8 @@ public class SearchListDao extends BaseDao2 {
 		    
 		    while(rs.next()){
 		    	id=rs.getInt("id");
-		    	project_img=rs.getString("image_name");
+		    	/*project_img=rs.getString("image_name");*/
+		    	project_img=null;
 		    	project_name=rs.getString("project_name");
 		    	project_sales_remain=rs.getInt("project_sales_remain");
 		    	maxPrice=rs.getString("maxprice");
