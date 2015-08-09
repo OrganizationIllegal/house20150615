@@ -1734,7 +1734,7 @@ public class ProjectInfoController {
 		List<HouseInfo1> houseInfoList=projectInputDao.getHouseInfoByProNum(pronum);
 		houseInfoListbefore=projectInputDao.getHouseInfoByProNum(pronum);
 		req.setAttribute("houseInfoList", houseInfoList);
-		req.setAttribute("houseInfoListJson",gson.toJson(houseInfoList, List<HouseInfo1>));
+		req.setAttribute("houseInfoListJson",gson.toJson(houseInfoList));
 
 		//根据项目编号获取项目图片
 
