@@ -1959,10 +1959,10 @@ $(function(){
 		//$("#projectimage").val(edititem.name+"");
 		//alert(index+"index");
 		tedianedit=index;
-		$("#data_source").val(tedianedititem.data_source.replace(/\$nbsp;/g," ").replace("&#39;","'"));
+		$("#data_source").val(tedianedititem.data_source.replace(/\&nbsp;/g," ").replace("&#39;","'"));
 		$("#update_time").val(tedianedititem.update_time.length>=10?tedianedititem.update_time.substr(0,10):tedianedititem.update_time);
 		$("#view_shunxu").val(tedianedititem.view_shunxu);
-		$("#area_character").val(tedianedititem.area_character.replace(/\$nbsp;/g," ").replace("&#39;","'"));
+		$("#area_character").val(tedianedititem.area_character.replace(/\&nbsp;/g," ").replace("&#39;","'"));
 		}); 
 	
 });
