@@ -79,7 +79,7 @@
      <div class="c-fix f-l main_header" style="background-color:white;border-bottom:1px solid rgba(238, 238, 238, 1);">
 			<div class="c-fix f-l main_header_div" id="title">
 				<img src="images/logo.jpg" class="c-fix f-l main_logo"></img>
-				<a id="t1" href="/index01" class="f-l f-yahei s-14 main_nav cp fw ">首页</a>
+				<a id="t1" href="/index" class="f-l f-yahei s-14 main_nav cp fw ">首页</a>
 				<div>
 				<a id="t2" href="/overseas.jsp" class="f-l f-yahei s-14 main_nav cp fw">海外购房</a>
 				<div style="position:relative;">

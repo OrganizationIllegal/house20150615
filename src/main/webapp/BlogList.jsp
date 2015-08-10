@@ -120,7 +120,7 @@ if(request.getSession().getAttribute("flag")!=null){
 	<div class="" style="-margin-top:61px;">
        <!-- <div class="row" style="height:36px;background-color:rgb(20,51,82);width:1190px;  margin: 0 auto;">
             <div class="col-md-1"  style="width:142px;float:left;"></div>
-            <div class="col-md-3" style="width:340px;height:100%;line-height:37px;color:white;"><a href="/index01" style="color: #FFE4B5;padding-right: 10px;">首页</a><a href="/BlogList" style="color: white;padding-right: 10px;">海外新闻 </a><a href="/ZhiYeInfo" style="color: #FFE4B5;padding-right: 10px;">置业百科</a></div>
+            <div class="col-md-3" style="width:340px;height:100%;line-height:37px;color:white;"><a href="/index" style="color: #FFE4B5;padding-right: 10px;">首页</a><a href="/BlogList" style="color: white;padding-right: 10px;">海外新闻 </a><a href="/ZhiYeInfo" style="color: #FFE4B5;padding-right: 10px;">置业百科</a></div>
         </div> -->
         <div  style="height:82px;border:1px solid #FFE4E1;width:100%; margin: 0 auto;background-color: white;margin-top:-10px;position:relative;">
             <div class="" style="width:980px;font-size:24px;line-height:70px;height:100%;font-weight:bold;margin:0 auto;">海外新闻</div>

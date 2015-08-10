@@ -43,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  <img src="pic/newlogo.jpg" style="margin-top:-20px;width:165px;height:50px"/>
 		</div>
         <div class="fl w580" id="mid">
-       			<a href="/index01">首页</a>
+       			<a href="/index">首页</a>
        			<a href="/SearchList">海外购房</a>
        			<a href="/ServiceTeam">服务团队</a>
        			<a href="/ZhiYeInfo">置业指导</a>
