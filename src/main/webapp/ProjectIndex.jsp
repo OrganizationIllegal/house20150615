@@ -1031,21 +1031,21 @@ var e=$('#input2').val();
       <div class="tab-pane active" id="price">
       	<div>
       		<div id="price_line" style="height:350px"></div>
-      		<div style="width:100%;padding-left:30px;padding-right:30px;"><font size="1">投资数据参考：2卧室房产</font><span style="float:right;"><font size="1">数据来源：${middle_zoushi_datasource } 更新日期：${fn:substring(middle_zoushi_date,0,10)} </font></span></div>
+      		<div style="width:100%;padding-left:30px;padding-right:30px;"><font size="1"></font><span style="float:right;"><font size="1">数据来源：${middle_zoushi_datasource } 更新日期：${fn:substring(middle_zoushi_date,0,10)} </font></span></div>
       	</div>
       </div> 
       <div class="tab-pane" id="rent">
       	<div>
       		<div id="rent_line" style="height:350px">
       			</div>
-      		<div style="width:100%;padding-left:30px;padding-right:30px;"><font size="1">投资数据参考：2卧室房产</font><span style="float:right;"><font size="1">数据来源：${zujin_datasource }  更新日期：${fn:substring(zujin_date,0,10)} </font></span></div>
+      		<div style="width:100%;padding-left:30px;padding-right:30px;"><font size="1"></font><span style="float:right;"><font size="1">数据来源：${zujin_datasource }  更新日期：${fn:substring(zujin_date,0,10)} </font></span></div>
       	</div>
       </div> 
       <div class="tab-pane" id="emptypercent">
       	<div>
       		<div id="emptypercent_line" style="height:350px">
       			</div>
-      		<div style="width:100%;padding-left:30px;padding-right:30px;"><font size="1">投资数据参考：2卧室房产</font><span style="float:right;"><font size="1">数据来源：${zujin_huibao_datasource } 更新日期：${fn:substring(zujin_huibao_date,0,10)}</font></span></div>
+      		<div style="width:100%;padding-left:30px;padding-right:30px;"><font size="1"></font><span style="float:right;"><font size="1">数据来源：${zujin_huibao_datasource } 更新日期：${fn:substring(zujin_huibao_date,0,10)}</font></span></div>
       	</div>
       </div> 
   	</div>
