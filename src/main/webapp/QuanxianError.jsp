@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	else{
 		out.print("<script>alert('您没有权限查看其他用户的留言！');window.location.href='/UserMessageList'</script>");
 	} */
-	out.print("<script>alert('您没有权限查看留言，请登录！');window.location.href='/index01'</script>");
+	out.print("<script>alert('您没有权限查看留言，请登录！');window.location.href='/index'</script>");
 
 
 %>

@@ -125,7 +125,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  <img src="pic/newlogo.jpg" style="width:180px;height:60px;margin-top:10px;"/>
 		</div>
   		<div class="fl" id="headbar" style="margin-left:20px;margin-top:40px;">
-   			<a href="/index01" style="font-family:微软雅黑;font-size:15px;">首页</a>
+   			<a href="/index" style="font-family:微软雅黑;font-size:15px;">首页</a>
    			<a href="/SearchList" style="font-family:微软雅黑;font-size:15px;">海外购房</a>
    			<a href="/ServiceTeam" style="font-family:微软雅黑;font-size:15px;">服务团队</a>
    			<a href="/ZhiYeInfo" style="font-family:微软雅黑;font-size:15px;">置业指导</a>

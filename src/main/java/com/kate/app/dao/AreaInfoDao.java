@@ -540,7 +540,7 @@ con = dataSource.getConnection();
 
 				List<BrokerInfo> areaInfolist = new ArrayList<BrokerInfo>();
 				AreaTuijianBroker areaInfo = new AreaTuijianBroker();
-				BrokerInfo brokerInfo=new BrokerInfo();
+				
 				try {con = dataSource.getConnection();
 
 					String sql = " SELECT * from area_recommend_broker where area_code=?";
@@ -568,12 +568,30 @@ con = dataSource.getConnection();
 				String broker1=areaInfo.getBroker_code1();
 				String broker2=areaInfo.getBroker_code2();
 				String broker3=areaInfo.getBroker_code3();
-				brokerInfo=getBrokerList(broker1);
-				areaInfolist.add(brokerInfo);
-				brokerInfo=getBrokerList(broker2);
-				areaInfolist.add(brokerInfo);
-				brokerInfo=getBrokerList(broker3);
-				areaInfolist.add(brokerInfo);
+				/*BrokerInfo brokerInfo1=null;
+				BrokerInfo brokerInfo2=null;
+				BrokerInfo brokerInfo3=null;*/
+				BrokerInfo brokerInfo1=new BrokerInfo();
+				BrokerInfo brokerInfo2=new BrokerInfo();
+				BrokerInfo brokerInfo3=new BrokerInfo();
+				if(broker1!=null && !"".equals(broker1)){
+					brokerInfo1=getBrokerList(broker1);
+				}
+				if(broker2!=null && !"".equals(broker2)){
+					brokerInfo2=getBrokerList(broker2);
+				}
+				if(broker3!=null && !"".equals(broker3)){
+					brokerInfo3=getBrokerList(broker3);
+				}
+				if(brokerInfo1!=null){
+					areaInfolist.add(brokerInfo1);
+				}
+				if(brokerInfo2!=null){
+					areaInfolist.add(brokerInfo2);
+				}
+				if(brokerInfo3!=null){
+					areaInfolist.add(brokerInfo3);
+				}
 				return areaInfolist;
 			}
 			

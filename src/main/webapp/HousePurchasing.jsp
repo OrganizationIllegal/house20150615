@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div >
        <div class="row" style="height:37px;background-color:#4B0082;">
             <div class="col-md-1"></div>
-            <div class="col-md-3" style="margin:0 auto;height:100%;line-height:37px;color:white;"><a href="/index01" style="color: #FFE4B5;padding-right: 10px;">首页</a><a href="/BlogList" style="color: #FFE4B5;padding-right: 10px;">新闻博客 </a><a href="/ZhiYeInfo" style="color: white;padding-right: 10px;">置业指导</a></div>
+            <div class="col-md-3" style="margin:0 auto;height:100%;line-height:37px;color:white;"><a href="/index" style="color: #FFE4B5;padding-right: 10px;">首页</a><a href="/BlogList" style="color: #FFE4B5;padding-right: 10px;">新闻博客 </a><a href="/ZhiYeInfo" style="color: white;padding-right: 10px;">置业指导</a></div>
         </div>
         <div class="row" style="height:70px;border:1px solid #FFE4E1;">
             <div class="col-md-1"></div>

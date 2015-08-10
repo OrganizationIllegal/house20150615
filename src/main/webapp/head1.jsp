@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
         <div class="col-md-7" >
       	<div class="navbar-header" id="headbar" style="margin-left:20px">
-       			<a href="/index01" style="font-family:微软雅黑;font-weight:Regular;font-size:15px;color:rgb(137,137,137)">首页</a>
+       			<a href="/index" style="font-family:微软雅黑;font-weight:Regular;font-size:15px;color:rgb(137,137,137)">首页</a>
        			<span class="divider-vertical" style="margin-left:20px;"></span>
        			<a href="/SearchList" style="font-family:微软雅黑;font-weight:Regular;font-size:15px;color:rgb(137,137,137)">海外购房</a>
        			<span class="divider-vertical" style="margin-left:20px;"></span>
