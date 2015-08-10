@@ -62,7 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 </div>
 <%-- <c:if test="${! empty  brokerInfo.areaList}"> --%>
-	<div style="width:205px;height:100px;margin-top:30px;margin-left:15px;">
+	<div style="width:205px;height:100px;margin-top:30px;margin-left:15px;float:left;">
 	<div style="font-size:20px;font-weight:bold;">服务区域</div>
 	<c:forEach var="item" items="${areaList}" varStatus="stat">
 	<div style="width:190px;height:30px;background-color:rgba(246, 241, 238, 1);margin-top:10px;padding-left:15px;">
@@ -76,15 +76,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div style="width:190px;height:30px;background-color:rgba(246, 241, 238, 1);margin-top:10px;padding-left:15px;">
 		<img alt="shu" src="images/service/pic1.png" style="float:left;margin-top:3px">
 		<div style="float:left;font-size:13px;margin-top:5px;margin-left:5px;">${brokerInfo.broker_region}</div>
-	</div> 
-
-	
-	
+	</div> 	
 	</div>
 <%-- </c:if> --%>
 <c:if test="${! empty  brokerInfo.leixingInfo}">
-<div style="width:470px;height:70px;margin-left:250px;margin-top:-20px;">
-<div style="font-size:20px;font-weight:bold;float:left;margin-top:-78px;">擅长类型</div>
+<div style="width:470px;height:70px;margin-left:28px;margin-top:110px;float:left;">
+<div style="font-size:20px;font-weight:bold;float:left;margin-top:-78px;float:left;">擅长类型</div>
 <img alt="jiantou" src="images/service/pic2.png" style="float:left;margin-top:-75px;margin-left:80px;">
 <c:forEach items="${ brokerInfo.leixingInfo}" var="item" varStatus="stat">
 <c:if test="${fn:length(brokerInfo.leixingInfo)==1}">
@@ -146,8 +143,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 
-
-<div style="width:470px;height:70px;margin-left:250px;margin-top:-40px;">
+<div style="width:470px;height:70px;margin-left:250px;margin-top:-40px;float:left;">
 <div style="font-size:20px;font-weight:bold;float:left;margin-top:0px;">专业资质</div>
 <img alt="jiantou" src="images/service/pic2.png" style="float:left;margin-top:5px;">
 <div style="font-size:15px;float:left;margin-top:40px;margin-left:-114px;">${brokerInfo.broker_zizhi}</div>
