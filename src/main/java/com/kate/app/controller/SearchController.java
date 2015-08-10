@@ -331,7 +331,9 @@ public class SearchController {
 			int flag = 0;
 			if(searchcity!=null && !"".equals(searchcity)){
 				flag = 1;
-				if(searchcity.indexOf(",") >= 0){      //包含逗号的情况
+				String[] searchItemList = searchcity.split(",");
+				if(searchItemList.length>2){
+				//if(searchcity.indexOf(",") >= 0){      //包含逗号的情况
 					String[] strs = searchcity.split(",");
 					String areaName = "";
 					if(strs.length>0){
@@ -344,6 +346,11 @@ public class SearchController {
 						list1 = searchListDao.searchIndexProject(areaNum);  //通过区域的名称在数据库中查找项目信息
 					}
 				}
+				else if(searchItemList.length == 2){
+					String[] strs1 = searchcity.split(",");
+					String city1 = strs1[0];
+					list1 = searchListDao.searchIndexProjectByCity(city1);  //通过区域的名称在数据库中查找项目信息
+				}
 				else{
 					if(searchcity.indexOf("项目名称")>0){   //包含项目名称字段
 						int weizhi = searchcity.indexOf("(");
@@ -355,8 +362,9 @@ public class SearchController {
 					else{
 						list1 = searchListDao.searchIndexList(searchcity);    //通过前台传来的数据，查找项目信息
 						if(list1==null || list1.size()<=0){
-							String area_num = searchListDao.searchIndexList1(searchcity);  //通过关键字段，查找区域编号
-							list1 = searchListDao.searchIndexProject(area_num);   //通过区域编号在数据库中查找项目信息
+							//String area_num = searchListDao.searchIndexList1(searchcity);  //通过关键字段，查找区域编号
+							//list1 = searchListDao.searchIndexProject(area_num);   //通过区域编号在数据库中查找项目信息
+							list1 = searchListDao.searchIndexProjectNew(searchcity);   //通过区域编号在数据库中查找项目信息
 						}
 						
 					}

@@ -176,6 +176,39 @@ public class SuggestionDao extends BaseDao2 {
 	/*
 	 * 查询项目所在的城市
 	 */
+	public List<String> getProjectCityAndZhou(){
+		Statement stmt = null;Connection con = null;
+
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		List<String> cityList = new ArrayList<String>();
+		try{con = dataSource.getConnection();
+
+			String sql = "SELECT area_city, area_zhou  FROM area_info GROUP BY area_city";
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				String data = new String();
+				data = rs.getString("area_city")+";"+rs.getString("area_zhou");
+				
+				cityList.add(data);
+			}
+			
+		}catch (Exception e) {
+			 e.printStackTrace();
+        }finally{
+        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+        	 try { if (con != null) con.close(); } catch(Exception e) { }
+
+        }
+		return cityList;
+	}
+	
+	/*
+	 * 查询项目所在的城市
+	 */
 	public List<String> getProjectCity(){
 		Statement stmt = null;Connection con = null;
 
@@ -204,8 +237,6 @@ public class SuggestionDao extends BaseDao2 {
         }
 		return cityList;
 	}
-	
-	
 	
 	
 	
