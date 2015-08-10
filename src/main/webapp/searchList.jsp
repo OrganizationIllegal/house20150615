@@ -140,7 +140,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    <div id="Pagination" class="pagination"  style="margin:0 0;height:87px;float:left;"></div>
 				   <!--  <div id="page-selection"></div> -->
 					 <div style="float:left;margin-top:20px">
-					<select class="f-l sel_order" style="background-color:#eae8e8;padding-left:5px;-margin-top:-40px;" onchange="paixu(this)">
+					<select class="f-l sel_order" style="width:70px;background-color:#eae8e8;-padding-left:5px;-margin-top:-40px;" onchange="paixu(this)">
 						<option value="0">排序</option>
 						<option value="1">推荐度</option>
 						<!-- <option value="2">热门度</option> -->

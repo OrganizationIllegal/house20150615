@@ -304,7 +304,7 @@ body{
            	for(var j=0;j<items.length;j++){
            		var imgUrl = <%=application.getInitParameter("imagedir")%>/+items[j].project_img; 
 
-               /* 	html+=" <div class='c-fix f-l div_node'><span class='c-fix f-l f-yahei s-12 node_address' title='"+items[j].project_address+"'>"+items[j].project_address_short+"</span>";
+                html+=" <div class='c-fix f-l div_node'><span class='c-fix f-l f-yahei s-12 node_address' title='"+items[j].project_address+"'>"+items[j].project_address_short+"</span>";
 
                	html+="<a href='/Index?proNum="+items[j].project_num+"'"+" target='_parent'>";
            		
@@ -415,12 +415,12 @@ body{
                 		</div> -->
                 <div class="c-fix f-l f-yahei" style="margin-left:30px;margin-top:8px;">
 	               
-	                <select data-placeholder="请选择城市..." class="chosen-select" id="project_city" name="project_city" style="width:200px;" tabindex="4">
+	               <%--  <select data-placeholder="请选择城市..." class="chosen-select" id="project_city" name="project_city" style="width:200px;" tabindex="4">
 		 	            <option value="">请选择城市...</option>
 		  	            <c:forEach items="${cityNameSet}" var="item">
         		   		<option value="${item}">${item}</option>
    					    </c:forEach>
-	                </select>
+	                </select> --%>
 	                 <select data-placeholder="请选择区域..." class="chosen-select" id="project_area" name="project_area" style="width:200px;" tabindex="4">
 		 	            <option value="">请选择区域...</option>
 		  	            <c:forEach items="${areaNameSet}" var="item">

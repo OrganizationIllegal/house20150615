@@ -417,12 +417,15 @@
         	 var arrArea=new Array();
         	 arrArea=area.split(",");
         	 area=arrArea[0];
-        	 var arrCity=new Array();
+        	 /*var arrCity=new Array();
         	 arrCity=city.split(",");
-        	 city=arrCity[0];
+        	 city=arrCity[0];*/
         	 var arrAddr=new Array();
         	 arrAddr=address.split(",");
         	 address=arrAddr[0];
+        	 if(typeof(city)=="undefined"){
+        		 city="";
+        	 }
         	 //alert(city);
         	 //alert(area);
         	 //alert(address);
