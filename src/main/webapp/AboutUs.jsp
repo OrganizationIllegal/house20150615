@@ -622,7 +622,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          </div>
          <div class="modal-body">
   <div style="text-align:center;margin-top:5px;"><div style="font-size:20px;font-weight:bold;">用户注册</div>
-  <form method="post" action="/Register" name="fm1">
+  <form method="post" action="/Register" name="fmUs">
   <div  style="padding-top:15px;">
          <input type="text"  id="telemailnew" name="telemailnew" style="background-image:url(images/0.png);background-repeat:no-repeat;background-position:left;padding-left:35px;width:270px;height:34px;background-color:rgba(246, 245, 245, 1);" placeholder="手机号/邮箱" autocomplete="off">
    
@@ -632,7 +632,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    </div>
    <div style="padding-top:15px;padding-left:26px;float:left;font-size:12px;">
    
-   <img src="images/register.png" id="regnew" style="width:120px;height:30px;cursor:pointer;"><span style="padding-left:20px;"><a id="cancelnew" href="#">取消</a></span>
+   <img src="images/register.png" id="regnew1" style="width:120px;height:30px;cursor:pointer;"><span style="padding-left:20px;"><a id="cancelnew" href="#">取消</a></span>
    </div>
 </form>
 <div style="float:left;margin-top:60px;margin-left:-165px;font-size:12px;"><span>已有账户？<a href="#">登录</a></span></div>
@@ -651,14 +651,14 @@ $("#register_aboutus").click(function(){
    	$('#registernew').modal('show');
   })
 
-  $("#regnew").click(function() {
+  $("#regnew1").click(function() {
     	var user = $("#telemailnew").val();
     	var pass = $("#pwdnew").val();
     	var temp;
-    	temp = judgeRe(user,pass);
+    	temp = judgeRe1(user,pass);
     	//alert(temp)             	
     	if(temp==true){	                	
-            document.fm1.submit();  //fm为form表单name
+            document.fmUs.submit();  //fm为form表单name
     	}
     	else{               	
     		return false;
@@ -670,7 +670,7 @@ $("#register_aboutus").click(function(){
       	$("#pwdnew").val("");
       }); 
 
-    function judgeRe(username, password){
+    function judgeRe1(username, password){
      	 var result = false;
      	 if(username==""){
      	 alert("请输入用户名");
@@ -688,11 +688,12 @@ $("#register_aboutus").click(function(){
       			async: false, 
       			success:function(data){
       	  		  	if(data.user==0){
-      				  alert("用户名已存在，请直接登录！");
+      				  /* alert("用户名已存在，请直接登录！");
+      				  alert("feeee") */
       				}
       				
       				else if(data.user==-1){
-      				   alert("请输入正确格式！");
+      				   //alert("请输入正确格式！");
       	  			}
       	  			else{
       					result=true;

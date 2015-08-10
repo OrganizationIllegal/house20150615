@@ -386,6 +386,7 @@ body{
   	 <option value="物业费">物业费</option>
      <option value="市政费">市政费</option>
      <option value="污水费">污水费</option>
+      <option value="保险费">保险费</option>
       <option value="租赁管理费">租赁管理费</option>
  </select>
 </span>
@@ -495,8 +496,8 @@ body{
 <div class="area_right">
 
 <div style="clear: both;float: right;padding-right: 55px;"><a href="#" class="addbroker">添加</a></div>
-<div id="brokerlist">
 </div>
+<div id="brokerlist">
 </div>
 <div style="float:left;">
 
@@ -587,6 +588,16 @@ $('#update_time').datepicker({
     language: "zh-CN",
     format: "yyyy-mm-dd"
 });
+
+$('#houseprice').blur(function() {
+	if(isNaN($('#houseprice').val())){
+		alert("请输入数字！");
+		$("#houseprice").focus();
+		return false;
+	}
+	});
+	
+	
 $(function(){
 	$.ajaxSetup({  
 	    contentType: "application/x-www-form-urlencoded; charset=utf-8"  

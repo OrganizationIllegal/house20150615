@@ -304,7 +304,7 @@ body{
            	for(var j=0;j<items.length;j++){
            		var imgUrl = <%=application.getInitParameter("imagedir")%>/+items[j].project_img; 
 
-               	html+=" <div class='c-fix f-l div_node'><span class='c-fix f-l f-yahei s-12 node_address' title='"+items[j].project_address+"'>"+items[j].project_address_short+"</span>";
+               /* 	html+=" <div class='c-fix f-l div_node'><span class='c-fix f-l f-yahei s-12 node_address' title='"+items[j].project_address+"'>"+items[j].project_address_short+"</span>";
 
                	html+="<a href='/Index?proNum="+items[j].project_num+"'"+" target='_parent'>";
            		
@@ -323,12 +323,16 @@ body{
                	html+="<span class='f-r f-yahei s-12 node_val'>"+items[j].return_money+"</span>"; */
                	html+="<span class='c-fix f-l f-yahei s-12 node_title'>起价</span>";
                	html+="<span class='f-r f-yahei s-12 node_val'>$"+items[j].project_price_int_qi+"</span>";
-            	html+="<div class='c-fix'>";
+               	html+="<div class='c-fix'>";
                	for(var i=0; i<items[j].project_key.length;i++){
-               	
-               		html+="<span class='f-l f-yahei s-12 node_title'>"+items[j].project_key[i]+"</span>";
+               		
+               		html+="<span class='f-l f-yahei s-12 node_title' style='margin-right:16px;'>"+items[j].project_key[i]+"</span>";
                	}
-         		html+="</div></div>";
+
+               	html+="</div></div></div>";
+
+         		
+         		 
                	
            	}
            }

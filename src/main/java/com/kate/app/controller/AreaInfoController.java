@@ -2,10 +2,7 @@
 
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.google.gson.Gson;
 import com.kate.app.dao.AjaxDao;
 import com.kate.app.dao.AreaInfoDao;
 import com.kate.app.dao.AreaInputDao;
@@ -27,21 +25,15 @@ import com.kate.app.dao.NewsBokeDao;
 import com.kate.app.dao.ZhiYeDao;
 import com.kate.app.model.AreaFamilyBackEnd;
 import com.kate.app.model.AreaInfo;
-import com.kate.app.model.AreaMiddle;
 import com.kate.app.model.AreaMiddle2;
-import com.kate.app.model.AreaPeopleInfo;
 import com.kate.app.model.AreaPeopleInfo2;
-import com.kate.app.model.AreaTeDian;
 import com.kate.app.model.AreaTeDian2;
-import com.kate.app.model.AreaZhikong;
 import com.kate.app.model.AreaZhikong2;
-import com.kate.app.model.AreaZujin;
 import com.kate.app.model.AreaZujin2;
 import com.kate.app.model.BrokerInfo;
 import com.kate.app.model.HouseProject;
 import com.kate.app.model.InvestmentDataBackEnd;
 import com.kate.app.model.MiddlePrice2;
-import com.kate.app.model.MiddlePriceBackEnd;
 import com.kate.app.model.NewsBoke;
 import com.kate.app.model.NewsZhiye;
 import com.kate.app.model.ZhiYeZhiDao;
@@ -127,6 +119,7 @@ public class AreaInfoController extends BaseDao {
 
 	@RequestMapping({"/AreaEdit"})
 	public String areaEidt(HttpServletRequest req,HttpServletResponse resp){
+		Gson gson=new  Gson();
 		String id=req.getParameter("id");
 		//区域信息
 		AreaInfo ai=new AreaInfo();
@@ -180,24 +173,52 @@ public class AreaInfoController extends BaseDao {
 		req.setAttribute("Invest", invest);
 		req.setAttribute("Invest1", invest1);
 		req.setAttribute("Family", family);
+		
 		req.setAttribute("middlepricebackendlist", middlepricebackendlist);
-		req.setAttribute("middlepricebackendlistjson", ConvertJson.list2json(middlepricebackendlist).replace("'", "&#39;"));
+		String middlepricebackendlistjson = gson.toJson(middlepricebackendlist);
+		middlepricebackendlistjson = ConvertJson.jsonString(middlepricebackendlistjson);
+		req.setAttribute("middlepricebackendlistjson", middlepricebackendlistjson);
+		
 		req.setAttribute("areamiddlelist", areamiddlelist);
-		req.setAttribute("areamiddlelistjson", ConvertJson.list2json(areamiddlelist).replace("'", "&#39;"));
+		String areamiddlelistjson = gson.toJson(areamiddlelist);
+		areamiddlelistjson = ConvertJson.jsonString(areamiddlelistjson);
+		req.setAttribute("areamiddlelistjson", areamiddlelistjson);
+		
 		req.setAttribute("zujinlist", zujinlist);
-		req.setAttribute("zujinlistjson", ConvertJson.list2json(zujinlist).replace("'", "&#39;"));
+		String zujinlistjson = gson.toJson(zujinlist);
+		zujinlistjson = ConvertJson.jsonString(zujinlistjson);
+		req.setAttribute("zujinlistjson", zujinlistjson);
+		
 		req.setAttribute("huibaolist", huibaolist);
-		req.setAttribute("huibaolistjson", ConvertJson.list2json(huibaolist).replace("'", "&#39;"));
+		String huibaolistjson = gson.toJson(huibaolist);
+		huibaolistjson = ConvertJson.jsonString(huibaolistjson);
+		req.setAttribute("huibaolistjson",huibaolistjson);
+		
 		req.setAttribute("tedianlist", tedianlist);
-		req.setAttribute("tedianlistjson", ConvertJson.list2json(tedianlist).replace("'", "&#39;"));
+		String tedianlistjson = gson.toJson(tedianlist);
+		tedianlistjson = ConvertJson.jsonString(tedianlistjson);
+		req.setAttribute("tedianlistjson", tedianlistjson);
+		
 		req.setAttribute("peoplelist", peoplelist);
-		req.setAttribute("peoplelistjson", ConvertJson.list2json(peoplelist).replace("'", "&#39;"));
+		String peoplelistjson = gson.toJson(peoplelist);
+		peoplelistjson = ConvertJson.jsonString(peoplelistjson);
+		req.setAttribute("peoplelistjson", peoplelistjson);
+		
 		req.setAttribute("brokerlist", brokerlist);
-		req.setAttribute("brokerlistjson", ConvertJson.list2json(brokerlist).replace("'", "&#39;"));
+		String brokerlistjson = gson.toJson(brokerlist);
+		brokerlistjson = ConvertJson.jsonString(brokerlistjson);
+		req.setAttribute("brokerlistjson", brokerlistjson);
+		
 		req.setAttribute("projectlist", projectlist);
-		req.setAttribute("projectlistjson", ConvertJson.list2json(projectlist).replace("'", "&#39;"));
+		String projectlistjson = gson.toJson(projectlist);
+		projectlistjson = ConvertJson.jsonString(projectlistjson);
+		req.setAttribute("projectlistjson",projectlistjson);
+		
 		req.setAttribute("newszhiyelist", newszhiyelist);
-		req.setAttribute("newszhiyelistjson", ConvertJson.list2json(newszhiyelist).replace("'", "&#39;"));		
+		String newszhiyelistjson = gson.toJson(newszhiyelist);
+		newszhiyelistjson = ConvertJson.jsonString(newszhiyelistjson);
+		req.setAttribute("newszhiyelistjson",newszhiyelistjson);
+		
 		getBrokerName(req,resp);
 		getProjectName(req,resp);
 		getNewsList(req,resp);
@@ -285,10 +306,17 @@ public class AreaInfoController extends BaseDao {
 	//后台区域录入action
 		@RequestMapping({"/AreaInput/newslist"})
 		public void getNewsList(HttpServletRequest req,HttpServletResponse resp){
+			Gson gson=new Gson();
 			List<ZhiYeZhiDao> projectSet=areaInputDao.getZhiyezhidaos();
 			List<NewsBoke> bokelist=areaInputDao.getNewsbokes();
-			req.setAttribute("newsbokelist", ConvertJson.list2json(bokelist));
-			req.setAttribute("zhiyelist", ConvertJson.list2json(projectSet));
+			
+			String newsbokelist = gson.toJson(bokelist);
+			newsbokelist = ConvertJson.jsonString(newsbokelist);
+			req.setAttribute("newsbokelist", newsbokelist);
+			
+			String zhiyelist = gson.toJson(projectSet);
+			zhiyelist = ConvertJson.jsonString(zhiyelist);
+			req.setAttribute("zhiyelist", zhiyelist);
 		}
 
 	//ajax获取区域列表
@@ -1055,6 +1083,20 @@ public class AreaInfoController extends BaseDao {
 						 middletrendList.add(e);
 					 }
 				}
+				//特殊字符处理
+				for(AreaMiddle2 item : middletrendList2){
+					String datasource = item.getMiddle_zoushi_datasource();
+					datasource = datasource.replace("nbsp;", " ");
+					datasource = datasource.replace("&#39;", "\'");
+					item.setMiddle_zoushi_datasource(datasource);
+				}
+				for(AreaMiddle2 item : middletrendList){
+					String datasource = item.getMiddle_zoushi_datasource();
+					datasource = datasource.replace("nbsp;", " ");
+					datasource = datasource.replace("&#39;", "\'");
+					item.setMiddle_zoushi_datasource(datasource);
+				}
+				
 				//区域中位数走势，和编辑之前的区域中位数走势做对比，如果删除了之前的区域中位数走势item，保存到deleteList里，传到dao层做删除
 				for (int i=0;i<areamiddlelistbefore.size();i++){
 					boolean flag=false;

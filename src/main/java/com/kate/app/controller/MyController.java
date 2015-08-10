@@ -152,6 +152,9 @@ public class MyController {
 			proid=proId;
 			
 		}
+		else{
+			return null;
+		}
 		HouseProject project = houseProjectService.getHouseProject(proId);
 		if(project!=null){
 			area_num = project.getArea_num();
@@ -416,6 +419,8 @@ public class MyController {
 	@RequestMapping({"/Index/HouseInfo"})
 	public void getHouseInfo(HttpServletRequest req, HttpServletResponse resp,String proNum){
 		HouseProject pro = houseProjectService.getHouseProjectByNum(proNum);
+		Timestamp updateTimeNew = pro.getHousePrice_update_time();
+		
 		//String type = pro.getProject_type();
 		List<HouseInfo> houseInfoList=houseInfoService.getHouseInfoList(proNum);
 		DecimalFormat df1 = new DecimalFormat("#,###,###");
@@ -1199,7 +1204,7 @@ public class MyController {
 				}
 			}
 			hp3 = houseProjectService.getHouseProjectByNum(project.getRecommend_id_3());
-			if(hp2!=null){
+			if(hp3!=null){
 				String desc3 = hp3.getProject_desc();
 				if(desc3!=null&&!"".equals(desc3)){
 					/*if(desc3.length() >= 10){

@@ -1,5 +1,6 @@
 package com.kate.app.dao;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,15 +13,15 @@ import com.kate.app.model.InvestmentData;
 
 
 	@Repository 
-	public class InvestDataDao extends BaseDao{
+	public class InvestDataDao extends BaseDao2{
 		public InvestmentData getInvestmentDate(String areaName){
 			Statement stmt = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
-
+			Connection con = null;
 
 			InvestmentData invest = new InvestmentData();
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " select * from investment_data where area_name=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, areaName);
@@ -42,27 +43,10 @@ import com.kate.app.model.InvestmentData;
 	            e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 鍏抽棴璁板綍闆�  
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 鍏抽棴澹版槑   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 鍏抽棴澹版槑   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return invest;
@@ -70,11 +54,11 @@ import com.kate.app.model.InvestmentData;
 		}
 		
 		public InvestmentData getInvestmentDateNum(String area_num,String type){
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			InvestmentData invest = new InvestmentData();
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " select * from investment_data where area_num=? and area_type=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, area_num);
@@ -99,27 +83,10 @@ import com.kate.app.model.InvestmentData;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 鍏抽棴璁板綍闆�  
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 鍏抽棴澹版槑   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 鍏抽棴澹版槑   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return invest;

@@ -13,8 +13,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="css/main.css" /> -->
 <link rel="stylesheet" type="text/css" href="css/areaLuru.css" />
 
-<!-- <script src="/js/jquery.min.js"></script> -->
-<!-- <script src="/bootstrap/js/bootstrap.min.js"></script> -->
+<!-- <script src="/js/jquery.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script> -->
 <link rel="stylesheet" href="css/chosen.css">
 <link rel="stylesheet" type="text/css" href="/bootstrap-datepicker-1.4.0-dist/css/bootstrap-datepicker.min.css" />
   <script src="/bootstrap-datepicker-1.4.0-dist/js/bootstrap-datepicker.min.js"></script>
@@ -822,6 +822,116 @@ $('#people_date').datepicker({
     language: "zh-CN",
     format: "yyyy-mm-dd"
 });
+
+
+$('#year_increment_rate').blur(function() {
+	if(isNaN($('#year_increment_rate').val())){
+		alert("请输入数字！");
+		$("#year_increment_rate").focus();
+		return false;
+	}
+	});
+$('#middle_price').blur(function() {
+	if(isNaN($('#middle_price').val())){
+		alert("请输入数字！");
+		$("#middle_price").focus();
+		return false;
+	}
+	});
+$('#middle_zu_price').blur(function() {
+	if(isNaN($('#middle_zu_price').val())){
+		alert("请输入数字！");
+		$("#middle_zu_price").focus();
+		return false;
+	}
+	});
+$('#zu_house_rate').blur(function() {
+	if(isNaN($('#zu_house_rate').val())){
+		alert("请输入数字！");
+		$("#zu_house_rate").focus();
+		return false;
+	}
+	});
+$('#price_review').blur(function() {
+	if(isNaN($('#price_review').val())){
+		alert("请输入数字！");
+		$("#price_review").focus();
+		return false;
+	}
+	});
+$('#zu_xuqiu').blur(function() {
+	if(isNaN($('#zu_xuqiu').val())){
+		alert("请输入数字！");
+		$("#zu_xuqiu").focus();
+		return false;
+	}
+	});
+$('#year_increment_rate1').blur(function() {
+	if(isNaN($('#year_increment_rate1').val())){
+		alert("请输入数字！");
+		$("#year_increment_rate1").focus();
+		return false;
+	}
+	});
+$('#middle_price1').blur(function() {
+	if(isNaN($('#middle_price1').val())){
+		alert("请输入数字！");
+		$("#middle_price1").focus();
+		return false;
+	}
+	});
+$('#middle_zu_price1').blur(function() {
+	if(isNaN($('#middle_zu_price1').val())){
+		alert("请输入数字！");
+		$("#middle_zu_price1").focus();
+		return false;
+	}
+	});
+$('#zu_house_rate1').blur(function() {
+	if(isNaN($('#zu_house_rate1').val())){
+		alert("请输入数字！");
+		$("#zu_house_rate1").focus();
+		return false;
+	}
+	});
+    
+
+$('#price_review1').blur(function() {
+	if(isNaN($('#price_review1').val())){
+		alert("请输入数字！");
+		$("#price_review1").focus();
+		return false;
+	}
+	});
+$('#zu_xuqiu1').blur(function() {
+	if(isNaN($('#zu_xuqiu1').val())){
+		alert("请输入数字！");
+		$("#zu_xuqiu1").focus();
+		return false;
+	}
+	});
+$('#family_one_rate').blur(function() {
+	if(isNaN($('#family_one_rate').val())){
+		alert("请输入数字！");
+		$("#family_one_rate").focus();
+		return false;
+	}
+	});
+$('#family_two_rate').blur(function() {
+	if(isNaN($('#family_two_rate').val())){
+		alert("请输入数字！");
+		$("#family_two_rate").focus();
+		return false;
+	}
+	});
+$('#family_three_rate').blur(function() {
+	if(isNaN($('#family_three_rate').val())){
+		alert("请输入数字！");
+		$("#family_three_rate").focus();
+		return false;
+	}
+	});
+
 var newstitlelist1='${newsbokelist}';
 var newstitlelist2='${zhiyelist}';
 newstitlelist1=eval("("+newstitlelist1+")");
@@ -1109,7 +1219,7 @@ $(function(){
 			}
 		}
 		$('#zu_two_name').trigger('chosen:updated');
-		$("#zu_two_name").val(middlepriceedititem.zu_tow_name);
+		$("#zu_two_name").val(middlepriceedititem.zu_two_name);
 		$("#zu_two_price").val(middlepriceedititem.zu_two_price);
 		var selectCount = document.getElementById("zu_three_name");
 		for(var i = 0 ; i<selectCount.length;i++){
@@ -1155,6 +1265,10 @@ $(function(){
 		if(middletrendedit==100){
 			if(isNaN($('#view_shunxu2').val())){
 				alert("区域房价中位数走势的显示顺序-请输入数字！");
+				return false;
+			}
+			else if(isNaN($('#heng2').val())){
+				alert("区域房价中位数走势的横坐标-请输入数字！");
 				return false;
 			}
 			else if(isNaN($('#zong2').val())){
@@ -1204,6 +1318,10 @@ $(function(){
 		else{
 			if(isNaN($('#view_shunxu2').val())){
 				alert("区域房价中位数走势的显示顺序-请输入数字！");
+				return false;
+			}
+			else if(isNaN($('#heng2').val())){
+				alert("区域房价中位数走势的横坐标-请输入数字！");
 				return false;
 			}
 			else if(isNaN($('#zong2').val())){

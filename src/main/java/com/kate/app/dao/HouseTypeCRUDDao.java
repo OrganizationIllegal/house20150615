@@ -1,5 +1,6 @@
 package com.kate.app.dao;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,14 +18,14 @@ import com.kate.app.model.HouseProject;
 
 
 	@Repository 
-	public class HouseTypeCRUDDao extends BaseDao{
+	public class HouseTypeCRUDDao extends BaseDao2{
 		public JSONArray select(){
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			JSONArray jsonArray = new JSONArray();
 			List<HouseInfo> list = new ArrayList<HouseInfo>();
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " select * from house_info";
 				  stmt = con.createStatement();
 				  rs = stmt.executeQuery(sql);
@@ -43,38 +44,22 @@ import com.kate.app.model.HouseProject;
 	            e.printStackTrace();
 	        }
 			finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return jsonArray;
 		}
 		
 			public int count(){
-				Statement stmt = null;
+				Statement stmt = null;Connection con = null;
+
 				ResultSet rs = null;
 				PreparedStatement pstmt = null;
 				int count = 0;
-				try{
+				try{con = dataSource.getConnection();
 					String sql = " select count(*) from house_info";
 					  stmt = con.createStatement();
 					  rs = stmt.executeQuery(sql);
@@ -85,27 +70,10 @@ import com.kate.app.model.HouseProject;
 		            e.printStackTrace();
 		        }
 				finally{
-					if(rs != null){   // 关闭记录集   
-				        try{   
-				            rs.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				          }   
-				      if(stmt != null){   // 关闭声明   
-				        try{   
-				            stmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-				      if(pstmt != null){   // 关闭声明   
-					        try{   
-					            pstmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
+					 try { if (rs != null) rs.close(); } catch(Exception e) { }
+					 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+					 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+					 try { if (con != null) con.close(); } catch(Exception e) { } 
 
 		        }
 				return count;
@@ -117,8 +85,9 @@ import com.kate.app.model.HouseProject;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
-			
-			try{
+			Connection con = null;
+
+			try{con = dataSource.getConnection();
 				String sql = " insert into house_info(house_type, house_room_num, house_toilet_num, house_size, house_price, house_img,house_project_id) values(?,?,?,?,?,?,?)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, type);
@@ -135,27 +104,10 @@ import com.kate.app.model.HouseProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return flag;
@@ -163,11 +115,12 @@ import com.kate.app.model.HouseProject;
 		}
 		
 		public boolean editData(int id,String type, int roomnum, int toiletnum, int size, int price, String img) throws SQLException{
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
-			try{
+			try{con = dataSource.getConnection();
+
 				String sql = " update house_info house_type=?, house_room_num=?, house_toilet_num=?, house_size=?, house_price=?, house_img=? where id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, type);
@@ -186,39 +139,21 @@ import com.kate.app.model.HouseProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
-
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 	        }
 			return flag;
 	        
 		}
 		
 		public boolean deleteData(int id){
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = true;
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " delete from house_info where id= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
@@ -229,27 +164,10 @@ import com.kate.app.model.HouseProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return flag;
@@ -257,11 +175,12 @@ import com.kate.app.model.HouseProject;
 		}
 		
 		public boolean findById(int id){
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
+
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			boolean flag = false;
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " select count(*) from house_info where id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, id);
@@ -272,27 +191,10 @@ import com.kate.app.model.HouseProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			
@@ -301,11 +203,12 @@ import com.kate.app.model.HouseProject;
 		}
 		
 		public int findProByName(String name) throws SQLException{   //�����Ŀ��Ʋ���
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
+
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			HouseProject projectInfo = new HouseProject();
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " select id from house_project where project_name= ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, name);
@@ -317,27 +220,10 @@ import com.kate.app.model.HouseProject;
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return projectInfo.getId();

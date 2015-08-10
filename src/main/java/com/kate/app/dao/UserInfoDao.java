@@ -1,5 +1,6 @@
 package com.kate.app.dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,15 +18,16 @@ import com.alibaba.fastjson.JSONObject;
 import com.kate.app.model.User;
 
 @Repository 
-public class UserInfoDao extends BaseDao {
+public class UserInfoDao extends BaseDao2 {
 	
 	//鍒ゆ柇鐢ㄦ埛
 		public List<User> judge(String username1) throws SQLException{    //通过用户名查找用户
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
+
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			List<User> list = new ArrayList<User>();
-			try{
+			try{con = dataSource.getConnection();
 				String sql = "select * from user where email=? or tel=?";
 				 pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, username1);
@@ -51,27 +53,10 @@ public class UserInfoDao extends BaseDao {
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return list;
@@ -79,11 +64,12 @@ public class UserInfoDao extends BaseDao {
 		}
 		
 		public List<User> judgeEmail(String userEmail) throws SQLException{
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
+
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 			List<User> list = new ArrayList<User>();
-			try{
+			try{con = dataSource.getConnection();
 				String sql = "select * from user where email=?";
 				 pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, userEmail);
@@ -110,27 +96,10 @@ public class UserInfoDao extends BaseDao {
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+	        	try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return list;
@@ -143,9 +112,10 @@ public class UserInfoDao extends BaseDao {
 					Statement stmt = null;
 					ResultSet rs = null;
 					PreparedStatement pstmt = null;
+					Connection con = null;
 
 					boolean flag = true;
-					try{
+					try{con = dataSource.getConnection();
 						String sql = "update user set pwd=? where nick_name=?" ;
 						 pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, passNew);
@@ -158,27 +128,10 @@ public class UserInfoDao extends BaseDao {
 					}catch (Exception e) {
 			            e.printStackTrace();
 			        }finally{
-						if(rs != null){   // 关闭记录集   
-					        try{   
-					            rs.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					          }   
-					      if(stmt != null){   // 关闭声明   
-					        try{   
-					            stmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
-					      if(pstmt != null){   // 关闭声明   
-						        try{   
-						            pstmt.close() ;   
-						        }catch(SQLException e){   
-						            e.printStackTrace() ;   
-						        }   
-						     } 
+			        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 			        }
 					return flag;
@@ -188,11 +141,11 @@ public class UserInfoDao extends BaseDao {
 	
 				//用户信息列表
 				public JSONArray selectUserList(){
-					Statement stmt = null;
+					Statement stmt = null;Connection con = null;
 					ResultSet rs = null;
 					PreparedStatement pstmt = null;
 					JSONArray jsonArray=new JSONArray();
-					try {
+					try {con = dataSource.getConnection();
 						String sql = " select * from user";
 						  stmt = con.createStatement();
 						  rs = stmt.executeQuery(sql);
@@ -249,27 +202,11 @@ public class UserInfoDao extends BaseDao {
 						e.printStackTrace();
 					}
 					finally{
-						if(rs != null){   // 鍏抽棴璁板綍闆�  
-					        try{   
-					            rs.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					          }   
-					      if(stmt != null){   // 鍏抽棴澹版槑   
-					        try{   
-					            stmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
-					      if(pstmt != null){   // 鍏抽棴澹版槑   
-						        try{   
-						            pstmt.close() ;   
-						        }catch(SQLException e){   
-						            e.printStackTrace() ;   
-						        }   
-						     } 
+						 try { if (rs != null) rs.close(); } catch(Exception e) { }
+						 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+						 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+						 try { if (con != null) con.close(); } catch(Exception e) { }
+
 
 			        }
 					return jsonArray;
@@ -277,11 +214,11 @@ public class UserInfoDao extends BaseDao {
 	
 	//寮�珛璐︽埛
 	public int addAccount(String nick_name,String pwd,String tel,String email,String account,String msg) throws SQLException{
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		int exeResult=0;
-		try{
+		try{con = dataSource.getConnection();
 			String sql = " insert into user(nick_name, pwd, tel, email, account, msg) values(?,?,?,?,?,?)";
 			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, nick_name);
@@ -294,27 +231,10 @@ public class UserInfoDao extends BaseDao {
 		}catch (Exception e) {
             e.printStackTrace();
         }finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return exeResult;
@@ -322,12 +242,12 @@ public class UserInfoDao extends BaseDao {
 	}
 	//绱㈠彇瀹屾暣浠锋牸
 		public int addAllPrice(String nick_name,String pwd,String tel,String email,String allprice,String msg) throws SQLException{
-			Statement stmt = null;
+			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;
 
 			int exeResult=0;
-			try{
+			try{con = dataSource.getConnection();
 				String sql = " insert into user(nick_name, pwd, tel, email, account, msg) values(?,?,?,?,?,?)";
 				 pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, nick_name);
@@ -340,27 +260,10 @@ public class UserInfoDao extends BaseDao {
 			}catch (Exception e) {
 	            e.printStackTrace();
 	        }finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+	        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+	        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+	        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+	        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return exeResult;
@@ -369,11 +272,12 @@ public class UserInfoDao extends BaseDao {
 		
 		//闇�眰
 				public int addNeed(String nick_name,String tel,String email,String need,String msg) throws SQLException{
-					Statement stmt = null;
+					Statement stmt = null;Connection con = null;
+
 					ResultSet rs = null;
 					PreparedStatement pstmt = null;
 					int exeResult=0;
-					try{
+					try{con = dataSource.getConnection();
 						String sql = " insert into user(nick_name,tel, email, need, msg) values(?,?,?,?,?)";
 						 pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, nick_name);
@@ -385,27 +289,10 @@ public class UserInfoDao extends BaseDao {
 					}catch (Exception e) {
 			            e.printStackTrace();
 			        }finally{
-						if(rs != null){   // 关闭记录集   
-					        try{   
-					            rs.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					          }   
-					      if(stmt != null){   // 关闭声明   
-					        try{   
-					            stmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
-					      if(pstmt != null){   // 关闭声明   
-						        try{   
-						            pstmt.close() ;   
-						        }catch(SQLException e){   
-						            e.printStackTrace() ;   
-						        }   
-						     } 
+			        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 			        }
 					return exeResult;
@@ -414,11 +301,11 @@ public class UserInfoDao extends BaseDao {
 
 				//璇︽儏鍜ㄨ
 				public int addAsk(String nick_name,String pwd,String tel,String email,String ask,String msg) throws SQLException{
-					Statement stmt = null;
+					Statement stmt = null;Connection con = null;
 					ResultSet rs = null;
 					PreparedStatement pstmt = null;
 					int exeResult=0;
-					try{
+					try{con = dataSource.getConnection();
 						String sql = " insert into user(nick_name, pwd, tel, email, ask, msg) values(?,?,?,?,?,?)";
 						 pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, nick_name);
@@ -431,27 +318,10 @@ public class UserInfoDao extends BaseDao {
 					}catch (Exception e) {
 			            e.printStackTrace();
 			        }finally{
-						if(rs != null){   // 关闭记录集   
-					        try{   
-					            rs.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					          }   
-					      if(stmt != null){   // 关闭声明   
-					        try{   
-					            stmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
-					      if(pstmt != null){   // 关闭声明   
-						        try{   
-						            pstmt.close() ;   
-						        }catch(SQLException e){   
-						            e.printStackTrace() ;   
-						        }   
-						     } 
+			        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 			        }
 					return exeResult;
@@ -463,11 +333,12 @@ public class UserInfoDao extends BaseDao {
 					Statement stmt = null;
 					ResultSet rs = null;
 					PreparedStatement pstmt = null;
+					Connection con = null;
 
 					int exeResult=0;
-					try{
+					try{con = dataSource.getConnection();
 						String sql = " insert into user(nick_name, pwd, tel, email, newestprice, msg) values(?,?,?,?,?,?)";
-						 pstmt = con.prepareStatement(sql);
+						pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, nick_name);
 						pstmt.setString(2, pwd);
 						pstmt.setString(3, tel);
@@ -478,27 +349,10 @@ public class UserInfoDao extends BaseDao {
 					}catch (Exception e) {
 			            e.printStackTrace();
 			        }finally{
-						if(rs != null){   // 关闭记录集   
-					        try{   
-					            rs.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					          }   
-					      if(stmt != null){   // 关闭声明   
-					        try{   
-					            stmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
-					      if(pstmt != null){   // 关闭声明   
-						        try{   
-						            pstmt.close() ;   
-						        }catch(SQLException e){   
-						            e.printStackTrace() ;   
-						        }   
-						     } 
+			        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 			        }
 					return exeResult;
@@ -506,11 +360,12 @@ public class UserInfoDao extends BaseDao {
 				}
 				//瀹屾暣浠锋牸
 				public int addHouseType(String nick_name,String pwd,String tel,String email,String housetype,String msg) throws SQLException{
-					Statement stmt = null;
+					Statement stmt = null;Connection con = null;
 					ResultSet rs = null;
 					PreparedStatement pstmt = null;
 					int exeResult=0;
-					try{
+					try{con = dataSource.getConnection();
+
 						String sql = " insert into user(nick_name, pwd, tel, email, housetype, msg) values(?,?,?,?,?,?)";
 						 pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, nick_name);
@@ -523,27 +378,10 @@ public class UserInfoDao extends BaseDao {
 					}catch (Exception e) {
 			            e.printStackTrace();
 			        }finally{
-						if(rs != null){   // 关闭记录集   
-					        try{   
-					            rs.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					          }   
-					      if(stmt != null){   // 关闭声明   
-					        try{   
-					            stmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
-					      if(pstmt != null){   // 关闭声明   
-						        try{   
-						            pstmt.close() ;   
-						        }catch(SQLException e){   
-						            e.printStackTrace() ;   
-						        }   
-						     } 
+			        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 			        }
 					return exeResult;
@@ -551,7 +389,8 @@ public class UserInfoDao extends BaseDao {
 				}
 				//娉ㄥ唽璐︽埛
 				public int register(String nick_name,String pwd,String repwd,String tel,String email) throws SQLException{
-					Statement stmt = null;
+					Statement stmt = null;Connection con = null;
+
 					ResultSet rs = null;
 					PreparedStatement pstmt = null;
 					int exeResult=0;
@@ -567,7 +406,7 @@ public class UserInfoDao extends BaseDao {
 			        } catch (Exception e) {   
 			            e.printStackTrace();   
 			        }
-					try{
+					try{con = dataSource.getConnection();
 						String sql = " insert into user(nick_name, pwd, repwd, tel, email,role,time) values(?,?,?,?,?,?,?)";
 						 pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, nick_name);
@@ -581,27 +420,10 @@ public class UserInfoDao extends BaseDao {
 					}catch (Exception e) {
 			            e.printStackTrace();
 			        }finally{
-						if(rs != null){   // 关闭记录集   
-					        try{   
-					            rs.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					          }   
-					      if(stmt != null){   // 关闭声明   
-					        try{   
-					            stmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
-					      if(pstmt != null){   // 关闭声明   
-						        try{   
-						            pstmt.close() ;   
-						        }catch(SQLException e){   
-						            e.printStackTrace() ;   
-						        }   
-						     } 
+			        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 			        }
 					return exeResult;
@@ -610,7 +432,8 @@ public class UserInfoDao extends BaseDao {
 				
 				//鎵嬫満娉ㄥ唽
 				public int register1(String tel,String pwd) throws SQLException{    //用户名为电话，注册
-					Statement stmt = null;
+					Statement stmt = null;Connection con = null;
+
 					ResultSet rs = null;
 					PreparedStatement pstmt = null;
 					int exeResult=0;
@@ -626,7 +449,7 @@ public class UserInfoDao extends BaseDao {
 			        } catch (Exception e) {   
 			            e.printStackTrace();   
 			        }
-					try{
+					try{con = dataSource.getConnection();
 						String sql = " insert into user(tel,pwd,role,time) values(?,?,?,?)";
 						 pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, tel);
@@ -637,27 +460,10 @@ public class UserInfoDao extends BaseDao {
 					}catch (Exception e) {
 			            e.printStackTrace();
 			        }finally{
-						if(rs != null){   // 关闭记录集   
-					        try{   
-					            rs.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					          }   
-					      if(stmt != null){   // 关闭声明   
-					        try{   
-					            stmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
-					      if(pstmt != null){   // 关闭声明   
-						        try{   
-						            pstmt.close() ;   
-						        }catch(SQLException e){   
-						            e.printStackTrace() ;   
-						        }   
-						     } 
+			        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 			        }
 					return exeResult;
@@ -666,7 +472,7 @@ public class UserInfoDao extends BaseDao {
 				
 				//閭娉ㄥ唽
 				public int register2(String email,String pwd) throws SQLException{    //用户输入的用户名是email
-					Statement stmt = null;
+					Statement stmt = null;Connection con = null;
 					ResultSet rs = null;
 					PreparedStatement pstmt = null;
 					int exeResult=0;
@@ -682,7 +488,7 @@ public class UserInfoDao extends BaseDao {
 			        } catch (Exception e) {   
 			            e.printStackTrace();   
 			        }
-					try{
+					try{con = dataSource.getConnection();
 						String sql = " insert into user(email,pwd,role,time) values(?,?,?,?)";
 						 pstmt = con.prepareStatement(sql);
 						pstmt.setString(1, email);
@@ -693,27 +499,10 @@ public class UserInfoDao extends BaseDao {
 					}catch (Exception e) {
 			            e.printStackTrace();
 			        }finally{
-						if(rs != null){   // 关闭记录集   
-					        try{   
-					            rs.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					          }   
-					      if(stmt != null){   // 关闭声明   
-					        try{   
-					            stmt.close() ;   
-					        }catch(SQLException e){   
-					            e.printStackTrace() ;   
-					        }   
-					     } 
-					      if(pstmt != null){   // 关闭声明   
-						        try{   
-						            pstmt.close() ;   
-						        }catch(SQLException e){   
-						            e.printStackTrace() ;   
-						        }   
-						     } 
+			        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			        	 try { if (con != null) con.close(); } catch(Exception e) { }
 
 			        }
 					return exeResult;

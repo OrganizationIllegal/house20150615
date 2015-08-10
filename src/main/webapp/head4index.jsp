@@ -90,7 +90,7 @@
      <div class="main_header" style="background-color:white; width:1190px; margin:0 auto; border:0; border-bottom:1px solid rgba(238, 238, 238, 1);">
 			<div class="c-fix f-l main_header_div" id="title" style="left:0; margin-left:0;">
 				<img src="images/LOGO3.png" class="c-fix f-l" style="width:175px;height:55px;margin-top:5px;"></img>
-				<a id="t1" href="/index01" class="f-l f-yahei s-14 main_nav cp fw " style="padding-left:20px;">首页</a>
+				<a id="t1" href="/index" class="f-l f-yahei s-14 main_nav cp fw " style="padding-left:20px;">首页</a>
 				<div>
 				<a id="t2" href="/SearchList" class="f-l f-yahei s-14 main_nav cp fw">房源列表</a>
 				<!-- <div style="position:relative;">
@@ -170,7 +170,7 @@
 			</div>	
 </div>
 </div>
-
+</div>
 
 <!-- login start -->
 <div class="modal fade" id="login" tabindex="-1" role="dialog" 
@@ -335,7 +335,7 @@ var role;
                 	var user = $("#telemail").val();
                   	var pass = $("#pwd").val();
                   	var temp;
-                  	temp = judgeRe(user,pass);
+                  	temp = judgeReheader(user,pass);
                    
                   	if(temp==true){	 
   	                    document.fm2.submit();  //fm为form表单name
@@ -417,9 +417,12 @@ function judge(username, password){
 	 return true;
  }
  }
-function judgeRe(username, password){
+function judgeReheader(username, password){
+	
   	 var result = false;
+  	
   	 if(username==""){
+  		 
   	     alert("请输入用户名");
   		 return false;
   	 }
@@ -476,7 +479,7 @@ $("#forgetSend").click(function(){
 				}
 				else{
 					alert("密码已经发送您的邮箱，请注意查收！");
-					window.location.href = '/index01';
+					window.location.href = '/index';
 				}
 
 			},

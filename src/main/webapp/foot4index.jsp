@@ -25,7 +25,7 @@
 				</div>
 				<div style="display:block;width:90px;float:left;margin-top:30px;">
 					<img  src="images/erweima.jpg" style="display:block;width:105px;height:105px"></img>
-				</div>
+				</div>  
 			</div>
 		</div> 
 </div>

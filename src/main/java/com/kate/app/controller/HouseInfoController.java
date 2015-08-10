@@ -25,7 +25,7 @@ public class HouseInfoController {
 	private BuyInfoService buyInfoService;
 	@Autowired
 	private RecoProjectSerivice recoprojectserivice;
-	@RequestMapping({ "/", "/index" })
+	@RequestMapping({ "/", "/index01" })
 	public String getHouseInfo(HttpServletRequest req,HttpServletResponse resp){
 		List<HouseInfo> list = new ArrayList<HouseInfo>();
 		//list=houseInfoService.getHouseInfoList();

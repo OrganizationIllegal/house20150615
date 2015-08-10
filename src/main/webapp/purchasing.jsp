@@ -219,7 +219,7 @@ function reLoad(){
             <div class="" style="  padding-top: 41px;padding-left: 9px;font-size:13px;font-family:'微软雅黑';">
               
               <div class=""> 
-              	<div style="padding-bottom: 11px;">置业指导&nbsp;<span style="width: 252px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
+              	<div style="padding-bottom: 11px;">置业百科&nbsp;<span style="width: 252px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
                 <ul class="media-list">
 
                 	 <c:forEach items="${lastestList}" var="item" varStatus="status">

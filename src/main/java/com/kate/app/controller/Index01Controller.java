@@ -30,7 +30,7 @@ public class Index01Controller {
 	/*
 	 * 首页的控制器，返回数据
 	 */
-	@RequestMapping({"/","/index01" })
+	@RequestMapping({"/","/index" })
 	public String index01(HttpServletRequest req,HttpServletResponse resp){
 		List<String> list = index01Dao.getTuijian();   //首页的墨尔本推荐项目
 		List<String> list2 = index01Dao.getTuijian2();   //首页的悉尼推荐项目

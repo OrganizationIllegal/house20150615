@@ -176,7 +176,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                           <!--  <a href="/BlogList" target="_blank"><span style="font-family:微软雅黑; color:rgba(140, 181, 225, 1);font-size:12px; ">←返回到所有博客文章</span></a> -->
                           <c:choose>
             	<c:when test="${type==0}">
-            		<a href="/ZhiYeInfo" target="_blank"><span style="font-family:微软雅黑; color:rgba(140, 181, 225, 1);font-size:12px; ">←返回到所有置业指导</span></a>
+            		<a href="/ZhiYeInfo" target="_blank"><span style="font-family:微软雅黑; color:rgba(140, 181, 225, 1);font-size:12px; ">←返回到所有置业百科</span></a>
             	</c:when>
             	<c:otherwise>
             		<a href="/BlogList" target="_blank"><span style="font-family:微软雅黑; color:rgba(140, 181, 225, 1);font-size:12px; ">←返回到所有博客文章</span></a>
@@ -227,7 +227,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="" style="padding-top: 58px;padding-left: 0px;font-size:13px;font-family:'微软雅黑';">
               
               <div class=""> 
-              	<div style="padding-bottom: 11px;">最新新闻博客&nbsp;<span style="width: 228px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
+              	<div style="padding-bottom: 11px;">最新海外新闻&nbsp;<span style="width: 228px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
                 <ul class="media-list" style="width:310px">
 
                 <c:forEach items="${newsList}" var="item" varStatus="status">
@@ -256,7 +256,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="" style="  padding-top: 41px;padding-left: 0px;font-size:13px;font-family:'微软雅黑';">
               
               <div class=""> 
-              	<div style="padding-bottom: 11px;">最新置业指导&nbsp;<span style="width: 252px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
+              	<div style="padding-bottom: 11px;">最新置业百科&nbsp;<span style="width: 252px;height: 1px;background-color: rgb(229, 216, 216);display: inline-block;margin-bottom: 5px;"></span></div>
                 <ul class="media-list" style="width:310px">
 
                 	 <c:forEach items="${lastestList}" var="item" varStatus="status">
@@ -302,8 +302,8 @@ var typeInfo = "${type}";
 	    // init bootpag
 	    var category="";
    		$(function(){
-   			var titleHtml = "<div style='width:980px;font-size:24px;line-height:70px;height:100%;font-weight:bold;margin:0 auto;'>置业指导</div>";
-   			var titleHtml1 = "<div style='width:980px;font-size:24px;line-height:70px;height:100%;font-weight:bold;margin:0 auto;'>新闻博客</div>";
+   			var titleHtml = "<div style='width:980px;font-size:24px;line-height:70px;height:100%;font-weight:bold;margin:0 auto;'>置业百科</div>";
+   			var titleHtml1 = "<div style='width:980px;font-size:24px;line-height:70px;height:100%;font-weight:bold;margin:0 auto;'>海外新闻</div>";
    			//$("#leftpanel").show();
    			//$(".main").attr("id","mainlist");
   			$('#type').change(function(){ 
@@ -324,7 +324,7 @@ var typeInfo = "${type}";
                         		$("#head_title").html(titleHtml1);
                         	}
                         	
-                            $("#leftpanel").text("1-"+data.pageCount+"的"+data.total+"篇文章");
+                        	$("#leftpanel").text(data.start+1+"-"+data.end+"的"+data.total+"篇文章");
                             $("#panel-left").css("background-color","white");
                         	$("#page-selection").css("display","block");
                         	if(typeInfo==0){

@@ -1,5 +1,6 @@
 package com.kate.app.dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,13 +24,14 @@ import com.kate.app.model.ProjectKey;
 import com.kate.app.model.SearchList;
 
 @Repository 
-public class SearchListDao extends BaseDao {
+public class SearchListDao extends BaseDao2 {
 	public List<SearchList> listSearchList(){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<SearchList> searchInfoList=new ArrayList<SearchList>();
 		try {
+			con = dataSource.getConnection();
 			String sql = "select t.id,t.project_type,t.gps,t.project_price,t.project_zhou,t.project_nation,t.project_city,t.project_num,t.project_desc,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi from house_project t left join project_key p on t.project_num=p.project_num  where t.isSeen=1";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -123,52 +125,37 @@ public class SearchListDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return searchInfoList;
 	} 
 	//项目列表页搜索
 	public List<SearchList> filterSearchList(String projecttype,int zongjiamin,int zongjiamax,int danjiamin,int danjiamax,String xinaipan1,String remen1,String youxiu1,String center1,String baozu1,String huaren1,String zuixin1,String daxue1,String xianfang1,String traffic1,int woshimin,int woshimax){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
+
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		//找出項目编号所对应的户型及价格中卧室数量的最大值和最小值
 		List<SearchList> searchInfoList=new ArrayList<SearchList>();
-		try {
-			String sql = "select t.id,t.gps,t.project_nation,t.project_area,t.project_type,t.project_city,t.project_price,t.project_zhou,t.project_num,t.project_desc,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi,i.image_name from house_project t left join project_key p on t.project_num=p.project_num join project_desc_image i on i.project_num=t.project_num join house_info h on h.project_num=t.project_num where i.view_shunxu=1 and";
-			if(projecttype!=null && !"".equals(projecttype)){
+		try {con = dataSource.getConnection();
+			/*String sql = "select t.id,t.gps,t.project_nation,t.project_area,t.project_type,t.project_city,t.project_price,t.project_zhou,t.project_num,t.project_desc,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi,i.image_name from house_project t  join project_key p on t.project_num=p.project_num join project_desc_image i on i.project_num=t.project_num join house_info h on h.project_num=t.project_num where i.view_shunxu=1 and t.isSeen=1 and";*/
+		String sql="select t.id,t.gps,t.project_nation,t.project_area,t.project_type,t.project_city,t.project_price,t.project_zhou,t.project_num,t.project_desc,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi from house_project t  join project_key p on t.project_num=p.project_num  join house_info h on h.project_num=t.project_num where t.isSeen=1 and"; 	
+		if(projecttype!=null && !"".equals(projecttype)){
 				sql+="  t.project_type like ";
 				sql+=" '"+projecttype+"'";
-				sql+=" and ABS(`project_high_price`)<"+zongjiamax;
+				sql+=" and ABS(`project_high_price`)<="+zongjiamax;
 			}
 			else{
-				sql+=" ABS(`project_high_price`)<"+zongjiamax;
+				sql+=" ABS(`project_high_price`)<="+zongjiamax;
 			}
-			sql+=" and ABS(`project_min_price`)>"+zongjiamin;
-			sql+=" and project_price_int_qi >"+danjiamin;
-			sql+=" and project_price_int_qi <"+danjiamax;
-			sql+=" and project_price_int_qi >"+danjiamin;
+			sql+=" and ABS(`project_min_price`)>="+zongjiamin;
+			sql+=" and project_price_int_qi >="+danjiamin;
+			sql+=" and project_price_int_qi <="+danjiamax;
+			sql+=" and project_price_int_qi >="+danjiamin;
 			
 			
 			if(xinaipan1.equals("1")){
@@ -202,8 +189,8 @@ public class SearchListDao extends BaseDao {
 				sql+=" and p.traffic='1'";//轨道交通
 			}
 			sql+=" GROUP BY h.project_num";
-			sql+=" HAVING (MIN(h.house_room_num) >"+woshimin;
-			sql+=" and MAX(h.house_room_num) <"+woshimax+")";
+			sql+=" HAVING (MIN(h.house_room_num) >="+woshimin;
+			sql+=" and MAX(h.house_room_num) <="+woshimax+")";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
 		    int id=0;
@@ -247,7 +234,8 @@ public class SearchListDao extends BaseDao {
 		    
 		    while(rs.next()){
 		    	id=rs.getInt("id");
-		    	project_img=rs.getString("image_name");
+		    	/*project_img=rs.getString("image_name");*/
+		    	project_img=null;
 		    	project_name=rs.getString("project_name");
 		    	project_sales_remain=rs.getInt("project_sales_remain");
 		    	maxPrice=rs.getString("maxprice");
@@ -297,27 +285,10 @@ public class SearchListDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { } 
 
         }
 		return searchInfoList;
@@ -325,11 +296,11 @@ public class SearchListDao extends BaseDao {
 	}
 	//找出項目编号所对应的户型及价格中卧室数量的最大值和最小值
 	public int findMaxNumByPro(String project_num){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
         int max=0;
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "select MAX(t.house_room_num) as max  from house_info t where t.project_num='"+project_num+"'";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -342,38 +313,21 @@ public class SearchListDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return max;
 	} 
 	//找出項目编号所对应的户型及价格中卧室数量的最小值
 	public int findMinNumByPro(String project_num){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
         int min=0;
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "select MIN(t.house_room_num) as min  from house_info t where t.project_num='"+project_num+"'";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -386,39 +340,22 @@ public class SearchListDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return min;
 	} 
 	//鎸夋帹鑽愬害鎺掑簭
 	public List<SearchList> OrderlistSearchList(){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<SearchList> searchInfoList=new ArrayList<SearchList>();
-		try {
-			String sql = "select t.id,t.project_num,t.project_desc,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi,i.image_name from house_project t left join project_key p on t.project_num=p.project_num join project_desc_image i on t.project_num=i.project_num  where i.view_shunxu=1  ORDER BY t.tuijiandu DESC";
+		try {con = dataSource.getConnection();
+			String sql = "select t.id,t.project_num,t.project_desc,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi from house_project t left join project_key p on t.project_num=p.project_num   where  t.isSeen=1  ORDER BY t.tuijiandu DESC";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
 		    int id=0;
@@ -460,7 +397,8 @@ public class SearchListDao extends BaseDao {
 		    
 		    while(rs.next()){
 		    	id=rs.getInt("id");
-		    	project_img=rs.getString("image_name");
+		    	/*project_img=rs.getString("image_name");*/
+		    	project_img=null;
 		    	project_name=rs.getString("project_name");
 		    	project_sales_remain=rs.getInt("project_sales_remain");
 		    	maxPrice=rs.getString("maxprice");
@@ -509,27 +447,10 @@ public class SearchListDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return searchInfoList;
@@ -539,11 +460,12 @@ public class SearchListDao extends BaseDao {
 	 * 根据用户id查找项目编号
 	 */
 	public Set<String> proNumList(int userid){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		Set<String>  proNums=new HashSet<String>();
-		try{
+		try{con = dataSource.getConnection();
+
 			String sql ="select proNum from shoucang where userId="+userid;
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -554,27 +476,10 @@ public class SearchListDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return proNums;
@@ -593,11 +498,12 @@ public class SearchListDao extends BaseDao {
 	} 
 	//根据项目编号查找项目信息
 	public SearchList findInfoByProNum(String ProNum){
+		Connection con = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		SearchList  searchList=new SearchList();
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "select t.id,t.project_area,t.project_type,t.project_lan_cn,t.project_desc,t.project_num,t.project_price_int_qi,t.project_name,t.project_address,t.project_img,t.project_lan_cn,t.project_lan_en,t.project_high_price as maxPrice,t.project_min_price as minprice,t.max_area as maxarea,t.min_area as minarea,t.mianji,t.project_sales_remain,t.return_money,t.project_logo,t.developer_id_name,p.xinkaipan,p.huaren,p.remen,p.xuequ,p.baozu,p.daxue,p.center,p.traffic,p.xianfang,p.maidi,i.image_name from house_project t left join project_key p on t.project_num=p.project_num join project_desc_image i on t.project_num=i.project_num where i.view_shunxu=1 and t.project_num='"+ProNum+"'";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -683,27 +589,10 @@ public class SearchListDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 
@@ -712,11 +601,12 @@ public class SearchListDao extends BaseDao {
 	
 	//添加收藏
 	public int AddCollect(int userid,String proNum ){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
+
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		int exeResult=0;
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "insert into shoucang(userId,proNum) values(?,?) ";
 			 pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, userid);
@@ -726,39 +616,23 @@ public class SearchListDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return exeResult;
 	}
 	//取消收藏
 	public int DelCollect(int userid,String proNum ){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
+
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 
 		int exeResult=0;
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "delete  from  shoucang where userId=? and proNum=?";
 			 pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, userid);
@@ -768,39 +642,23 @@ public class SearchListDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return exeResult;
 	}
 	
 	public List<String> searchSericeList(String name, String type, String suozaiarea, String area_code, String lang){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
+
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<String> brokerInfoList=new ArrayList<String>();
 		
-			try {
+			try {con = dataSource.getConnection();
 				String sql = "select distinct a.broker_num from broker_info a left join broker_service_area b on a.broker_num = b.broker_num where ";
 				int i=0;
 				if(name!=null && !"".equals(name)){
@@ -889,27 +747,10 @@ public class SearchListDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return brokerInfoList;
@@ -919,13 +760,14 @@ public class SearchListDao extends BaseDao {
 	
 	
 	public List<LeiXing> searchSericeListBroker(String broker_num){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
+
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		BrokerInfoQuyu data = null;
 		List<LeiXing> leixingList = new ArrayList<LeiXing>();
 		LeiXing temp = null;
-			try {
+			try {con = dataSource.getConnection();
 				String sql = "select  type_image from broker_interested_type a, interest_type b where a.interested_num = b.type_num and a.broker_num=? ";
 				
 				pstmt = con.prepareStatement(sql);
@@ -951,27 +793,10 @@ public class SearchListDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return leixingList;
@@ -979,11 +804,12 @@ public class SearchListDao extends BaseDao {
 	
 	//根据经纪人编号得到经纪人的服务区域
 	public List<String> findFuwuAreaByNum(String broker_num){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<String> fuquAreaList = new ArrayList<String>();
-			try {
+			try {con = dataSource.getConnection();
+
 				String sql = "select distinct a.area_name from area_info a join broker_service_area b  on a.area_num=b.area_code  join  broker_info c on b.broker_num=c.broker_num where c.broker_num=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, broker_num);
@@ -998,27 +824,10 @@ public class SearchListDao extends BaseDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally{
-				if(rs != null){   // 关闭记录集   
-			        try{   
-			            rs.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			          }   
-			      if(stmt != null){   // 关闭声明   
-			        try{   
-			            stmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
-			      if(pstmt != null){   // 关闭声明   
-				        try{   
-				            pstmt.close() ;   
-				        }catch(SQLException e){   
-				            e.printStackTrace() ;   
-				        }   
-				     } 
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
 
 	        }
 			return fuquAreaList;
@@ -1030,11 +839,12 @@ public class SearchListDao extends BaseDao {
 	 */
 	public List<HouseProject> searchIndexList(String city1){
 		NumberFormat df = new DecimalFormat("#,###,###");
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
+
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<HouseProject> houseProjectList=new ArrayList<HouseProject>();
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "select * from house_project where isSeen=1 and gps!='' and gps like '%,%' and project_name ='" +city1+ "' or project_city like '%" +city1+ "%'";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -1128,27 +938,11 @@ public class SearchListDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
+
 
         }
 		return houseProjectList;
@@ -1158,13 +952,14 @@ public class SearchListDao extends BaseDao {
 	 * 通过关键字段，查找区域编号
 	 */
 	public String searchIndexList1(String city1){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		String area_num = null;
 		Map<String, String> resultMap= new HashMap<String, String>();
 		
-		try {
+		try {con = dataSource.getConnection();
+
 			String sql = "select * from area_info where area_name like '%" +city1+ "%' or area_zhou like '%" +city1+ "%' or area_city like '%" +city1+ "%'";
 			  stmt = con.createStatement();
 			  rs = stmt.executeQuery(sql);
@@ -1180,27 +975,10 @@ public class SearchListDao extends BaseDao {
 			e.printStackTrace();
 		}
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return area_num;
@@ -1210,12 +988,12 @@ public class SearchListDao extends BaseDao {
 	/*
 	 * 通过城市，类型等，进一步高级搜索，在数据库中查找项目信息
 	 */
-	public List<HouseProject> indexSericeList(String city, String type, String minimumprice, String maximumprice, String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue,String center,String traffic,String xianfang,String maidi){		NumberFormat df = new DecimalFormat("#,###,###");
-		Statement stmt = null;
+	public List<HouseProject> indexSericeList(String country, String city, String type, String minimumprice, String maximumprice, String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue,String center,String traffic,String xianfang,String maidi){		NumberFormat df = new DecimalFormat("#,###,###");
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		List<HouseProject> houseProjectList=new ArrayList<HouseProject>();
-		try {
+		try {con = dataSource.getConnection();
 			/*String sql = "select *,i.image_name from house_project t join project_desc_image i on t.project_num=i.project_num  where t.isSeen=1";
 			String sql1 = "select project_num from project_key where ";*/
 			String sql = "select * from house_project where isSeen=1 and gps!='' and gps like '%,%' ";
@@ -1347,7 +1125,7 @@ public class SearchListDao extends BaseDao {
 						sql+="and project_type like '%"+type+"%'";
 					}
 					else{
-						sql+="project_type like '%"+type+"%'";
+						sql+="and project_type like '%"+type+"%'";
 						j=1;
 					}
 				}
@@ -1356,7 +1134,7 @@ public class SearchListDao extends BaseDao {
 						sql+="and project_min_price like '%"+minimumprice+"%'";
 					}
 					else{
-						sql+="project_min_price like '%"+minimumprice+"%'";
+						sql+="and project_min_price like '%"+minimumprice+"%'";
 						j=1;
 					}
 				}
@@ -1365,7 +1143,16 @@ public class SearchListDao extends BaseDao {
 						sql+="and project_high_price like '%"+maximumprice+"%'";
 					}
 					else{
-						sql+="project_high_price like '%"+maximumprice+"%'";
+						sql+="and project_high_price like '%"+maximumprice+"%'";
+						j=1;
+					}
+				}
+				if(country!=null && !"".equals(country)){
+					if(j==1){
+						sql+="and project_nation like '%"+country+"%'";
+					}
+					else{
+						sql+="and project_nation like '%"+country+"%'";
 						j=1;
 					}
 				}
@@ -1468,27 +1255,10 @@ public class SearchListDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return houseProjectList;
@@ -1503,9 +1273,10 @@ public class SearchListDao extends BaseDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-
+		Connection con = null;
 		List<HouseProject> houseProjectList=new ArrayList<HouseProject>();
-		try {
+		try {con = dataSource.getConnection();
+
 			String sql = "select *,i.image_name from house_project t join project_desc_image i on t.project_num=i.project_num  where t.isSeen=1 and t.gps!='' and t.gps like '%,%' and t.area_num=?";
 			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, areaNum);
@@ -1586,27 +1357,10 @@ public class SearchListDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return houseProjectList;
@@ -1620,9 +1374,10 @@ public class SearchListDao extends BaseDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
+		Connection con = null;
 
 		List<HouseProject> houseProjectList=new ArrayList<HouseProject>();
-		try {
+		try {con = dataSource.getConnection();
 			String sql = "select *,i.image_name from house_project t join project_desc_image i on t.project_num=i.project_num  where t.isSeen=1 and t.gps!='' and t.gps like '%,%' and i.view_shunxu=1 and t.project_name=?";
 			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, proName);
@@ -1705,38 +1460,22 @@ public class SearchListDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return houseProjectList;
 	} 
 	
 	public ProjectKey searchProjectKey(String proNum){
-		Statement stmt = null;
+		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		ProjectKey projectKey=new ProjectKey();
-		try {
+		try {con = dataSource.getConnection();
+
 			String sql = "select * from project_key where project_num=?";
 			 pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, proNum);
@@ -1758,27 +1497,11 @@ public class SearchListDao extends BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
+
 
         }
 		return projectKey;
@@ -1789,10 +1512,10 @@ public class SearchListDao extends BaseDao {
 		Statement stmt = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-
+		Connection con = null;
 		List<ProjectDescImage> imageList = new ArrayList<ProjectDescImage>();
 		
-		try{
+		try{con = dataSource.getConnection();
 			String sql = "select * from project_desc_image where project_num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, pro_num);
@@ -1807,27 +1530,10 @@ public class SearchListDao extends BaseDao {
 			 e.printStackTrace();
         }
 		finally{
-			if(rs != null){   // 关闭记录集   
-		        try{   
-		            rs.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		          }   
-		      if(stmt != null){   // 关闭声明   
-		        try{   
-		            stmt.close() ;   
-		        }catch(SQLException e){   
-		            e.printStackTrace() ;   
-		        }   
-		     } 
-		      if(pstmt != null){   // 关闭声明   
-			        try{   
-			            pstmt.close() ;   
-			        }catch(SQLException e){   
-			            e.printStackTrace() ;   
-			        }   
-			     } 
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
 
         }
 		return imageList;

@@ -88,7 +88,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			.title{
 				background:none;
 			}
-			
+			#xiangmuZhuce:hover{
+				color:white;
+			}
 			
 		</style>
 <script type="text/javascript">
@@ -600,7 +602,7 @@ var e=$('#input2').val();
 				<div class="f-l p_panel_2" style="height:390px">
 					<a class="c-fix f-l f-yahei s-16 p_panel_lab fw" style="-margin-top:30px;margin-left:10px;">想要了解更多？</a>
 					<a class="c-fix f-l f-yahei s-14 p_panel_lab fw" style="margin-top:5px;margin-left:10px;">填写信息我们会有专业人士一对一服务</a>
-				<c:if test="${!empty userList }"> --%>
+				<c:if test="${!empty userList }">
                   <c:forEach items="${userList}"  var="item">
 					<input type="text" class="c-fix f-l p_inp" style="margin-top:20px;" placeholder="姓名"  id="name2" value=${item.nick_name}></input>
 					<input type="text" class="c-fix f-l p_inp" placeholder="邮箱" id="email2"value=${item.email}></input>
@@ -836,7 +838,7 @@ var e=$('#input2').val();
 					</c:forEach>
 				</div>
 				<!-- <a class="f-l f-yahei s-14 p_panel_title4 fw" style="width:455px;margin-left:60px;margin-top:-8px;">附近配套</a> -->
-				<div class="f-l p_right_bottom" style="margin-left:35px;">
+				<div class="f-l p_right_bottom" <c:if test="${empty nearSchoolList }">style="margin-left:510px;"</c:if> >
 				<c:forEach items="${nearSchoolFacility}" var="item" begin="0" end="2" step="1" varStatus="var">
 					<div class="c-fix f-l p_school_node">
 						<div class="c-fix f-l p_school_inner">
@@ -851,7 +853,8 @@ var e=$('#input2').val();
 			</div>
 		</div>
 	
-		<c:if test="${!empty houseTaxStr && !empty housetaxdata && !empty holdingTaxStr && !empty holdingdata}">
+		<%-- <c:if test="${!empty houseTaxStr && !empty housetaxdata && !empty holdingTaxStr && !empty holdingdata}"> --%>
+		<c:if test="${(!empty houseTaxStr && !empty housetaxdata) || (!empty holdingTaxStr && !empty holdingdata)}">
 		<div class="c-fix bkg3"  name="loc_fy" id="loc_fy"  style="margin:0 auto;height:346px;width:990px">
 			<div class="c-fix p_panel_4">
 			
@@ -943,8 +946,10 @@ var e=$('#input2').val();
 						<input type="text" class="f-l que_inner_inp"></input>
 						<span class="f-l que_inner_lab f-yahei s-14">/月</span>
 					</div>
-				</div>
-			</div>
+				
+			
+		</div>
+		</div>
 		</div>
 		<div class="c-fix  bkg3"  style="margin:0 auto;height:280px;width:990px">
 			<div class="c-fix p_panel_4">
@@ -1195,11 +1200,11 @@ var e=$('#input2').val();
 					<div id="zonefamily_pie2" style="width:33%;height:100%;float: left;display: block;"></div>
 					<div id="zonefamily_pie3" style="width:33%;height:100%;float: left;display: block;"></div>
 				</div>
-				<div class="c-fix" style="-margin-right:20px;float:rgiht;height:40px;text-align:center;">
+			 	<div class="c-fix" style="-margin-right:20px;float:rgiht;height:40px;text-align:center;">
 					<span class="c-fix f-yahei s-19 fw f-l" style="margin-left: 45px;font-size:17px;margin-top: 8px;width:190px;">${dataFamily.family_one }</span>
 					<span class=" f-yahei s-19 fw f-l" style="margin-left: 142px;font-size:17px;margin-top: 8px;width:190px;">${dataFamily.family_two }</span>
 					<span class=" f-yahei s-19 fw f-l" style="margin-left: 132px;font-size:17px;margin-top: 8px;width:190px;">${dataFamily.family_three }</span>
-				</div>
+				</div> 
 				<div class="c-fix" style="margin-right:20px;float:rgiht;height:20px">
 					<span class="c-fix f-yahei s-12 fw f-r">数据来源：${family_datasource }&nbsp;&nbsp; 更新日期：${fn:substring(family_date,0,10)}</span>
 				</div>
@@ -1304,7 +1309,7 @@ var e=$('#input2').val();
 					<div class="c-fix f-l p_project_node">
 						<a href="Index?proNum=${RecommendProject1.project_num}" target='_blank'><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject1.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
 						<a href="Index?proNum=${RecommendProject1.project_num}" target='_blank' class="c-fix f-l f-yahei s-14 project_desc fw">
-						<span>${RecommendProject1.project_name}</span><span style="float: right;">From:$${RecommendProject1.project_min_price}</span><br/>
+						<span title="${RecommendProject1.project_name}">${fn:substring(RecommendProject1.project_name,0,12)}</span><span style="float: right;">From:$${RecommendProject1.project_min_price}</span><br/>
 						
 						
 						<div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;word-break:break-all">
@@ -1313,14 +1318,14 @@ var e=$('#input2').val();
 					<div class="f-l p_project_node" style="margin-left:25px;">
 						<a href="Index?proNum=${RecommendProject2.project_num}" target='_blank'><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject2.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
 						<a href="Index?proNum=${RecommendProject2.project_num}" target='_blank' class="c-fix f-l f-yahei s-14 project_desc fw">
-						<span>${RecommendProject2.project_name}</span><span style="float: right;">From:$${RecommendProject2.project_min_price}</span><br/>
+						<span title="${RecommendProject2.project_name}">${fn:substring(RecommendProject2.project_name,0,12)}</span><span style="float: right;">From:$${RecommendProject2.project_min_price}</span><br/>
 						
 						<div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;word-break:break-all">${RecommendProject2.project_desc}</div></a>
 					</div>
 					<div class="f-l p_project_node" style="margin-left:25px;">
 						<a href="Index?proNum=${RecommendProject3.project_num}" target='_blank'><img src="<%=application.getInitParameter("imagedir")%>/${RecommendProject3.project_img}" class="c-fix f-l project_img" width="300px" height="187px"></img></a>
 						<a href="Index?proNum=${RecommendProject3.project_num}" target='_blank' class="c-fix f-l f-yahei s-14 project_desc fw">
-						<span>${RecommendProject3.project_name}</span><span style="float: right;">From:$${RecommendProject3.project_min_price}</span><br/>
+						<span title="${RecommendProject3.project_name}">${fn:substring(RecommendProject3.project_name,0,12)}</span><span style="float: right;">From:$${RecommendProject3.project_min_price}</span><br/>
 						<div style="height:40px;font-size:13px;overflow: hidden;text-overflow: ellipsis;word-break:break-all">${RecommendProject3.project_desc}</div></a>
 					</div>
 				</div>
@@ -1329,7 +1334,7 @@ var e=$('#input2').val();
 		</c:if>
 		<div class="c-fix f-l bottom_bkg">
 			<div class="c-fix f-l triangle"></div>
-			<a class="c-fix f-l bottom_lab f-yahei fw">聪明海外置业</a>
+			<span class="c-fix f-l bottom_lab f-yahei fw">聪明海外置业</span>
 			<a id="xiangmuZhuce" class="c-fix f-l bottom_reg f-yahei cp">注册</a>
 		</div>
 		<jsp:include page="foot4index.jsp" />
