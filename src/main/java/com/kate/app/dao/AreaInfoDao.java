@@ -3046,6 +3046,45 @@ con = dataSource.getConnection();
 		return areaInfo;
 	}
 	
+	/*
+	 * 根据区域名称得到区域的信息
+	 */
+	public AreaInfo getAreaInfo1(String area_name){
+		Connection con = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		AreaInfo areaInfo = new AreaInfo();
+
+		try {
+			con = dataSource.getConnection();
+			String sql = " SELECT * from area_info where area_name='"+area_name+ "' or area_city='"+area_name+"'";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, area_name);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				areaInfo.setArea_city(rs.getString("area_city"));
+				areaInfo.setArea_num(rs.getString("area_num"));
+				areaInfo.setArea_nation(rs.getString("area_nation"));
+				areaInfo.setId(rs.getInt("id"));
+				areaInfo.setArea_zhou(rs.getString("area_zhou"));
+				areaInfo.setHouse_pro_id(rs.getInt("house_pro_id"));
+				areaInfo.setArea_type(rs.getString("area_type"));
+				
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally{
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
+
+        }
+		return areaInfo;
+	}
 	
 	
 	public String getAreaNum(String area_name){

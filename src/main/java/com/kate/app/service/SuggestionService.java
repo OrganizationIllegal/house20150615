@@ -59,6 +59,13 @@ public class SuggestionService {
 					resultList.add(strs[0]);
 				}
 			}
+			else if(strs.length==2){
+				//String[] listCode = strs[2].split(",");    //通过,得到字符串数组
+				if(strs[0].toUpperCase().startsWith(query.toUpperCase())){   //将第一个字符串用java的前缀进行匹配
+					String str = strs[0] + "," + strs[1];
+					resultList.add(str);
+				}
+			}
 			else{
 				String[] listCode = strs[2].split(",");    //通过,得到字符串数组
 				
@@ -114,6 +121,7 @@ public class SuggestionService {
 			List<String> zhouList = suggestionDao.getProjectZhou();   //查询项目所在的州
 			List<AreaInfo> areaList = suggestionDao.getAreaInfo();   //查询区域信息
 			List<String> cityList = suggestionDao.getProjectCity();  //查询项目所在的城市
+			List<String> cityList1 = suggestionDao.getProjectCityAndZhou();  //查询项目所在的城市
 			
 			List<Suggestion> list = new ArrayList<Suggestion>();
 			for(AreaInfo item : areaList){
@@ -145,6 +153,11 @@ public class SuggestionService {
 			for(String city : cityList){
 				p.append(city+"\r\n");
 			}*/
+			
+			for(String city : cityList1){
+				p.append(city+"\r\n");
+			}
+			
 			for(SuggestionProject item : projectList){   //将项目名称写入文件
 				p.append(item.getProject_name()+"\r\n");
 			}
@@ -167,6 +180,13 @@ public class SuggestionService {
 				}
 				p.append(result+"\r\n");
 			}
+			
+			/*for(Suggestion item : list){
+				
+				String result = item.getArea_city()+";"+item.getArea_zhou();
+				
+				p.append(result+"\r\n");
+			}*/
 			
 			//p.println(proName);
 			txtfile.close();

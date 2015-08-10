@@ -1366,6 +1366,237 @@ public class SearchListDao extends BaseDao2 {
 		return houseProjectList;
 	} 
 	
+	
+	
+	/*
+	 * 通过区域编号在数据库中查找项目信息
+	 */
+	public List<HouseProject> searchIndexProjectByCity(String areaNum){
+		NumberFormat df = new DecimalFormat("#,###,###");
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		Connection con = null;
+		List<HouseProject> houseProjectList=new ArrayList<HouseProject>();
+		try {con = dataSource.getConnection();
+
+			String sql = "SELECT * FROM house_project a, area_info b WHERE a.area_num=b.area_num  AND a.isSeen=1 AND a.gps!='' AND a.gps LIKE '%,%' AND b.area_city LIKE '"+areaNum+"'";
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(sql);
+		    while(rs.next()){
+		    	HouseProject projectInfo = new HouseProject();
+		    	String project_name = rs.getString("project_name");
+		    	String project_name_short = "";
+		    	if(project_name!=null && !"".equals(project_name)){
+		    		project_name_short = project_name.length()>20?project_name.substring(0,20):project_name;
+		    	}
+		    			
+				projectInfo.setProject_name(project_name);
+				projectInfo.setProject_name_short(project_name_short);
+				
+				
+				projectInfo.setProject_logo(rs.getString("project_logo"));
+				projectInfo.setProject_nation(rs.getString("project_nation"));
+				
+				String project_address = rs.getString("project_address");
+				String project_addresse_short = "";
+		    	if(project_address!=null && !"".equals(project_address)){
+		    		project_addresse_short = project_address.length()>40?project_address.substring(0,40):project_address;
+		    	}		
+		    	projectInfo.setProject_address(project_address);
+		    	projectInfo.setProject_address_short(project_addresse_short);
+		    	
+		    	
+				projectInfo.setProject_area(rs.getString("project_area"));
+				
+				String project_num = rs.getString("project_num");
+		    	String project_img = "";
+		    	if(project_num!=null && !"".equals(project_num)){
+		    		List<ProjectDescImage> imageList = HouseProjectImageList(project_num);
+					if(imageList!=null && imageList.size()>0){
+						project_img = imageList.get(0).getName();
+					}
+					else{
+						project_img = "";
+					}
+		    	}
+		    	
+		    	projectInfo.setProject_img(project_img);
+				
+				 if(rs.getString("project_price_int_qi")!=null){
+					 projectInfo.setProject_price_qi(df.format(Integer.parseInt(rs.getString("project_price_int_qi"))));
+			    	}
+			    	else{
+			    		projectInfo.setProject_price_qi("N/A");
+			    	}
+				 
+				 String price = rs.getString("project_price_int_qi")==null?"0":rs.getString("project_price_int_qi").trim();
+				 
+				projectInfo.setBijiao(price);
+				
+				projectInfo.setProject_type(rs.getString("project_type"));
+				projectInfo.setProject_sales_remain(rs.getInt("project_sales_remain"));
+				//projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));
+				projectInfo.setProject_desc(rs.getString("project_desc"));
+				projectInfo.setProject_city(rs.getString("project_city"));
+				projectInfo.setProject_house_type(rs.getString("project_house_type"));
+				projectInfo.setProject_high(rs.getString("project_high"));
+				projectInfo.setProject_price(rs.getString("project_price"));
+				projectInfo.setProject_lan_cn(rs.getString("project_lan_cn"));
+				projectInfo.setProject_lan_en(rs.getString("project_lan_en"));
+				projectInfo.setProject_num(rs.getString("project_num"));
+				projectInfo.setProject_vedio(rs.getString("project_vedio"));
+				projectInfo.setProject_zhou(rs.getString("project_zhou"));
+				projectInfo.setArea_qujian(rs.getString("area_qujian"));
+				projectInfo.setGps(rs.getString("gps"));
+				projectInfo.setReturn_money(rs.getString("return_money"));
+				projectInfo.setDeveloper_id(rs.getInt("developer_id"));
+				projectInfo.setDeveloper_id_name(rs.getString("developer_id_name"));
+				projectInfo.setProject_high_price(rs.getString("project_high_price")==null?"":df.format(Integer.parseInt(rs.getString("project_high_price"))));
+				projectInfo.setProject_min_price(rs.getString("project_min_price")==null?"":df.format(Integer.parseInt(rs.getString("project_min_price"))));
+				projectInfo.setMax_area(rs.getInt("max_area"));
+				projectInfo.setMin_area(rs.getInt("min_area"));
+				projectInfo.setArea_id(rs.getInt("area_id"));
+				projectInfo.setMianji(rs.getString("mianji"));
+				projectInfo.setRecommend_id_1(rs.getString("recommend_id_1"));
+				projectInfo.setRecommend_id_2(rs.getString("recommend_id_2"));
+				projectInfo.setRecommend_id_3(rs.getString("recommend_id_3"));
+				projectInfo.setWuyefei(rs.getString("wuyefei"));
+				projectInfo.setDeveloper_id_name(rs.getString("developer_id_name"));
+				houseProjectList.add(projectInfo);
+
+				}
+		  
+			}
+			catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
+
+        }
+		return houseProjectList;
+	} 
+	
+	
+	/*
+	 * 通过区域编号在数据库中查找项目信息
+	 */
+	public List<HouseProject> searchIndexProjectNew(String areaNum){
+		NumberFormat df = new DecimalFormat("#,###,###");
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		Connection con = null;
+		List<HouseProject> houseProjectList=new ArrayList<HouseProject>();
+		try {con = dataSource.getConnection();
+
+			String sql = "SELECT * FROM house_project a, area_info b WHERE a.area_num=b.area_num  AND a.isSeen=1 AND a.gps!='' AND a.gps LIKE '%,%' AND  b.area_name LIKE '"+areaNum +"' AND b.area_city LIKE '"+ areaNum + "' OR b.area_zhou LIKE '"+ areaNum + "'";
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(sql);
+			  rs = pstmt.executeQuery();
+		    while(rs.next()){
+		    	HouseProject projectInfo = new HouseProject();
+		    	String project_name = rs.getString("project_name");
+		    	String project_name_short = "";
+		    	if(project_name!=null && !"".equals(project_name)){
+		    		project_name_short = project_name.length()>20?project_name.substring(0,20):project_name;
+		    	}
+		    			
+				projectInfo.setProject_name(project_name);
+				projectInfo.setProject_name_short(project_name_short);
+				
+				
+				projectInfo.setProject_logo(rs.getString("project_logo"));
+				projectInfo.setProject_nation(rs.getString("project_nation"));
+				
+				String project_address = rs.getString("project_address");
+				String project_addresse_short = "";
+		    	if(project_address!=null && !"".equals(project_address)){
+		    		project_addresse_short = project_address.length()>40?project_address.substring(0,40):project_address;
+		    	}		
+		    	projectInfo.setProject_address(project_address);
+		    	projectInfo.setProject_address_short(project_addresse_short);
+		    	
+		    	
+				projectInfo.setProject_area(rs.getString("project_area"));
+				
+				String project_num = rs.getString("project_num");
+		    	String project_img = "";
+		    	if(project_num!=null && !"".equals(project_num)){
+		    		List<ProjectDescImage> imageList = HouseProjectImageList(project_num);
+					if(imageList!=null && imageList.size()>0){
+						project_img = imageList.get(0).getName();
+					}
+					else{
+						project_img = "";
+					}
+		    	}
+		    	
+		    	projectInfo.setProject_img(project_img);
+				
+				 if(rs.getString("project_price_int_qi")!=null){
+					 projectInfo.setProject_price_qi(df.format(Integer.parseInt(rs.getString("project_price_int_qi"))));
+			    	}
+			    	else{
+			    		projectInfo.setProject_price_qi("N/A");
+			    	}
+				 
+				 String price = rs.getString("project_price_int_qi")==null?"0":rs.getString("project_price_int_qi").trim();
+				 
+				projectInfo.setBijiao(price);
+				
+				projectInfo.setProject_type(rs.getString("project_type"));
+				projectInfo.setProject_sales_remain(rs.getInt("project_sales_remain"));
+				//projectInfo.setProject_finish_time(rs.getTimestamp("project_finish_time"));
+				projectInfo.setProject_desc(rs.getString("project_desc"));
+				projectInfo.setProject_city(rs.getString("project_city"));
+				projectInfo.setProject_house_type(rs.getString("project_house_type"));
+				projectInfo.setProject_high(rs.getString("project_high"));
+				projectInfo.setProject_price(rs.getString("project_price"));
+				projectInfo.setProject_lan_cn(rs.getString("project_lan_cn"));
+				projectInfo.setProject_lan_en(rs.getString("project_lan_en"));
+				projectInfo.setProject_num(rs.getString("project_num"));
+				projectInfo.setProject_vedio(rs.getString("project_vedio"));
+				projectInfo.setProject_zhou(rs.getString("project_zhou"));
+				projectInfo.setArea_qujian(rs.getString("area_qujian"));
+				projectInfo.setGps(rs.getString("gps"));
+				projectInfo.setReturn_money(rs.getString("return_money"));
+				projectInfo.setDeveloper_id(rs.getInt("developer_id"));
+				projectInfo.setDeveloper_id_name(rs.getString("developer_id_name"));
+				projectInfo.setProject_high_price(rs.getString("project_high_price")==null?"":df.format(Integer.parseInt(rs.getString("project_high_price"))));
+				projectInfo.setProject_min_price(rs.getString("project_min_price")==null?"":df.format(Integer.parseInt(rs.getString("project_min_price"))));
+				projectInfo.setMax_area(rs.getInt("max_area"));
+				projectInfo.setMin_area(rs.getInt("min_area"));
+				projectInfo.setArea_id(rs.getInt("area_id"));
+				projectInfo.setMianji(rs.getString("mianji"));
+				projectInfo.setRecommend_id_1(rs.getString("recommend_id_1"));
+				projectInfo.setRecommend_id_2(rs.getString("recommend_id_2"));
+				projectInfo.setRecommend_id_3(rs.getString("recommend_id_3"));
+				projectInfo.setWuyefei(rs.getString("wuyefei"));
+				projectInfo.setDeveloper_id_name(rs.getString("developer_id_name"));
+				houseProjectList.add(projectInfo);
+
+				}
+		  
+			}
+			catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
+
+        }
+		return houseProjectList;
+	} 
+	
+	
 	/*
 	 * 通过前台传来的信息，在数据库中查找项目信息
 	 */
