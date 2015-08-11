@@ -52,7 +52,7 @@ $(function(){
 			                    }
 			                }
 			            },
-			            center: ['75%', '50%'],
+			            center: ['68%', '50%'],
 			            data:[
 			                {value:335, name:'ӡ��˰'},
 			                {value:310, name:'Ӫҵ��'},
