@@ -517,70 +517,80 @@ $("#finish_time").datepicker({
 $('#danjia').blur(function() {
 	if(isNaN($('#danjia').val())){
 		alert("请输入数字！");
-		$("#danjia").focus();
+		setTimeout(function(){$("#danjia").focus()},0);
+		//$("#danjia").focus();
 		return false;
 	}
 	});
 $('#keshou').blur(function() {
 	if(isNaN($('#keshou').val())){
 		alert("请输入数字！");
-		$("#keshou").focus();
+		setTimeout(function(){$("#keshou").focus()},0);
+		//$("#keshou").focus();
 		return false;
 	}
 	});
 $('#walk_num').blur(function() {
 	if(isNaN($('#walk_num').val())){
 		alert("请输入数字！");
-		$("#walk_num").focus();
+		setTimeout(function(){$("#walk_num").focus()},0);
+		//$("#walk_num").focus();
 		return false;
 	}
 	});
 $('#tuijian').blur(function() {
 	if(isNaN($('#tuijian').val())){
 		alert("请输入数字！");
-		$("#tuijian").focus();
+		setTimeout(function(){$("#tuijian").focus()},0);
+		//$("#tuijian").focus();
 		return false;
 	}
 	});
 $('#minarea').blur(function() {
 	if(isNaN($('#minarea').val())){
 		alert("请输入数字！");
-		$("#minarea").focus();
+		setTimeout(function(){$("#minarea").focus()},0);
+		//$("#minarea").focus();
 		return false;
 	}
 	});
 $('#maxarea').blur(function() {
 	if(isNaN($('#maxarea').val())){
 		alert("请输入数字！");
-		$("#maxarea").focus();
+		setTimeout(function(){$("#maxarea").focus()},0);
+		//$("#maxarea").focus();
 		return false;
 	}
 	});
 $('#room_num').blur(function() {
 	if(isNaN($('#room_num').val())){
 		alert("请输入数字！");
-		$("#room_num").focus();
+		setTimeout(function(){$("#room_num").focus()},0);
+		//$("#room_num").focus();
 		return false;
 	}
 	});
 $('#wc_num').blur(function() {
 	if(isNaN($('#wc_num').val())){
 		alert("请输入数字！");
-		$("#wc_num").focus();
+		setTimeout(function(){$("#wc_num").focus()},0);
+		//$("#wc_num").focus();
 		return false;
 	}
 	});
 $('#holdcostprice').blur(function() {
 	if(isNaN($('#holdcostprice').val())){
 		alert("请输入数字！");
-		$("#holdcostprice").focus();
+		setTimeout(function(){$("#holdcostprice").focus()},0);
+		//$("#holdcostprice").focus();
 		return false;
 	}
 	});
 $('#houseTaxprice').blur(function() {
 	if(isNaN($('#houseTaxprice').val())){
 		alert("请输入数字！");
-		$("#houseTaxprice").focus();
+		setTimeout(function(){$("#houseTaxprice").focus()},0);
+		//$("#houseTaxprice").focus();
 		return false;
 	}
 	});
@@ -592,7 +602,8 @@ $('#update_time').datepicker({
 $('#houseprice').blur(function() {
 	if(isNaN($('#houseprice').val())){
 		alert("请输入数字！");
-		$("#houseprice").focus();
+		setTimeout(function(){$("#houseprice").focus()},0);
+		//$("#houseprice").focus();
 		return false;
 	}
 	});

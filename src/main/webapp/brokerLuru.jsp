@@ -176,14 +176,16 @@ CKEDITOR.replace( 'introduction' );
 $('#view_shunxu').blur(function() {
 	if(isNaN($('#view_shunxu').val())){
 		alert("请输入数字！");
-		$("#view_shunxu").focus();
+		//$("#view_shunxu").focus();
+		setTimeout(function(){$("#view_shunxu").focus()},0);
 		return false;
 	}
 	});
 $('#view_shunxu2').blur(function() {
 	if(isNaN($('#view_shunxu2').val())){
 		alert("请输入数字！");
-		$("#view_shunxu2").focus();
+		//$("#view_shunxu2").focus();
+		setTimeout(function(){$("#view_shunxu2").focus()},0);
 		return false;
 	}
 	});
@@ -383,7 +385,8 @@ var DataDeal = {
 $('#broker_experience').blur(function() {
 	if(isNaN($('#broker_experience').val())){
 		alert("请输入数字！");
-		$("#broker_experience").focus();
+		//$("#broker_experience").focus();
+		setTimeout(function(){$("#broker_experience").focus()},0);
 		return false;
 	}
 	});

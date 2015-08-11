@@ -176,21 +176,24 @@ $(function(){
 $('#school_total').blur(function() {
 	if(isNaN($('#school_total').val())){
 		alert("请输入数字！");
-		$("#school_total").focus();
+		//$("#school_total").focus();
+		setTimeout(function(){$("#school_total").focus()},0);
 		return false;
 	}
 	});
 $('#teacher_num').blur(function() {
 	if(isNaN($('#teacher_num').val())){
 		alert("请输入数字！");
-		$("#teacher_num").focus();
+		//$("#teacher_num").focus();
+		setTimeout(function(){$("#teacher_num").focus()},0);
 		return false;
 	}
 	});
 $('#non_en_studen_trate').blur(function() {
 	if(isNaN($('#non_en_studen_trate').val())){
 		alert("请输入数字！");
-		$("#non_en_studen_trate").focus();
+		//$("#non_en_studen_trate").focus();
+		setTimeout(function(){$("#non_en_studen_trate").focus()},0);
 		return false;
 	}
 	});

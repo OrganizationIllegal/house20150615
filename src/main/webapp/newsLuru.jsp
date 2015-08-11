@@ -110,7 +110,8 @@ $(".uploadimg").click(function(){
   function add(){
 		if($('#news_time').val()==""){
 			alert("请选择发布时间！");
-			$("#news_time").focus();
+			//$("#news_time").focus();
+			setTimeout(function(){$("#news_time").focus()},0);
 			return false;
 		}
 	  //alert("add");

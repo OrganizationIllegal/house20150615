@@ -113,7 +113,8 @@ $(".uploadimg").click(function(){
 	 
 			if($('#fabu_time').val()==""){
 				alert("请选择发布时间！");
-				$("#fabu_time").focus();
+				//$("#fabu_time").focus();
+				setTimeout(function(){$("#fabu_time").focus()},0);
 				return false;
 			}
 	  var zhiye_num=$("#zhiye_num").val();
