@@ -689,7 +689,7 @@ var e=$('#input2').val();
 						</c:when>
 						<c:otherwise>
 							<div class="f-l p_struct_attr">
-								<a class="c-fix f-l attr1 f-yahei s-14 fw">>${obj.tudi_area}</a>
+								<a class="c-fix f-l attr1 f-yahei s-14 fw">${obj.tudi_area}</a>
 								<a class="c-fix f-l attr2 f-yahei s-12 fw">土地面积</a>
 							</div>
 							<div class="f-l p_struct_attr">
