@@ -163,7 +163,7 @@ var item = <%=flag%>
         	}
         	else{
         		var id = row.id;
-                if(confirm("是否确认删除？")){
+                if(confirm("是否确认删除"+row.project_num+"？")){
                  $.ajax({
     		 	    type: "POST",
     		 		data: {id: id},

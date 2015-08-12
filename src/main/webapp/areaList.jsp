@@ -178,7 +178,7 @@ var item = <%=flag%>
         	else{
         		var id = row.id;
                 var area_num=row.area_num;
-                if(confirm("是否确认删除？")){
+                if(confirm("是否确认删除"+area_num+"？")){
                  $.ajax({
     		 	    type: "POST",
     		 		data: {id: id,area_num: area_num},
