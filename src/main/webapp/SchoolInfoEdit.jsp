@@ -95,11 +95,13 @@ body{
 	   </c:otherwise>
   	  </c:choose>
   	   <c:choose>
-	    <c:when test="${schoolInfo.school_type eq 'primiy school'}">
-	      <option value="primiy school" selected="selected">primiy school</option>
+	    <c:when test="${schoolInfo.school_type eq '大学'}">
+	      <!-- <option value="primiy school" selected="selected">primiy school</option> -->
+	      	 <option value="大学"  selected="selected">大学</option>
 	    </c:when>
 	   <c:otherwise>  
-	      <option value="primiy school">primiy school</option>
+	      <!-- <option value="primiy school">primiy school</option> -->
+	       <option value="大学">大学</option>
 	   </c:otherwise>
   	  </c:choose>
   	   

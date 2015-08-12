@@ -638,7 +638,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="main_bkg7">
 				<div class="main_bkg7_div">
 				 <c:if test="${!empty newsList }">
-					<a class="c-fix f-l f-yahei s-20 main_title fw" style="margin:0 auto">最新博客</a>
+					<span class="c-fix f-l f-yahei s-20 main_title fw" style="margin:0 auto">海外新闻</span>
 						<c:forEach var="item" items="${newsList}" varStatus="stat">
 							<div class="f-l main_node" <c:if test="${stat.index != 0}">style="margin-left:30px;"</c:if>>
 								<a href="/Detail?id=${item.id}&type=1">

@@ -45,7 +45,7 @@ body{
  <option value="私立中学">私立中学</option>
  <option value="公立中小学">公立中小学</option>
  <option value="私立中小学">私立中小学</option>
- <option value="primiy school">primiy school</option>
+ <option value="大学">大学</option>
  </select>
 </div>
 <div class="area_right">
