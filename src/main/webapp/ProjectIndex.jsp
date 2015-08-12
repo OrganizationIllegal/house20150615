@@ -1093,14 +1093,14 @@ var e=$('#input2').val();
 						 <tbody style="font-size:12px;">
 			    		<c:forEach items="${list}" var="item" varStatus="var" begin="0" end="0">
 				    		<tr class="row">
-				    		<td class="col-md-4" style="-background:rgb(224,238,218);margin-right:5px;">${item.column1 }</td>
-				    		<td class="col-md-4" style="-background:rgb(224,238,218);margin-right:5px;">${item.column2 }</td>
-				    		<td class="col-md-4" style="-background:rgb(224,238,218)">${item.column3 }</td>
+				    		<td class="col-md-4" style="background:#E0EEFB;margin-right:5px;">${item.column1 }</td>
+				    		<td class="col-md-4" style="background:#E0EEFB;margin-right:5px;">${item.column2 }</td>
+				    		<td class="col-md-4" style="background:#E0EEFB;">${item.column3 }</td>
 				    		</tr>
 			    		</c:forEach>
 			    	
 			    	<c:forEach items="${list}" var="item" varStatus="var" begin="1" end="1">
-						<tr class="row" style="background:#E0EEFB;border-top:2px solid #a9c2da;">
+						<tr class="row" style="/* background:#E0EEFB; *//* border-top:2px solid #a9c2da; */">
 			    			<td>${item.column1}</td>
 			    			<td>${item.column2}</td>
 			    			<td>${item.column3}</td>
@@ -1111,7 +1111,7 @@ var e=$('#input2').val();
 			  	 <table class="table table-striped" style="text-align:center;">
 				  	
 			    	<tbody style="font-size:12px;">
-			    		<c:forEach items="${list}" var="item" varStatus="var" begin="2" end="2">
+			    		<c:forEach items="${list}" var="item" varStatus="var" begin="2" end="3">
 			    		<tr class="row">
 			    		<td class="col-md-4" style="-background:rgb(224,238,218);margin-right:5px;">${item.column1}</td>
 			    		<td class="col-md-4" style="-background:rgb(224,238,218);margin-right:5px;">${item.column2}</td>
@@ -1121,13 +1121,13 @@ var e=$('#input2').val();
 			    	
 			    	
 			    	
-			    	<c:forEach items="${list}" var="item" varStatus="var" begin="3" end="3">
+			    	<%-- <c:forEach items="${list}" var="item" varStatus="var" begin="3" end="3">
 						<tr class="row" style="background:#E0EEFB;">
 			    			<td>${item.column1}</td>
 			    			<td>${item.column2}<span></span></td>
 			    			<td>${item.column3}<span></span></td>
 			    		</tr>
-					</c:forEach> 
+					</c:forEach>  --%>
 			    	</tbody>
 			  	  </table>
 			  	  <table class="table table-striped" style="text-align:center;">
@@ -1135,9 +1135,9 @@ var e=$('#input2').val();
 			    	<tbody style="font-size:12px;">
 			    	<c:forEach items="${list}" var="item" varStatus="var" begin="4" end="4">
 			    		<tr class="row">
-			    		<td class="col-md-4" style="-background:rgb(224,238,218);margin-right:5px;">${item.column1}</td>
-			    		<td class="col-md-4" style="-background:rgb(224,238,218);margin-right:5px;">${item.column2}</td>
-			    		<td class="col-md-4" style="-background:rgb(224,238,218);margin-right:5px;">${item.column3}</td>
+			    		<td class="col-md-4" style="background:#E0EEFB;;margin-right:5px;">${item.column1}</td>
+			    		<td class="col-md-4" style="background:#E0EEFB;;margin-right:5px;">${item.column2}</td>
+			    		<td class="col-md-4" style="background:#E0EEFB;;margin-right:5px;">${item.column3}</td>
 			    		</tr>
 			    		</c:forEach>
 			    	
@@ -1157,16 +1157,16 @@ var e=$('#input2').val();
 			    	<tbody style="font-size:12px;">
 			    	<c:forEach items="${list}" var="item" varStatus="var" begin="10" end="10">
 			    		<tr class="row" >
-			    		<td  class="col-md-4" style="-background:rgb(224,238,218);margin-right:5px;">${item.column1}</td>
-			    		<td  class="col-md-4" style="-background:rgb(224,238,218);margin-right:5px;">${item.column2}</td>
-			    		<td  class="col-md-4" style="-background:rgb(224,238,218);margin-right:5px;">${item.column3}</td>
+			    		<td  class="col-md-4" style="background:#E0EEFB;;margin-right:5px;">${item.column1}</td>
+			    		<td  class="col-md-4" style="background:#E0EEFB;;margin-right:5px;">${item.column2}</td>
+			    		<td  class="col-md-4" style="background:#E0EEFB;;margin-right:5px;">${item.column3}</td>
 			    		</tr>
 			    		</c:forEach>
 			    	
 			    	
 			    	
 			    	<c:forEach items="${list}" var="item" varStatus="var" begin="11" end="11">
-						<tr class="row" style="background:#E0EEFB;border-bottom:2px solid #a9c2da;">
+						<tr class="row" style="border-bottom:2px solid #a9c2da;">
 			    			<td>${item.column1}</td>
 			    			<td><span>$</span>${item.column2}</td>
 			    			<td><span>$</span>${item.column3}</td>
