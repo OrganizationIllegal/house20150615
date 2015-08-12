@@ -429,6 +429,7 @@ public class MyController {
 		for(HouseInfo item : houseInfoList){
 			String price = item.getHouse_price();
 			if(price!=null && !"".equals(price)){
+				price=price.trim();
 	 			int priceTemp = Integer.parseInt(price);
 	 			price = df1.format(priceTemp);
 	 		}
