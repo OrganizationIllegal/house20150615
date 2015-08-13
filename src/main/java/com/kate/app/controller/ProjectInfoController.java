@@ -814,12 +814,13 @@ public class ProjectInfoController {
 		for (int i=0;i<huxingArray.size();i++){
 				JSONObject object = (JSONObject)huxingArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
 			    HouseInfo1 e = (HouseInfo1) JSONToObj(object.toString(), HouseInfo1.class);
-			    if(e.getId()==0){
+			    /*if(e.getId()==0){
 			    	houseInfolist2.add(e);
 			    }
 			    else{
 			    	houseInfolist.add(e);
-			    }
+			    }*/
+			    houseInfolist2.add(e);
 			}
 		/*for(HouseInfo1 item : houseInfolist){
 			String name = item.getHousename();
@@ -840,7 +841,7 @@ public class ProjectInfoController {
 		
 		
 		//户型价格，和修改之前的户型价格list做对比，然后把删除了的户型价格item保存到deleteList里，然后传到dao层删除。
-		for (int i=0;i<houseInfoListbefore.size();i++){
+		/*for (int i=0;i<houseInfoListbefore.size();i++){
 			boolean flag=false;
 
 			for(int j=0;j<houseInfolist.size();j++){
@@ -852,7 +853,7 @@ public class ProjectInfoController {
 			if (flag==false) {
 				houseInfolistdelete.add(houseInfoListbefore.get(i));
 			}
-		}
+		}*/
 		System.out.println("houseInfolist.length():"+houseInfolist.size());
 		System.out.println("houseInfolist2.length():"+houseInfolist2.size());
 
@@ -865,12 +866,13 @@ public class ProjectInfoController {
 		for (int i=0;i<imageArray.size();i++){
 				JSONObject object = (JSONObject)imageArray.get(i); //对于每个json对象
 				ProjectDescImage e = (ProjectDescImage) JSONToObj(object.toString(), ProjectDescImage.class);
-			    if(e.getId()==0){
+			    /*if(e.getId()==0){
 			    	imagelist2.add(e);//添加
 			    }
 			    else{
 			    	imagelist.add(e);
-			    }
+			    }*/
+				imagelist2.add(e);//添加
 			}
 		
 
@@ -889,7 +891,7 @@ public class ProjectInfoController {
 		
 		
 		//项目图片，和修改之前的项目图片list做对比，然后把删除了的项目图片item保存到deleteList里，然后传到dao层删除。
-		for (int i=0;i<projectImageListbefore.size();i++){
+		/*for (int i=0;i<projectImageListbefore.size();i++){
 			boolean flag=false;
 
 			for(int j=0;j<imagelist.size();j++){
@@ -901,7 +903,7 @@ public class ProjectInfoController {
 			if (flag==false) {
 				imagelistdelete.add(projectImageListbefore.get(i));
 			}
-		}
+		}*/
 		
 		//项目配套
 		    String projectpeitao=req.getParameter("peitaolist");
@@ -912,12 +914,13 @@ public class ProjectInfoController {
 			for (int i=0;i<peitaoArray.size();i++){
 					JSONObject object = (JSONObject)peitaoArray.get(i); //对于每个json对象
 					ProjectPeiTao e = (ProjectPeiTao) JSONToObj(object.toString(), ProjectPeiTao.class);
-				    if(e.getId()==0){
+				    /*if(e.getId()==0){
 				    	peitaolist2.add(e);//添加
 				    }
 				    else{
 				    	peitaolist.add(e);
-				    }
+				    }*/
+					peitaolist2.add(e);//添加
 				}
 			
 			/*for(ProjectPeiTao item : peitaolist){
@@ -933,7 +936,7 @@ public class ProjectInfoController {
 				
 			}*/
 			//项目配套，和修改之前的项目配套做对比，然后把删除的项目配套item的保存到deletelist，然后再dao层做删除
-			for (int i=0;i<projectPeiTaoListbefore.size();i++){
+			/*for (int i=0;i<projectPeiTaoListbefore.size();i++){
 				boolean flag=false;
 
 				for(int j=0;j<peitaolist.size();j++){
@@ -945,7 +948,7 @@ public class ProjectInfoController {
 				if (flag==false) {
 					peitaolistdelete.add(projectPeiTaoListbefore.get(i));
 				}
-			}
+			}*/
 
 		//附近配套
 
@@ -957,12 +960,13 @@ public class ProjectInfoController {
 		for (int i=0;i<fujinArray.size();i++){
 				 JSONObject object = (JSONObject)fujinArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
 				 FujinPeiTao e = (FujinPeiTao) JSONToObj(object.toString(), FujinPeiTao.class);
-				 if(e.getId()==0){
+				 /*if(e.getId()==0){
 					 fujinpeitaoList2.add(e);//id涓�0锛屾坊鍔�
 				 }
 				 else{
 					 fujinpeitaoList.add(e);//鍚﹀垯锛岀紪杈�
-				 }
+				 }*/
+				 fujinpeitaoList2.add(e);//id涓�0锛屾坊鍔�
 		}
 		
 		/*for(FujinPeiTao item : fujinpeitaoList){
@@ -979,7 +983,7 @@ public class ProjectInfoController {
 		
 		
 		//附近配套，和修改之前的附近配套做对比。把删除的附近配套item保存到deletelist，然后再传到dao层做删除
-		for (int i=0;i<fujinPeitaoListbefore.size();i++){
+		/*for (int i=0;i<fujinPeitaoListbefore.size();i++){
 			boolean flag=false;
 			for(int j=0;j<fujinpeitaoList.size();j++){
 				if(fujinPeitaoListbefore.get(i).getId()==fujinpeitaoList.get(j).getId()){
@@ -990,7 +994,7 @@ public class ProjectInfoController {
 			if(flag==false){
 				fujinpeitaoListdelete.add(fujinPeitaoListbefore.get(i));
 			}
-		}
+		}*/
 
 		System.out.println("fujinpeitaoList.length():"+fujinpeitaoList.size());
 		System.out.println("fujinpeitaoList2.length():"+fujinpeitaoList2.size());
@@ -1003,12 +1007,13 @@ public class ProjectInfoController {
 		for (int i=0;i<schoolArray.size();i++){
 						 JSONObject object = (JSONObject)schoolArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
 						 FujinSchool e = (FujinSchool) JSONToObj(object.toString(), FujinSchool.class);
-						 if(e.getId()==0){
+						 /*if(e.getId()==0){
 							 fujinSchoolList2.add(e);
 						 }
 						 else{
 							 fujinSchoolList.add(e);
-						 }
+						 }*/
+						 fujinSchoolList2.add(e);
 		   }
 		
 		
@@ -1026,7 +1031,7 @@ public class ProjectInfoController {
 		}*/
 		
 		//附近学校，和修改之前的学习list做对比。把删除的附近学校的item保存到deletelist里，然后传到dao层删除。
-		for (int i=0;i<fujinSchoolListbefore.size();i++){
+		/*for (int i=0;i<fujinSchoolListbefore.size();i++){
 			boolean flag=false;
 			for(int j=0;j<fujinSchoolList.size();j++){
 				if(fujinSchoolListbefore.get(i).getId()==fujinSchoolList.get(j).getId()){
@@ -1038,7 +1043,7 @@ public class ProjectInfoController {
 			if(flag==false){
 				fujinSchoolListdelete.add(fujinSchoolListbefore.get(i));
 			}
-		}
+		}*/
 		System.out.println("fujinSchoolList.length():"+fujinSchoolList.size());
 		System.out.println("fujinSchoolList2.length():"+fujinSchoolList2.size());
 		//持有成本
@@ -1050,12 +1055,13 @@ public class ProjectInfoController {
 		for (int i=0;i<holdCostArray.size();i++){
 				JSONObject object = (JSONObject)holdCostArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
 			    HoldCost e = (HoldCost) JSONToObj(object.toString(), HoldCost.class);
-			    if(e.getId()==0){
+			    /*if(e.getId()==0){
 			    	holdCostList2.add(e);//缂栬緫鐨勯」
 			    }
 			    else{
 			    	holdCostList.add(e);//娣诲姞鐨勯」
-			    }
+			    }*/
+			    holdCostList2.add(e);//缂栬緫鐨勯」
 			}
 		
 		/*for(HoldCost item : holdCostList){
@@ -1071,7 +1077,7 @@ public class ProjectInfoController {
 		}*/
 		
 		//持有成本，和修改之前的持有成本list做对比，把 删除的持有成本保存到deletelist列表里，然后再dao层做删除。
-		for (int i=0;i<holdCostListbefore.size();i++){
+		/*for (int i=0;i<holdCostListbefore.size();i++){
 			boolean flag=false;
 			for(int j=0;j<holdCostList.size();j++){
 				if(holdCostListbefore.get(i).getId()==holdCostList.get(j).getId()){
@@ -1082,7 +1088,7 @@ public class ProjectInfoController {
 			if(flag==false){
 				holdCostListdelete.add(holdCostListbefore.get(i));
 			}
-		}
+		}*/
 
 		System.out.println("holdCostList.length():"+holdCostList.size());
 		System.out.println("holdCostList2.length():"+holdCostList2.size());
@@ -1095,12 +1101,13 @@ public class ProjectInfoController {
 		for (int i=0;i<houseTaxArray.size();i++){
 					JSONObject object = (JSONObject)houseTaxArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
 					HouseTax e = (HouseTax) JSONToObj(object.toString(), HouseTax.class);
-					if(e.getId()==0){
+					/*if(e.getId()==0){
 						 houseTaxList2.add(e);//鐢ㄤ簬娣诲姞
 					}
 					else{
 						 houseTaxList.add(e);//鐢ㄤ簬缂栬緫
-					}
+					}*/
+					houseTaxList2.add(e);//鐢ㄤ簬娣诲姞
 		}
 		
 		
@@ -1122,7 +1129,7 @@ public class ProjectInfoController {
 		*/
 		
 		//购房税费，和修改之前的购房税费做对比，把删除的购房税费的item保存到购房税费deletelist，然后再dao层做删除。
-		for (int i=0;i<houseTaxListbefore.size();i++){
+		/*for (int i=0;i<houseTaxListbefore.size();i++){
 			boolean flag=false;
 
 			for(int j=0;j<houseTaxList.size();j++){
@@ -1134,7 +1141,7 @@ public class ProjectInfoController {
 			if(flag==false){
 				houseTaxListdelete.add(houseTaxListbefore.get(i));
 			}
-		}
+		}*/
 		System.out.println("houseTaxList.length():"+houseTaxList.size());
 		System.out.println("houseTaxList2.length():"+houseTaxList2.size());
 		//项目关键字
@@ -1235,15 +1242,16 @@ public class ProjectInfoController {
 			for (int i=0;i<areaArray.size();i++){
 					JSONObject object = (JSONObject)areaArray.get(i);
 					ServiceArea e = (ServiceArea) JSONToObj(object.toString(), ServiceArea.class);
-				    if(e.getId()==0){
+				    /*if(e.getId()==0){
 				    	serviceArealist2.add(e);//用于添加
 				    }
 				    else{
 				    	serviceArealist.add(e);//用于更新
-				    }
+				    }*/
+					serviceArealist2.add(e);//用于添加
 				}
 			//服务区域，和修改之前的服务区域列表做列表，把删除的服务区域item存在deletelist列表里，然后再dao层做删除。
-			for (int i=0;i<brokerServiceAreaListbefore.size();i++){
+			/*for (int i=0;i<brokerServiceAreaListbefore.size();i++){
 				boolean flag=false;
 				for(int j=0;j<serviceArealist.size();j++){
 					if(brokerServiceAreaListbefore.get(i).getId()==serviceArealist.get(j).getId()){
@@ -1254,7 +1262,7 @@ public class ProjectInfoController {
 				if(flag==false){
 					serviceArealistdelete.add(brokerServiceAreaListbefore.get(i));
 				}
-			}
+			}*/
 
 			//经纪人擅长的类型。
 
@@ -1268,7 +1276,7 @@ public class ProjectInfoController {
 			for (int i=0;i<typeArray.size();i++){
 					JSONObject object = (JSONObject)typeArray.get(i); 
 					BrokerType e = (BrokerType) JSONToObj(object.toString(), BrokerType.class);
-				    if(e.getId()==0){
+				    /*if(e.getId()==0){
 				    	brokerTypelist2.add(e);//用于添加
 				    }
 				    else{
@@ -1280,7 +1288,15 @@ public class ProjectInfoController {
 							e.setInterested_num("house_03");
 						}
 				    	brokerTypelist.add(e);//用于更新
-				    }
+				    }*/
+				    if("公寓".equals(e.getInterested_num())){
+						e.setInterested_num("house_01");
+					}else if("别墅".equals(e.getInterested_num())){
+						e.setInterested_num("house_02");
+					}else if("联排别墅".equals(e.getInterested_num())){
+						e.setInterested_num("house_03");
+					}
+				    brokerTypelist2.add(e);//用于添加
 				}
 
 			/*if(brokerTypelist.size()==0){
@@ -1290,7 +1306,7 @@ public class ProjectInfoController {
 
 			
 
-			for (int i=0;i<brokerIntegertypeListbefore.size();i++){
+			/*for (int i=0;i<brokerIntegertypeListbefore.size();i++){
 				boolean flag=false;
 				for(int j=0;j<brokerTypelist.size();j++){
 					if(brokerIntegertypeListbefore.get(i).getId()==brokerTypelist.get(j).getId()){
@@ -1301,7 +1317,7 @@ public class ProjectInfoController {
 				if(flag==false){
 					brokerTypelistdelete.add(brokerIntegertypeListbefore.get(i));
 				}
-			}
+			}*/
 			int isDuplicate=0;//brokerInfoDao.isDuplicate(broker.getBroker_num());
 			if (isDuplicate==1) {
 				json.put("isDuplicate", "1");

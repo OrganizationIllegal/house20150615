@@ -1904,7 +1904,112 @@ con = dataSource.getConnection();
 			            e.printStackTrace() ;   
 			        }   
 			     } 
-		        //鍖哄煙涓綅鏁版埧浠风紪杈�
+		        
+				
+				
+				
+				
+				
+				
+				
+				//middlepriceListdelete,middletrendListdelete,zujintrendlistListdelete
+				//,huibaotrendlistListdelete,tedianlistListdelete,peoplelistListdelete
+				//delete from project_desc_image
+				String sqldeletemiddleprice = "delete from area_middle_price where area_quyu= ?";
+				pstmt = con.prepareStatement(sqldeletemiddleprice);
+				pstmt.setString(1, area_num);
+				
+				int resultmiddlepricedelete=pstmt.executeUpdate();
+				System.out.println("resultmiddlepricedelete:"+resultmiddlepricedelete);
+				if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+				String sqldeletemiddletrend = "delete from area_middle where area_code= ?";
+				pstmt = con.prepareStatement(sqldeletemiddletrend);
+				pstmt.setString(1, area_num);
+				
+				
+				int resultmiddletrenddelete=pstmt.executeUpdate();
+				System.out.println("resultmiddletrenddelete:"+resultmiddletrenddelete);
+				
+				if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+				String sqldeletezujin = "delete from area_zujin where area_code= ?";
+				pstmt = con.prepareStatement(sqldeletezujin);
+				pstmt.setString(1, area_num);
+				
+				int resultzujindelete=pstmt.executeUpdate();
+				System.out.println("resultzujindelete:"+resultzujindelete);
+				
+				
+				if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+				String sqldeletehuibao = "delete from area_kongzhi where area_code= ?";
+				pstmt = con.prepareStatement(sqldeletehuibao);
+				pstmt.setString(1, area_num);
+				
+				int resulthuibaodelete=pstmt.executeUpdate();
+				System.out.println("resulthuibaodelete:"+resulthuibaodelete);
+				
+				if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+				String sqldeletetedian = "delete from area_features where area_code= ?";
+				pstmt = con.prepareStatement(sqldeletetedian);
+				pstmt.setString(1, area_num);
+				
+				int resulttediandelete=pstmt.executeUpdate();
+				System.out.println("resulttediandelete:"+resulttediandelete);
+				
+				
+				if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+				String sqldeletepeople = "delete from area_people where area_code= ?";
+				pstmt = con.prepareStatement(sqldeletepeople);
+				pstmt.setString(1, area_num);
+				
+				int resultpeopledelete=pstmt.executeUpdate();
+				System.out.println("resultpeopledelete:"+resultpeopledelete);
+				
+				if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+				
+				
+				
+				
+				
+				
+				
+				
+				//鍖哄煙涓綅鏁版埧浠风紪杈�
 				for(MiddlePrice2 item : middlepriceList){
 					boolean flagmiddleprice = true;
 					int id=item.getId();
@@ -2035,6 +2140,9 @@ con = dataSource.getConnection();
 			            e.printStackTrace() ;   
 			        }   
 			     } 
+				
+				
+				
 				//鍖哄煙鎴夸环涓綅鏁拌蛋鍔跨紪杈�
 				for(AreaMiddle2 item : middletrendList){
 					/*boolean resultMiddle = areaInfoDao.addMiddleTrend(item, area_num);*/
@@ -2757,7 +2865,7 @@ con = dataSource.getConnection();
 					//middlepriceListdelete,middletrendListdelete,zujintrendlistListdelete
 					//,huibaotrendlistListdelete,tedianlistListdelete,peoplelistListdelete
 					//delete from project_desc_image
-					String sqldeletemiddleprice = "delete from area_middle_price where id= ?";
+					/*String sqldeletemiddleprice = "delete from area_middle_price where id= ?";
 					pstmt = con.prepareStatement(sqldeletemiddleprice);
 					for(int i=0;i<middlepriceListdelete.size();i++){
 						pstmt.setInt(1, middlepriceListdelete.get(i).getId());
@@ -2862,7 +2970,7 @@ con = dataSource.getConnection();
 					System.out.println("resultpeopledelete.length:"+resultpeopledelete.length);
 					for(int i=0;i<resultpeopledelete.length;i++){
 						System.out.println("resultpeopledelete"+i+":"+resultpeopledelete[i]);
-					}
+					}*/
 				//鎻愪氦浜嬬墿
 				con.commit();
 				//鎭㈠JDBC浜嬪姟

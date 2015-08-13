@@ -1085,14 +1085,14 @@ $('#price_review').blur(function() {
 		return false;
 	}
 	});
-$('#zu_xuqiu').blur(function() {
+/* $('#zu_xuqiu').blur(function() {
 	if(isNaN($('#zu_xuqiu').val())){
 		alert("请输入数字！");
 		setTimeout(function(){$("#zu_xuqiu").focus()},0);
 		//$("#zu_xuqiu").focus();
 		return false;
 	}
-	});
+	}); */
 $('#year_increment_rate1').blur(function() {
 	if(isNaN($('#year_increment_rate1').val())){
 		alert("请输入数字！");
@@ -1135,14 +1135,14 @@ $('#price_review1').blur(function() {
 		return false;
 	}
 	});
-$('#zu_xuqiu1').blur(function() {
+/* $('#zu_xuqiu1').blur(function() {
 	if(isNaN($('#zu_xuqiu1').val())){
 		alert("请输入数字！");
 		setTimeout(function(){$("#zu_xuqiu1").focus()},0);
 		//$("#zu_xuqiu1").focus();
 		return false;
 	}
-	});
+	}); */
 $('#family_one_rate').blur(function() {
 	if(isNaN($('#family_one_rate').val())){
 		alert("请输入数字！");
