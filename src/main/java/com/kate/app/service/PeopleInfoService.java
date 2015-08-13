@@ -26,8 +26,8 @@ public class PeopleInfoService {
 			String c2=list.get(i).getColumn2();
 			String c3=list.get(i).getColumn3();
 			if("周薪".equals(c1)){
-				String zx2=df.format(Integer.parseInt(c2));
-				String zx3=df.format(Integer.parseInt(c3));
+				String zx2=df.format(Integer.parseInt(c2.equals("")?"0":c2));
+				String zx3=df.format(Integer.parseInt(c3.equals("")?"0":c3));
 				list.get(i).setColumn2(zx2);
 				list.get(i).setColumn3(zx3);			
 			}
