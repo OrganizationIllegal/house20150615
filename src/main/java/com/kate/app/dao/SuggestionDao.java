@@ -189,7 +189,12 @@ public class SuggestionDao extends BaseDao2 {
 			  rs = stmt.executeQuery(sql);
 			while(rs.next()){
 				String data = new String();
-				data = rs.getString("area_city")+";"+rs.getString("area_zhou");
+				String city = rs.getString("area_city");
+				String zhou = rs.getString("area_zhou");
+				if(city!=null && !"".equals(city) && zhou!=null && !"".equals(zhou)){
+					data = city+";"+zhou;
+				}
+				
 				
 				cityList.add(data);
 			}
