@@ -1045,14 +1045,15 @@ public class AreaInfoController extends BaseDao {
 				for (int i=0; i<middlepriceArray.size(); i++){
 					 JSONObject object = (JSONObject)middlepriceArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
 					 MiddlePrice2 e = (MiddlePrice2) JSONToObj(object.toString(), MiddlePrice2.class);
-					 if(e.getId()==0){
+					 /*if(e.getId()==0){
 						 middlepriceList2.add(e);
 					 }else{
 						 middlepriceList.add(e);
-					 }
+					 }*/
+					 middlepriceList2.add(e);
 				}
 				//区域中位数房价和编辑之前的数据做对比，如果删除了原来的数据，保存删除的数据item，之后传到dao层删除区域中位数房价的数据
-				for (int i=0;i<middlepricebackendlistbefore.size();i++){
+				/*for (int i=0;i<middlepricebackendlistbefore.size();i++){
 					boolean flag=false;
 					for(int j=0;j<middlepriceList.size();j++){
 						if(middlepricebackendlistbefore.get(i).getId()==middlepriceList.get(j).getId()){
@@ -1063,7 +1064,7 @@ public class AreaInfoController extends BaseDao {
 					if(flag==false){
 						middlepriceListdelete.add(middlepricebackendlistbefore.get(i));
 					}
-				}
+				}*/
 				System.out.println("brokersList.length():"+middlepriceList.size());
 				/*for(MiddlePrice2 item : middlepriceList){
 					boolean resultMiddle = areaInfoDao.addMiddlePrice(item, area_num);
@@ -1077,11 +1078,12 @@ public class AreaInfoController extends BaseDao {
 				for (int i=0; i<middletrendArray.size(); i++){
 					 JSONObject object = (JSONObject)middletrendArray.get(i); //瀵逛簬姣忎釜json瀵硅薄
 					 AreaMiddle2 e = (AreaMiddle2) JSONToObj(object.toString(), AreaMiddle2.class);
-					 if(e.getId()==0){
+					 /*if(e.getId()==0){
 						 middletrendList2.add(e);
 					 }else{
 						 middletrendList.add(e);
-					 }
+					 }*/
+					 middletrendList2.add(e);
 				}
 				//特殊字符处理
 				for(AreaMiddle2 item : middletrendList2){
@@ -1098,7 +1100,7 @@ public class AreaInfoController extends BaseDao {
 				}
 				
 				//区域中位数走势，和编辑之前的区域中位数走势做对比，如果删除了之前的区域中位数走势item，保存到deleteList里，传到dao层做删除
-				for (int i=0;i<areamiddlelistbefore.size();i++){
+				/*for (int i=0;i<areamiddlelistbefore.size();i++){
 					boolean flag=false;
 					for(int j=0;j<middletrendList.size();j++){
 						if(areamiddlelistbefore.get(i).getId()==middletrendList.get(j).getId()){
@@ -1109,7 +1111,7 @@ public class AreaInfoController extends BaseDao {
 					if(flag==false){
 						middletrendListdelete.add(areamiddlelistbefore.get(i));
 					}
-				}
+				}*/
 				System.out.println("brokersList.length():"+middletrendList.size());
 				/*for(AreaMiddle2 item : middletrendList){
 					boolean resultMiddle = areaInfoDao.addMiddleTrend(item, area_num);
@@ -1123,14 +1125,15 @@ public class AreaInfoController extends BaseDao {
 				for (int i=0; i<zujintrendlistArray.size(); i++){
 					 JSONObject object = (JSONObject)zujintrendlistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
 					 AreaZujin2 e = (AreaZujin2) JSONToObj(object.toString(), AreaZujin2.class);
-					 if(e.getId()==0){
+					 /*if(e.getId()==0){
 						 zujintrendlistList2.add(e);
 					 }else{
 						 zujintrendlistList.add(e);
-					 }
+					 }*/
+					 zujintrendlistList2.add(e);
 				}
 				//区域租金走势，和修改之前的区域租金走势list做对比，如果删除了之前的区域租金item，保存到deleteList里，然后传到dao层做删除。
-				for (int i=0;i<zujinlistbefore.size();i++){
+				/*for (int i=0;i<zujinlistbefore.size();i++){
 					boolean flag=false; 
 					for(int j=0;j<zujintrendlistList.size();j++){
 						if(zujinlistbefore.get(i).getId()==zujintrendlistList.get(j).getId()){
@@ -1141,7 +1144,7 @@ public class AreaInfoController extends BaseDao {
 					if(flag==false){
 						zujintrendlistListdelete.add(zujinlistbefore.get(i));
 					}
-				}
+				}*/
 				
 				/*for(AreaZujin2 item : zujintrendlistList){
 					boolean resultZujin = areaInfoDao.addMiddleZujin(item, area_num);
@@ -1154,14 +1157,15 @@ public class AreaInfoController extends BaseDao {
 				for (int i=0; i<huibaotrendlistArray.size(); i++){
 					 JSONObject object = (JSONObject)huibaotrendlistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
 					 AreaZhikong2 e = (AreaZhikong2) JSONToObj(object.toString(), AreaZhikong2.class);
-					 if(e.getId()==0){
+					 /*if(e.getId()==0){
 						 huibaotrendlistList2.add(e);
 					 }else{
 						 huibaotrendlistList.add(e);
-					 }
+					 }*/
+					 huibaotrendlistList2.add(e);
 				}
 				//区域回报率，和修改之前的区域回报list做对比，如果删除了之前的区域回报item，删除的都保存到deletelist里，然后在dao层做删除。
-				for (int i=0;i<huibaolistbefore.size();i++){
+				/*for (int i=0;i<huibaolistbefore.size();i++){
 					boolean flag=false;
 					for(int j=0;j<huibaotrendlistList.size();j++){
 						if(huibaolistbefore.get(i).getId()==huibaotrendlistList.get(j).getId()){
@@ -1172,7 +1176,7 @@ public class AreaInfoController extends BaseDao {
 					if(flag==false){
 						huibaotrendlistListdelete.add(huibaolistbefore.get(i));
 					}
-				}
+				}*/
 				
 				/*for(AreaZhikong2 item : huibaotrendlistList){
 					boolean resultZujin = areaInfoDao.addAreaZhikong(item, area_num);
@@ -1185,14 +1189,15 @@ public class AreaInfoController extends BaseDao {
 				for (int i=0; i<tedianlistArray.size(); i++){
 					 JSONObject object = (JSONObject)tedianlistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
 					 AreaTeDian2 e = (AreaTeDian2) JSONToObj(object.toString(), AreaTeDian2.class);
-					 if(e.getId()==0){
+					 /*if(e.getId()==0){
 						 tedianlistList2.add(e);
 					 }else{
 						 tedianlistList.add(e);
-					 }
+					 }*/
+					 tedianlistList2.add(e);
 				}
 				//区域特点，和修改之前的区域特点做比较，把删除的区域特点item都保存到deleteList里，然后再dao层做删除。
-				for (int i=0;i<tedianlistbefore.size();i++){
+				/*for (int i=0;i<tedianlistbefore.size();i++){
 					boolean flag=false;
 					for(int j=0;j<tedianlistList.size();j++){
 						if(tedianlistbefore.get(i).getId()==tedianlistList.get(j).getId()){
@@ -1203,7 +1208,7 @@ public class AreaInfoController extends BaseDao {
 					if(flag==false){
 						tedianlistListdelete.add(tedianlistbefore.get(i));
 					}
-				}
+				}*/
 				/*for(AreaTeDian2 item : tedianlistList){
 					boolean resultZujin = areaInfoDao.addAreaTeDian(item, area_num);
 				}*/
@@ -1217,15 +1222,15 @@ public class AreaInfoController extends BaseDao {
 				for (int i=0; i<peoplelistArray.size(); i++){
 					 JSONObject object = (JSONObject)peoplelistArray.get(i);   //瀵逛簬姣忎釜json瀵硅薄
 					 AreaPeopleInfo2 e = (AreaPeopleInfo2) JSONToObj(object.toString(), AreaPeopleInfo2.class);
-					 if(e.getId()==0){
+					 /*if(e.getId()==0){
 						 peoplelistList2.add(e);
 					 }else{
 						 peoplelistList.add(e);
-					 }
-					
+					 }*/
+					 peoplelistList2.add(e);
 				}
 				//区域人口，和修改之前的区域人口做比较，把删除的区域人口item都保存到deleteList里，然后在dao层做删除。
-				for (int i=0;i<peoplelistbefore.size();i++){
+				/*for (int i=0;i<peoplelistbefore.size();i++){
 					boolean flag=false;
 					for(int j=0;j<peoplelistList.size();j++){
 						if(peoplelistbefore.get(i).getId()==peoplelistList.get(j).getId()){
@@ -1236,7 +1241,7 @@ public class AreaInfoController extends BaseDao {
 					if(flag==false){
 						peoplelistListdelete.add(peoplelistbefore.get(i));
 					}
-				}
+				}*/
 				/*for(AreaPeopleInfo2 item : peoplelistList){
 					boolean resultZujin = areaInfoDao.addAreaPeople(item, area_num);
 				}*/

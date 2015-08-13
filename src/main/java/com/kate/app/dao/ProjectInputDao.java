@@ -1661,6 +1661,37 @@ public class ProjectInputDao extends BaseDao2 {
 					        }   
 					     } 
 						
+						
+						String sqldeleteservice = "delete from broker_service_area where broker_num= ?";
+						pstmt = con.prepareStatement(sqldeleteservice);
+						pstmt.setString(1, broker_num);
+						
+						int resultservicedelete=pstmt.executeUpdate();
+						System.out.println("resultservicedelete:"+resultservicedelete);
+						
+						if(pstmt != null){   // 关闭声明   
+					        try{   
+					            pstmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+						String sqldeleteinterest = "delete from broker_interested_type where broker_num= ?";
+						pstmt = con.prepareStatement(sqldeleteinterest);
+						pstmt.setString(1, broker_num);
+						
+						int resultinterestdelete=pstmt.executeUpdate();
+						System.out.println("resultinterestdelete:"+resultinterestdelete);
+						
+						if(pstmt != null){   // 关闭声明   
+					        try{   
+					            pstmt.close() ;   
+					        }catch(SQLException e){   
+					            e.printStackTrace() ;   
+					        }   
+					     } 
+						
+						
 						//鏈嶅姟鍖哄煙鏇存柊
 						String sql2 = "update  broker_service_area set area_code=?,view_shunxu=? where id=? ";
 				        pstmt = con.prepareStatement(sql2);
@@ -1744,7 +1775,7 @@ public class ProjectInputDao extends BaseDao2 {
 					        }   
 					     } 
 						
-						String sqldeleteservice = "delete from broker_service_area where id= ?";
+						/*String sqldeleteservice = "delete from broker_service_area where id= ?";
 						pstmt = con.prepareStatement(sqldeleteservice);
 						for(int i=0;i<serviceArealistdelete.size();i++){
 							pstmt.setInt(1, serviceArealistdelete.get(i).getId());
@@ -1772,7 +1803,7 @@ public class ProjectInputDao extends BaseDao2 {
 						System.out.println("resultinterestdelete.length:"+resultinterestdelete.length);
 						for(int i=0;i<resultinterestdelete.length;i++){
 							System.out.println("resultinterestdelete"+i+":"+resultinterestdelete[i]);
-						}
+						}*/
 						
 						//鎻愪氦浜嬬墿
 						con.commit();
@@ -3416,6 +3447,117 @@ public class ProjectInputDao extends BaseDao2 {
 			            e.printStackTrace() ;   
 			        }   
 			     } 
+				
+				
+				
+				
+				String sqldeletehouseinfo = "delete from house_info where project_num= ?";
+				pstmt = con.prepareStatement(sqldeletehouseinfo);
+				pstmt.setString(1, project_num);
+				
+				int resulthouseinfodelete=pstmt.executeUpdate();
+				System.out.println("resulthouseinfodelete:"+resulthouseinfodelete);
+				
+				
+				if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+				//delete from project_desc_image
+				String sqldeleteimage = "delete from project_desc_image where project_num= ?";
+				pstmt = con.prepareStatement(sqldeleteimage);
+				pstmt.setString(1, project_num);
+				
+				int resultimagedelete=pstmt.executeUpdate();
+				System.out.println("resultimagedelete:"+resultimagedelete);
+				
+				if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+				//delete from project_desc_image
+				String sqldeletepeitaolist = "delete from project_peitao_image where project_num= ?";
+				pstmt = con.prepareStatement(sqldeletepeitaolist);
+				pstmt.setString(1, project_num);
+				
+				int resultpeitaolistdelete=pstmt.executeUpdate();
+				System.out.println("resultpeitaolistdelete:"+resultpeitaolistdelete);
+			
+				if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+				String sqldeletefujinpeitao = "delete from near_peitao where project_num= ?";
+				pstmt = con.prepareStatement(sqldeletefujinpeitao);
+				pstmt.setString(1, project_num);
+				int resultfujinpeitaodelete=pstmt.executeUpdate();
+				System.out.println("resultfujinpeitaodelete:"+resultfujinpeitaodelete);
+				
+				if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+				//delete from project_desc_image
+				String sqldeletefujinschool = "delete from near_school where project_num= ?";
+				pstmt = con.prepareStatement(sqldeletefujinschool);
+				pstmt.setString(1, project_num);
+				
+				int resultfujinschooldelete=pstmt.executeUpdate();
+				System.out.println("resultfujinschooldelete:"+resultfujinschooldelete);
+				
+				if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+				//delete from project_desc_image
+				String sqldeletehousecost = "delete from holding_finace where project_num= ?";
+				pstmt = con.prepareStatement(sqldeletehousecost);
+				pstmt.setString(1, project_num);
+				
+				int resulthousecostdelete=pstmt.executeUpdate();
+				System.out.println("resulthousecostdelete:"+resulthousecostdelete);
+				
+				if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+				//delete from project_desc_image
+				String sqldeletehousetax = "delete from house_tax where project_num= ?";
+				pstmt = con.prepareStatement(sqldeletehousetax);
+				pstmt.setString(1, project_num);
+				
+				int resulthousetaxdelete=pstmt.executeUpdate();
+				System.out.println("resulthousetaxdelete:"+resulthousetaxdelete);
+				
+				if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+				
+				
+				
+				
 				String sql2="update house_info set house_name=?,house_img=?,house_price=?,house_room_num=?,tudi_area=?,jianzhu_area=?,house_size_in=?,house_size_out=?,house_toilet_num=? ,project_num=?, update_time=? where id=?";
 		        pstmt = con.prepareStatement(sql2);
 		        for(int i=0;i<houseInfolist.size();i++){
@@ -3496,6 +3638,15 @@ public class ProjectInputDao extends BaseDao2 {
 			            e.printStackTrace() ;   
 			        }   
 			     } 
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				 String sql8="update project_peitao_image set image_name=?,project_num=? where id=? ";
 		         pstmt = con.prepareStatement(sql8);
 		        for(int i=0;i<peitaolist.size();i++){
@@ -3942,7 +4093,7 @@ public class ProjectInputDao extends BaseDao2 {
 				     } 
 				}
 					
-				String sqldeletehouseinfo = "delete from house_info where id= ?";
+				/*String sqldeletehouseinfo = "delete from house_info where id= ?";
 				pstmt = con.prepareStatement(sqldeletehouseinfo);
 				for(int i=0;i<houseInfolistdelete.size();i++){
 					pstmt.setInt(1, houseInfolistdelete.get(i).getId());
@@ -3994,7 +4145,7 @@ public class ProjectInputDao extends BaseDao2 {
 				}
 				
 				//delete from project_desc_image
-				/*String sqldeleteprojectimage = "delete from project_desc_image where id= ?";
+				String sqldeleteprojectimage = "delete from project_desc_image where id= ?";
 				for(int i=0;i<imagelistdelete.size();i++){
 					pstmt = con.prepareStatement(sqldeleteprojectimage);
 					pstmt.setInt(1, imagelistdelete.get(i).getId());
@@ -4004,7 +4155,7 @@ public class ProjectInputDao extends BaseDao2 {
 				System.out.println("resultprojectimagedelete.length:"+resultprojectimagedelete.length);
 				for(int i=0;i<resultprojectimagedelete.length;i++){
 					System.out.println("resultprojectimagedelete"+i+":"+resultprojectimagedelete[i]);
-				}*/
+				}
 				
 				//delete from project_desc_image
 				
@@ -4083,7 +4234,7 @@ public class ProjectInputDao extends BaseDao2 {
 				System.out.println("resulthousetaxdelete.length:"+resulthousetaxdelete.length);
 				for(int i=0;i<resulthousetaxdelete.length;i++){
 					System.out.println("resulthousetaxdelete"+i+":"+resulthousetaxdelete[i]);
-				}
+				}*/
 				//鎻愪氦浜嬬墿
 				con.commit();
 				//鎭㈠JDBC浜嬪姟
