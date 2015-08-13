@@ -1019,8 +1019,13 @@ var e=$('#input2').val();
 				<a class="c-fix f-r p_inves_source f-yahei s-12">数据来源：${middlePrice.middle_datasource }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;更新日期${fn:substring(middlePrice.middle_date,0,10) }</a>
 			</div>
 		</div>
-		
-		<c:if test="${fn:length(areaMiddleList) > 0 && fn:length(areaZujinList) > 0 && fn:length(areaZhikongList) > 0}">
+		<%-- ${areaMiddleYeatList}";
+  var trend_areamiddle_rate="${areaMiddleRateList}";
+  var areaZujinYeatList="${areaZujinYeatList}";
+  var areaZujinRateList="${areaZujinRateList}";
+  var areaZhikongYeatList="${areaZhikongYeatList}";
+  var areaZhikongRateList="${areaZhikongRateList}"; --%>
+		<c:if test="${fn:length(areaMiddleRateList) > 0 || fn:length(areaZujinRateList) > 0 || fn:length(areaZhikongRateList) > 0}">
 		<div class="c-fix  bkg3"  style="margin:0 auto;height:450px;width:990px">
 			<div class="c-fix p_panel_4">
 			
@@ -1903,7 +1908,7 @@ function popmodal(){
 
  </script>
  <!-- <script src="/js/familyStatus.js" charset="GBK"></script> -->
- <c:if test="${fn:length(areaMiddleList) > 0 && fn:length(areaZujinList) > 0 && fn:length(areaZhikongList) > 0}">
+ <c:if test="${fn:length(areaMiddleList) > 0 || fn:length(areaZujinList) > 0 || fn:length(areaZhikongList) > 0}">
  <script src="/js/trend.js" charset="utf-8"></script>
  </c:if>
  <script src="/js/cost.js" charset="utf-8"></script>
