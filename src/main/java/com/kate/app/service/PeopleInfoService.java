@@ -21,13 +21,20 @@ public class PeopleInfoService {
 		List<AreaPeopleInfo> list=regionPeopleDao.getAreaPeopleInfo(area_code);
 		DecimalFormat df = new DecimalFormat("#,###,###");
 		DecimalFormat df1=new DecimalFormat("0.00");
+		String zx2 = "";
+		String zx3 = "";
 		for(int i=0;i<list.size();i++){
 			String c1=list.get(i).getColumn1();
 			String c2=list.get(i).getColumn2();
 			String c3=list.get(i).getColumn3();
 			if("周薪".equals(c1)){
-				String zx2=df.format(Integer.parseInt(c2.equals("")?"0":c2));
-				String zx3=df.format(Integer.parseInt(c3.equals("")?"0":c3));
+
+				if(c2!=null && !"".equals(c2)){
+					zx2=df.format(Integer.parseInt(c2));
+				}
+				if(c3!=null && !"".equals(c3)){
+					zx3=df.format(Integer.parseInt(c3));
+				}
 				list.get(i).setColumn2(zx2);
 				list.get(i).setColumn3(zx3);			
 			}
