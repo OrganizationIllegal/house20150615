@@ -29,10 +29,10 @@ public class PeopleInfoService {
 			String c3=list.get(i).getColumn3();
 			if("周薪".equals(c1)){
 
-				if(c2!=null && !"".equals(c2)){
+				if(c2!=null && !"".equals(c2)&&IsFloatType.isDouble(c2)){
 					zx2=df.format(Integer.parseInt(c2));
 				}
-				if(c3!=null && !"".equals(c3)){
+				if(c3!=null && !"".equals(c3)&&IsFloatType.isDouble(c3)){
 					zx3=df.format(Integer.parseInt(c3));
 				}
 				list.get(i).setColumn2(zx2);

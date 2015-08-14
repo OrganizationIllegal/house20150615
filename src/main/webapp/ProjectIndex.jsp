@@ -2,8 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
-<%-- <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fun"%> --%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%-- <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fun"%> --%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -1075,18 +1075,30 @@ var e=$('#input2').val();
 						<a class="f-l f-yahei s-14 p_spec">${item}</a>
 						
 						</c:forEach>
+						<c:if test="${fn:length(featureList) < 6}">
+							<a class="f-l f-yahei s-14 p_spec"></a>
+						</c:if>
 						<c:forEach items="${featureList}" var="item" varStatus="var" begin="1" end="9" step="5">
 						<a class="f-l f-yahei s-14 p_spec">${item}</a>
 						
 						</c:forEach>
+						<c:if test="${fn:length(featureList) < 7}">
+							<a class="f-l f-yahei s-14 p_spec"></a>
+						</c:if>
 						<c:forEach items="${featureList}" var="item" varStatus="var" begin="2" end="9" step="5">
 						<a class="f-l f-yahei s-14 p_spec">${item}</a>
 						
 						</c:forEach>
+						<c:if test="${fn:length(featureList) < 8}">
+							<a class="f-l f-yahei s-14 p_spec"></a>
+						</c:if>
 						<c:forEach items="${featureList}" var="item" varStatus="var" begin="3" end="9" step="5">
 						<a class="f-l f-yahei s-14 p_spec">${item}</a>
 						
 						</c:forEach>
+						<c:if test="${fn:length(featureList) < 9}">
+							<a class="f-l f-yahei s-14 p_spec"></a>
+						</c:if>
 						<c:forEach items="${featureList}" var="item" varStatus="var" begin="4" end="9" step="5">
 						<a class="f-l f-yahei s-14 p_spec">${item}</a>
 						
