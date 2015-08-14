@@ -1371,7 +1371,7 @@ public class SearchListDao extends BaseDao2 {
 	/*
 	 * 通过区域编号在数据库中查找项目信息
 	 */
-	public List<HouseProject> searchIndexProjectByCity(String areaNum){
+	public List<HouseProject> searchIndexProjectByCity(String areaNum, String searchCity){
 		NumberFormat df = new DecimalFormat("#,###,###");
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -1380,7 +1380,7 @@ public class SearchListDao extends BaseDao2 {
 		List<HouseProject> houseProjectList=new ArrayList<HouseProject>();
 		try {con = dataSource.getConnection();
 
-			String sql = "SELECT * FROM house_project a, area_info b WHERE a.area_num=b.area_num  AND a.isSeen=1 AND a.gps!='' AND a.gps LIKE '%,%' AND b.area_city LIKE '"+areaNum+"'";
+			String sql = "SELECT * FROM house_project a, area_info b WHERE a.area_num=b.area_num  AND a.isSeen=1 AND a.gps!='' AND a.gps LIKE '%,%' AND b.area_city LIKE '%"+areaNum+"%' or a.project_name ='"+searchCity+"'";
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(sql);
 		    while(rs.next()){
@@ -1494,10 +1494,9 @@ public class SearchListDao extends BaseDao2 {
 		List<HouseProject> houseProjectList=new ArrayList<HouseProject>();
 		try {con = dataSource.getConnection();
 
-			String sql = "SELECT * FROM house_project a, area_info b WHERE a.area_num=b.area_num  AND a.isSeen=1 AND a.gps!='' AND a.gps LIKE '%,%' AND  b.area_name LIKE '"+areaNum +"' AND b.area_city LIKE '"+ areaNum + "' OR b.area_zhou LIKE '"+ areaNum + "'";
+			String sql = "SELECT * FROM house_project a, area_info b WHERE a.area_num=b.area_num  AND a.isSeen=1 AND a.gps!='' AND a.gps LIKE '%,%' AND  b.area_name LIKE '%"+areaNum +"%' AND b.area_city LIKE '%"+ areaNum + "%' OR b.area_zhou LIKE '%"+ areaNum + "%'";
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(sql);
-			  rs = pstmt.executeQuery();
 		    while(rs.next()){
 		    	HouseProject projectInfo = new HouseProject();
 		    	String project_name = rs.getString("project_name");

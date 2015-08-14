@@ -349,7 +349,7 @@ public class SearchController {
 				else if(searchItemList.length == 2){
 					String[] strs1 = searchcity.split(",");
 					String city1 = strs1[0];
-					list1 = searchListDao.searchIndexProjectByCity(city1);  //通过区域的名称在数据库中查找项目信息
+					list1 = searchListDao.searchIndexProjectByCity(city1, searchcity);  //通过区域的名称在数据库中查找项目信息
 				}
 				else{
 					if(searchcity.indexOf("项目名称")>0){   //包含项目名称字段
