@@ -1774,20 +1774,179 @@ con = dataSource.getConnection();
 				if("".equals(touzi_date)){
 					touzi_date=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//
 				}
-				/*Timestamp tstouzi = new Timestamp(System.currentTimeMillis()); 
-				if(touzi_date==null||"".equals(touzi_date)){
-					touzi_date = "2015-05-09";
-					//(new SimpleDateFormat("yyyy-MM-dd"))銆俧ormat(new Date())
-				 	time_strtouzi = touzi_date+" "+"00:00:00";
+				boolean flagtouzi1 = true;
+				if("".equals(touzi_date1)){
+					touzi_date1=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//
 				}
-		        try {   
-		       
-		        	tstouzi = Timestamp.valueOf(time_strtouzi);   
-		            System.out.println(tstouzi);   
-		        } catch (Exception e) {   
-		            e.printStackTrace();   
-		        }*/
-		        String sqltouzi = " update investment_data set year_increment_rate=?, middle_price=?, middle_zu_price=?, zu_house_rate=?, zu_xuqiu=?, price_review=?, data_exam=?, area_num=?, area_name=?, touzi_datasource=?, touzi_date=?, area_type=? where id=?";
+				String sqlinvestgongyucount="select COUNT(*) from investment_data where area_type='公寓' and area_num = ?";
+				pstmt=con.prepareStatement(sqlinvestgongyucount);
+				pstmt.setString(1,area_num);
+				ResultSet rsgongyu = null;
+				int gongyucount=0;
+				rsgongyu = pstmt.executeQuery();
+				while(rsgongyu.next()){
+					gongyucount = rsgongyu.getInt(1);
+				}
+				if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+				if(rsgongyu!=null){
+					try{   
+						rsgongyu.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+				}
+				if(gongyucount==0){
+					String sqltouzi = " insert into investment_data(year_increment_rate, middle_price, middle_zu_price, zu_house_rate, zu_xuqiu, price_review, data_exam, area_num, area_name, touzi_datasource, touzi_date, area_type) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+			        pstmt = con.prepareStatement(sqltouzi);
+					pstmt.setString(1, year_increment_rate);
+					pstmt.setString(2, middle_price);
+					pstmt.setString(3, middle_zu_price);
+					pstmt.setString(4, zu_house_rate);
+					pstmt.setString(5, zu_xuqiu);
+					pstmt.setString(6, price_review);
+					pstmt.setString(7, data_exam);
+					pstmt.setString(8, area_num);
+					pstmt.setString(9, area_name);
+					pstmt.setString(10, touzi_datasource);
+					pstmt.setString(11, touzi_date);
+					pstmt.setString(12, pro_type);
+					int resulttouzi = pstmt.executeUpdate();
+					if(resulttouzi == 0){
+						flagtouzi = false;
+					}
+					 
+					if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     }
+				}
+				else if(gongyucount>0){
+					String sqltouzi = " update investment_data set year_increment_rate=?, middle_price=?, middle_zu_price=?, zu_house_rate=?, zu_xuqiu=?, price_review=?, data_exam=?, area_num=?, area_name=?, touzi_datasource=?, touzi_date=?, area_type=? where id=?";
+					pstmt = con.prepareStatement(sqltouzi);
+					pstmt.setString(1, year_increment_rate);
+					pstmt.setString(2, middle_price);
+					pstmt.setString(3, middle_zu_price);
+					pstmt.setString(4, zu_house_rate);
+					pstmt.setString(5, zu_xuqiu);
+					pstmt.setString(6, price_review);
+					pstmt.setString(7, data_exam);
+					pstmt.setString(8, area_num);
+					pstmt.setString(9, area_name);
+					pstmt.setString(10, touzi_datasource);
+					pstmt.setString(11, touzi_date);
+					pstmt.setString(12, pro_type);
+					pstmt.setInt(13, Id2);
+					int resulttouzi = pstmt.executeUpdate();
+					if(resulttouzi == 0){
+						flagtouzi = false;
+					}
+					if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				}
+				
+				String sqlinvestbieshucount="select COUNT(*) from investment_data where  area_type='别墅' and  area_num = ?";
+				pstmt=con.prepareStatement(sqlinvestbieshucount);
+				pstmt.setString(1,area_num);
+				ResultSet rsbieshu = null;
+				int bieshucount=0;
+				rsbieshu = pstmt.executeQuery();
+				while(rsbieshu.next()){
+					bieshucount = rsbieshu.getInt(1);
+				}
+				if(pstmt != null){   // 关闭声明   
+			        try{   
+			            pstmt.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+			     } 
+				if(rsbieshu!=null){
+					try{   
+						rsbieshu.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+				}
+				if(bieshucount==0){
+					if("".equals(touzi_date1)){
+						touzi_date1=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//
+					}
+		        
+			        String sqltouzi1 = " insert into investment_data(year_increment_rate, middle_price, middle_zu_price, zu_house_rate, zu_xuqiu, price_review, data_exam, area_num, area_name, touzi_datasource, touzi_date, area_type) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+					pstmt = con.prepareStatement(sqltouzi1);
+					pstmt.setString(1, year_increment_rate1);
+					pstmt.setString(2, middle_price1);
+					pstmt.setString(3, middle_zu_price1);
+					pstmt.setString(4, zu_house_rate1);
+					pstmt.setString(5, zu_xuqiu1);
+					pstmt.setString(6, price_review1);
+					pstmt.setString(7, data_exam1);
+					pstmt.setString(8, area_num);
+					pstmt.setString(9, area_name);
+					pstmt.setString(10, touzi_datasource1);
+					pstmt.setString(11, touzi_date1);
+					pstmt.setString(12, pro_type1);
+					int resulttouzi1 = pstmt.executeUpdate();
+					if(resulttouzi1 == 0){
+						flagtouzi = false;
+					}
+					
+					if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				}
+				else if(bieshucount>0){
+					if("".equals(touzi_date1)){
+						touzi_date1=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//
+					}
+			        String sqltouzi1 = " update investment_data set year_increment_rate=?, middle_price=?, middle_zu_price=?, zu_house_rate=?, zu_xuqiu=?, price_review=?, data_exam=?, area_num=?, area_name=?, touzi_datasource=?, touzi_date=?, area_type=? where id=?";
+					pstmt = con.prepareStatement(sqltouzi1);
+					pstmt.setString(1, year_increment_rate1);
+					pstmt.setString(2, middle_price1);
+					pstmt.setString(3, middle_zu_price1);
+					pstmt.setString(4, zu_house_rate1);
+					pstmt.setString(5, zu_xuqiu1);
+					pstmt.setString(6, price_review1);
+					pstmt.setString(7, data_exam1);
+					pstmt.setString(8, area_num);
+					pstmt.setString(9, area_name);
+					pstmt.setString(10, touzi_datasource1);
+					pstmt.setString(11, touzi_date1);
+					pstmt.setString(12, pro_type1);
+					pstmt.setInt(13, Id21);
+					
+					int resulttouzi1 = pstmt.executeUpdate();
+					if(resulttouzi1 == 0){
+						flagtouzi1 = false;
+					}
+					if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				}
+				
+		        /*String sqltouzi = " update investment_data set year_increment_rate=?, middle_price=?, middle_zu_price=?, zu_house_rate=?, zu_xuqiu=?, price_review=?, data_exam=?, area_num=?, area_name=?, touzi_datasource=?, touzi_date=?, area_type=? where id=?";
 				pstmt = con.prepareStatement(sqltouzi);
 				pstmt.setString(1, year_increment_rate);
 				pstmt.setString(2, middle_price);
@@ -1814,25 +1973,7 @@ con = dataSource.getConnection();
 			        }   
 			     } 
 				
-				//鎶曡祫鏁版嵁
-				boolean flagtouzi1 = true;
-				String time_strtouzi1 = "";
-				if("".equals(touzi_date1)){
-					touzi_date1=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//
-				}
-				/*Timestamp tstouzi1 = new Timestamp(System.currentTimeMillis()); 
-				if(touzi_date1==null||"".equals(touzi_date1)){
-					touzi_date1 = "2015-05-09";
-					//(new SimpleDateFormat("yyyy-MM-dd"))銆俧ormat(new Date())
-				 	time_strtouzi1 = touzi_date1+" "+"00:00:00";
-				}
-		        try {   
-		       
-		        	tstouzi1 = Timestamp.valueOf(time_strtouzi1);   
-		            System.out.println(tstouzi1);   
-		        } catch (Exception e) {   
-		            e.printStackTrace();   
-		        }*/
+				
 		        String sqltouzi1 = " update investment_data set year_increment_rate=?, middle_price=?, middle_zu_price=?, zu_house_rate=?, zu_xuqiu=?, price_review=?, data_exam=?, area_num=?, area_name=?, touzi_datasource=?, touzi_date=?, area_type=? where id=?";
 				pstmt = con.prepareStatement(sqltouzi1);
 				pstmt.setString(1, year_increment_rate1);
@@ -1859,43 +2000,19 @@ con = dataSource.getConnection();
 			        }catch(SQLException e){   
 			            e.printStackTrace() ;   
 			        }   
-			     } 
+			     } */
 				
 		        //areafamily鍖哄煙瀹跺涵鏋勬垚
 				boolean flagfamily = true;
-				/*String time_strfamily = "";
-				Timestamp tsfamily = new Timestamp(System.currentTimeMillis()); 
-				if(family_date==null||"".equals(family_date)){
-					family_date = "2015-05-09";
-					time_strfamily = family_date+" "+"00:00:00";
-				}
-		        try {   
-		        
-		        	tsfamily = Timestamp.valueOf(time_strfamily);   
-		            System.out.println(tsfamily);   
-		        } catch (Exception e) {   
-		            e.printStackTrace();   
-		        }  */
-				if("".equals(family_date)){
-					family_date=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//
-				}
-		        String sqlfamily = " update area_family set family_one=?, family_one_rate=?, family_two=?, family_two_rate=?, family_three=?, family_three_rate=?, area_code=?, family_datasource=?, family_date=? where id=?";
-				pstmt = con.prepareStatement(sqlfamily);
-				pstmt.setString(1, family_one);
-				pstmt.setString(2, family_one_rate);
-				pstmt.setString(3, family_two);
-				pstmt.setString(4, family_two_rate);
-				pstmt.setString(5, family_three);
-				pstmt.setString(6, family_three_rate);
-				pstmt.setString(7, area_num);
-				pstmt.setString(8, family_datasource);
-				pstmt.setString(9, family_date);
-				pstmt.setInt(10, Id3);
 				
-				
-				int result = pstmt.executeUpdate();
-				if(result == 0){
-					flagfamily = false;
+				String sqlfamilycount="select COUNT(*) from area_family where area_code = ?";
+				pstmt=con.prepareStatement(sqlfamilycount);
+				pstmt.setString(1,area_num);
+				ResultSet rsfamily = null;
+				int familycount=0;
+				rsfamily = pstmt.executeQuery();
+				while(rsfamily.next()){
+					familycount = rsfamily.getInt(1);
 				}
 				if(pstmt != null){   // 关闭声明   
 			        try{   
@@ -1904,9 +2021,76 @@ con = dataSource.getConnection();
 			            e.printStackTrace() ;   
 			        }   
 			     } 
-		        
-				
-				
+				if(rsfamily!=null){
+					try{   
+						rsfamily.close() ;   
+			        }catch(SQLException e){   
+			            e.printStackTrace() ;   
+			        }   
+				}
+				if(familycount==0){
+					String family_date_str=null;
+				     if(family_date==null || "".equals(family_date)){
+				    	 family_date_str=null;
+				     }else{
+				    	 family_date_str=family_date.toString();
+				     }
+			        String sqlfamily = " insert into area_family(family_one, family_one_rate, family_two, family_two_rate, family_three, family_three_rate, area_code, family_datasource, family_date) values(?,?,?,?,?,?,?,?,?)";
+					pstmt = con.prepareStatement(sqlfamily);
+					pstmt.setString(1, family_one);
+					pstmt.setString(2, family_one_rate);
+					pstmt.setString(3, family_two);
+					pstmt.setString(4, family_two_rate);
+					pstmt.setString(5, family_three);
+					pstmt.setString(6, family_three_rate);
+					pstmt.setString(7, area_num);
+					pstmt.setString(8, family_datasource);
+					pstmt.setString(9, family_date_str);
+					
+					
+					int result = pstmt.executeUpdate();
+					if(result == 0){
+						flagfamily = false;
+					}
+					
+					if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				}
+				else if(bieshucount>0){
+					if("".equals(family_date)){
+						family_date=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());//
+					}
+			        String sqlfamily = " update area_family set family_one=?, family_one_rate=?, family_two=?, family_two_rate=?, family_three=?, family_three_rate=?, area_code=?, family_datasource=?, family_date=? where id=?";
+					pstmt = con.prepareStatement(sqlfamily);
+					pstmt.setString(1, family_one);
+					pstmt.setString(2, family_one_rate);
+					pstmt.setString(3, family_two);
+					pstmt.setString(4, family_two_rate);
+					pstmt.setString(5, family_three);
+					pstmt.setString(6, family_three_rate);
+					pstmt.setString(7, area_num);
+					pstmt.setString(8, family_datasource);
+					pstmt.setString(9, family_date);
+					pstmt.setInt(10, Id3);
+					
+					
+					int result = pstmt.executeUpdate();
+					if(result == 0){
+						flagfamily = false;
+					}
+					if(pstmt != null){   // 关闭声明   
+				        try{   
+				            pstmt.close() ;   
+				        }catch(SQLException e){   
+				            e.printStackTrace() ;   
+				        }   
+				     } 
+				}
 				
 				
 				
