@@ -13,6 +13,8 @@ import com.kate.app.dao.BingMapDao;
 import com.kate.app.model.BingMapCenter;
 import com.kate.app.model.BingMapVo;
 import com.kate.app.model.HouseProject;
+
+import net.sf.ezmorph.object.NumberMorpher;
 @Service
 public class BingMapService {
 	@Autowired
@@ -275,4 +277,100 @@ public class BingMapService {
 		}
 		return array;
 	}
+	
+	//根据项目名搜索
+		public List<HouseProject> filterByGPS(String leftX, String leftY, String rightX, String rightY){
+			int leftX0 = Integer.parseInt(leftX);
+			int leftY0 = Integer.parseInt(leftY);
+			int rightX0 = Integer.parseInt(rightX);
+			int rightY0 = Integer.parseInt(rightY);
+			int trueX = 0;
+			int trueY = 0;
+			JSONArray array = new JSONArray();
+			DecimalFormat df = new DecimalFormat("#,###,###");
+			List<HouseProject> resultList =  new ArrayList<HouseProject>();
+			List<HouseProject> coordinatesList =  bingMapDao.filterByGPS(leftX, leftY, rightX, rightY);
+			for(HouseProject item : coordinatesList){
+				String gps = item.getGps();
+				String x = "";
+				String y = "";
+				String[] strs = null;
+				if(gps!=null && !"".equals(gps)){
+					strs = gps.split(",");
+				}
+				x = strs[0];
+				y = strs[1];
+				if(x!=null && !"".equals(x)){
+					trueX = Integer.parseInt(x);
+				}
+				if(y!=null && !"".equals(y)){
+					trueY = Integer.parseInt(y);
+				}
+				if(trueX >= leftX0 && trueX <= rightX0 && trueY>=leftY0 && trueY <=rightY0){
+					resultList.add(item);
+				}
+			}
+			return resultList;
+			
+		}
+		
+		public JSONArray filterByGPSJson(String leftX, String leftY, String rightX, String rightY){
+			List<HouseProject> resultList = filterByGPS(leftX,leftY,rightX,rightY);
+			JSONArray array = new JSONArray();
+			DecimalFormat df = new DecimalFormat("#,###,###");
+
+		for(HouseProject data : resultList){
+			JSONObject obj = new JSONObject();
+			obj.put("id", data.getId());
+			obj.put("gps", data.getGps()==null?"":data.getGps());
+			/*String project_name_short = data.getProject_name();
+			if(project_name_short!=null && !"".equals(project_name_short)){
+				if(project_name_short.length()>20){
+					project_name_short = project_name_short.substring(0, 20);
+				}
+			}*/
+			obj.put("project_name", data.getProject_name()==null?"":data.getProject_name());
+			obj.put("project_name_short", data.getProject_name_short());
+			
+			obj.put("project_img", data.getProject_img()==null?"":data.getProject_img());
+			obj.put("project_price", data.getProject_price()==null?"":data.getProject_price());
+			obj.put("project_num", data.getProject_num()==null?"":data.getProject_num());
+
+			/*obj.put("project_min_price", data.getProject_min_price()==null?"N/A":df.format(Integer.parseInt(data.getProject_min_price())));
+			obj.put("project_high_price", data.getProject_high_price()==null?"N/A":df.format(Integer.parseInt(data.getProject_high_price())));*/
+			obj.put("project_min_price", data.getProject_min_price());
+			obj.put("project_high_price", data.getProject_high_price());
+/*=======
+			obj.put("project_min_price", data.getProject_min_price()==null?"N/A":df.format(Integer.parseInt(data.getProject_min_price())));
+			obj.put("project_high_price", data.getProject_high_price()==null?"N/A":df.format(Integer.parseInt(data.getProject_high_price())));*/
+
+			obj.put("project_zhou", data.getProject_zhou()==null?"":data.getProject_zhou());
+			obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
+			obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
+			
+			/*String project_address_short = data.getProject_address();
+			if(project_address_short!=null && !"".equals(project_address_short)){
+				if(project_address_short.length()>40){
+					project_address_short = project_address_short.substring(0, 40);
+				}
+			}*/
+			obj.put("project_address", data.getProject_address()==null?"":data.getProject_address());
+
+			obj.put("project_address_short", data.getProject_address_short());			
+
+			obj.put("minArea", data.getMin_area()==0?0:data.getMin_area());
+			obj.put("maxArea", data.getMax_area()==0?0:data.getMax_area());
+			obj.put("return_money", data.getReturn_money()==null?"":data.getReturn_money());
+			//obj.put("project_price_int_qi", data.getProject_price_int_qi()==0?"N/A":df.format(data.getProject_price_int_qi()));
+			obj.put("project_price_int_qi", data.getProject_price_int_qi_str());
+			obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
+			obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
+			obj.put("project_key", data.getProject_key()==null?"":data.getProject_key());
+			array.add(obj);
+		}
+		return array;
+	}
+	
+	
+	
 }

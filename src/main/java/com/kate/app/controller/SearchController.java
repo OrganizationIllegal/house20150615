@@ -946,6 +946,131 @@ public class SearchController {
 		}
 		
 		
+		@RequestMapping({ "/BingMap1/filterByGPS" })    
+		public void filterByGPS(HttpServletRequest req, HttpServletResponse resp){    //公寓
+			String gpsLeftX = req.getParameter("gpsLeftX");
+			String gpsLeftY = req.getParameter("gpsLeftY");
+			String gpsRightX = req.getParameter("gpsRightX");
+			String gpsRightY = req.getParameter("gpsRightY");
+			
+			List<HouseProject> list = bingMapService.filterByGPS(gpsLeftX,gpsLeftY,gpsRightX,gpsRightY);
+			
+			
+			
+			flagInfo = 2;          //根据类型进行查询
+			
+			JSONObject json = new JSONObject();
+			JSONArray array = new JSONArray();
+			JSONArray array2 = new JSONArray();
+			JSONArray array3 = new JSONArray();
+			JSONArray arrayCenter = new JSONArray();
+			JSONArray arrayCentermoren = new JSONArray();
+			List<String> city=new ArrayList<String>();
+			/*int type=Integer.parseInt(req.getParameter("house_type"));
+			List<HouseProject> list = bingMapDao.filterByHouseType2(type,0);
+			for(HouseProject item : list){
+				if(item!=null){
+					if(item.getProject_num()!=null && !"".equals(item.getProject_num())){
+						String project_img = "";
+						List<ProjectDescImage> imageList = projectInputDao.getProjectImageByProNum(item.getProject_num());
+						if(imageList!=null && imageList.size()>0){
+							project_img = imageList.get(0).getName();
+						}
+						else{
+							project_img = "";
+						}
+						item.setProject_img(project_img);
+					}
+				}
+				
+			}
+			typeListResult = list;    //根据类型查询结果集合
+			typeListResultShengxu = bingMapDao.filterByHouseType2(type,1);    //根据类型查询结果集合
+			for(HouseProject item : typeListResultShengxu){
+				if(item!=null){
+					if(item.getProject_num()!=null && !"".equals(item.getProject_num())){
+						String project_img = "";
+						List<ProjectDescImage> imageList = projectInputDao.getProjectImageByProNum(item.getProject_num());
+						if(imageList!=null && imageList.size()>0){
+							project_img = imageList.get(0).getName();
+						}
+						else{
+							project_img = "";
+						}
+						item.setProject_img(project_img);
+					}
+				}
+				
+			}
+			typeListResultJiangxu = bingMapDao.filterByHouseType2(type,2);    //根据类型查询结果集合
+			for(HouseProject item : typeListResultJiangxu){
+				if(item!=null){
+					if(item.getProject_num()!=null && !"".equals(item.getProject_num())){
+						String project_img = "";
+						List<ProjectDescImage> imageList = projectInputDao.getProjectImageByProNum(item.getProject_num());
+						if(imageList!=null && imageList.size()>0){
+							project_img = imageList.get(0).getName();
+						}
+						else{
+							project_img = "";
+						}
+						item.setProject_img(project_img);
+					}
+				}
+				
+			}*/
+			array = bingMapService.filterByGPSJson(gpsLeftX,gpsLeftY,gpsRightX,gpsRightY);
+			
+			arrayCenter=bingMapService.jsonMapCenter();
+			int lenCenter=arrayCenter.size();
+			for(int k=0;k<lenCenter;k++){
+				JSONObject objCenter=(JSONObject)arrayCenter.get(k);
+				String typeCenter=objCenter.getString("type");
+				if("默认".equals(typeCenter)){
+					arrayCentermoren.add(objCenter);
+				}
+			}
+			int len=array.size();
+			for(int i=0;i<len;i++){
+				JSONObject obj=(JSONObject)array.get(i);
+				String project_city=obj.getString("project_city");
+				city.add(project_city);
+			}
+			Set<String> uniqueSet = new HashSet<String>(city);
+			for (String temp : uniqueSet) {
+				String str1=temp;
+				int size=Collections.frequency(city, temp);
+				JSONObject obj2 = new JSONObject();
+				obj2.put("city", size);
+				array2.add(obj2);
+				for(int j=0;j<len;j++){
+					JSONObject obj3=(JSONObject)array.get(j);
+					String project_city2=obj3.getString("project_city");
+					if(project_city2.equals(str1)){
+						array3.add(obj3);
+						break;
+					}
+				}
+	        }
+			/*System.out.println(array2);
+			System.out.println(array3);
+			System.out.println(array2.size());
+			System.out.println(array3.size());*/
+			json.put("List", array);
+			json.put("List2", array2);
+			json.put("List3", JSONArray.parseArray(JSON.toJSONString(array3, SerializerFeature.DisableCircularReferenceDetect)));
+			json.put("ListCentermoren", arrayCentermoren);
+			try{
+				writeJson(json.toJSONString(),resp);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
+		
+		
 		@RequestMapping({ "/BingMap1/FileterKeyWord" })    
 		public void filterByKeyWord(HttpServletRequest req, HttpServletResponse resp){
 			flagInfo = 3;
