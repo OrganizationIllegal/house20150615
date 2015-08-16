@@ -48,6 +48,9 @@ public class SearchListController {
 	public String search_controller(HttpServletRequest req, HttpServletResponse resp){
 		//List<SearchList> searchList=searchListDao.listSearchList().subList(0, 5);
 		//req.setAttribute("searchList",searchList);
+		//得到所有的国家名称
+		List<String> nations=searchListDao.findAllNation();
+		req.setAttribute("nations", nations);
 		return "/searchList.jsp";
 	}
 	/**
@@ -74,7 +77,10 @@ public class SearchListController {
 				projecttype="";
 				break;
 		}
-			
+		String nation=req.getParameter("nation");
+		String city=req.getParameter("city");
+		String area=req.getParameter("area");
+		
 		String zongjiatemp=req.getParameter("zongjia");
 		String danjiatemp=req.getParameter("danjia");
 		String[] zongjiaarray=zongjiatemp.split(";");
@@ -107,7 +113,7 @@ public class SearchListController {
 		String pageSize_str  = req.getParameter("pageSize");  //姣忛〉閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓锟�
 		int pageSize  = pageSize_str==null? 0 :Integer.parseInt(pageSize_str);
 		
-		List<SearchList> searchList=searchListDao.filterSearchList(projecttype, zongjiamin, zongjiamax,danjiamin,danjiamax,xinaipan,remen,youxiu,center,baozu,huaren,zuixin,daxue,xianfang,traffic,woshimin,woshimax);
+		List<SearchList> searchList=searchListDao.filterSearchList(projecttype, zongjiamin, zongjiamax,danjiamin,danjiamax,xinaipan,remen,youxiu,center,baozu,huaren,zuixin,daxue,xianfang,traffic,woshimin,woshimax,nation,city,area);
 		for(SearchList a:searchList){
 			String project_num=a.getProject_num();
 			List<ProjectDescImage> imageList2 = houseProjectDao.HouseProjectImageList(project_num);
@@ -558,7 +564,53 @@ public class SearchListController {
 				e.printStackTrace();
 			}
 		}
-		
+		/**
+		 * 根据所选国家得到所有城市
+		 * @param req
+		 * @param resp
+		 */
+		@RequestMapping({"/findCityByNation"})
+		public void findCityByNation(HttpServletRequest req, HttpServletResponse resp){
+			JSONArray array = new JSONArray();
+			JSONObject json=new JSONObject();
+			String nation=req.getParameter("nation");
+			List<String> citys=searchListDao.findCityByNation(nation);
+			for(String item : citys){
+				JSONObject obj=new JSONObject();
+				obj.put("city", item);
+				array.add(obj);
+			}
+			json.put("cityArray", array);
+			try{
+				writeJson(json.toJSONString(),resp);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		/**
+		 * 根据所选城市得到所选 区域
+		 * @param req
+		 * @param resp
+		 */
+		@RequestMapping({"/findAreaByCity"})
+		public void findAreaByCity(HttpServletRequest req, HttpServletResponse resp){
+			JSONArray array = new JSONArray();
+			JSONObject json=new JSONObject();
+			String city=req.getParameter("city");
+			List<String> areas=searchListDao.findAreaByCity(city);
+			for(String item : areas){
+				JSONObject obj=new JSONObject();
+				obj.put("area", item);
+				array.add(obj);
+			}
+			json.put("areaArray", array);
+			try{
+				writeJson(json.toJSONString(),resp);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+	
 	
 		public void writeJson(String json, HttpServletResponse response)throws Exception{
 		    response.setContentType("text/html");

@@ -134,8 +134,9 @@ public class SearchListDao extends BaseDao2 {
 		return searchInfoList;
 	} 
 	//项目列表页搜索
-	public List<SearchList> filterSearchList(String projecttype,int zongjiamin,int zongjiamax,int danjiamin,int danjiamax,String xinaipan1,String remen1,String youxiu1,String center1,String baozu1,String huaren1,String zuixin1,String daxue1,String xianfang1,String traffic1,int woshimin,int woshimax){
-		Statement stmt = null;Connection con = null;
+	public List<SearchList> filterSearchList(String projecttype,int zongjiamin,int zongjiamax,int danjiamin,int danjiamax,String xinaipan1,String remen1,String youxiu1,String center1,String baozu1,String huaren1,String zuixin1,String daxue1,String xianfang1,String traffic1,int woshimin,int woshimax,String nation,String city,String area){
+		Statement stmt = null;
+		Connection con = null;
 
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
@@ -156,6 +157,10 @@ public class SearchListDao extends BaseDao2 {
 			sql+=" and project_price_int_qi >="+danjiamin;
 			sql+=" and project_price_int_qi <="+danjiamax;
 			sql+=" and project_price_int_qi >="+danjiamin;
+			
+			sql+=" and project_nation like '%"+nation+"%'";
+			sql+=" and project_city like '%"+city+"%'";
+			sql+=" and project_area like '%"+area+"%'";
 			
 			
 			if(xinaipan1.equals("1")){
@@ -1768,6 +1773,106 @@ public class SearchListDao extends BaseDao2 {
         }
 		return imageList;
 	}
+	/**
+	 * 得到所有的国家名字
+	 * @param nation
+	 * @return
+	 */
+		public List<String> findAllNation(){
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+			Connection con = null;
+			List<String> nations=new ArrayList<String>();
+			try{
+			con = dataSource.getConnection();
+			String sql = "select * from nation ";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				String nation_name=rs.getString("nation_name");
+				nations.add(nation_name);
+			}
+			
+		}catch (Exception e) {
+			 e.printStackTrace();
+	    }
+		finally{
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
+	    }
+	  return nations;
+	}
+		
+/**
+ * 根据国家查找城市
+ * @param nation
+ * @return
+ */
+	public List<String> findCityByNation(String nation){
+		Statement stmt = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		Connection con = null;
+		List<String> citys=new ArrayList<String>();
+		try{
+		con = dataSource.getConnection();
+		String sql = "select * from city where pre_num=?";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, nation);
+		rs = pstmt.executeQuery();
+		while(rs.next()){
+			String city=rs.getString("city_name");
+			citys.add(city);
+		}
+		
+	}catch (Exception e) {
+		 e.printStackTrace();
+    }
+	finally{
+		 try { if (rs != null) rs.close(); } catch(Exception e) { }
+		 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+		 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+		 try { if (con != null) con.close(); } catch(Exception e) { }
+    }
+  return citys;
+}
+	/**
+	 * 根据城市查找区域
+	 * @param city
+	 * @return
+	 */
+		public List<String> findAreaByCity(String city){
+			Statement stmt = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+			Connection con = null;
+			List<String> areas=new ArrayList<String>();
+			try{
+			con = dataSource.getConnection();
+			String sql = "select * from area where pre_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, city);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				String area_name=rs.getString("area_name");
+				areas.add(area_name);
+			}
+			
+		}catch (Exception e) {
+			 e.printStackTrace();
+	    }
+		finally{
+			 try { if (rs != null) rs.close(); } catch(Exception e) { }
+			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+			 try { if (con != null) con.close(); } catch(Exception e) { }
+	    }
+	  return areas;
+	}
+	
 	
 	
 }
