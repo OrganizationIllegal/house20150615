@@ -75,9 +75,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a class="c-fix f-l f-yahei s-14 btn cp hover" style="padding:4px 6px;border:2px solid rgb(245,161,27)" href="/BingMap">地图找房</a>
 				<a class="f-l f-yahei s-14 btn cp btn_sel hover" style="margin-left:1px;padding:4px 6px;" href="/searchList.jsp">列表找房</a>
 				<!-- <div class="c-fix f-l" style="color:#617c97;font-size:16px;font-weight:bold;margin-bottom:10px;margin-top:45px;font-family:微软雅黑;">进一步搜索</div> -->
-				<span class="c-fix f-l f-yahei s-14" style="color:#333;margin-top:60px;">类型</span>
-				<select style="width:100%;height:30px;line-height:30px;margin-top:3px;font-family:微软雅黑" id="projecttype" name="projecttype">
-					<option value="0">请选择</option>
+				<select onchange="func1()" style="width:100%;height:30px;line-height:30px;margin-top:30px;font-family:微软雅黑" id="nation" name="nation">
+					<option value="0">国家</option>
+				    <c:forEach items="${nations}" var="item">
+        		 		<option value="${item}">${item}</option>
+                   </c:forEach>
+				</select>
+				<select onchange="func2()" style="width:100%;height:30px;line-height:30px;margin-top:20px;font-family:微软雅黑" id="city" name="city">
+					<option value="0">城市</option>
+				</select>
+				<select onchange="func3()" style="width:100%;height:30px;line-height:30px;margin-top:20px;font-family:微软雅黑" id="area" name="area">
+					<option value="0">区域</option>
+				</select>
+				<!-- <span class="c-fix f-l f-yahei s-14" style="color:#333;margin-top:60px;">类型</span> -->
+				<select style="width:100%;height:30px;line-height:30px;margin-top:20px;font-family:微软雅黑" id="projecttype" name="projecttype">
+					<option value="0">类型</option>
 					<option value="1">公寓</option>
 					<option value="2">别墅</option>
 					<option value="3">联排别墅</option>
@@ -268,9 +280,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 }
            }); 
        $("#filter").submit(function(e){
+    	        		 var nation=$("#nation").val();
+    	        		 var city=$("#city").val();
+    	        		 var area=$("#area").val();
  						 var projecttype=$("#projecttype").val();
  						 
- 						var zongjia=$("#zongjia").val();
+ 						 var zongjia=$("#zongjia").val();
  						 var danjia=$("#danjia").val();
  						 var woshi=$("#woshi").val();
  						/*  alert(woshi); */
@@ -320,7 +335,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						                        type: "POST",  
 						                        async: false,
 						                        dataType: "json",  
-						                        url: '/FilterList?projecttype='+projecttype+'&zongjia='+zongjia+"&danjia="+danjia+'&xinaipan='+xinaipan+'&remen='+remen+'&youxiu='+youxiu+'&center='+center+'&baozu='+baozu+'&huaren='+huaren+'&zuixin='+zuixin+'&daxue='+daxue+'&xianfang='+xianfang+'&traffic='+traffic+'&woshi='+woshi,      //提交到一般处理程序请求数据   
+						                        url: '/FilterList?projecttype='+projecttype+'&zongjia='+zongjia+"&danjia="+danjia+'&xinaipan='+xinaipan+'&remen='+remen+'&youxiu='+youxiu+'&center='+center+'&baozu='+baozu+'&huaren='+huaren+'&zuixin='+zuixin+'&daxue='+daxue+'&xianfang='+xianfang+'&traffic='+traffic+'&woshi='+woshi+'&nation='+nation+'&city='+city+'&area='+area,      //提交到一般处理程序请求数据   
 						                        data: { pageIndex : pageIndex2, pageSize : 10},
 						                        success: function(data) {
 						                        count = data.total;
@@ -558,7 +573,56 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     </script>
 
-
+   <script type="text/javascript">
+   function   func1(){
+	   var nation = $('#nation  option:selected').val();
+	 /*   alert(nation); */
+       $.ajax({   
+           type: "POST",  
+           async: true,
+           dataType: "json",  
+           url: '/findCityByNation',      //提交到一般处理程序请求数据   
+           data: { nation : nation},
+           success: function(data) {
+        	   var cityArray=data.cityArray;
+        	 /*   alert("cityArray"+cityArray); */
+        	   $('#city').empty();
+        	   $('#city').append($('<option></option>').val("0").text("城市"));
+        	   for(var i=0; i<cityArray.length; i++)  
+        	   {  
+        		/*    jQuery("#city").append("<option value='"+cityArray[i].cityname+"'>"+cityArray[i].cityname+"</option>");  */
+        		   $('#city').append($('<option></option>').val(cityArray[i].city).text(cityArray[i].city));
+        	   }  
+        	   
+           }  
+       }); 
+   }
+   
+   function   func2(){
+	   var city = $(' #city  option:selected').val();
+	 /*   alert("func2");
+	   alert(city); */
+       $.ajax({   
+           type: "POST",  
+           async: true,
+           dataType: "json",  
+           url: '/findAreaByCity',      //提交到一般处理程序请求数据   
+           data: { city : city},
+           success: function(data) {
+        	   var areaArray=data.areaArray;
+        	  /*  alert("areaArray"+areaArray); */
+        	   $('#area').empty();
+        	   $('#area').append($('<option></option>').val("0").text("区域"));
+        	   for(var i=0; i<areaArray.length; i++)  
+        	   {  
+        		/*    jQuery("#city").append("<option value='"+cityArray[i].cityname+"'>"+cityArray[i].cityname+"</option>");  */
+        		   $('#area').append($('<option></option>').val(areaArray[i].area).text(areaArray[i].area));
+        	   }  
+        	   
+           }  
+       }); 
+   }
+   </script>
 
     
 	</body>
