@@ -1,11 +1,27 @@
  var map = null;
  var defaultInfobox;
- var defaltCenter=new Microsoft.Maps.Location( -37.847019, 145.064643);        
+ var defaltCenter=new Microsoft.Maps.Location( -37.847019, 145.064643);  
       /*加载地图*/
       function getMap()
       {
        //生成地图
        map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
+       /*var x=map.getPageX();
+       var y=map.getPageY();
+       alert('Map x: ' +  x);
+       alert('Map y: ' +  y);*/
+      /* bounds=map.getBounds(); 
+       var zuoshang=bounds.getNorthwest();
+       var youxia=bounds.getSoutheast();
+       var center=bounds.center;
+       var width=bounds.width;
+       var height=bounds.height;
+*/      /* alert('Map bounds: ' +  bounds);
+       alert('Map center: ' +  center);
+       alert('Map width: ' +  width);
+       alert('Map height: ' +  height);*/
+      /* alert('Map zuoshang: ' +  zuoshang);
+       alert('Map youxia: ' +  youxia);*/
        $.ajax({
 	 	    type: "GET",
 	 		dateType: "json",
@@ -34,6 +50,48 @@
 	 		    map.setView({ zoom: Zoom, center: Center });	
 	 		    lastZoomLevel = map.getZoom();
 	 	        Microsoft.Maps.Events.addHandler(map, 'viewchangeend', function(){
+	 	        	//联动
+	 	        	 var bounds=map.getBounds();
+	            	 var zuoshang=bounds.getNorthwest();
+	                 var youxia=bounds.getSoutheast();
+	                 /*var zs=new Array();
+	                 var yx=new Array();
+	                 zs=zuoshang.split(",");
+	                 yx=youxia.split(",");
+//	                 var zs1=zs[0];
+//	                 var zs2=zs[1];
+//	                 var yx1=yx[0];
+//	                 var yx2=yx[1];
+	                 alert('zs: ' +  zs);
+	                 alert('zs1: ' +  zs1);
+	                 alert('zs2: ' +  zs2);*/
+	                  // alert('Map bounds: ' +  bounds);
+	                 var zs1=zuoshang.latitude;
+	                 var zs2=zuoshang.longitude;
+	                 var yx1=youxia.latitude;
+                     var yx2=youxia.longitude;
+	               /*   alert('Map zuoshang: ' +  zuoshang);
+	                 alert('Map youxia: ' +  youxia);*/
+	                 $.ajax({
+	     		 	    type: "POST",
+	     		 		dateType: "json",
+	     		 		url: "/BingMap1/filterByGPS",	
+	     		 		data:{gpsLeftX:zs1,gpsLeftY:zs2,gpsRightX:yx1,gpsRightY:yx2},
+	     		 		success:function(data){
+	     		       
+	     		 		data=$.parseJSON(data);
+	     		 		
+	     		 		
+	     		 		 var html = getHtml1(data.List);
+	     		 		 
+	     		 		 $("#left").html(html);  
+	     		 		  
+	     		 	    },
+	     		 
+	     		 		error:function(){
+	     		 			//alert("addDefaultPushpin error")
+	     		 		}
+	     	        });	
 	 	        	if(lastZoomLevel != map.getZoom()){
 	 	               lastZoomLevel = map.getZoom();
 	 	               if(lastZoomLevel>10){
@@ -61,6 +119,7 @@
 	 	 	 		    }	 	            	   
 	 	               }else{
 	 	            	    //alert(lastZoomLevel);
+	 	            	  
 	 	            	    map.entities.clear();
 	 	            	    var len=items2.length;
 	 	            	    for(var j=0;j<len;j++){
@@ -225,6 +284,103 @@
 		 		}
 	        });		 
       }
+	   
+	   
+	   /* 增加公寓pushpin*/
+	   function addPushpinNation(nation, city, area)
+      {
+		 //alert("gongyu")
+		 map.entities.clear(); 
+		 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
+		 $.ajax({
+		 	    type: "POST",
+		 		dateType: "json",
+		 		url: "/BingMap/Liandong",	
+		 		data:{nation:nation, city:city, area:area},
+		 		success:function(data){
+		        //alert(data)
+		 		data=$.parseJSON(data);
+		 		
+		 		 var html = getHtml1(data.List);
+		 		 //alert(html)
+		 		 $("#left").html(html);  
+		 		    var items=data.List;
+		 		    var items2=data.List2;
+		 		    var items3=data.List3;
+		 		    var itemsCentermoren=data.ListCentermoren;
+		 		    var lenItems=items.length;
+		 		    var lenCentermoren=itemsCentermoren.length;
+		 		    var a=new Array();
+		 		    var Zoom;
+		 		    if(lenItems!=0){
+		 		    	a=items[0].gps.split(",");
+		 		    	Zoom=11;	 		    	
+		 		    }else if(lenCentermoren!=0){
+		 		    	a=itemsCentermoren[0].gps.split(",");
+		    		 	Zoom=5;
+		 		    }
+		 		    else{
+		 		    	a[0]="-25.585241";
+			 		    a[1]="134.504120";
+			 		    Zoom=5;
+		 		    } 
+		 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
+		 		    map.setView({ zoom: Zoom, center: Center });
+		 		    lastZoomLevel = map.getZoom();
+		 	        Microsoft.Maps.Events.addHandler(map, 'viewchangeend', function(){
+		 	        	if(lastZoomLevel != map.getZoom()){
+		 	               lastZoomLevel = map.getZoom();
+		 	               if(lastZoomLevel>10){
+		 	            	  map.entities.clear();
+		 	            	  for(var i=0;i<items.length;i++){
+		 	 	 		        var arr=new Array();
+		 	 	 		        arr=items[i].gps.split(",");
+		 	 	 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]);
+		 	 	 		        var num=items[i].project_num;
+		 	 	 		        var name=items[i].project_name;
+		 	 	 		        var image=items[i].project_img;
+		 	 	 		        var img=imgdir+"/"+image;	 		        
+		 	 	 		       /* var minprice=items[i].project_min_price;
+		 	 	 		        var maxprice=items[i].project_high_price;*/
+		 	 	 		        var city=items[i].project_city;
+		 	 	 		        //var price=items[i].project_price_int_qi;
+		 	 	 		        var price=items[i].project_min_price;
+		 	 	 		        var type=items[i].project_type;
+		 	 	 		        var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:-45px;left:-15px;'><div style='color:red;font-size:12px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin2.png' style='width:20px;height:20px;'/></div>"}; 
+		 	 	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
+		 	 	 		        /*var pushpin= new Microsoft.Maps.Pushpin(LA,null);*/
+		 	 				    add(type,img,price,num,pushpin,LA);
+		 	 				    map.entities.push(pushpin);	
+		 	 	 		    }	 	            	   
+		 	               }else{
+		 	            	    //alert(lastZoomLevel);
+		 	            	    map.entities.clear();
+		 	            	    var len=items2.length;
+		 	            	    for(var j=0;j<len;j++){
+		 	            	        var arr2=new Array();
+		 	            	        arr2=items3[j].gps.split(",");
+		 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
+		 	            	        var city2=items3[j].project_city;
+		 	            	        var total=String(items2[j].city);
+		 	            	       /* var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; */
+		 	            	        var pushpinOptions2={text:total,width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'};
+		 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
+		 	                  	    map.entities.push(pushpin2);
+		 	            	    }
+		 	               }
+		 	        	}
+		 	        });
+		 		   
+		 		   
+		 		},
+		 		error:function(){
+		 			//alert("addDefaultPushpin error")
+		 		}
+	        });		 
+      }
+	   
+	   
+	   
        /* 增加别墅pushpin*/
 	   function addPushpin2()
       {
@@ -410,22 +566,23 @@
        /* 增加搜索pushpin*/
          function addPushpinsearch()
       {
-        	
-        	 var area=$("#project_area").val();
+        	 var project_name = $("#keyWord").val();
+        	 //alert(project_name)
+        	/* var area=$("#project_area").val();
         	 var city=$("#project_city").val();
         	 var address=$("#project_address").val();
         	 var arrArea=new Array();
         	 arrArea=area.split(",");
         	 area=arrArea[0];
-        	 /*var arrCity=new Array();
+        	 var arrCity=new Array();
         	 arrCity=city.split(",");
-        	 city=arrCity[0];*/
+        	 city=arrCity[0];
         	 var arrAddr=new Array();
         	 arrAddr=address.split(",");
         	 address=arrAddr[0];
         	 if(typeof(city)=="undefined"){
         		 city="";
-        	 }
+        	 }*/
         	 //alert(city);
         	 //alert(area);
         	 //alert(address);
@@ -434,14 +591,16 @@
     		 $.ajax({
     		 	    type: "POST",
     		 		dateType: "json",
-    		 		data:{"area":area,"city":city,"address":address},
-    		 		url: "/BingMap/FileterKeyWord", 		
+    		 		data:{"project_name":project_name/*,"city":city,"address":address*/},
+    		 		//url: "/BingMap/FileterKeyWord", 		
+    		 		url: "/BingMap/FileterByProjectName", 
     		 		success:function(data){
     		 		data=$.parseJSON(data);
     		 		//alert(data)
     		 		
     		 		var html = getHtml1(data.List);
 			 		 $("#left").html(html); 
+			 		 
     		 		    var items=data.List;
     		 		    var items2=data.List2;
     		 		    var items3=data.List3;
@@ -454,9 +613,14 @@
     		 		    var lenCentermoren=itemsCentermoren.length;
     		 		    var a=new Array();
     		 		    //alert(typeof(a))
+    		 		    alert(items[0].gps)
     		 		    var Zoom;
     		 		    if(lenItems!=0){
-    		 		    	if(lenCentercity!=0&&lenCenterarea!=0&&lenCentermoren!=0){
+    		 		    	for(var k=0;k<lenItems;k++){
+    		 		    		a=items[k].gps.split(",");
+    		 		    		Zoom=5;
+    		 		    	}
+    		 		    	/*if(lenCentercity!=0&&lenCenterarea!=0&&lenCentermoren!=0){
         		 		    	if(city.length!=0){
         	    		 		       Zoom=11;
         	    		 		       for(var k1=0;k1<lenCentercity;k1++){
@@ -632,7 +796,7 @@
      		 		        a[1]="134.504120";
   	    		 		    Zoom=5;
   		 		    	}
-     		 		    }		 		    	
+     		 		    }*/		 		    	
     		 		    }else{
     		 		    	a[0]="-25.585241";
      		 		        a[1]="134.504120";

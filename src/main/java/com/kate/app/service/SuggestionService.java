@@ -304,7 +304,7 @@ public class SuggestionService {
 			FileOutputStream txtfile = new FileOutputStream(docFile);
 			PrintStream p = new PrintStream(txtfile);
 			
-			List<String> addList = suggestionDao.getProjectAdd();
+			List<String> addList = suggestionDao.getProjectName();
 
 			for(String add : addList){
 				p.append(add+"\r\n");

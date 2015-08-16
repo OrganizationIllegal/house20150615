@@ -115,6 +115,30 @@ body{
 	   }
 	   
 	   }
+   
+   function nation1(v){
+	   var selectedOption=v.options[v.selectedIndex];  
+	   var valueInfo = selectedOption.value;
+	   addPushpinNation();
+	  /*  switch(selectedOption.value){
+	   case "1":    //公寓
+		   addPushpin1();
+		   break;
+	   case "2":
+		   addPushpin2();
+		   break;
+	   case "3":
+		   addPushpin3();
+		   break;
+	  default:
+		  addPushpin();
+	      getMap();
+	  	  break;
+	   } */
+	   
+	   }
+   
+   
    </script>
    
    <script>
@@ -390,37 +414,67 @@ body{
 			<div class="c-fix f-l div1">
 			
 
-				<select id="house1" onchange="housetype1(this)" class="c-fix f-l sel_type" style="background:none;border:none;font-family:微软雅黑;padding-left:25px">
+				<select id="nation1" onchange="nation1(this)" class="f-l f-yahei s-14 cp sel_price" style="background:none;/* border:none; */font-family:微软雅黑;padding-left:25px;width: 114px;height: 35px;">
 
-					<option value="0">类型</option>
+					<option value="0">国家</option>
+					<c:forEach var="item" items="${nationList}" varStatus="stat">
+						<option value="${item.nation_name}">${item.nation_name}</option>
+					</c:forEach>
+					
+				</select>
+				<select id="house1" onchange="housetype1(this)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" style="background:none;border:none;font-family:微软雅黑;padding-left:25px">
+
+					<option value="0">城市</option>
+					<c:forEach var="item" items="${cityList}" varStatus="stat">
+						<option value="${stat.index }">${item.city_name}</option>
+					</c:forEach>
+				</select>
+				<select id="house1" onchange="housetype1(this)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" style="background:none;border:none;font-family:微软雅黑;padding-left:25px">
+
+					<option value="0">区域</option>
+					<c:forEach var="item" items="${areaList}" varStatus="stat">
+						<option value="${stat.index }">${item.area_name}</option>
+					</c:forEach>
+				</select>
+				
+				<select id="house1" onchange="housetype1(this)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" style="background:none;border:none;font-family:微软雅黑;padding-left:25px">
+
+					<option value="0">物业类型</option>
 					<option value="1">公寓</option>
 					<option value="2">别墅</option>
 				    <option value="3">联排别墅</option>
 				</select>
+				<select id="house1" onchange="housetype1(this)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" style="background:none;border:none;font-family:微软雅黑;padding-left:25px">
+
+					<option value="0">价格区间</option>
+					<option value="1"><a href="/OrderByPrice?order=1">从低到高</a></option>
+					<option value="2"><a href="/OrderByPrice?order=2">从高到低</a></option>
+				    
+				</select>
 				
 				<!-- <a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" href="/BingMap/OrderByPrice?order=1">价格从低到高</a>
 				<a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" href="/BingMap/OrderByPrice?order=2">价格从高到低</a> -->
-				<a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" href="/OrderByPrice?order=1">价格从低到高</a>
-				<a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" href="/OrderByPrice?order=2">价格从高到低</a>
+				<!-- <a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" href="/OrderByPrice?order=1">价格从低到高</a>
+				<a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" href="/OrderByPrice?order=2">价格从高到低</a> -->
 			
 			</div>
 	
 			<div class="f-l div2" id="right1">
-				<!-- <input type="text" class="c-fix f-l inp" id="keyWord" placeholder="项目地址" style="color:rgb(213,213,213);font-family:微软雅黑;height:28px;width:434px;" autocomplete="off"></input>	
+				<input type="text" class="c-fix f-l inp" id="keyWord" placeholder="项目名称" style="color:rgb(213,213,213);font-family:微软雅黑;height:28px;width:434px;" autocomplete="off"></input>	
 				<a class="f-l f-yahei s-14 cp btn_search" onclick="addPushpinsearch()">搜索</a>
 				<div id="_suggestion" class="suggestion nobg" style="position:absolute;left: 375px; top: 33px; display: none; z-index:999;">			              
 				  <div class="suginner">
 			                    <ul class="suglist"></ul>
 			                </div>
-                		</div> -->
-                <div class="c-fix f-l f-yahei" style="margin-left:30px;margin-top:8px;">
+                		</div>
+                <%-- <div class="c-fix f-l f-yahei" style="margin-left:30px;margin-top:8px;">
 	               
-	               <%--  <select data-placeholder="请选择城市..." class="chosen-select" id="project_city" name="project_city" style="width:200px;" tabindex="4">
+	                <select data-placeholder="请选择城市..." class="chosen-select" id="project_city" name="project_city" style="width:200px;" tabindex="4">
 		 	            <option value="">请选择城市...</option>
 		  	            <c:forEach items="${cityNameSet}" var="item">
         		   		<option value="${item}">${item}</option>
    					    </c:forEach>
-	                </select> --%>
+	                </select>
 	                 <select data-placeholder="请选择区域..." class="chosen-select" id="project_area" name="project_area" style="width:200px;" tabindex="4">
 		 	            <option value="">请选择区域...</option>
 		  	            <c:forEach items="${areaNameSet}" var="item">
@@ -433,13 +487,13 @@ body{
         		   		<option value="${item}">${item}</option>
    					    </c:forEach>
 	                </select>
-                </div>
-                <div class="f-l f-yahei btn_search cp" onclick="addPushpinsearch()">搜索</div>
+                </div> --%>
+                <!-- <div class="f-l f-yahei btn_search cp" onclick="addPushpinsearch()">搜索</div> -->
 				<a class="f-r f-yahei s-14 btn cp hover" style="padding:0px 6px;margin-top:5px;border:2px solid rgb(245,161,27)" href="/SearchList">列表找房</a>
 				<a class="f-r f-yahei s-14 btn btn_sel cp hover" style="padding:0px 6px; margin-top:5px;"   href="#">地图找房</a>
 
 			</div>
-			<div class="c-fix f-l div3" style="-height:840px;overflow-y:auto;overflow-x:hidden;" id="left">
+			<div class="c-fix f-l div3" style="-height:840px;overflow-y:auto;overflow-x:hidden;margin-top:67px;" id="left">
 			 <c:forEach var="item" items="${bingMapList}"> 
 				<div class="c-fix f-l div_node">
 					<span class="c-fix f-l f-yahei s-12 node_address" title="${item.project_address}">${item.project_address_short}</span>
