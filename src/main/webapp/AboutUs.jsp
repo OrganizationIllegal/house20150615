@@ -445,12 +445,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div style="margin-top:10px;text-align:left"><span>于是，我们用海房优选达成一个简单的目标，让中国人更高效、更好的海外购房，以互联网思维和全新的服务体系，减少不必要的环节，让购房者直接连接海外房源，提供真实、丰富、神志不清的房源数据，让购房者能够自己选择房源，标准的安全购房服务。高达70%的购房佣金返利，让购房者更简单、更高效购买心仪的房产。</span></div>
 			</div> -->
 			<div class="ddfont" style="font-size:17px;font-family:微软雅黑;text-align:center;margin-left:25px">
-				<div style="margin-top:10px;text-align:left"><span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp海房优选是一个全新的互联网海外置业工具网站，能够让购房者自主选择海外房产、自由选择购房服务人员，并通过数据自行做成购房决策。<br/><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp目前集中了澳洲70%在售的新房项目可供自由选择。<br/><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp每个房产项目信息涵盖了项目的位置、价格、建筑设计与规划、户
+				<!-- <div style="margin-top:10px;text-align:left"><span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp海房优选是一个全新的互联网海外置业工具网站，能够让购房者自主选择海外房产、自由选择购房服务人员，并通过数据自行做成购房决策。<br/><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp目前集中了澳洲70%在售的新房项目可供自由选择。<br/><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp每个房产项目信息涵盖了项目的位置、价格、建筑设计与规划、户
+				</span></div> -->
+				<div style="margin-top:10px;text-align:left"><span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp海房优选是一个全新的互联网海外置业工具网站，能够让购房者自主选择海外房产、自由选择购房服务人员，并通过数据自行做成购房决策。目前集中了澳洲70%在售的新房项目可供自由选择。每个房产项目信息涵盖了项目的位置、价格、建筑设计与规划、户型、可售房源、开发商信息等内容
 				</span></div>
 			</div>
 			<div class="ddfont" style="font-size:17px;font-family:微软雅黑;text-align:center;">
-				<div style="margin-top:10px;text-align:left"><span>型、可售房源、开
-发商信息等内容。<br/><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp通过区域教育、商业配套、人口及分布、家庭年龄结构、收入水平等指标，购房人能一目了然的看到区域特点，基于子女留学、父母居住等需求购房的客户，可真正认识了解该区域是否满足居住、生活需求，做出更理智的决策选择，或为进一步咨询经纪人提供辅助决策的信息参考。<br/><br/></span></div>
+				<!-- <div style="margin-top:10px;text-align:left"><span>型、可售房源、开
+发商信息等内容。<br/><br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp通过区域教育、商业配套、人口及分布、家庭年龄结构、收入水平等指标，购房人能一目了然的看到区域特点，基于子女留学、父母居住等需求购房的客户，可真正认识了解该区域是否满足居住、生活需求，做出更理智的决策选择，或为进一步咨询经纪人提供辅助决策的信息参考。<br/><br/></span></div> -->
+			<div style="margin-top:10px;text-align:left"><span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp通过区域教育、商业配套、人口及分布、家庭年龄结构、收入水平等指标，购房人能一目了然的看到区域特点，基于子女留学、父母居住等需求购房的客户，可真正认识了解该区域是否满足居住、生活需求，做出更理智的决策选择，或为进一步咨询经纪人提供辅助决策的信息参考。<br/><br/></span></div>
 			</div>
 			<div class="ddfont" style="font-size:17px;font-family:微软雅黑;text-align:center;margin-right:25px">
 				<div style="margin-top:10px;text-align:left"><span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp我们利用互联网技术抓取官方、行业统计大数据，公开、透明化全部的市场信息，购房人可了解到每一个区域10年来房产售价、租金水平、回报率的变化，作为海外置业的价格对比参照。同时提供购房持有成本参考，结合历史价格和租金水平，辅助投资决策。</span></div>
