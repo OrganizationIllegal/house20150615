@@ -860,7 +860,7 @@ public class BingMapController {
 		//array = bingMapService.jsonCoordinates();
 		
 		
-		arrayCenter=bingMapService.jsonMapCenter();
+		/*arrayCenter=bingMapService.jsonMapCenter();
 		int lenCenter=arrayCenter.size();
 		for(int k=0;k<lenCenter;k++){
 			JSONObject objCenter=(JSONObject)arrayCenter.get(k);
@@ -868,7 +868,7 @@ public class BingMapController {
 			if("默认".equals(type)){
 				arrayCentermoren.add(objCenter);
 			}
-		}
+		}*/
 		int len=array.size();
 		for(int i=0;i<len;i++){
 			JSONObject obj=(JSONObject)array.get(i);
@@ -966,7 +966,7 @@ public class BingMapController {
 		json.put("ListZhou2", JSONArray.parseArray(JSON.toJSONString(arrayZhou2, SerializerFeature.DisableCircularReferenceDetect)));
 		json.put("ListArea1", arrayArea1);
 		json.put("ListArea2", JSONArray.parseArray(JSON.toJSONString(arrayArea2, SerializerFeature.DisableCircularReferenceDetect)));
-		json.put("ListCentermoren", arrayCentermoren);
+		/*json.put("ListCentermoren", arrayCentermoren);*/
 		
 		try{
 			writeJson(json.toJSONString(),resp);
