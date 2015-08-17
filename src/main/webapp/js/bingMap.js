@@ -134,6 +134,42 @@
       }
       
       
+    //添加房屋类型pushpin   
+      function addNation(nation)
+      {
+		//alert("ffff")
+		 $.ajax({
+		 	    type: "GET",
+		 		dateType: "json",
+		 		url: "/BingMap/FileterType2?house_type=0",		
+		 		success:function(data){
+		       
+		 		data=$.parseJSON(data);
+		 		
+		 		var cityArray=data.cityArray;
+	        	 /*   alert("cityArray"+cityArray); */
+	        	   $('#city').empty();
+	        	   $('#city').append($('<option></option>').val("0").text("城市"));
+	        	   for(var i=0; i<cityArray.length; i++)  
+	        	   {  
+	        		/*    jQuery("#city").append("<option value='"+cityArray[i].cityname+"'>"+cityArray[i].cityname+"</option>");  */
+	        		   $('#city').append($('<option></option>').val(cityArray[i].city).text(cityArray[i].city));
+	        	   } 
+	        	   
+		 		 var html = getHtml1(data.List);
+		 		 $("#left").html(html);  
+		 		  
+		 	    },
+		 
+		 		error:function(){
+		 			//alert("addDefaultPushpin error")
+		 		}
+	        });		 
+      }
+      
+      
+      
+      
 	   /* 增加公寓pushpin*/
 	   function addPushpin1()
       {

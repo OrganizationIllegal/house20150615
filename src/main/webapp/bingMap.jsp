@@ -115,6 +115,34 @@ body{
 	   }
 	   
 	   }
+   
+   function func1(v){
+	   var selectedOption=v.options[v.selectedIndex];  
+	   var nation = selectedOption.value;
+	  
+		   addNation(nation);
+		   
+	  }
+   
+   
+   function housePrice(v){
+	   var selectedOption=v.options[v.selectedIndex];  
+	   switch(selectedOption.value){
+	   case "1":    //公寓
+		   window.location.href="/OrderByPrice?order=1";
+		   break;
+	   case "2":
+		   window.location.href="/OrderByPrice?order=2";
+		   break;
+	   
+	  default:
+		 
+	  	  break;
+	   }
+	   
+	   }
+   
+   
    </script>
    
    <script>
@@ -389,8 +417,31 @@ body{
 		
 			<div class="c-fix f-l div1">
 			
+               <select id="nation" onchange="func1(this)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px"style="background:none;border:none;font-family:微软雅黑;padding-left:25px">
 
-				<select id="house1" onchange="housetype1(this)" class="c-fix f-l sel_type" style="background:none;border:none;font-family:微软雅黑;padding-left:25px">
+					<option value="0">国家</option>
+					<option value="1">公寓</option>
+					<option value="2">别墅</option>
+				    <option value="3">联排别墅</option>
+				</select>
+				<select id="house1" onchange="housetype1(this)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px"style="background:none;border:none;font-family:微软雅黑;padding-left:25px">
+
+					<option value="0">城市</option>
+					<option value="1">公寓</option>
+					<option value="2">别墅</option>
+				    <option value="3">联排别墅</option>
+				</select>
+				
+				<select id="house1" onchange="housetype1(this)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" style="background:none;border:none;font-family:微软雅黑;padding-left:25px">
+
+					<option value="0">区域</option>
+					<option value="1">公寓</option>
+					<option value="2">别墅</option>
+				    <option value="3">联排别墅</option>
+				</select>
+				
+				
+				<select id="house1" onchange="housetype1(this)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" style="background:none;border:none;font-family:微软雅黑;padding-left:25px">
 
 					<option value="0">类型</option>
 					<option value="1">公寓</option>
@@ -398,10 +449,20 @@ body{
 				    <option value="3">联排别墅</option>
 				</select>
 				
+				<select id="Price" onchange="housePrice(this)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" style="background:none;border:none;font-family:微软雅黑;padding-left:25px">
+
+					<option value="0">价格区间</option>
+					<option value="1">价格从低到高</option>
+					<option value="2">价格从高到低</option>
+				   
+				</select>
+				
+				
+				
 				<!-- <a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" href="/BingMap/OrderByPrice?order=1">价格从低到高</a>
 				<a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" href="/BingMap/OrderByPrice?order=2">价格从高到低</a> -->
-				<a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" href="/OrderByPrice?order=1">价格从低到高</a>
-				<a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" href="/OrderByPrice?order=2">价格从高到低</a>
+				<!-- <a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" href="/OrderByPrice?order=1">价格从低到高</a>
+				<a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" href="/OrderByPrice?order=2">价格从高到低</a> -->
 			
 			</div>
 	
@@ -439,7 +500,7 @@ body{
 				<a class="f-r f-yahei s-14 btn btn_sel cp hover" style="padding:0px 6px; margin-top:5px;"   href="#">地图找房</a>
 
 			</div>
-			<div class="c-fix f-l div3" style="-height:840px;overflow-y:auto;overflow-x:hidden;" id="left">
+			<div class="c-fix f-l div3" style="-height:840px;overflow-y:auto;overflow-x:hidden;margin-top:100px;" id="left">
 			 <c:forEach var="item" items="${bingMapList}"> 
 				<div class="c-fix f-l div_node">
 					<span class="c-fix f-l f-yahei s-12 node_address" title="${item.project_address}">${item.project_address_short}</span>
