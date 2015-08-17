@@ -145,7 +145,6 @@ public class BingMapService {
 					}
 					return array;
 				}
-	
 	//根据房屋类型搜索及根据价格排序
 	public JSONArray filterByLiandong(String nation, String city, String area){
 		JSONArray array = new JSONArray();

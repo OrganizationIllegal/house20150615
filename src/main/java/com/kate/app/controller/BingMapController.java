@@ -2,7 +2,6 @@ package com.kate.app.controller;
 
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -30,18 +29,13 @@ import com.kate.app.dao.HouseProjectDao;
 import com.kate.app.dao.ProjectInputDao;
 import com.kate.app.dao.SearchListDao;
 import com.kate.app.dao.UserDao;
-import com.kate.app.model.AreaInfo;
 import com.kate.app.model.BingMapVo;
 import com.kate.app.model.City;
 import com.kate.app.model.HouseProject;
 import com.kate.app.model.Nation;
 import com.kate.app.model.ProjectDescImage;
-
-import com.kate.app.model.ProjectKey;
-import com.kate.app.model.SearchList;
-
 import com.kate.app.model.Quyu;
-
+import com.kate.app.model.SearchList;
 import com.kate.app.service.BingMapService;
 @Controller
 public class BingMapController {
@@ -79,7 +73,8 @@ public class BingMapController {
 	private static List<HouseProject> typeListResultShengxu;
 	private static List<HouseProject> typeListResultJiangxu;
 	
-	private static List<HouseProject> listResult;
+	public static List<HouseProject> listResult=new ArrayList<HouseProject>();
+
 	private static List<HouseProject> lianDongResult;
 	
 	
@@ -117,14 +112,79 @@ public class BingMapController {
 	@RequestMapping({"/BingMap"})    //首页加载
 	public String listBingMap(HttpServletRequest req,HttpServletResponse resp){
 
+		List<SearchList> searchList=SearchListController.searchList_final;
+		List<BingMapVo> bingMapList=new ArrayList<BingMapVo>();
 
-		List<SearchList> searchList = null;
-		List<BingMapVo> bingMapList = new ArrayList<BingMapVo>();
-		searchList = SearchController.seachListResult;
+
+		List<SearchList> searchListIndex = null;
+		
+		searchListIndex = SearchController.seachListResult;
 		seachListResult1 = SearchController.seachListResult;
-		if(searchList!=null){
+
+		if(searchListIndex!=null){
 			liandong = 1;
-			req.setAttribute("bingMapList", searchList);
+			for(SearchList s:searchListIndex){
+	        	BingMapVo bingMapVo=new BingMapVo();
+	        	int id=s.getId();
+	        	String project_img=s.getProject_img();
+	        	String project_num=s.getProject_num();
+	        	String project_address=s.getProject_address();
+	        	String project_address_short=s.getProject_address_short();
+	        	String project_name=s.getProject_name();
+	        	String project_price=s.getProject_price_int_qi_str();
+	        	int minArea=s.getMinArea();
+	        	int maxArea=s.getMaxArea();
+	        	int keshou=s.getKeshou();
+	        	String average_price=s.getProject_price_int_qi_str();
+	        	String house_type=null;///////////
+	        	String  project_min_price=s.getMinPrice();
+	        	String  project_high_price=s.getMaxPrice();
+	        	String mianji=s.getMianji();
+	        	String return_money=s.getFanxian();
+	        	String project_price_int_qi=s.getProject_price_int_qi_str();
+	        	List<String> project_key=s.getProject_key();
+	        	String project_name_full=s.getProject_name();
+	        	String bijiao=s.getBijiao();
+	        	String gps=s.getGps();
+	        	String project_lan_cn=s.getProject_lan_cn();
+	        	String developer_id_name=s.getDeveloper_id_name();
+	        	String xinkaipan=s.getXinkaipan();
+	        	String remen=s.getRemen();
+	        	String xuequ=s.getXuequ();
+	        	String center=s.getCenter();
+	        	String baozu=s.getBaozu();
+	        	String huaren=s.getHuaren();
+	        	String maidi=s.getMaidi();
+	        	String daxue=s.getDaxue();
+	        	String xianfang=s.getXianfang();
+	        	String traffic=s.getTraffic();
+	        	
+	        	
+	        	bingMapVo.setProject_id(id);
+	        	bingMapVo.setProject_img(project_img);
+	        	bingMapVo.setProject_num(project_num);
+	        	bingMapVo.setProject_address(project_address);
+	        	bingMapVo.setProject_address_short(project_address_short);
+	        	bingMapVo.setProject_name(project_name);
+	        	bingMapVo.setProject_price(project_price);
+	        	bingMapVo.setMinArea(minArea);
+	        	bingMapVo.setMaxArea(maxArea);
+	        	bingMapVo.setKeshou(keshou);
+	        	bingMapVo.setAverage_price(average_price);
+	        	bingMapVo.setHouse_type(house_type);
+	        	bingMapVo.setProject_min_price(project_min_price);
+	        	bingMapVo.setProject_high_price(project_high_price);
+	        	bingMapVo.setMianji(mianji);
+	        	bingMapVo.setReturn_money(return_money);
+	        	bingMapVo.setProject_price_int_qi(project_price_int_qi);
+	        	bingMapVo.setProject_key(project_key);
+	        	bingMapVo.setProject_name_full(project_name_full);
+	        	bingMapVo.setBijiao(bijiao);
+	        	bingMapVo.setGps(gps);
+	        
+	        	bingMapList.add(bingMapVo);
+	        }
+			req.setAttribute("bingMapList", bingMapList);
 		}
 		else{
 			liandong = 0;
@@ -133,10 +193,89 @@ public class BingMapController {
 			req.setAttribute("bingMapList", bingMapList);
 		}
 		
+	
+        for(SearchList s:searchList){
+        	BingMapVo bingMapVo=new BingMapVo();
+        	int id=s.getId();
+        	String project_img=s.getProject_img();
+        	String project_num=s.getProject_num();
+        	String project_address=s.getProject_address();
+        	String project_address_short=s.getProject_address_short();
+        	String project_name=s.getProject_name();
+        	String project_price=s.getProject_price_int_qi_str();
+        	int minArea=s.getMinArea();
+        	int maxArea=s.getMaxArea();
+        	int keshou=s.getKeshou();
+        	String average_price=s.getProject_price_int_qi_str();
+        	String house_type=null;///////////
+        	String  project_min_price=s.getMinPrice();
+        	String  project_high_price=s.getMaxPrice();
+        	String mianji=s.getMianji();
+        	String return_money=s.getFanxian();
+        	String project_price_int_qi=s.getProject_price_int_qi_str();
+        	List<String> project_key=s.getProject_key();
+        	String project_name_full=s.getProject_name();
+        	String bijiao=s.getBijiao();
+        	String gps=s.getGps();
+        	String project_lan_cn=s.getProject_lan_cn();
+        	String developer_id_name=s.getDeveloper_id_name();
+        	String xinkaipan=s.getXinkaipan();
+        	String remen=s.getRemen();
+        	String xuequ=s.getXuequ();
+        	String center=s.getCenter();
+        	String baozu=s.getBaozu();
+        	String huaren=s.getHuaren();
+        	String maidi=s.getMaidi();
+        	String daxue=s.getDaxue();
+        	String xianfang=s.getXianfang();
+        	String traffic=s.getTraffic();
+        	
+        	
+        	bingMapVo.setProject_id(id);
+        	bingMapVo.setProject_img(project_img);
+        	bingMapVo.setProject_num(project_num);
+        	bingMapVo.setProject_address(project_address);
+        	bingMapVo.setProject_address_short(project_address_short);
+        	bingMapVo.setProject_name(project_name);
+        	bingMapVo.setProject_price(project_price);
+        	bingMapVo.setMinArea(minArea);
+        	bingMapVo.setMaxArea(maxArea);
+        	bingMapVo.setKeshou(keshou);
+        	bingMapVo.setAverage_price(average_price);
+        	bingMapVo.setHouse_type(house_type);
+        	bingMapVo.setProject_min_price(project_min_price);
+        	bingMapVo.setProject_high_price(project_high_price);
+        	bingMapVo.setMianji(mianji);
+        	bingMapVo.setReturn_money(return_money);
+        	bingMapVo.setProject_price_int_qi(project_price_int_qi);
+        	bingMapVo.setProject_key(project_key);
+        	bingMapVo.setProject_name_full(project_name_full);
+        	bingMapVo.setBijiao(bijiao);
+        	bingMapVo.setGps(gps);
+        /*	bingMapVo.setProject_lan_cn(project_lan_cn);
+        	bingMapVo.setDeveloper_id_name(developer_id_name);
+        	bingMapVo.setXinkaipan(xinkaipan);
+        	bingMapVo.setRemen(remen);
+        	bingMapVo.setXuequ(xuequ);
+        	bingMapVo.setCenter(center);
+        	bingMapVo.setBaozu(baozu);
+        	bingMapVo.setHuaren(huaren);
+        	bingMapVo.setMaidi(maidi);
+        	bingMapVo.setDaxue(daxue);
+        	bingMapVo.setXianfang(xianfang);
+        	bingMapVo.setTraffic(traffic);*/
+        	bingMapList.add(bingMapVo);
+        }
+
 		List<Nation> nationList=bingMapDao.findGuojia();
 		List<City> cityList=bingMapDao.findChengshi();   //查询数据库，得到项目信息
 		List<Quyu> areaList=bingMapDao.findQuyu();   //查询数据库，得到项目信息
+
 		
+		/*req.setAttribute("bingMapList", bingMapList);*/
+		req.setAttribute("bingMapList", bingMapList);
+		
+
 		req.setAttribute("nationList", nationList);
 		req.setAttribute("cityList", cityList);
 		req.setAttribute("areaList", areaList);
@@ -665,13 +804,98 @@ public class BingMapController {
 		List<String> zhou=new ArrayList<String>();
 		List<String> area=new ArrayList<String>();
 		
-		List<HouseProject> list = bingMapDao.listMap();
-		listResult = list;
+		/*List<HouseProject> list = bingMapDao.listMap();*/
+		List<HouseProject> houseProjectlist = new ArrayList<HouseProject>();
+		List<SearchList> searchList=SearchListController.searchList_final;
+        for(SearchList s:searchList){
+        	HouseProject houseProject=new HouseProject();
+        	int id=s.getId();
+        	String project_img=s.getProject_img();
+        	String project_num=s.getProject_num();
+        	String project_address=s.getProject_address();
+        	String project_address_short=s.getProject_address_short();
+        	String project_name=s.getProject_name();
+        	String project_price=s.getProject_price_int_qi_str();
+        	int minArea=s.getMinArea();
+        	int maxArea=s.getMaxArea();
+        	int keshou=s.getKeshou();
+        	String average_price=s.getProject_price_int_qi_str();
+        	String house_type=null;///////////
+        	String  project_min_price=s.getMinPrice();
+        	String  project_high_price=s.getMaxPrice();
+        	String mianji=s.getMianji();
+        	String return_money=s.getFanxian();
+        	String project_price_int_qi_str=s.getProject_price_int_qi_str();
+        	int project_price_int_qi=s.getProject_price_int_qi();
+        	List<String> project_key=s.getProject_key();
+        	String project_name_full=s.getProject_name();
+        	String bijiao=s.getBijiao();
+        	String gps=s.getGps();
+        	String project_lan_cn=s.getProject_lan_cn();
+        	String developer_id_name=s.getDeveloper_id_name();
+        	
+        	String xinkaipan=s.getXinkaipan();
+        	String remen=s.getRemen();
+        	String xuequ=s.getXuequ();
+        	String center=s.getCenter();
+        	String baozu=s.getBaozu();
+        	String huaren=s.getHuaren();
+        	String maidi=s.getMaidi();
+        	String daxue=s.getDaxue();
+        	String xianfang=s.getXianfang();
+        	String traffic=s.getTraffic();
+        	
+        	
+        	houseProject.setId(id);
+        	houseProject.setProject_img(project_img);
+        	houseProject.setProject_num(project_num);
+        	houseProject.setProject_address(project_address);
+        	houseProject.setProject_address_short(project_address);////
+        	houseProject.setProject_name(project_name);
+        	houseProject.setProject_price(project_price);
+        	houseProject.setMinArea(minArea);
+        	houseProject.setMaxArea(maxArea);
+        	/*houseProject.setKeshou(keshou);*/
+        	/*houseProject.setAverage_price(average_price);*/
+        	/*houseProject.setHouse_type(house_type);*/
+        	houseProject.setProject_min_price(project_min_price);
+        	houseProject.setProject_high_price(project_high_price);
+        	houseProject.setMianji(mianji);
+        	houseProject.setReturn_money(return_money);
+        	houseProject.setProject_price_int_qi_str(project_price_int_qi_str);
+        	houseProject.setProject_price_int_qi(project_price_int_qi);
+        	houseProject.setProject_key(project_key);
+        	houseProject.setProject_name(project_name);;
+        	houseProject.setBijiao(bijiao);
+        	houseProject.setGps(gps);
+        	houseProject.setProject_lan_cn(project_lan_cn);
+        	houseProject.setDeveloper_id_name(developer_id_name);
+        	houseProject.setXinkaipan(xinkaipan);
+        	houseProject.setRemen(remen);
+        	houseProject.setXuequ(xuequ);
+        	houseProject.setCenter(center);
+        	houseProject.setBaozu(baozu);
+        	houseProject.setHuaren(huaren);
+        	houseProject.setMaidi(maidi);
+        	houseProject.setDaxue(daxue);
+        	houseProject.setXianfang(xianfang);
+        	houseProject.setTraffic(traffic);
+        	
+        	houseProjectlist.add(houseProject);
+        }
+        if(houseProjectlist.size()==0){
+        	List<HouseProject> list = bingMapDao.listMap();
+        	listResult = list;
+        }else{
+        	 listResult = houseProjectlist;
+        }
+      
+		/*listResult = list;*/
 		array = jsonCoordinates();
 		//array = bingMapService.jsonCoordinates();
 		
 		
-		arrayCenter=bingMapService.jsonMapCenter();
+		/*arrayCenter=bingMapService.jsonMapCenter();
 		int lenCenter=arrayCenter.size();
 		for(int k=0;k<lenCenter;k++){
 			JSONObject objCenter=(JSONObject)arrayCenter.get(k);
@@ -679,7 +903,7 @@ public class BingMapController {
 			if("默认".equals(type)){
 				arrayCentermoren.add(objCenter);
 			}
-		}
+		}*/
 		int len=array.size();
 		for(int i=0;i<len;i++){
 			JSONObject obj=(JSONObject)array.get(i);
@@ -760,14 +984,7 @@ public class BingMapController {
 				}
 			}
         }
-		System.out.println("nation1:"+arrayNation1.size()+"---"+arrayNation1);
-		System.out.println("nation2:"+arrayNation2.size()+"---"+arrayNation2);
-		System.out.println("zhou1:"+arrayZhou1.size()+"---"+arrayZhou1);
-		System.out.println("zhou2:"+arrayZhou2.size()+"---"+arrayZhou2);
-		System.out.println("city1:"+arrayCity1.size()+"---"+arrayCity1);
-		System.out.println("city2:"+arrayCity2.size()+"---"+arrayCity2);
-		System.out.println("area1:"+arrayArea1.size()+"---"+arrayArea1);
-		System.out.println("area2:"+arrayArea2.size()+"---"+arrayArea2);
+		
 		json.put("List", array);
 		json.put("ListCity1", arrayCity1);
 		json.put("ListCity2", JSONArray.parseArray(JSON.toJSONString(arrayCity2, SerializerFeature.DisableCircularReferenceDetect)));
@@ -777,7 +994,7 @@ public class BingMapController {
 		json.put("ListZhou2", JSONArray.parseArray(JSON.toJSONString(arrayZhou2, SerializerFeature.DisableCircularReferenceDetect)));
 		json.put("ListArea1", arrayArea1);
 		json.put("ListArea2", JSONArray.parseArray(JSON.toJSONString(arrayArea2, SerializerFeature.DisableCircularReferenceDetect)));
-		json.put("ListCentermoren", arrayCentermoren);
+		/*json.put("ListCentermoren", arrayCentermoren);*/
 		
 		try{
 			writeJson(json.toJSONString(),resp);
@@ -916,14 +1133,7 @@ public class BingMapController {
 				}
 			}
         }
-		System.out.println("nation1:"+arrayNation1.size()+"---"+arrayNation1);
-		System.out.println("nation2:"+arrayNation2.size()+"---"+arrayNation2);
-		System.out.println("zhou1:"+arrayZhou1.size()+"---"+arrayZhou1);
-		System.out.println("zhou2:"+arrayZhou2.size()+"---"+arrayZhou2);
-		System.out.println("city1:"+arrayCity1.size()+"---"+arrayCity1);
-		System.out.println("city2:"+arrayCity2.size()+"---"+arrayCity2);
-		System.out.println("area1:"+arrayArea1.size()+"---"+arrayArea1);
-		System.out.println("area2:"+arrayArea2.size()+"---"+arrayArea2);
+		
 		json.put("List", array);
 		json.put("ListCity1", arrayCity1);
 		json.put("ListCity2", JSONArray.parseArray(JSON.toJSONString(arrayCity2, SerializerFeature.DisableCircularReferenceDetect)));
@@ -1090,8 +1300,9 @@ public class BingMapController {
 		JSONArray arrayArea2 = new JSONArray();
 		
 		
-		JSONArray arrayCenter = new JSONArray();
-		JSONArray arrayCentermoren = new JSONArray();
+		JSONArray arrayCenternation = new JSONArray();
+		JSONArray arrayCentercity = new JSONArray();
+		JSONArray arrayCenterarea = new JSONArray();
 		List<String> city=new ArrayList<String>();
 		List<String> nation=new ArrayList<String>();
 		List<String> zhou=new ArrayList<String>();
@@ -1131,21 +1342,15 @@ public class BingMapController {
 		
 		List<HouseProject> list = bingMapDao.filterByLiandong(nation1,city1,area1);  //根据类型查找项目列表
 		
-			
+		lianDongResult = list;
+		
 		array = bingMapService.filterByLiandong(nation1,city1,area1);
 		
-		arrayCenter=bingMapService.jsonMapCenter();
-		int lenCenter=arrayCenter.size();
-		for(int k=0;k<lenCenter;k++){
-			JSONObject objCenter=(JSONObject)arrayCenter.get(k);
-			String typeCenter=objCenter.getString("type");
-			if("默认".equals(typeCenter)){
-				arrayCentermoren.add(objCenter);
-			}
-		}
-		int len=array.size();
+		arrayCenternation=bingMapService.jsonMapCenterNation();
+		arrayCentercity=bingMapService.jsonMapCenterCity();
+		arrayCenterarea=bingMapService.jsonMapCenterArea();
 		
-		
+		int len=array.size();		
 		for(int i=0;i<len;i++){
 			JSONObject obj=(JSONObject)array.get(i);
 			String project_city=obj.getString("project_city");
@@ -1225,14 +1430,7 @@ public class BingMapController {
 				}
 			}
         }
-		System.out.println("nation1:"+arrayNation1.size()+"---"+arrayNation1);
-		System.out.println("nation2:"+arrayNation2.size()+"---"+arrayNation2);
-		System.out.println("zhou1:"+arrayZhou1.size()+"---"+arrayZhou1);
-		System.out.println("zhou2:"+arrayZhou2.size()+"---"+arrayZhou2);
-		System.out.println("city1:"+arrayCity1.size()+"---"+arrayCity1);
-		System.out.println("city2:"+arrayCity2.size()+"---"+arrayCity2);
-		System.out.println("area1:"+arrayArea1.size()+"---"+arrayArea1);
-		System.out.println("area2:"+arrayArea2.size()+"---"+arrayArea2);
+		
 		json.put("List", array);
 		json.put("ListCity1", arrayCity1);
 		json.put("ListCity2", JSONArray.parseArray(JSON.toJSONString(arrayCity2, SerializerFeature.DisableCircularReferenceDetect)));
@@ -1242,7 +1440,9 @@ public class BingMapController {
 		json.put("ListZhou2", JSONArray.parseArray(JSON.toJSONString(arrayZhou2, SerializerFeature.DisableCircularReferenceDetect)));
 		json.put("ListArea1", arrayArea1);
 		json.put("ListArea2", JSONArray.parseArray(JSON.toJSONString(arrayArea2, SerializerFeature.DisableCircularReferenceDetect)));
-		json.put("ListCentermoren", arrayCentermoren);
+		json.put("ListCenternation", arrayCenternation);
+		json.put("ListCentercity", arrayCentercity);
+		json.put("ListCenterarea", arrayCenterarea);
 		try{
 			writeJson(json.toJSONString(),resp);
 		}catch(Exception e){
@@ -1601,7 +1801,7 @@ public class BingMapController {
 				if(y!=null && !"".equals(y)){
 					trueY = Double.parseDouble(y);
 				}
-				if(trueX >= leftX0 && trueX <= rightX0 && trueY>=leftY0 && trueY <=rightY0){
+				if(trueX >= rightX0 && trueX <= leftX0 && trueY>=leftY0 && trueY <=rightY0){
 					resultList.add(item);
 				}
 			}
@@ -1660,7 +1860,7 @@ public class BingMapController {
 				if(y!=null && !"".equals(y)){
 					trueY = Double.parseDouble(y);
 				}
-				if(trueX >= leftX0 && trueX <= rightX0 && trueY>=leftY0 && trueY <=rightY0){
+				if(trueX >= rightX0 && trueX <= leftX0 && trueY>=leftY0 && trueY <=rightY0){
 					resultTypeList.add(item);
 				}
 			}
@@ -1701,62 +1901,65 @@ public class BingMapController {
 			}
 		}
 		else if(liandong ==3){
-			for(HouseProject item : lianDongResult){
-				String gps = item.getGps();
-				String x = "";
-				String y = "";
-				String[] strs = null;
-				if(gps!=null && !"".equals(gps)){
-					strs = gps.split(",");
+			if(lianDongResult!=null){
+				for(HouseProject item : lianDongResult){
+					String gps = item.getGps();
+					String x = "";
+					String y = "";
+					String[] strs = null;
+					if(gps!=null && !"".equals(gps)){
+						strs = gps.split(",");
+					}
+					x = strs[0];
+					y = strs[1];
+					if(x!=null && !"".equals(x)){
+						trueX = Double.parseDouble(x);
+					}
+					if(y!=null && !"".equals(y)){
+						trueY = Double.parseDouble(y);
+					}
+					if(trueX >= rightX0 && trueX <= leftX0 && trueY>=leftY0 && trueY <=rightY0){
+						resultLianDongList.add(item);
+					}
 				}
-				x = strs[0];
-				y = strs[1];
-				if(x!=null && !"".equals(x)){
-					trueX = Double.parseDouble(x);
+				
+				
+				DecimalFormat df = new DecimalFormat("#,###,###");
+
+			for(HouseProject data : resultLianDongList){
+				JSONObject obj = new JSONObject();
+				obj.put("id", data.getId());
+				obj.put("gps", data.getGps()==null?"":data.getGps());
+				
+				obj.put("project_name", data.getProject_name()==null?"":data.getProject_name());
+				obj.put("project_name_short", data.getProject_name_short());
+				
+				obj.put("project_img", data.getProject_img()==null?"":data.getProject_img());
+				obj.put("project_price", data.getProject_price()==null?"":data.getProject_price());
+				obj.put("project_num", data.getProject_num()==null?"":data.getProject_num());
+				obj.put("project_min_price", data.getMinPrice());
+				obj.put("project_high_price", data.getMaxPrice());
+
+				obj.put("project_zhou", data.getProject_zhou()==null?"":data.getProject_zhou());
+				obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
+				obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
+				
+				obj.put("project_address", data.getProject_address()==null?"":data.getProject_address());
+
+				obj.put("project_address_short", data.getProject_address_short());			
+
+				obj.put("minArea", data.getMin_area()==0?0:data.getMin_area());
+				obj.put("maxArea", data.getMax_area()==0?0:data.getMax_area());
+				obj.put("return_money", data.getReturn_money()==null?"":data.getReturn_money());
+				obj.put("project_price_int_qi", data.getProject_price_int_qi_str());
+				obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
+				obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
+				obj.put("project_key", data.getProject_key()==null?"":data.getProject_key());
+				array.add(obj);
 				}
-				if(y!=null && !"".equals(y)){
-					trueY = Double.parseDouble(y);
-				}
-				if(trueX >= leftX0 && trueX <= rightX0 && trueY>=leftY0 && trueY <=rightY0){
-					resultLianDongList.add(item);
-				}
-			}
-			
-			
-			DecimalFormat df = new DecimalFormat("#,###,###");
-
-		for(HouseProject data : resultLianDongList){
-			JSONObject obj = new JSONObject();
-			obj.put("id", data.getId());
-			obj.put("gps", data.getGps()==null?"":data.getGps());
-			
-			obj.put("project_name", data.getProject_name()==null?"":data.getProject_name());
-			obj.put("project_name_short", data.getProject_name_short());
-			
-			obj.put("project_img", data.getProject_img()==null?"":data.getProject_img());
-			obj.put("project_price", data.getProject_price()==null?"":data.getProject_price());
-			obj.put("project_num", data.getProject_num()==null?"":data.getProject_num());
-			obj.put("project_min_price", data.getMinPrice());
-			obj.put("project_high_price", data.getMaxPrice());
-
-			obj.put("project_zhou", data.getProject_zhou()==null?"":data.getProject_zhou());
-			obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
-			obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
-			
-			obj.put("project_address", data.getProject_address()==null?"":data.getProject_address());
-
-			obj.put("project_address_short", data.getProject_address_short());			
-
-			obj.put("minArea", data.getMin_area()==0?0:data.getMin_area());
-			obj.put("maxArea", data.getMax_area()==0?0:data.getMax_area());
-			obj.put("return_money", data.getReturn_money()==null?"":data.getReturn_money());
-			obj.put("project_price_int_qi", data.getProject_price_int_qi_str());
-			obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
-			obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
-			obj.put("project_key", data.getProject_key()==null?"":data.getProject_key());
-			array.add(obj);
 			}
 		}
+			
 
 	
 		
@@ -1855,14 +2058,7 @@ public class BingMapController {
 				}
 			}
         }
-		System.out.println("nation1:"+arrayNation1.size()+"---"+arrayNation1);
-		System.out.println("nation2:"+arrayNation2.size()+"---"+arrayNation2);
-		System.out.println("zhou1:"+arrayZhou1.size()+"---"+arrayZhou1);
-		System.out.println("zhou2:"+arrayZhou2.size()+"---"+arrayZhou2);
-		System.out.println("city1:"+arrayCity1.size()+"---"+arrayCity1);
-		System.out.println("city2:"+arrayCity2.size()+"---"+arrayCity2);
-		System.out.println("area1:"+arrayArea1.size()+"---"+arrayArea1);
-		System.out.println("area2:"+arrayArea2.size()+"---"+arrayArea2);
+		
 		json.put("List", array);
 		json.put("ListCity1", arrayCity1);
 		json.put("ListCity2", JSONArray.parseArray(JSON.toJSONString(arrayCity2, SerializerFeature.DisableCircularReferenceDetect)));

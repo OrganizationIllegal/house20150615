@@ -3,6 +3,7 @@ package com.kate.app.controller;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -21,6 +22,7 @@ import com.kate.app.dao.HouseProjectDao;
 import com.kate.app.dao.ProjectInputDao;
 import com.kate.app.dao.SearchListDao;
 import com.kate.app.dao.UserDao;
+import com.kate.app.model.HouseProject;
 import com.kate.app.model.ProjectDescImage;
 import com.kate.app.model.SearchList;
 
@@ -36,6 +38,7 @@ public class SearchListController {
 	private ProjectInputDao projectInputDao;
 	@Autowired
 	private HouseProjectDao houseProjectDao;
+	public static List<SearchList> searchList_final=new ArrayList<SearchList>();
 	
 	
 	/**
@@ -123,6 +126,7 @@ public class SearchListController {
 			}
 			a.setProject_img(image1);
 		}
+		SearchListController.searchList_final=searchList;
 		int total = searchList.size();
 		int pageEnd = pageNum * pageSize;
 		int end = pageEnd < total ? pageEnd : total;
@@ -229,7 +233,84 @@ public class SearchListController {
 			String pageSize_str  = req.getParameter("pageSize");  //姣忛〉閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓锟�
 			int pageSize  = pageSize_str==null? 0 :Integer.parseInt(pageSize_str);
 			
-			List<SearchList> searchList=searchListDao.listSearchList();
+			/*List<SearchList> searchList=searchListDao.listSearchList();*/
+			List<SearchList> searchList=new ArrayList<SearchList>();
+			List<HouseProject> houseProjectList =BingMapController.listResult;
+			for(HouseProject houseProject:houseProjectList){
+				SearchList ss=new SearchList();
+	        	int id=houseProject.getId();
+	        	String project_img=houseProject.getProject_img();
+	        	String project_num=houseProject.getProject_num();
+	        	String project_address=houseProject.getProject_address();
+	        	String project_address_short=houseProject.getProject_address_short();
+	        	String project_name=houseProject.getProject_name();
+	        	int project_price_int_qi=houseProject.getProject_price_int_qi();
+	        	String project_price=houseProject.getProject_price_int_qi_str();
+	        	int minArea=houseProject.getMinArea();
+	        	int maxArea=houseProject.getMaxArea();
+	        	/*int keshou=*/
+	        	String average_price=houseProject.getProject_price_int_qi_str();
+	        	String house_type=null;///////////
+	        	String  project_min_price=houseProject.getProject_min_price();
+	        	String  project_high_price=houseProject.getProject_high_price();
+	        	String mianji=houseProject.getMianji();
+	        	/*String return_money=houseProject.getFanxian();*/
+	        	String project_price_int_qi_str=houseProject.getProject_price_int_qi_str();
+	        	List<String> project_key=houseProject.getProject_key();
+	        	String project_name_full=houseProject.getProject_name();
+	        	String bijiao=houseProject.getBijiao();
+	        	String gps=houseProject.getGps();
+	        	String project_lan_cn=houseProject.getProject_lan_cn();
+	        	String developer_id_name=houseProject.getDeveloper_id_name();
+	        	String xinkaipan=houseProject.getXinkaipan();
+	        	String remen=houseProject.getRemen();
+	        	String xuequ=houseProject.getXuequ();
+	        	String center=houseProject.getCenter();
+	        	String baozu=houseProject.getBaozu();
+	        	String huaren=houseProject.getHuaren();
+	        	String maidi=houseProject.getMaidi();
+	        	String daxue=houseProject.getDaxue();
+	        	String xianfang=houseProject.getXianfang();
+	        	String traffic=houseProject.getTraffic();
+	        	
+	        	
+	        	
+	        	
+	        	ss.setId(id);
+	        	ss.setProject_img(project_img);
+	        	ss.setProject_num(project_num);
+	        	ss.setProject_address(project_address);
+	        	ss.setProject_address_short(project_address_short);
+	        	ss.setProject_name(project_name);
+	        	ss.setProject_price_int_qi_str(project_price_int_qi_str);
+	        	ss.setProject_price_int_qi(project_price_int_qi);
+	        	ss.setMinArea(minArea);
+	        	ss.setMaxArea(maxArea);
+	        	ss.setMaxPrice(project_high_price);
+	        	ss.setMinPrice(project_min_price);
+	        	ss.setMianji(mianji);
+	        	ss.setProject_key(project_key);
+	        	ss.setProject_name(project_name_full);
+	        	ss.setBijiao(bijiao);
+	        	ss.setGps(gps);
+	        	ss.setProject_lan_cn(project_lan_cn);
+	        	ss.setDeveloper_id_name(developer_id_name);
+	        	ss.setXinkaipan(xinkaipan);
+	        	ss.setRemen(remen);
+	        	ss.setXuequ(xuequ);
+	        	ss.setCenter(center);
+	        	ss.setBaozu(baozu);
+	        	ss.setHuaren(huaren);
+	        	ss.setMaidi(maidi);
+	        	ss.setDaxue(daxue);
+	        	ss.setXianfang(xianfang);
+	        	ss.setTraffic(traffic);
+	        	searchList.add(ss);
+			}
+			if(searchList.size()==0){
+				 searchList=searchListDao.listSearchList();
+			}
+			
 			for(SearchList item : searchList){
 				if(item!=null){
 					String image1 = "";
