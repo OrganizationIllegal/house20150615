@@ -57,7 +57,6 @@ if(request.getSession().getAttribute("flag")!=null){
             <th data-formatter="countFormatter"></th>
             <th data-field="id" data-sortable="true" data-visible="false">ID</th>
             <th data-field="nation_name" data-sortable="true">国家名称</th>
-            <th data-field="nation_num" data-sortable="true">国家编号</th>
             <th data-field="center_gps" data-sortable="true">中心gps</th>
             <th data-field="operate"
                 data-formatter="operateFormatter"
