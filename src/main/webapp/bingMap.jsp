@@ -116,7 +116,11 @@ body{
 	   
 	   }
    
-
+  $("#1").mouseover(function(){
+	  alert("ffffffff")
+	  
+  })
+  
    function func1(v){
 	   var selectedOption=v.options[v.selectedIndex];  
 	   var nation = selectedOption.value;
@@ -356,7 +360,7 @@ body{
            	for(var j=0;j<items.length;j++){
            		var imgUrl = <%=application.getInitParameter("imagedir")%>/+items[j].project_img; 
 
-                html+=" <div class='c-fix f-l div_node'><span class='c-fix f-l f-yahei s-12 node_address' title='"+items[j].project_address+"'>"+items[j].project_address_short+"</span>";
+                html+=" <div id='1' class='c-fix f-l div_node'><span class='c-fix f-l f-yahei s-12 node_address' title='"+items[j].project_address+"'>"+items[j].project_address_short+"</span>";
 
                	html+="<a href='/Index?proNum="+items[j].project_num+"'"+" target='_parent'>";
            		
