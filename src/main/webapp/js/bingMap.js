@@ -449,201 +449,65 @@
 		 		    var a=new Array();
 		 		    var Zoom;
 		 		    if(lenItems!=0){
-		 		    	if(lenCenternation!=0&&lenCentercity!=0&&lenCenterarea!=0){
-		 		    		if(nation.length!=0){
-		    		 		       Zoom=11;
-		    		 		       for(var m1=0;m1<lenCenternation;m1++){
-		    		 		    	   if(nation==itemsCenternation[m1].name){
-		    		 		    		   a=itemsCenternation[m1].gps.split(",");
+		 		    	if(nation.length!=0){
+		 		    		   Zoom=8;
+		 		    		   if(lenCenternation!=0){
+		    		 		       for(var n1=0;n1<lenCenternation;n1++){
+		    		 		    	   if(nation==itemsCenternation[n1].name){
+		    		 		    		   a=itemsCenternation[n1].gps.split(",");
 		    		 		    		   break;
 		    		 		    	   }
-		    		 		       }
-		    		 		       if(a.length==0){
-		  	    		 		    	for(var m2=0;m2<lenItems;m2++){
-		 	    		 		    	   if(nation==items[m2].project_nation){
-		 	    		 		    		   a=items[m2].gps.split(",");
-		 	    		 		    		   break;
-		 	    		 		    	   }
-		 	    		 		    	  
-		 	    		 		          }
-		  	    		 		       }
-		    		 		    }
-		 		    		else if(city.length!=0){
-		    		 		       Zoom=11;
-		    		 		       for(var k1=0;k1<lenCentercity;k1++){
-		    		 		    	   if(city==itemsCentercity[k1].name){
-		    		 		    		   a=itemsCentercity[k1].gps.split(",");
-		    		 		    		   break;
+		    		 		       } 
+		 		    		   }	    		 		       
+	    		 		       if(a.length==0){
+	  	    		 		    	for(var n2=0;n2<lenItems;n2++){
+	 	    		 		    	   if(nation==items[n2].project_nation){
+	 	    		 		    		   a=items[n2].gps.split(",");
+	 	    		 		    		   break;
+	 	    		 		    	   }	 	    		 		    	  
+	 	    		 		          }
+	  	    		 		       }
+	    		 		    }
+		 		    	else if(city.length!=0){
+		 		    		   Zoom=11;
+		 		    		   if(lenCentercity!=0){
+	    		 		       for(var k1=0;k1<lenCentercity;k1++){
+	    		 		    	   if(city==itemsCentercity[k1].name){
+	    		 		    		   a=itemsCentercity[k1].gps.split(",");
+	    		 		    		   break;
+	    		 		    	   }
+	    		 		         }
+	    		 		       }
+	    		 		       if(a.length==0){
+	  	    		 		    	for(var k2=0;k2<lenItems;k2++){
+	 	    		 		    	   if(city==items[k2].project_city){
+	 	    		 		    		   a=items[k2].gps.split(",");
+	 	    		 		    		   break;
+	 	    		 		    	   }
+	 	    		 		    	  
+	 	    		 		          }
+	  	    		 		       }
+	    		 		    }
+		 		    	else  if(area.length!=0){
+	    		 		      Zoom=13;
+	    		 		      if(lenCentercity!=0){
+	    		 		    	 for(var k3=0;k3<lenCenterarea;k3++){
+	  	   		 		    	   if(area==itemsCenterarea[k3].name){
+	  	   		 		    		   a=itemsCenterarea[k3].gps.split(",");
+	  	   		 		    		   break;
+	  	   		 		    	   }
+	  	   		 		          }
+	    		 		      }    		 		     
+	    		 		     if(a.length==0){
+		    		 		    	for(var k4=0;k4<lenItems;k4++){
+		    		 		    	   if(area==items[k4].project_area){
+		    		 		    		   a=items[k4].gps.split(",");
+		    		 		    		  break;
 		    		 		    	   }
+		    		 		    	 
+		    		 		          }
 		    		 		       }
-		    		 		       if(a.length==0){
-		  	    		 		    	for(var k2=0;k2<lenItems;k2++){
-		 	    		 		    	   if(city==items[k2].project_city){
-		 	    		 		    		   a=items[k2].gps.split(",");
-		 	    		 		    		   break;
-		 	    		 		    	   }
-		 	    		 		    	  
-		 	    		 		          }
-		  	    		 		       }
-		    		 		    }
-			 		    	 else  if(area.length!=0){
-		    		 		      Zoom=13;
-		    		 		      for(var k3=0;k3<lenCenterarea;k3++){
-		   		 		    	   if(area==itemsCenterarea[k3].name){
-		   		 		    		   a=itemsCenterarea[k3].gps.split(",");
-		   		 		    		   break;
-		   		 		    	   }
-		   		 		          }
-		    		 		     if(a.length==0){
-			    		 		    	for(var k4=0;k4<lenItems;k4++){
-			    		 		    	   if(area==items[k4].project_area){
-			    		 		    		   a=items[k4].gps.split(",");
-			    		 		    		  break;
-			    		 		    	   }
-			    		 		    	 
-			    		 		          }
-			    		 		       }
-		    		 		    }
-			 		    	else  if(address.length!=0){
-		    		 		       a=items[0].gps.split(",");
-		    		 		       Zoom=17;
-		    		 		    }
-			 		    	else{
-			 		    		a=itemsCentermoren[0].gps.split(",");
-		    		 		    Zoom=5;
-			 		    	}
-			 		    } else if(lenCentermoren!=0){
-			 		    	if(city.length!=0&&lenCentercity!=0){
-		 		 		       Zoom=11;
-		 		 		       for(var k11=0;k11<lenCentercity;k11++){
-		 		 		    	   if(city==itemsCentercity[k11].name){
-		 		 		    		   a=itemsCentercity[k11].gps.split(",");
-		 		 		    		   break;
-		 		 		    	   }
-		 		 		       }
-		 		 		      if(a.length==0){
-		    		 		    	for(var k12=0;k12<lenItems;k12++){
-		   		 		    	   if(city==items[k12].project_city){
-		   		 		    		   a=items[k12].gps.split(",");
-		   		 		    		   break;
-		   		 		    	   }
-		   		 		    	  
-		   		 		          }
-		    		 		       }
-		 		 		    }
-			 		    	else if(city.length!=0&&lenCentercity==0){
-		 		 		       Zoom=11;
-		 		 		      for(var k13=0;k13<lenItems;k13++){
-				 		    	   if(city==items[k13].project_city){
-				 		    		   a=items[k13].gps.split(",");
-				 		    		 break;
-				 		    	   }
-				 		    	  
-				 		          }
-		 		 		    }
-			 		    	 else  if(area.length!=0&&lenCenterarea!=0){
-		 		 		      Zoom=13;
-		 		 		      for(var k14=0;k14<lenCenterarea;k14++){
-				 		    	   if(area==itemsCenterarea[k14].name){
-				 		    		   a=itemsCenterarea[k14].gps.split(",");
-				 		    		   break;
-				 		    	   }
-				 		          }
-		 		 		     if(a.length==0){
-		    		 		    	for(var k15=0;k15<lenItems;k15++){
-		   		 		    	   if(area==items[k15].project_area){
-		   		 		    		   a=items[k15].gps.split(",");
-		   		 		    		   break;
-		   		 		    	   }
-		   		 		    	 
-		   		 		          }
-		    		 		       }
-		 		 		    }
-			 		    	 else  if(area.length!=0&&lenCenterarea==0){
-				 		      Zoom=13;
-				 		      for(var k16=0;k16<lenItems;k16++){
-		  		 		    	   if(area==items[k16].project_area){
-		  		 		    		   a=items[k16].gps.split(",");
-		  		 		    	       break;
-		  		 		    	   }
-		  		 		           
-		  		 		          }
-				 		    }
-			 		    	else  if(address.length!=0){
-		 		 		       a=items[0].gps.split(",");
-		 		 		       Zoom=17;
-		 		 		    }
-			 		    	else{
-			 		    		a=itemsCentermoren[0].gps.split(",");
-		 		 		    Zoom=5;
-			 		    	}
-			 		    }else if(lenCentermoren==0){
-			 		    	if(city.length!=0&&lenCentercity!=0){
-				 		       Zoom=11;
-				 		       for(var k21=0;k21<lenCentercity;k21++){
-				 		    	   if(city==itemsCentercity[k21].name){
-				 		    		   a=itemsCentercity[k21].gps.split(",");
-				 		    		   break;
-				 		    	   }
-				 		       }
-				 		       if(a.length==0){
-				 		    	for(var k22=0;k22<lenItems;k22++){
-				 		    	   if(city==items[k22].project_city){
-				 		    		   a=items[k22].gps.split(",");
-				 		    		  break;
-				 		    	   }
-				 		    	  
-				 		          }
-				 		       }
-				 		    }
-			 		    	else if(city.length!=0&&lenCentercity==0){
-				 		       Zoom=11;
-				 		      for(var k23=0;k23<lenItems;k23++){
-			 		    	   if(city==items[k23].project_city){
-			 		    		   a=items[k23].gps.split(",");
-			 		    		  break;
-			 		    	   }
-			 		    	  
-			 		          }
-				 		    }
-				    	 else if(area.length!=0&&lenCenterarea!=0){
-				 		      Zoom=13;
-				 		      for(var k24=0;k24<lenCenterarea;k24++){
-				 		    	   if(area==itemsCenterarea[k24].name){
-				 		    		   a=itemsCenterarea[k24].gps.split(",");
-				 		    		   break;
-				 		    	   }
-				 		          }
-				 		      if(a.length==0){
-				 		    	for(var k25=0;k25<lenItems;k25++){
-			 		    	   if(area==items[k25].project_area){
-			 		    		   a=items[k25].gps.split(",");	
-			 		    		   break;
-			 		    	   }
-			 		    	 
-			 		          }
-				 		       }
-				 		    }
-				    	 else  if(area.length!=0&&lenCenterarea==0){
-				 		      Zoom=13;
-				 		      for(var k26=0;k26<lenItems;k26++){
-				 		    	   if(area==items[k26].project_area){
-				 		    		   a=items[k26].gps.split(",");
-				 		    		   break; 
-				 		    	   }
-				 		    	
-				 		          }
-				 		    }
-				    	else  if(address.length!=0){
-				 		       a=items[0].gps.split(",");
-				 		       Zoom=17;
-				 		    }
-				    	else{
-				    		a[0]="-25.585241";
-			 		        a[1]="134.504120";
-				 		    Zoom=5;
-				    	}
-			 		    }	 		    	
+	    		 		    }
 		 		    }		 		
 		 		    else{
 		 		    	a[0]="-25.585241";

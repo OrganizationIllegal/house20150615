@@ -1092,8 +1092,9 @@ public class BingMapController {
 		JSONArray arrayArea2 = new JSONArray();
 		
 		
-		JSONArray arrayCenter = new JSONArray();
-		JSONArray arrayCentermoren = new JSONArray();
+		JSONArray arrayCenternation = new JSONArray();
+		JSONArray arrayCentercity = new JSONArray();
+		JSONArray arrayCenterarea = new JSONArray();
 		List<String> city=new ArrayList<String>();
 		List<String> nation=new ArrayList<String>();
 		List<String> zhou=new ArrayList<String>();
@@ -1136,18 +1137,11 @@ public class BingMapController {
 			
 		array = bingMapService.filterByLiandong(nation1,city1,area1);
 		
-		arrayCenter=bingMapService.jsonMapCenter();
-		int lenCenter=arrayCenter.size();
-		for(int k=0;k<lenCenter;k++){
-			JSONObject objCenter=(JSONObject)arrayCenter.get(k);
-			String typeCenter=objCenter.getString("type");
-			if("默认".equals(typeCenter)){
-				arrayCentermoren.add(objCenter);
-			}
-		}
-		int len=array.size();
+		arrayCenternation=bingMapService.jsonMapCenterNation();
+		arrayCentercity=bingMapService.jsonMapCenterCity();
+		arrayCenterarea=bingMapService.jsonMapCenterArea();
 		
-		
+		int len=array.size();		
 		for(int i=0;i<len;i++){
 			JSONObject obj=(JSONObject)array.get(i);
 			String project_city=obj.getString("project_city");
@@ -1244,7 +1238,9 @@ public class BingMapController {
 		json.put("ListZhou2", JSONArray.parseArray(JSON.toJSONString(arrayZhou2, SerializerFeature.DisableCircularReferenceDetect)));
 		json.put("ListArea1", arrayArea1);
 		json.put("ListArea2", JSONArray.parseArray(JSON.toJSONString(arrayArea2, SerializerFeature.DisableCircularReferenceDetect)));
-		json.put("ListCentermoren", arrayCentermoren);
+		json.put("ListCenternation", arrayCenternation);
+		json.put("ListCentercity", arrayCentercity);
+		json.put("ListCenterarea", arrayCenterarea);
 		try{
 			writeJson(json.toJSONString(),resp);
 		}catch(Exception e){
