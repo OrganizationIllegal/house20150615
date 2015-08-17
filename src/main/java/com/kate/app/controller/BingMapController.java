@@ -108,194 +108,7 @@ public class BingMapController {
 	}
 	
 	
-	/*
-	 * 首页的搜索功能
-	 */
-		@RequestMapping({"/IndexSearch1"})
-		public String IndexSearch(HttpServletRequest req, HttpServletResponse resp){
-			flagInfo = 1;     //搜索结果页面
-			NumberFormat nf = new DecimalFormat("#,###,###");
-			String searchcity = req.getParameter("searchcity");
-			String type = req.getParameter("type");
-			String minimumprice = req.getParameter("minimumprice");
-			String maximumprice = req.getParameter("maximumprice");
-			String country = req.getParameter("country");
-			String city2 = req.getParameter("city2");
-			String xinkaipan = req.getParameter("xinkaipan");
-			String huaren = req.getParameter("huaren");
-			String remen = req.getParameter("remen");
-			String xuequ = req.getParameter("xuequ");
-			String baozu = req.getParameter("baozu");
-			String daxue = req.getParameter("daxue");
-			String center = req.getParameter("center");
-			String traffic = req.getParameter("traffic");
-			String xianfang = req.getParameter("xianfang");
-			String maidi = req.getParameter("maidi");
-			String city = null;
-			List<HouseProject> list1 = new ArrayList<HouseProject>();
-			List<HouseProject> resultList = new ArrayList<HouseProject>();
-			HouseProject pro = new HouseProject();
-			String areaNum = null;
-			int flag = 0;
-			if(searchcity!=null && !"".equals(searchcity)){
-				flag = 1;
-				String[] searchItemList = searchcity.split(",");
-				if(searchItemList.length>2){
-				//if(searchcity.indexOf(",") >= 0){      //包含逗号的情况
-					String[] strs = searchcity.split(",");
-					String areaName = "";
-					if(strs.length>0){
-						areaName = strs[0];
-					}
-					
-					AreaInfo areaInfo = areaInfoDao.getAreaInfo(areaName);   //根据区域名称得到区域的信息
-					if(areaInfo!=null){
-						areaNum = areaInfo.getArea_num();
-						list1 = searchListDao.searchIndexProject(areaNum);  //通过区域的名称在数据库中查找项目信息
-					}
-				}
-				else if(searchItemList.length == 2){
-					String[] strs1 = searchcity.split(",");
-					String city1 = strs1[0];
-					list1 = searchListDao.searchIndexProjectByCity(city1, searchcity);  //通过区域的名称在数据库中查找项目信息
-				}
-				else{
-					if(searchcity.indexOf("项目名称")>0){   //包含项目名称字段
-						int weizhi = searchcity.indexOf("(");
-						String projectName = searchcity.substring(0,weizhi-1).trim();
-						
-						list1 = searchListDao.searchIndexProjectByPro(projectName);  //通过前台传来的信息，在数据库中查找项目信息
-						
-					}
-					else{
-						list1 = searchListDao.searchIndexList(searchcity);    //通过前台传来的数据，查找项目信息
-						if(list1==null || list1.size()<=0){
-							//String area_num = searchListDao.searchIndexList1(searchcity);  //通过关键字段，查找区域编号
-							//list1 = searchListDao.searchIndexProject(area_num);   //通过区域编号在数据库中查找项目信息
-							list1 = searchListDao.searchIndexProjectNew(searchcity);   //通过区域编号在数据库中查找项目信息
-						}
-						
-					}
-					
-				}
-			}
-			if(city2!=null && !"".equals(city2)){
-				city = city2;
-			}
-			/*
-			 * 通过城市，类型等，进一步高级搜索，在数据库中查找项目信息
-			 */
-			List<HouseProject> list = searchListDao.indexSericeList(country, city, type, minimumprice, maximumprice, xinkaipan, huaren, remen, xuequ, baozu, daxue, center, traffic, xianfang, maidi);
-			if(list1.size()>=0){
-				if(list1.size()>list.size()){
-					for(int i=0; i<list1.size();i++){
-						for(int j=0;j<list.size();j++){
-							if(list.get(j).getProject_num().equals(list1.get(i).getProject_num())){
-								resultList.add(list.get(j));
-								break;
-							}
-						}
-					}
-				}
-				else if(list1.size()<=list.size() ){
-					if(flag==0){
-						resultList = list;
-					}
-					else{
-						for(int i=0; i<list.size();i++){
-							for(int j=0;j<list1.size();j++){
-								if(list1.get(j).getProject_num().equals(list.get(i).getProject_num())){
-									resultList.add(list1.get(j));
-									break;
-								}
-							}
-						}
-					}
-					
-				}
-			}
-			else{
-				resultList = list;
-			}
-			
-			List<SearchList> searchList = new ArrayList<SearchList>();
-			for(HouseProject item : resultList){
-				int id=item.getId();
-				String project_img = null;
-				String proNum = item.getProject_num();
-				List<ProjectDescImage> imageList = projectInputDao.getProjectImageByProNum(proNum);
-				if(imageList!=null && imageList.size()>0){
-					project_img = imageList.get(0).getName();
-				}
-				else{
-					project_img = "";
-				}
-				
-				String gps = null;
-				//gps = item.getGps();
-		    	String project_name=item.getProject_name();
-		    	String project_name_short = item.getProject_name_short();
-		    	
-		    	int project_sales_remain=item.getProject_sales_remain();
-		    	String maxPrice=item.getProject_high_price();
-		    	String minprice=item.getProject_min_price();
-		    	
-		    	int maxarea=item.getMax_area();
-		    	int minarea=item.getMin_area();
-		    	String return_money=item.getReturn_money();
-		    	String project_num =item.getProject_num();
-		    	String project_lan_cn=item.getProject_lan_cn();
-		    	String project_lan_en=item.getProject_lan_en();
-		    	String mianji=item.getMianji();
-		    	String project_address=item.getProject_address();
-		    	String project_address_short=item.getProject_address_short();
-		    	
-		    	String project_logo = item.getProject_logo();
-		    	String developer_id_name = item.getDeveloper_id_name();
-		    	String project_price_int_qi_str = item.getProject_price_qi();
-		    	String bijiao = item.getBijiao();
-		    /*	int project_price_int_qi=Integer.parseInt(project_price_int_qi_str);*/
-		    	String project_desc = item.getProject_desc();
-		    	gps = item.getGps();
-		    	String project_area=item.getProject_area();
-		    	String project_type=item.getProject_type();
-		    	String project_city = item.getProject_city();
-		    	String xinkaipan1=null;
-			    String huaren1=null;
-			    String remen1=null;
-			    String xuequ1=null;
-			    String baozu1=null;
-			    String daxue1=null;
-			    String center1=null;
-			    String traffic1=null;
-			    String xianfang1=null;
-			    String maidi1=null;
-			    
-		    	ProjectKey p = searchListDao.searchProjectKey(project_num);
-		    	if(p!=null){
-		    		xinkaipan1 = p.getXinkaipan();
-		    		huaren1 = p.getHuaren();
-		    		remen1 = p.getRemen();
-		    		xuequ1 = p.getXuequ();
-		    		baozu1 = p.getBaozu();
-		    		daxue1 = p.getDaxue();
-		    		center1 = p.getCenter();
-		    		traffic1 = p.getTraffic();
-		    		xianfang1 = p.getXianfang();
-		    		maidi1 = p.getMaidi();
-		    	}
-
-		    	List<String> project_key = new ArrayList<String>();
-		    	project_key=bingMapDao.findProjectKeyByNum(project_num);
-		    	
-		        
-		    	SearchList data=new SearchList(id,bijiao,project_name_short,project_area,project_type,gps,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,project_lan_en,mianji,project_address,project_logo,developer_id_name,xinkaipan1,huaren1,remen1,xuequ1,baozu1,daxue1,center1,traffic1,xianfang1,maidi1,project_price_int_qi_str,project_desc,project_key,project_address_short,project_city);
-		    	searchList.add(data);
-			}
-			seachListResult1 = searchList;    //将查询的结果复制给静态变量
-			//req.setAttribute("searchList",searchList);
-			return "/BingMap?index=1";
-		}
+	
 	
 		
 		
@@ -984,11 +797,28 @@ public class BingMapController {
 		liandong = 2;
 		JSONObject json = new JSONObject();
 		JSONArray array = new JSONArray();
-		JSONArray array2 = new JSONArray();
-		JSONArray array3 = new JSONArray();
+		/*JSONArray array2 = new JSONArray();
+		JSONArray array3 = new JSONArray();*/
+		JSONArray arrayCity1 = new JSONArray();
+		JSONArray arrayCity2 = new JSONArray();
+		JSONArray arrayNation1 = new JSONArray();
+		JSONArray arrayNation2 = new JSONArray();
+		JSONArray arrayZhou1 = new JSONArray();
+		JSONArray arrayZhou2 = new JSONArray();
+		JSONArray arrayArea1 = new JSONArray();
+		JSONArray arrayArea2 = new JSONArray();
+		
+		
 		JSONArray arrayCenter = new JSONArray();
 		JSONArray arrayCentermoren = new JSONArray();
+		
 		List<String> city=new ArrayList<String>();
+		List<String> nation=new ArrayList<String>();
+		List<String> zhou=new ArrayList<String>();
+		List<String> area=new ArrayList<String>();
+		
+		
+		
 		int type=Integer.parseInt(req.getParameter("house_type"));
 		List<HouseProject> list = bingMapDao.filterByHouseType2(type,0);  //根据类型查找项目列表
 		typeListResult = list;    //根据类型查询结果集合
@@ -1007,35 +837,108 @@ public class BingMapController {
 			}
 		}
 		int len=array.size();
+		
+		
 		for(int i=0;i<len;i++){
 			JSONObject obj=(JSONObject)array.get(i);
 			String project_city=obj.getString("project_city");
+			String project_nation=obj.getString("project_nation");
+			String project_zhou=obj.getString("project_zhou");
+			String project_area=obj.getString("project_area");
 			city.add(project_city);
+			nation.add(project_nation);
+			zhou.add(project_zhou);
+			area.add(project_area);
 		}
-		Set<String> uniqueSet = new HashSet<String>(city);
-		for (String temp : uniqueSet) {
-			String str1=temp;
-			int size=Collections.frequency(city, temp);
-			JSONObject obj2 = new JSONObject();
-			obj2.put("city", size);
-			array2.add(obj2);
+		//城市
+		Set<String> uniqueSetCity = new HashSet<String>(city);
+		for (String temp : uniqueSetCity) {
+			String strCity=temp;
+			int sizeCity=Collections.frequency(city, temp);
+			JSONObject objCity1 = new JSONObject();
+			objCity1.put("city", sizeCity);
+			arrayCity1.add(objCity1);
 			for(int j=0;j<len;j++){
-				JSONObject obj3=(JSONObject)array.get(j);
-				String project_city2=obj3.getString("project_city");
-				if(project_city2.equals(str1)){
-					array3.add(obj3);
+				JSONObject objCity2=(JSONObject)array.get(j);
+				String project_city2=objCity2.getString("project_city");
+				if(project_city2.equals(strCity)){
+					arrayCity2.add(objCity2);
 					break;
 				}
 			}
         }
-		/*System.out.println(array2);
-		System.out.println(array3);
-		System.out.println(array2.size());
-		System.out.println(array3.size());*/
+		//国家
+		Set<String> uniqueSetNation = new HashSet<String>(nation);
+		for (String temp : uniqueSetNation) {
+			String strNation=temp;
+			int sizeNation=Collections.frequency(nation, temp);
+			JSONObject objNation1 = new JSONObject();
+			objNation1.put("nation", sizeNation);
+			arrayNation1.add(objNation1);
+			for(int j=0;j<len;j++){
+				JSONObject objNation2=(JSONObject)array.get(j);
+				String project_nation2=objNation2.getString("project_nation");
+				if(project_nation2.equals(strNation)){
+					arrayNation2.add(objNation2);
+					break;
+				}
+			}
+        }
+		//州
+		Set<String> uniqueSetZhou = new HashSet<String>(zhou);
+		for (String temp : uniqueSetZhou) {
+			String strZhou=temp;
+			int sizeZhou=Collections.frequency(zhou, temp);
+			JSONObject objZhou1 = new JSONObject();
+			objZhou1.put("zhou", sizeZhou);
+			arrayZhou1.add(objZhou1);
+			for(int j=0;j<len;j++){
+				JSONObject objZhou2=(JSONObject)array.get(j);
+				String project_zhou2=objZhou2.getString("project_zhou");
+				if(project_zhou2.equals(strZhou)){
+					arrayZhou2.add(objZhou2);
+					break;
+				}
+			}
+        }
+		//区域
+		Set<String> uniqueSetArea = new HashSet<String>(area);
+		for (String temp : uniqueSetArea) {
+			String strArea=temp;
+			int sizeArea=Collections.frequency(area, temp);
+			JSONObject objArea1 = new JSONObject();
+			objArea1.put("area", sizeArea);
+			arrayArea1.add(objArea1);
+			for(int j=0;j<len;j++){
+				JSONObject objArea2=(JSONObject)array.get(j);
+				String project_area2=objArea2.getString("project_area");
+				if(project_area2.equals(strArea)){
+					arrayArea2.add(objArea2);
+					break;
+				}
+			}
+        }
+		System.out.println("nation1:"+arrayNation1.size()+"---"+arrayNation1);
+		System.out.println("nation2:"+arrayNation2.size()+"---"+arrayNation2);
+		System.out.println("zhou1:"+arrayZhou1.size()+"---"+arrayZhou1);
+		System.out.println("zhou2:"+arrayZhou2.size()+"---"+arrayZhou2);
+		System.out.println("city1:"+arrayCity1.size()+"---"+arrayCity1);
+		System.out.println("city2:"+arrayCity2.size()+"---"+arrayCity2);
+		System.out.println("area1:"+arrayArea1.size()+"---"+arrayArea1);
+		System.out.println("area2:"+arrayArea2.size()+"---"+arrayArea2);
 		json.put("List", array);
-		json.put("List2", array2);
-		json.put("List3", JSONArray.parseArray(JSON.toJSONString(array3, SerializerFeature.DisableCircularReferenceDetect)));
+		json.put("ListCity1", arrayCity1);
+		json.put("ListCity2", JSONArray.parseArray(JSON.toJSONString(arrayCity2, SerializerFeature.DisableCircularReferenceDetect)));
+		json.put("ListNation1", arrayNation1);
+		json.put("ListNation2", JSONArray.parseArray(JSON.toJSONString(arrayNation2, SerializerFeature.DisableCircularReferenceDetect)));
+		json.put("ListZhou1", arrayZhou1);
+		json.put("ListZhou2", JSONArray.parseArray(JSON.toJSONString(arrayZhou2, SerializerFeature.DisableCircularReferenceDetect)));
+		json.put("ListArea1", arrayArea1);
+		json.put("ListArea2", JSONArray.parseArray(JSON.toJSONString(arrayArea2, SerializerFeature.DisableCircularReferenceDetect)));
 		json.put("ListCentermoren", arrayCentermoren);
+		
+		
+		
 		try{
 			writeJson(json.toJSONString(),resp);
 		}catch(Exception e){
@@ -1177,26 +1080,39 @@ public class BingMapController {
 		//JSONObject json=new JSONObject();
 		JSONObject json = new JSONObject();
 		JSONArray array = new JSONArray();
-		JSONArray array2 = new JSONArray();
-		JSONArray array3 = new JSONArray();
+		/*JSONArray array2 = new JSONArray();
+		JSONArray array3 = new JSONArray();*/
+		JSONArray arrayCity1 = new JSONArray();
+		JSONArray arrayCity2 = new JSONArray();
+		JSONArray arrayNation1 = new JSONArray();
+		JSONArray arrayNation2 = new JSONArray();
+		JSONArray arrayZhou1 = new JSONArray();
+		JSONArray arrayZhou2 = new JSONArray();
+		JSONArray arrayArea1 = new JSONArray();
+		JSONArray arrayArea2 = new JSONArray();
+		
+		
 		JSONArray arrayCenter = new JSONArray();
 		JSONArray arrayCentermoren = new JSONArray();
 		List<String> city=new ArrayList<String>();
+		List<String> nation=new ArrayList<String>();
+		List<String> zhou=new ArrayList<String>();
+		List<String> area=new ArrayList<String>();
 		
-		String nation = req.getParameter("nation");
+		String nation1 = req.getParameter("nation");
 		String city1 = req.getParameter("city");
-		String area = req.getParameter("area");
-		if(nation.equals("0")){
-			nation = null;
+		String area1 = req.getParameter("area");
+		if(nation1.equals("0")){
+			nation1 = null;
 		}
 		if(city1.equals("0")){
 			city1 = null;
 		}
-		if(area.equals("0")){
-			area = null;
+		if(area1.equals("0")){
+			area1 = null;
 		}
 		
-		List<String> citys=searchListDao.findCityByNation(nation);
+		List<String> citys=searchListDao.findCityByNation(nation1);
 		for(String item : citys){
 			JSONObject obj=new JSONObject();
 			obj.put("city", item);
@@ -1215,10 +1131,10 @@ public class BingMapController {
 	
 	
 		
-		List<HouseProject> list = bingMapDao.filterByLiandong(nation,city1,area);  //根据类型查找项目列表
+		List<HouseProject> list = bingMapDao.filterByLiandong(nation1,city1,area1);  //根据类型查找项目列表
 		
 			
-		array = bingMapService.filterByLiandong(nation,city1,area);
+		array = bingMapService.filterByLiandong(nation1,city1,area1);
 		
 		arrayCenter=bingMapService.jsonMapCenter();
 		int lenCenter=arrayCenter.size();
@@ -1230,35 +1146,104 @@ public class BingMapController {
 			}
 		}
 		int len=array.size();
+		
+		
 		for(int i=0;i<len;i++){
 			JSONObject obj=(JSONObject)array.get(i);
 			String project_city=obj.getString("project_city");
+			String project_nation=obj.getString("project_nation");
+			String project_zhou=obj.getString("project_zhou");
+			String project_area=obj.getString("project_area");
 			city.add(project_city);
+			nation.add(project_nation);
+			zhou.add(project_zhou);
+			area.add(project_area);
 		}
-		Set<String> uniqueSet = new HashSet<String>(city);
-		for (String temp : uniqueSet) {
-			String str1=temp;
-			int size=Collections.frequency(city, temp);
-			JSONObject obj2 = new JSONObject();
-			obj2.put("city", size);
-			array2.add(obj2);
+		//城市
+		Set<String> uniqueSetCity = new HashSet<String>(city);
+		for (String temp : uniqueSetCity) {
+			String strCity=temp;
+			int sizeCity=Collections.frequency(city, temp);
+			JSONObject objCity1 = new JSONObject();
+			objCity1.put("city", sizeCity);
+			arrayCity1.add(objCity1);
 			for(int j=0;j<len;j++){
-				JSONObject obj3=(JSONObject)array.get(j);
-				String project_city2=obj3.getString("project_city");
-				if(project_city2.equals(str1)){
-					array3.add(obj3);
+				JSONObject objCity2=(JSONObject)array.get(j);
+				String project_city2=objCity2.getString("project_city");
+				if(project_city2.equals(strCity)){
+					arrayCity2.add(objCity2);
 					break;
 				}
 			}
         }
-		/*System.out.println(array2);
-		System.out.println(array3);
-		System.out.println(array2.size());
-		System.out.println(array3.size());*/
-		
+		//国家
+		Set<String> uniqueSetNation = new HashSet<String>(nation);
+		for (String temp : uniqueSetNation) {
+			String strNation=temp;
+			int sizeNation=Collections.frequency(nation, temp);
+			JSONObject objNation1 = new JSONObject();
+			objNation1.put("nation", sizeNation);
+			arrayNation1.add(objNation1);
+			for(int j=0;j<len;j++){
+				JSONObject objNation2=(JSONObject)array.get(j);
+				String project_nation2=objNation2.getString("project_nation");
+				if(project_nation2.equals(strNation)){
+					arrayNation2.add(objNation2);
+					break;
+				}
+			}
+        }
+		//州
+		Set<String> uniqueSetZhou = new HashSet<String>(zhou);
+		for (String temp : uniqueSetZhou) {
+			String strZhou=temp;
+			int sizeZhou=Collections.frequency(zhou, temp);
+			JSONObject objZhou1 = new JSONObject();
+			objZhou1.put("zhou", sizeZhou);
+			arrayZhou1.add(objZhou1);
+			for(int j=0;j<len;j++){
+				JSONObject objZhou2=(JSONObject)array.get(j);
+				String project_zhou2=objZhou2.getString("project_zhou");
+				if(project_zhou2.equals(strZhou)){
+					arrayZhou2.add(objZhou2);
+					break;
+				}
+			}
+        }
+		//区域
+		Set<String> uniqueSetArea = new HashSet<String>(area);
+		for (String temp : uniqueSetArea) {
+			String strArea=temp;
+			int sizeArea=Collections.frequency(area, temp);
+			JSONObject objArea1 = new JSONObject();
+			objArea1.put("area", sizeArea);
+			arrayArea1.add(objArea1);
+			for(int j=0;j<len;j++){
+				JSONObject objArea2=(JSONObject)array.get(j);
+				String project_area2=objArea2.getString("project_area");
+				if(project_area2.equals(strArea)){
+					arrayArea2.add(objArea2);
+					break;
+				}
+			}
+        }
+		System.out.println("nation1:"+arrayNation1.size()+"---"+arrayNation1);
+		System.out.println("nation2:"+arrayNation2.size()+"---"+arrayNation2);
+		System.out.println("zhou1:"+arrayZhou1.size()+"---"+arrayZhou1);
+		System.out.println("zhou2:"+arrayZhou2.size()+"---"+arrayZhou2);
+		System.out.println("city1:"+arrayCity1.size()+"---"+arrayCity1);
+		System.out.println("city2:"+arrayCity2.size()+"---"+arrayCity2);
+		System.out.println("area1:"+arrayArea1.size()+"---"+arrayArea1);
+		System.out.println("area2:"+arrayArea2.size()+"---"+arrayArea2);
 		json.put("List", array);
-		json.put("List2", array2);
-		json.put("List3", JSONArray.parseArray(JSON.toJSONString(array3, SerializerFeature.DisableCircularReferenceDetect)));
+		json.put("ListCity1", arrayCity1);
+		json.put("ListCity2", JSONArray.parseArray(JSON.toJSONString(arrayCity2, SerializerFeature.DisableCircularReferenceDetect)));
+		json.put("ListNation1", arrayNation1);
+		json.put("ListNation2", JSONArray.parseArray(JSON.toJSONString(arrayNation2, SerializerFeature.DisableCircularReferenceDetect)));
+		json.put("ListZhou1", arrayZhou1);
+		json.put("ListZhou2", JSONArray.parseArray(JSON.toJSONString(arrayZhou2, SerializerFeature.DisableCircularReferenceDetect)));
+		json.put("ListArea1", arrayArea1);
+		json.put("ListArea2", JSONArray.parseArray(JSON.toJSONString(arrayArea2, SerializerFeature.DisableCircularReferenceDetect)));
 		json.put("ListCentermoren", arrayCentermoren);
 		try{
 			writeJson(json.toJSONString(),resp);

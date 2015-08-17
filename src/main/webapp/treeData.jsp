@@ -425,6 +425,84 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 														              }
 
 									            ]
+									          },
+									          {
+										            text: '联动国家录入',	
+										            color: '#ffffff', 
+										            backColor:'rgb(59,94,132)',   
+										            href:'#title',          
+										            nodes: [
+
+												              {
+												                text: '联动国家录入',
+													            href:'#title'	                
+												              },
+									                  ]
+									          },
+									          {
+										            text: '联动国家列表',	
+										            color: '#ffffff', 
+										            backColor:'rgb(59,94,132)',   
+										            href:'#title',          
+										            nodes: [
+
+												              {
+												                text: '联动国家列表',
+													            href:'#title'	                
+												              },
+									                  ]
+									          },
+									          {
+										            text: '联动城市录入',	
+										            color: '#ffffff', 
+										            backColor:'rgb(59,94,132)',   
+										            href:'#title',          
+										            nodes: [
+
+												              {
+												                text: '联动城市录入',
+													            href:'#title'	                
+												              },
+									                  ]
+									          },
+									          {
+										            text: '联动城市列表',	
+										            color: '#ffffff', 
+										            backColor:'rgb(59,94,132)',   
+										            href:'#title',          
+										            nodes: [
+
+												              {
+												                text: '联动城市列表',
+													            href:'#title'	                
+												              },
+									                  ]
+									          },
+									          {
+										            text: '联动区域录入',	
+										            color: '#ffffff', 
+										            backColor:'rgb(59,94,132)',   
+										            href:'#title',          
+										            nodes: [
+
+												              {
+												                text: '联动区域录入',
+													            href:'#title'	                
+												              },
+									                  ]
+									          },
+									          {
+										            text: '联动区域列表',	
+										            color: '#ffffff', 
+										            backColor:'rgb(59,94,132)',   
+										            href:'#title',          
+										            nodes: [
+
+												              {
+												                text: '联动区域列表',
+													            href:'#title'	                
+												              },
+									                  ]
 									          }
 							        ]
 
@@ -535,6 +613,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	           else if(node.text=="合作伙伴留言"){
 			          /*  $("#showlist").load("Message.jsp"); */
 		        	   window.open("MessageForHeZuo.jsp","合作伙伴留言");
+			       }
+	           else if(node.text=="联动国家录入"){
+			          /*  $("#showlist").load("Message.jsp"); */
+		        	   window.open("AddNation.jsp","联动国家录入");
+			       }
+	           else if(node.text=="联动国家列表"){
+			          /*  $("#showlist").load("Message.jsp"); */
+		        	   window.open("NationList.jsp","联动国家列表");
+			       }
+	           else if(node.text=="联动城市录入"){
+			          /*  $("#showlist").load("Message.jsp"); */
+		        	   window.open("/CityAdd","联动城市录入");
+			       }
+	           else if(node.text=="联动城市列表"){
+			          /*  $("#showlist").load("Message.jsp"); */
+		        	   window.open("CityList.jsp","联动城市列表");
+			       }
+	           else if(node.text=="联动区域录入"){
+			          /*  $("#showlist").load("Message.jsp"); */
+		        	   window.open("/LiandongAreaAdd","联动区域录入");
+			       }
+	           else if(node.text=="联动区域列表"){
+			          /*  $("#showlist").load("Message.jsp"); */
+		        	   window.open("LiandongAreaList.jsp","联动区域列表");
 			       }
 	          } 
 	        });
