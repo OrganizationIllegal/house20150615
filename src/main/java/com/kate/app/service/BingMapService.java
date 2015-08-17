@@ -12,9 +12,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.kate.app.dao.BingMapDao;
 import com.kate.app.model.BingMapCenter;
 import com.kate.app.model.BingMapVo;
+import com.kate.app.model.City;
 import com.kate.app.model.HouseProject;
-
-import net.sf.ezmorph.object.NumberMorpher;
+import com.kate.app.model.Nation;
+import com.kate.app.model.Quyu;
 @Service
 public class BingMapService {
 	@Autowired
@@ -96,6 +97,55 @@ public class BingMapService {
 		}
 		return array;
 	}
+	
+	//查找地图中心点--nation
+		public JSONArray jsonMapCenterNation(){
+			JSONArray array = new JSONArray();
+			List<Nation> list = bingMapDao.listMapCenterNation();
+			for(Nation data : list){
+				JSONObject obj = new JSONObject();
+				obj.put("id", data.getId());
+				obj.put("gps", data.getCenter_gps());
+				obj.put("name", data.getNation_name());
+				//obj.put("type", data.getType());
+				array.add(obj);
+			}
+			return array;
+		}
+	
+		
+		//查找地图中心点--city
+				public JSONArray jsonMapCenterCity(){
+					JSONArray array = new JSONArray();
+					List<City> list = bingMapDao.listMapCenterCity();
+					for(City data : list){
+						JSONObject obj = new JSONObject();
+						obj.put("id", data.getId());
+						obj.put("gps", data.getCenter_gps());
+						obj.put("name", data.getCity_name());
+						//obj.put("type", data.getType());
+						array.add(obj);
+					}
+					return array;
+				}
+				
+				
+				
+				//查找地图中心点--area
+				public JSONArray jsonMapCenterArea(){
+					JSONArray array = new JSONArray();
+					List<Quyu> list = bingMapDao.listMapCenterArea();
+					for(Quyu data : list){
+						JSONObject obj = new JSONObject();
+						obj.put("id", data.getId());
+						obj.put("gps", data.getCenter_gps());
+						obj.put("name", data.getArea_name());
+						//obj.put("type", data.getType());
+						array.add(obj);
+					}
+					return array;
+				}
+	
 	//根据房屋类型搜索及根据价格排序
 	public JSONArray filterByLiandong(String nation, String city, String area){
 		JSONArray array = new JSONArray();
