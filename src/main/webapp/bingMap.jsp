@@ -148,7 +148,7 @@ body{
 	   var nation = $(' #nation  option:selected').val();
 	   var city = $(' #city  option:selected').val();
 	   var area = $(' #area  option:selected').val();
-	  
+	   //alert(city+"chengshi")
 	   //var nation = $(' #nation  option:selected').val();
 	  
 	   addPushpinNation(nation, city, area, item);
@@ -159,7 +159,7 @@ body{
    function city1(){
 	   var nation = $(' #nation  option:selected').val();
 	   var city = $(' #city  option:selected').val();
-	   alert(city+nation)
+	   //alert(city+nation)
 	   addPushpinNation(city);
 	  
 	   

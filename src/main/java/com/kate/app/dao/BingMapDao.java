@@ -1756,10 +1756,9 @@ public class BingMapDao extends BaseDao2 {
 				
 				String sql = "SELECT * FROM house_project a, area_info b WHERE a.area_num = b.area_num and a.gps!='' and a.gps like '%,%' and a.isSeen=1 ";
 				int i=0;
-				if(!nation.equals("") && nation !=null){
-					
-						sql += "and b.area_nation = '"+nation+"'";
-						i=1;
+				if(nation!=null &&!"".equals(nation)){
+					sql += "and b.area_nation = '"+nation+"'";
+					i=1;
 				}
 				if(city!=null &&!"".equals(city)){
 					if(i==1){

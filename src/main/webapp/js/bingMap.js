@@ -294,7 +294,7 @@
 	   /* 增加公寓pushpin*/
 	   function addPushpinNation(nation, city, area,item)
       {
-		 alert(nation+city+area)
+		 //alert(nation+city+area)
 		 map.entities.clear(); 
 		 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
 		 $.ajax({
