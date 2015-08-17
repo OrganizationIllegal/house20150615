@@ -359,7 +359,12 @@ $(function(){
 	 player = new YKU.Player('youkuplayer1',{
 		styleid: '0',
 		client_id: '6e97509b4cd3378b',
+		<c:if test="${!empty vedio}">
+		vid: '${vedio}',
+		</c:if>
+		<c:if test="${empty vedio}">
 		vid: 'XOTUxNDk2NDQ0',
+		</c:if>
 		events:{
 		/* onPlayerReady: function(){ 
 			//alert("zhunbei");
