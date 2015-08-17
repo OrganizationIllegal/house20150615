@@ -1,10 +1,11 @@
 package com.kate.app.model;
 
+import java.sql.Timestamp;
 
-public class City {
+public class Quyu {
 	private int id;
-	private String city_name;
-	private String city_num;
+	private String area_name;
+	private String area_num;
 	private String center_gps;
 	private String pre_num;
 	public int getId() {
@@ -13,17 +14,17 @@ public class City {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getCity_name() {
-		return city_name;
+	public String getArea_name() {
+		return area_name;
 	}
-	public void setCity_name(String city_name) {
-		this.city_name = city_name;
+	public void setArea_name(String area_name) {
+		this.area_name = area_name;
 	}
-	public String getCity_num() {
-		return city_num;
+	public String getArea_num() {
+		return area_num;
 	}
-	public void setCity_num(String city_num) {
-		this.city_num = city_num;
+	public void setArea_num(String area_num) {
+		this.area_num = area_num;
 	}
 	public String getCenter_gps() {
 		return center_gps;
@@ -38,5 +39,4 @@ public class City {
 		this.pre_num = pre_num;
 	}
 	
-
 }

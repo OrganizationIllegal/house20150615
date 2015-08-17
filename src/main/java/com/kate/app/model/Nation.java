@@ -1,5 +1,6 @@
 package com.kate.app.model;
 
+
 public class Nation {
 	private int id;
 	private String nation_name;
@@ -30,5 +31,5 @@ public class Nation {
 		this.center_gps = center_gps;
 	}
 	
-	
+
 }

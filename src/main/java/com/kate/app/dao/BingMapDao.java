@@ -3,7 +3,6 @@ package com.kate.app.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -16,8 +15,11 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kate.app.model.BingMapCenter;
 import com.kate.app.model.BingMapVo;
+import com.kate.app.model.City;
 import com.kate.app.model.HouseProject;
+import com.kate.app.model.Nation;
 import com.kate.app.model.ProjectDescImage;
+import com.kate.app.model.Quyu;
 @Repository 
 public class BingMapDao extends BaseDao2 {
 	
@@ -592,6 +594,114 @@ public class BingMapDao extends BaseDao2 {
         }
 		return mapCenterList;
 	} 
+	
+	//查找地图中心点
+		public List<Nation> listMapCenterNation(){
+			Statement stmt = null;
+			Connection con = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+			List<Nation> mapCenterNationList=new ArrayList<Nation>();
+			try {
+				con = dataSource.getConnection();
+				String sql = "SELECT * FROM nation WHERE center_gps!='' and center_gps like '%,%'";
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
+			    while(rs.next()){
+			    	Nation mapCenter=new Nation();
+			    	mapCenter.setId(rs.getInt("id"));
+			    	mapCenter.setCenter_gps(rs.getString("center_gps"));
+			    	mapCenter.setNation_name(rs.getString("nation_name"));
+			    	mapCenter.setNation_num(rs.getString("nation_num"));
+			    	mapCenterNationList.add(mapCenter);
+			    }
+			    
+			  
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally{
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
+
+	        }
+			return mapCenterNationList;
+		}
+		
+		
+		//查找地图中心点
+		public List<City> listMapCenterCity(){
+			Statement stmt = null;Connection con = null;
+
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+			List<City> mapCenterCityList=new ArrayList<City>();
+			try {con = dataSource.getConnection();
+				String sql = "SELECT * FROM city WHERE center_gps!='' and center_gps like '%,%'";
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
+			    while(rs.next()){
+			    	City mapCenter=new City();
+			    	mapCenter.setId(rs.getInt("id"));
+			    	mapCenter.setCenter_gps(rs.getString("center_gps"));
+			    	mapCenter.setCity_name(rs.getString("city_name"));
+			    	mapCenter.setCity_num(rs.getString("city_num"));
+			    	mapCenterCityList.add(mapCenter);
+			    }
+			    
+			  
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally{
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
+
+	        }
+			return mapCenterCityList;
+		}
+		
+		
+		//查找地图中心点
+		public List<Quyu> listMapCenterArea(){
+			Statement stmt = null;Connection con = null;
+
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+			List<Quyu> mapCenterAreaList=new ArrayList<Quyu>();
+			try {con = dataSource.getConnection();
+				String sql = "SELECT * FROM area WHERE center_gps!='' and center_gps like '%,%'";
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
+			    while(rs.next()){
+			    	Quyu mapCenter=new Quyu();
+			    	mapCenter.setId(rs.getInt("id"));
+			    	mapCenter.setCenter_gps(rs.getString("center_gps"));
+			    	mapCenter.setArea_name(rs.getString("area_name"));
+			    	mapCenter.setArea_num(rs.getString("area_num"));
+			    	mapCenterAreaList.add(mapCenter);
+			    }
+			    
+			  
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally{
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
+
+	        }
+			return mapCenterAreaList;
+		}
 	/*
 	 * 根据类型查找项目列表
 	 */
@@ -939,106 +1049,22 @@ public class BingMapDao extends BaseDao2 {
 	/*
 	 * 根据搜索结果返回项目列表
 	 */
-	public List<HouseProject> filterByKeyWord(String area,String city,String addr,int order){
+	public List<HouseProject> filterByProjectName(String project_name){
 		NumberFormat nf = new DecimalFormat("#,###,###");
 		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
         String sql=null;
 		List<HouseProject> coordinatesList=new ArrayList<HouseProject>();
-		try {con = dataSource.getConnection();
-			  if(!"".equals(area)&&!"".equals(city)&&!"".equals(addr)){
-				  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_area=? and project_city=? and project_address like ?";
-				  if(order==1){
-					  sql+="order by project_price_int_qi";
-				  }
-				  else if(order==2){
-					  sql+="order by project_price_int_qi desc";
-				  }
+		try {
+			  con = dataSource.getConnection();
+			 
+				  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_name=?";
+				  
 				  pstmt = con.prepareStatement(sql);
-				  pstmt.setString(1, area);
-				  pstmt.setString(2, city);
-				  pstmt.setString(3, "%"+addr);
-			  }
-			  else if(!"".equals(area)&&"".equals(city)&&"".equals(addr)){
-				  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_area=? ";
-				  if(order==1){
-					  sql+="order by project_price_int_qi";
-				  }
-				  else if(order==2){
-					  sql+="order by project_price_int_qi desc";
-				  }
-				  pstmt = con.prepareStatement(sql);
-				  pstmt.setString(1, area);
-			  }
-			  else if("".equals(area)&&!"".equals(city)&&"".equals(addr)){
-					  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_city=? ";
-					  if(order==1){
-						  sql+="order by project_price_int_qi";
-					  }
-					  else if(order==2){
-						  sql+="order by project_price_int_qi desc";
-					  }
-					  pstmt = con.prepareStatement(sql);
-					  pstmt.setString(1, city);
-			  }
-			  else if("".equals(area)&&"".equals(city)&&!"".equals(addr)){
-						  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_address like ?";
-						  if(order==1){
-							  sql+="order by project_price_int_qi";
-						  }
-						  else if(order==2){
-							  sql+="order by project_price_int_qi desc";
-						  }
-						  pstmt = con.prepareStatement(sql);
-						  pstmt.setString(1, "%"+addr);
-						  }
-			  else if(!"".equals(area)&&!"".equals(city)&&"".equals(addr)){
-							  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_area=? and project_city=? ";
-							  if(order==1){
-								  sql+="order by project_price_int_qi";
-							  }
-							  else if(order==2){
-								  sql+="order by project_price_int_qi desc";
-							  }
-							  pstmt = con.prepareStatement(sql);
-							  pstmt.setString(1, area);
-							  pstmt.setString(2, city);
-							  }
-			  else if(!"".equals(area)&&"".equals(city)&&!"".equals(addr)){
-								  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_area=? and project_address like ?";
-								  if(order==1){
-									  sql+="order by project_price_int_qi";
-								  }
-								  else if(order==2){
-									  sql+="order by project_price_int_qi desc";
-								  }
-								  pstmt = con.prepareStatement(sql);
-								  pstmt.setString(1, area);
-								  pstmt.setString(2, "%"+addr);
-								  }
-			  else if("".equals(area)&&!"".equals(city)&&!"".equals(addr)){
-									  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_city=? and project_address like ?";
-									  if(order==1){
-										  sql+="order by project_price_int_qi";
-									  }
-									  else if(order==2){
-										  sql+="order by project_price_int_qi desc";
-									  }
-									  pstmt = con.prepareStatement(sql);
-									  pstmt.setString(1, city);
-									  pstmt.setString(2, "%"+addr);
-									  }
-			  else{
-						sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 ";
-										  if(order==1){
-											  sql+="order by project_price_int_qi";
-										  }
-										  else if(order==2){
-											  sql+="order by project_price_int_qi desc";
-										  }
-										  pstmt = con.prepareStatement(sql);
-									  }
+				  pstmt.setString(1, project_name);
+				  
+			 
 
 			rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -1103,7 +1129,7 @@ public class BingMapDao extends BaseDao2 {
 		    	}
 		    	coordinates.setProject_address_short(project_address_short);
 		    	
-		    	String project_name = rs.getString("project_name")==null?"":rs.getString("project_name");
+		    	
 		    	String project_name_short = "";
 		    	if(project_name!=null && !"".equals(project_name)){
 		    		project_name_short = project_name.length()>20 ? project_name.substring(0,20):project_name;
@@ -1494,4 +1520,472 @@ public class BingMapDao extends BaseDao2 {
 	        }
 			return imageList;
 		}
+		
+		
+		public List<Nation> findGuojia(){
+			Statement stmt = null;
+			Connection con = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+			List<Nation> nationList=new ArrayList<Nation>();
+			
+			try {
+				con = dataSource.getConnection();
+				String sql = "select * from nation";
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
+				 
+				  String nation_name="";//新开盘
+				  String nation_num="";//热门项目
+				  String center_gps="";//优秀学区
+				 
+			    while(rs.next()){
+			    	Nation item = new Nation();
+			    	item.setId(rs.getInt("id"));
+			    	nation_name=rs.getString("nation_name")==null?"":rs.getString("nation_name");
+			    	nation_num=rs.getString("nation_num")==null?"":rs.getString("nation_num");
+			    	center_gps=rs.getString("center_gps")==null?"":rs.getString("center_gps");
+			    	item.setNation_num(nation_num);
+			    	item.setNation_name(nation_name);
+			    	item.setCenter_gps(center_gps);
+			    	nationList.add(item);
+			    }
+			    
+			   
+			  
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally{
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
+
+	        }
+			return  nationList;
+		}
+		
+		public List<Quyu> findQuyu(){
+			Statement stmt = null;
+			Connection con = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+			List<Quyu> quyuList=new ArrayList<Quyu>();
+			
+			try {
+				con = dataSource.getConnection();
+				String sql = "select * from area";
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
+				 
+				  String area_name="";//新开盘
+				  String area_num="";//热门项目
+				  String center_gps="";//优秀学区
+				 
+			    while(rs.next()){
+			    	Quyu item = new Quyu();
+			    	item.setId(rs.getInt("id"));
+			    	area_name=rs.getString("area_name")==null?"":rs.getString("area_name");
+			    	area_num=rs.getString("area_num")==null?"":rs.getString("area_num");
+			    	center_gps=rs.getString("center_gps")==null?"":rs.getString("center_gps");
+			    	item.setArea_num(area_num);
+			    	item.setArea_name(area_name);
+			    	item.setCenter_gps(center_gps);
+			    	quyuList.add(item);
+			    }
+			    
+			   
+			  
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally{
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
+
+	        }
+			return  quyuList;
+		}
+		
+		public List<City> findChengshi(){
+			Statement stmt = null;
+			Connection con = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+			List<City> cityList=new ArrayList<City>();
+			
+			try {
+				con = dataSource.getConnection();
+				String sql = "select * from city";
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
+				 
+				  String city_name="";//新开盘
+				  String city_num="";//热门项目
+				  String center_gps="";//优秀学区
+				 
+			    while(rs.next()){
+			    	City item = new City();
+			    	item.setId(rs.getInt("id"));
+			    	city_name=rs.getString("city_name")==null?"":rs.getString("city_name");
+			    	city_num=rs.getString("city_num")==null?"":rs.getString("city_num");
+			    	center_gps=rs.getString("center_gps")==null?"":rs.getString("center_gps");
+			    	item.setCity_num(city_num);
+			    	item.setCity_name(city_name);
+			    	item.setCenter_gps(center_gps);
+			    	cityList.add(item);
+			    }
+			    
+			   
+			  
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally{
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
+
+	        }
+			return  cityList;
+		}
+		
+		public List<HouseProject> filterByKeyWord(String area,String city,String addr,int order){
+			NumberFormat nf = new DecimalFormat("#,###,###");
+			Statement stmt = null;Connection con = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+	        String sql=null;
+			List<HouseProject> coordinatesList=new ArrayList<HouseProject>();
+			try {con = dataSource.getConnection();
+				  if(!"".equals(area)&&!"".equals(city)&&!"".equals(addr)){
+					  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_area=? and project_city=? and project_address like ?";
+					  if(order==1){
+						  sql+="order by project_price_int_qi";
+					  }
+					  else if(order==2){
+						  sql+="order by project_price_int_qi desc";
+					  }
+					  pstmt = con.prepareStatement(sql);
+					  pstmt.setString(1, area);
+					  pstmt.setString(2, city);
+					  pstmt.setString(3, "%"+addr);
+				  }
+				  else if(!"".equals(area)&&"".equals(city)&&"".equals(addr)){
+					  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_area=? ";
+					  if(order==1){
+						  sql+="order by project_price_int_qi";
+					  }
+					  else if(order==2){
+						  sql+="order by project_price_int_qi desc";
+					  }
+					  pstmt = con.prepareStatement(sql);
+					  pstmt.setString(1, area);
+				  }
+				  else if("".equals(area)&&!"".equals(city)&&"".equals(addr)){
+						  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_city=? ";
+						  if(order==1){
+							  sql+="order by project_price_int_qi";
+						  }
+						  else if(order==2){
+							  sql+="order by project_price_int_qi desc";
+						  }
+						  pstmt = con.prepareStatement(sql);
+						  pstmt.setString(1, city);
+				  }
+				  else if("".equals(area)&&"".equals(city)&&!"".equals(addr)){
+							  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_address like ?";
+							  if(order==1){
+								  sql+="order by project_price_int_qi";
+							  }
+							  else if(order==2){
+								  sql+="order by project_price_int_qi desc";
+							  }
+							  pstmt = con.prepareStatement(sql);
+							  pstmt.setString(1, "%"+addr);
+							  }
+				  else if(!"".equals(area)&&!"".equals(city)&&"".equals(addr)){
+								  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_area=? and project_city=? ";
+								  if(order==1){
+									  sql+="order by project_price_int_qi";
+								  }
+								  else if(order==2){
+									  sql+="order by project_price_int_qi desc";
+								  }
+								  pstmt = con.prepareStatement(sql);
+								  pstmt.setString(1, area);
+								  pstmt.setString(2, city);
+								  }
+				  else if(!"".equals(area)&&"".equals(city)&&!"".equals(addr)){
+									  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_area=? and project_address like ?";
+									  if(order==1){
+										  sql+="order by project_price_int_qi";
+									  }
+									  else if(order==2){
+										  sql+="order by project_price_int_qi desc";
+									  }
+									  pstmt = con.prepareStatement(sql);
+									  pstmt.setString(1, area);
+									  pstmt.setString(2, "%"+addr);
+									  }
+				  else if("".equals(area)&&!"".equals(city)&&!"".equals(addr)){
+										  sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 and project_city=? and project_address like ?";
+										  if(order==1){
+											  sql+="order by project_price_int_qi";
+										  }
+										  else if(order==2){
+											  sql+="order by project_price_int_qi desc";
+										  }
+										  pstmt = con.prepareStatement(sql);
+										  pstmt.setString(1, city);
+										  pstmt.setString(2, "%"+addr);
+										  }
+				  else{
+							sql = "SELECT * FROM `house_project` WHERE gps!='' and gps like '%,%' and isSeen=1 ";
+											  if(order==1){
+												  sql+="order by project_price_int_qi";
+											  }
+											  else if(order==2){
+												  sql+="order by project_price_int_qi desc";
+											  }
+											  pstmt = con.prepareStatement(sql);
+										  }
+
+				rs = pstmt.executeQuery();
+				while(rs.next()){
+					DecimalFormat df = new DecimalFormat("#,###,###");
+			    	HouseProject coordinates=new HouseProject();
+			    	coordinates.setId(rs.getInt("id"));
+			    	coordinates.setGps(rs.getString("gps"));
+			    	coordinates.setProject_name(rs.getString("project_name"));
+			    	coordinates.setProject_img(rs.getString("project_img"));
+			    	String project_num = rs.getString("project_num");
+			    	
+			    	String project_img = "";
+			    	if(project_num!=null && !"".equals(project_num)){
+			    		List<ProjectDescImage> imageList = HouseProjectImageList(project_num);
+						if(imageList!=null && imageList.size()>0){
+							project_img = imageList.get(0).getName();
+						}
+						else{
+							project_img = "";
+						}
+			    	}
+			    	
+			    	coordinates.setProject_img(project_img);
+			    	coordinates.setProject_price(rs.getString("project_price"));
+			    	coordinates.setProject_num(rs.getString("project_num"));
+			    	coordinates.setProject_min_price(rs.getString("project_min_price")==null?"N/A":df.format(Integer.parseInt(rs.getString("project_min_price"))));
+			    	coordinates.setProject_high_price(rs.getString("project_high_price")==null?"N/A":df.format(Integer.parseInt(rs.getString("project_high_price"))));
+			    	coordinates.setMinPrice(rs.getString("project_min_price")==null?"N/A":df.format(Integer.parseInt(rs.getString("project_min_price"))));
+			    	coordinates.setMaxPrice(rs.getString("project_high_price")==null?"N/A":df.format(Integer.parseInt(rs.getString("project_high_price"))));
+			    	coordinates.setProject_zhou(rs.getString("project_zhou"));
+			    	coordinates.setProject_city(rs.getString("project_city"));
+			    	coordinates.setProject_nation(rs.getString("project_nation"));
+			    	coordinates.setProject_area(rs.getString("project_area"));
+			    	coordinates.setBijiao(rs.getString("project_price_int_qi"));
+			    	
+			    	coordinates.setMax_area(rs.getInt("max_area"));
+			    	coordinates.setMin_area(rs.getInt("min_area"));
+			    	coordinates.setMinArea(rs.getInt("min_area"));
+			    	coordinates.setMaxArea(rs.getInt("max_area"));
+			    	coordinates.setProject_type(rs.getString("project_type"));
+			    	coordinates.setProject_address(rs.getString("project_address"));
+			    	coordinates.setMianji(rs.getString("mianji"));
+			    	coordinates.setReturn_money(rs.getString("return_money"));
+			        if(rs.getString("project_price_int_qi")!=null){
+			        	coordinates.setProject_price_qi(df.format(Integer.parseInt(rs.getString("project_price_int_qi"))));
+			    	}
+			    	else{
+			    		coordinates.setProject_price_qi("N/A");
+			    	}
+			        if(rs.getString("project_price_int_qi")!=null){
+			    		String project_price_int_qi=nf.format(Integer.parseInt(rs.getString("project_price_int_qi")));
+			    		coordinates.setProject_price_int_qi_str(project_price_int_qi);
+			    	}
+			    	else{
+			    		coordinates.setProject_price_int_qi_str("N/A");
+			    	}
+			        //String project_key=findProjectKeyByNum(project_num);
+			        String project_address = rs.getString("project_address")==null?"":rs.getString("project_address");
+			    	String project_address_short = "";
+			    	if(project_address!=null && !"".equals(project_address)){
+			    		project_address_short = project_address.length()>40 ? project_address.substring(0,40):project_address;
+			    	}
+			    	coordinates.setProject_address_short(project_address_short);
+			    	
+			    	String project_name = rs.getString("project_name")==null?"":rs.getString("project_name");
+			    	String project_name_short = "";
+			    	if(project_name!=null && !"".equals(project_name)){
+			    		project_name_short = project_name.length()>20 ? project_name.substring(0,20):project_name;
+			    	}
+			    	coordinates.setProject_name_short(project_name_short);
+			    	
+			    	
+			    	//获取项目关键字，根据项目编号查找项目关键字
+			    	List<String> project_key=findProjectKeyByNum(project_num);
+			    	coordinates.setProject_key(project_key);
+			    	
+			    	coordinatesList.add(coordinates);
+			    }
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally{
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
+
+	        }
+			return coordinatesList;
+		}
+		
+		
+		/*
+		 * 根据类型查找项目列表
+		 */
+		public List<HouseProject> filterByLiandong(String nation, String city, String area){    //根据类型查找
+			NumberFormat nf = new DecimalFormat("#,###,###");
+			Statement stmt = null;Connection con = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+			List<HouseProject> coordinatesList=new ArrayList<HouseProject>();
+			try {
+				con = dataSource.getConnection();
+				
+				String sql = "SELECT * FROM house_project a, area_info b WHERE a.area_num = b.area_num and a.gps!='' and a.gps like '%,%' and a.isSeen=1 ";
+				int i=0;
+				if(nation!=null &&!"".equals(nation)){
+					sql += "and b.area_nation = '"+nation+"'";
+					i=1;
+				}
+				if(city!=null &&!"".equals(city)){
+					if(i==1){
+						sql+="and b.area_city = '"+city+"'";
+					}
+					else{
+						sql+="b.area_city = '"+city+"'";
+						i=1;
+					}
+				}
+				if(area!=null &&!"".equals(area)){
+					if(i==1){
+						sql+="and b.area_name = '"+area+"'";
+					}
+					else{
+						sql+="b.area_name = '"+area+"'";
+						i=1;
+					}
+				}
+				
+				if(i == 0){
+					sql = "SELECT * FROM house_project a, area_info b WHERE a.area_num = b.area_num and a.gps!='' and a.gps like '%,%' and a.isSeen=1";
+				}
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
+				while(rs.next()){
+			    	HouseProject coordinates=new HouseProject();
+			    	String project_num=rs.getString("project_num");
+			    	coordinates.setId(rs.getInt("id"));
+			    	coordinates.setGps(rs.getString("gps"));
+			    	coordinates.setProject_name(rs.getString("project_name"));
+			    	String project_img = "";
+			    	if(project_num!=null && !"".equals(project_num)){
+			    		List<ProjectDescImage> imageList = HouseProjectImageList(project_num);
+						if(imageList!=null && imageList.size()>0){
+							project_img = imageList.get(0).getName();
+						}
+						else{
+							project_img = "";
+						}
+			    	}
+
+			    	coordinates.setProject_img(project_img);
+			    	coordinates.setProject_price(rs.getString("project_price"));
+			    	coordinates.setProject_num(rs.getString("project_num"));
+			    	coordinates.setProject_min_price(rs.getString("project_min_price")==null?"N/A":nf.format(Integer.parseInt(rs.getString("project_min_price"))));
+			    	coordinates.setProject_high_price(rs.getString("project_high_price")==null?"N/A":nf.format(Integer.parseInt(rs.getString("project_high_price"))));
+			    	coordinates.setMinPrice(rs.getString("project_min_price")==null?"N/A":nf.format(Integer.parseInt(rs.getString("project_min_price"))));
+			    	coordinates.setMaxPrice(rs.getString("project_high_price")==null?"N/A":nf.format(Integer.parseInt(rs.getString("project_high_price"))));
+			    	coordinates.setProject_zhou(rs.getString("project_zhou"));
+			    	coordinates.setProject_city(rs.getString("project_city"));
+			    	coordinates.setProject_nation(rs.getString("project_nation"));	    	
+			    	coordinates.setProject_address(rs.getString("project_address"));
+			    	coordinates.setBijiao(rs.getString("project_price_int_qi"));
+			    	
+			    	String project_address = rs.getString("project_address")==null?"":rs.getString("project_address");
+			    	String project_address_short = "";
+			    	if(project_address!=null && !"".equals(project_address)){
+			    		project_address_short = project_address.length()>40 ? project_address.substring(0,40):project_address;
+			    	}
+			    	coordinates.setProject_address_short(project_address_short);
+			    	
+			    	String project_name = rs.getString("project_name")==null?"":rs.getString("project_name");
+			    	String project_name_short = "";
+			    	if(project_name!=null && !"".equals(project_name)){
+			    		project_name_short = project_name.length()>40 ? project_name.substring(0,40):project_name;
+			    	}
+			    	coordinates.setProject_name_short(project_name_short);
+			    	
+			    	coordinates.setProject_area(rs.getString("project_area"));
+			    	coordinates.setProject_price_int_qi(rs.getInt("project_price_int_qi"));
+			    	coordinates.setProject_type(rs.getString("project_type"));
+			    	
+			    	coordinates.setProject_sales_remain(rs.getInt("project_sales_remain"));
+			    	coordinates.setMax_area(rs.getInt("max_area"));
+			    	coordinates.setMin_area(rs.getInt("min_area"));
+			    	coordinates.setMinArea(rs.getInt("min_area"));
+			    	coordinates.setMaxArea(rs.getInt("max_area"));
+			    	coordinates.setProject_price_qi(("project_price_qi"));//锟剿达拷锟斤拷目锟桔革拷目前锟斤拷锟斤拷锟斤拷锟侥科斤拷锟桔革拷
+			    	coordinates.setProject_type(rs.getString("project_type"));
+			    	coordinates.setMianji(rs.getString("mianji"));
+			    	coordinates.setReturn_money(rs.getString("return_money"));
+			    	if(rs.getString("project_price_int_qi")!=null){    //起价
+			    		int temp = Integer.parseInt(rs.getString("project_price_int_qi"));
+			        	coordinates.setProject_price_int_qi(temp);
+			    	}
+			    	else{
+			    		coordinates.setProject_price_int_qi(0);
+			    	}
+			    	if(rs.getString("project_price_int_qi")!=null){
+			    		String project_price_int_qi=nf.format(Integer.parseInt(rs.getString("project_price_int_qi")));
+			    		coordinates.setProject_price_int_qi_str(project_price_int_qi);
+			    	}
+			    	else{
+			    		coordinates.setProject_price_int_qi_str("N/A");
+			    	}
+			    	
+			    	//获取项目关键字，根据项目编号查找项目关键字
+			    	List<String> project_key=findProjectKeyByNum(project_num);
+			    	coordinates.setProject_key(project_key);
+			    	
+			    	
+			    	coordinatesList.add(coordinates);
+			    }
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally{
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
+
+	        }
+			return coordinatesList;
+		}
+		
+		
+		
+		
 }
