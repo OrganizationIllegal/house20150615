@@ -448,49 +448,15 @@
 		 		    var lenCenterarea=itemsCenterarea.length;
 		 		    var a=new Array();
 		 		    var Zoom;
+		 		    //alert(nation)
+		 		    //alert(city)
+		 		    //alert(area)
 		 		    if(lenItems!=0){
-		 		    	if(nation.length!=0){
-		 		    		   Zoom=8;
-		 		    		   if(lenCenternation!=0){
-		    		 		       for(var n1=0;n1<lenCenternation;n1++){
-		    		 		    	   if(nation==itemsCenternation[n1].name){
-		    		 		    		   a=itemsCenternation[n1].gps.split(",");
-		    		 		    		   break;
-		    		 		    	   }
-		    		 		       } 
-		 		    		   }	    		 		       
-	    		 		       if(a.length==0){
-	  	    		 		    	for(var n2=0;n2<lenItems;n2++){
-	 	    		 		    	   if(nation==items[n2].project_nation){
-	 	    		 		    		   a=items[n2].gps.split(",");
-	 	    		 		    		   break;
-	 	    		 		    	   }	 	    		 		    	  
-	 	    		 		          }
-	  	    		 		       }
-	    		 		    }
-		 		    	else if(city.length!=0){
-		 		    		   Zoom=11;
-		 		    		   if(lenCentercity!=0){
-	    		 		       for(var k1=0;k1<lenCentercity;k1++){
-	    		 		    	   if(city==itemsCentercity[k1].name){
-	    		 		    		   a=itemsCentercity[k1].gps.split(",");
-	    		 		    		   break;
-	    		 		    	   }
-	    		 		         }
-	    		 		       }
-	    		 		       if(a.length==0){
-	  	    		 		    	for(var k2=0;k2<lenItems;k2++){
-	 	    		 		    	   if(city==items[k2].project_city){
-	 	    		 		    		   a=items[k2].gps.split(",");
-	 	    		 		    		   break;
-	 	    		 		    	   }
-	 	    		 		    	  
-	 	    		 		          }
-	  	    		 		       }
-	    		 		    }
-		 		    	else  if(area.length!=0){
+		 		    	if(area!=0){
+		 		    		//alert("area")
 	    		 		      Zoom=13;
 	    		 		      if(lenCentercity!=0){
+	    		 		    	 //alert("area1")
 	    		 		    	 for(var k3=0;k3<lenCenterarea;k3++){
 	  	   		 		    	   if(area==itemsCenterarea[k3].name){
 	  	   		 		    		   a=itemsCenterarea[k3].gps.split(",");
@@ -499,6 +465,7 @@
 	  	   		 		          }
 	    		 		      }    		 		     
 	    		 		     if(a.length==0){
+	    		 		    	//alert("area1")
 		    		 		    	for(var k4=0;k4<lenItems;k4++){
 		    		 		    	   if(area==items[k4].project_area){
 		    		 		    		   a=items[k4].gps.split(",");
@@ -508,6 +475,52 @@
 		    		 		          }
 		    		 		       }
 	    		 		    }
+		 		    	else if(city!=0){
+		 		    		   //alert("ctiy")
+		 		    		   Zoom=11;
+		 		    		   if(lenCentercity!=0){
+		 		    		   //alert("ctiy1")
+	    		 		       for(var k1=0;k1<lenCentercity;k1++){
+	    		 		    	   if(city==itemsCentercity[k1].name){
+	    		 		    		   a=itemsCentercity[k1].gps.split(",");
+	    		 		    		   break;
+	    		 		    	   }
+	    		 		         }
+	    		 		       }
+	    		 		       if(a.length==0){
+	    		 		    	  //alert("ctiy2")
+	  	    		 		    	for(var k2=0;k2<lenItems;k2++){
+	 	    		 		    	   if(city==items[k2].project_city){
+	 	    		 		    		   a=items[k2].gps.split(",");
+	 	    		 		    		   break;
+	 	    		 		    	   }
+	 	    		 		    	  
+	 	    		 		          }
+	  	    		 		       }
+	    		 		    }
+		 		    	else if(nation!=0){
+		 		    		   //alert("nation")
+		 		    		   Zoom=5;
+		 		    		   if(lenCenternation!=0){
+		 		    			   //alert("nation1")
+		    		 		       for(var n1=0;n1<lenCenternation;n1++){
+		    		 		    	   if(nation==itemsCenternation[n1].name){
+		    		 		    		   a=itemsCenternation[n1].gps.split(",");
+		    		 		    		   break;
+		    		 		    	   }
+		    		 		       } 
+		 		    		   }	    		 		       
+	    		 		       if(a.length==0){
+	    		 		    	    //alert("nation2")
+	  	    		 		    	for(var n2=0;n2<lenItems;n2++){
+	 	    		 		    	   if(nation==items[n2].project_nation){
+	 	    		 		    		   a=items[n2].gps.split(",");
+	 	    		 		    		   break;
+	 	    		 		    	   }	 	    		 		    	  
+	 	    		 		          }
+	  	    		 		       }
+	    		 		    }
+		 		    	
 		 		    }		 		
 		 		    else{
 		 		    	a[0]="-25.585241";
