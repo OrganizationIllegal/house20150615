@@ -7,7 +7,7 @@ public class SearchList implements Comparable<SearchList>{
 	private String project_img;
 	private String project_name;
 	private String project_name_short;
-	
+	private String project_name_full;
 	public int compareTo(SearchList arg0) {
         return this.getProject_name_short().compareTo(arg0.getProject_name_short());
     }

@@ -121,6 +121,7 @@ public class BingMapController {
 		List<SearchList> searchList = null;
 		List<BingMapVo> bingMapList = new ArrayList<BingMapVo>();
 		searchList = SearchController.seachListResult;
+		seachListResult1 = SearchController.seachListResult;
 		if(searchList!=null){
 			liandong = 1;
 			req.setAttribute("bingMapList", searchList);
@@ -135,9 +136,6 @@ public class BingMapController {
 		List<Nation> nationList=bingMapDao.findGuojia();
 		List<City> cityList=bingMapDao.findChengshi();   //查询数据库，得到项目信息
 		List<Quyu> areaList=bingMapDao.findQuyu();   //查询数据库，得到项目信息
-		
-		
-		req.setAttribute("bingMapList", bingMapList);
 		
 		req.setAttribute("nationList", nationList);
 		req.setAttribute("cityList", cityList);
