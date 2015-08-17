@@ -1,6 +1,5 @@
 package com.kate.app.model;
 
-import java.sql.Timestamp;
 
 public class Nation {
 	private int id;
@@ -32,4 +31,5 @@ public class Nation {
 		this.center_gps = center_gps;
 	}
 	
+
 }

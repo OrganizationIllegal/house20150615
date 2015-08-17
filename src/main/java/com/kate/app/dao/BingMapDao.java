@@ -594,6 +594,114 @@ public class BingMapDao extends BaseDao2 {
         }
 		return mapCenterList;
 	} 
+	
+	//查找地图中心点
+		public List<Nation> listMapCenterNation(){
+			Statement stmt = null;
+			Connection con = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+			List<Nation> mapCenterNationList=new ArrayList<Nation>();
+			try {
+				con = dataSource.getConnection();
+				String sql = "SELECT * FROM nation WHERE center_gps!='' and center_gps like '%,%'";
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
+			    while(rs.next()){
+			    	Nation mapCenter=new Nation();
+			    	mapCenter.setId(rs.getInt("id"));
+			    	mapCenter.setCenter_gps(rs.getString("center_gps"));
+			    	mapCenter.setNation_name(rs.getString("nation_name"));
+			    	mapCenter.setNation_num(rs.getString("nation_num"));
+			    	mapCenterNationList.add(mapCenter);
+			    }
+			    
+			  
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally{
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
+
+	        }
+			return mapCenterNationList;
+		}
+		
+		
+		//查找地图中心点
+		public List<City> listMapCenterCity(){
+			Statement stmt = null;Connection con = null;
+
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+			List<City> mapCenterCityList=new ArrayList<City>();
+			try {con = dataSource.getConnection();
+				String sql = "SELECT * FROM city WHERE center_gps!='' and center_gps like '%,%'";
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
+			    while(rs.next()){
+			    	City mapCenter=new City();
+			    	mapCenter.setId(rs.getInt("id"));
+			    	mapCenter.setCenter_gps(rs.getString("center_gps"));
+			    	mapCenter.setCity_name(rs.getString("city_name"));
+			    	mapCenter.setCity_num(rs.getString("city_num"));
+			    	mapCenterCityList.add(mapCenter);
+			    }
+			    
+			  
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally{
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
+
+	        }
+			return mapCenterCityList;
+		}
+		
+		
+		//查找地图中心点
+		public List<Quyu> listMapCenterArea(){
+			Statement stmt = null;Connection con = null;
+
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+			List<Quyu> mapCenterAreaList=new ArrayList<Quyu>();
+			try {con = dataSource.getConnection();
+				String sql = "SELECT * FROM area WHERE center_gps!='' and center_gps like '%,%'";
+				  stmt = con.createStatement();
+				  rs = stmt.executeQuery(sql);
+			    while(rs.next()){
+			    	Quyu mapCenter=new Quyu();
+			    	mapCenter.setId(rs.getInt("id"));
+			    	mapCenter.setCenter_gps(rs.getString("center_gps"));
+			    	mapCenter.setArea_name(rs.getString("area_name"));
+			    	mapCenter.setArea_num(rs.getString("area_num"));
+			    	mapCenterAreaList.add(mapCenter);
+			    }
+			    
+			  
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally{
+				 try { if (rs != null) rs.close(); } catch(Exception e) { }
+				 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+				 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+				 try { if (con != null) con.close(); } catch(Exception e) { }
+
+	        }
+			return mapCenterAreaList;
+		}
 	/*
 	 * 根据类型查找项目列表
 	 */
@@ -1756,26 +1864,25 @@ public class BingMapDao extends BaseDao2 {
 				
 				String sql = "SELECT * FROM house_project a, area_info b WHERE a.area_num = b.area_num and a.gps!='' and a.gps like '%,%' and a.isSeen=1 ";
 				int i=0;
-				if(!nation.equals("") && nation !=null){
-					
-						sql += "and b.area_nation = '"+nation+"'";
-						i=1;
+				if(nation!=null &&!"".equals(nation)){
+					sql += "and b.area_nation = '"+nation+"'";
+					i=1;
 				}
 				if(city!=null &&!"".equals(city)){
 					if(i==1){
 						sql+="and b.area_city = '"+city+"'";
 					}
 					else{
-						sql+="a.area_city = '"+city+"'";
+						sql+="b.area_city = '"+city+"'";
 						i=1;
 					}
 				}
 				if(area!=null &&!"".equals(area)){
 					if(i==1){
-						sql+="and a.area_name = '"+area+"'";
+						sql+="and b.area_name = '"+area+"'";
 					}
 					else{
-						sql+="a.area_name = '"+area+"'";
+						sql+="b.area_name = '"+area+"'";
 						i=1;
 					}
 				}
