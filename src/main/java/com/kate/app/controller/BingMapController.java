@@ -5,12 +5,10 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.mail.Flags.Flag;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -34,12 +32,17 @@ import com.kate.app.dao.SearchListDao;
 import com.kate.app.dao.UserDao;
 import com.kate.app.model.AreaInfo;
 import com.kate.app.model.BingMapVo;
+import com.kate.app.model.City;
 import com.kate.app.model.HouseProject;
+import com.kate.app.model.Nation;
 import com.kate.app.model.ProjectDescImage;
+
 import com.kate.app.model.ProjectKey;
 import com.kate.app.model.SearchList;
+
+import com.kate.app.model.Quyu;
+
 import com.kate.app.service.BingMapService;
-import com.mysql.jdbc.StreamingNotifiable;
 @Controller
 public class BingMapController {
 	@Autowired
@@ -77,6 +80,8 @@ public class BingMapController {
 	private static List<HouseProject> typeListResultJiangxu;
 	
 	private static List<HouseProject> listResult;
+	private static List<HouseProject> lianDongResult;
+	
 	
 	private static int flagInfo = 0;
 	private static int orderFlag = 0;
@@ -298,13 +303,13 @@ public class BingMapController {
 	//右侧地图显示
 	@RequestMapping({"/BingMap"})    //首页加载
 	public String listBingMap(HttpServletRequest req,HttpServletResponse resp){
-		String index = req.getParameter("index");
-		List<SearchList> searchList = new ArrayList<SearchList>();
+
+
+		List<SearchList> searchList = null;
 		List<BingMapVo> bingMapList = new ArrayList<BingMapVo>();
-		
-		if(index.equals("1")){
+		searchList = SearchController.seachListResult;
+		if(searchList!=null){
 			liandong = 1;
-			searchList = seachListResult1;
 			req.setAttribute("bingMapList", searchList);
 		}
 		else{
@@ -313,6 +318,19 @@ public class BingMapController {
 			BingMapVoList = bingMapList;
 			req.setAttribute("bingMapList", bingMapList);
 		}
+		
+		List<Nation> nationList=bingMapDao.findGuojia();
+		List<City> cityList=bingMapDao.findChengshi();   //查询数据库，得到项目信息
+		List<Quyu> areaList=bingMapDao.findQuyu();   //查询数据库，得到项目信息
+		
+		
+		req.setAttribute("bingMapList", bingMapList);
+		
+		req.setAttribute("nationList", nationList);
+		req.setAttribute("cityList", cityList);
+		req.setAttribute("areaList", areaList);
+		
+
 		
 		List<String> areaNameSet=bingMapDao.getAreaName();  //得到区域名称
 		req.setAttribute("areaNameSet", areaNameSet);
@@ -738,7 +756,16 @@ public class BingMapController {
 			req.setAttribute("bingMapList", bingMapList);
 		}
 		
+		List<Nation> nationList=bingMapDao.findGuojia();
+		List<City> cityList=bingMapDao.findChengshi();   //查询数据库，得到项目信息
+		List<Quyu> areaList=bingMapDao.findQuyu();   //查询数据库，得到项目信息
 		
+		
+		
+		
+		req.setAttribute("nationList", nationList);
+		req.setAttribute("cityList", cityList);
+		req.setAttribute("areaList", areaList);
 		
 		List<String> areaNameSet=bingMapDao.getAreaName();
 		req.setAttribute("areaNameSet", areaNameSet);
@@ -1056,6 +1083,234 @@ public class BingMapController {
 		}
 	}
 	
+	
+	/*
+	 * 根据类型查找结果列表
+	 */
+	@RequestMapping({ "/BingMap/Liandong" })    
+	public void Liandong(HttpServletRequest req, HttpServletResponse resp){    //公寓
+		flagInfo = 1;          //根据类型进行查询
+		liandong = 3;
+		JSONArray arrayCity = new JSONArray();
+		JSONArray arrayArea = new JSONArray();
+		//JSONObject json=new JSONObject();
+		JSONObject json = new JSONObject();
+		JSONArray array = new JSONArray();
+		JSONArray array2 = new JSONArray();
+		JSONArray array3 = new JSONArray();
+		JSONArray arrayCenter = new JSONArray();
+		JSONArray arrayCentermoren = new JSONArray();
+		List<String> city=new ArrayList<String>();
+		
+		String nation = req.getParameter("nation");
+		String city1 = req.getParameter("city");
+		String area = req.getParameter("area");
+		if(nation.equals("0")){
+			nation = null;
+		}
+		if(city1.equals("0")){
+			city1 = null;
+		}
+		if(area.equals("0")){
+			area = null;
+		}
+		
+		List<String> citys=searchListDao.findCityByNation(nation);
+		for(String item : citys){
+			JSONObject obj=new JSONObject();
+			obj.put("city", item);
+			arrayCity.add(obj);
+		}
+		json.put("cityArray", arrayCity);
+		
+		List<String> areas=searchListDao.findAreaByCity(city1);
+		for(String item : areas){
+			JSONObject obj=new JSONObject();
+			obj.put("area", item);
+			arrayArea.add(obj);
+		}
+		json.put("areaArray", arrayArea);
+		
+	
+	
+		
+		List<HouseProject> list = bingMapDao.filterByLiandong(nation,city1,area);  //根据类型查找项目列表
+		
+			
+		array = bingMapService.filterByLiandong(nation,city1,area);
+		
+		arrayCenter=bingMapService.jsonMapCenter();
+		int lenCenter=arrayCenter.size();
+		for(int k=0;k<lenCenter;k++){
+			JSONObject objCenter=(JSONObject)arrayCenter.get(k);
+			String typeCenter=objCenter.getString("type");
+			if("默认".equals(typeCenter)){
+				arrayCentermoren.add(objCenter);
+			}
+		}
+		int len=array.size();
+		for(int i=0;i<len;i++){
+			JSONObject obj=(JSONObject)array.get(i);
+			String project_city=obj.getString("project_city");
+			city.add(project_city);
+		}
+		Set<String> uniqueSet = new HashSet<String>(city);
+		for (String temp : uniqueSet) {
+			String str1=temp;
+			int size=Collections.frequency(city, temp);
+			JSONObject obj2 = new JSONObject();
+			obj2.put("city", size);
+			array2.add(obj2);
+			for(int j=0;j<len;j++){
+				JSONObject obj3=(JSONObject)array.get(j);
+				String project_city2=obj3.getString("project_city");
+				if(project_city2.equals(str1)){
+					array3.add(obj3);
+					break;
+				}
+			}
+        }
+		/*System.out.println(array2);
+		System.out.println(array3);
+		System.out.println(array2.size());
+		System.out.println(array3.size());*/
+		
+		json.put("List", array);
+		json.put("List2", array2);
+		json.put("List3", JSONArray.parseArray(JSON.toJSONString(array3, SerializerFeature.DisableCircularReferenceDetect)));
+		json.put("ListCentermoren", arrayCentermoren);
+		try{
+			writeJson(json.toJSONString(),resp);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	/*
+	 * 搜索得到项目列表
+	 */
+	@RequestMapping({ "/BingMap/FileterByProjectName" })    
+	public void FileterByProjectName(HttpServletRequest req, HttpServletResponse resp){
+		flagInfo = 2;
+		JSONObject json = new JSONObject();
+		JSONArray array = new JSONArray();
+		JSONArray array2 = new JSONArray();
+		JSONArray array3 = new JSONArray();
+		JSONArray arrayCenter = new JSONArray();
+		JSONArray arrayCenterarea = new JSONArray();
+		JSONArray arrayCentercity = new JSONArray();
+		JSONArray arrayCentermoren = new JSONArray();
+		List<String> city=new ArrayList<String>();
+		String project_name=req.getParameter("project_name");
+		/*String city1=req.getParameter("city");
+		String address=req.getParameter("address");*/
+		array = bingMapService.filterByProjectName(project_name);
+		
+		/*List<HouseProject> list = bingMapDao.filterByKeyWord(area, city1, address, 0);  //根据搜索结果返回项目列表,0不排序
+		seachListResult = list;*/
+		/*for(HouseProject item : seachListResult){
+			if(item!=null){
+				if(item.getProject_num()!=null && !"".equals(item.getProject_num())){
+					String project_img = "";
+					List<ProjectDescImage> imageList = projectInputDao.getProjectImageByProNum(item.getProject_num());
+					if(imageList!=null && imageList.size()>0){
+						project_img = imageList.get(0).getName();
+					}
+					else{
+						project_img = "";
+					}
+					item.setProject_img(project_img);
+				}
+			}
+			
+		}*/
+		/*seachListResultShengxu = bingMapDao.filterByKeyWord(area, city1, address,1);  //根据搜索结果返回项目列表,1升序
+		for(HouseProject item : seachListResultShengxu){
+			if(item!=null){
+				if(item.getProject_num()!=null && !"".equals(item.getProject_num())){
+					String project_img = "";
+					List<ProjectDescImage> imageList = projectInputDao.getProjectImageByProNum(item.getProject_num());
+					if(imageList!=null && imageList.size()>0){
+						project_img = imageList.get(0).getName();
+					}
+					else{
+						project_img = "";
+					}
+					item.setProject_img(project_img);
+				}
+			}
+			
+		}
+		seachListResultJiangxu = bingMapDao.filterByKeyWord(area, city1, address,2);  //根据搜索结果返回项目列表,2降序
+		for(HouseProject item : seachListResultJiangxu){
+			if(item!=null){
+				if(item.getProject_num()!=null && !"".equals(item.getProject_num())){
+					String project_img = "";
+					List<ProjectDescImage> imageList = projectInputDao.getProjectImageByProNum(item.getProject_num());
+					if(imageList!=null && imageList.size()>0){
+						project_img = imageList.get(0).getName();
+					}
+					else{
+						project_img = "";
+					}
+					item.setProject_img(project_img);
+				}
+			}
+			
+		}*/
+		
+		arrayCenter=bingMapService.jsonMapCenter();
+		int lenCenter=arrayCenter.size();
+		for(int k=0;k<lenCenter;k++){
+			JSONObject objCenter=(JSONObject)arrayCenter.get(k);
+			String type=objCenter.getString("type");
+			if("城市".equals(type)){
+				arrayCentercity.add(objCenter);
+			}else if("区域".equals(type)){
+				arrayCenterarea.add(objCenter);
+			}else if("默认".equals(type)){
+				arrayCentermoren.add(objCenter);
+			}
+		}
+		int len=array.size();
+		for(int i=0;i<len;i++){
+			JSONObject obj=(JSONObject)array.get(i);
+			String project_city=obj.getString("project_city");
+			city.add(project_city);
+		}
+		Set<String> uniqueSet = new HashSet<String>(city);
+		for (String temp : uniqueSet) {
+			String str1=temp;
+			int size=Collections.frequency(city, temp);
+			JSONObject obj2 = new JSONObject();
+			obj2.put("city", size);
+			array2.add(obj2);
+			for(int j=0;j<len;j++){
+				JSONObject obj3=(JSONObject)array.get(j);
+				String project_city2=obj3.getString("project_city");
+				if(project_city2.equals(str1)){
+					array3.add(obj3);
+					break;
+				}
+			}
+        }
+
+		json.put("List", array);
+		json.put("List2", array2);
+		json.put("List3", JSONArray.parseArray(JSON.toJSONString(array3, SerializerFeature.DisableCircularReferenceDetect)));
+		json.put("ListCentercity", arrayCentercity);
+		json.put("ListCenterarea", arrayCenterarea);
+		json.put("ListCentermoren", arrayCentermoren);
+		try{
+			writeJson(json.toJSONString(),resp);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
     //根据项目编号进行搜索
 	@RequestMapping({ "/BingMap/FileterProNum" })    
 	public void filterByProNum(HttpServletRequest req, HttpServletResponse resp){
@@ -1246,6 +1501,8 @@ public class BingMapController {
 		
 		List<HouseProject> list = bingMapService.filterByGPS(gpsLeftX,gpsLeftY,gpsRightX,gpsRightY);
 		List<HouseProject> resultTypeList = new ArrayList<HouseProject>();
+		List<HouseProject> resultLianDongList = new ArrayList<HouseProject>();
+		
 		
 		if(liandong == 0){
 			array = bingMapService.filterByGPSJson(gpsLeftX,gpsLeftY,gpsRightX,gpsRightY);
@@ -1367,6 +1624,64 @@ public class BingMapController {
 			array.add(obj);
 			}
 		}
+		else if(liandong ==3){
+			for(HouseProject item : lianDongResult){
+				String gps = item.getGps();
+				String x = "";
+				String y = "";
+				String[] strs = null;
+				if(gps!=null && !"".equals(gps)){
+					strs = gps.split(",");
+				}
+				x = strs[0];
+				y = strs[1];
+				if(x!=null && !"".equals(x)){
+					trueX = Double.parseDouble(x);
+				}
+				if(y!=null && !"".equals(y)){
+					trueY = Double.parseDouble(y);
+				}
+				if(trueX >= leftX0 && trueX <= rightX0 && trueY>=leftY0 && trueY <=rightY0){
+					resultLianDongList.add(item);
+				}
+			}
+			
+			
+			DecimalFormat df = new DecimalFormat("#,###,###");
+
+		for(HouseProject data : resultLianDongList){
+			JSONObject obj = new JSONObject();
+			obj.put("id", data.getId());
+			obj.put("gps", data.getGps()==null?"":data.getGps());
+			
+			obj.put("project_name", data.getProject_name()==null?"":data.getProject_name());
+			obj.put("project_name_short", data.getProject_name_short());
+			
+			obj.put("project_img", data.getProject_img()==null?"":data.getProject_img());
+			obj.put("project_price", data.getProject_price()==null?"":data.getProject_price());
+			obj.put("project_num", data.getProject_num()==null?"":data.getProject_num());
+			obj.put("project_min_price", data.getMinPrice());
+			obj.put("project_high_price", data.getMaxPrice());
+
+			obj.put("project_zhou", data.getProject_zhou()==null?"":data.getProject_zhou());
+			obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
+			obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
+			
+			obj.put("project_address", data.getProject_address()==null?"":data.getProject_address());
+
+			obj.put("project_address_short", data.getProject_address_short());			
+
+			obj.put("minArea", data.getMin_area()==0?0:data.getMin_area());
+			obj.put("maxArea", data.getMax_area()==0?0:data.getMax_area());
+			obj.put("return_money", data.getReturn_money()==null?"":data.getReturn_money());
+			obj.put("project_price_int_qi", data.getProject_price_int_qi_str());
+			obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
+			obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
+			obj.put("project_key", data.getProject_key()==null?"":data.getProject_key());
+			array.add(obj);
+			}
+		}
+
 	
 		
 		

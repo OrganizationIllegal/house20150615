@@ -174,6 +174,38 @@ public class SuggestionDao extends BaseDao2 {
 	
 	
 	/*
+	 * 在项目表中查出项目的地址
+	 */
+	public List<String> getProjectName(){
+		Statement stmt = null;
+		Connection con = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		List<String> addList = new ArrayList<String>();
+		try{con = dataSource.getConnection();
+			String sql = "select distinct  project_name from house_project";
+			  stmt = con.createStatement();
+			  rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				String data = new String();
+				data = rs.getString("project_name");
+				addList.add(data);
+			}
+			
+		}catch (Exception e) {
+			 e.printStackTrace();
+        }finally{
+        	 try { if (rs != null) rs.close(); } catch(Exception e) { }
+        	 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
+        	 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
+        	 try { if (con != null) con.close(); } catch(Exception e) { }
+        }
+		return addList;
+	}
+	
+	
+	
+	/*
 	 * 查询项目所在的城市
 	 */
 	public List<String> getProjectCityAndZhou(){
