@@ -7,7 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>国家列表</title>
+<title>联动区域列表</title>
 <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="/bootstrap/css/bootstrap-table.css" rel="stylesheet">
 
@@ -38,7 +38,7 @@ if(request.getSession().getAttribute("flag")!=null){
 %>
 
 <div style="width:900px;margin:25px auto;">
-<div class="area_bkg1">当前位置:国家列表</div>
+<div class="area_bkg1">当前位置:联动区域列表</div>
  <table id="table"
            data-url="/areaList"
             data-toggle='table'
