@@ -114,6 +114,7 @@ public class BingMapController {
 
 		List<SearchList> searchList=SearchListController.searchList_final;
 		List<BingMapVo> bingMapList=new ArrayList<BingMapVo>();
+		List<BingMapVo> bingMapList2=new ArrayList<BingMapVo>();
 
 
 		List<SearchList> searchListIndex = null;
@@ -265,7 +266,7 @@ public class BingMapController {
         	bingMapVo.setDaxue(daxue);
         	bingMapVo.setXianfang(xianfang);
         	bingMapVo.setTraffic(traffic);*/
-        	bingMapList.add(bingMapVo);
+        	bingMapList2.add(bingMapVo);
         }
 
 		List<Nation> nationList=bingMapDao.findGuojia();
@@ -274,7 +275,7 @@ public class BingMapController {
 
 		
 		/*req.setAttribute("bingMapList", bingMapList);*/
-		req.setAttribute("bingMapList", bingMapList);
+		req.setAttribute("bingMapList", bingMapList2);
 		
 
 		req.setAttribute("nationList", nationList);
