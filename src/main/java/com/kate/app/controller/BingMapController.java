@@ -148,7 +148,8 @@ public class BingMapController {
         	String  project_high_price=s.getMaxPrice();
         	String mianji=s.getMianji();
         	String return_money=s.getFanxian();
-        	String project_price_int_qi=s.getProject_price_int_qi_str();
+        	String project_price_int_qi_str=s.getProject_price_int_qi_str();
+        	int project_price_int_qi=s.getProject_price_int_qi();
         	List<String> project_key=s.getProject_key();
         	String project_name_full=s.getProject_name();
         	String bijiao=s.getBijiao();
@@ -171,7 +172,7 @@ public class BingMapController {
         	bingMapVo.setProject_img(project_img);
         	bingMapVo.setProject_num(project_num);
         	bingMapVo.setProject_address(project_address);
-        	bingMapVo.setProject_address_short(project_address_short);
+        	bingMapVo.setProject_address_short(project_address);/////
         	bingMapVo.setProject_name(project_name);
         	bingMapVo.setProject_price(project_price);
         	bingMapVo.setMinArea(minArea);
@@ -183,7 +184,7 @@ public class BingMapController {
         	bingMapVo.setProject_high_price(project_high_price);
         	bingMapVo.setMianji(mianji);
         	bingMapVo.setReturn_money(return_money);
-        	bingMapVo.setProject_price_int_qi(project_price_int_qi);
+            bingMapVo.setProject_price_int_qi(String.valueOf(project_price_int_qi));
         	bingMapVo.setProject_key(project_key);
         	bingMapVo.setProject_name_full(project_name_full);
         	bingMapVo.setBijiao(bijiao);
