@@ -1,173 +1,342 @@
  var map = null;
  var defaultInfobox;
  var defaltCenter=new Microsoft.Maps.Location( -25.585241, 134.504120);  
+
       /*加载地图*/
       function getMap()
       {
+    	
        //生成地图
        map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
-       $.ajax({
-	 	    type: "GET",
-	 		dateType: "json",
-	 		url: "/BingMap/Coordinates", 		
-	 		success:function(data){
-	        //alert(data)
-	 		data=$.parseJSON(data);
-	 		    var items=data.List;
-	 		    var itemsNation1=data.ListNation1;
-	 		    var itemsNation2=data.ListNation2;
-	 		    var itemsZhou1=data.ListZhou1;
-	 		    var itemsZhou2=data.ListZhou2;
-	 		    var itemsCity1=data.ListCity1;
-	 		    var itemsCity2=data.ListCity2;
-	 		    var itemsArea1=data.ListArea1;
-	 		    var itemsArea2=data.ListArea2;
-	 		   /* var itemsCentermoren=data.ListCentermoren;
-	 		    var lenCentermoren=itemsCentermoren.length;*/
-	 		    var lenItems=items.length;
-	 		    var a=new Array();
-	 		    var Zoom;
-	 		    if(lenItems!=0){
-	 		    	a=items[0].gps.split(",");
-	 		    	Zoom=11;	 		    	
-	 		    }
-	 		    else{
-	 		    	a[0]="-25.585241";
-		 		    a[1]="134.504120";
-		 		    Zoom=5;
-	 		    }
-	 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
-	 		    //设置地图中心点和层级
-	 		    map.setView({ zoom: Zoom, center: Center });	
-	 		    lastZoomLevel = map.getZoom();
-	 	        Microsoft.Maps.Events.addHandler(map, 'viewchangeend', function(){
-	 	        	//联动
-	 	        	 var bounds=map.getBounds();
-	            	 var zuoshang=bounds.getNorthwest();
-	                 var youxia=bounds.getSoutheast();
-	                 var zs1=zuoshang.latitude;
-	                 var zs2=zuoshang.longitude;
-	                 var yx1=youxia.latitude;
-                     var yx2=youxia.longitude;
-	                 alert('Map zuoshang: ' +  zuoshang);
-	                 alert('Map youxia: ' +  youxia);
-	                 $.ajax({
-	     		 	    type: "POST",
-	     		 		dateType: "json",
-	     		 		url: "/BingMap1/filterByGPS1",	
-	     		 		data:{gpsLeftX:zs1,gpsLeftY:zs2,gpsRightX:yx1,gpsRightY:yx2},
-	     		 		success:function(data){
-	     		       
-	     		 		data=$.parseJSON(data);
-	     		 		
-	     		 		
-	     		 		 var html = getHtml1(data.List);
-	     		 		 
-	     		 		 $("#left").html(html);  
-	     		 		  
-	     		 	    },
-	     		 
-	     		 		error:function(){
-	     		 			//alert("addDefaultPushpin error")
-	     		 		}
-	     	        });
-	 	        	if(lastZoomLevel != map.getZoom()){
-	 	               lastZoomLevel = map.getZoom();
-	 	               if(lastZoomLevel>10){
-	 	            	  map.entities.clear();
-	 	            	  for(var i=0;i<items.length;i++){
-	 	 	 		        var arr=new Array();
-	 	 	 		        arr=items[i].gps.split(",");
-	 	 	 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]);
-	 	 	 		        var num=items[i].project_num;
-	 	 	 		        var name=items[i].project_name;
-	 	 	 		        var image=items[i].project_img;
-	 	 	 		        var img=imgdir+"/"+image;	 		        
-	 	 	 		       /* var minprice=items[i].project_min_price;
-	 	 	 		        var maxprice=items[i].project_high_price;*/
-	 	 	 		        var city=items[i].project_city;
-	 	 	 		        //var price=items[i].project_price_int_qi;
-	 	 	 		     var price=items[i].project_min_price;
-	 	 	 		        var type=items[i].project_type;
-	 	 	 		        /*var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:-45px;left:-15px;'><div style='color:red;font-size:12px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin2.png' style='width:20px;height:20px;'/></div>"};*/
-	 	 	 		        var pushpinOptions = {width:30, height:30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'};
-	 	 	 		        //生成地图小图钉
-	 	 	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
-	 	 	 		        /*var pushpin= new Microsoft.Maps.Pushpin(LA,null);*/
-	 	 				    add(name,type,img,price,num,pushpin,LA);
-	 	 				    map.entities.push(pushpin);	
-	 	 	 		    }	 	            	   
-	 	               }else if(lastZoomLevel>7){		 	            	  
-	 	            	    map.entities.clear();
-	 	            	    var lenArea=itemsArea1.length;
-	 	            	    for(var j=0;j<lenArea;j++){
-	 	            	        var arr2=new Array();
-	 	            	        arr2=itemsArea2[j].gps.split(",");
-	 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
-	 	            	        var area2=itemsArea2[j].project_area;
-	 	            	        var total=String(itemsArea1[j].area);
-	 	            	        //alert(typeof(total))
-	 	            	        /*var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; */
-	 	            	        var pushpinOptions2={text:total,width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'};
-	 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
-	 	                  	    map.entities.push(pushpin2);
-	 	            	    }
-	 	               }else if(lastZoomLevel>5){
-	 	            	    map.entities.clear();
-	 	            	    var lenCity=itemsCity1.length;
-	 	            	    for(var j=0;j<lenCity;j++){
-	 	            	        var arr2=new Array();
-	 	            	        arr2=itemsCity2[j].gps.split(",");
-	 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
-	 	            	        var city2=itemsCity2[j].project_city;
-	 	            	        var total=String(itemsCity1[j].city);
-	 	            	        //alert(typeof(total))
-	 	            	        /*var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; */
-	 	            	        var pushpinOptions2={text:total,width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'};
-	 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
-	 	                  	    map.entities.push(pushpin2);
-	 	            	    }
-	 	               }else if(lastZoomLevel>3){
-	 	            	    map.entities.clear();
-	 	            	    var lenZhou=itemsZhou1.length;
-	 	            	    for(var j=0;j<lenZhou;j++){
-	 	            	        var arr2=new Array();
-	 	            	        arr2=itemsZhou2[j].gps.split(",");
-	 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
-	 	            	        var zhou2=itemsZhou2[j].project_zhou;
-	 	            	        var total=String(itemsZhou1[j].zhou);
-	 	            	        //alert(typeof(total))
-	 	            	        /*var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; */
-	 	            	        var pushpinOptions2={text:total,width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'};
-	 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
-	 	                  	    map.entities.push(pushpin2);
-	 	            	    }
-	 	               }else{
-	 	            	    map.entities.clear();
-	 	            	    var lenNation=itemsNation1.length;
-	 	            	    for(var j=0;j<lenNation;j++){
-	 	            	        var arr2=new Array();
-	 	            	        arr2=itemsNation2[j].gps.split(",");
-	 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
-	 	            	        var nation2=itemsNation2[j].project_nation;
-	 	            	        var total=String(itemsNation1[j].nation);
-	 	            	        //alert(typeof(total))
-	 	            	        /*var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; */
-	 	            	        var pushpinOptions2={text:total,width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'};
-	 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
-	 	                  	    map.entities.push(pushpin2);
-	 	            	    }
-	 	               }
-	 	        	}
-	 	        });
-	 		   
-	 		   
-	 		},
-	 		error:function(){
-	 			//alert("addDefaultPushpin error")
-	 		}
-        });		 
+      if(liandong1 == 1){
+    	  $.ajax({
+		 	    type: "GET",
+		 		dateType: "json",
+		 		url: "/BingMap/Coordinates01", 		
+		 		success:function(data){
+		        alert(data)
+		 		data=$.parseJSON(data);
+		 		    var items=data.List;
+		 		    var itemsNation1=data.ListNation1;
+		 		    var itemsNation2=data.ListNation2;
+		 		    var itemsZhou1=data.ListZhou1;
+		 		    var itemsZhou2=data.ListZhou2;
+		 		    var itemsCity1=data.ListCity1;
+		 		    var itemsCity2=data.ListCity2;
+		 		    var itemsArea1=data.ListArea1;
+		 		    var itemsArea2=data.ListArea2;
+		 		   /* var itemsCentermoren=data.ListCentermoren;
+		 		    var lenCentermoren=itemsCentermoren.length;*/
+		 		    var lenItems=items.length;
+		 		    var a=new Array();
+		 		    var Zoom;
+		 		    if(lenItems!=0){
+		 		    	a=items[0].gps.split(",");
+		 		    	Zoom=11;	 		    	
+		 		    }
+		 		    else{
+		 		    	a[0]="-25.585241";
+			 		    a[1]="134.504120";
+			 		    Zoom=5;
+		 		    }
+		 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
+		 		    //设置地图中心点和层级
+		 		    map.setView({ zoom: Zoom, center: Center });	
+		 		    lastZoomLevel = map.getZoom();
+		 	        Microsoft.Maps.Events.addHandler(map, 'viewchangeend', function(){
+		 	        	//联动
+		 	        	 var bounds=map.getBounds();
+		            	 var zuoshang=bounds.getNorthwest();
+		                 var youxia=bounds.getSoutheast();
+		                 var zs1=zuoshang.latitude;
+		                 var zs2=zuoshang.longitude;
+		                 var yx1=youxia.latitude;
+	                     var yx2=youxia.longitude;
+		                 alert('Map zuoshang: ' +  zuoshang);
+		                 alert('Map youxia: ' +  youxia);
+		                 $.ajax({
+		     		 	    type: "POST",
+		     		 		dateType: "json",
+		     		 		url: "/BingMap1/filterByGPS1",	
+		     		 		data:{gpsLeftX:zs1,gpsLeftY:zs2,gpsRightX:yx1,gpsRightY:yx2},
+		     		 		success:function(data){
+		     		       
+		     		 		data=$.parseJSON(data);
+		     		 		
+		     		 		alert(data.List)
+		     		 		 var html = getHtml1(data.List);
+		     		 		 
+		     		 		 $("#left").html(html);  
+		     		 		  
+		     		 	    },
+		     		 
+		     		 		error:function(){
+		     		 			//alert("addDefaultPushpin error")
+		     		 		}
+		     	        });
+		 	        	if(lastZoomLevel != map.getZoom()){
+		 	               lastZoomLevel = map.getZoom();
+		 	               if(lastZoomLevel>10){
+		 	            	  map.entities.clear();
+		 	            	  for(var i=0;i<items.length;i++){
+		 	 	 		        var arr=new Array();
+		 	 	 		        arr=items[i].gps.split(",");
+		 	 	 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]);
+		 	 	 		        var num=items[i].project_num;
+		 	 	 		        var name=items[i].project_name;
+		 	 	 		        var image=items[i].project_img;
+		 	 	 		        var img=imgdir+"/"+image;	 		        
+		 	 	 		       /* var minprice=items[i].project_min_price;
+		 	 	 		        var maxprice=items[i].project_high_price;*/
+		 	 	 		        var city=items[i].project_city;
+		 	 	 		        //var price=items[i].project_price_int_qi;
+		 	 	 		     var price=items[i].project_min_price;
+		 	 	 		        var type=items[i].project_type;
+		 	 	 		        /*var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:-45px;left:-15px;'><div style='color:red;font-size:12px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin2.png' style='width:20px;height:20px;'/></div>"};*/
+		 	 	 		        var pushpinOptions = {width:30, height:30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'};
+		 	 	 		        //生成地图小图钉
+		 	 	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
+		 	 	 		        /*var pushpin= new Microsoft.Maps.Pushpin(LA,null);*/
+		 	 				    add(name,type,img,price,num,pushpin,LA);
+		 	 				    map.entities.push(pushpin);	
+		 	 	 		    }	 	            	   
+		 	               }else if(lastZoomLevel>7){		 	            	  
+		 	            	    map.entities.clear();
+		 	            	    var lenArea=itemsArea1.length;
+		 	            	    for(var j=0;j<lenArea;j++){
+		 	            	        var arr2=new Array();
+		 	            	        arr2=itemsArea2[j].gps.split(",");
+		 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
+		 	            	        var area2=itemsArea2[j].project_area;
+		 	            	        var total=String(itemsArea1[j].area);
+		 	            	        //alert(typeof(total))
+		 	            	        /*var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; */
+		 	            	        var pushpinOptions2={text:total,width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'};
+		 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
+		 	                  	    map.entities.push(pushpin2);
+		 	            	    }
+		 	               }else if(lastZoomLevel>5){
+		 	            	    map.entities.clear();
+		 	            	    var lenCity=itemsCity1.length;
+		 	            	    for(var j=0;j<lenCity;j++){
+		 	            	        var arr2=new Array();
+		 	            	        arr2=itemsCity2[j].gps.split(",");
+		 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
+		 	            	        var city2=itemsCity2[j].project_city;
+		 	            	        var total=String(itemsCity1[j].city);
+		 	            	        //alert(typeof(total))
+		 	            	        /*var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; */
+		 	            	        var pushpinOptions2={text:total,width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'};
+		 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
+		 	                  	    map.entities.push(pushpin2);
+		 	            	    }
+		 	               }else if(lastZoomLevel>3){
+		 	            	    map.entities.clear();
+		 	            	    var lenZhou=itemsZhou1.length;
+		 	            	    for(var j=0;j<lenZhou;j++){
+		 	            	        var arr2=new Array();
+		 	            	        arr2=itemsZhou2[j].gps.split(",");
+		 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
+		 	            	        var zhou2=itemsZhou2[j].project_zhou;
+		 	            	        var total=String(itemsZhou1[j].zhou);
+		 	            	        //alert(typeof(total))
+		 	            	        /*var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; */
+		 	            	        var pushpinOptions2={text:total,width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'};
+		 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
+		 	                  	    map.entities.push(pushpin2);
+		 	            	    }
+		 	               }else{
+		 	            	    map.entities.clear();
+		 	            	    var lenNation=itemsNation1.length;
+		 	            	    for(var j=0;j<lenNation;j++){
+		 	            	        var arr2=new Array();
+		 	            	        arr2=itemsNation2[j].gps.split(",");
+		 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
+		 	            	        var nation2=itemsNation2[j].project_nation;
+		 	            	        var total=String(itemsNation1[j].nation);
+		 	            	        //alert(typeof(total))
+		 	            	        /*var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; */
+		 	            	        var pushpinOptions2={text:total,width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'};
+		 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
+		 	                  	    map.entities.push(pushpin2);
+		 	            	    }
+		 	               }
+		 	        	}
+		 	        });
+		 		   
+		 		   
+		 		},
+		 		error:function(){
+		 			//alert("addDefaultPushpin error")
+		 		}
+	        });	
       }
+    	  else{
+    		  $.ajax({
+    		 	    type: "GET",
+    		 		dateType: "json",
+    		 		url: "/BingMap/Coordinates", 		
+    		 		success:function(data){
+    		        alert(data)
+    		 		data=$.parseJSON(data);
+    		 		    var items=data.List;
+    		 		    var itemsNation1=data.ListNation1;
+    		 		    var itemsNation2=data.ListNation2;
+    		 		    var itemsZhou1=data.ListZhou1;
+    		 		    var itemsZhou2=data.ListZhou2;
+    		 		    var itemsCity1=data.ListCity1;
+    		 		    var itemsCity2=data.ListCity2;
+    		 		    var itemsArea1=data.ListArea1;
+    		 		    var itemsArea2=data.ListArea2;
+    		 		   /* var itemsCentermoren=data.ListCentermoren;
+    		 		    var lenCentermoren=itemsCentermoren.length;*/
+    		 		    var lenItems=items.length;
+    		 		    var a=new Array();
+    		 		    var Zoom;
+    		 		    if(lenItems!=0){
+    		 		    	a=items[0].gps.split(",");
+    		 		    	Zoom=11;	 		    	
+    		 		    }
+    		 		    else{
+    		 		    	a[0]="-25.585241";
+    			 		    a[1]="134.504120";
+    			 		    Zoom=5;
+    		 		    }
+    		 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
+    		 		    //设置地图中心点和层级
+    		 		    map.setView({ zoom: Zoom, center: Center });	
+    		 		    lastZoomLevel = map.getZoom();
+    		 	        Microsoft.Maps.Events.addHandler(map, 'viewchangeend', function(){
+    		 	        	//联动
+    		 	        	 var bounds=map.getBounds();
+    		            	 var zuoshang=bounds.getNorthwest();
+    		                 var youxia=bounds.getSoutheast();
+    		                 var zs1=zuoshang.latitude;
+    		                 var zs2=zuoshang.longitude;
+    		                 var yx1=youxia.latitude;
+    	                     var yx2=youxia.longitude;
+    		                 alert('Map zuoshang: ' +  zuoshang);
+    		                 alert('Map youxia: ' +  youxia);
+    		                 $.ajax({
+    		     		 	    type: "POST",
+    		     		 		dateType: "json",
+    		     		 		url: "/BingMap1/filterByGPS1",	
+    		     		 		data:{gpsLeftX:zs1,gpsLeftY:zs2,gpsRightX:yx1,gpsRightY:yx2},
+    		     		 		success:function(data){
+    		     		       
+    		     		 		data=$.parseJSON(data);
+    		     		 		
+    		     		 		alert(data.List)
+    		     		 		 var html = getHtml1(data.List);
+    		     		 		 
+    		     		 		 $("#left").html(html);  
+    		     		 		  
+    		     		 	    },
+    		     		 
+    		     		 		error:function(){
+    		     		 			//alert("addDefaultPushpin error")
+    		     		 		}
+    		     	        });
+    		 	        	if(lastZoomLevel != map.getZoom()){
+    		 	               lastZoomLevel = map.getZoom();
+    		 	               if(lastZoomLevel>10){
+    		 	            	  map.entities.clear();
+    		 	            	  for(var i=0;i<items.length;i++){
+    		 	 	 		        var arr=new Array();
+    		 	 	 		        arr=items[i].gps.split(",");
+    		 	 	 		        var LA=new Microsoft.Maps.Location(arr[0],arr[1]);
+    		 	 	 		        var num=items[i].project_num;
+    		 	 	 		        var name=items[i].project_name;
+    		 	 	 		        var image=items[i].project_img;
+    		 	 	 		        var img=imgdir+"/"+image;	 		        
+    		 	 	 		       /* var minprice=items[i].project_min_price;
+    		 	 	 		        var maxprice=items[i].project_high_price;*/
+    		 	 	 		        var city=items[i].project_city;
+    		 	 	 		        //var price=items[i].project_price_int_qi;
+    		 	 	 		     var price=items[i].project_min_price;
+    		 	 	 		        var type=items[i].project_type;
+    		 	 	 		        /*var pushpinOptions = {width:null, height:null,htmlContent: "<div style='position:relative;top:-45px;left:-15px;'><div style='color:red;font-size:12px;background-color:white;padding:3px;opacity:1;text-align:center;font-weight:bold;'>"+name+"</div><img src='/images/pushpin2.png' style='width:20px;height:20px;'/></div>"};*/
+    		 	 	 		        var pushpinOptions = {width:30, height:30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'};
+    		 	 	 		        //生成地图小图钉
+    		 	 	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
+    		 	 	 		        /*var pushpin= new Microsoft.Maps.Pushpin(LA,null);*/
+    		 	 				    add(name,type,img,price,num,pushpin,LA);
+    		 	 				    map.entities.push(pushpin);	
+    		 	 	 		    }	 	            	   
+    		 	               }else if(lastZoomLevel>7){		 	            	  
+    		 	            	    map.entities.clear();
+    		 	            	    var lenArea=itemsArea1.length;
+    		 	            	    for(var j=0;j<lenArea;j++){
+    		 	            	        var arr2=new Array();
+    		 	            	        arr2=itemsArea2[j].gps.split(",");
+    		 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
+    		 	            	        var area2=itemsArea2[j].project_area;
+    		 	            	        var total=String(itemsArea1[j].area);
+    		 	            	        //alert(typeof(total))
+    		 	            	        /*var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; */
+    		 	            	        var pushpinOptions2={text:total,width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'};
+    		 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
+    		 	                  	    map.entities.push(pushpin2);
+    		 	            	    }
+    		 	               }else if(lastZoomLevel>5){
+    		 	            	    map.entities.clear();
+    		 	            	    var lenCity=itemsCity1.length;
+    		 	            	    for(var j=0;j<lenCity;j++){
+    		 	            	        var arr2=new Array();
+    		 	            	        arr2=itemsCity2[j].gps.split(",");
+    		 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
+    		 	            	        var city2=itemsCity2[j].project_city;
+    		 	            	        var total=String(itemsCity1[j].city);
+    		 	            	        //alert(typeof(total))
+    		 	            	        /*var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; */
+    		 	            	        var pushpinOptions2={text:total,width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'};
+    		 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
+    		 	                  	    map.entities.push(pushpin2);
+    		 	            	    }
+    		 	               }else if(lastZoomLevel>3){
+    		 	            	    map.entities.clear();
+    		 	            	    var lenZhou=itemsZhou1.length;
+    		 	            	    for(var j=0;j<lenZhou;j++){
+    		 	            	        var arr2=new Array();
+    		 	            	        arr2=itemsZhou2[j].gps.split(",");
+    		 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
+    		 	            	        var zhou2=itemsZhou2[j].project_zhou;
+    		 	            	        var total=String(itemsZhou1[j].zhou);
+    		 	            	        //alert(typeof(total))
+    		 	            	        /*var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; */
+    		 	            	        var pushpinOptions2={text:total,width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'};
+    		 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
+    		 	                  	    map.entities.push(pushpin2);
+    		 	            	    }
+    		 	               }else{
+    		 	            	    map.entities.clear();
+    		 	            	    var lenNation=itemsNation1.length;
+    		 	            	    for(var j=0;j<lenNation;j++){
+    		 	            	        var arr2=new Array();
+    		 	            	        arr2=itemsNation2[j].gps.split(",");
+    		 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
+    		 	            	        var nation2=itemsNation2[j].project_nation;
+    		 	            	        var total=String(itemsNation1[j].nation);
+    		 	            	        //alert(typeof(total))
+    		 	            	        /*var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; */
+    		 	            	        var pushpinOptions2={text:total,width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'};
+    		 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
+    		 	                  	    map.entities.push(pushpin2);
+    		 	            	    }
+    		 	               }
+    		 	        	}
+    		 	        });
+    		 		   
+    		 		   
+    		 		},
+    		 		error:function(){
+    		 			//alert("addDefaultPushpin error")
+    		 		}
+    	        });	
+    		  
+    	  }
+      }
+
       //生成地图消息框
       function add(name,type,img,price,num,pushpin,LA){
     	  Microsoft.Maps.Events.addHandler(pushpin, 'click', function(){
@@ -540,6 +709,7 @@
 		                 var zs2=zuoshang.longitude;
 		                 var yx1=youxia.latitude;
 	                     var yx2=youxia.longitude;
+	                     alert("ffff")
 		                 $.ajax({
 		     		 	    type: "POST",
 		     		 		dateType: "json",

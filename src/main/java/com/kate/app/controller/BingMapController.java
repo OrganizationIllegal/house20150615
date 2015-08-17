@@ -186,88 +186,96 @@ public class BingMapController {
 	        	bingMapList.add(bingMapVo);
 	        }
 			req.setAttribute("bingMapList", bingMapList);
+			req.setAttribute("liandong", liandong);
+		}
+		else if(searchList!=null){
+			liandong = -1;
+			for(SearchList s:searchList){
+	        	BingMapVo bingMapVo=new BingMapVo();
+	        	int id=s.getId();
+	        	String project_img=s.getProject_img();
+	        	String project_num=s.getProject_num();
+	        	String project_address=s.getProject_address();
+	        	String project_address_short=s.getProject_address_short();
+	        	String project_name=s.getProject_name();
+	        	String project_price=s.getProject_price_int_qi_str();
+	        	int minArea=s.getMinArea();
+	        	int maxArea=s.getMaxArea();
+	        	int keshou=s.getKeshou();
+	        	String average_price=s.getProject_price_int_qi_str();
+	        	String house_type=null;///////////
+	        	String  project_min_price=s.getMinPrice();
+	        	String  project_high_price=s.getMaxPrice();
+	        	String mianji=s.getMianji();
+	        	String return_money=s.getFanxian();
+	        	String project_price_int_qi_str=s.getProject_price_int_qi_str();
+	        	int project_price_int_qi=s.getProject_price_int_qi();
+	        	List<String> project_key=s.getProject_key();
+	        	String project_name_full=s.getProject_name();
+	        	String bijiao=s.getBijiao();
+	        	String gps=s.getGps();
+	        	String project_lan_cn=s.getProject_lan_cn();
+	        	String developer_id_name=s.getDeveloper_id_name();
+	        	String xinkaipan=s.getXinkaipan();
+	        	String remen=s.getRemen();
+	        	String xuequ=s.getXuequ();
+	        	String center=s.getCenter();
+	        	String baozu=s.getBaozu();
+	        	String huaren=s.getHuaren();
+	        	String maidi=s.getMaidi();
+	        	String daxue=s.getDaxue();
+	        	String xianfang=s.getXianfang();
+	        	String traffic=s.getTraffic();
+	        	
+	        	
+	        	bingMapVo.setProject_id(id);
+	        	bingMapVo.setProject_img(project_img);
+	        	bingMapVo.setProject_num(project_num);
+	        	bingMapVo.setProject_address(project_address);
+	        	bingMapVo.setProject_address_short(project_address);/////
+	        	bingMapVo.setProject_name(project_name);
+	        	bingMapVo.setProject_price(project_price);
+	        	bingMapVo.setMinArea(minArea);
+	        	bingMapVo.setMaxArea(maxArea);
+	        	bingMapVo.setKeshou(keshou);
+	        	bingMapVo.setAverage_price(average_price);
+	        	bingMapVo.setHouse_type(house_type);
+	        	bingMapVo.setProject_min_price(project_min_price);
+	        	bingMapVo.setProject_high_price(project_high_price);
+	        	bingMapVo.setMianji(mianji);
+	        	bingMapVo.setReturn_money(return_money);
+	            bingMapVo.setProject_price_int_qi(String.valueOf(project_price_int_qi));
+	        	bingMapVo.setProject_key(project_key);
+	        	bingMapVo.setProject_name_full(project_name_full);
+	        	bingMapVo.setBijiao(bijiao);
+	        	bingMapVo.setGps(gps);
+	        /*	bingMapVo.setProject_lan_cn(project_lan_cn);
+	        	bingMapVo.setDeveloper_id_name(developer_id_name);
+	        	bingMapVo.setXinkaipan(xinkaipan);
+	        	bingMapVo.setRemen(remen);
+	        	bingMapVo.setXuequ(xuequ);
+	        	bingMapVo.setCenter(center);
+	        	bingMapVo.setBaozu(baozu);
+	        	bingMapVo.setHuaren(huaren);
+	        	bingMapVo.setMaidi(maidi);
+	        	bingMapVo.setDaxue(daxue);
+	        	bingMapVo.setXianfang(xianfang);
+	        	bingMapVo.setTraffic(traffic);*/
+	        	bingMapList2.add(bingMapVo);
+	        }
+			req.setAttribute("bingMapList", bingMapList2);
+			req.setAttribute("liandong", "-1");
 		}
 		else{
 			liandong = 0;
 			bingMapList=bingMapService.listBingMap();   //查询数据库，得到项目信息
 			BingMapVoList = bingMapList;
 			req.setAttribute("bingMapList", bingMapList);
+			req.setAttribute("liandong", "-1");
 		}
 		
 	
-        for(SearchList s:searchList){
-        	BingMapVo bingMapVo=new BingMapVo();
-        	int id=s.getId();
-        	String project_img=s.getProject_img();
-        	String project_num=s.getProject_num();
-        	String project_address=s.getProject_address();
-        	String project_address_short=s.getProject_address_short();
-        	String project_name=s.getProject_name();
-        	String project_price=s.getProject_price_int_qi_str();
-        	int minArea=s.getMinArea();
-        	int maxArea=s.getMaxArea();
-        	int keshou=s.getKeshou();
-        	String average_price=s.getProject_price_int_qi_str();
-        	String house_type=null;///////////
-        	String  project_min_price=s.getMinPrice();
-        	String  project_high_price=s.getMaxPrice();
-        	String mianji=s.getMianji();
-        	String return_money=s.getFanxian();
-        	String project_price_int_qi_str=s.getProject_price_int_qi_str();
-        	int project_price_int_qi=s.getProject_price_int_qi();
-        	List<String> project_key=s.getProject_key();
-        	String project_name_full=s.getProject_name();
-        	String bijiao=s.getBijiao();
-        	String gps=s.getGps();
-        	String project_lan_cn=s.getProject_lan_cn();
-        	String developer_id_name=s.getDeveloper_id_name();
-        	String xinkaipan=s.getXinkaipan();
-        	String remen=s.getRemen();
-        	String xuequ=s.getXuequ();
-        	String center=s.getCenter();
-        	String baozu=s.getBaozu();
-        	String huaren=s.getHuaren();
-        	String maidi=s.getMaidi();
-        	String daxue=s.getDaxue();
-        	String xianfang=s.getXianfang();
-        	String traffic=s.getTraffic();
-        	
-        	
-        	bingMapVo.setProject_id(id);
-        	bingMapVo.setProject_img(project_img);
-        	bingMapVo.setProject_num(project_num);
-        	bingMapVo.setProject_address(project_address);
-        	bingMapVo.setProject_address_short(project_address);/////
-        	bingMapVo.setProject_name(project_name);
-        	bingMapVo.setProject_price(project_price);
-        	bingMapVo.setMinArea(minArea);
-        	bingMapVo.setMaxArea(maxArea);
-        	bingMapVo.setKeshou(keshou);
-        	bingMapVo.setAverage_price(average_price);
-        	bingMapVo.setHouse_type(house_type);
-        	bingMapVo.setProject_min_price(project_min_price);
-        	bingMapVo.setProject_high_price(project_high_price);
-        	bingMapVo.setMianji(mianji);
-        	bingMapVo.setReturn_money(return_money);
-            bingMapVo.setProject_price_int_qi(String.valueOf(project_price_int_qi));
-        	bingMapVo.setProject_key(project_key);
-        	bingMapVo.setProject_name_full(project_name_full);
-        	bingMapVo.setBijiao(bijiao);
-        	bingMapVo.setGps(gps);
-        /*	bingMapVo.setProject_lan_cn(project_lan_cn);
-        	bingMapVo.setDeveloper_id_name(developer_id_name);
-        	bingMapVo.setXinkaipan(xinkaipan);
-        	bingMapVo.setRemen(remen);
-        	bingMapVo.setXuequ(xuequ);
-        	bingMapVo.setCenter(center);
-        	bingMapVo.setBaozu(baozu);
-        	bingMapVo.setHuaren(huaren);
-        	bingMapVo.setMaidi(maidi);
-        	bingMapVo.setDaxue(daxue);
-        	bingMapVo.setXianfang(xianfang);
-        	bingMapVo.setTraffic(traffic);*/
-        	bingMapList2.add(bingMapVo);
-        }
+        
 
 		List<Nation> nationList=bingMapDao.findGuojia();
 		List<City> cityList=bingMapDao.findChengshi();   //查询数据库，得到项目信息
@@ -275,7 +283,7 @@ public class BingMapController {
 
 		
 		/*req.setAttribute("bingMapList", bingMapList);*/
-		req.setAttribute("bingMapList", bingMapList2);
+		
 		
 
 		req.setAttribute("nationList", nationList);
@@ -1961,6 +1969,127 @@ public class BingMapController {
 				}
 			}
 		}
+			
+			/*else if(liandong == 2){
+				
+				
+				for(HouseProject item : typeListResult){
+					String gps = item.getGps();
+					String x = "";
+					String y = "";
+					String[] strs = null;
+					if(gps!=null && !"".equals(gps)){
+						strs = gps.split(",");
+					}
+					x = strs[0];
+					y = strs[1];
+					if(x!=null && !"".equals(x)){
+						trueX = Double.parseDouble(x);
+					}
+					if(y!=null && !"".equals(y)){
+						trueY = Double.parseDouble(y);
+					}
+					if(trueX >= rightX0 && trueX <= leftX0 && trueY>=leftY0 && trueY <=rightY0){
+						resultTypeList.add(item);
+					}
+				}
+				
+				
+				DecimalFormat df = new DecimalFormat("#,###,###");
+
+			for(HouseProject data : resultTypeList){
+				JSONObject obj = new JSONObject();
+				obj.put("id", data.getId());
+				obj.put("gps", data.getGps()==null?"":data.getGps());
+				
+				obj.put("project_name", data.getProject_name()==null?"":data.getProject_name());
+				obj.put("project_name_short", data.getProject_name_short());
+				
+				obj.put("project_img", data.getProject_img()==null?"":data.getProject_img());
+				obj.put("project_price", data.getProject_price()==null?"":data.getProject_price());
+				obj.put("project_num", data.getProject_num()==null?"":data.getProject_num());
+				obj.put("project_min_price", data.getMinPrice());
+				obj.put("project_high_price", data.getMaxPrice());
+
+				obj.put("project_zhou", data.getProject_zhou()==null?"":data.getProject_zhou());
+				obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
+				obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
+				
+				obj.put("project_address", data.getProject_address()==null?"":data.getProject_address());
+
+				obj.put("project_address_short", data.getProject_address_short());			
+
+				obj.put("minArea", data.getMin_area()==0?0:data.getMin_area());
+				obj.put("maxArea", data.getMax_area()==0?0:data.getMax_area());
+				obj.put("return_money", data.getReturn_money()==null?"":data.getReturn_money());
+				obj.put("project_price_int_qi", data.getProject_price_int_qi_str());
+				obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
+				obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
+				obj.put("project_key", data.getProject_key()==null?"":data.getProject_key());
+				array.add(obj);
+				}
+			}*/
+			else if(liandong == -1){
+				for(SearchList item : SearchListController.searchList_final){
+						String gps = item.getGps();
+						String x = "";
+						String y = "";
+						String[] strs = null;
+						if(gps!=null && !"".equals(gps)){
+							strs = gps.split(",");
+						}
+						x = strs[0];
+						y = strs[1];
+						if(x!=null && !"".equals(x)){
+							trueX = Double.parseDouble(x);
+						}
+						if(y!=null && !"".equals(y)){
+							trueY = Double.parseDouble(y);
+						}
+						if(trueX >= rightX0 && trueX <= leftX0 && trueY>=leftY0 && trueY <=rightY0){
+							resultList.add(item);
+						}
+					}
+					
+					
+					DecimalFormat df = new DecimalFormat("#,###,###");
+
+				for(SearchList data : resultList){
+					JSONObject obj = new JSONObject();
+					obj.put("id", data.getId());
+					obj.put("gps", data.getGps()==null?"":data.getGps());
+					
+					obj.put("project_name", data.getProject_name()==null?"":data.getProject_name());
+					/*obj.put("project_name_short", data.getProject_name_short());*/
+					obj.put("project_name_short", data.getProject_name()==null?"":data.getProject_name());
+					
+					obj.put("project_img", data.getProject_img()==null?"":data.getProject_img());
+					obj.put("project_price", data.getProject_price()==null?"":data.getProject_price());
+					obj.put("project_num", data.getProject_num()==null?"":data.getProject_num());
+					obj.put("project_min_price", data.getMinPrice());
+					obj.put("project_high_price", data.getMaxPrice());
+
+					obj.put("project_zhou", data.getProject_zhou()==null?"":data.getProject_zhou());
+					obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
+					obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
+					
+					obj.put("project_address", data.getProject_address()==null?"":data.getProject_address());
+
+					/*obj.put("project_address_short", data.getProject_address_short());		*/
+					obj.put("project_address_short", data.getProject_address()==null?"":data.getProject_address());		
+
+					obj.put("minArea", data.getMinArea()==0?0:data.getMinArea());
+					obj.put("maxArea", data.getMaxArea()==0?0:data.getMaxArea());
+					obj.put("return_money", data.getFanxian()==null?"":data.getFanxian());
+					/*obj.put("project_price_int_qi", data.getProject_price_int_qi_str());*/
+					obj.put("project_price_int_qi", data.getProject_price_int_qi());
+					obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
+					obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
+					obj.put("project_key", data.getProject_key()==null?"":data.getProject_key());
+					array.add(obj);
+					}
+				}
+		
 			
 
 	

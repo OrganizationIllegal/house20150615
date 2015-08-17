@@ -65,6 +65,8 @@ body{
 }
 </style>
    <script type="text/javascript">
+   var liandong1=${liandong};
+   
    $(function(){
 	  $("#project_city").prop("disabled", true);
 	  var current = $("#house1").val();
@@ -438,9 +440,10 @@ body{
  }
  </script>
 </head>
-<body onload="getMap();" onresize="reLoad()">
+<body onload="getMap()" onresize="reLoad()">
 <jsp:include page="head4index.jsp" />
-	
+
+
 		<div class="c-fix map_bkg" style="margin:0 auto;width:100%;">
 		
 			<div class="c-fix f-l div1">
@@ -788,4 +791,6 @@ function checkForm(){
     for (var selector in config) {
       $(selector).chosen(config[selector]);
     }
+   
+    alert(liandong1);
   </script>

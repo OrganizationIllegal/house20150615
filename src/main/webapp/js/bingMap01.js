@@ -1,9 +1,12 @@
  var map = null;
  var defaultInfobox;
- var defaltCenter=new Microsoft.Maps.Location( -37.847019, 145.064643);        
+ var defaltCenter=new Microsoft.Maps.Location( -37.847019, 145.064643);   
+ 
+ 
       /*加载地图*/
       function getMap()
       {
+	 //alert(liandong1+"2222222222")
        map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
        $.ajax({
 	 	    type: "GET",
