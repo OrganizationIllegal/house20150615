@@ -54,7 +54,7 @@
 	                 $.ajax({
 	     		 	    type: "POST",
 	     		 		dateType: "json",
-	     		 		url: "/BingMap1/filterByGPS",	
+	     		 		url: "/BingMap1/filterByGPS1",	
 	     		 		data:{gpsLeftX:zs1,gpsLeftY:zs2,gpsRightX:yx1,gpsRightY:yx2},
 	     		 		success:function(data){
 	     		       
