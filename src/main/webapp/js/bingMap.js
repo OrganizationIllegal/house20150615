@@ -69,7 +69,7 @@
 	     		 		error:function(){
 	     		 			//alert("addDefaultPushpin error")
 	     		 		}
-	     	        });	
+	     	        });
 	 	        	if(lastZoomLevel != map.getZoom()){
 	 	               lastZoomLevel = map.getZoom();
 	 	               if(lastZoomLevel>10){
@@ -215,6 +215,11 @@
       }
       
       
+   
+      
+      
+      
+      
 	   /* 增加公寓pushpin*/
 	   function addPushpin1()
       {
@@ -309,9 +314,9 @@
 	   
 	   
 	   /* 增加公寓pushpin*/
-	   function addPushpinNation(nation, city, area)
+	   function addPushpinNation(nation, city, area,item)
       {
-		 //alert("gongyu")
+		 //alert(nation+city+area)
 		 map.entities.clear(); 
 		 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
 		 $.ajax({
@@ -322,6 +327,30 @@
 		 		success:function(data){
 		        //alert(data)
 		 		data=$.parseJSON(data);
+		 		var cityArray=data.cityArray;
+		 		var areaArray=data.areaArray;
+		 		if(item == 1){
+		 			$('#city').empty();
+		        	   $('#city').append($('<option></option>').val("0").text("城市"));
+		        	   for(var i=0; i<cityArray.length; i++)  
+		        	   {  
+		        		/*    jQuery("#city").append("<option value='"+cityArray[i].cityname+"'>"+cityArray[i].cityname+"</option>");  */
+		        		   $('#city').append($('<option></option>').val(cityArray[i].city).text(cityArray[i].city));
+		        	   } 
+		 		}
+		 		else if(item == 2){
+		 			$('#area').empty();
+		        	   $('#area').append($('<option></option>').val("0").text("区域"));
+		        	   for(var i=0; i<areaArray.length; i++)  
+		        	   {  
+		        		/*    jQuery("#city").append("<option value='"+cityArray[i].cityname+"'>"+cityArray[i].cityname+"</option>");  */
+		        		   $('#area').append($('<option></option>').val(areaArray[i].area).text(areaArray[i].area));
+		        	   } 
+		 		}
+	        	   
+	        	    
+	        	   
+		 		
 		 		
 		 		 var html = getHtml1(data.List);
 		 		 //alert(html)

@@ -63,7 +63,9 @@ public class SearchController {
 	private BingMapDao bingMapDao;
 	@Autowired
 	private BingMapService bingMapService;
-	private static List<SearchList> seachListResult;
+	
+	
+	public static List<SearchList> seachListResult;
 	
 	private static List<BrokerInfoQuyu> seachBrokerListResult;
 	private static List<HouseProject> typeListResult;
@@ -300,9 +302,9 @@ public class SearchController {
 	
 	
 	
-	/*
-	 * 首页的搜索功能
-	 */
+	
+	 
+	 
 		@RequestMapping({"/IndexSearch"})
 		public String IndexSearch(HttpServletRequest req, HttpServletResponse resp){
 			flagInfo = 1;     //搜索结果页面
@@ -374,9 +376,9 @@ public class SearchController {
 			if(city2!=null && !"".equals(city2)){
 				city = city2;
 			}
-			/*
-			 * 通过城市，类型等，进一步高级搜索，在数据库中查找项目信息
-			 */
+			
+			 //通过城市，类型等，进一步高级搜索，在数据库中查找项目信息
+			 
 			List<HouseProject> list = searchListDao.indexSericeList(country, city, type, minimumprice, maximumprice, xinkaipan, huaren, remen, xuequ, baozu, daxue, center, traffic, xianfang, maidi);
 			if(list1.size()>=0){
 				if(list1.size()>list.size()){
@@ -446,7 +448,7 @@ public class SearchController {
 		    	String developer_id_name = item.getDeveloper_id_name();
 		    	String project_price_int_qi_str = item.getProject_price_qi();
 		    	String bijiao = item.getBijiao();
-		    /*	int project_price_int_qi=Integer.parseInt(project_price_int_qi_str);*/
+		    	//int project_price_int_qi=Integer.parseInt(project_price_int_qi_str);
 		    	String project_desc = item.getProject_desc();
 		    	gps = item.getGps();
 		    	String project_area=item.getProject_area();
@@ -484,9 +486,9 @@ public class SearchController {
 		    	SearchList data=new SearchList(id,bijiao,project_name_short,project_area,project_type,gps,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,project_lan_en,mianji,project_address,project_logo,developer_id_name,xinkaipan1,huaren1,remen1,xuequ1,baozu1,daxue1,center1,traffic1,xianfang1,maidi1,project_price_int_qi_str,project_desc,project_key,project_address_short,project_city);
 		    	searchList.add(data);
 			}
-			seachListResult = searchList;    //将查询的结果复制给静态变量
+			SearchController.seachListResult = searchList;    //将查询的结果复制给静态变量
 			//req.setAttribute("searchList",searchList);
-			return "/BingMap01";
+			return "/BingMap";
 		}
 	
 		
