@@ -29,6 +29,7 @@ import com.kate.app.model.HouseProject;
 import com.kate.app.model.Nation;
 import com.kate.app.model.ProjectDescImage;
 import com.kate.app.model.Quyu;
+import com.kate.app.model.SearchList;
 import com.kate.app.service.BingMapService;
 @Controller
 public class BingMapController {
@@ -50,7 +51,7 @@ public class BingMapController {
 	private static List<HouseProject> typeListResultShengxu;
 	private static List<HouseProject> typeListResultJiangxu;
 	
-	private static List<HouseProject> listResult;
+	public static List<HouseProject> listResult=new ArrayList<HouseProject>();
 	
 	private static int flagInfo = 0;
 	private static int orderFlag = 0;
@@ -76,14 +77,89 @@ public class BingMapController {
 	//右侧地图显示
 	@RequestMapping({"/BingMap"})    //首页加载
 	public String listBingMap(HttpServletRequest req,HttpServletResponse resp){
-
-		List<BingMapVo> bingMapList=bingMapService.listBingMap();   //查询数据库，得到项目信息
 		
+		List<SearchList> searchList=SearchListController.searchList_final;
+		/*List<BingMapVo> bingMapList=bingMapService.listBingMap();   //查询数据库，得到项目信息
+*/		List<BingMapVo> bingMapList=new ArrayList<BingMapVo>();
+        for(SearchList s:searchList){
+        	BingMapVo bingMapVo=new BingMapVo();
+        	int id=s.getId();
+        	String project_img=s.getProject_img();
+        	String project_num=s.getProject_num();
+        	String project_address=s.getProject_address();
+        	String project_address_short=s.getProject_address_short();
+        	String project_name=s.getProject_name();
+        	String project_price=s.getProject_price_int_qi_str();
+        	int minArea=s.getMinArea();
+        	int maxArea=s.getMaxArea();
+        	int keshou=s.getKeshou();
+        	String average_price=s.getProject_price_int_qi_str();
+        	String house_type=null;///////////
+        	String  project_min_price=s.getMinPrice();
+        	String  project_high_price=s.getMaxPrice();
+        	String mianji=s.getMianji();
+        	String return_money=s.getFanxian();
+        	String project_price_int_qi=s.getProject_price_int_qi_str();
+        	List<String> project_key=s.getProject_key();
+        	String project_name_full=s.getProject_name();
+        	String bijiao=s.getBijiao();
+        	String gps=s.getGps();
+        	String project_lan_cn=s.getProject_lan_cn();
+        	String developer_id_name=s.getDeveloper_id_name();
+        	String xinkaipan=s.getXinkaipan();
+        	String remen=s.getRemen();
+        	String xuequ=s.getXuequ();
+        	String center=s.getCenter();
+        	String baozu=s.getBaozu();
+        	String huaren=s.getHuaren();
+        	String maidi=s.getMaidi();
+        	String daxue=s.getDaxue();
+        	String xianfang=s.getXianfang();
+        	String traffic=s.getTraffic();
+        	
+        	
+        	bingMapVo.setProject_id(id);
+        	bingMapVo.setProject_img(project_img);
+        	bingMapVo.setProject_num(project_num);
+        	bingMapVo.setProject_address(project_address);
+        	bingMapVo.setProject_address_short(project_address_short);
+        	bingMapVo.setProject_name(project_name);
+        	bingMapVo.setProject_price(project_price);
+        	bingMapVo.setMinArea(minArea);
+        	bingMapVo.setMaxArea(maxArea);
+        	bingMapVo.setKeshou(keshou);
+        	bingMapVo.setAverage_price(average_price);
+        	bingMapVo.setHouse_type(house_type);
+        	bingMapVo.setProject_min_price(project_min_price);
+        	bingMapVo.setProject_high_price(project_high_price);
+        	bingMapVo.setMianji(mianji);
+        	bingMapVo.setReturn_money(return_money);
+        	bingMapVo.setProject_price_int_qi(project_price_int_qi);
+        	bingMapVo.setProject_key(project_key);
+        	bingMapVo.setProject_name_full(project_name_full);
+        	bingMapVo.setBijiao(bijiao);
+        	bingMapVo.setGps(gps);
+        /*	bingMapVo.setProject_lan_cn(project_lan_cn);
+        	bingMapVo.setDeveloper_id_name(developer_id_name);
+        	bingMapVo.setXinkaipan(xinkaipan);
+        	bingMapVo.setRemen(remen);
+        	bingMapVo.setXuequ(xuequ);
+        	bingMapVo.setCenter(center);
+        	bingMapVo.setBaozu(baozu);
+        	bingMapVo.setHuaren(huaren);
+        	bingMapVo.setMaidi(maidi);
+        	bingMapVo.setDaxue(daxue);
+        	bingMapVo.setXianfang(xianfang);
+        	bingMapVo.setTraffic(traffic);*/
+        	bingMapList.add(bingMapVo);
+        }
+
 		List<Nation> nationList=bingMapDao.findGuojia();
 		List<City> cityList=bingMapDao.findChengshi();   //查询数据库，得到项目信息
 		List<Quyu> areaList=bingMapDao.findQuyu();   //查询数据库，得到项目信息
 		
 		
+		/*req.setAttribute("bingMapList", bingMapList);*/
 		req.setAttribute("bingMapList", bingMapList);
 		
 		req.setAttribute("nationList", nationList);
@@ -595,8 +671,93 @@ public class BingMapController {
 		JSONArray arrayCentermoren = new JSONArray();
 		List<String> city=new ArrayList<String>();
 		
-		List<HouseProject> list = bingMapDao.listMap();
-		listResult = list;
+		/*List<HouseProject> list = bingMapDao.listMap();*/
+		List<HouseProject> houseProjectlist = new ArrayList<HouseProject>();
+		List<SearchList> searchList=SearchListController.searchList_final;
+        for(SearchList s:searchList){
+        	HouseProject houseProject=new HouseProject();
+        	int id=s.getId();
+        	String project_img=s.getProject_img();
+        	String project_num=s.getProject_num();
+        	String project_address=s.getProject_address();
+        	String project_address_short=s.getProject_address_short();
+        	String project_name=s.getProject_name();
+        	String project_price=s.getProject_price_int_qi_str();
+        	int minArea=s.getMinArea();
+        	int maxArea=s.getMaxArea();
+        	int keshou=s.getKeshou();
+        	String average_price=s.getProject_price_int_qi_str();
+        	String house_type=null;///////////
+        	String  project_min_price=s.getMinPrice();
+        	String  project_high_price=s.getMaxPrice();
+        	String mianji=s.getMianji();
+        	String return_money=s.getFanxian();
+        	String project_price_int_qi_str=s.getProject_price_int_qi_str();
+        	int project_price_int_qi=s.getProject_price_int_qi();
+        	List<String> project_key=s.getProject_key();
+        	String project_name_full=s.getProject_name();
+        	String bijiao=s.getBijiao();
+        	String gps=s.getGps();
+        	String project_lan_cn=s.getProject_lan_cn();
+        	String developer_id_name=s.getDeveloper_id_name();
+        	
+        	String xinkaipan=s.getXinkaipan();
+        	String remen=s.getRemen();
+        	String xuequ=s.getXuequ();
+        	String center=s.getCenter();
+        	String baozu=s.getBaozu();
+        	String huaren=s.getHuaren();
+        	String maidi=s.getMaidi();
+        	String daxue=s.getDaxue();
+        	String xianfang=s.getXianfang();
+        	String traffic=s.getTraffic();
+        	
+        	
+        	houseProject.setId(id);
+        	houseProject.setProject_img(project_img);
+        	houseProject.setProject_num(project_num);
+        	houseProject.setProject_address(project_address);
+        	houseProject.setProject_address_short(project_address);////
+        	houseProject.setProject_name(project_name);
+        	houseProject.setProject_price(project_price);
+        	houseProject.setMinArea(minArea);
+        	houseProject.setMaxArea(maxArea);
+        	/*houseProject.setKeshou(keshou);*/
+        	/*houseProject.setAverage_price(average_price);*/
+        	/*houseProject.setHouse_type(house_type);*/
+        	houseProject.setProject_min_price(project_min_price);
+        	houseProject.setProject_high_price(project_high_price);
+        	houseProject.setMianji(mianji);
+        	houseProject.setReturn_money(return_money);
+        	houseProject.setProject_price_int_qi_str(project_price_int_qi_str);
+        	houseProject.setProject_price_int_qi(project_price_int_qi);
+        	houseProject.setProject_key(project_key);
+        	houseProject.setProject_name(project_name);;
+        	houseProject.setBijiao(bijiao);
+        	houseProject.setGps(gps);
+        	houseProject.setProject_lan_cn(project_lan_cn);
+        	houseProject.setDeveloper_id_name(developer_id_name);
+        	houseProject.setXinkaipan(xinkaipan);
+        	houseProject.setRemen(remen);
+        	houseProject.setXuequ(xuequ);
+        	houseProject.setCenter(center);
+        	houseProject.setBaozu(baozu);
+        	houseProject.setHuaren(huaren);
+        	houseProject.setMaidi(maidi);
+        	houseProject.setDaxue(daxue);
+        	houseProject.setXianfang(xianfang);
+        	houseProject.setTraffic(traffic);
+        	
+        	houseProjectlist.add(houseProject);
+        }
+        if(houseProjectlist.size()==0){
+        	List<HouseProject> list = bingMapDao.listMap();
+        	listResult = list;
+        }else{
+        	 listResult = houseProjectlist;
+        }
+      
+		/*listResult = list;*/
 		array = jsonCoordinates();
 		//array = bingMapService.jsonCoordinates();
 		

@@ -76,16 +76,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a class="f-l f-yahei s-14 btn cp btn_sel hover" style="margin-left:1px;padding:4px 6px;" href="/searchList.jsp">列表找房</a>
 				<!-- <div class="c-fix f-l" style="color:#617c97;font-size:16px;font-weight:bold;margin-bottom:10px;margin-top:45px;font-family:微软雅黑;">进一步搜索</div> -->
 				<select onchange="func1()" style="width:100%;height:30px;line-height:30px;margin-top:30px;font-family:微软雅黑" id="nation" name="nation">
-					<option value="0">国家</option>
+					<option value="">国家</option>
 				    <c:forEach items="${nations}" var="item">
         		 		<option value="${item}">${item}</option>
                    </c:forEach>
 				</select>
 				<select onchange="func2()" style="width:100%;height:30px;line-height:30px;margin-top:20px;font-family:微软雅黑" id="city" name="city">
-					<option value="0">城市</option>
+					<option value="">城市</option>
 				</select>
 				<select onchange="func3()" style="width:100%;height:30px;line-height:30px;margin-top:20px;font-family:微软雅黑" id="area" name="area">
-					<option value="0">区域</option>
+					<option value="">区域</option>
 				</select>
 				<!-- <span class="c-fix f-l f-yahei s-14" style="color:#333;margin-top:60px;">类型</span> -->
 				<select style="width:100%;height:30px;line-height:30px;margin-top:20px;font-family:微软雅黑" id="projecttype" name="projecttype">
@@ -587,7 +587,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	   var cityArray=data.cityArray;
         	 /*   alert("cityArray"+cityArray); */
         	   $('#city').empty();
-        	   $('#city').append($('<option></option>').val("0").text("城市"));
+        	   $('#city').append($('<option></option>').val("").text("城市"));
         	   for(var i=0; i<cityArray.length; i++)  
         	   {  
         		/*    jQuery("#city").append("<option value='"+cityArray[i].cityname+"'>"+cityArray[i].cityname+"</option>");  */
@@ -612,7 +612,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	   var areaArray=data.areaArray;
         	  /*  alert("areaArray"+areaArray); */
         	   $('#area').empty();
-        	   $('#area').append($('<option></option>').val("0").text("区域"));
+        	   $('#area').append($('<option></option>').val("").text("区域"));
         	   for(var i=0; i<areaArray.length; i++)  
         	   {  
         		/*    jQuery("#city").append("<option value='"+cityArray[i].cityname+"'>"+cityArray[i].cityname+"</option>");  */
