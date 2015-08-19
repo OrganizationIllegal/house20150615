@@ -158,7 +158,7 @@
 			 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
 			 	            	        var nation2=itemsNation2[j].project_nation;
 			 	            	        var total=String(itemsNation1[j].nation);
-			 	            	        alert(nation2);
+			 	            	        //alert(nation2);
 			 	            	        //var shownation=nation2+'\r\n'+total;
 			 	            	       /* var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin2.png' style='width:100px;'/></div>"}; */
 			 	            	        var pushpinOptions2={text:total,width: 42, height: 42,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation.png'};
@@ -184,7 +184,7 @@
     		 		dateType: "json",
     		 		url: "/BingMap/Coordinates", 		
     		 		success:function(data){
-    		        alert(data)
+    		        //alert(data)
     		 		data=$.parseJSON(data);
     		 		    var items=data.List;
     		 		    var itemsNation1=data.ListNation1;
@@ -222,8 +222,8 @@
     		                 var zs2=zuoshang.longitude;
     		                 var yx1=youxia.latitude;
     	                     var yx2=youxia.longitude;
-    		                 alert('Map zuoshang: ' +  zuoshang);
-    		                 alert('Map youxia: ' +  youxia);
+    		                 //alert('Map zuoshang: ' +  zuoshang);
+    		                 //alert('Map youxia: ' +  youxia);
     		                 $.ajax({
     		     		 	    type: "POST",
     		     		 		dateType: "json",
