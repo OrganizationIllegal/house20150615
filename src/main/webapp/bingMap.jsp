@@ -439,6 +439,14 @@ body{
      }
  }
  </script>
+ <script type="text/javascript">
+ 	$(function(){
+ 		$(document).on("click","#left >.div_node",function(){
+ 			alert("left->right"+$(this).text());
+ 		})
+ 		
+ 	});
+ </script>
 </head>
 <body onload="getMap()" onresize="reLoad()">
 <jsp:include page="head4index.jsp" />
