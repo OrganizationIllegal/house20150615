@@ -440,12 +440,31 @@ body{
  }
  </script>
  <script type="text/javascript">
- 	$(function(){
+ 	/* $(function(){
  		$(document).on("click","#left >.div_node",function(){
- 			alert("left->right"+$(this).text());
+ 			$(this).css("background-color","rgb(223,223,223)");
+ 			var href=$(this).children().first().next().attr("href");
+ 			var arr=new Array();
+ 			arr = href.split("=");
+ 			var proNum=arr[1];
+ 			alert(proNum);
+ 			$.ajax({
+    		 	    type: "POST",
+    		 		dateType: "json",
+    		 		data:{"proNum":proNum}, 		
+    		 		url: "/BingMap/FileterProNum", 
+    		 		success:function(data){
+        		 		data=$.parseJSON(data);
+        		 		var items=data.List;
+        		 		alert(items[0].project_name);
+    		 		},
+    		 		error:function(){
+    		 			//alert("addDefaultPushpin error")
+    		 		}
+    	        });	
  		})
  		
- 	});
+ 	}); */
  </script>
 </head>
 <body onload="getMap()" onresize="reLoad()">

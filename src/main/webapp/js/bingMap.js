@@ -529,6 +529,85 @@
 		 	            	        add3(lastZoomLevel,pushpin2,LA2);
 		 	                  	    map.entities.push(pushpin2);
 		 	            	    }
+		 	            	   $(document).on("mouseenter","#left >.div_node",function(){
+		 	             			$(this).css("background-color","rgb(223,223,223)");
+		 	             			var href=$(this).children().first().next().attr("href");
+		 	             			var arr=new Array();
+		 	             			arr = href.split("=");
+		 	             			var proNum=arr[1];
+		 	             			//alert(proNum);
+		 	             			$.ajax({
+		 	                		 	    type: "POST",
+		 	                		 		dateType: "json",
+		 	                		 		data:{"proNum":proNum}, 		
+		 	                		 		url: "/BingMap/FileterProNum", 
+		 	                		 		success:function(data){
+		 	                    		 		data=$.parseJSON(data);
+		 	                    		 		var items=data.List;
+		 	                    		 		var area=items[0].project_area;
+		 	                    		 		for(var a=0;a<lenArea;a++){
+		 	                    		 	    var arr3=new Array();
+		 	   		 	            	        arr3=itemsArea2[a].gps.split(",");
+		 	   		 	            	        var LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+		 	   		 	            	        var area3=itemsArea2[a].project_area;
+		 	   		 	            	        var total2=String(itemsArea1[a].area);
+		 	                    		 			if(area==area3){
+		 	                    		 				//alert("haha");
+		 	                    		 				map.entities.remove(LA3);
+		 	                    		 				var pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea2.png'};
+		 	                    		 				var pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
+		 	                    		 				add2(area3,pushpin3,LA3);
+		 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
+		 	       		 	                  	        map.entities.push(pushpin3);
+			 	                    		 			break;
+			 	                    		 		}
+		 	                    		 		}	 	                    		 		
+		 	                    		 		
+		 	                		 		},
+		 	                		 		error:function(){
+		 	                		 			//alert("addDefaultPushpin error")
+		 	                		 		}
+		 	                	        });	
+		 	             		})
+		 	             		$(document).on("mouseleave","#left >.div_node",function(){
+		 	             			$(this).css("background-color","white");
+		 	             			var href=$(this).children().first().next().attr("href");
+		 	             			var arr=new Array();
+		 	             			arr = href.split("=");
+		 	             			var proNum=arr[1];
+		 	             			//alert(proNum);
+		 	             			$.ajax({
+		 	                		 	    type: "POST",
+		 	                		 		dateType: "json",
+		 	                		 		data:{"proNum":proNum}, 		
+		 	                		 		url: "/BingMap/FileterProNum", 
+		 	                		 		success:function(data){
+		 	                    		 		data=$.parseJSON(data);
+		 	                    		 		var items=data.List;
+		 	                    		 		var area=items[0].project_area;
+		 	                    		 		for(var a=0;a<lenArea;a++){
+			 	                    		 	    var arr4=new Array();
+			 	   		 	            	        arr4=itemsArea2[a].gps.split(",");
+			 	   		 	            	        var LA4=new Microsoft.Maps.Location(arr4[0],arr4[1]); 
+			 	   		 	            	        var area4=itemsArea2[a].project_area;
+			 	   		 	            	        var total3=String(itemsArea1[a].area);
+			 	                    		 			if(area==area4){
+			 	                    		 				map.entities.remove(LA4);
+			 	                    		 				var pushpinOptions4={text:total3,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea.png'};
+			 	                    		 				var pushpin4= new Microsoft.Maps.Pushpin(LA4, pushpinOptions4);
+			 	                    		 				add2(area4,pushpin4,LA4);
+			 	       		 	            	            add3(lastZoomLevel,pushpin4,LA4);
+			 	       		 	                  	        map.entities.push(pushpin4);
+				 	                    		 			break;
+				 	                    		 		}
+			 	                    		 		}	  	                    		 		
+		 	                    		 		
+		 	                		 		},
+		 	                		 		error:function(){
+		 	                		 			//alert("addDefaultPushpin error")
+		 	                		 		}
+		 	                	        });	
+		 	             		})
 		 	               }else if(lastZoomLevel>6){
 		 	            	    map.entities.clear();
 		 	            	    var lenCity=itemsCity1.length;
@@ -546,6 +625,85 @@
 		 	            	        add3(lastZoomLevel,pushpin2,LA2);
 		 	                  	    map.entities.push(pushpin2);
 		 	            	    }
+		 	            	   $(document).on("mouseenter","#left >.div_node",function(){
+		 	             			$(this).css("background-color","rgb(223,223,223)");
+		 	             			var href=$(this).children().first().next().attr("href");
+		 	             			var arr=new Array();
+		 	             			arr = href.split("=");
+		 	             			var proNum=arr[1];
+		 	             			//alert(proNum);
+		 	             			$.ajax({
+		 	                		 	    type: "POST",
+		 	                		 		dateType: "json",
+		 	                		 		data:{"proNum":proNum}, 		
+		 	                		 		url: "/BingMap/FileterProNum", 
+		 	                		 		success:function(data){
+		 	                    		 		data=$.parseJSON(data);
+		 	                    		 		var items=data.List;
+		 	                    		 		var city=items[0].project_city;
+		 	                    		 		for(var c=0;c<lenCity;c++){
+		 	                    		 	    var arr3=new Array();
+		 	   		 	            	        arr3=itemsCity2[c].gps.split(",");
+		 	   		 	            	        var LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+		 	   		 	            	        var city3=itemsCity2[c].project_city;
+		 	   		 	            	        var total2=String(itemsCity1[c].city);
+		 	                    		 			if(city==city3){
+		 	                    		 				//alert("haha");
+		 	                    		 				map.entities.remove(LA3);
+		 	                    		 				var pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity2.png'};
+		 	                    		 				var pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
+		 	                    		 				add2(city3,pushpin3,LA3);
+		 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
+		 	       		 	                  	        map.entities.push(pushpin3);
+			 	                    		 			break;
+			 	                    		 		}
+		 	                    		 		}	 	                    		 		
+		 	                    		 		
+		 	                		 		},
+		 	                		 		error:function(){
+		 	                		 			//alert("addDefaultPushpin error")
+		 	                		 		}
+		 	                	        });	
+		 	             		})
+		 	             		$(document).on("mouseleave","#left >.div_node",function(){
+		 	             			$(this).css("background-color","white");
+		 	             			var href=$(this).children().first().next().attr("href");
+		 	             			var arr=new Array();
+		 	             			arr = href.split("=");
+		 	             			var proNum=arr[1];
+		 	             			//alert(proNum);
+		 	             			$.ajax({
+		 	                		 	    type: "POST",
+		 	                		 		dateType: "json",
+		 	                		 		data:{"proNum":proNum}, 		
+		 	                		 		url: "/BingMap/FileterProNum", 
+		 	                		 		success:function(data){
+		 	                    		 		data=$.parseJSON(data);
+		 	                    		 		var items=data.List;
+		 	                    		 		var city=items[0].project_city;
+		 	                    		 		for(var c=0;c<lenCity;c++){
+			 	                    		 	    var arr4=new Array();
+			 	   		 	            	        arr4=itemsCity2[c].gps.split(",");
+			 	   		 	            	        var LA4=new Microsoft.Maps.Location(arr4[0],arr4[1]); 
+			 	   		 	            	        var city4=itemsCity2[c].project_city;
+			 	   		 	            	        var total3=String(itemsCity1[c].city);
+			 	                    		 			if(city==city4){
+			 	                    		 				map.entities.remove(LA4);
+			 	                    		 				var pushpinOptions4={text:total3,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity.png'};
+			 	                    		 				var pushpin4= new Microsoft.Maps.Pushpin(LA4, pushpinOptions4);
+			 	                    		 				add2(city4,pushpin4,LA4);
+			 	       		 	            	            add3(lastZoomLevel,pushpin4,LA4);
+			 	       		 	                  	        map.entities.push(pushpin4);
+				 	                    		 			break;
+				 	                    		 		}
+			 	                    		 		}	  	                    		 		
+		 	                    		 		
+		 	                		 		},
+		 	                		 		error:function(){
+		 	                		 			//alert("addDefaultPushpin error")
+		 	                		 		}
+		 	                	        });	
+		 	             		})
 		 	               }else if(lastZoomLevel>4){
 		 	            	    map.entities.clear();
 		 	            	    var lenZhou=itemsZhou1.length;
@@ -563,6 +721,85 @@
 		 	            	        add3(lastZoomLevel,pushpin2,LA2);
 		 	                  	    map.entities.push(pushpin2);
 		 	            	    }
+		 	            	    
+		 	            		$(document).on("mouseenter","#left >.div_node",function(){
+	 	             			$(this).css("background-color","rgb(223,223,223)");
+	 	             			var href=$(this).children().first().next().attr("href");
+	 	             			var arr=new Array();
+	 	             			arr = href.split("=");
+	 	             			var proNum=arr[1];
+	 	             			//alert(proNum);
+	 	             			$.ajax({
+	 	                		 	    type: "POST",
+	 	                		 		dateType: "json",
+	 	                		 		data:{"proNum":proNum}, 		
+	 	                		 		url: "/BingMap/FileterProNum", 
+	 	                		 		success:function(data){
+	 	                    		 		data=$.parseJSON(data);
+	 	                    		 		var items=data.List;
+	 	                    		 		var zhou=items[0].project_zhou;
+	 	                    		 		for(var z=0;z<lenZhou;z++){
+	 	                    		 			var arr3=new Array();
+	 	   		 	            	            arr3=itemsZhou2[z].gps.split(",");
+	 	   		 	            	            var LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+	 	   		 	            	            var zhou3=itemsZhou2[z].project_zhou;
+	 	   		 	            	            var total2=String(itemsZhou1[z].zhou);
+	 	                    		 			if(zhou==zhou3){
+	 	                    		 				map.entities.remove(LA3);
+	 	                    		 				var pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou2.png'};
+	 	                    		 				var pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
+	 	                    		 				add2(zhou3,pushpin3,LA3);
+	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
+	 	       		 	                  	        map.entities.push(pushpin3);
+		 	                    		 			break;
+		 	                    		 		}
+	 	                    		 		}	 	                    		 		
+	 	                    		 		
+	 	                		 		},
+	 	                		 		error:function(){
+	 	                		 			//alert("addDefaultPushpin error")
+	 	                		 		}
+	 	                	        });	
+	 	             		})
+	 	             		$(document).on("mouseleave","#left >.div_node",function(){
+	 	             			$(this).css("background-color","white");
+	 	             			var href=$(this).children().first().next().attr("href");
+	 	             			var arr=new Array();
+	 	             			arr = href.split("=");
+	 	             			var proNum=arr[1];
+	 	             			//alert(proNum);
+	 	             			$.ajax({
+	 	                		 	    type: "POST",
+	 	                		 		dateType: "json",
+	 	                		 		data:{"proNum":proNum}, 		
+	 	                		 		url: "/BingMap/FileterProNum", 
+	 	                		 		success:function(data){
+	 	                    		 		data=$.parseJSON(data);
+	 	                    		 		var items=data.List;
+	 	                    		 		var zhou=items[0].project_zhou;
+	 	                    		 		for(var z=0;z<lenZhou;z++){
+	 	                    		 			var arr4=new Array();
+	 	   		 	            	            arr4=itemsZhou2[z].gps.split(",");
+	 	   		 	            	            var LA4=new Microsoft.Maps.Location(arr4[0],arr4[1]); 
+	 	   		 	            	            var zhou4=itemsZhou2[z].project_zhou;
+	 	   		 	            	            var total3=String(itemsZhou1[z].zhou);
+	 	                    		 			if(zhou==zhou4){
+	 	                    		 				map.entities.remove(LA4);
+	 	                    		 				var pushpinOptions4={text:total3,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou.png'};
+	 	                    		 				var pushpin4= new Microsoft.Maps.Pushpin(LA4, pushpinOptions4);
+	 	                    		 				add2(zhou4,pushpin4,LA4);
+	 	       		 	            	            add3(lastZoomLevel,pushpin4,LA4);
+	 	       		 	                  	        map.entities.push(pushpin4);
+		 	                    		 			break;
+		 	                    		 		}
+	 	                    		 		}	 	                    		 		
+	 	                    		 		
+	 	                		 		},
+	 	                		 		error:function(){
+	 	                		 			//alert("addDefaultPushpin error")
+	 	                		 		}
+	 	                	        });	
+	 	             		})
 		 	               }else{
 		 	            	    map.entities.clear();
 		 	            	    var lenNation=itemsNation1.length;
@@ -578,8 +815,87 @@
 		 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 		 	            	        add2(nation2,pushpin2,LA2);
 		 	            	        add3(lastZoomLevel,pushpin2,LA2);
-		 	                  	    map.entities.push(pushpin2);
+		 	                  	    map.entities.push(pushpin2);		 	                  	 
 		 	            	    }
+		 	            	    
+		 	            	   $(document).on("mouseenter","#left >.div_node",function(){
+		 	             			$(this).css("background-color","rgb(223,223,223)");
+		 	             			var href=$(this).children().first().next().attr("href");
+		 	             			var arr=new Array();
+		 	             			arr = href.split("=");
+		 	             			var proNum=arr[1];
+		 	             			//alert(proNum);
+		 	             			$.ajax({
+		 	                		 	    type: "POST",
+		 	                		 		dateType: "json",
+		 	                		 		data:{"proNum":proNum}, 		
+		 	                		 		url: "/BingMap/FileterProNum", 
+		 	                		 		success:function(data){
+		 	                    		 		data=$.parseJSON(data);
+		 	                    		 		var items=data.List;
+		 	                    		 		var nation=items[0].project_nation;
+		 	                    		 		for(var n=0;n<lenNation;n++){
+		 	                    		 	    var arr3=new Array();
+		 	   		 	            	        arr3=itemsNation2[n].gps.split(",");
+		 	   		 	            	        var LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+		 	   		 	            	        var nation3=itemsNation2[n].project_nation;
+		 	   		 	            	        var total2=String(itemsNation1[n].nation);
+		 	                    		 			if(nation==nation3){
+		 	                    		 				map.entities.remove(LA3);
+		 	                    		 				var pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation2.png'};
+		 	                    		 				var pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
+		 	                    		 				add2(nation3,pushpin3,LA3);
+		 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
+		 	       		 	                  	        map.entities.push(pushpin3);
+			 	                    		 			break;
+			 	                    		 		}
+		 	                    		 		}	 	                    		 		
+		 	                    		 		
+		 	                		 		},
+		 	                		 		error:function(){
+		 	                		 			//alert("addDefaultPushpin error")
+		 	                		 		}
+		 	                	        });	
+		 	             		})
+		 	             		$(document).on("mouseleave","#left >.div_node",function(){
+		 	             			$(this).css("background-color","white");
+		 	             			var href=$(this).children().first().next().attr("href");
+		 	             			var arr=new Array();
+		 	             			arr = href.split("=");
+		 	             			var proNum=arr[1];
+		 	             			//alert(proNum);
+		 	             			$.ajax({
+		 	                		 	    type: "POST",
+		 	                		 		dateType: "json",
+		 	                		 		data:{"proNum":proNum}, 		
+		 	                		 		url: "/BingMap/FileterProNum", 
+		 	                		 		success:function(data){
+		 	                    		 		data=$.parseJSON(data);
+		 	                    		 		var items=data.List;
+		 	                    		 		var nation=items[0].project_nation;
+		 	                    		 		for(var n=0;n<lenNation;n++){
+			 	                    		 	    var arr4=new Array();
+			 	   		 	            	        arr4=itemsNation2[n].gps.split(",");
+			 	   		 	            	        var LA4=new Microsoft.Maps.Location(arr4[0],arr4[1]); 
+			 	   		 	            	        var nation4=itemsNation2[n].project_nation;
+			 	   		 	            	        var total3=String(itemsNation1[n].nation);
+			 	                    		 			if(nation==nation4){
+			 	                    		 				map.entities.remove(LA4);
+			 	                    		 				var pushpinOptions4={text:total3,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation.png'};
+			 	                    		 				var pushpin4= new Microsoft.Maps.Pushpin(LA4, pushpinOptions4);
+			 	                    		 				add2(nation4,pushpin4,LA4);
+			 	       		 	            	            add3(lastZoomLevel,pushpin4,LA4);
+			 	       		 	                  	        map.entities.push(pushpin4);
+				 	                    		 			break;
+				 	                    		 		}
+			 	                    		 		}	  	                    		 		
+		 	                    		 		
+		 	                		 		},
+		 	                		 		error:function(){
+		 	                		 			//alert("addDefaultPushpin error")
+		 	                		 		}
+		 	                	        });	
+		 	             		})
 		 	               }
 		 	        	}
 		 	        });
