@@ -1143,8 +1143,6 @@ public class BingMapController {
 				}
 			}
         }
-		System.out.println(arrayZhou1);
-		System.out.println(arrayZhou2);
 		json.put("List", array);
 		json.put("ListCity1", arrayCity1);
 		json.put("ListCity2", JSONArray.parseArray(JSON.toJSONString(arrayCity2, SerializerFeature.DisableCircularReferenceDetect)));

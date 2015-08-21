@@ -380,7 +380,8 @@
       }
       function add3(zoomLevel,pushpin,LA){
     	 Microsoft.Maps.Events.addHandler(pushpin, 'click', function(){
-    		 map.setView({ zoom: zoomLevel+2, center:LA})
+    		 map.entities.clear();
+    		 map.setView({ zoom: zoomLevel+2, center:LA});
     	 });
       }
       //隐藏地图消息框
@@ -820,10 +821,10 @@
 		 	            	    
 		 	            	   $(document).on("mouseenter","#left >.div_node",function(){
 		 	             			$(this).css("background-color","rgb(223,223,223)");
-		 	             			var href=$(this).children().first().next().attr("href");
-		 	             			var arr=new Array();
-		 	             			arr = href.split("=");
-		 	             			var proNum=arr[1];
+		 	             			var hrefn=$(this).children().first().next().attr("href");
+		 	             			var arrn=new Array();
+		 	             			arrn = hrefn.split("=");
+		 	             			var proNum=arrn[1];
 		 	             			//alert(proNum);
 		 	             			$.ajax({
 		 	                		 	    type: "POST",
@@ -835,17 +836,17 @@
 		 	                    		 		var items=data.List;
 		 	                    		 		var nation=items[0].project_nation;
 		 	                    		 		for(var n=0;n<lenNation;n++){
-		 	                    		 	    var arr3=new Array();
-		 	   		 	            	        arr3=itemsNation2[n].gps.split(",");
-		 	   		 	            	        var LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+		 	                    		 	    var arrn3=new Array();
+		 	   		 	            	        arrn3=itemsNation2[n].gps.split(",");
+		 	   		 	            	        var LA3n=new Microsoft.Maps.Location(arrn3[0],arrn3[1]); 
 		 	   		 	            	        var nation3=itemsNation2[n].project_nation;
-		 	   		 	            	        var total2=String(itemsNation1[n].nation);
+		 	   		 	            	        var total2n=String(itemsNation1[n].nation);
 		 	                    		 			if(nation==nation3){
-		 	                    		 				map.entities.remove(LA3);
-		 	                    		 				var pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation2.png'};
-		 	                    		 				var pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
-		 	                    		 				add2(nation3,pushpin3,LA3);
-		 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
+		 	                    		 				map.entities.remove(LA3n);
+		 	                    		 				var pushpinOptions3={text:total2n,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation2.png'};
+		 	                    		 				var pushpin3= new Microsoft.Maps.Pushpin(LA3n, pushpinOptions3);
+		 	                    		 				add2(nation3,pushpin3,LA3n);
+		 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3n);
 		 	       		 	                  	        map.entities.push(pushpin3);
 			 	                    		 			break;
 			 	                    		 		}
@@ -859,10 +860,10 @@
 		 	             		})
 		 	             		$(document).on("mouseleave","#left >.div_node",function(){
 		 	             			$(this).css("background-color","white");
-		 	             			var href=$(this).children().first().next().attr("href");
-		 	             			var arr=new Array();
-		 	             			arr = href.split("=");
-		 	             			var proNum=arr[1];
+		 	             			var hrefn=$(this).children().first().next().attr("href");
+		 	             			var arrn=new Array();
+		 	             			arrn = hrefn.split("=");
+		 	             			var proNum=arrn[1];
 		 	             			//alert(proNum);
 		 	             			$.ajax({
 		 	                		 	    type: "POST",
@@ -874,17 +875,17 @@
 		 	                    		 		var items=data.List;
 		 	                    		 		var nation=items[0].project_nation;
 		 	                    		 		for(var n=0;n<lenNation;n++){
-			 	                    		 	    var arr4=new Array();
-			 	   		 	            	        arr4=itemsNation2[n].gps.split(",");
-			 	   		 	            	        var LA4=new Microsoft.Maps.Location(arr4[0],arr4[1]); 
+			 	                    		 	    var arrn4=new Array();
+			 	   		 	            	        arrn4=itemsNation2[n].gps.split(",");
+			 	   		 	            	        var LA4n=new Microsoft.Maps.Location(arrn4[0],arrn4[1]); 
 			 	   		 	            	        var nation4=itemsNation2[n].project_nation;
-			 	   		 	            	        var total3=String(itemsNation1[n].nation);
+			 	   		 	            	        var total3n=String(itemsNation1[n].nation);
 			 	                    		 			if(nation==nation4){
-			 	                    		 				map.entities.remove(LA4);
-			 	                    		 				var pushpinOptions4={text:total3,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation.png'};
-			 	                    		 				var pushpin4= new Microsoft.Maps.Pushpin(LA4, pushpinOptions4);
-			 	                    		 				add2(nation4,pushpin4,LA4);
-			 	       		 	            	            add3(lastZoomLevel,pushpin4,LA4);
+			 	                    		 				map.entities.remove(LA4n);
+			 	                    		 				var pushpinOptions4={text:total3n,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation.png'};
+			 	                    		 				var pushpin4= new Microsoft.Maps.Pushpin(LA4n, pushpinOptions4);
+			 	                    		 				add2(nation4,pushpin4,LA4n);
+			 	       		 	            	            add3(lastZoomLevel,pushpin4,LA4n);
 			 	       		 	                  	        map.entities.push(pushpin4);
 				 	                    		 			break;
 				 	                    		 		}
