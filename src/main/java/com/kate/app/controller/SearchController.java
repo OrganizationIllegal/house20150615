@@ -436,7 +436,8 @@ public class SearchController {
 		    	int project_sales_remain=item.getProject_sales_remain();
 		    	String maxPrice=item.getProject_high_price();
 		    	String minprice=item.getProject_min_price();
-		    	String zhou = item.getProject_zhou();
+		    	String project_zhou = item.getProject_zhou();
+		    	String project_nation = item.getProject_nation();
 		    	
 		    	int maxarea=item.getMax_area();
 		    	int minarea=item.getMin_area();
@@ -487,7 +488,7 @@ public class SearchController {
 		    	project_key=bingMapDao.findProjectKeyByNum(project_num);
 		    	
 		        
-		    	SearchList data=new SearchList(id,bijiao,zhou,project_name_short,project_area,project_type,gps,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,project_lan_en,mianji,project_address,project_logo,developer_id_name,xinkaipan1,huaren1,remen1,xuequ1,baozu1,daxue1,center1,traffic1,xianfang1,maidi1,project_price_int_qi_str,project_desc,project_key,project_address_short,project_city);
+		    	SearchList data=new SearchList(id,bijiao,project_zhou,project_nation,project_name_short,project_area,project_type,gps,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,project_lan_en,mianji,project_address,project_logo,developer_id_name,xinkaipan1,huaren1,remen1,xuequ1,baozu1,daxue1,center1,traffic1,xianfang1,maidi1,project_price_int_qi_str,project_desc,project_key,project_address_short,project_city);
 		    	searchList.add(data);
 			}
 			SearchController.seachListResult = searchList;    //将查询的结果复制给静态变量
@@ -684,6 +685,7 @@ public class SearchController {
 			json.put("ListNation1", arrayNation1);
 			json.put("ListNation2", JSONArray.parseArray(JSON.toJSONString(arrayNation2, SerializerFeature.DisableCircularReferenceDetect)));
 			json.put("ListZhou1", arrayZhou1);
+	
 			json.put("ListZhou2", JSONArray.parseArray(JSON.toJSONString(arrayZhou2, SerializerFeature.DisableCircularReferenceDetect)));
 			json.put("ListArea1", arrayArea1);
 			json.put("ListArea2", JSONArray.parseArray(JSON.toJSONString(arrayArea2, SerializerFeature.DisableCircularReferenceDetect)));

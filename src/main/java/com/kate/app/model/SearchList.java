@@ -8,7 +8,7 @@ public class SearchList implements Comparable<SearchList>{
 	private String project_name;
 	private String project_name_short;
 	private String project_name_full;
-	private String zhou;
+	private String project_zhou;
 	
 	public String getProject_name_full() {
 		return project_name_full;
@@ -22,15 +22,7 @@ public class SearchList implements Comparable<SearchList>{
 
 
 
-	public String getZhou() {
-		return zhou;
-	}
-
-
-
-	public void setZhou(String zhou) {
-		this.zhou = zhou;
-	}
+	
 
 
 
@@ -55,7 +47,7 @@ public class SearchList implements Comparable<SearchList>{
 	private String project_num;
     private String project_lan_cn;
     private String project_lan_en;
-    private String project_zhou;
+
     private String project_city;
     private String project_nation;
     private String project_price;
@@ -338,7 +330,7 @@ public class SearchList implements Comparable<SearchList>{
 	
 	
 	
-	public SearchList(int id, String bijiao, String zhou, String project_name_short, String project_area,String project_type,String gps, String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String project_lan_en,String mianji,String project_address,String project_logo,String developer_id_name ,String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue, String center,String traffic,String xianfang,String maidi,String project_price_int_qi_str,String project_desc,List<String> project_key,String project_address_short,String project_city){
+	public SearchList(int id, String bijiao, String project_zhou, String project_nation, String project_name_short, String project_area,String project_type,String gps, String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String project_lan_en,String mianji,String project_address,String project_logo,String developer_id_name ,String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue, String center,String traffic,String xianfang,String maidi,String project_price_int_qi_str,String project_desc,List<String> project_key,String project_address_short,String project_city){
 		this.id=id;
 		this.project_num = project_num;
 		this.project_img=project_img;
@@ -374,7 +366,8 @@ public class SearchList implements Comparable<SearchList>{
 		this.project_address_short=project_address_short;
 		this.project_name_short=project_name_short;
 		this.project_city=project_city;
-		this.zhou = zhou;
+		this.project_zhou = project_zhou;
+		this.project_nation = project_nation;
 	}
 	
 	
