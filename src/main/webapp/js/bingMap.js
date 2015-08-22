@@ -1753,10 +1753,7 @@
 	     		 		success:function(data){
 	     		       
 	     		 		data=$.parseJSON(data);
-	     		 		
-	     		 		
 	     		 		 var html = getHtml1(data.List);
-	     		 		 
 	     		 		 $("#left").html(html);  
 	     		 		  
 	     		 	    },
@@ -2518,7 +2515,7 @@
     		 		    lastZoomLevel = map.getZoom();
     		 	        Microsoft.Maps.Events.addHandler(map, 'viewchangeend', function(){
     		 	        	//联动
-   		 	        	 var bounds=map.getBounds();
+   		 	        	/* var bounds=map.getBounds();
    		            	 var zuoshang=bounds.getNorthwest();
    		                 var youxia=bounds.getSoutheast();
    		                 var zs1=zuoshang.latitude;
@@ -2544,7 +2541,7 @@
    		     		 		error:function(){
    		     		 			//alert("addDefaultPushpin error")
    		     		 		}
-   		     	        });
+   		     	        });*/
    		              if(lastZoomLevel != map.getZoom()){
 		 	               lastZoomLevel = map.getZoom();
 		 	              //注册鼠标上移事件
