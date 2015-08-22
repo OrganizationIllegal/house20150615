@@ -21,6 +21,7 @@
 		 		    var itemsNation2=data.ListNation2;
 		 		    var itemsZhou1=data.ListZhou1;
 		 		    var itemsZhou2=data.ListZhou2;
+		 		   alert(itemsZhou2)
 		 		    var itemsCity1=data.ListCity1;
 		 		    var itemsCity2=data.ListCity2;
 		 		    var itemsArea1=data.ListArea1;
@@ -65,7 +66,7 @@
 		     		 		
 		     		 		//alert(data.List)
 		     		 		 var html = getHtml1(data.List);
-		     		 		 
+		     		 		
 		     		 		 $("#left").html(html);  
 		     		 		  
 		     		 	    },
@@ -854,6 +855,7 @@
 		 		    var itemsNation2=data.ListNation2;
 		 		    var itemsZhou1=data.ListZhou1;
 		 		    var itemsZhou2=data.ListZhou2;
+		 		  
 		 		    var itemsCity1=data.ListCity1;
 		 		    var itemsCity2=data.ListCity2;
 		 		    var itemsArea1=data.ListArea1;
