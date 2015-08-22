@@ -21,7 +21,6 @@
 		 		    var itemsNation2=data.ListNation2;
 		 		    var itemsZhou1=data.ListZhou1;
 		 		    var itemsZhou2=data.ListZhou2;
-		 		   alert(itemsZhou2)
 		 		    var itemsCity1=data.ListCity1;
 		 		    var itemsCity2=data.ListCity2;
 		 		    var itemsArea1=data.ListArea1;
@@ -347,7 +346,6 @@
 			 	            	        arr2=itemsZhou2[j].gps.split(",");
 			 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
 			 	            	        var zhou2=itemsZhou2[j].project_zhou;
-			 	            	        alert(zhou2+"ffffff")
 			 	            	        var total=String(itemsZhou1[j].zhou);
 			 	            	        //alert(typeof(total))
 			 	            	        /*var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; */
@@ -441,7 +439,6 @@
     		     		       
     		     		 		data=$.parseJSON(data);
     		     		 		
-    		     		 		alert(data.List)
     		     		 		 var html = getHtml1(data.List);
     		     		 		 
     		     		 		 $("#left").html(html);  
