@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.mail.Flags.Flag;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -82,6 +83,10 @@ public class BingMapController {
 	private static int orderFlag = 0;
 	private static int liandong = 0;
 	
+	private static String flagInformation = "";
+	
+	
+	
 	//地图中心点录入
 	@RequestMapping({"/MapCenterInput"})
 	public String mapCenterInput(HttpServletRequest req,HttpServletResponse resp){
@@ -121,8 +126,11 @@ public class BingMapController {
 		
 		searchListIndex = SearchController.seachListResult;
 		seachListResult1 = SearchController.seachListResult;
+		flagInformation = SearchController.Information;
+		/*flag1 = SearchController.flag;
+		flagSearch1 = SearchListController.flagSearch;*/
 
-		if(searchListIndex!=null){
+		if(searchListIndex!=null && searchListIndex.size()>0 && flagInformation.equals("Index") ){
 			liandong = 1;
 			for(SearchList s:searchListIndex){
 	        	BingMapVo bingMapVo=new BingMapVo();
@@ -142,6 +150,8 @@ public class BingMapController {
 	        	String  project_high_price=s.getMaxPrice();
 	        	String mianji=s.getMianji();
 	        	String return_money=s.getFanxian();
+	        	String zhou = s.getProject_zhou();
+	        	
 	        	String project_price_int_qi=s.getProject_price_int_qi_str();
 	        	List<String> project_key=s.getProject_key();
 	        	String project_name_full=s.getProject_name();
@@ -182,13 +192,15 @@ public class BingMapController {
 	        	bingMapVo.setProject_name_full(project_name_full);
 	        	bingMapVo.setBijiao(bijiao);
 	        	bingMapVo.setGps(gps);
+	        	bingMapVo.setZhou(zhou);
 	        
 	        	bingMapList.add(bingMapVo);
 	        }
+			//flag1 = 0;
 			req.setAttribute("bingMapList", bingMapList);
 			req.setAttribute("liandong", liandong);
 		}
-		else if(searchList!=null){
+		else if(searchList!=null && searchList.size()>0 && flagInformation.equals("List") ){
 			liandong = -1;
 			for(SearchList s:searchList){
 	        	BingMapVo bingMapVo=new BingMapVo();
@@ -265,6 +277,7 @@ public class BingMapController {
 	        }
 			req.setAttribute("bingMapList", bingMapList2);
 			req.setAttribute("liandong", "-1");
+			//flagSearch1 = 0;
 		}
 		else{
 			liandong = 0;

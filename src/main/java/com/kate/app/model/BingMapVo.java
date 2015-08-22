@@ -8,7 +8,14 @@ public class BingMapVo {
 	private String project_num;
 	private String project_address;
 	
-	
+	private String zhou;
+	public String getZhou() {
+		return zhou;
+	}
+
+	public void setZhou(String zhou) {
+		this.zhou = zhou;
+	}
 	private String project_address_short;
 	
 	

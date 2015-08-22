@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.mail.Flags.Flag;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.Size;
@@ -79,6 +80,8 @@ public class SearchController {
 	
 	private static int flagInfo = 0;
 	private static int orderFlag = 0;
+	public static String Information = "";
+	
 	
 	/*
 	 * 服务团队控制层
@@ -433,6 +436,7 @@ public class SearchController {
 		    	int project_sales_remain=item.getProject_sales_remain();
 		    	String maxPrice=item.getProject_high_price();
 		    	String minprice=item.getProject_min_price();
+		    	String zhou = item.getProject_zhou();
 		    	
 		    	int maxarea=item.getMax_area();
 		    	int minarea=item.getMin_area();
@@ -483,11 +487,12 @@ public class SearchController {
 		    	project_key=bingMapDao.findProjectKeyByNum(project_num);
 		    	
 		        
-		    	SearchList data=new SearchList(id,bijiao,project_name_short,project_area,project_type,gps,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,project_lan_en,mianji,project_address,project_logo,developer_id_name,xinkaipan1,huaren1,remen1,xuequ1,baozu1,daxue1,center1,traffic1,xianfang1,maidi1,project_price_int_qi_str,project_desc,project_key,project_address_short,project_city);
+		    	SearchList data=new SearchList(id,bijiao,zhou,project_name_short,project_area,project_type,gps,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,project_lan_en,mianji,project_address,project_logo,developer_id_name,xinkaipan1,huaren1,remen1,xuequ1,baozu1,daxue1,center1,traffic1,xianfang1,maidi1,project_price_int_qi_str,project_desc,project_key,project_address_short,project_city);
 		    	searchList.add(data);
 			}
 			SearchController.seachListResult = searchList;    //将查询的结果复制给静态变量
 			//req.setAttribute("searchList",searchList);
+			Information = "Index";
 			return "/BingMap";
 		}
 	

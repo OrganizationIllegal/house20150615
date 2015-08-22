@@ -39,6 +39,7 @@ public class SearchListController {
 	@Autowired
 	private HouseProjectDao houseProjectDao;
 	public static List<SearchList> searchList_final=new ArrayList<SearchList>();
+	public static String flagSearch = "";
 	
 	
 	/**
@@ -54,6 +55,7 @@ public class SearchListController {
 		//得到所有的国家名称
 		List<String> nations=searchListDao.findAllNation();
 		req.setAttribute("nations", nations);
+		SearchController.Information = "List";
 		return "/searchList.jsp";
 	}
 	/**
@@ -127,6 +129,7 @@ public class SearchListController {
 			a.setProject_img(image1);
 		}
 		SearchListController.searchList_final=searchList;
+		SearchController.Information = "List";
 		int total = searchList.size();
 		int pageEnd = pageNum * pageSize;
 		int end = pageEnd < total ? pageEnd : total;
@@ -337,6 +340,8 @@ public class SearchListController {
 			int userid=userDao.findUserByEmailAndTel(username);
 			//寰楀埌褰撳墠鐢ㄦ埛鏀惰棌鐨凱roNum鐨勯泦鍚�
 			Set<String> proNumList=searchListDao.proNumList(userid);
+			
+			SearchController.Information = "List";
 			
 			JSONObject json = new JSONObject();
 			JSONArray array = new JSONArray();
