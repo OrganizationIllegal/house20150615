@@ -52,6 +52,12 @@ public class SearchListController {
 	public String search_controller(HttpServletRequest req, HttpServletResponse resp){
 		//List<SearchList> searchList=searchListDao.listSearchList().subList(0, 5);
 		//req.setAttribute("searchList",searchList);
+/*		SearchListController.searchList_final=null;
+		BingMapController.listResult=null;*/
+		String flag=req.getParameter("flag");
+		if("1".equals(flag)){
+			BingMapController.listResult=new ArrayList<HouseProject>();
+		}
 		//得到所有的国家名称
 		List<String> nations=searchListDao.findAllNation();
 		req.setAttribute("nations", nations);
