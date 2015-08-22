@@ -558,7 +558,7 @@ body{
 	                </select>
                 </div> --%>
                 <!-- <div class="f-l f-yahei btn_search cp" onclick="addPushpinsearch()">搜索</div> -->
-				<a class="f-r f-yahei s-14 btn cp hover" style="padding:0px 6px;margin-top:5px;border:2px solid rgb(245,161,27)" href="/SearchList">列表找房</a>
+				<a class="f-r f-yahei s-14 btn cp hover" style="padding:0px 6px;margin-top:5px;border:2px solid rgb(245,161,27)" href="/SearchList?flag=0">列表找房</a>
 				<a class="f-r f-yahei s-14 btn btn_sel cp hover" style="padding:0px 6px; margin-top:5px;"   href="#">地图找房</a>
 
 			</div>

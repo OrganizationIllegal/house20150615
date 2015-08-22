@@ -40,6 +40,7 @@ public class SearchListController {
 	private HouseProjectDao houseProjectDao;
 	public static List<SearchList> searchList_final=new ArrayList<SearchList>();
 	public static String flagSearch = "";
+/*	public static String flag="1";*/
 	
 	
 	/**
@@ -52,11 +53,11 @@ public class SearchListController {
 	public String search_controller(HttpServletRequest req, HttpServletResponse resp){
 		//List<SearchList> searchList=searchListDao.listSearchList().subList(0, 5);
 		//req.setAttribute("searchList",searchList);
-/*		SearchListController.searchList_final=null;
-		BingMapController.listResult=null;*/
-		String flag=req.getParameter("flag");
+		//flag==1表示显示全部的列表
+	     String flag=req.getParameter("flag");
 		if("1".equals(flag)){
 			BingMapController.listResult=new ArrayList<HouseProject>();
+			searchList_final=null;
 		}
 		//得到所有的国家名称
 		List<String> nations=searchListDao.findAllNation();
@@ -210,7 +211,7 @@ public class SearchListController {
 			json.put("List", "");
 			json.put("total", total);
 		}
-		
+
 		
 		try{
 			writeJson(json.toJSONString(),resp);

@@ -130,7 +130,7 @@ public class BingMapController {
 		/*flag1 = SearchController.flag;
 		flagSearch1 = SearchListController.flagSearch;*/
 
-		if(searchListIndex!=null && searchListIndex.size()>0 && flagInformation.equals("Index") ){
+		if(searchListIndex!=null && searchListIndex.size()>0 && flagInformation.equals("Index")){
 			liandong = 1;
 			for(SearchList s:searchListIndex){
 	        	BingMapVo bingMapVo=new BingMapVo();
@@ -836,6 +836,7 @@ public class BingMapController {
 		/*List<HouseProject> list = bingMapDao.listMap();*/
 		List<HouseProject> houseProjectlist = new ArrayList<HouseProject>();
 		List<SearchList> searchList=SearchListController.searchList_final;
+		if(searchList!=null){
         for(SearchList s:searchList){
         	HouseProject houseProject=new HouseProject();
         	int id=s.getId();
@@ -912,6 +913,7 @@ public class BingMapController {
         	
         	houseProjectlist.add(houseProject);
         }
+		}
         if(houseProjectlist.size()==0){
         	List<HouseProject> list = bingMapDao.listMap();
         	listResult = list;
