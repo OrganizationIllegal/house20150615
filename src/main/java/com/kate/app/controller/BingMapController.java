@@ -138,8 +138,10 @@ public class BingMapController {
 	        	String project_img=s.getProject_img();
 	        	String project_num=s.getProject_num();
 	        	String project_address=s.getProject_address();
+	        	project_address=project_address.length()>40?project_address.substring(0, 40):project_address;
 	        	String project_address_short=s.getProject_address_short();
 	        	String project_name=s.getProject_name();
+	        	project_name=project_name.length()>20?project_name.substring(0, 20):project_name;
 	        	String project_price=s.getProject_price_int_qi_str();
 	        	int minArea=s.getMinArea();
 	        	int maxArea=s.getMaxArea();
@@ -153,7 +155,8 @@ public class BingMapController {
 	        	String zhou = s.getProject_zhou();
 	        	
 	        	String project_price_int_qi=s.getProject_price_int_qi_str();
-	        	List<String> project_key=s.getProject_key();
+	        	/*List<String> project_key=s.getProject_key();*/
+	        	List<String> project_key=bingMapDao.findProjectKeyByNum(project_num);
 	        	String project_name_full=s.getProject_name();
 	        	String bijiao=s.getBijiao();
 	        	String gps=s.getGps();
@@ -208,8 +211,10 @@ public class BingMapController {
 	        	String project_img=s.getProject_img();
 	        	String project_num=s.getProject_num();
 	        	String project_address=s.getProject_address();
+	        	project_address=project_address.length()>40?project_address.substring(0, 40):project_address;
 	        	String project_address_short=s.getProject_address_short();
 	        	String project_name=s.getProject_name();
+	        	project_name=project_name.length()>20?project_name.substring(0, 20):project_name;
 	        	String project_price=s.getProject_price_int_qi_str();
 	        	int minArea=s.getMinArea();
 	        	int maxArea=s.getMaxArea();
@@ -222,7 +227,8 @@ public class BingMapController {
 	        	String return_money=s.getFanxian();
 	        	String project_price_int_qi_str=s.getProject_price_int_qi_str();
 	        	int project_price_int_qi=s.getProject_price_int_qi();
-	        	List<String> project_key=s.getProject_key();
+	        	/*List<String> project_key=s.getProject_key();*/
+	        	List<String> project_key=bingMapDao.findProjectKeyByNum(project_num);
 	        	String project_name_full=s.getProject_name();
 	        	String bijiao=s.getBijiao();
 	        	String gps=s.getGps();

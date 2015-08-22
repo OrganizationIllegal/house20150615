@@ -92,7 +92,7 @@
 				<img src="images/LOGO3.png" class="c-fix f-l" style="width:175px;height:55px;margin-top:5px;"></img>
 				<a id="t1" href="/index" class="f-l f-yahei s-14 main_nav cp fw " style="padding-left:20px;">首页</a>
 				<div>
-				<a id="t2" href="/SearchList" class="f-l f-yahei s-14 main_nav cp fw">房源列表</a>
+				<a id="t2" href="/SearchList?flag=1" class="f-l f-yahei s-14 main_nav cp fw">房源列表</a>
 				<!-- <div style="position:relative;">
 				<div id="haiwai" style="position:absolute;display:none;">
 <div><a href="/overseas.jsp">海外购房</a></div>
