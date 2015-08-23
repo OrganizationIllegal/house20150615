@@ -117,7 +117,7 @@
    			 	 	 		            var price=items[p].project_min_price;
    			 	 	 		            var type=items[p].project_type;
  	    			 	 	 		    if(proNum==num){
- 	    			 	 	 		    	alert(num);
+ 	    			 	 	 		    	//alert(num);
  	    			 	 	 		    	map.entities.remove(LA3);
  	                 		 				pushpinOptions3={width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin3.png'};
  	                 		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
@@ -128,7 +128,7 @@
  	                 		 		}	
  	                 		 		}
  	                 		 	    //区域
- 	                 		 		if(lastZoomLevel>8){
+ 	                 		 		else if(lastZoomLevel>8){
  	                 		 		for(var a=0;a<lenArea;a++){
  			 	            	        arr3=itemsArea2[a].gps.split(",");
  			 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
@@ -139,6 +139,8 @@
  	                 		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea2.png'};
  	                 		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
  	                 		 				add2(area3,pushpin3,LA3);
+ 	                 		 				addmouse_out(pushpin3);
+ 	                 		 				
  	    		 	            	            add3(lastZoomLevel,pushpin3,LA3);
  	    		 	                  	        map.entities.push(pushpin3);
  		                    		 			break;
@@ -157,6 +159,8 @@
  	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity2.png'};
  	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
  	 	                    		 				add2(city3,pushpin3,LA3);
+ 	 	                    		 				addmouse_out(pushpin3);
+ 	 	                    		 				
  	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
  	 	       		 	                  	        map.entities.push(pushpin3);
  		 	                    		 			break;
@@ -175,6 +179,8 @@
  		                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou2.png'};
  		                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
  		                    		 				add2(zhou3,pushpin3,LA3);
+ 		                    		 				addmouse_out(pushpin3);
+ 		                    		 				
  		       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
  		       		 	                  	        map.entities.push(pushpin3);
  	 	                    		 			break;
@@ -194,6 +200,8 @@
  	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation2.png'};
  	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
  	 	                    		 				add2(nation3,pushpin3,LA3);
+ 	 	                    		 				addmouse_out(pushpin3);
+ 	 	                    		 				
  	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
  	 	       		 	                  	        map.entities.push(pushpin3);
  		 	                    		 			break;
@@ -229,7 +237,7 @@
    			 	 	 		            var price=items[p].project_min_price;
    			 	 	 		            var type=items[p].project_type;
  	    			 	 	 		    if(proNum==num){
- 	    			 	 	 		    	alert(num);
+ 	    			 	 	 		    	//alert(num);
  	    			 	 	 		    	map.entities.remove(LA3);
  	                 		 				pushpinOptions3={width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'};
  	                 		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
@@ -240,7 +248,7 @@
  	                 		 		}	
  	                 		 		}
 	                    		 		//区域
-	                    		 		if(lastZoomLevel>8){
+ 	                 		 		else if(lastZoomLevel>8){
 	                    		 		for(var a=0;a<lenArea;a++){
 	   		 	            	        arr3=itemsArea2[a].gps.split(",");
 	   		 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
@@ -251,6 +259,8 @@
 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea.png'};
 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	                    		 				add2(area3,pushpin3,LA3);
+	                    		 				addmouse_out(pushpin3);
+	                    		 				
 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	       		 	                  	        map.entities.push(pushpin3);
 	 	                    		 			break;
@@ -269,6 +279,8 @@
 		 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity.png'};
 		 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 		 	                    		 				add2(city3,pushpin3,LA3);
+		 	                    		 				addmouse_out(pushpin3);
+		 	                    		 				
 		 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 		 	       		 	                  	        map.entities.push(pushpin3);
 			 	                    		 			break;
@@ -287,6 +299,8 @@
 	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou.png'};
 	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	 	                    		 				add2(zhou3,pushpin3,LA3);
+	 	                    		 				addmouse_out(pushpin3);
+	 	                    		 				
 	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	 	       		 	                  	        map.entities.push(pushpin3);
 		 	                    		 			break;
@@ -305,6 +319,8 @@
 		 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation.png'};
 		 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 		 	                    		 				add2(nation3,pushpin3,LA3);
+		 	                    		 				addmouse_out(pushpin3);
+		 	                    		 
 		 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 		 	       		 	                  	        map.entities.push(pushpin3);
 			 	                    		 			break;
@@ -348,6 +364,7 @@
 			 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea.png'};
 			 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 			 	            	        add2(area2,pushpin2,LA2);
+			 	            	        addmouse_out(pushpin2);
 			 	            	        add3(lastZoomLevel,pushpin2,LA2);
 			 	                  	    map.entities.push(pushpin2);
 			 	            	    }
@@ -365,6 +382,7 @@
 			 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity.png'};
 			 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 			 	            	        add2(city2,pushpin2,LA2);
+			 	            	        addmouse_out(pushpin2);
 			 	            	        add3(lastZoomLevel,pushpin2,LA2);
 			 	                  	    map.entities.push(pushpin2);
 			 	            	    }
@@ -382,6 +400,7 @@
 			 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou.png'};
 			 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 			 	            	        add2(zhou2,pushpin2,LA2);
+			 	            	       addmouse_out(pushpin2);
 			 	            	        add3(lastZoomLevel,pushpin2,LA2);
 			 	                  	    map.entities.push(pushpin2);
 			 	            	    }
@@ -400,6 +419,7 @@
 			 	            	        var pushpinOptions2={text:total,width: 42, height: 42,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation.png'};
 			 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 			 	            	        add2(nation2,pushpin2,LA2);
+			 	            	       addmouse_out(pushpin2);
 			 	            	        add3(lastZoomLevel,pushpin2,LA2);
 			 	                  	    map.entities.push(pushpin2);
 			 	            	    }
@@ -513,6 +533,7 @@
       			 	 	 		            var type=items[p].project_type;
     	    			 	 	 		    if(proNum==num){
     	    			 	 	 		    	alert(num);
+    	    			 	 	 		    	alert(LA3);
     	    			 	 	 		    	map.entities.remove(LA3);
     	                 		 				pushpinOptions3={width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin3.png'};
     	                 		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
@@ -523,7 +544,7 @@
     	                 		 		}	
     	                 		 		}
     	                 		 	    //区域
-    	                 		 		if(lastZoomLevel>8){
+    	                 		 		else if(lastZoomLevel>8){
     	                 		 		for(var a=0;a<lenArea;a++){
     			 	            	        arr3=itemsArea2[a].gps.split(",");
     			 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
@@ -534,6 +555,7 @@
     	                 		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea2.png'};
     	                 		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
     	                 		 				add2(area3,pushpin3,LA3);
+    	                 		 				addmouse_out(pushpin3);
     	    		 	            	            add3(lastZoomLevel,pushpin3,LA3);
     	    		 	                  	        map.entities.push(pushpin3);
     		                    		 			break;
@@ -552,6 +574,7 @@
     	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity2.png'};
     	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
     	 	                    		 				add2(city3,pushpin3,LA3);
+    	 	                    		 				addmouse_out(pushpin3);
     	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
     	 	       		 	                  	        map.entities.push(pushpin3);
     		 	                    		 			break;
@@ -570,6 +593,7 @@
     		                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou2.png'};
     		                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
     		                    		 				add2(zhou3,pushpin3,LA3);
+    		                    		 				addmouse_out(pushpin3);
     		       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
     		       		 	                  	        map.entities.push(pushpin3);
     	 	                    		 			break;
@@ -589,6 +613,7 @@
     	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation2.png'};
     	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
     	 	                    		 				add2(nation3,pushpin3,LA3);
+    	 	                    		 				addmouse_out(pushpin3);
     	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
     	 	       		 	                  	        map.entities.push(pushpin3);
     		 	                    		 			break;
@@ -624,7 +649,7 @@
       			 	 	 		            var price=items[p].project_min_price;
       			 	 	 		            var type=items[p].project_type;
     	    			 	 	 		    if(proNum==num){
-    	    			 	 	 		    	alert(num);
+    	    			 	 	 		    	//alert(num);
     	    			 	 	 		    	map.entities.remove(LA3);
     	                 		 				pushpinOptions3={width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'};
     	                 		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
@@ -635,7 +660,7 @@
     	                 		 		}	
     	                 		 		}
  	                    		 		//区域
- 	                    		 		if(lastZoomLevel>8){
+    	                 		 		else if(lastZoomLevel>8){
  	                    		 		for(var a=0;a<lenArea;a++){
  	   		 	            	        arr3=itemsArea2[a].gps.split(",");
  	   		 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
@@ -646,6 +671,7 @@
  	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea.png'};
  	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
  	                    		 				add2(area3,pushpin3,LA3);
+ 	                    		 				addmouse_out(pushpin3);
  	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
  	       		 	                  	        map.entities.push(pushpin3);
 	 	                    		 			break;
@@ -664,6 +690,7 @@
 		 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity.png'};
 		 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 		 	                    		 				add2(city3,pushpin3,LA3);
+		 	                    		 				addmouse_out(pushpin3);
 		 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 		 	       		 	                  	        map.entities.push(pushpin3);
 			 	                    		 			break;
@@ -682,6 +709,7 @@
 	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou.png'};
 	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	 	                    		 				add2(zhou3,pushpin3,LA3);
+	 	                    		 				addmouse_out(pushpin3);
 	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	 	       		 	                  	        map.entities.push(pushpin3);
 		 	                    		 			break;
@@ -700,6 +728,7 @@
 		 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation.png'};
 		 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 		 	                    		 				add2(nation3,pushpin3,LA3);
+		 	                    		 				addmouse_out(pushpin3);
 		 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 		 	       		 	                  	        map.entities.push(pushpin3);
 			 	                    		 			break;
@@ -743,6 +772,7 @@
     			 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea.png'};
     			 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
     			 	            	        add2(area2,pushpin2,LA2);
+    			 	            	       addmouse_out(pushpin2);
     			 	            	        add3(lastZoomLevel,pushpin2,LA2);
     			 	                  	    map.entities.push(pushpin2);
     			 	            	    }
@@ -760,6 +790,7 @@
     			 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity.png'};
     			 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
     			 	            	        add2(city2,pushpin2,LA2);
+    			 	            	       addmouse_out(pushpin2);
     			 	            	        add3(lastZoomLevel,pushpin2,LA2);
     			 	                  	    map.entities.push(pushpin2);
     			 	            	    }
@@ -777,6 +808,7 @@
     			 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou.png'};
     			 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
     			 	            	        add2(zhou2,pushpin2,LA2);
+    			 	            	       addmouse_out(pushpin2);
     			 	            	        add3(lastZoomLevel,pushpin2,LA2);
     			 	                  	    map.entities.push(pushpin2);
     			 	            	    }
@@ -794,6 +826,7 @@
     			 	            	        var pushpinOptions2={text:total,width: 42, height: 42,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation.png'};
     			 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
     			 	            	        add2(nation2,pushpin2,LA2);
+    			 	            	       addmouse_out(pushpin2);
     			 	            	        add3(lastZoomLevel,pushpin2,LA2);
     			 	                  	    map.entities.push(pushpin2);
     			 	            	    }
@@ -837,6 +870,13 @@
 		        }
 			    defaultInfobox = new Microsoft.Maps.Infobox(LA, infoboxOptions);
 			    map.entities.push(defaultInfobox); 
+		    });
+      }
+      function addmouse_out(pushpin){
+    	  Microsoft.Maps.Events.addHandler(pushpin, 'mouseout', function(){
+		        if(defaultInfobox){
+		        	defaultInfobox.setOptions({ visible: false });
+		        }
 		    });
       }
       function add3(zoomLevel,pushpin,LA){
@@ -986,7 +1026,7 @@
 			 	 	 		            var price=items[p].project_min_price;
 			 	 	 		            var type=items[p].project_type;
 	    			 	 	 		    if(proNum==num){
-	    			 	 	 		    	alert(num);
+	    			 	 	 		    	//alert(num);
 	    			 	 	 		    	map.entities.remove(LA3);
 	                 		 				pushpinOptions3={width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin3.png'};
 	                 		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
@@ -997,7 +1037,7 @@
 	                 		 		}	
 	                 		 		}
 	                 		 	    //区域
-	                 		 		if(lastZoomLevel>8){
+	                 		 		else if(lastZoomLevel>8){
 	                 		 		for(var a=0;a<lenArea;a++){
 			 	            	        arr3=itemsArea2[a].gps.split(",");
 			 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
@@ -1008,6 +1048,7 @@
 	                 		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea2.png'};
 	                 		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	                 		 				add2(area3,pushpin3,LA3);
+	                 		 				addmouse_out(pushpin3);
 	    		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	    		 	                  	        map.entities.push(pushpin3);
 		                    		 			break;
@@ -1026,6 +1067,7 @@
 	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity2.png'};
 	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	 	                    		 				add2(city3,pushpin3,LA3);
+	 	                    		 				addmouse_out(pushpin3);
 	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	 	       		 	                  	        map.entities.push(pushpin3);
 		 	                    		 			break;
@@ -1044,6 +1086,7 @@
 		                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou2.png'};
 		                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 		                    		 				add2(zhou3,pushpin3,LA3);
+		                    		 				addmouse_out(pushpin3);
 		       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 		       		 	                  	        map.entities.push(pushpin3);
 	 	                    		 			break;
@@ -1063,6 +1106,7 @@
 	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation2.png'};
 	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	 	                    		 				add2(nation3,pushpin3,LA3);
+	 	                    		 				addmouse_out(pushpin3);
 	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	 	       		 	                  	        map.entities.push(pushpin3);
 		 	                    		 			break;
@@ -1098,7 +1142,7 @@
 			 	 	 		            var price=items[p].project_min_price;
 			 	 	 		            var type=items[p].project_type;
 	    			 	 	 		    if(proNum==num){
-	    			 	 	 		    	alert(num);
+	    			 	 	 		    	//alert(num);
 	    			 	 	 		    	map.entities.remove(LA3);
 	                 		 				pushpinOptions3={width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'};
 	                 		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
@@ -1109,7 +1153,7 @@
 	                 		 		}	
 	                 		 		}
                   		 		//区域
-                  		 		if(lastZoomLevel>8){
+	                 		 	else if(lastZoomLevel>8){
                   		 		for(var a=0;a<lenArea;a++){
  		 	            	        arr3=itemsArea2[a].gps.split(",");
  		 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
@@ -1120,6 +1164,7 @@
                   		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea.png'};
                   		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
                   		 				add2(area3,pushpin3,LA3);
+                  		 				addmouse_out(pushpin3);
      		 	            	            add3(lastZoomLevel,pushpin3,LA3);
      		 	                  	        map.entities.push(pushpin3);
 	                    		 			break;
@@ -1138,6 +1183,7 @@
 	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity.png'};
 	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	 	                    		 				add2(city3,pushpin3,LA3);
+	 	                    		 				addmouse_out(pushpin3);
 	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	 	       		 	                  	        map.entities.push(pushpin3);
 		 	                    		 			break;
@@ -1156,6 +1202,7 @@
 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou.png'};
 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	                    		 				add2(zhou3,pushpin3,LA3);
+	                    		 				addmouse_out(pushpin3);
 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	       		 	                  	        map.entities.push(pushpin3);
 	 	                    		 			break;
@@ -1174,6 +1221,7 @@
 	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation.png'};
 	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	 	                    		 				add2(nation3,pushpin3,LA3);
+	 	                    		 				addmouse_out(pushpin3);
 	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	 	       		 	                  	        map.entities.push(pushpin3);
 		 	                    		 			break;
@@ -1217,6 +1265,7 @@
 		 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea.png'};
 		 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 		 	            	        add2(area2,pushpin2,LA2);
+		 	            	       addmouse_out(pushpin2);
 		 	            	        add3(lastZoomLevel,pushpin2,LA2);
 		 	                  	    map.entities.push(pushpin2);
 		 	            	    }
@@ -1234,6 +1283,7 @@
 		 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity.png'};
 		 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 		 	            	        add2(city2,pushpin2,LA2);
+		 	            	       addmouse_out(pushpin2);
 		 	            	        add3(lastZoomLevel,pushpin2,LA2);
 		 	                  	    map.entities.push(pushpin2);
 		 	            	    }
@@ -1251,6 +1301,7 @@
 		 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou.png'};
 		 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 		 	            	        add2(zhou2,pushpin2,LA2);
+		 	            	       addmouse_out(pushpin2);
 		 	            	        add3(lastZoomLevel,pushpin2,LA2);
 		 	                  	    map.entities.push(pushpin2);
 		 	            	    }
@@ -1268,6 +1319,7 @@
 		 	            	        var pushpinOptions2={text:total,width: 42, height: 42,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation.png'};
 		 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 		 	            	        add2(nation2,pushpin2,LA2);
+		 	            	       addmouse_out(pushpin2);
 		 	            	        add3(lastZoomLevel,pushpin2,LA2);
 		 	                  	    map.entities.push(pushpin2);		 	                  	 
 		 	            	    }
@@ -1487,7 +1539,7 @@
    			 	 	 		            var price=items[p].project_min_price;
    			 	 	 		            var type=items[p].project_type;
  	    			 	 	 		    if(proNum==num){
- 	    			 	 	 		    	alert(num);
+ 	    			 	 	 		    	//alert(num);
  	    			 	 	 		    	map.entities.remove(LA3);
  	                 		 				pushpinOptions3={width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin3.png'};
  	                 		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
@@ -1498,7 +1550,7 @@
  	                 		 		}	
  	                 		 		}
  	                 		 	    //区域
- 	                 		 		if(lastZoomLevel>8){
+ 	                 		 		else if(lastZoomLevel>8){
  	                 		 		for(var a=0;a<lenArea;a++){
  			 	            	        arr3=itemsArea2[a].gps.split(",");
  			 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
@@ -1509,6 +1561,7 @@
  	                 		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea2.png'};
  	                 		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
  	                 		 				add2(area3,pushpin3,LA3);
+ 	                 		 			 addmouse_out(pushpin3);
  	    		 	            	            add3(lastZoomLevel,pushpin3,LA3);
  	    		 	                  	        map.entities.push(pushpin3);
  		                    		 			break;
@@ -1527,6 +1580,7 @@
  	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity2.png'};
  	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
  	 	                    		 				add2(city3,pushpin3,LA3);
+ 	 	                    		 			 addmouse_out(pushpin3);
  	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
  	 	       		 	                  	        map.entities.push(pushpin3);
  		 	                    		 			break;
@@ -1545,6 +1599,7 @@
  		                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou2.png'};
  		                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
  		                    		 				add2(zhou3,pushpin3,LA3);
+ 		                    		 				 addmouse_out(pushpin3);
  		       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
  		       		 	                  	        map.entities.push(pushpin3);
  	 	                    		 			break;
@@ -1564,6 +1619,7 @@
  	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation2.png'};
  	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
  	 	                    		 				add2(nation3,pushpin3,LA3);
+ 	 	                    		 			 addmouse_out(pushpin3);
  	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
  	 	       		 	                  	        map.entities.push(pushpin3);
  		 	                    		 			break;
@@ -1599,7 +1655,7 @@
    			 	 	 		            var price=items[p].project_min_price;
    			 	 	 		            var type=items[p].project_type;
  	    			 	 	 		    if(proNum==num){
- 	    			 	 	 		    	alert(num);
+ 	    			 	 	 		    	//alert(num);
  	    			 	 	 		    	map.entities.remove(LA3);
  	                 		 				pushpinOptions3={width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'};
  	                 		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
@@ -1610,7 +1666,7 @@
  	                 		 		}	
  	                 		 		}
 	                    		 		//区域
-	                    		 		if(lastZoomLevel>8){
+ 	                 		 		else if(lastZoomLevel>8){
 	                    		 		for(var a=0;a<lenArea;a++){
 	   		 	            	        arr3=itemsArea2[a].gps.split(",");
 	   		 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
@@ -1621,6 +1677,7 @@
 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea.png'};
 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	                    		 				add2(area3,pushpin3,LA3);
+	                    		 				 addmouse_out(pushpin3);
 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	       		 	                  	        map.entities.push(pushpin3);
 	 	                    		 			break;
@@ -1639,6 +1696,7 @@
 		 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity.png'};
 		 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 		 	                    		 				add2(city3,pushpin3,LA3);
+		 	                    		 				 addmouse_out(pushpin3);
 		 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 		 	       		 	                  	        map.entities.push(pushpin3);
 			 	                    		 			break;
@@ -1657,6 +1715,7 @@
 	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou.png'};
 	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	 	                    		 				add2(zhou3,pushpin3,LA3);
+	 	                    		 				 addmouse_out(pushpin3);
 	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	 	       		 	                  	        map.entities.push(pushpin3);
 		 	                    		 			break;
@@ -1675,6 +1734,7 @@
 		 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation.png'};
 		 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 		 	                    		 				add2(nation3,pushpin3,LA3);
+		 	                    		 				 addmouse_out(pushpin3);
 		 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 		 	       		 	                  	        map.entities.push(pushpin3);
 			 	                    		 			break;
@@ -1718,6 +1778,7 @@
 			 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea.png'};
 			 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 			 	            	        add2(area2,pushpin2,LA2);
+			 	            	       addmouse_out(pushpin2);
 			 	            	        add3(lastZoomLevel,pushpin2,LA2);
 			 	                  	    map.entities.push(pushpin2);
 			 	            	    }
@@ -1735,6 +1796,7 @@
 			 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity.png'};
 			 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 			 	            	        add2(city2,pushpin2,LA2);
+			 	            	       addmouse_out(pushpin2);
 			 	            	        add3(lastZoomLevel,pushpin2,LA2);
 			 	                  	    map.entities.push(pushpin2);
 			 	            	    }
@@ -1752,6 +1814,7 @@
 			 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou.png'};
 			 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 			 	            	        add2(zhou2,pushpin2,LA2);
+			 	            	       addmouse_out(pushpin2);
 			 	            	        add3(lastZoomLevel,pushpin2,LA2);
 			 	                  	    map.entities.push(pushpin2);
 			 	            	    }
@@ -1769,6 +1832,7 @@
 			 	            	        var pushpinOptions2={text:total,width: 42, height: 42,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation.png'};
 			 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 			 	            	        add2(nation2,pushpin2,LA2);
+			 	            	       addmouse_out(pushpin2);
 			 	            	        add3(lastZoomLevel,pushpin2,LA2);
 			 	                  	    map.entities.push(pushpin2);
 			 	            	    }
@@ -1886,7 +1950,7 @@
 			 	 	 		            var price=items[p].project_min_price;
 			 	 	 		            var type=items[p].project_type;
 	    			 	 	 		    if(proNum==num){
-	    			 	 	 		    	alert(num);
+	    			 	 	 		    	//alert(num);
 	    			 	 	 		    	map.entities.remove(LA3);
 	                 		 				pushpinOptions3={width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin3.png'};
 	                 		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
@@ -1897,7 +1961,7 @@
 	                 		 		}	
 	                 		 		}
 	                 		 	    //区域
-	                 		 		if(lastZoomLevel>8){
+	                 		 		else if(lastZoomLevel>8){
 	                 		 		for(var a=0;a<lenArea;a++){
 			 	            	        arr3=itemsArea2[a].gps.split(",");
 			 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
@@ -1908,6 +1972,7 @@
 	                 		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea2.png'};
 	                 		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	                 		 				add2(area3,pushpin3,LA3);
+	                 		 				 addmouse_out(pushpin3);
 	    		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	    		 	                  	        map.entities.push(pushpin3);
 		                    		 			break;
@@ -1926,6 +1991,7 @@
 	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity2.png'};
 	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	 	                    		 				add2(city3,pushpin3,LA3);
+	 	                    		 				 addmouse_out(pushpin3);
 	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	 	       		 	                  	        map.entities.push(pushpin3);
 		 	                    		 			break;
@@ -1944,6 +2010,7 @@
 		                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou2.png'};
 		                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 		                    		 				add2(zhou3,pushpin3,LA3);
+		                    		 				 addmouse_out(pushpin3);
 		       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 		       		 	                  	        map.entities.push(pushpin3);
 	 	                    		 			break;
@@ -1963,6 +2030,7 @@
 	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation2.png'};
 	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	 	                    		 				add2(nation3,pushpin3,LA3);
+	 	                    		 				 addmouse_out(pushpin3);
 	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	 	       		 	                  	        map.entities.push(pushpin3);
 		 	                    		 			break;
@@ -1998,7 +2066,7 @@
 			 	 	 		            var price=items[p].project_min_price;
 			 	 	 		            var type=items[p].project_type;
 	    			 	 	 		    if(proNum==num){
-	    			 	 	 		    	alert(num);
+	    			 	 	 		    	//alert(num);
 	    			 	 	 		    	map.entities.remove(LA3);
 	                 		 				pushpinOptions3={width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'};
 	                 		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
@@ -2009,7 +2077,7 @@
 	                 		 		}	
 	                 		 		}
                   		 		//区域
-                  		 		if(lastZoomLevel>8){
+	                 		 		else if(lastZoomLevel>8){
                   		 		for(var a=0;a<lenArea;a++){
  		 	            	        arr3=itemsArea2[a].gps.split(",");
  		 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
@@ -2020,6 +2088,7 @@
                   		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea.png'};
                   		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
                   		 				add2(area3,pushpin3,LA3);
+                  		 			 addmouse_out(pushpin3);
      		 	            	            add3(lastZoomLevel,pushpin3,LA3);
      		 	                  	        map.entities.push(pushpin3);
 	                    		 			break;
@@ -2038,6 +2107,7 @@
 	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity.png'};
 	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	 	                    		 				add2(city3,pushpin3,LA3);
+	 	                    		 				 addmouse_out(pushpin3);
 	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	 	       		 	                  	        map.entities.push(pushpin3);
 		 	                    		 			break;
@@ -2056,6 +2126,7 @@
 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou.png'};
 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	                    		 				add2(zhou3,pushpin3,LA3);
+	                    		 				 addmouse_out(pushpin3);
 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	       		 	                  	        map.entities.push(pushpin3);
 	 	                    		 			break;
@@ -2074,6 +2145,7 @@
 	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation.png'};
 	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	 	                    		 				add2(nation3,pushpin3,LA3);
+	 	                    		 				 addmouse_out(pushpin3);
 	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	 	       		 	                  	        map.entities.push(pushpin3);
 		 	                    		 			break;
@@ -2117,6 +2189,7 @@
 		 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea.png'};
 		 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 		 	            	        add2(area2,pushpin2,LA2);
+		 	            	       addmouse_out(pushpin2);
 		 	            	        add3(lastZoomLevel,pushpin2,LA2);
 		 	                  	    map.entities.push(pushpin2);
 		 	            	    }
@@ -2134,6 +2207,7 @@
 		 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity.png'};
 		 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 		 	            	        add2(city2,pushpin2,LA2);
+		 	            	       addmouse_out(pushpin2);
 		 	            	        add3(lastZoomLevel,pushpin2,LA2);
 		 	                  	    map.entities.push(pushpin2);
 		 	            	    }
@@ -2151,6 +2225,7 @@
 		 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou.png'};
 		 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 		 	            	        add2(zhou2,pushpin2,LA2);
+		 	            	       addmouse_out(pushpin2);
 		 	            	        add3(lastZoomLevel,pushpin2,LA2);
 		 	                  	    map.entities.push(pushpin2);
 		 	            	    }
@@ -2168,6 +2243,7 @@
 		 	            	        var pushpinOptions2={text:total,width: 42, height: 42,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation.png'};
 		 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 		 	            	        add2(nation2,pushpin2,LA2);
+		 	            	       addmouse_out(pushpin2);
 		 	            	        add3(lastZoomLevel,pushpin2,LA2);
 		 	                  	    map.entities.push(pushpin2);
 		 	            	    }
@@ -2289,7 +2365,7 @@
 	      			 	 	 		            var price=items[p].project_min_price;
 	      			 	 	 		            var type=items[p].project_type;
 	    	    			 	 	 		    if(proNum==num){
-	    	    			 	 	 		    	alert(num);
+	    	    			 	 	 		    	//alert(num);
 	    	    			 	 	 		    	map.entities.remove(LA3);
 	    	                 		 				pushpinOptions3={width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin3.png'};
 	    	                 		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
@@ -2300,7 +2376,7 @@
 	    	                 		 		}	
 	    	                 		 		}
 	    	                 		 	    //区域
-	    	                 		 		if(lastZoomLevel>8){
+	    	                 		 		else if(lastZoomLevel>8){
 	    	                 		 		for(var a=0;a<lenArea;a++){
 	    			 	            	        arr3=itemsArea2[a].gps.split(",");
 	    			 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
@@ -2311,6 +2387,7 @@
 	    	                 		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea2.png'};
 	    	                 		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	    	                 		 				add2(area3,pushpin3,LA3);
+	    	                 		 				addmouse_out(pushpin3);
 	    	    		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	    	    		 	                  	        map.entities.push(pushpin3);
 	    		                    		 			break;
@@ -2329,6 +2406,7 @@
 	    	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity2.png'};
 	    	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	    	 	                    		 				add2(city3,pushpin3,LA3);
+	    	 	                    		 				addmouse_out(pushpin3);
 	    	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	    	 	       		 	                  	        map.entities.push(pushpin3);
 	    		 	                    		 			break;
@@ -2347,6 +2425,7 @@
 	    		                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou2.png'};
 	    		                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	    		                    		 				add2(zhou3,pushpin3,LA3);
+	    		                    		 				addmouse_out(pushpin3);
 	    		       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	    		       		 	                  	        map.entities.push(pushpin3);
 	    	 	                    		 			break;
@@ -2366,6 +2445,7 @@
 	    	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation2.png'};
 	    	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	    	 	                    		 				add2(nation3,pushpin3,LA3);
+	    	 	                    		 				addmouse_out(pushpin3);
 	    	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	    	 	       		 	                  	        map.entities.push(pushpin3);
 	    		 	                    		 			break;
@@ -2401,7 +2481,7 @@
 	      			 	 	 		            var price=items[p].project_min_price;
 	      			 	 	 		            var type=items[p].project_type;
 	    	    			 	 	 		    if(proNum==num){
-	    	    			 	 	 		    	alert(num);
+	    	    			 	 	 		    	//alert(num);
 	    	    			 	 	 		    	map.entities.remove(LA3);
 	    	                 		 				pushpinOptions3={width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'};
 	    	                 		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
@@ -2412,7 +2492,7 @@
 	    	                 		 		}	
 	    	                 		 		}
 	 	                    		 		//区域
-	 	                    		 		if(lastZoomLevel>8){
+	    	                 		 		else if(lastZoomLevel>8){
 	 	                    		 		for(var a=0;a<lenArea;a++){
 	 	   		 	            	        arr3=itemsArea2[a].gps.split(",");
 	 	   		 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
@@ -2423,6 +2503,7 @@
 	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea.png'};
 	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	 	                    		 				add2(area3,pushpin3,LA3);
+	 	                    		 				addmouse_out(pushpin3);
 	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	 	       		 	                  	        map.entities.push(pushpin3);
 		 	                    		 			break;
@@ -2441,6 +2522,7 @@
 			 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity.png'};
 			 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 			 	                    		 				add2(city3,pushpin3,LA3);
+			 	                    		 				addmouse_out(pushpin3);
 			 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 			 	       		 	                  	        map.entities.push(pushpin3);
 				 	                    		 			break;
@@ -2459,6 +2541,7 @@
 		 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou.png'};
 		 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 		 	                    		 				add2(zhou3,pushpin3,LA3);
+		 	                    		 				addmouse_out(pushpin3);
 		 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 		 	       		 	                  	        map.entities.push(pushpin3);
 			 	                    		 			break;
@@ -2477,6 +2560,7 @@
 			 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation.png'};
 			 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 			 	                    		 				add2(nation3,pushpin3,LA3);
+			 	                    		 				addmouse_out(pushpin3);
 			 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 			 	       		 	                  	        map.entities.push(pushpin3);
 				 	                    		 			break;
@@ -2520,6 +2604,7 @@
 				 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea.png'};
 				 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 				 	            	        add2(area2,pushpin2,LA2);
+				 	            	       addmouse_out(pushpin2);
 				 	            	        add3(lastZoomLevel,pushpin2,LA2);
 				 	                  	    map.entities.push(pushpin2);
 				 	            	    }
@@ -2537,6 +2622,7 @@
 				 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity.png'};
 				 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 				 	            	        add2(city2,pushpin2,LA2);
+				 	            	       addmouse_out(pushpin2);
 				 	            	        add3(lastZoomLevel,pushpin2,LA2);
 				 	                  	    map.entities.push(pushpin2);
 				 	            	    }
@@ -2554,6 +2640,7 @@
 				 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou.png'};
 				 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 				 	            	        add2(zhou2,pushpin2,LA2);
+				 	            	       addmouse_out(pushpin2);
 				 	            	        add3(lastZoomLevel,pushpin2,LA2);
 				 	                  	    map.entities.push(pushpin2);
 				 	            	    }
@@ -2571,6 +2658,7 @@
 				 	            	        var pushpinOptions2={text:total,width: 42, height: 42,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation.png'};
 				 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 				 	            	        add2(nation2,pushpin2,LA2);
+				 	            	       addmouse_out(pushpin2);
 				 	            	        add3(lastZoomLevel,pushpin2,LA2);
 				 	                  	    map.entities.push(pushpin2);
 				 	            	    }
@@ -2706,7 +2794,7 @@
 			 	 	 		            var price=items[p].project_min_price;
 			 	 	 		            var type=items[p].project_type;
 	    			 	 	 		    if(proNum==num){
-	    			 	 	 		    	alert(num);
+	    			 	 	 		    	//alert(num);
 	    			 	 	 		    	map.entities.remove(LA3);
 	                 		 				pushpinOptions3={width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin3.png'};
 	                 		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
@@ -2717,7 +2805,7 @@
 	                 		 		}	
 	                 		 		}
 	                 		 	    //区域
-	                 		 		if(lastZoomLevel>8){
+	                 		 		else if(lastZoomLevel>8){
 	                 		 		for(var a=0;a<lenArea;a++){
 			 	            	        arr3=itemsArea2[a].gps.split(",");
 			 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
@@ -2728,6 +2816,7 @@
 	                 		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea2.png'};
 	                 		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	                 		 				add2(area3,pushpin3,LA3);
+	                 		 				addmouse_out(pushpin3);
 	    		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	    		 	                  	        map.entities.push(pushpin3);
 		                    		 			break;
@@ -2746,6 +2835,7 @@
 	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity2.png'};
 	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	 	                    		 				add2(city3,pushpin3,LA3);
+	 	                    		 				addmouse_out(pushpin3);
 	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	 	       		 	                  	        map.entities.push(pushpin3);
 		 	                    		 			break;
@@ -2764,6 +2854,7 @@
 		                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou2.png'};
 		                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 		                    		 				add2(zhou3,pushpin3,LA3);
+		                    		 				addmouse_out(pushpin3);
 		       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 		       		 	                  	        map.entities.push(pushpin3);
 	 	                    		 			break;
@@ -2783,6 +2874,7 @@
 	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation2.png'};
 	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	 	                    		 				add2(nation3,pushpin3,LA3);
+	 	                    		 				addmouse_out(pushpin3);
 	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	 	       		 	                  	        map.entities.push(pushpin3);
 		 	                    		 			break;
@@ -2818,7 +2910,7 @@
 			 	 	 		            var price=items[p].project_min_price;
 			 	 	 		            var type=items[p].project_type;
 	    			 	 	 		    if(proNum==num){
-	    			 	 	 		    	alert(num);
+	    			 	 	 		    	//alert(num);
 	    			 	 	 		    	map.entities.remove(LA3);
 	                 		 				pushpinOptions3={width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'};
 	                 		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
@@ -2829,7 +2921,7 @@
 	                 		 		}	
 	                 		 		}
                   		 		//区域
-                  		 		if(lastZoomLevel>8){
+	                 		 		else if(lastZoomLevel>8){
                   		 		for(var a=0;a<lenArea;a++){
  		 	            	        arr3=itemsArea2[a].gps.split(",");
  		 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
@@ -2840,6 +2932,7 @@
                   		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea.png'};
                   		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
                   		 				add2(area3,pushpin3,LA3);
+                  		 				addmouse_out(pushpin3);
      		 	            	            add3(lastZoomLevel,pushpin3,LA3);
      		 	                  	        map.entities.push(pushpin3);
 	                    		 			break;
@@ -2858,6 +2951,7 @@
 	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity.png'};
 	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	 	                    		 				add2(city3,pushpin3,LA3);
+	 	                    		 				addmouse_out(pushpin3);
 	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	 	       		 	                  	        map.entities.push(pushpin3);
 		 	                    		 			break;
@@ -2876,6 +2970,7 @@
 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou.png'};
 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	                    		 				add2(zhou3,pushpin3,LA3);
+	                    		 				addmouse_out(pushpin3);
 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	       		 	                  	        map.entities.push(pushpin3);
 	 	                    		 			break;
@@ -2894,6 +2989,7 @@
 	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation.png'};
 	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
 	 	                    		 				add2(nation3,pushpin3,LA3);
+	 	                    		 				addmouse_out(pushpin3);
 	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
 	 	       		 	                  	        map.entities.push(pushpin3);
 		 	                    		 			break;
@@ -2937,6 +3033,7 @@
 		 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea.png'};
 		 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 		 	            	        add2(area2,pushpin2,LA2);
+		 	            	       addmouse_out(pushpin2);
 		 	            	        add3(lastZoomLevel,pushpin2,LA2);
 		 	                  	    map.entities.push(pushpin2);
 		 	            	    }
@@ -2954,6 +3051,7 @@
 		 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity.png'};
 		 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 		 	            	        add2(city2,pushpin2,LA2);
+		 	            	       addmouse_out(pushpin2);
 		 	            	        add3(lastZoomLevel,pushpin2,LA2);
 		 	                  	    map.entities.push(pushpin2);
 		 	            	    }
@@ -2971,6 +3069,7 @@
 		 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou.png'};
 		 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 		 	            	        add2(zhou2,pushpin2,LA2);
+		 	            	       addmouse_out(pushpin2);
 		 	            	        add3(lastZoomLevel,pushpin2,LA2);
 		 	                  	    map.entities.push(pushpin2);
 		 	            	    }
@@ -2988,6 +3087,7 @@
 		 	            	        var pushpinOptions2={text:total,width: 42, height: 42,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation.png'};
 		 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 		 	            	        add2(nation2,pushpin2,LA2);
+		 	            	       addmouse_out(pushpin2);
 		 	            	        add3(lastZoomLevel,pushpin2,LA2);
 		 	                  	    map.entities.push(pushpin2);
 		 	            	    }
