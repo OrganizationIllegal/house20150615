@@ -716,6 +716,10 @@ public class BingMapController {
 						String mianji = item.getMianji();
 						String return_money = item.getReturn_money();
 						String bijiao = item.getBijiao();
+						
+						
+						
+						
 						List<String> project_key = new ArrayList<String>();
 						if(project_num!=null && !"".equals(project_num)){
 							project_key =bingMapDao.findProjectKeyByNum(project_num);
@@ -848,7 +852,12 @@ public class BingMapController {
 						}
 						String bijiao = item.getBijiao();
 						String type = item.getProject_type();
-						BingMapVo  bingMapVo=new BingMapVo(id,type,bijiao,project_name,project_img,project_num,project_address, project_name_short, project_price,minarea, maxarea, project_sales_remain, project_price_int_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key,project_address_short);
+						String project_nation = item.getProject_nation();
+						String project_city = item.getProject_city();
+						String project_area = item.getProject_area();
+						String project_zhou = item.getProject_zhou();
+						String gps = item.getGps();
+						BingMapVo  bingMapVo=new BingMapVo(id,gps,project_nation, project_city, project_area, project_zhou, type,bijiao,project_name,project_img,project_num,project_address, project_name_short, project_price,minarea, maxarea, project_sales_remain, project_price_int_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key,project_address_short);
 						bingMapList.add(bingMapVo);
 					}
 					req.setAttribute("bingMapList", bingMapList);
@@ -909,7 +918,12 @@ public class BingMapController {
 							project_key =bingMapDao.findProjectKeyByNum(project_num);
 						}
 						String bijiao = item.getBijiao();
-						BingMapVo  bingMapVo=new BingMapVo(id,type,bijiao,project_name,project_img,project_num,project_address, project_name_short, project_price,minarea, maxarea, project_sales_remain, project_price_int_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key,project_address_short);
+						String project_nation = item.getProject_nation();
+						String project_city = item.getProject_city();
+						String project_area = item.getProject_area();
+						String project_zhou = item.getProject_zhou();
+						String gps = item.getGps();
+						BingMapVo  bingMapVo=new BingMapVo(id,gps,project_nation, project_city, project_area, project_zhou, type,bijiao,project_name,project_img,project_num,project_address, project_name_short, project_price,minarea, maxarea, project_sales_remain, project_price_int_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key,project_address_short);
 						bingMapList.add(bingMapVo);
 					}
 					req.setAttribute("bingMapList", bingMapList);
@@ -969,6 +983,10 @@ public class BingMapController {
 			obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
 			obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
 			obj.put("project_key", data.getProject_key()==null?"":data.getProject_key());
+			obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
+			obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
+			obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
+			obj.put("project_zhou", data.getZhou()==null?"":data.getZhou());
 			array.add(obj);
 		}
 		

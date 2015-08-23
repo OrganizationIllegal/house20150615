@@ -136,10 +136,12 @@ body{
 	   var selectedOption=v.options[v.selectedIndex];  
 	   switch(selectedOption.value){
 	   case "1":    //公寓
-		   window.location.href="/OrderByPrice?order=1";
+		   //window.location.href="/OrderByPrice?order=1";
+		   addPushpinOrder(1);
 		   break;
 	   case "2":
-		   window.location.href="/OrderByPrice?order=2";
+		  // window.location.href="/OrderByPrice?order=2";
+		  addPushpinOrder(2);
 		   break;
 	   
 	  default:

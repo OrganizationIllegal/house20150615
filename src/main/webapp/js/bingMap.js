@@ -3192,15 +3192,16 @@
       }
          
          /* 增加排序pushpin*/
-  	   function addPushpinOrder()
+  	   function addPushpinOrder(order)
         {
-  		     alert("paixu");
+  		   var order1 = 0;
+  		     alert("paixu"+order);
   			 map.entities.clear(); 
   			 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
   			 $.ajax({
   			 	    type: "GET",
   			 		dateType: "json",
-  			 		url: "/BingMap/FileterType2?house_type=3",		
+  			 		url: "/OrderByPrice?order="+order,		
   			 		success:function(data){
   			        //alert(data)
   			 		data=$.parseJSON(data);
@@ -3231,6 +3232,11 @@
   			 		    map.setView({ zoom: Zoom, center: Center });	
   			 		    lastZoomLevel = map.getZoom();
   			 	        Microsoft.Maps.Events.addHandler(map, 'viewchangeend', function(){
+  			 	       /*  $('#Price <option></option>').val("0").text("价格区间");*/
+  			 	      /*   $('#Price').append($('<option></option>').val("0").text("价格区间"));*/
+  			 	     
+  			 	        	
+
   			 	        	//联动
   			 	        	 var bounds=map.getBounds();
   			            	 var zuoshang=bounds.getNorthwest();
@@ -3239,8 +3245,16 @@
   			                 var zs2=zuoshang.longitude;
   			                 var yx1=youxia.latitude;
   		                     var yx2=youxia.longitude;
-  		                     lianpai++;
-  		                     if(lianpai!=1){
+  		                     order1++;
+  		                     if(order1!=1){
+  		                    	//$("#Price option[text='价格区间']").attr("selected",true); 
+  		                    	/* $('#Price').append($('<option></option>').val("0").text("价格区间"));*/
+  		                    	/*$("#Price").val("0"); 
+  		                    	$("#Price").text("价格区间"); */
+  		                    /*	$("#Price").child().val("价格区间");*/
+  	  			 	        	/*alert($("#Price").val());
+  	  			 	            alert($("#Price").text());*/
+  	  			 	        	
   		                    	 $.ajax({
   					     		 	    type: "POST",
   					     		 		dateType: "json",
