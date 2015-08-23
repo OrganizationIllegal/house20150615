@@ -77,15 +77,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<!-- <div class="c-fix f-l" style="color:#617c97;font-size:16px;font-weight:bold;margin-bottom:10px;margin-top:45px;font-family:微软雅黑;">进一步搜索</div> -->
 				<select onchange="func1()" style="width:100%;height:30px;line-height:30px;margin-top:30px;font-family:微软雅黑" id="nation" name="nation">
 					<option value="">国家</option>
-				    <c:forEach items="${nations}" var="item">
+				  <%--   <c:forEach items="${nations}" var="item">
         		 		<option value="${item}">${item}</option>
-                   </c:forEach>
+                   </c:forEach> --%>
+                     <c:forEach var="item" items="${nations}" varStatus="stat">
+					  <c:choose>
+					   <c:when test="${nation==item}">
+					   		 <option value="${nation}" selected="selected">${nation}</option> 
+					   </c:when>
+					   <c:otherwise>
+						     <option value="${item}">${item}</option>
+					   </c:otherwise>
+					   </c:choose>
+					 </c:forEach> 
 				</select>
 				<select onchange="func2()" style="width:100%;height:30px;line-height:30px;margin-top:20px;font-family:微软雅黑" id="city" name="city">
 					<option value="">城市</option>
+					 <c:forEach var="item" items="${cities}" varStatus="stat">
+					  <c:choose>
+					   <c:when test="${city==item}">
+					   		 <option value="${city}" selected="selected">${city}</option> 
+					   </c:when>
+					   <c:otherwise>
+						     <option value="${item}">${item}</option>
+					   </c:otherwise>
+					   </c:choose>
+					</c:forEach> 
 				</select>
 				<select onchange="func3()" style="width:100%;height:30px;line-height:30px;margin-top:20px;font-family:微软雅黑" id="area" name="area">
 					<option value="">区域</option>
+					<c:forEach var="item" items="${areas}" varStatus="stat">
+						 <c:choose>
+					   <c:when test="${area==item}">
+					   		 <option value="${area}" selected="selected">${area}</option> 
+					   </c:when>
+					   <c:otherwise>
+						     <option value="${item}">${item}</option>
+					   </c:otherwise>
+					   </c:choose>
+					</c:forEach>
 				</select>
 				<!-- <span class="c-fix f-l f-yahei s-14" style="color:#333;margin-top:60px;">类型</span> -->
 				<select style="width:100%;height:30px;line-height:30px;margin-top:20px;font-family:微软雅黑" id="projecttype" name="projecttype">

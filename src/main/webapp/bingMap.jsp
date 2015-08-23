@@ -486,25 +486,46 @@ body{
 				<select id="nation" name="nation" onchange="nation1(1)" class="f-l f-yahei s-14 cp sel_price" style="background:none;/* border:none; */font-family:微软雅黑;padding-left:25px;width: 114px;height: 40px;">
 
 					 <option value="0">国家</option>
-					<%--   <option value="${nation }">${nation }</option> --%>
+					
 					  <c:forEach var="item" items="${nationList}" varStatus="stat">
-						<option value="${item.nation_name}">${item.nation_name}</option>
+					  <c:choose>
+					   <c:when test="${nation==item.nation_name}">
+					   		 <option value="${nation}" selected="selected">${nation}</option> 
+					   </c:when>
+					   <c:otherwise>
+						     <option value="${item.nation_name}">${item.nation_name}</option>
+					   </c:otherwise>
+					   </c:choose>
 					 </c:forEach>
 				
 				</select>
 				<select id="city" name="city" onchange="nation1(2)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" style="background:none;border:none;font-family:微软雅黑;padding-left:25px">
 
 					<option value="0">城市</option>
-					<%-- <c:forEach var="item" items="${cityList}" varStatus="stat">
-						<option value="${stat.index }">${item.city_name}</option>
-					</c:forEach> --%>
+					 <c:forEach var="item" items="${cities}" varStatus="stat">
+					  <c:choose>
+					   <c:when test="${city==item}">
+					   		 <option value="${city}" selected="selected">${city}</option> 
+					   </c:when>
+					   <c:otherwise>
+						     <option value="${item}">${item}</option>
+					   </c:otherwise>
+					   </c:choose>
+					</c:forEach> 
 				</select>
 				<select id="area" name="area" onchange="nation1(3)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" style="background:none;border:none;font-family:微软雅黑;padding-left:25px">
 
 					<option value="0">区域</option>
-					<%-- <c:forEach var="item" items="${areaList}" varStatus="stat">
-						<option value="${stat.index }">${item.area_name}</option>
-					</c:forEach> --%>
+					 <c:forEach var="item" items="${areas}" varStatus="stat">
+						 <c:choose>
+					   <c:when test="${area==item}">
+					   		 <option value="${area}" selected="selected">${area}</option> 
+					   </c:when>
+					   <c:otherwise>
+						     <option value="${item}">${item}</option>
+					   </c:otherwise>
+					   </c:choose>
+					</c:forEach>
 				</select>
 				
 

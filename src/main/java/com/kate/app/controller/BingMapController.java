@@ -84,6 +84,9 @@ public class BingMapController {
 	private static int liandong = 0;
 	
 	private static String flagInformation = "";
+	public  static String nation = null;
+	public  static String city=null;
+	public  static String area=null;
 	
 	
 	
@@ -119,6 +122,9 @@ public class BingMapController {
 		String nation=SearchListController.nation;
 		String city=SearchListController.city;
 		String area=SearchListController.area;
+		BingMapController.nation=nation;
+		BingMapController.city=city;
+		BingMapController.area=area;
      
 		List<SearchList> searchList=SearchListController.searchList_final;
 		List<BingMapVo> bingMapList=new ArrayList<BingMapVo>();
@@ -436,7 +442,12 @@ public class BingMapController {
 		req.setAttribute("addressNameSet", addressNameSet);
 		//返回国家  城市   区域
 		req.setAttribute("nation", nation);
+		
+		List<String>cities=searchListDao.findCityByNation(nation);
+		req.setAttribute("cities", cities);
 		req.setAttribute("city", city);
+		List<String>areas=searchListDao.findAreaByCity(city);
+		req.setAttribute("areas", areas);
 		req.setAttribute("area", area);
 		return "/bingMap.jsp";
 	}
@@ -1474,6 +1485,11 @@ public class BingMapController {
 		String nation1 = req.getParameter("nation");
 		String city1 = req.getParameter("city");
 		String area1 = req.getParameter("area");
+		
+		BingMapController.nation=nation1;
+		BingMapController.city=city1;
+		BingMapController.area=area1;
+		
 		if(nation1.equals("0")){
 			nation1 = null;
 		}
