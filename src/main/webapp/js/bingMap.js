@@ -922,110 +922,93 @@
 		 	        	if(lastZoomLevel != map.getZoom()){
 		 	               lastZoomLevel = map.getZoom();
 		 	               //注册鼠标上移事件
-		 	               $(document).on("mouseenter","#left >.div_node",function(){
+		 	              $(document).on("mouseenter","#left >.div_node",function(){
 	 	             			$(this).css("background-color","rgb(223,223,223)");
-	 	             			var href=$(this).children().first().next().attr("href");
-	 	             			var arr=new Array();
-	 	             			arr = href.split("=");
-	 	             			var proNum=arr[1];
-	 	             			//alert(proNum);
-	 	             			$.ajax({
-	 	                		 	    type: "POST",
-	 	                		 		dateType: "json",
-	 	                		 		data:{"proNum":proNum}, 		
-	 	                		 		url: "/BingMap/FileterProNum", 
-	 	                		 		success:function(data){
-	 	                    		 		data=$.parseJSON(data);
-	 	                    		 		var items=data.List;
-	 	                    		 		var area=items[0].project_area;
-	 	                    		 		var city=items[0].project_city;
-	 	                    		 		var zhou=items[0].project_zhou;
-	 	                    		 		var nation=items[0].project_nation;
-	 	                    		 		var arr3=new Array();
-	 	                    		 		var LA3;
-	 	                    		 		var total2;
-	 	                    		 		var pushpinOptions3;
-	 	                    		 		var pushpin3;
-	 	                    		 		//区域
-	 	                    		 		if(lastZoomLevel>8){
-	 	                    		 		for(var a=0;a<lenArea;a++){
-	 	   		 	            	        arr3=itemsArea2[a].gps.split(",");
-	 	   		 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
-	 	   		 	            	        var area3=itemsArea2[a].project_area;
-	 	   		 	            	        total2=String(itemsArea1[a].area);
-	 	                    		 			if(area==area3){
-	 	                    		 				map.entities.remove(LA3);
-	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea2.png'};
-	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
-	 	                    		 				add2(area3,pushpin3,LA3);
-	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
-	 	       		 	                  	        map.entities.push(pushpin3);
-		 	                    		 			break;
-		 	                    		 		}
-	 	                    		 		}	 	                    		 		
+	 	             			var nation=$(this).children().first();
+	 	             			var zhou=$(this).children().first().next();
+	 	             			var city=$(this).children().first().next().next();
+	 	             			var area=$(this).children().first().next().next().next();
+	 	             			var arr3=new Array();
+                 		 		var LA3;
+                 		 		var total2;
+                 		 		var pushpinOptions3;
+                 		 		var pushpin3;
+                 		 		//区域
+                 		 		if(lastZoomLevel>8){
+                 		 		for(var a=0;a<lenArea;a++){
+		 	            	        arr3=itemsArea2[a].gps.split(",");
+		 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+		 	            	        var area3=itemsArea2[a].project_area;
+		 	            	        total2=String(itemsArea1[a].area);
+                 		 			if(area==area3){
+                 		 				map.entities.remove(LA3);
+                 		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea2.png'};
+                 		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
+                 		 				add2(area3,pushpin3,LA3);
+    		 	            	            add3(lastZoomLevel,pushpin3,LA3);
+    		 	                  	        map.entities.push(pushpin3);
+	                    		 			break;
+	                    		 		}
+                 		 		}	 	                    		 		
+                 		 		}
+                 		 		//城市
+                 		 		else if(lastZoomLevel>6){
+                 		 			for(var c=0;c<lenCity;c++){
+ 	   		 	            	        arr3=itemsCity2[c].gps.split(",");
+ 	   		 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+ 	   		 	            	        var city3=itemsCity2[c].project_city;
+ 	   		 	            	        total2=String(itemsCity1[c].city);
+ 	                    		 			if(city==city3){
+ 	                    		 				map.entities.remove(LA3);
+ 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity2.png'};
+ 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
+ 	                    		 				add2(city3,pushpin3,LA3);
+ 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
+ 	       		 	                  	        map.entities.push(pushpin3);
+	 	                    		 			break;
 	 	                    		 		}
-	 	                    		 		//城市
-	 	                    		 		else if(lastZoomLevel>6){
-	 	                    		 			for(var c=0;c<lenCity;c++){
-			 	   		 	            	        arr3=itemsCity2[c].gps.split(",");
-			 	   		 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
-			 	   		 	            	        var city3=itemsCity2[c].project_city;
-			 	   		 	            	        total2=String(itemsCity1[c].city);
-			 	                    		 			if(city==city3){
-			 	                    		 				map.entities.remove(LA3);
-			 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity2.png'};
-			 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
-			 	                    		 				add2(city3,pushpin3,LA3);
-			 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
-			 	       		 	                  	        map.entities.push(pushpin3);
-				 	                    		 			break;
-				 	                    		 		}
-			 	                    		 		}	
+ 	                    		 		}	
+                 		 		}
+                 		 	//州
+                 		 		else if(lastZoomLevel>4){
+                 		 			for(var z=0;z<lenZhou;z++){
+	   		 	            	            arr3=itemsZhou2[z].gps.split(",");
+	   		 	            	            LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+	   		 	            	            var zhou3=itemsZhou2[z].project_zhou;
+	   		 	            	            total2=String(itemsZhou1[z].zhou);
+	                    		 			if(zhou==zhou3){
+	                    		 				map.entities.remove(LA3);
+	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou2.png'};
+	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
+	                    		 				add2(zhou3,pushpin3,LA3);
+	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
+	       		 	                  	        map.entities.push(pushpin3);
+ 	                    		 			break;
+ 	                    		 		}
+	                    		 		}
+                 		 		}
+                 		 	 // 国家
+                 		 		else{
+                 		 			for(var n=0;n<lenNation;n++){
+ 	   		 	            	        arr3=itemsNation2[n].gps.split(",");
+ 	   		 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+ 	   		 	            	        var nation3=itemsNation2[n].project_nation;
+ 	   		 	            	        var pronum=itemsNation2[n].project_num;
+ 	   		 	            	        total2=String(itemsNation1[n].nation);
+ 	                    		 			if(nation==nation3){
+ 	                    		 				map.entities.remove(LA3);
+ 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation2.png'};
+ 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
+ 	                    		 				add2(nation3,pushpin3,LA3);
+ 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
+ 	       		 	                  	        map.entities.push(pushpin3);
+	 	                    		 			break;
 	 	                    		 		}
-	 	                    		 	//州
-	 	                    		 		else if(lastZoomLevel>4){
-	 	                    		 			for(var z=0;z<lenZhou;z++){
-		 	   		 	            	            arr3=itemsZhou2[z].gps.split(",");
-		 	   		 	            	            LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
-		 	   		 	            	            var zhou3=itemsZhou2[z].project_zhou;
-		 	   		 	            	            total2=String(itemsZhou1[z].zhou);
-		 	                    		 			if(zhou==zhou3){
-		 	                    		 				map.entities.remove(LA3);
-		 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou2.png'};
-		 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
-		 	                    		 				add2(zhou3,pushpin3,LA3);
-		 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
-		 	       		 	                  	        map.entities.push(pushpin3);
-			 	                    		 			break;
-			 	                    		 		}
-		 	                    		 		}
-	 	                    		 		}
-	 	                    		 	 // 国家
-	 	                    		 		else{
-	 	                    		 			for(var n=0;n<lenNation;n++){
-			 	   		 	            	        arr3=itemsNation2[n].gps.split(",");
-			 	   		 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
-			 	   		 	            	        var nation3=itemsNation2[n].project_nation;
-			 	   		 	            	        total2=String(itemsNation1[n].nation);
-			 	                    		 			if(nation==nation3){
-			 	                    		 				map.entities.remove(LA3);
-			 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation2.png'};
-			 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
-			 	                    		 				add2(nation3,pushpin3,LA3);
-			 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
-			 	       		 	                  	        map.entities.push(pushpin3);
-				 	                    		 			break;
-				 	                    		 		}
-			 	                    		 		}
-	 	                    		 		}
-	 	                		 		},
-	 	                		 		error:function(){
-	 	                		 			//alert("addDefaultPushpin error")
-	 	                		 		}
-	 	                	        });	
+ 	                    		 		}
+                 		 		}
 	 	             		})
-	 	             		 //注册鼠标离开事件
-	 	             		$(document).on("mouseleave","#left >.div_node",function(){
+	 	             		//注册鼠标离开事件
+	 	             		/*$(document).on("mouseleave","#left >.div_node",function(){
 	 	             			$(this).css("background-color","white");
 	 	             			var href=$(this).children().first().next().attr("href");
 	 	             			var arr=new Array();
@@ -1126,7 +1109,213 @@
 	 	                		 			//alert("addDefaultPushpin error")
 	 	                		 		}
 	 	                	        });	
-	 	             		})
+	 	             		})*/
+		 	               /*$(document).on("mouseenter","#left >.div_node",function(){
+	 	             			$(this).css("background-color","rgb(223,223,223)");
+	 	             			var href=$(this).children().first().next().attr("href");
+	 	             			var arr=new Array();
+	 	             			arr = href.split("=");
+	 	             			var proNum=arr[1];
+	 	             			//alert(proNum);
+	 	             			$.ajax({
+	 	                		 	    type: "POST",
+	 	                		 		dateType: "json",
+	 	                		 		data:{"proNum":proNum}, 		
+	 	                		 		url: "/BingMap/FileterProNum", 
+	 	                		 		success:function(data){
+	 	                    		 		data=$.parseJSON(data);
+	 	                    		 		var items=data.List;
+	 	                    		 		var area=items[0].project_area;
+	 	                    		 		var city=items[0].project_city;
+	 	                    		 		var zhou=items[0].project_zhou;
+	 	                    		 		var nation=items[0].project_nation;
+	 	                    		 		var arr3=new Array();
+	 	                    		 		var LA3;
+	 	                    		 		var total2;
+	 	                    		 		var pushpinOptions3;
+	 	                    		 		var pushpin3;
+	 	                    		 		//区域
+	 	                    		 		if(lastZoomLevel>8){
+	 	                    		 		for(var a=0;a<lenArea;a++){
+	 	   		 	            	        arr3=itemsArea2[a].gps.split(",");
+	 	   		 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+	 	   		 	            	        var area3=itemsArea2[a].project_area;
+	 	   		 	            	        total2=String(itemsArea1[a].area);
+	 	                    		 			if(area==area3){
+	 	                    		 				map.entities.remove(LA3);
+	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea2.png'};
+	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
+	 	                    		 				add2(area3,pushpin3,LA3);
+	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
+	 	       		 	                  	        map.entities.push(pushpin3);
+		 	                    		 			break;
+		 	                    		 		}
+	 	                    		 		}	 	                    		 		
+	 	                    		 		}
+	 	                    		 		//城市
+	 	                    		 		else if(lastZoomLevel>6){
+	 	                    		 			for(var c=0;c<lenCity;c++){
+			 	   		 	            	        arr3=itemsCity2[c].gps.split(",");
+			 	   		 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+			 	   		 	            	        var city3=itemsCity2[c].project_city;
+			 	   		 	            	        total2=String(itemsCity1[c].city);
+			 	                    		 			if(city==city3){
+			 	                    		 				map.entities.remove(LA3);
+			 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity2.png'};
+			 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
+			 	                    		 				add2(city3,pushpin3,LA3);
+			 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
+			 	       		 	                  	        map.entities.push(pushpin3);
+				 	                    		 			break;
+				 	                    		 		}
+			 	                    		 		}	
+	 	                    		 		}
+	 	                    		 	//州
+	 	                    		 		else if(lastZoomLevel>4){
+	 	                    		 			for(var z=0;z<lenZhou;z++){
+		 	   		 	            	            arr3=itemsZhou2[z].gps.split(",");
+		 	   		 	            	            LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+		 	   		 	            	            var zhou3=itemsZhou2[z].project_zhou;
+		 	   		 	            	            total2=String(itemsZhou1[z].zhou);
+		 	                    		 			if(zhou==zhou3){
+		 	                    		 				map.entities.remove(LA3);
+		 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou2.png'};
+		 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
+		 	                    		 				add2(zhou3,pushpin3,LA3);
+		 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
+		 	       		 	                  	        map.entities.push(pushpin3);
+			 	                    		 			break;
+			 	                    		 		}
+		 	                    		 		}
+	 	                    		 		}
+	 	                    		 	 // 国家
+	 	                    		 		else{
+	 	                    		 			for(var n=0;n<lenNation;n++){
+			 	   		 	            	        arr3=itemsNation2[n].gps.split(",");
+			 	   		 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+			 	   		 	            	        var nation3=itemsNation2[n].project_nation;
+			 	   		 	            	        var pronum=itemsNation2[n].project_num;
+			 	   		 	            	        total2=String(itemsNation1[n].nation);
+			 	                    		 			if(nation==nation3){
+			 	                    		 				map.entities.remove(LA3);
+			 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation2.png'};
+			 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
+			 	                    		 				add2(nation3,pushpin3,LA3);
+			 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
+			 	       		 	                  	        map.entities.push(pushpin3);
+				 	                    		 			break;
+				 	                    		 		}
+			 	                    		 		}
+	 	                    		 		}
+	 	                		 		},
+	 	                		 		error:function(){
+	 	                		 			//alert("addDefaultPushpin error")
+	 	                		 		}
+	 	                	        });	
+	 	             		})*/
+	 	             		 //注册鼠标离开事件
+	 	             		/*$(document).on("mouseleave","#left >.div_node",function(){
+	 	             			$(this).css("background-color","white");
+	 	             			var href=$(this).children().first().next().attr("href");
+	 	             			var arr=new Array();
+	 	             			arr = href.split("=");
+	 	             			var proNum=arr[1];
+	 	             			//alert(proNum);
+	 	             			$.ajax({
+	 	                		 	    type: "POST",
+	 	                		 		dateType: "json",
+	 	                		 		data:{"proNum":proNum}, 		
+	 	                		 		url: "/BingMap/FileterProNum", 
+	 	                		 		success:function(data){
+	 	                    		 		data=$.parseJSON(data);
+	 	                    		 		var items=data.List;
+	 	                    		 		var area=items[0].project_area;
+	 	                    		 		var city=items[0].project_city;
+	 	                    		 		var zhou=items[0].project_zhou;
+	 	                    		 		var nation=items[0].project_nation;
+	 	                    		 		var arr3=new Array();
+	 	                    		 		var LA3;
+	 	                    		 		var total2;
+	 	                    		 		var pushpinOptions3;
+	 	                    		 		var pushpin3;
+	 	                    		 		//区域
+	 	                    		 		if(lastZoomLevel>8){
+	 	                    		 		for(var a=0;a<lenArea;a++){
+	 	   		 	            	        arr3=itemsArea2[a].gps.split(",");
+	 	   		 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+	 	   		 	            	        var area3=itemsArea2[a].project_area;
+	 	   		 	            	        total2=String(itemsArea1[a].area);
+	 	                    		 			if(area==area3){
+	 	                    		 				map.entities.remove(LA3);
+	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea.png'};
+	 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
+	 	                    		 				add2(area3,pushpin3,LA3);
+	 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
+	 	       		 	                  	        map.entities.push(pushpin3);
+		 	                    		 			break;
+		 	                    		 		}
+	 	                    		 		}	 	                    		 		
+	 	                    		 		}
+	 	                    		 		//城市
+	 	                    		 		else if(lastZoomLevel>6){
+	 	                    		 			for(var c=0;c<lenCity;c++){
+			 	   		 	            	        arr3=itemsCity2[c].gps.split(",");
+			 	   		 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+			 	   		 	            	        var city3=itemsCity2[c].project_city;
+			 	   		 	            	        total2=String(itemsCity1[c].city);
+			 	                    		 			if(city==city3){
+			 	                    		 				map.entities.remove(LA3);
+			 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity.png'};
+			 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
+			 	                    		 				add2(city3,pushpin3,LA3);
+			 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
+			 	       		 	                  	        map.entities.push(pushpin3);
+				 	                    		 			break;
+				 	                    		 		}
+			 	                    		 		}	
+	 	                    		 		}
+	 	                    		 	//州
+	 	                    		 		else if(lastZoomLevel>4){
+	 	                    		 			for(var z=0;z<lenZhou;z++){
+		 	   		 	            	            arr3=itemsZhou2[z].gps.split(",");
+		 	   		 	            	            LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+		 	   		 	            	            var zhou3=itemsZhou2[z].project_zhou;
+		 	   		 	            	            total2=String(itemsZhou1[z].zhou);
+		 	                    		 			if(zhou==zhou3){
+		 	                    		 				map.entities.remove(LA3);
+		 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou.png'};
+		 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
+		 	                    		 				add2(zhou3,pushpin3,LA3);
+		 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
+		 	       		 	                  	        map.entities.push(pushpin3);
+			 	                    		 			break;
+			 	                    		 		}
+		 	                    		 		}
+	 	                    		 		}
+	 	                    		 	 // 国家
+	 	                    		 		else{
+	 	                    		 			for(var n=0;n<lenNation;n++){
+			 	   		 	            	        arr3=itemsNation2[n].gps.split(",");
+			 	   		 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+			 	   		 	            	        var nation3=itemsNation2[n].project_nation;
+			 	   		 	            	        total2=String(itemsNation1[n].nation);
+			 	                    		 			if(nation==nation3){
+			 	                    		 				map.entities.remove(LA3);
+			 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation.png'};
+			 	                    		 				pushpin3= new Microsoft.Maps.Pushpin(LA3, pushpinOptions3);
+			 	                    		 				add2(nation3,pushpin3,LA3);
+			 	       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
+			 	       		 	                  	        map.entities.push(pushpin3);
+				 	                    		 			break;
+				 	                    		 		}
+			 	                    		 		}
+	 	                    		 		}
+	 	                		 		},
+	 	                		 		error:function(){
+	 	                		 			//alert("addDefaultPushpin error")
+	 	                		 		}
+	 	                	        });	
+	 	             		})*/
 		 	               if(lastZoomLevel>10){
 		 	            	  map.entities.clear();
 		 	            	  for(var i=0;i<items.length;i++){
@@ -1213,6 +1402,9 @@
 		 	            	       /* var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin2.png' style='width:100px;'/></div>"}; */
 		 	            	        var pushpinOptions2={text:total,width: 42, height: 42,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation.png'};
 		 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
+		 	            	        var pushpinOptions22={text:nation2,visible:false};
+		 	            	        var pushpin22= new Microsoft.Maps.Pushpin(LA2, pushpinOptions22);
+		 	            	        alert(pushpin22.getText());
 		 	            	        add2(nation2,pushpin2,LA2);
 		 	            	        add3(lastZoomLevel,pushpin2,LA2);
 		 	                  	    map.entities.push(pushpin2);		 	                  	 

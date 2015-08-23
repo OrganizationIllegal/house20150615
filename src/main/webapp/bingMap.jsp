@@ -567,6 +567,10 @@ body{
 
 			 <c:forEach var="item" items="${bingMapList}"> 
 				<div class="c-fix f-l div_node">
+				    <span>${item.project_nation}</span>
+				    <span>${item.project_zhou}</span>
+				    <span>${item.project_city}</span>
+				    <span>${item.project_area}</span>
 					<span class="c-fix f-l f-yahei s-12 node_address" title="${item.project_address}">${item.project_address_short}</span>
 					<a href="/Index?proNum=${item.project_num}" target="blank">
 					<img class="c-fix f-l node_img" src="<%=application.getInitParameter("imagedir")%>/${item.project_img}" style="width:160px;height:100px" ></img>
