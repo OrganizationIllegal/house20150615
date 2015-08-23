@@ -369,12 +369,12 @@ body{
                 html+="<span style='display:none;'>"+items[j].project_area+"</span>";
                 html+="<span class='c-fix f-l f-yahei s-12 node_address' title='"+items[j].project_address+"'>"+items[j].project_address_short+"</span>";
                 
-               	html+="<a href='/Index?proNum="+items[j].project_num+"'"+" target='_parent'>";
+               	html+="<a href='/Index?proNum="+items[j].project_num+"'"+" target='_blank'>";
            		
                	html+="<img class='c-fix f-l node_img'  src='"+imgUrl+"' style='width:160px;height:100px' ></img></a>";
                	html+="<div class='f-l node_right' style='width:167px'>";
 
-               	html+="<span class='c-fix f-l f-arial s-12 fw node_name' title='"+items[j].project_name+"'>"+items[j].project_name_short+"</span>";
+               	html+="<a class='c-fix f-l f-arial s-12 fw node_name' href='/Index?proNum="+items[j].project_num+"'"+" title='"+items[j].project_name+"' target='_blank'>"+items[j].project_name_short+"</a>";
 
                	html+="<span class='c-fix f-l f-yahei s-12 node_title' style='margin-top:1px'>最多</span>";
                	html+="<span class='f-r f-yahei s-12 node_val' style='margin-top:1px'>$"+items[j].project_high_price+"</span>";
@@ -603,7 +603,7 @@ body{
 					<img class="c-fix f-l node_img" src="<%=application.getInitParameter("imagedir")%>/${item.project_img}" style="width:160px;height:100px" ></img>
 					</a>
 					<div class="f-l node_right" style="width:167px">
-						<span class="c-fix f-l f-arial s-12 fw node_name" title="${item.project_name_full}">${item.project_name}</span>
+						<a class="c-fix f-l f-arial s-12 fw node_name" title="${item.project_name_full}" href="/Index?proNum=${item.project_num}" target="blank">${item.project_name}</a>
 						<span class="c-fix f-l f-yahei s-12 node_title" style="margin-top:1px">最多</span>
 						<span class="f-r f-yahei s-12 node_val" style="margin-top:1px">$${item.project_high_price}</span>
 						<span class="c-fix f-l f-yahei s-12 node_title">最少</span>
@@ -850,5 +850,5 @@ function checkForm(){
       $(selector).chosen(config[selector]);
     }
    
-    alert(liandong1);
+   // alert(liandong1);
   </script>

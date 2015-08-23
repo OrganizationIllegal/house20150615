@@ -63,6 +63,7 @@ function addad1(){
 	 			}else if(data.flag !=true){
 	 				alert("更新失败！");
 	 			}
+	 			window.close();
 	 		},
 	 		error:function(){
 	 			alert("error");
