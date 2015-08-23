@@ -153,7 +153,7 @@ public class BingMapController {
 	        	String  project_high_price=s.getMaxPrice();
 	        	String mianji=s.getMianji();
 	        	String return_money=s.getFanxian();
-	        	String zhou = s.getProject_zhou();
+	        	
 	        	
 	        	String project_price_int_qi=s.getProject_price_int_qi_str();
 	        	/*List<String> project_key=s.getProject_key();*/
@@ -173,6 +173,11 @@ public class BingMapController {
 	        	String daxue=s.getDaxue();
 	        	String xianfang=s.getXianfang();
 	        	String traffic=s.getTraffic();
+	        	//国家  城市   区域   州
+	        	String project_nation=s.getProject_nation();
+	        	String project_city=s.getProject_city();
+	        	String project_area=s.getProject_area();
+	        	String zhou = s.getProject_zhou();
 	        	
 	        	
 	        	bingMapVo.setProject_id(id);
@@ -196,7 +201,12 @@ public class BingMapController {
 	        	bingMapVo.setProject_name_full(project_name_full);
 	        	bingMapVo.setBijiao(bijiao);
 	        	bingMapVo.setGps(gps);
+	        	//国家  城市   区域   州
+	        	bingMapVo.setProject_nation(project_nation);
+	        	bingMapVo.setProject_city(project_city);
+	        	bingMapVo.setProject_area(project_area);
 	        	bingMapVo.setZhou(zhou);
+	        	
 	        
 	        	bingMapList.add(bingMapVo);
 	        }
@@ -245,6 +255,11 @@ public class BingMapController {
 	        	String daxue=s.getDaxue();
 	        	String xianfang=s.getXianfang();
 	        	String traffic=s.getTraffic();
+	        	//国家  城市   区域   州
+	        	String project_nation=s.getProject_nation();
+	        	String project_city=s.getProject_city();
+	        	String project_area=s.getProject_area();
+	        	String zhou = s.getProject_zhou();
 	        	
 	        	
 	        	bingMapVo.setProject_id(id);
@@ -280,6 +295,11 @@ public class BingMapController {
 	        	bingMapVo.setDaxue(daxue);
 	        	bingMapVo.setXianfang(xianfang);
 	        	bingMapVo.setTraffic(traffic);*/
+	        	//国家  城市   区域   州
+	        	bingMapVo.setProject_nation(project_nation);
+	        	bingMapVo.setProject_city(project_city);
+	        	bingMapVo.setProject_area(project_area);
+	        	bingMapVo.setZhou(zhou);
 	        	bingMapList2.add(bingMapVo);
 	        }
 			req.setAttribute("bingMapList", bingMapList2);
@@ -347,6 +367,11 @@ public class BingMapController {
 	        	String daxue=s.getDaxue();
 	        	String xianfang=s.getXianfang();
 	        	String traffic=s.getTraffic();
+	        	//国家  城市   区域   州
+	        	String project_nation=s.getProject_nation();
+	        	String project_city=s.getProject_city();
+	        	String project_area=s.getProject_area();
+	        	String zhou = s.getProject_zhou();
 	        	
 	        	
 	        	bingMapVo.setProject_id(id);
@@ -370,6 +395,12 @@ public class BingMapController {
 	        	bingMapVo.setProject_name_full(project_name_full);
 	        	bingMapVo.setBijiao(bijiao);
 	        	bingMapVo.setGps(gps);
+	        	//国家  城市   区域   州
+	        	bingMapVo.setProject_nation(project_nation);
+	        	bingMapVo.setProject_city(project_city);
+	        	bingMapVo.setProject_area(project_area);
+	        	bingMapVo.setZhou(zhou);
+	        	
 	        	bingMapList3.add(bingMapVo);
 	        }
 			req.setAttribute("bingMapList", bingMapList3);
