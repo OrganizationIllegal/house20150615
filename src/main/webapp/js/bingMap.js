@@ -1,14 +1,20 @@
  var map = null;
  var defaultInfobox;
+ var time = 0;
  var defaltCenter=new Microsoft.Maps.Location( -25.585241, 134.504120);  
-
+ var gongyu = 0;
+ var bieshu = 0;
+ var lianpai = 0;
       /*加载地图*/
       function getMap()
       {
     	
+    	
        //生成地图
        map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
-      if(liandong1 == 1){
+       time = 1;
+       if(liandong1 == 1){
+    	   
     	  $.ajax({
 		 	    type: "GET",
 		 		dateType: "json",
@@ -16,6 +22,7 @@
 		 		success:function(data){
 		        //alert(data)
 		 		data=$.parseJSON(data);
+		 		time = 0;
 		 		    var items=data.List;
 		 		    var itemsNation1=data.ListNation1;
 		 		    var itemsNation2=data.ListNation2;
@@ -54,26 +61,31 @@
 	                     var yx2=youxia.longitude;
 		                 //alert('Map zuoshang: ' +  zuoshang);
 		                 //alert('Map youxia: ' +  youxia);
-		                 $.ajax({
-		     		 	    type: "POST",
-		     		 		dateType: "json",
-		     		 		url: "/BingMap1/filterByGPS1",	
-		     		 		data:{gpsLeftX:zs1,gpsLeftY:zs2,gpsRightX:yx1,gpsRightY:yx2},
-		     		 		success:function(data){
-		     		       
-		     		 		data=$.parseJSON(data);
-		     		 		
-		     		 		//alert(data.List)
-		     		 		 var html = getHtml1(data.List);
-		     		 		
-		     		 		 $("#left").html(html);  
-		     		 		  
-		     		 	    },
-		     		 
-		     		 		error:function(){
-		     		 			//alert("addDefaultPushpin error")
-		     		 		}
-		     	        });
+	                     time++;
+	              	   //alert(time+"time")
+	                     if(time!=1){
+	                    	 $.ajax({
+	 		     		 	    type: "POST",
+	 		     		 		dateType: "json",
+	 		     		 		url: "/BingMap1/filterByGPS1",	
+	 		     		 		data:{gpsLeftX:zs1,gpsLeftY:zs2,gpsRightX:yx1,gpsRightY:yx2},
+	 		     		 		success:function(data){
+	 		     		       
+	 		     		 		data=$.parseJSON(data);
+	 		     		 		
+	 		     		 		//alert(data.List)
+	 		     		 		 var html = getHtml1(data.List);
+	 		     		 		
+	 		     		 		 $("#left").html(html);  
+	 		     		 		  
+	 		     		 	    },
+	 		     		 
+	 		     		 		error:function(){
+	 		     		 			//alert("addDefaultPushpin error")
+	 		     		 		}
+	 		     	        });
+	                     }
+		                 
 		                 if(lastZoomLevel != map.getZoom()){
 			 	               lastZoomLevel = map.getZoom();
 			 	              //注册鼠标上移事件
@@ -428,27 +440,29 @@
     		                 var zs2=zuoshang.longitude;
     		                 var yx1=youxia.latitude;
     	                     var yx2=youxia.longitude;
-    		                 //alert('Map zuoshang: ' +  zuoshang);
-    		                 //alert('Map youxia: ' +  youxia);
-    		                 $.ajax({
-    		     		 	    type: "POST",
-    		     		 		dateType: "json",
-    		     		 		url: "/BingMap1/filterByGPS1",	
-    		     		 		data:{gpsLeftX:zs1,gpsLeftY:zs2,gpsRightX:yx1,gpsRightY:yx2},
-    		     		 		success:function(data){
-    		     		       
-    		     		 		data=$.parseJSON(data);
-    		     		 		
-    		     		 		 var html = getHtml1(data.List);
-    		     		 		 
-    		     		 		 $("#left").html(html);  
-    		     		 		  
-    		     		 	    },
-    		     		 
-    		     		 		error:function(){
-    		     		 			//alert("addDefaultPushpin error")
-    		     		 		}
-    		     	        });
+    	                     time++;
+    		                 if(time!=1){
+    		                	 $.ajax({
+    	    		     		 	    type: "POST",
+    	    		     		 		dateType: "json",
+    	    		     		 		url: "/BingMap1/filterByGPS1",	
+    	    		     		 		data:{gpsLeftX:zs1,gpsLeftY:zs2,gpsRightX:yx1,gpsRightY:yx2},
+    	    		     		 		success:function(data){
+    	    		     		       
+    	    		     		 		data=$.parseJSON(data);
+    	    		     		 		
+    	    		     		 		 var html = getHtml1(data.List);
+    	    		     		 		 
+    	    		     		 		 $("#left").html(html);  
+    	    		     		 		  
+    	    		     		 	    },
+    	    		     		 
+    	    		     		 		error:function(){
+    	    		     		 			//alert("addDefaultPushpin error")
+    	    		     		 		}
+    	    		     	        });
+    		                 }
+    		                 
     		                 if(lastZoomLevel != map.getZoom()){
     			 	               lastZoomLevel = map.getZoom();
     			 	              //注册鼠标上移事件
@@ -881,26 +895,30 @@
 		                 var zs2=zuoshang.longitude;
 		                 var yx1=youxia.latitude;
 	                     var yx2=youxia.longitude;
-		                 $.ajax({
-		     		 	    type: "POST",
-		     		 		dateType: "json",
-		     		 		url: "/BingMap1/filterByGPS1",	
-		     		 		data:{gpsLeftX:zs1,gpsLeftY:zs2,gpsRightX:yx1,gpsRightY:yx2},
-		     		 		success:function(data){
-		     		       
-		     		 		data=$.parseJSON(data);
-		     		 		
-		     		 		
-		     		 		 var html = getHtml1(data.List);
-		     		 		 
-		     		 		 $("#left").html(html);  
-		     		 		  
-		     		 	    },
-		     		 
-		     		 		error:function(){
-		     		 			//alert("addDefaultPushpin error")
-		     		 		}
-		     	        });
+	                     gongyu++;
+	                     if(gongyu!=1){
+	                    	 $.ajax({
+	 		     		 	    type: "POST",
+	 		     		 		dateType: "json",
+	 		     		 		url: "/BingMap1/filterByGPS1",	
+	 		     		 		data:{gpsLeftX:zs1,gpsLeftY:zs2,gpsRightX:yx1,gpsRightY:yx2},
+	 		     		 		success:function(data){
+	 		     		       
+	 		     		 		data=$.parseJSON(data);
+	 		     		 		
+	 		     		 		
+	 		     		 		 var html = getHtml1(data.List);
+	 		     		 		 
+	 		     		 		 $("#left").html(html);  
+	 		     		 		  
+	 		     		 	    },
+	 		     		 
+	 		     		 		error:function(){
+	 		     		 			//alert("addDefaultPushpin error")
+	 		     		 		}
+	 		     	        });
+	                     }
+		                 
 		 	        	if(lastZoomLevel != map.getZoom()){
 		 	               lastZoomLevel = map.getZoom();
 		 	               //注册鼠标上移事件
@@ -1744,23 +1762,27 @@
 	                 var zs2=zuoshang.longitude;
 	                 var yx1=youxia.latitude;
                     var yx2=youxia.longitude;
-	                 $.ajax({
-	     		 	    type: "POST",
-	     		 		dateType: "json",
-	     		 		url: "/BingMap1/filterByGPS1",	
-	     		 		data:{gpsLeftX:zs1,gpsLeftY:zs2,gpsRightX:yx1,gpsRightY:yx2},
-	     		 		success:function(data){
-	     		       
-	     		 		data=$.parseJSON(data);
-	     		 		 var html = getHtml1(data.List);
-	     		 		 $("#left").html(html);  
-	     		 		  
-	     		 	    },
-	     		 
-	     		 		error:function(){
-	     		 			//alert("addDefaultPushpin error")
-	     		 		}
-	     	        });
+                    bieshu++;
+                    if(bieshu!=1){
+                    	$.ajax({
+    	     		 	    type: "POST",
+    	     		 		dateType: "json",
+    	     		 		url: "/BingMap1/filterByGPS1",	
+    	     		 		data:{gpsLeftX:zs1,gpsLeftY:zs2,gpsRightX:yx1,gpsRightY:yx2},
+    	     		 		success:function(data){
+    	     		       
+    	     		 		data=$.parseJSON(data);
+    	     		 		 var html = getHtml1(data.List);
+    	     		 		 $("#left").html(html);  
+    	     		 		  
+    	     		 	    },
+    	     		 
+    	     		 		error:function(){
+    	     		 			//alert("addDefaultPushpin error")
+    	     		 		}
+    	     	        });
+                    }
+	                 
 	                 if(lastZoomLevel != map.getZoom()){
 		 	               lastZoomLevel = map.getZoom();
 		 	              //注册鼠标上移事件
@@ -2122,26 +2144,30 @@
 			                 var zs2=zuoshang.longitude;
 			                 var yx1=youxia.latitude;
 		                     var yx2=youxia.longitude;
-			                 $.ajax({
-			     		 	    type: "POST",
-			     		 		dateType: "json",
-			     		 		url: "/BingMap1/filterByGPS1",	
-			     		 		data:{gpsLeftX:zs1,gpsLeftY:zs2,gpsRightX:yx1,gpsRightY:yx2},
-			     		 		success:function(data){
-			     		       
-			     		 		data=$.parseJSON(data);
-			     		 		
-			     		 		
-			     		 		 var html = getHtml1(data.List);
-			     		 		 
-			     		 		 $("#left").html(html);  
-			     		 		  
-			     		 	    },
-			     		 
-			     		 		error:function(){
-			     		 			//alert("addDefaultPushpin error")
-			     		 		}
-			     	        });
+		                     lianpai++;
+		                     if(lianpai!=1){
+		                    	 $.ajax({
+					     		 	    type: "POST",
+					     		 		dateType: "json",
+					     		 		url: "/BingMap1/filterByGPS1",	
+					     		 		data:{gpsLeftX:zs1,gpsLeftY:zs2,gpsRightX:yx1,gpsRightY:yx2},
+					     		 		success:function(data){
+					     		       
+					     		 		data=$.parseJSON(data);
+					     		 		
+					     		 		
+					     		 		 var html = getHtml1(data.List);
+					     		 		 
+					     		 		 $("#left").html(html);  
+					     		 		  
+					     		 	    },
+					     		 
+					     		 		error:function(){
+					     		 			//alert("addDefaultPushpin error")
+					     		 		}
+					     	        });
+		                     }
+			                 
 			                 if(lastZoomLevel != map.getZoom()){
 				 	               lastZoomLevel = map.getZoom();
 				 	              //注册鼠标上移事件
