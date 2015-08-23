@@ -16,7 +16,7 @@ body{margin:0 auto;}
 .map_bkg{display:block;width:1190px;min-height:20px;-padding-top:20px;-padding-bottom:20px;position:relative;margin:0 auto;}
 .div1{display:block;height:40px;width:350px;/* background-image:url(../res/images/bkg.png) */}
 .sel_type{display:block;height:30px;width:108px;margin-top:5px;margin-left:2px;}
-.sel_price{display:block;height:40px;width:114px;padding-left:10px;padding-right:10px;color:#000;line-height:40px;}
+.sel_price{display:block;height:30px;width:114px;padding-left:10px;color:#000;font-size: 13px;}
 
 .div2{display:block;height:40px;-width:840px;background-color:rgb(199,213,226)}
 .inp{display:block;height:30px;padding:0px;border:0px solid #000;margin-top:5px;padding-left:5px;margin-left:25px;width:260px;}
@@ -30,7 +30,7 @@ body{margin:0 auto;}
 .node_address{display:block;width:330px;height:5px;margin-left:9px;margin-top:10px;color:#000;}
 .node_img{display:block;width:110px;margin-left:9px;margin-top:18px;}
 .node_right{display:block;width:200px;height:110px;border-top:1px solid rgb(227,227,227);margin-left:10px;margin-top:9px;width:180px;}
-.node_name{display:block;width:200px;color:#000;height:20px;line-height:20px;}
+.node_name{display:block;color:#000;height:20px;line-height:20px;width:165px;overflow: hidden;word-break: break-all;}
 .node_title{display:block;color:#000;height:18px;line-height:18px;}
 .node_val{display:block;color:#000;height:18px;line-height:18px;margin-right:40px;text-align:right;}
 
