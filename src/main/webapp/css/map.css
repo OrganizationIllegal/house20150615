@@ -30,7 +30,7 @@ body{margin:0 auto;}
 .node_address{display:block;width:330px;height:5px;margin-left:9px;margin-top:10px;color:#000;}
 .node_img{display:block;width:110px;margin-left:9px;margin-top:18px;}
 .node_right{display:block;width:200px;height:110px;border-top:1px solid rgb(227,227,227);margin-left:10px;margin-top:9px;width:180px;}
-.node_name{display:block;width:200px;color:#000;height:20px;line-height:20px;}
+.node_name{display:block;color:#000;height:20px;line-height:20px;width:165px;overflow: hidden;word-break: break-all;}
 .node_title{display:block;color:#000;height:18px;line-height:18px;}
 .node_val{display:block;color:#000;height:18px;line-height:18px;margin-right:40px;text-align:right;}
 
