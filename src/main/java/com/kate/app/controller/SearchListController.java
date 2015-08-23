@@ -40,7 +40,10 @@ public class SearchListController {
 	private HouseProjectDao houseProjectDao;
 	public static List<SearchList> searchList_final=new ArrayList<SearchList>();
 	public static String flagSearch = "";
-/*	public static String flag="1";*/
+	public static String nation=null;
+	public static String city=null;
+	public static String area=null;
+
 	
 	
 	/**
@@ -54,7 +57,7 @@ public class SearchListController {
 		//List<SearchList> searchList=searchListDao.listSearchList().subList(0, 5);
 		//req.setAttribute("searchList",searchList);
 		//flag==1表示显示全部的列表
-	     String flag=req.getParameter("flag");
+	    String flag=req.getParameter("flag");
 		if("1".equals(flag)){
 			BingMapController.listResult=new ArrayList<HouseProject>();
 			searchList_final=null;
@@ -92,6 +95,10 @@ public class SearchListController {
 		String nation=req.getParameter("nation");
 		String city=req.getParameter("city");
 		String area=req.getParameter("area");
+		SearchListController.nation=nation;
+		SearchListController.area=area;
+		SearchListController.city=city;
+		
 		
 		String zongjiatemp=req.getParameter("zongjia");
 		String danjiatemp=req.getParameter("danjia");

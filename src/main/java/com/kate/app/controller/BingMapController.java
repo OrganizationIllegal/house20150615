@@ -116,7 +116,10 @@ public class BingMapController {
 	//右侧地图显示
 	@RequestMapping({"/BingMap"})    //首页加载
 	public String listBingMap(HttpServletRequest req,HttpServletResponse resp){
-
+		String nation=SearchListController.nation;
+		String city=SearchListController.city;
+		String area=SearchListController.area;
+     
 		List<SearchList> searchList=SearchListController.searchList_final;
 		List<BingMapVo> bingMapList=new ArrayList<BingMapVo>();
 		List<BingMapVo> bingMapList2=new ArrayList<BingMapVo>();
@@ -431,6 +434,10 @@ public class BingMapController {
 		req.setAttribute("cityNameSet", cityNameSet);
 		List<String> addressNameSet=bingMapDao.getAddressName();  //得到地址名称
 		req.setAttribute("addressNameSet", addressNameSet);
+		//返回国家  城市   区域
+		req.setAttribute("nation", nation);
+		req.setAttribute("city", city);
+		req.setAttribute("area", area);
 		return "/bingMap.jsp";
 	}
 	
@@ -952,8 +959,8 @@ public class BingMapController {
 		List<SearchList> searchList=SearchListController.searchList_final;
 		if(searchList!=null){
         for(SearchList s:searchList){
-        	HouseProject houseProject=new HouseProject();
         	int id=s.getId();
+        	HouseProject houseProject=new HouseProject();
         	String project_img=s.getProject_img();
         	String project_num=s.getProject_num();
         	String project_address=s.getProject_address();
@@ -988,6 +995,11 @@ public class BingMapController {
         	String daxue=s.getDaxue();
         	String xianfang=s.getXianfang();
         	String traffic=s.getTraffic();
+        	//国家  城市   区域   州
+        	String project_nation=s.getProject_nation();
+        	String project_city=s.getProject_city();
+        	String project_area=s.getProject_area();
+        	String zhou1 = s.getProject_zhou();
         	
         	
         	houseProject.setId(id);
@@ -1024,6 +1036,12 @@ public class BingMapController {
         	houseProject.setDaxue(daxue);
         	houseProject.setXianfang(xianfang);
         	houseProject.setTraffic(traffic);
+        	//国家  城市   区域   州
+        	houseProject.setProject_nation(project_nation);
+        	houseProject.setProject_city(project_city);
+        	houseProject.setProject_area(project_area);
+        	houseProject.setZhou(zhou1);
+        	houseProject.setProject_zhou(zhou1);
         	
         	houseProjectlist.add(houseProject);
         }

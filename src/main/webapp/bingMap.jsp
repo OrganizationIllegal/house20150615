@@ -480,11 +480,12 @@ body{
 
 				<select id="nation" name="nation" onchange="nation1(1)" class="f-l f-yahei s-14 cp sel_price" style="background:none;/* border:none; */font-family:微软雅黑;padding-left:25px;width: 114px;height: 40px;">
 
-					<option value="0">国家</option>
-					<c:forEach var="item" items="${nationList}" varStatus="stat">
+					 <option value="0">国家</option>
+					<%--   <option value="${nation }">${nation }</option> --%>
+					  <c:forEach var="item" items="${nationList}" varStatus="stat">
 						<option value="${item.nation_name}">${item.nation_name}</option>
-					</c:forEach>
-					
+					 </c:forEach>
+				
 				</select>
 				<select id="city" name="city" onchange="nation1(2)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" style="background:none;border:none;font-family:微软雅黑;padding-left:25px">
 
