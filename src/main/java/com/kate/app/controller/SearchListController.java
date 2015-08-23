@@ -66,18 +66,20 @@ public class SearchListController {
 		List<String> nations=searchListDao.findAllNation();
 		req.setAttribute("nations", nations);
 		SearchController.Information = "List";
-		
-		String nation=BingMapController.nation;
-		String city=BingMapController.city;
-		String area=BingMapController.area;
-        req.setAttribute("nation", nation);
-		
-		List<String>cities=searchListDao.findCityByNation(nation);
-		req.setAttribute("cities", cities);
-		req.setAttribute("city", city);
-		List<String>areas=searchListDao.findAreaByCity(city);
-		req.setAttribute("areas", areas);
-		req.setAttribute("area", area);
+		if("0".equals(flag)){
+			String nation=BingMapController.nation;
+			String city=BingMapController.city;
+			String area=BingMapController.area;
+	        req.setAttribute("nation", nation);
+			
+			List<String>cities=searchListDao.findCityByNation(nation);
+			req.setAttribute("cities", cities);
+			req.setAttribute("city", city);
+			List<String>areas=searchListDao.findAreaByCity(city);
+			req.setAttribute("areas", areas);
+			req.setAttribute("area", area);
+			
+		}
 		
 		return "/searchList.jsp";
 	}
