@@ -635,6 +635,11 @@ public class BingMapDao extends BaseDao2 {
 		    	//获取项目关键字，根据项目编号查找项目关键字
 		    	List<String> project_key=findProjectKeyByNum(project_num);
 		    	coordinates.setProject_key(project_key);
+		    	//国家 州 区域 城市
+		    	coordinates.setProject_nation(rs.getString("project_nation"));
+		    	coordinates.setProject_city(rs.getString("project_city"));
+		    	coordinates.setProject_area(rs.getString("project_area"));
+		    	coordinates.setProject_zhou(rs.getString("project_zhou"));
 		    	
 		    	
 		    	coordinatesList.add(coordinates);
@@ -922,6 +927,11 @@ public class BingMapDao extends BaseDao2 {
 		    	List<String> project_key=findProjectKeyByNum(project_num);
 		    	coordinates.setProject_key(project_key);
 		    	
+		    	coordinates.setProject_nation(rs.getString("project_nation"));
+		    	coordinates.setProject_city(rs.getString("project_city"));
+		    	coordinates.setProject_area(rs.getString("project_area"));
+		    	coordinates.setProject_zhou(rs.getString("project_zhou"));
+		    	
 		    	
 		    	coordinatesList.add(coordinates);
 		    }
@@ -1032,7 +1042,10 @@ public class BingMapDao extends BaseDao2 {
 		    	//获取项目关键字，根据项目编号查找项目关键字
 		    	List<String> project_key=findProjectKeyByNum(project_num);
 		    	coordinates.setProject_key(project_key);
-		    	
+		    	coordinates.setProject_nation(rs.getString("project_nation"));
+		    	coordinates.setProject_city(rs.getString("project_city"));
+		    	coordinates.setProject_area(rs.getString("project_area"));
+		    	coordinates.setProject_zhou(rs.getString("project_zhou"));
 		    	
 		    	coordinatesList.add(coordinates);
 		    }
@@ -1235,7 +1248,10 @@ public class BingMapDao extends BaseDao2 {
 		    	//获取项目关键字，根据项目编号查找项目关键字
 		    	List<String> project_key=findProjectKeyByNum(project_num);
 		    	coordinates.setProject_key(project_key);
-		    	
+		    	coordinates.setProject_nation(rs.getString("project_nation"));
+		    	coordinates.setProject_city(rs.getString("project_city"));
+		    	coordinates.setProject_area(rs.getString("project_area"));
+		    	coordinates.setProject_zhou(rs.getString("project_zhou"));
 		    	coordinatesList.add(coordinates);
 		    }
 		} catch (Exception e) {
@@ -1290,6 +1306,10 @@ public class BingMapDao extends BaseDao2 {
 		    	coordinates.setProject_area(rs.getString("project_area"));
 		    	coordinates.setProject_price_int_qi(rs.getInt("project_price_int_qi"));
 		    	coordinates.setProject_type(rs.getString("project_type"));
+		    	coordinates.setProject_nation(rs.getString("project_nation"));
+		    	coordinates.setProject_city(rs.getString("project_city"));
+		    	coordinates.setProject_area(rs.getString("project_area"));
+		    	coordinates.setProject_zhou(rs.getString("project_zhou"));
 		    	coordinatesList.add(coordinates);
 		    }
 		} catch (Exception e) {
@@ -1927,6 +1947,10 @@ public class BingMapDao extends BaseDao2 {
 			    	//获取项目关键字，根据项目编号查找项目关键字
 			    	List<String> project_key=findProjectKeyByNum(project_num);
 			    	coordinates.setProject_key(project_key);
+			    	coordinates.setProject_nation(rs.getString("project_nation"));
+			    	coordinates.setProject_city(rs.getString("project_city"));
+			    	coordinates.setProject_area(rs.getString("project_area"));
+			    	coordinates.setProject_zhou(rs.getString("project_zhou"));
 			    	
 			    	coordinatesList.add(coordinates);
 			    }
@@ -2063,7 +2087,10 @@ public class BingMapDao extends BaseDao2 {
 			    	//获取项目关键字，根据项目编号查找项目关键字
 			    	List<String> project_key=findProjectKeyByNum(project_num);
 			    	coordinates.setProject_key(project_key);
-			    	
+			    	coordinates.setProject_nation(rs.getString("project_nation"));
+			    	coordinates.setProject_city(rs.getString("project_city"));
+			    	coordinates.setProject_area(rs.getString("project_area"));
+			    	coordinates.setProject_zhou(rs.getString("project_zhou"));
 			    	
 			    	coordinatesList.add(coordinates);
 			    }

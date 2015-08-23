@@ -9,6 +9,14 @@ public class HouseProject implements Comparable<HouseProject>{
 	private String project_img;
 	private String project_logo;
 	private String bijiao;
+	private String zhou;
+	
+	public String getZhou() {
+		return zhou;
+	}
+	public void setZhou(String zhou) {
+		this.zhou = zhou;
+	}
 	public String getBijiao() {
 		return bijiao;
 	}
