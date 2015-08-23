@@ -73,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="c-fix f-l list_left">
 			<form role="form"  method="get" id="filter">
 				<a class="c-fix f-l f-yahei s-14 btn cp hover" style="padding:4px 6px;border:2px solid rgb(245,161,27)" href="/BingMap">地图找房</a>
-				<a class="f-l f-yahei s-14 btn cp btn_sel hover" style="margin-left:1px;padding:4px 6px;" href="/searchList.jsp">列表找房</a>
+				<a class="f-l f-yahei s-14 btn cp btn_sel hover" style="margin-left:1px;padding:4px 6px;" href="#">列表找房</a>
 				<!-- <div class="c-fix f-l" style="color:#617c97;font-size:16px;font-weight:bold;margin-bottom:10px;margin-top:45px;font-family:微软雅黑;">进一步搜索</div> -->
 				<select onchange="func1()" style="width:100%;height:30px;line-height:30px;margin-top:30px;font-family:微软雅黑" id="nation" name="nation">
 					<option value="">国家</option>

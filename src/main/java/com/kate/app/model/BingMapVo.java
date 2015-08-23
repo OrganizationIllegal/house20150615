@@ -8,7 +8,36 @@ public class BingMapVo {
 	private String project_num;
 	private String project_address;
 	
+	//国家 城市   区域  州
+	private String  project_nation;
+	private String project_city;
+	private String project_area;
 	private String zhou;
+	
+	public String getProject_nation() {
+		return project_nation;
+	}
+
+	public void setProject_nation(String project_nation) {
+		this.project_nation = project_nation;
+	}
+
+	public String getProject_city() {
+		return project_city;
+	}
+
+	public void setProject_city(String project_city) {
+		this.project_city = project_city;
+	}
+
+	public String getProject_area() {
+		return project_area;
+	}
+
+	public void setProject_area(String project_area) {
+		this.project_area = project_area;
+	}
+
 	public String getZhou() {
 		return zhou;
 	}
