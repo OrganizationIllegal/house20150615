@@ -458,7 +458,7 @@
     		 		    var Zoom;
     		 		    if(lenItems!=0){
     		 		    	a=items[0].gps.split(",");
-    		 		    	Zoom=11;	 		    	
+    		 		    	Zoom=4;	 		    	
     		 		    }
     		 		    else{
     		 		    	a[0]="-25.585241";
