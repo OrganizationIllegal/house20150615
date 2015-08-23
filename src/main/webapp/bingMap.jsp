@@ -483,7 +483,7 @@ body{
 
 				
 
-				<select id="nation" name="nation" onchange="nation1(1)" class="f-l f-yahei s-14 cp sel_price" style="background:none;/* border:none; */font-family:微软雅黑;padding-left:25px;width: 114px;height: 40px;">
+				<select id="nation" name="nation" onchange="nation1(1)" class="f-l f-yahei s-14 cp sel_price" style="background:none;font-family:微软雅黑;width: 114px;height: 30px;margin-top: 11px;">
 
 					 <option value="0">国家</option>
 					
@@ -499,7 +499,7 @@ body{
 					 </c:forEach>
 				
 				</select>
-				<select id="city" name="city" onchange="nation1(2)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" style="background:none;border:none;font-family:微软雅黑;padding-left:25px">
+				<select id="city" name="city" onchange="nation1(2)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px;margin-top: 11px;" >
 
 					<option value="0">城市</option>
 					 <c:forEach var="item" items="${cities}" varStatus="stat">
@@ -513,7 +513,7 @@ body{
 					   </c:choose>
 					</c:forEach> 
 				</select>
-				<select id="area" name="area" onchange="nation1(3)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" style="background:none;border:none;font-family:微软雅黑;padding-left:25px">
+				<select id="area" name="area" onchange="nation1(3)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px;margin-bottom: 5px;margin-top: 11px;">
 
 					<option value="0">区域</option>
 					 <c:forEach var="item" items="${areas}" varStatus="stat">
@@ -590,7 +590,7 @@ body{
 
 			</div>
 
-			<div class="c-fix f-l div3" style="-height:840px;overflow-y:auto;overflow-x:hidden;margin-top:67px;" id="left">
+			<div class="c-fix f-l div3" style="-height:840px;overflow-y:auto;overflow-x:hidden;margin-top:46px;" id="left">
 
 			 <c:forEach var="item" items="${bingMapList}"> 
 				<div class="c-fix f-l div_node">
