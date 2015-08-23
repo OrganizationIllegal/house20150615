@@ -12,8 +12,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="css/base.css" />
 <link rel="stylesheet" type="text/css" href="css/main.css" />
 <link rel="stylesheet" type="text/css" href="css/areaLuru.css" />
-<script src="/js/jquery.min.js"></script>
-<script src="/bootstrap/js/bootstrap.min.js"></script>
+<!-- <script src="/js/jquery.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script> -->
 <link rel="stylesheet" href="css/chosen.css">
 <style type="text/css">
 body{

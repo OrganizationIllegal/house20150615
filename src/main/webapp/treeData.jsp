@@ -616,27 +616,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			       }
 	           else if(node.text=="联动国家录入"){
 			          /*  $("#showlist").load("Message.jsp"); */
-		        	   window.open("AddNation.jsp","联动国家录入");
+		        	   //window.open("AddNation.jsp","联动国家录入");
+	        	   	  $("#showlist").load("/AddNation.jsp");
 			       }
 	           else if(node.text=="联动国家列表"){
 			          /*  $("#showlist").load("Message.jsp"); */
-		        	   window.open("NationList.jsp","联动国家列表");
+		        	   //window.open("NationList.jsp","联动国家列表");
+		        	  $("#showlist").load("/NationList.jsp");
 			       }
 	           else if(node.text=="联动城市录入"){
 			          /*  $("#showlist").load("Message.jsp"); */
-		        	   window.open("/CityAdd","联动城市录入");
+		        	   //window.open("/CityAdd","联动城市录入");
+		        	   $("#showlist").load("/CityAdd");
 			       }
 	           else if(node.text=="联动城市列表"){
 			          /*  $("#showlist").load("Message.jsp"); */
-		        	   window.open("CityList.jsp","联动城市列表");
+		        	  //window.open("CityList.jsp","联动城市列表");
+		        	  $("#showlist").load("/CityList.jsp");
 			       }
 	           else if(node.text=="联动区域录入"){
 			          /*  $("#showlist").load("Message.jsp"); */
-		        	   window.open("/LiandongAreaAdd","联动区域录入");
+			          $("#showlist").load("/LiandongAreaAdd");
+		        	  // window.open("/LiandongAreaAdd","联动区域录入");
 			       }
 	           else if(node.text=="联动区域列表"){
 			          /*  $("#showlist").load("Message.jsp"); */
-		        	   window.open("LiandongAreaList.jsp","联动区域列表");
+			          $("#showlist").load("/LiandongAreaList.jsp");
+		        	  //window.open("LiandongAreaList.jsp","联动区域列表");
 			       }
 	          } 
 	        });

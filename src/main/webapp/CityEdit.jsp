@@ -83,6 +83,7 @@ function addad1(){
 	 			}else if(data.flag !=true){
 	 				alert("修改失败！");
 	 			}
+	 			window.close();
 	 		},
 	 		error:function(){
 	 			alert("error");
