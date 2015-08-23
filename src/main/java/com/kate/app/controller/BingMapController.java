@@ -63,30 +63,30 @@ public class BingMapController {
 	private BrokerInfoDao brokerInfoDao;
 
 	
-	private static List<SearchList> seachListResult1;    //搜索之后的结果
-	private static List<BingMapVo> BingMapVoList;    //搜索之后的结果
+	private List<SearchList> seachListResult1;    //搜索之后的结果
+	private  List<BingMapVo> BingMapVoList;    //搜索之后的结果
 	
-	private static List<HouseProject>  seachListResult;
-	private static List<HouseProject>  seachListResultShengxu;
-	private static List<HouseProject>  seachListResultJiangxu;
+	private  List<HouseProject>  seachListResult;
+	private  List<HouseProject>  seachListResultShengxu;
+	private  List<HouseProject>  seachListResultJiangxu;
 	
-	private static List<HouseProject> typeListResult;
-	private static List<HouseProject> typeListResultShengxu;
-	private static List<HouseProject> typeListResultJiangxu;
+	private  List<HouseProject> typeListResult;
+	private  List<HouseProject> typeListResultShengxu;
+	private  List<HouseProject> typeListResultJiangxu;
 	
-	public static List<HouseProject> listResult=new ArrayList<HouseProject>();
+	private  List<HouseProject> listResult = new ArrayList<HouseProject>();
 
-	private static List<HouseProject> lianDongResult;
+	private  List<HouseProject> lianDongResult;
 	
 	
-	private static int flagInfo = 0;
-	private static int orderFlag = 0;
-	private static int liandong = 0;
+	private  int flagInfo = 0;
+	private  int orderFlag = 0;
+	private  int liandong = 0;
 	
-	private static String flagInformation = "";
-	public  static String nation = null;
-	public  static String city=null;
-	public  static String area=null;
+	private String flagInformation = "";
+	private  static String nation = null;
+	private  static String city=null;
+	private  static String area=null;
 	
 	
 	
@@ -119,24 +119,48 @@ public class BingMapController {
 	//右侧地图显示
 	@RequestMapping({"/BingMap"})    //首页加载
 	public String listBingMap(HttpServletRequest req,HttpServletResponse resp){
-		String nation=SearchListController.nation;
+		/*String nation=SearchListController.nation;
 		String city=SearchListController.city;
-		String area=SearchListController.area;
-		BingMapController.nation=nation;
+		String area=SearchListController.area;*/
+		String nation=(String)req.getSession().getAttribute("nation");
+		String city=(String)req.getSession().getAttribute("city");
+		String area=(String)req.getSession().getAttribute("area");
+		/*BingMapController.nation=nation;
 		BingMapController.city=city;
-		BingMapController.area=area;
+		BingMapController.area=area;*/
+		req.getSession().setAttribute("nation", nation);
+		req.getSession().setAttribute("city", city);
+		req.getSession().setAttribute("area", area);
      
-		List<SearchList> searchList=SearchListController.searchList_final;
+		/*List<SearchList> searchList=SearchListController.searchList_final;*/
+		List<SearchList> searchList=(List<SearchList>) req.getSession().getAttribute("searchList_final");
 		List<BingMapVo> bingMapList=new ArrayList<BingMapVo>();
 		List<BingMapVo> bingMapList2=new ArrayList<BingMapVo>();
 		List<BingMapVo> bingMapList3=new ArrayList<BingMapVo>();
 
 
 		List<SearchList> searchListIndex = null;
+		//List list=（List）session.getAttribute("list");
+		Object obj = req.getSession().getAttribute("seachListResult");
+		Object obj1 = req.getSession().getAttribute("Information");
+		if(obj1!=null){
+			flagInformation = obj1.toString();
+		}
+		 
+		if(obj!=null){
+			try{
+				searchListIndex = (List<SearchList>)obj;
+			}
+			catch(Exception e){
+				
+			}
+			
+		}
 		
-		searchListIndex = SearchController.seachListResult;
-		seachListResult1 = SearchController.seachListResult;
-		flagInformation = SearchController.Information;
+		//searchListIndex = SearchController.seachListResult;
+		//seachListResult1 = SearchController.seachListResult;
+		seachListResult1 = searchListIndex;
+		//flagInformation = SearchController.Information;
 		/*flag1 = SearchController.flag;
 		flagSearch1 = SearchListController.flagSearch;*/
 
@@ -609,10 +633,37 @@ public class BingMapController {
 	
 	 //排序
 	@RequestMapping({"/OrderByPrice"})           
-	public String OrderByPrice(HttpServletRequest req,HttpServletResponse resp){
+	public void OrderByPrice(HttpServletRequest req,HttpServletResponse resp){
 		orderFlag = 1;
 		int order=Integer.parseInt(req.getParameter("order"));
 		List<BingMapVo> bingMapList = new ArrayList<BingMapVo>();
+		JSONArray arrayCity = new JSONArray();
+		JSONArray arrayArea = new JSONArray();
+		//JSONObject json=new JSONObject();
+		JSONObject json = new JSONObject();
+		JSONArray array = new JSONArray();
+		/*JSONArray array2 = new JSONArray();
+		JSONArray array3 = new JSONArray();*/
+		JSONArray arrayCity1 = new JSONArray();
+		JSONArray arrayCity2 = new JSONArray();
+		JSONArray arrayNation1 = new JSONArray();
+		JSONArray arrayNation2 = new JSONArray();
+		JSONArray arrayZhou1 = new JSONArray();
+		JSONArray arrayZhou2 = new JSONArray();
+		JSONArray arrayArea1 = new JSONArray();
+		JSONArray arrayArea2 = new JSONArray();
+		
+		
+		JSONArray arrayCenternation = new JSONArray();
+		JSONArray arrayCentercity = new JSONArray();
+		JSONArray arrayCenterarea = new JSONArray();
+		List<String> city=new ArrayList<String>();
+		List<String> nation=new ArrayList<String>();
+		List<String> zhou=new ArrayList<String>();
+		List<String> area=new ArrayList<String>();
+		
+		
+		
 		if(flagInfo==2){
 			if(seachListResultShengxu==null || seachListResultShengxu.size()<=0){
 				req.setAttribute("bingMapList", null);
@@ -665,11 +716,16 @@ public class BingMapController {
 						String mianji = item.getMianji();
 						String return_money = item.getReturn_money();
 						String bijiao = item.getBijiao();
+						
+						
+						
+						
 						List<String> project_key = new ArrayList<String>();
 						if(project_num!=null && !"".equals(project_num)){
 							project_key =bingMapDao.findProjectKeyByNum(project_num);
 						}
-						BingMapVo  bingMapVo=new BingMapVo(id,bijiao, project_name,project_img,project_num,project_address, project_name_short, project_price,minarea, maxarea, project_sales_remain, project_price_int_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key,project_address_short);
+						String type = item.getProject_type();
+						BingMapVo  bingMapVo=new BingMapVo(id,type,bijiao, project_name,project_img,project_num,project_address, project_name_short, project_price,minarea, maxarea, project_sales_remain, project_price_int_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key,project_address_short);
 						bingMapList.add(bingMapVo); 
 					}
 					req.setAttribute("bingMapList", bingMapList);
@@ -726,7 +782,8 @@ public class BingMapController {
 						if(project_num!=null && !"".equals(project_num)){
 							project_key =bingMapDao.findProjectKeyByNum(project_num);
 						}
-						BingMapVo  bingMapVo=new BingMapVo(id,bijiao, project_name,project_img,project_num,project_address, project_name_short, project_price,minarea, maxarea, project_sales_remain, project_price_int_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key,project_address_short);
+						String type = item.getProject_type();
+						BingMapVo  bingMapVo=new BingMapVo(id,type,bijiao, project_name,project_img,project_num,project_address, project_name_short, project_price,minarea, maxarea, project_sales_remain, project_price_int_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key,project_address_short);
 						bingMapList.add(bingMapVo); 
 					}
 					req.setAttribute("bingMapList", bingMapList);
@@ -794,7 +851,13 @@ public class BingMapController {
 							project_key =bingMapDao.findProjectKeyByNum(project_num);
 						}
 						String bijiao = item.getBijiao();
-						BingMapVo  bingMapVo=new BingMapVo(id,bijiao,project_name,project_img,project_num,project_address, project_name_short, project_price,minarea, maxarea, project_sales_remain, project_price_int_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key,project_address_short);
+						String type = item.getProject_type();
+						String project_nation = item.getProject_nation();
+						String project_city = item.getProject_city();
+						String project_area = item.getProject_area();
+						String project_zhou = item.getProject_zhou();
+						String gps = item.getGps();
+						BingMapVo  bingMapVo=new BingMapVo(id,gps,project_nation, project_city, project_area, project_zhou, type,bijiao,project_name,project_img,project_num,project_address, project_name_short, project_price,minarea, maxarea, project_sales_remain, project_price_int_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key,project_address_short);
 						bingMapList.add(bingMapVo);
 					}
 					req.setAttribute("bingMapList", bingMapList);
@@ -837,6 +900,7 @@ public class BingMapController {
 						int project_sales_remain = item.getProject_sales_remain();
 						int maxarea = item.getMax_area();
 						int minarea = item.getMin_area();
+						String type = item.getProject_type();
 						String project_price = item.getProject_price();
 						String house_type = item.getProject_house_type();
 						/*String project_min_price = item.getProject_min_price()==null?"N/A":df.format(Integer.parseInt(item.getProject_min_price()));
@@ -854,11 +918,17 @@ public class BingMapController {
 							project_key =bingMapDao.findProjectKeyByNum(project_num);
 						}
 						String bijiao = item.getBijiao();
-						BingMapVo  bingMapVo=new BingMapVo(id,bijiao,project_name,project_img,project_num,project_address, project_name_short, project_price,minarea, maxarea, project_sales_remain, project_price_int_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key,project_address_short);
+						String project_nation = item.getProject_nation();
+						String project_city = item.getProject_city();
+						String project_area = item.getProject_area();
+						String project_zhou = item.getProject_zhou();
+						String gps = item.getGps();
+						BingMapVo  bingMapVo=new BingMapVo(id,gps,project_nation, project_city, project_area, project_zhou, type,bijiao,project_name,project_img,project_num,project_address, project_name_short, project_price,minarea, maxarea, project_sales_remain, project_price_int_qi,house_type,project_min_price,project_high_price,mianji,return_money,project_price_int_qi,project_key,project_address_short);
 						bingMapList.add(bingMapVo);
 					}
 					req.setAttribute("bingMapList", bingMapList);
 				}
+				
 			}
 			
 		}
@@ -866,8 +936,164 @@ public class BingMapController {
 			bingMapList=bingMapService.orderByPrice(order);
 			req.setAttribute("bingMapList", bingMapList);
 		}
+		for(BingMapVo data : bingMapList){
+			JSONObject obj = new JSONObject();
+			obj.put("id", data.getProject_id());
+			obj.put("gps", data.getGps()==null?"":data.getGps());
+			/*String project_name_short = data.getProject_name();
+			if(project_name_short!=null && !"".equals(project_name_short)){
+				if(project_name_short.length()>20){
+					project_name_short = project_name_short.substring(0, 20);
+				}
+			}*/
+			obj.put("project_name", data.getProject_name()==null?"":data.getProject_name());
+			obj.put("project_name_short", data.getProject_name());
+			
+			obj.put("project_img", data.getProject_img()==null?"":data.getProject_img());
+			obj.put("project_price", data.getProject_price()==null?"":data.getProject_price());
+			obj.put("project_num", data.getProject_num()==null?"":data.getProject_num());
+
+			/*obj.put("project_min_price", data.getProject_min_price()==null?"N/A":df.format(Integer.parseInt(data.getProject_min_price())));
+			obj.put("project_high_price", data.getProject_high_price()==null?"N/A":df.format(Integer.parseInt(data.getProject_high_price())));*/
+			obj.put("project_min_price", data.getProject_min_price());
+			obj.put("project_high_price", data.getProject_high_price());
+/*=======
+			obj.put("project_min_price", data.getProject_min_price()==null?"N/A":df.format(Integer.parseInt(data.getProject_min_price())));
+			obj.put("project_high_price", data.getProject_high_price()==null?"N/A":df.format(Integer.parseInt(data.getProject_high_price())));*/
+
+			obj.put("project_zhou", data.getZhou()==null?"":data.getZhou());
+			obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
+			obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
+			
+			/*String project_address_short = data.getProject_address();
+			if(project_address_short!=null && !"".equals(project_address_short)){
+				if(project_address_short.length()>40){
+					project_address_short = project_address_short.substring(0, 40);
+				}
+			}*/
+			obj.put("project_address", data.getProject_address()==null?"":data.getProject_address());
+
+			obj.put("project_address_short", data.getProject_address_short());			
+
+			obj.put("minArea", data.getMinArea()==0?0:data.getMinArea());
+			obj.put("maxArea", data.getMaxArea()==0?0:data.getMaxArea());
+			obj.put("return_money", data.getReturn_money()==null?"":data.getReturn_money());
+			//obj.put("project_price_int_qi", data.getProject_price_int_qi()==0?"N/A":df.format(data.getProject_price_int_qi()));
+			obj.put("project_price_int_qi", data.getProject_price_int_qi());
+			obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
+			obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
+			obj.put("project_key", data.getProject_key()==null?"":data.getProject_key());
+			obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
+			obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
+			obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
+			obj.put("project_zhou", data.getZhou()==null?"":data.getZhou());
+			array.add(obj);
+		}
 		
-		List<Nation> nationList=bingMapDao.findGuojia();
+		arrayCenternation=bingMapService.jsonMapCenterNation();
+		arrayCentercity=bingMapService.jsonMapCenterCity();
+		arrayCenterarea=bingMapService.jsonMapCenterArea();
+		
+		int len=array.size();		
+		for(int i=0;i<len;i++){
+			JSONObject obj=(JSONObject)array.get(i);
+			String project_city=obj.getString("project_city");
+			String project_nation=obj.getString("project_nation");
+			String project_zhou=obj.getString("project_zhou");
+			String project_area=obj.getString("project_area");
+			city.add(project_city);
+			nation.add(project_nation);
+			zhou.add(project_zhou);
+			area.add(project_area);
+		}
+		//城市
+		Set<String> uniqueSetCity = new HashSet<String>(city);
+		for (String temp : uniqueSetCity) {
+			String strCity=temp;
+			int sizeCity=Collections.frequency(city, temp);
+			JSONObject objCity1 = new JSONObject();
+			objCity1.put("city", sizeCity);
+			arrayCity1.add(objCity1);
+			for(int j=0;j<len;j++){
+				JSONObject objCity2=(JSONObject)array.get(j);
+				String project_city2=objCity2.getString("project_city");
+				if(project_city2.equals(strCity)){
+					arrayCity2.add(objCity2);
+					break;
+				}
+			}
+        }
+		//国家
+		Set<String> uniqueSetNation = new HashSet<String>(nation);
+		for (String temp : uniqueSetNation) {
+			String strNation=temp;
+			int sizeNation=Collections.frequency(nation, temp);
+			JSONObject objNation1 = new JSONObject();
+			objNation1.put("nation", sizeNation);
+			arrayNation1.add(objNation1);
+			for(int j=0;j<len;j++){
+				JSONObject objNation2=(JSONObject)array.get(j);
+				String project_nation2=objNation2.getString("project_nation");
+				if(project_nation2.equals(strNation)){
+					arrayNation2.add(objNation2);
+					break;
+				}
+			}
+        }
+		//州
+		Set<String> uniqueSetZhou = new HashSet<String>(zhou);
+		for (String temp : uniqueSetZhou) {
+			String strZhou=temp;
+			int sizeZhou=Collections.frequency(zhou, temp);
+			JSONObject objZhou1 = new JSONObject();
+			objZhou1.put("zhou", sizeZhou);
+			arrayZhou1.add(objZhou1);
+			for(int j=0;j<len;j++){
+				JSONObject objZhou2=(JSONObject)array.get(j);
+				String project_zhou2=objZhou2.getString("project_zhou");
+				if(project_zhou2.equals(strZhou)){
+					arrayZhou2.add(objZhou2);
+					break;
+				}
+			}
+        }
+		//区域
+		Set<String> uniqueSetArea = new HashSet<String>(area);
+		for (String temp : uniqueSetArea) {
+			String strArea=temp;
+			int sizeArea=Collections.frequency(area, temp);
+			JSONObject objArea1 = new JSONObject();
+			objArea1.put("area", sizeArea);
+			arrayArea1.add(objArea1);
+			for(int j=0;j<len;j++){
+				JSONObject objArea2=(JSONObject)array.get(j);
+				String project_area2=objArea2.getString("project_area");
+				if(project_area2.equals(strArea)){
+					arrayArea2.add(objArea2);
+					break;
+				}
+			}
+        }
+		
+		json.put("List", array);
+		json.put("ListCity1", arrayCity1);
+		json.put("ListCity2", JSONArray.parseArray(JSON.toJSONString(arrayCity2, SerializerFeature.DisableCircularReferenceDetect)));
+		json.put("ListNation1", arrayNation1);
+		json.put("ListNation2", JSONArray.parseArray(JSON.toJSONString(arrayNation2, SerializerFeature.DisableCircularReferenceDetect)));
+		json.put("ListZhou1", arrayZhou1);
+		json.put("ListZhou2", JSONArray.parseArray(JSON.toJSONString(arrayZhou2, SerializerFeature.DisableCircularReferenceDetect)));
+		json.put("ListArea1", arrayArea1);
+		json.put("ListArea2", JSONArray.parseArray(JSON.toJSONString(arrayArea2, SerializerFeature.DisableCircularReferenceDetect)));
+		json.put("ListCenternation", arrayCenternation);
+		json.put("ListCentercity", arrayCentercity);
+		json.put("ListCenterarea", arrayCenterarea);
+		try{
+			writeJson(json.toJSONString(),resp);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		/*List<Nation> nationList=bingMapDao.findGuojia();
 		List<City> cityList=bingMapDao.findChengshi();   //查询数据库，得到项目信息
 		List<Quyu> areaList=bingMapDao.findQuyu();   //查询数据库，得到项目信息
 		
@@ -883,8 +1109,8 @@ public class BingMapController {
 		List<String> cityNameSet=bingMapDao.getCityName();
 		req.setAttribute("cityNameSet", cityNameSet);
 		List<String> addressNameSet=bingMapDao.getAddressName();
-		req.setAttribute("addressNameSet", addressNameSet);
-		return "/bingMap.jsp";
+		req.setAttribute("addressNameSet", addressNameSet);*/
+		/*return "/bingMap.jsp";*/
 	}
 	
 	
@@ -967,7 +1193,8 @@ public class BingMapController {
 		
 		/*List<HouseProject> list = bingMapDao.listMap();*/
 		List<HouseProject> houseProjectlist = new ArrayList<HouseProject>();
-		List<SearchList> searchList=SearchListController.searchList_final;
+		/*List<SearchList> searchList=SearchListController.searchList_final;*/
+		List<SearchList> searchList=(List<SearchList>) req.getSession().getAttribute("searchList_final");
 		if(searchList!=null){
         for(SearchList s:searchList){
         	int id=s.getId();
@@ -1060,8 +1287,10 @@ public class BingMapController {
         if(houseProjectlist.size()==0){
         	List<HouseProject> list = bingMapDao.listMap();
         	listResult = list;
+        	req.getSession().setAttribute("listResult", list);
         }else{
         	 listResult = houseProjectlist;
+        	 req.getSession().setAttribute("listResult", houseProjectlist);
         }
       
 		/*listResult = list;*/
@@ -1486,9 +1715,16 @@ public class BingMapController {
 		String city1 = req.getParameter("city");
 		String area1 = req.getParameter("area");
 		
-		BingMapController.nation=nation1;
+		
+		/*BingMapController.nation=nation1;
 		BingMapController.city=city1;
-		BingMapController.area=area1;
+		BingMapController.area=area1;*/
+		/*String nation1 = (String)req.getSession().getAttribute("nation");
+		String city1 = (String)req.getSession().getAttribute("city");
+		String area1 = (String)req.getSession().getAttribute("area");*/
+		req.getSession().setAttribute("nation", nation1);
+		req.getSession().setAttribute("city", city1);
+		req.getSession().setAttribute("area", area1);
 		
 		if(nation1.equals("0")){
 			nation1 = null;
@@ -1523,6 +1759,7 @@ public class BingMapController {
 		
 		lianDongResult = list;
 		listResult=list;
+		req.getSession().setAttribute("listResult", listResult);
 		
 		array = bingMapService.filterByLiandong(nation1,city1,area1);
 		
@@ -2298,7 +2535,8 @@ public class BingMapController {
 				}
 			}*/
 			else if(liandong == -1){
-				for(SearchList item : SearchListController.searchList_final){
+				/*for(SearchList item : SearchListController.searchList_final){*/
+				for(SearchList item :( List<SearchList>) req.getSession().getAttribute("searchList_final")){
 						String gps = item.getGps();
 						String x = "";
 						String y = "";

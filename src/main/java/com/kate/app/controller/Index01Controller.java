@@ -36,6 +36,11 @@ public class Index01Controller {
 		List<String> list2 = index01Dao.getTuijian2();   //首页的悉尼推荐项目
 		
 		List<NewsBoke> newsList = zhiYeDao.selectNewsBoke();  //首页的新闻博客列表
+		req.getSession().setAttribute("nation", "0");
+		req.getSession().setAttribute("city", "0");
+		req.getSession().setAttribute("area", "0");
+		
+		
 		
 		List<HouseProject> projectList = new ArrayList<HouseProject>();
 		List<HouseProject> projectList2 = new ArrayList<HouseProject>();

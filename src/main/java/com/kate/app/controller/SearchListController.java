@@ -38,11 +38,12 @@ public class SearchListController {
 	private ProjectInputDao projectInputDao;
 	@Autowired
 	private HouseProjectDao houseProjectDao;
-	public static List<SearchList> searchList_final=new ArrayList<SearchList>();
+	/*public static List<SearchList> searchList_final=new ArrayList<SearchList>();*/
+	private static List<SearchList> searchList_final=new ArrayList<SearchList>();
 	public static String flagSearch = "";
-	public static String nation=null;
-	public static String city=null;
-	public static String area=null;
+	private static String nation=null;
+	private static String city=null;
+	private static String area=null;
 
 	
 	
@@ -57,19 +58,32 @@ public class SearchListController {
 		//List<SearchList> searchList=searchListDao.listSearchList().subList(0, 5);
 		//req.setAttribute("searchList",searchList);
 		//flag==1表示显示全部的列表
+		
+		//Object obj = req.getSession().getAttribute("Information");
+		/*if(obj!=null){
+			String newInfo = obj.toString();*/
+			req.getSession().setAttribute("Information", "List");
+			
+		//}
 	    String flag=req.getParameter("flag");
 		if("1".equals(flag)){
-			BingMapController.listResult=new ArrayList<HouseProject>();
+			Object o = req.getSession().getAttribute("listResult");
+			o = null;
+			//BingMapController.listResult=new ArrayList<HouseProject>();
 			searchList_final=null;
 		}
 		//得到所有的国家名称
 		List<String> nations=searchListDao.findAllNation();
 		req.setAttribute("nations", nations);
-		SearchController.Information = "List";
+		//SearchController.Information = "List";
 		if("0".equals(flag)){
-			String nation=BingMapController.nation;
+			/*String nation=BingMapController.nation;
 			String city=BingMapController.city;
-			String area=BingMapController.area;
+			String area=BingMapController.area;*/
+			String nation=(String)req.getSession().getAttribute("nation");
+			String city=(String)req.getSession().getAttribute("city");
+			String area=(String)req.getSession().getAttribute("area");
+			
 	        req.setAttribute("nation", nation);
 			
 			List<String>cities=searchListDao.findCityByNation(nation);
@@ -110,9 +124,12 @@ public class SearchListController {
 		String nation=req.getParameter("nation");
 		String city=req.getParameter("city");
 		String area=req.getParameter("area");
-		SearchListController.nation=nation;
+		/*SearchListController.nation=nation;
 		SearchListController.area=area;
-		SearchListController.city=city;
+		SearchListController.city=city;*/
+		req.getSession().setAttribute("nation", nation);
+		req.getSession().setAttribute("city", city);
+		req.getSession().setAttribute("area", area);
 		
 		
 		String zongjiatemp=req.getParameter("zongjia");
@@ -157,8 +174,10 @@ public class SearchListController {
 			}
 			a.setProject_img(image1);
 		}
-		SearchListController.searchList_final=searchList;
-		SearchController.Information = "List";
+		/*SearchListController.searchList_final=searchList;*/
+		req.getSession().setAttribute("searchList_final", searchList);
+		//SearchController.Information = "List";
+		req.getSession().setAttribute("Information", "List");
 		int total = searchList.size();
 		int pageEnd = pageNum * pageSize;
 		int end = pageEnd < total ? pageEnd : total;
@@ -267,7 +286,10 @@ public class SearchListController {
 			
 			/*List<SearchList> searchList=searchListDao.listSearchList();*/
 			List<SearchList> searchList=new ArrayList<SearchList>();
-			List<HouseProject> houseProjectList =BingMapController.listResult;
+			Object obj1 = req.getSession().getAttribute("listResult");
+			List<HouseProject> houseProjectList = null;
+			if(obj1!=null){
+				houseProjectList = (List<HouseProject>)obj1;
 			for(HouseProject houseProject:houseProjectList){
 				SearchList ss=new SearchList();
 	        	int id=houseProject.getId();
@@ -339,6 +361,7 @@ public class SearchListController {
 	        	ss.setTraffic(traffic);
 	        	searchList.add(ss);
 			}
+			}
 			if(searchList.size()==0){
 				 searchList=searchListDao.listSearchList();
 			}
@@ -370,8 +393,8 @@ public class SearchListController {
 			//寰楀埌褰撳墠鐢ㄦ埛鏀惰棌鐨凱roNum鐨勯泦鍚�
 			Set<String> proNumList=searchListDao.proNumList(userid);
 			
-			SearchController.Information = "List";
-			
+			//SearchController.Information = "List";
+			req.getSession().setAttribute("Information", "List");
 			JSONObject json = new JSONObject();
 			JSONArray array = new JSONArray();
 			if(pageStart <= end){
