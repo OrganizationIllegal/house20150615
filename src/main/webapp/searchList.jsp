@@ -63,6 +63,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    			.shoucang{
    			
    			}
+   			.list_node_header >a:hover,a:focus {
+			     color: white!important; 
+			     text-decoration: none; 
+			}
    		</style>
    	
 	</head>
