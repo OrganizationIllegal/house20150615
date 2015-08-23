@@ -309,6 +309,43 @@ public class SearchList implements Comparable<SearchList>{
 		this.project_desc=project_desc;
 		this.gps = gps;
 	}
+	public SearchList(int id, String project_area,String project_type,String gps, String project_city, String project_nation, String project_zhou, String project_price, String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String project_lan_en,String mianji,String project_address,String project_logo,String developer_id_name ,String xinkaipan,String huaren,String remen,String xuequ,String baozu,String daxue, String center,String traffic,String xianfang,String maidi,String project_price_int_qi_str,String project_desc){
+		this.id=id;
+		this.project_num = project_num;
+		this.project_img=project_img;
+		this.project_name=project_name;
+		this.maxPrice=maxPrice;
+		this.minPrice=minPrice;
+		this.maxArea=maxArea;
+		this.minArea=minArea;
+		this.keshou=keshou;
+		this.fanxian=fanxian;
+		this.project_lan_cn=project_lan_cn;
+		this.project_lan_en=project_lan_en;
+		this.project_city = project_city;
+		this.project_nation = project_nation;
+		this.project_price = project_price;
+		this.project_zhou = project_zhou;
+		this.project_area=project_area;
+		this.project_type=project_type;
+		//this.bijiao = bijiao;
+		this.mianji=mianji;
+		this.project_address=project_address;
+		this.project_logo=project_logo;
+		this.developer_id_name=developer_id_name;
+		this.xinkaipan=xinkaipan;
+		this.huaren=huaren;
+		this.remen=remen;
+		this.xuequ=xuequ;
+		this.baozu=baozu;
+		this.center=center;
+		this.traffic=traffic;
+		this.xianfang=xianfang;
+		this.maidi=maidi;
+		this.project_price_int_qi_str=project_price_int_qi_str;
+		this.project_desc=project_desc;
+		this.gps = gps;
+	}
 	public SearchList(int id,String project_num, String project_img,String project_name,String maxPrice,String minPrice ,int maxArea,int minArea,int keshou,String fanxian,String project_lan_cn,String project_lan_en,String mianji,String project_address ){
 		this.id=id;
 		this.project_num = project_num;

@@ -369,10 +369,12 @@ public class SearchListController {
 					obj.put("Keshou", item.getKeshou());
 					obj.put("MaxArea", item.getMaxArea());
 
-					obj.put("MaxPrice", item.getMaxPrice()==null||"".equals(item.getMaxPrice())?"":nf.format(Integer.parseInt(item.getMaxPrice())));
+					/*obj.put("MaxPrice", item.getMaxPrice()==null||"".equals(item.getMaxPrice())?"":nf.format(Integer.parseInt(item.getMaxPrice())));*/
+					obj.put("MaxPrice", item.getMaxPrice()==null||"".equals(item.getMaxPrice())?"":item.getMaxPrice());
 
 					obj.put("MinArea", item.getMinArea());
-					obj.put("MinPrice", item.getMinPrice()==null||"".equals(item.getMinPrice())?"":nf.format(Integer.parseInt(item.getMinPrice())));	
+					/*obj.put("MinPrice", item.getMinPrice()==null||"".equals(item.getMinPrice())?"":nf.format(Integer.parseInt(item.getMinPrice())));	*/
+					obj.put("MinPrice", item.getMinPrice()==null||"".equals(item.getMinPrice())?"":item.getMinPrice());	
 					obj.put("Project_name", item.getProject_name());
 					obj.put("project_num", item.getProject_num());
 					obj.put("project_address", item.getProject_address());
@@ -388,7 +390,8 @@ public class SearchListController {
 					obj.put("traffic", item.getTraffic());
 					obj.put("xianfang", item.getXianfang());
 					obj.put("maidi", item.getMaidi());
-					obj.put("project_price_int_qi", nf.format(item.getProject_price_int_qi()));
+					/*obj.put("project_price_int_qi", nf.format(item.getProject_price_int_qi()));*/
+					obj.put("project_price_int_qi", item.getProject_price_int_qi());
 					obj.put("project_desc", item.getProject_desc());
 					String lan = item.getProject_lan_cn();
 					String lan_en = item.getProject_lan_en();

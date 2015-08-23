@@ -26,6 +26,7 @@ import com.kate.app.model.SearchList;
 @Repository 
 public class SearchListDao extends BaseDao2 {
 	public List<SearchList> listSearchList(){
+		NumberFormat nf = new DecimalFormat("#,###,###");
 		Statement stmt = null;Connection con = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
@@ -77,8 +78,10 @@ public class SearchListDao extends BaseDao2 {
 		    	//project_img=rs.getString("image_name");
 		    	project_name=rs.getString("project_name");
 		    	project_sales_remain=rs.getInt("project_sales_remain");
-		    	maxPrice=rs.getString("maxprice");
-		    	minprice=rs.getString("minprice");
+		    	
+		    	maxPrice=rs.getString("maxprice")==null||"".equals(rs.getString("maxprice"))?"N/A":nf.format(Integer.parseInt(rs.getString("maxprice")));
+		    	/*minprice=rs.getString("minprice");*/
+		    	minprice=rs.getString("minprice")==null||"".equals(rs.getString("minprice"))?"N/A":nf.format(Integer.parseInt(rs.getString("minprice")));
 		    	maxarea=rs.getInt("maxarea");
 		    	minarea=rs.getInt("minarea");
 		    	return_money=rs.getString("return_money");
@@ -116,6 +119,8 @@ public class SearchListDao extends BaseDao2 {
 		    	else{
 		    		project_price_int_qi=0;
 		    	}
+		    	/*project_price_int_qi=nf.format(Integer.parseInt(rs.getString("project_price_int_qi")));*/
+		    	/*project_price_int_qi=rs.getString("project_price_int_qi")==null||"".equals(rs.getString("minprice"))?"N/A":nf.format(Integer.parseInt(rs.getString("minprice")));*/
 		    	SearchList  searchList=new SearchList(id,project_area,project_type,gps,project_city,project_nation,project_zhou,project_price,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,project_lan_en,mianji,project_address,project_logo,developer_id_name,xinkaipan,huaren,remen,xuequ,baozu,daxue,center,traffic,xianfang,maidi,project_price_int_qi,project_desc);		    	
 		    	searchInfoList.add(searchList);
 		    }

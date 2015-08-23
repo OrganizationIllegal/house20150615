@@ -120,6 +120,7 @@ public class BingMapController {
 		List<SearchList> searchList=SearchListController.searchList_final;
 		List<BingMapVo> bingMapList=new ArrayList<BingMapVo>();
 		List<BingMapVo> bingMapList2=new ArrayList<BingMapVo>();
+		List<BingMapVo> bingMapList3=new ArrayList<BingMapVo>();
 
 
 		List<SearchList> searchListIndex = null;
@@ -286,10 +287,92 @@ public class BingMapController {
 			//flagSearch1 = 0;
 		}
 		else{
-			liandong = 0;
+			/*liandong = 0;
 			bingMapList=bingMapService.listBingMap();   //查询数据库，得到项目信息
 			BingMapVoList = bingMapList;
-			req.setAttribute("bingMapList", bingMapList);
+			req.setAttribute("bingMapList", BingMapVoList);
+			req.setAttribute("liandong", "-1");*/
+			
+			searchList=searchListDao.listSearchList();
+			for(SearchList item : searchList){
+				if(item!=null){
+					String image1 = "";
+					String proNum = item.getProject_num();
+					if(proNum!=null && !"".equals(proNum)){
+						List<ProjectDescImage> imageList2 = houseProjectDao.HouseProjectImageList(proNum);
+						
+						if(imageList2!=null && imageList2.size()>0){
+							image1 = imageList2.get(0).getName();
+						}
+					}
+					item.setProject_img(image1);
+				}
+			}//for
+			for(SearchList s:searchList){
+	        	BingMapVo bingMapVo=new BingMapVo();
+	        	int id=s.getId();
+	        	String project_img=s.getProject_img();
+	        	String project_num=s.getProject_num();
+	        	String project_address=s.getProject_address();
+	        	project_address=project_address.length()>40?project_address.substring(0, 40):project_address;
+	        	String project_address_short=s.getProject_address_short();
+	        	String project_name=s.getProject_name();
+	        	project_name=project_name.length()>20?project_name.substring(0, 20):project_name;
+	        	String project_price=s.getProject_price_int_qi_str();
+	        	int minArea=s.getMinArea();
+	        	int maxArea=s.getMaxArea();
+	        	int keshou=s.getKeshou();
+	        	String average_price=s.getProject_price_int_qi_str();
+	        	String house_type=null;///////////
+	        	String  project_min_price=s.getMinPrice();
+	        	String  project_high_price=s.getMaxPrice();
+	        	String mianji=s.getMianji();
+	        	String return_money=s.getFanxian();
+	        	String project_price_int_qi_str=s.getProject_price_int_qi_str();
+	        	int project_price_int_qi=s.getProject_price_int_qi();
+	        	/*List<String> project_key=s.getProject_key();*/
+	        	List<String> project_key=bingMapDao.findProjectKeyByNum(project_num);
+	        	String project_name_full=s.getProject_name();
+	        	String bijiao=s.getBijiao();
+	        	String gps=s.getGps();
+	        	String project_lan_cn=s.getProject_lan_cn();
+	        	String developer_id_name=s.getDeveloper_id_name();
+	        	String xinkaipan=s.getXinkaipan();
+	        	String remen=s.getRemen();
+	        	String xuequ=s.getXuequ();
+	        	String center=s.getCenter();
+	        	String baozu=s.getBaozu();
+	        	String huaren=s.getHuaren();
+	        	String maidi=s.getMaidi();
+	        	String daxue=s.getDaxue();
+	        	String xianfang=s.getXianfang();
+	        	String traffic=s.getTraffic();
+	        	
+	        	
+	        	bingMapVo.setProject_id(id);
+	        	bingMapVo.setProject_img(project_img);
+	        	bingMapVo.setProject_num(project_num);
+	        	bingMapVo.setProject_address(project_address);
+	        	bingMapVo.setProject_address_short(project_address);/////
+	        	bingMapVo.setProject_name(project_name);
+	        	bingMapVo.setProject_price(project_price);
+	        	bingMapVo.setMinArea(minArea);
+	        	bingMapVo.setMaxArea(maxArea);
+	        	bingMapVo.setKeshou(keshou);
+	        	bingMapVo.setAverage_price(average_price);
+	        	bingMapVo.setHouse_type(house_type);
+	        	bingMapVo.setProject_min_price(project_min_price);
+	        	bingMapVo.setProject_high_price(project_high_price);
+	        	bingMapVo.setMianji(mianji);
+	        	bingMapVo.setReturn_money(return_money);
+	            bingMapVo.setProject_price_int_qi(String.valueOf(project_price_int_qi));
+	        	bingMapVo.setProject_key(project_key);
+	        	bingMapVo.setProject_name_full(project_name_full);
+	        	bingMapVo.setBijiao(bijiao);
+	        	bingMapVo.setGps(gps);
+	        	bingMapList3.add(bingMapVo);
+	        }
+			req.setAttribute("bingMapList", bingMapList3);
 			req.setAttribute("liandong", "-1");
 		}
 		
@@ -1068,6 +1151,7 @@ public class BingMapController {
 		int type=Integer.parseInt(req.getParameter("house_type"));
 		List<HouseProject> list = bingMapDao.filterByHouseType2(type,0);  //根据类型查找项目列表
 		typeListResult = list;    //根据类型查询结果集合
+		listResult=list;
 		typeListResultShengxu = bingMapDao.filterByHouseType2(type,1);   //升序
 		typeListResultJiangxu = bingMapDao.filterByHouseType2(type,2);   //降序
 		
@@ -1373,6 +1457,7 @@ public class BingMapController {
 		List<HouseProject> list = bingMapDao.filterByLiandong(nation1,city1,area1);  //根据类型查找项目列表
 		
 		lianDongResult = list;
+		listResult=list;
 		
 		array = bingMapService.filterByLiandong(nation1,city1,area1);
 		
