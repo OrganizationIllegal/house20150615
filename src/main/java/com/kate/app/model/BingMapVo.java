@@ -7,7 +7,15 @@ public class BingMapVo {
 	private String project_img;
 	private String project_num;
 	private String project_address;
+	private String project_type;
 	
+	public String getProject_type() {
+		return project_type;
+	}
+
+	public void setProject_type(String project_type) {
+		this.project_type = project_type;
+	}
 	//国家 城市   区域  州
 	private String  project_nation;
 	private String project_city;
@@ -93,7 +101,7 @@ public class BingMapVo {
      public BingMapVo(){
     	 
      }
-	public BingMapVo(int project_id,String bijiao,String project_name_full,String project_img,String project_num,String project_address, String project_name,String project_price,int minArea,int maxArea,int keshou,String average_price,String house_type,String project_min_price,String project_high_price,String mianji,String return_money,String project_price_int_qi,List<String> project_key,String project_address_short){
+	public BingMapVo(int project_id,String project_type,String bijiao,String project_name_full,String project_img,String project_num,String project_address, String project_name,String project_price,int minArea,int maxArea,int keshou,String average_price,String house_type,String project_min_price,String project_high_price,String mianji,String return_money,String project_price_int_qi,List<String> project_key,String project_address_short){
 		this.project_id=project_id;
 		this.project_img=project_img;
 		this.project_num=project_num;
@@ -114,6 +122,7 @@ public class BingMapVo {
 		this.project_address_short=project_address_short;
 		this.project_name_full = project_name_full;
 		this.bijiao = bijiao;
+		this.project_type = project_type;
 	}
 	
 	public BingMapVo(int project_id,String project_img,String project_num,String project_address, String project_name,String project_price,int minArea,int maxArea,int keshou,String average_price,String house_type,String project_min_price,String project_high_price,String mianji,String return_money,String project_price_int_qi,List<String> project_key){

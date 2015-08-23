@@ -1,10 +1,10 @@
  var map = null;
  var defaultInfobox;
- var time = 0;
  var defaltCenter=new Microsoft.Maps.Location( -25.585241, 134.504120);  
- var gongyu = 0;
- var bieshu = 0;
- var lianpai = 0;
+
+
+
+
       /*加载地图*/
       function getMap()
       {
@@ -12,9 +12,9 @@
     	
        //生成地图
        map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
-       time = 1;
+      
        if(liandong1 == 1){
-    	   
+    	  var time1 = 0;
     	  $.ajax({
 		 	    type: "GET",
 		 		dateType: "json",
@@ -22,7 +22,7 @@
 		 		success:function(data){
 		        //alert(data)
 		 		data=$.parseJSON(data);
-		 		time = 0;
+		 		
 		 		    var items=data.List;
 		 		    var itemsNation1=data.ListNation1;
 		 		    var itemsNation2=data.ListNation2;
@@ -61,9 +61,9 @@
 	                     var yx2=youxia.longitude;
 		                 //alert('Map zuoshang: ' +  zuoshang);
 		                 //alert('Map youxia: ' +  youxia);
-	                     time++;
+	                     time1++;
 	              	   //alert(time+"time")
-	                     if(time!=1){
+	                     if(time1!=1){
 	                    	 $.ajax({
 	 		     		 	    type: "POST",
 	 		     		 		dateType: "json",
@@ -439,6 +439,7 @@
 	        });	
       }
     	  else{
+    		  var time = 0;
     		  $.ajax({
     		 	    type: "GET",
     		 		dateType: "json",
@@ -483,6 +484,7 @@
     		                 var yx1=youxia.latitude;
     	                     var yx2=youxia.longitude;
     	                     time++;
+    	                     //alert(time+"ooooooooo")
     		                 if(time!=1){
     		                	 $.ajax({
     	    		     		 	    type: "POST",
@@ -939,6 +941,7 @@
 	   /* 增加公寓pushpin*/
 	   function addPushpin1()
       {
+		   var gongyu = 0;
 		 //alert("gongyu")
 		 map.entities.clear(); 
 		 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
@@ -1370,6 +1373,7 @@
 		 //alert(nation+city+area)
 		 map.entities.clear(); 
 		 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
+		 var xuanze = 0;
 		 $.ajax({
 		 	    type: "POST",
 		 		dateType: "json",
@@ -1516,26 +1520,32 @@
 		                 var zs2=zuoshang.longitude;
 		                 var yx1=youxia.latitude;
 	                     var yx2=youxia.longitude;
-		                 $.ajax({
-		     		 	    type: "POST",
-		     		 		dateType: "json",
-		     		 		url: "/BingMap1/filterByGPS1",	
-		     		 		data:{gpsLeftX:zs1,gpsLeftY:zs2,gpsRightX:yx1,gpsRightY:yx2},
-		     		 		success:function(data){
-		     		       
-		     		 		data=$.parseJSON(data);
-		     		 		
-		     		 		
-		     		 		 var html = getHtml1(data.List);
-		     		 		 
-		     		 		 $("#left").html(html);  
-		     		 		  
-		     		 	    },
-		     		 
-		     		 		error:function(){
-		     		 			//alert("addDefaultPushpin error")
-		     		 		}
-		     	        });
+	                     xuanze++;
+	                     alert(xuanze+"ffffff")
+	                     if(xuanze!=1){
+	                    	 $.ajax({
+	 		     		 	    type: "POST",
+	 		     		 		dateType: "json",
+	 		     		 		url: "/BingMap1/filterByGPS1",	
+	 		     		 		data:{gpsLeftX:zs1,gpsLeftY:zs2,gpsRightX:yx1,gpsRightY:yx2},
+	 		     		 		success:function(data){
+	 		     		       
+	 		     		 		data=$.parseJSON(data);
+	 		     		 		
+	 		     		 		
+	 		     		 		 var html = getHtml1(data.List);
+	 		     		 		 
+	 		     		 		 $("#left").html(html);  
+	 		     		 		  
+	 		     		 	    },
+	 		     		 
+	 		     		 		error:function(){
+	 		     		 			//alert("addDefaultPushpin error")
+	 		     		 		}
+	 		     	        });
+	                     }
+	                		 
+		                 
 		                 if(lastZoomLevel != map.getZoom()){
 			 	               lastZoomLevel = map.getZoom();
 			 	            //注册鼠标上移事件
@@ -1893,6 +1903,7 @@
        /* 增加别墅pushpin*/
 	   function addPushpin2()
       {
+		    var bieshu = 0;
 	    //alert("bieshu")
 		map.entities.clear(); 
 	    map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
@@ -2313,6 +2324,7 @@
       /* 增加联排别墅pushpin*/
 	   function addPushpin3()
       {
+		     var lianpai = 0;
 		     //alert("lianpaibieshu")
 			 map.entities.clear(); 
 			 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });

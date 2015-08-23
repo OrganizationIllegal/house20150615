@@ -10,10 +10,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.mail.Flags.Flag;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.constraints.Size;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,21 +65,21 @@ public class SearchController {
 	private BingMapService bingMapService;
 	
 	
-	public static List<SearchList> seachListResult;
+	private List<SearchList> seachListResult;
 	
-	private static List<BrokerInfoQuyu> seachBrokerListResult;
-	private static List<HouseProject> typeListResult;
-	private static List<HouseProject> typeListResultShengxu;
-	private static List<HouseProject> typeListResultJiangxu;
+	private  List<BrokerInfoQuyu> seachBrokerListResult;
+	private  List<HouseProject> typeListResult;
+	private  List<HouseProject> typeListResultShengxu;
+	private  List<HouseProject> typeListResultJiangxu;
 	
-	private static List<HouseProject>  seachListResult1;
-	private static List<HouseProject>  seachListResult1Shengxu;
-	private static List<HouseProject>  seachListResult1Jiangxu;
+	private  List<HouseProject>  seachListResult1;
+	private  List<HouseProject>  seachListResult1Shengxu;
+	private  List<HouseProject>  seachListResult1Jiangxu;
 	
 	
-	private static int flagInfo = 0;
-	private static int orderFlag = 0;
-	public static String Information = "";
+	private  int flagInfo = 0;
+	private  int orderFlag = 0;
+	private String Information = "";
 	
 	
 	/*
@@ -310,6 +309,9 @@ public class SearchController {
 	 
 		@RequestMapping({"/IndexSearch"})
 		public String IndexSearch(HttpServletRequest req, HttpServletResponse resp){
+			HttpSession session = req.getSession();
+			session.setMaxInactiveInterval(60 * 60);
+			
 			flagInfo = 1;     //搜索结果页面
 			NumberFormat nf = new DecimalFormat("#,###,###");
 			String searchcity = req.getParameter("searchcity");
@@ -491,9 +493,13 @@ public class SearchController {
 		    	SearchList data=new SearchList(id,bijiao,project_zhou,project_nation,project_name_short,project_area,project_type,gps,project_num,project_img,project_name,maxPrice,minprice,maxarea,minarea,project_sales_remain,return_money,project_lan_cn,project_lan_en,mianji,project_address,project_logo,developer_id_name,xinkaipan1,huaren1,remen1,xuequ1,baozu1,daxue1,center1,traffic1,xianfang1,maidi1,project_price_int_qi_str,project_desc,project_key,project_address_short,project_city);
 		    	searchList.add(data);
 			}
-			SearchController.seachListResult = searchList;    //将查询的结果复制给静态变量
+			//SearchController.seachListResult = searchList;    //将查询的结果复制给静态变量
 			//req.setAttribute("searchList",searchList);
-			Information = "Index";
+			//Information = "Index";
+			seachListResult = searchList;
+			session.setAttribute("seachListResult", searchList);
+			session.setAttribute("Information", "Index");
+			
 			return "/BingMap";
 		}
 	
