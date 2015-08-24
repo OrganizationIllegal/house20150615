@@ -1521,7 +1521,6 @@
 		                 var yx1=youxia.latitude;
 	                     var yx2=youxia.longitude;
 	                     xuanze++;
-	                     alert(xuanze+"ffffff")
 	                     if(xuanze!=1){
 	                    	 $.ajax({
 	 		     		 	    type: "POST",
