@@ -3195,7 +3195,7 @@
   	   function addPushpinOrder(order)
         {
   		   var order1 = 0;
-  		     alert("paixu"+order);
+  		     //alert("paixu"+order);
   			 map.entities.clear(); 
   			 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
   			 $.ajax({
@@ -3232,11 +3232,6 @@
   			 		    map.setView({ zoom: Zoom, center: Center });	
   			 		    lastZoomLevel = map.getZoom();
   			 	        Microsoft.Maps.Events.addHandler(map, 'viewchangeend', function(){
-  			 	       /*  $('#Price <option></option>').val("0").text("价格区间");*/
-  			 	      /*   $('#Price').append($('<option></option>').val("0").text("价格区间"));*/
-  			 	     
-  			 	        	
-
   			 	        	//联动
   			 	        	 var bounds=map.getBounds();
   			            	 var zuoshang=bounds.getNorthwest();
@@ -3247,14 +3242,7 @@
   		                     var yx2=youxia.longitude;
   		                     order1++;
   		                     if(order1!=1){
-  		                    	//$("#Price option[text='价格区间']").attr("selected",true); 
-  		                    	/* $('#Price').append($('<option></option>').val("0").text("价格区间"));*/
-  		                    	/*$("#Price").val("0"); 
-  		                    	$("#Price").text("价格区间"); */
-  		                    /*	$("#Price").child().val("价格区间");*/
-  	  			 	        	/*alert($("#Price").val());
-  	  			 	            alert($("#Price").text());*/
-  	  			 	        	
+  		                    	$('#Price').val("0");
   		                    	 $.ajax({
   					     		 	    type: "POST",
   					     		 		dateType: "json",
