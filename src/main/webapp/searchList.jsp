@@ -511,13 +511,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 		html+="<div class='f-l list_node_right'>";
                 		html+="<span class='c-fix f-l list_node_inner_lab f-yahei s-12'></span>";
                 		html+="<span class='f-l list_node_title fw f-yahei s-12 c-fix'>最多：</span>";
-                		html+="<span class='f-r list_node_val f-yahei s-12'>"+"<span>$</span>"+items[j].MaxPrice+"</span>"; 
+                		html+="<span class='f-r list_node_val f-yahei s-12'>"+"<span>$</span>"+formatCurrency(Number(items[j].MaxPrice))+"</span>"; 
                 		html+="<span class='f-l list_node_title fw f-yahei s-12 c-fix'>最少：</span>";
-                		 html+="<span class='f-r list_node_val f-yahei s-12'>"+"<span>$</span>"+items[j].MinPrice+"</span>"; 
+                		 html+="<span class='f-r list_node_val f-yahei s-12'>"+"<span>$</span>"+formatCurrency(Number(items[j].MinPrice))+"</span>"; 
                 		html+="<span class='f-l list_node_title fw f-yahei s-12 c-fix'>面积(M<sup><span style='font-size:8px'>2</span></sup>)：</span>";
                 		html+="<span class='f-r list_node_val f-yahei s-12'>"+items[j].MinArea+"<span>-</span>"+items[j].MaxArea+"</span>";
                 		html+="<span class='f-l list_node_title fw f-yahei s-12 c-fix'>起价：</span>";
-                		 html+="<span class='f-r list_node_val f-yahei s-12' id='qimoney'>"+"<span>$</span>"+items[j].project_price_int_qi+"</span>"; 
+                		 html+="<span class='f-r list_node_val f-yahei s-12' id='qimoney'>"+"<span>$</span>"+formatCurrency(Number(items[j].project_price_int_qi))+"</span>"; 
                 		/* html+="<a class='f-l list_node_title fw f-yahei s-12 c-fix'>返现：</a>";
                 		html+="<a class='f-r list_node_val f-yahei s-12'>"+items[j].Fanxian+"</a>"; */
                 		html+="</div>";
@@ -657,7 +657,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        }); 
    }
    </script>
-
+	<script type="text/javascript">
+		//格式化数据  保留2位小数
+		function formatCurrency(num) {
+		    num = num.toString().replace(/\$|\,/g,'');
+		    if(isNaN(num))
+		    num = "0";
+		    sign = (num == (num = Math.abs(num)));
+		    num = Math.floor(num*100+0.50000000001);
+		    cents = num%100;
+		    num = Math.floor(num/100).toString();
+		    if(cents<10)
+		    cents = "0" + cents;
+		    for (var i = 0; i < Math.floor((num.length-(1+i))/3); i++)
+		    num = num.substring(0,num.length-(4*i+3))+','+
+		    num.substring(num.length-(4*i+3));
+		    return (((sign)?'':'-') + num );
+		}
+		/* //格式化数据  保留2位小数
+		function formatCurrency(num) {
+		    num = num.toString().replace(/\$|\,/g,'');
+		    if(isNaN(num))
+		    num = "0";
+		    sign = (num == (num = Math.abs(num)));
+		    num = Math.floor(num*100+0.50000000001);
+		    cents = num%100;
+		    num = Math.floor(num/100).toString();
+		    if(cents<10)
+		    cents = "0" + cents;
+		    for (var i = 0; i < Math.floor((num.length-(1+i))/3); i++)
+		    num = num.substring(0,num.length-(4*i+3))+','+
+		    num.substring(num.length-(4*i+3));
+		    return (((sign)?'':'-') + num + '.' + cents);
+		} */
+		
+	</script>
     
 	</body>
 </html>
