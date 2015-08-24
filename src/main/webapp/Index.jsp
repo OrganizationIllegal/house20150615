@@ -80,6 +80,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	display:block;
 }
 .chengshi a:hover{color:white}
+.main_node >.main_node_bkg >a:hover,a:focus {
+			     color: white!important; 
+			     text-decoration: none; 
+			}
 </style>
  <script type="text/javascript">
    		$().ready(function(){
