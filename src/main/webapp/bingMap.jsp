@@ -520,7 +520,7 @@ body{
 				
 				<select id="city" name="city" onchange="nation1(2)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px;margin-top: 11px;" >
 
-<<<<<<< HEAD
+
 					<option value="0">城市</option>
 					<%--  <c:forEach var="item" items="${cities}" varStatus="stat">
 					  <c:choose>
@@ -543,55 +543,6 @@ body{
 					   </c:choose>
 					</c:forEach> 
 				</select>
-=======
-							<option value="0">城市</option>
-							
-							 <c:forEach var="item" items="${cities}" varStatus="stat">
-							
-							  <c:choose>
-							   <c:when test="${city==item}">
-							   		 <option value="${city}" selected="selected">${city}</option> 
-							   </c:when>
-							   <c:otherwise>
-							         
-								     <option value="${item}">${item}</option>
-							   </c:otherwise>
-							   </c:choose>
-							</c:forEach> 
-						</select>
-						
-						
-				
-				<%-- <c:choose>
-					<c:when test="${ empty cities}">
-						<select id="city" name="city" onchange="nation1(2)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px;margin-top: 11px;" >
-		
-							<option value="0">城市</option>
-						</select>
-					</c:when>
-					
-					<c:otherwise>
-						<select id="city" name="city" onchange="nation1(2)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px;margin-top: 11px;" >
-
-							<option value="0">全部城市</option>
-							
-							 <c:forEach var="item" items="${cities}" varStatus="stat">
-							
-							  <c:choose>
-							   <c:when test="${city==item}">
-							   		 <option value="${city}" selected="selected">${city}</option> 
-							   </c:when>
-							   <c:otherwise>
-							         
-								     <option value="${item}">${item}</option>
-							   </c:otherwise>
-							   </c:choose>
-							</c:forEach> 
-						</select>
-					</c:otherwise>
-				</c:choose> --%>
-				
->>>>>>> af1bc4388b98b195bc052a72e9374dd71f95d4c5
 				<select id="area" name="area" onchange="nation1(3)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px;margin-bottom: 5px;margin-top: 11px;">
 					<%-- <c:choose>
 					<c:when test="${ empty areas}"> --%>
