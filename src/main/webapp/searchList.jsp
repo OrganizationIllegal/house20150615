@@ -130,7 +130,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div style="margin-bottom:20px"><span style="display:block;color:#333;font-size:14px;float:left;">总价</span></div>
 					<!-- <a style="display:block;color:#ff6600;font-size:14px;float:right">100k-2M+</a> -->
 					<!-- <input type="range" name="zongjia" id="zongjia" class="c-fix f-l" style="display:block;width:100%;margin-top:5px;margin-left:0px;" min="100000" max="2000000"></input> -->
-					<input type="text" id="zongjia" name="zongjia" value="0;5000000" style="margin-top:20px"/>
+					<input type="text" id="zongjia" name="zongjia" value="90;2000000" style="margin-top:20px"/>
 				</div> 
 				<div class="c-fix f-l f-yahei s-14" style="display:block;width:100%;min-height:20px;margin-top:20px;">
 					<div style="margin-bottom:20px"><span style="display:block;color:#333;font-size:14px;float:left;">单价</span></div>
