@@ -463,7 +463,7 @@
     		 		    var Zoom;
     		 		    if(lenItems!=0){
     		 		    	a=items[0].gps.split(",");
-    		 		    	Zoom=10;	 		    	
+    		 		    	Zoom=4;	 		    	
     		 		    }
     		 		    else{
     		 		    	a[0]="-25.585241";
@@ -785,7 +785,7 @@
     			 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
     			 	            	        var area2=itemsArea2[j].project_area;
     			 	            	        var total=String(itemsArea1[j].area);
-    			 	            	        alert("leibiao"+LA2);
+    			 	            	        //alert("leibiao"+LA2);
     			 	            	        //alert(typeof(total))
     			 	            	        /*var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; */
     			 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea.png'};
