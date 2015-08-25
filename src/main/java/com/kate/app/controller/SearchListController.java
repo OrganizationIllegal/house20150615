@@ -69,8 +69,13 @@ public class SearchListController {
 		if("1".equals(flag)){
 			Object o = req.getSession().getAttribute("listResult");
 			o = null;
+		    req.getSession().setAttribute("listResult", null);
 			//BingMapController.listResult=new ArrayList<HouseProject>();
-			searchList_final=null;
+			/*searchList_final=null;*/
+			req.getSession().setAttribute("searchList_final", null);
+			req.getSession().setAttribute("nation", "");
+			req.getSession().setAttribute("city", "");
+			req.getSession().setAttribute("area", "");
 		}
 		//得到所有的国家名称
 		List<String> nations=searchListDao.findAllNation();
@@ -208,9 +213,9 @@ public class SearchListController {
 				obj.put("Fanxian", item.getFanxian());
 				obj.put("Keshou", item.getKeshou());
 				obj.put("MaxArea", item.getMaxArea());
-				obj.put("MaxPrice", item.getMaxPrice()==null?"":nf.format(Integer.parseInt(item.getMaxPrice())));
+				obj.put("MaxPrice", item.getMaxPrice()==null?"N/A":nf.format(Integer.parseInt(item.getMaxPrice())));
 				obj.put("MinArea", item.getMinArea());
-				obj.put("MinPrice", item.getMinPrice()==null?"":nf.format(Integer.parseInt(item.getMinPrice())));
+				obj.put("MinPrice", item.getMinPrice()==null?"N/A":nf.format(Integer.parseInt(item.getMinPrice())));
 				
 				obj.put("Project_name", item.getProject_name());
 				obj.put("project_num", item.getProject_num());

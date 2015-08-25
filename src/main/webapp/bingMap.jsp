@@ -383,7 +383,7 @@ body{
                	html+="<span class='c-fix f-l f-yahei s-12 node_title'>最少</span>";
                	html+="<span class='f-r f-yahei s-12 node_val'>$"+items[j].project_min_price+"</span>";
                	html+="<span class='c-fix f-l f-yahei s-12 node_title'>面积</span>";
-               	html+="<span class='f-r f-yahei s-12 node_val'>"+items[j].minArea+"+"+items[j].maxArea+"</span>";
+               	html+="<span class='f-r f-yahei s-12 node_val'>"+items[j].minArea+"-"+items[j].maxArea+"</span>";
                /* 	html+="<span class='c-fix f-l f-yahei s-12 node_title'>返利</span>";
                	html+="<span class='f-r f-yahei s-12 node_val'>"+items[j].return_money+"</span>"; */
                	html+="<span class='c-fix f-l f-yahei s-12 node_title'>起价</span>";
@@ -543,8 +543,18 @@ body{
 				<select id="Price" onchange="housePrice(this)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" style="background:none;border:none;font-family:微软雅黑;padding-left:25px">
 
 					<option value="0">价格区间</option>
-					<option value="1">价格从低到高</option>
-					<option value="2">价格从高到低</option>
+					<option value="1">30,000以下</option>
+					<option value="2">30,000-40,000</option>
+					<option value="2">40,000-50,000</option>
+					<option value="2">50,000-60,000</option>
+					<option value="2">60,000-70,000</option>
+					<option value="2">70,000-80,000</option>
+					<option value="2">80,000-90,000</option>
+					<option value="2">90,000-100,000</option>
+					<option value="2">100,000-120,000</option>
+					<option value="2">120,000-150,000</option>
+					<option value="2">150,000-200,000</option>
+					<option value="2">200,000以上</option>
 				   
 				</select>
 				

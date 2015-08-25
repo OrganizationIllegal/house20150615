@@ -2,6 +2,7 @@ package com.kate.app.controller;
 
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -119,6 +120,7 @@ public class BingMapController {
 	//右侧地图显示
 	@RequestMapping({"/BingMap"})    //首页加载
 	public String listBingMap(HttpServletRequest req,HttpServletResponse resp){
+		NumberFormat nf = new DecimalFormat("#,###,###");
 		/*String nation=SearchListController.nation;
 		String city=SearchListController.city;
 		String area=SearchListController.area;*/
@@ -265,11 +267,31 @@ public class BingMapController {
 	        	int keshou=s.getKeshou();
 	        	String average_price=s.getProject_price_int_qi_str();
 	        	String house_type=null;///////////
-	        	String  project_min_price=s.getMinPrice();
-	        	String  project_high_price=s.getMaxPrice();
+	        	String  project_min_price=null;
+	        	if(s.getMinPrice()==null){
+	        		project_min_price="N/A";
+	        	}
+	        	else{
+	        		project_min_price=nf.format(Integer.parseInt(s.getMinPrice()));
+	        	}
+	        	String  project_high_price=null;
+	        	if(s.getMaxPrice()==null){
+	        		project_high_price="N/A";
+	        	}
+	        	else{
+	        		project_high_price=nf.format(Integer.parseInt(s.getMaxPrice()));
+	        	}
+	        	
 	        	String mianji=s.getMianji();
 	        	String return_money=s.getFanxian();
-	        	String project_price_int_qi_str=s.getProject_price_int_qi_str();
+	        	String project_price_int_qi_str=null;
+	        	if(s.getProject_price_int_qi_str()==null){
+	        		project_price_int_qi_str="N/A";
+	        	}
+	        	else{
+	        		project_price_int_qi_str=nf.format(Integer.parseInt(s.getProject_price_int_qi_str()));
+	        	}
+	        	
 	        	int project_price_int_qi=s.getProject_price_int_qi();
 	        	/*List<String> project_key=s.getProject_key();*/
 	        	List<String> project_key=bingMapDao.findProjectKeyByNum(project_num);
@@ -311,7 +333,7 @@ public class BingMapController {
 	        	bingMapVo.setProject_high_price(project_high_price);
 	        	bingMapVo.setMianji(mianji);
 	        	bingMapVo.setReturn_money(return_money);
-	            bingMapVo.setProject_price_int_qi(String.valueOf(project_price_int_qi));
+	            bingMapVo.setProject_price_int_qi(project_price_int_qi_str);
 	        	bingMapVo.setProject_key(project_key);
 	        	bingMapVo.setProject_name_full(project_name_full);
 	        	bingMapVo.setBijiao(bijiao);
