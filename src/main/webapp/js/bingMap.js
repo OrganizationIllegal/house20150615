@@ -463,7 +463,7 @@
     		 		    var Zoom;
     		 		    if(lenItems!=0){
     		 		    	a=items[0].gps.split(",");
-    		 		    	Zoom=10;	 		    	
+    		 		    	Zoom=4;	 		    	
     		 		    }
     		 		    else{
     		 		    	a[0]="-25.585241";
@@ -785,7 +785,7 @@
     			 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
     			 	            	        var area2=itemsArea2[j].project_area;
     			 	            	        var total=String(itemsArea1[j].area);
-    			 	            	        alert("leibiao"+LA2);
+    			 	            	        //alert("leibiao"+LA2);
     			 	            	        //alert(typeof(total))
     			 	            	        /*var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; */
     			 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea.png'};
@@ -1375,6 +1375,7 @@
 		 map.entities.clear(); 
 		 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
 		 var xuanze = 0;
+		 
 		 $.ajax({
 		 	    type: "POST",
 		 		dateType: "json",
@@ -1386,6 +1387,7 @@
 		 		//alert(data.List+"返回数据")
 		 		var cityArray=data.cityArray;
 		 		var areaArray=data.areaArray;
+		 		
 		 		if(item == 1){
 		 			$('#city').empty();
 		        	   $('#city').append($('<option></option>').val("0").text("城市"));
@@ -1398,6 +1400,7 @@
 		 		else if(item == 2){
 		 			$('#area').empty();
 		        	   $('#area').append($('<option></option>').val("0").text("区域"));
+		        	   alert(areaArray.length)
 		        	   for(var i=0; i<areaArray.length; i++)  
 		        	   {  
 		        		/*    jQuery("#city").append("<option value='"+cityArray[i].cityname+"'>"+cityArray[i].cityname+"</option>");  */
@@ -1434,7 +1437,7 @@
 		 		    //alert(city)
 		 		    //alert(area)
 		 		    if(lenItems!=0){
-		 		    	if(area!=0){
+		 		    	if(area!=""){
 		 		    		  //alert("area")
 	    		 		      Zoom=13;
 	    		 		      if(lenCentercity!=0){
@@ -1457,7 +1460,7 @@
 		    		 		          }
 		    		 		       }
 	    		 		    }
-		 		    	else if(city!=0){
+		 		    	else if(city!=""){
 		 		    		   //alert("ctiy")
 		 		    		   Zoom=9;
 		 		    		   if(lenCentercity!=0){
@@ -1480,7 +1483,7 @@
 	 	    		 		          }
 	  	    		 		       }
 	    		 		    }
-		 		    	else if(nation!=0){
+		 		    	else if(nation!=""){
 		 		    		   //alert("nation")
 		 		    		   Zoom=4;
 		 		    		   if(lenCenternation!=0){
@@ -1502,17 +1505,20 @@
 	 	    		 		          }
 	  	    		 		       }
 	    		 		    }
-		 		    	
+		 		    	else{
+		 		    		a[0]="-25.585241";
+				 		    a[1]="134.504120";
+				 		    Zoom=5;
+		 		    	}	
 		 		    }		 		
 		 		    else{
 		 		    	a[0]="-25.585241";
 			 		    a[1]="134.504120";
 			 		    Zoom=5;
 		 		    } 
-		 		    alert(Center);
-		 		    alert(Zoom);
 		 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
 		 		    //alert(Center);
+		 		    //alert(Zoom);
 		 		    map.setView({ zoom: Zoom, center: Center });
 		 		    lastZoomLevel = map.getZoom();
 		 	        Microsoft.Maps.Events.addHandler(map, 'viewchangeend', function(){
