@@ -1646,8 +1646,8 @@ public class BingMapDao extends BaseDao2 {
 		}
 		
 		
-		public List<Nation> findGuojia(){
 			Statement stmt = null;
+			public List<Nation> findGuojia(){
 			Connection con = null;
 			ResultSet rs = null;
 			PreparedStatement pstmt = null;

@@ -1,6 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8" contentType="text/html;charset=UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -81,26 +82,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<!-- <div class="c-fix f-l" style="color:#617c97;font-size:16px;font-weight:bold;margin-bottom:10px;margin-top:45px;font-family:微软雅黑;">进一步搜索</div> -->
 				<select onchange="func1()" style="width:100%;height:30px;line-height:30px;margin-top:30px;font-family:微软雅黑" id="nation" name="nation">
 					<option value="">国家</option>
-				  <%--   <c:forEach items="${nations}" var="item">
-        		 		<option value="${item}">${item}</option>
-                   </c:forEach> --%>
-                     <c:forEach var="item" items="${nations}" varStatus="stat">
+                    <c:forEach var="item" items="${nations}" varStatus="stat">
 					  <c:choose>
-					   <c:when test="${nation==item}">
-					   		 <option value="${nation}" selected="selected">${nation}</option> 
+					   <c:when test="${fn:contains(item,nation)}">
+					   		<option value="${item}" selected="selected">${item}</option> 
 					   </c:when>
 					   <c:otherwise>
 						     <option value="${item}">${item}</option>
 					   </c:otherwise>
 					   </c:choose>
-					 </c:forEach> 
+					 </c:forEach>
 				</select>
 				<select onchange="func2()" style="width:100%;height:30px;line-height:30px;margin-top:20px;font-family:微软雅黑" id="city" name="city">
 					<option value="">城市</option>
 					 <c:forEach var="item" items="${cities}" varStatus="stat">
 					  <c:choose>
-					   <c:when test="${city==item}">
-					   		 <option value="${city}" selected="selected">${city}</option> 
+					     <c:when test="${fn:contains(item,city)}">
+					   		 <option value="${item}" selected="selected">${item}</option> 
 					   </c:when>
 					   <c:otherwise>
 						     <option value="${item}">${item}</option>
@@ -535,6 +533,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <script>
    
    $(function(){
+	   var xinkaipan=${xinkaipan1};
+	   var remen=${remen1};
+	   var huaren=${huaren1};
+	   var xuequ=${xuequ1};
+	   var baozu=${baozu1};
+	   var daxue=${daxue1};
+	   var center=${center1};
+	   var traffic=${traffic1};
+	   var xianfang=${xianfang1};
+	   var maidi=${maidi1};
+	   if("1"== xinkaipan){
+		   document.getElementById("xinaipan").checked = true;
+	   }
+	   if("1"== remen){
+		   document.getElementById("remen").checked = true;
+	   }
+	   if("1"== huaren){
+		   document.getElementById("huaren").checked = true;
+	   }
+	   if("1"== xuequ){
+		   document.getElementById("youxiu").checked = true;
+	   }
+	   if("1"== baozu){
+		   document.getElementById("baozu").checked = true;
+	   }
+	   if("1"== daxue){
+		   document.getElementById("daxue").checked = true;
+	   }
+	   if("1"== center){
+		   document.getElementById("center").checked = true;
+	   }
+	   if("1"== traffic){
+		   document.getElementById("traffic").checked = true;
+	   }
+	   if("1"== xianfang){
+		   document.getElementById("xianfang").checked = true;
+	   }
+	   if("1"== maidi){
+		   document.getElementById("traffic").checked = true;
+	   }
+	   
+	   
 	$(".btn").click(function(){
 		$(".btn_sel").removeClass("btn_sel");
 		$(this).addClass("btn_sel");

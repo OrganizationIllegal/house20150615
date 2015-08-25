@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -494,7 +495,7 @@ body{
 					 <option value="0">国家</option>
 					
 					  <c:forEach var="item" items="${nationList}" varStatus="stat">
-					  <c:choose>
+					<%--   <c:choose>
 					   <c:when test="${nation==item.nation_name}">
 					   		 <option value="${nation}" selected="selected">${nation}</option> 
 					   </c:when>
@@ -502,12 +503,47 @@ body{
 						     <option value="${item.nation_name}">${item.nation_name}</option>
 					   </c:otherwise>
 					   </c:choose>
+					 </c:forEach> --%>
+					  <c:choose>
+					   <c:when test="${fn:contains(item.nation_name,nation)}">
+					   		<%--  <option value="${nation}" selected="selected">${nation}</option>  --%>
+					   		<option value="${item.nation_name}" selected="selected">${item.nation_name}</option> 
+					   </c:when>
+					   <c:otherwise>
+						     <option value="${item.nation_name}">${item.nation_name}</option>
+					   </c:otherwise>
+					   </c:choose>
 					 </c:forEach>
+					
 				
 				</select>
 				
 				<select id="city" name="city" onchange="nation1(2)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px;margin-top: 11px;" >
 
+<<<<<<< HEAD
+					<option value="0">城市</option>
+					<%--  <c:forEach var="item" items="${cities}" varStatus="stat">
+					  <c:choose>
+					   <c:when test="${city==item}">
+					   		 <option value="${city}" selected="selected">${city}</option> 
+					   </c:when>
+					   <c:otherwise>
+						     <option value="${item}">${item}</option>
+					   </c:otherwise>
+					   </c:choose>
+					</c:forEach>  --%>
+					 <c:forEach var="item" items="${cities}" varStatus="stat">
+					  <c:choose>
+					     <c:when test="${fn:contains(item,city)}">
+					   		 <option value="${item}" selected="selected">${item}</option> 
+					   </c:when>
+					   <c:otherwise>
+						     <option value="${item}">${item}</option>
+					   </c:otherwise>
+					   </c:choose>
+					</c:forEach> 
+				</select>
+=======
 							<option value="0">城市</option>
 							
 							 <c:forEach var="item" items="${cities}" varStatus="stat">
@@ -555,6 +591,7 @@ body{
 					</c:otherwise>
 				</c:choose> --%>
 				
+>>>>>>> af1bc4388b98b195bc052a72e9374dd71f95d4c5
 				<select id="area" name="area" onchange="nation1(3)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px;margin-bottom: 5px;margin-top: 11px;">
 					<%-- <c:choose>
 					<c:when test="${ empty areas}"> --%>
