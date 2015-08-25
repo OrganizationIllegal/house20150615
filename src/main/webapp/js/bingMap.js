@@ -1434,7 +1434,7 @@
 		 		    //alert(city)
 		 		    //alert(area)
 		 		    if(lenItems!=0){
-		 		    	if(area!=""){
+		 		    	if(area!=""&&area!=0){
 		 		    		  //alert("area")
 	    		 		      Zoom=13;
 	    		 		      if(lenCentercity!=0){
@@ -1457,7 +1457,7 @@
 		    		 		          }
 		    		 		       }
 	    		 		    }
-		 		    	else if(city!=""){
+		 		    	else if(city!=""&&city!=0){
 		 		    		   //alert("ctiy")
 		 		    		   Zoom=9;
 		 		    		   if(lenCentercity!=0){
@@ -1480,7 +1480,7 @@
 	 	    		 		          }
 	  	    		 		       }
 	    		 		    }
-		 		    	else if(nation!=""){
+		 		    	else if(nation!=""&&nation!=0){
 		 		    		   //alert("nation")
 		 		    		   Zoom=4;
 		 		    		   if(lenCenternation!=0){
@@ -1841,7 +1841,7 @@
 			 	            	        var total=String(itemsArea1[j].area);
 			 	            	        //alert("sousuo"+LA2);
 			 	            	        //alert(typeof(total))
-			 	            	        /*var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; */
+			 	            	        var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; 
 			 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea.png'};
 			 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 			 	            	        add2(area2,pushpin2,LA2);
@@ -1860,7 +1860,7 @@
 			 	            	        var city2=itemsCity2[j].project_city;
 			 	            	        var total=String(itemsCity1[j].city);
 			 	            	        //alert(typeof(total))
-			 	            	        /*var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; */
+			 	            	        var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; 
 			 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity.png'};
 			 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 			 	            	        add2(city2,pushpin2,LA2);
@@ -1879,7 +1879,7 @@
 			 	            	        var zhou2=itemsZhou2[j].project_zhou;
 			 	            	        var total=String(itemsZhou1[j].zhou);
 			 	            	        //alert(typeof(total))
-			 	            	        /*var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; */
+			 	            	        var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; 
 			 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou.png'};
 			 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 			 	            	        add2(zhou2,pushpin2,LA2);
@@ -1898,7 +1898,7 @@
 			 	            	        var nation2=itemsNation2[j].project_nation;
 			 	            	        var total=String(itemsNation1[j].nation);
 			 	            	        //var shownation=nation2+'\r\n'+total;
-			 	            	       /* var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin2.png' style='width:100px;'/></div>"}; */
+			 	            	        var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin2.png' style='width:100px;'/></div>"}; 
 			 	            	        var pushpinOptions2={text:total,width: 42, height: 42,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinNation.png'};
 			 	            	        var pushpin2= new Microsoft.Maps.Pushpin(LA2, pushpinOptions2);
 			 	            	        add2(nation2,pushpin2,LA2);
