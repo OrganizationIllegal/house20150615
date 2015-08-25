@@ -1508,6 +1508,8 @@
 			 		    a[1]="134.504120";
 			 		    Zoom=5;
 		 		    } 
+		 		    alert(Center);
+		 		    alert(Zoom);
 		 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
 		 		    map.setView({ zoom: Zoom, center: Center });
 		 		    lastZoomLevel = map.getZoom();
