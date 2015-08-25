@@ -1981,7 +1981,7 @@ public class BingMapDao extends BaseDao2 {
 		/*
 		 * 根据类型查找项目列表
 		 */
-		public List<HouseProject> filterByLiandong(String nation, String city, String area){    //根据类型查找
+		public List<HouseProject> filterByLiandong(String nation, String city, String area, String type, String jiage1, String jiage2){    //根据类型查找
 			NumberFormat nf = new DecimalFormat("#,###,###");
 			Statement stmt = null;Connection con = null;
 			ResultSet rs = null;
@@ -1998,7 +1998,7 @@ public class BingMapDao extends BaseDao2 {
 				}
 				if(city!=null &&!"".equals(city)){
 					if(i==1){
-						sql+="and b.area_city = '"+city+"'";
+						sql+=" and b.area_city = '"+city+"'";
 					}
 					else{
 						sql+="b.area_city = '"+city+"'";
@@ -2007,13 +2007,40 @@ public class BingMapDao extends BaseDao2 {
 				}
 				if(area!=null &&!"".equals(area)){
 					if(i==1){
-						sql+="and b.area_name = '"+area+"'";
+						sql+=" and b.area_name = '"+area+"'";
 					}
 					else{
 						sql+="b.area_name = '"+area+"'";
 						i=1;
 					}
 				}
+				if(type!=null &&!"".equals(type)){
+					if(i==1){
+						sql+=" and a.project_type = '"+type+"'";
+					}
+					else{
+						sql+="a.project_type = '"+type+"'";
+						i=1;
+					}
+				}
+				if(jiage1!=null &&!"".equals(jiage1) && jiage2!=null &&!"".equals(jiage2)){
+					if(i==1){
+						sql+=" and (a.project_high_price between '"+jiage1+"' and '"+jiage2+"' or a.project_min_price between '"+jiage1+"' and '"+jiage2+"')";
+					}
+					else{
+						sql+="(a.project_high_price between '"+jiage1+"' and '"+jiage2+"' or a.project_min_price between '"+jiage1+"' and '"+jiage2+"')";
+						i=1;
+					}
+				}
+				/*if(jiage2!=null &&!"".equals(jiage2)){
+					if(i==1){
+						sql+="or a.project_min_price <= '"+jiage2+"'";
+					}
+					else{
+						sql+="a.project_min_price > '"+jiage2+"'";
+						i=1;
+					}
+				}*/
 				
 				if(i == 0){
 					sql = "SELECT * FROM house_project a, area_info b WHERE a.area_num = b.area_num and a.gps!='' and a.gps like '%,%' and a.isSeen=1";

@@ -1369,7 +1369,7 @@
 	   
 	   
 	   /* 增加搜索pushpin*/
-	   function addPushpinNation(nation, city, area,item)
+	   function addPushpinNation(nation, city, area,item,type,jiage)
       {
 		 //alert(nation+city+area)
 		 map.entities.clear(); 
@@ -1379,7 +1379,7 @@
 		 	    type: "POST",
 		 		dateType: "json",
 		 		url: "/BingMap/Liandong",	
-		 		data:{nation:nation, city:city, area:area},
+		 		data:{nation:nation, city:city, area:area, type:type, jiage:jiage},
 		 		success:function(data){
 		        //alert(data)
 		 		data=$.parseJSON(data);
@@ -1509,6 +1509,8 @@
 			 		    a[1]="134.504120";
 			 		    Zoom=5;
 		 		    } 
+		 		    alert(Center);
+		 		    alert(Zoom);
 		 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
 		 		    //alert(Center);
 		 		    map.setView({ zoom: Zoom, center: Center });
