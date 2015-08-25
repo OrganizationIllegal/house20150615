@@ -1375,6 +1375,7 @@
 		 map.entities.clear(); 
 		 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
 		 var xuanze = 0;
+		 
 		 $.ajax({
 		 	    type: "POST",
 		 		dateType: "json",
@@ -1386,6 +1387,7 @@
 		 		//alert(data.List+"返回数据")
 		 		var cityArray=data.cityArray;
 		 		var areaArray=data.areaArray;
+		 		
 		 		if(item == 1){
 		 			$('#city').empty();
 		        	   $('#city').append($('<option></option>').val("0").text("城市"));
@@ -1398,6 +1400,7 @@
 		 		else if(item == 2){
 		 			$('#area').empty();
 		        	   $('#area').append($('<option></option>').val("0").text("区域"));
+		        	   alert(areaArray.length)
 		        	   for(var i=0; i<areaArray.length; i++)  
 		        	   {  
 		        		/*    jQuery("#city").append("<option value='"+cityArray[i].cityname+"'>"+cityArray[i].cityname+"</option>");  */

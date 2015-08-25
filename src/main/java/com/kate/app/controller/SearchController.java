@@ -366,13 +366,19 @@ public class SearchController {
 						list1 = searchListDao.searchIndexProjectByPro(projectName);  //通过前台传来的信息，在数据库中查找项目信息
 						
 					}
-					else{
-						list1 = searchListDao.searchIndexList(searchcity);    //通过前台传来的数据，查找项目信息
-						if(list1==null || list1.size()<=0){
-							//String area_num = searchListDao.searchIndexList1(searchcity);  //通过关键字段，查找区域编号
-							//list1 = searchListDao.searchIndexProject(area_num);   //通过区域编号在数据库中查找项目信息
-							list1 = searchListDao.searchIndexProjectNew(searchcity);   //通过区域编号在数据库中查找项目信息
-						}
+					else {
+						//if(city2==null || city2.equals("")){
+							//city = searchcity;
+							list1 = searchListDao.searchIndexList(searchcity);    //通过前台传来的数据，查找项目信息
+							if(list1==null || list1.size()<=0){
+								//String area_num = searchListDao.searchIndexList1(searchcity);  //通过关键字段，查找区域编号
+								//list1 = searchListDao.searchIndexProject(area_num);   //通过区域编号在数据库中查找项目信息
+								list1 = searchListDao.searchIndexProjectNew(searchcity);   //通过区域编号在数据库中查找项目信息
+							}
+							
+							
+					//}
+						
 						
 					}
 					
@@ -381,6 +387,8 @@ public class SearchController {
 			if(city2!=null && !"".equals(city2)){
 				city = city2;
 			}
+			
+			
 			
 			 //通过城市，类型等，进一步高级搜索，在数据库中查找项目信息
 			 
@@ -397,7 +405,7 @@ public class SearchController {
 					}
 				}
 				else if(list1.size()<=list.size() ){
-					if(flag==0){
+					if(list1.size()==0){
 						resultList = list;
 					}
 					else{
