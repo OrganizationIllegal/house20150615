@@ -546,38 +546,6 @@ body{
 					</c:forEach> 
 				</select>
 
-						
-						
-				
-				<%-- <c:choose>
-					<c:when test="${ empty cities}">
-						<select id="city" name="city" onchange="nation1(2)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px;margin-top: 11px;" >
-		
-							<option value="0">城市</option>
-						</select>
-					</c:when>
-					
-					<c:otherwise>
-						<select id="city" name="city" onchange="nation1(2)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px;margin-top: 11px;" >
-
-							<option value="0">全部城市</option>
-							
-							 <c:forEach var="item" items="${cities}" varStatus="stat">
-							
-							  <c:choose>
-							   <c:when test="${city==item}">
-							   		 <option value="${city}" selected="selected">${city}</option> 
-							   </c:when>
-							   <c:otherwise>
-							         
-								     <option value="${item}">${item}</option>
-							   </c:otherwise>
-							   </c:choose>
-							</c:forEach> 
-						</select>
-					</c:otherwise>
-				</c:choose> --%>
-				
 				<select id="area" name="area" onchange="nation1(3)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px;margin-bottom: 5px;margin-top: 11px;">
 					<%-- <c:choose>
 					<c:when test="${ empty areas}"> --%>
@@ -727,7 +695,8 @@ body{
 			$("#area").val("0");
 			$("#house1").val("0");
 			$("#Price").val("0");
-			addPushpinNation("", "", "", "","","");
+			addPushpinNation("0", "0", "0", "0","0","0");
+
 		});
 	</script>
 </html>
