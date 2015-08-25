@@ -703,7 +703,7 @@ body{
 			$("#area").val("0");
 			$("#house1").val("0");
 			$("#Price").val("0");
-			addPushpinNation("", "", "", "");
+			addPushpinNation("", "", "", "","","");
 		});
 	</script>
 </html>
