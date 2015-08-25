@@ -1430,9 +1430,9 @@
 		 		    var lenCenterarea=itemsCenterarea.length;
 		 		    var a=new Array();
 		 		    var Zoom;
-		 		    alert(typeof(nation))
-		 		    alert(typeof(city))
-		 		    alert(area)
+		 		    //alert(nation)
+		 		    //alert(city)
+		 		    //alert(area)
 		 		    if(lenItems!=0){
 		 		    	if(area!=""){
 		 		    		  //alert("area")
@@ -1487,7 +1487,6 @@
 		 		    			   //alert("nation1")
 		    		 		       for(var n1=0;n1<lenCenternation;n1++){
 		    		 		    	   if(nation==itemsCenternation[n1].name){
-		    		 		    		   alert(itemsCenternation[n1].gps)
 		    		 		    		   a=itemsCenternation[n1].gps.split(",");
 		    		 		    		   break;
 		    		 		    	   }
@@ -1515,8 +1514,8 @@
 			 		    Zoom=5;
 		 		    } 
 		 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
-		 		    alert(Center);
-		 		    alert(Zoom);
+		 		    //alert(Center);
+		 		    //alert(Zoom);
 		 		    map.setView({ zoom: Zoom, center: Center });
 		 		    lastZoomLevel = map.getZoom();
 		 	        Microsoft.Maps.Events.addHandler(map, 'viewchangeend', function(){
