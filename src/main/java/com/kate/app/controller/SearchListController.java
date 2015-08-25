@@ -79,6 +79,8 @@ public class SearchListController {
 			req.setAttribute("traffic1", "0");
 			req.setAttribute("xianfang1", "0");
 			req.setAttribute("maidi1", "0");
+			req.setAttribute("minPrice", 0);
+			req.setAttribute("highPrice", 5000000);
 			
 		}
 		//得到所有的国家名称
@@ -103,6 +105,10 @@ public class SearchListController {
 			
 			
 			req.setAttribute("area", area);
+			String  minPrice=(String)req.getSession().getAttribute("minPrice");
+			String  highPrice=(String)req.getSession().getAttribute("highPrice");
+			req.setAttribute("minPrice", minPrice);
+			req.setAttribute("highPrice", highPrice);
 			//从session中拿到标签参数
 			String xinkaipan=(String)req.getSession().getAttribute("xinkaipan1");
 			String huaren=(String)req.getSession().getAttribute("huaren1");
