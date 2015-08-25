@@ -1716,7 +1716,7 @@
  	                 		 		var pushpinOptions3;
  	                 		 		var pushpin3;
  	                 		 		//项目名
- 	                 		 		//if(lastZoomLevel>12){
+ 	                 		 		if(lastZoomLevel>12){
  	                 		 		map.entities.clear();
  	                 		 		for(var p=0;p<lenItems;p++){
  	                 		 	        arr3=items[p].gps.split(",");
@@ -1732,7 +1732,7 @@
  	                 		 			add(name,type,img,price,num,pushpin3,LA3);
  	    		 	                  	map.entities.push(pushpin3);    	    			 	 	 		    
  	                 		 		}	
- 	                 		 		//}
+ 	                 		 		}
  	                 		 	    //区域
  	                 		 		else if(lastZoomLevel>8){
  	                 		 		map.entities.clear();
