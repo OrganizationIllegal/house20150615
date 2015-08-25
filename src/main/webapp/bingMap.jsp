@@ -154,10 +154,12 @@ body{
 	  
 
 	   var nation = $(' #nation  option:selected').val();
-	   var city = $(' #city  option:selected').val();
-	   var area = $(' #area  option:selected').val();
+
+	   var city = (Number(item)>=2)?$(' #city  option:selected').val():"";
+	   var area = (Number(item)>=3)?$(' #area  option:selected').val():"";
 	   var type = $(' #house1  option:selected').val();
 	   var jiage = $(' #Price  option:selected').val();
+
 	   //alert(city+"chengshi")
 	   //var nation = $(' #nation  option:selected').val();
 	  
@@ -606,7 +608,7 @@ body{
 
 				   
 				</select>
-				
+				<button class="allchexiao" style="margin-top: 2px;margin-left: 20px;">全部撤销</button>
 				
 				
 				<!-- <a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" href="/BingMap/OrderByPrice?order=1">价格从低到高</a>
@@ -694,8 +696,18 @@ body{
 		</div>
 		
 	</body>
+	<script type="text/javascript">
+		$(".allchexiao").click(function(){
+			$("#nation").val("0");
+			$("#city").val("0");
+			$("#area").val("0");
+			$("#house1").val("0");
+			$("#Price").val("0");
+			addPushpinNation("", "", "", "");
+		});
+	</script>
 </html>
-<<script type="text/javascript">
+<script type="text/javascript">
 		var value = $("#keyWord").val();
   		
    		
