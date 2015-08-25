@@ -337,9 +337,9 @@ public class SearchController {
 		    	req.getSession().setAttribute("city", searchcity);
 		    }
 		    
-		    if((city2==null || city2.equals(""))  &&  (searchcity==null || searchcity.equals(""))){
+		    /*if((city2==null || city2.equals(""))  &&  (searchcity==null || searchcity.equals(""))){
 		    	req.getSession().setAttribute("city", "");
-		    }
+		    }*/
 		    //标签
 			String xinkaipan = req.getParameter("xinkaipan");
 			String huaren = req.getParameter("huaren");
