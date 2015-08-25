@@ -166,7 +166,7 @@ public class BingMapController {
 		/*flag1 = SearchController.flag;
 		flagSearch1 = SearchListController.flagSearch;*/
 
-		if(searchListIndex!=null && searchListIndex.size()>0 && flagInformation.equals("Index")){
+		if(searchListIndex!=null && searchListIndex.size()>=0 && flagInformation.equals("Index")){
 			liandong = 1;
 			for(SearchList s:searchListIndex){
 	        	BingMapVo bingMapVo=new BingMapVo();
@@ -1753,13 +1753,18 @@ public class BingMapController {
 		String jiage2 = "";
 		if(nation1.equals("0")){
 			nation1 = null;
-		}
-		if(city1.equals("0")){
 			city1 = null;
-		}
-		if(area1.equals("0")){
 			area1 = null;
 		}
+		else if(city1.equals("0")){
+			city1 = null;
+			area1 = null;
+		}
+		else if(area1.equals("0")){
+			area1 = null;
+		}
+		
+		
 		if(type.equals("0")){
 			type = null;
 		}
@@ -1782,13 +1787,20 @@ public class BingMapController {
 			arrayCity.add(obj);
 		}
 		json.put("cityArray", arrayCity);
-		
-		List<String> areas=searchListDao.findAreaByCity(city1);
-		for(String item : areas){
-			JSONObject obj=new JSONObject();
-			obj.put("area", item);
-			arrayArea.add(obj);
+		List<String> areas=null;
+		if(city1==null){
+			areas = null;
 		}
+		else{
+			areas=searchListDao.findAreaByCity(city1);
+			for(String item : areas){
+				JSONObject obj=new JSONObject();
+				obj.put("area", item);
+				arrayArea.add(obj);
+			}
+		}
+		
+		
 		json.put("areaArray", arrayArea);
 		
 	
