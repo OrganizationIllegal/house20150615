@@ -2001,7 +2001,7 @@ public class BingMapDao extends BaseDao2 {
 						sql+=" and b.area_city = '"+city+"'";
 					}
 					else{
-						sql+="b.area_city = '"+city+"'";
+						sql+="and b.area_city = '"+city+"'";
 						i=1;
 					}
 				}
@@ -2010,7 +2010,7 @@ public class BingMapDao extends BaseDao2 {
 						sql+=" and b.area_name = '"+area+"'";
 					}
 					else{
-						sql+="b.area_name = '"+area+"'";
+						sql+=" and b.area_name = '"+area+"'";
 						i=1;
 					}
 				}
@@ -2019,7 +2019,7 @@ public class BingMapDao extends BaseDao2 {
 						sql+=" and a.project_type = '"+type+"'";
 					}
 					else{
-						sql+="a.project_type = '"+type+"'";
+						sql+="and a.project_type = '"+type+"'";
 						i=1;
 					}
 				}
@@ -2028,7 +2028,7 @@ public class BingMapDao extends BaseDao2 {
 						sql+=" and (a.project_high_price between '"+jiage1+"' and '"+jiage2+"' or a.project_min_price between '"+jiage1+"' and '"+jiage2+"')";
 					}
 					else{
-						sql+="(a.project_high_price between '"+jiage1+"' and '"+jiage2+"' or a.project_min_price between '"+jiage1+"' and '"+jiage2+"')";
+						sql+="and (a.project_high_price between '"+jiage1+"' and '"+jiage2+"' or a.project_min_price between '"+jiage1+"' and '"+jiage2+"')";
 						i=1;
 					}
 				}
