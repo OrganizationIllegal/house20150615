@@ -385,7 +385,7 @@ body{
                	html+="<span class='c-fix f-l f-yahei s-12 node_title'>最少</span>";
                	html+="<span class='f-r f-yahei s-12 node_val'>$"+items[j].project_min_price+"</span>";
                	html+="<span class='c-fix f-l f-yahei s-12 node_title'>面积</span>";
-               	html+="<span class='f-r f-yahei s-12 node_val'>"+items[j].minArea+"+"+items[j].maxArea+"</span>";
+               	html+="<span class='f-r f-yahei s-12 node_val'>"+items[j].minArea+"-"+items[j].maxArea+"</span>";
                /* 	html+="<span class='c-fix f-l f-yahei s-12 node_title'>返利</span>";
                	html+="<span class='f-r f-yahei s-12 node_val'>"+items[j].return_money+"</span>"; */
                	html+="<span class='c-fix f-l f-yahei s-12 node_title'>起价</span>";
@@ -545,6 +545,7 @@ body{
 				<select id="Price" name="jiage" onchange="nation1(3)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" style="background:none;border:none;font-family:微软雅黑;padding-left:25px">
 
 					<option value="0">价格区间</option>
+
 					<option value="0-300000">300,000以下</option>
 					<option value="300000-400000">300,000-400,000</option>
 					<option value="400000-500000">400,000-500,000</option>
@@ -559,6 +560,7 @@ body{
 					<option value="2000000-3000000">2,000,000-3,000,000</option>
 					<option value="3000000-4000000">3,000,000-4,000,000</option>
 					<option value="4000000-5000000">4,000,000-5,000,000</option>
+
 				   
 				</select>
 				
