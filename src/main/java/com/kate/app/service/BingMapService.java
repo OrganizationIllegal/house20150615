@@ -146,10 +146,10 @@ public class BingMapService {
 					return array;
 				}
 	//根据房屋类型搜索及根据价格排序
-	public JSONArray filterByLiandong(String nation, String city, String area){
+	public JSONArray filterByLiandong(String nation, String city, String area,String type, String jiage1, String jiage2){
 		JSONArray array = new JSONArray();
 		DecimalFormat df = new DecimalFormat("#,###,###");
-		List<HouseProject> list = bingMapDao.filterByLiandong(nation, city, area);
+		List<HouseProject> list = bingMapDao.filterByLiandong(nation, city, area,type,jiage1,jiage2);
 		
 		for(HouseProject data : list){
 			JSONObject obj = new JSONObject();

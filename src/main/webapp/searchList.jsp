@@ -511,9 +511,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 		html+="<div class='f-l list_node_right'>";
                 		html+="<span class='c-fix f-l list_node_inner_lab f-yahei s-12'></span>";
                 		html+="<span class='f-l list_node_title fw f-yahei s-12 c-fix'>最多：</span>";
-                		html+="<span class='f-r list_node_val f-yahei s-12'>"+"<span>$</span>"+formatCurrency(Number(items[j].MaxPrice))+"</span>"; 
+                		html+="<span class='f-r list_node_val f-yahei s-12'>"+"<span>$</span>"+items[j].MaxPrice+"</span>"; 
                 		html+="<span class='f-l list_node_title fw f-yahei s-12 c-fix'>最少：</span>";
-                		 html+="<span class='f-r list_node_val f-yahei s-12'>"+"<span>$</span>"+formatCurrency(Number(items[j].MinPrice))+"</span>"; 
+                		 html+="<span class='f-r list_node_val f-yahei s-12'>"+"<span>$</span>"+items[j].MinPrice+"</span>"; 
                 		html+="<span class='f-l list_node_title fw f-yahei s-12 c-fix'>面积(M<sup><span style='font-size:8px'>2</span></sup>)：</span>";
                 		html+="<span class='f-r list_node_val f-yahei s-12'>"+items[j].MinArea+"<span>-</span>"+items[j].MaxArea+"</span>";
                 		html+="<span class='f-l list_node_title fw f-yahei s-12 c-fix'>起价：</span>";

@@ -1368,7 +1368,7 @@
 	   
 	   
 	   /* 增加搜索pushpin*/
-	   function addPushpinNation(nation, city, area,item)
+	   function addPushpinNation(nation, city, area,item,type,jiage)
       {
 		 //alert(nation+city+area)
 		 map.entities.clear(); 
@@ -1378,7 +1378,7 @@
 		 	    type: "POST",
 		 		dateType: "json",
 		 		url: "/BingMap/Liandong",	
-		 		data:{nation:nation, city:city, area:area},
+		 		data:{nation:nation, city:city, area:area, type:type, jiage:jiage},
 		 		success:function(data){
 		        //alert(data)
 		 		data=$.parseJSON(data);
