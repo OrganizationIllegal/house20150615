@@ -546,10 +546,10 @@ body{
 					</c:forEach> 
 				</select>
 
-				<select id="area" name="area" onchange="nation1(3)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px;margin-bottom: 5px;margin-top: 11px;">
+				<select id="area" name="area" onchange="nation1(3)" class="f-l f-yahei s-14 cp sel_price"  style="padding-right:0px;margin-bottom: 5px;margin-top: 11px;">
 					<%-- <c:choose>
 					<c:when test="${ empty areas}"> --%>
-						<option value="0">区域</option>
+					    <option value="0">区域</option> 
 						<option value="0">全部区域</option> 
 					<%-- </c:when>
 					<c:otherwise> --%>
