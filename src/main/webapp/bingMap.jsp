@@ -660,7 +660,7 @@ body{
 			$("#area").val("0");
 			$("#house1").val("0");
 			$("#Price").val("0");
-			addPushpinNation("", "", "", "");
+			addPushpinNation("0", "0", "0", "0","0","0");
 		});
 	</script>
 </html>
