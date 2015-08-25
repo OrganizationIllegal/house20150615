@@ -1430,11 +1430,11 @@
 		 		    var lenCenterarea=itemsCenterarea.length;
 		 		    var a=new Array();
 		 		    var Zoom;
-		 		    //alert(nation)
-		 		    //alert(city)
-		 		    //alert(area)
+		 		    alert(typeof(nation))
+		 		    alert(typeof(city))
+		 		    alert(area)
 		 		    if(lenItems!=0){
-		 		    	if(area!=0){
+		 		    	if(area!=""){
 		 		    		  //alert("area")
 	    		 		      Zoom=13;
 	    		 		      if(lenCentercity!=0){
@@ -1457,7 +1457,7 @@
 		    		 		          }
 		    		 		       }
 	    		 		    }
-		 		    	else if(city!=0){
+		 		    	else if(city!=""){
 		 		    		   //alert("ctiy")
 		 		    		   Zoom=9;
 		 		    		   if(lenCentercity!=0){
@@ -1480,13 +1480,14 @@
 	 	    		 		          }
 	  	    		 		       }
 	    		 		    }
-		 		    	else if(nation!=0){
+		 		    	else if(nation!=""){
 		 		    		   //alert("nation")
 		 		    		   Zoom=4;
 		 		    		   if(lenCenternation!=0){
 		 		    			   //alert("nation1")
 		    		 		       for(var n1=0;n1<lenCenternation;n1++){
 		    		 		    	   if(nation==itemsCenternation[n1].name){
+		    		 		    		   alert(itemsCenternation[n1].gps)
 		    		 		    		   a=itemsCenternation[n1].gps.split(",");
 		    		 		    		   break;
 		    		 		    	   }
@@ -1502,17 +1503,20 @@
 	 	    		 		          }
 	  	    		 		       }
 	    		 		    }
-		 		    	
+		 		    	else{
+		 		    		a[0]="-25.585241";
+				 		    a[1]="134.504120";
+				 		    Zoom=5;
+		 		    	}	
 		 		    }		 		
 		 		    else{
 		 		    	a[0]="-25.585241";
 			 		    a[1]="134.504120";
 			 		    Zoom=5;
 		 		    } 
+		 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
 		 		    alert(Center);
 		 		    alert(Zoom);
-		 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
-		 		    //alert(Center);
 		 		    map.setView({ zoom: Zoom, center: Center });
 		 		    lastZoomLevel = map.getZoom();
 		 	        Microsoft.Maps.Events.addHandler(map, 'viewchangeend', function(){
