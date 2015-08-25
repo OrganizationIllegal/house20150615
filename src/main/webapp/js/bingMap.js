@@ -1439,7 +1439,7 @@
 		 		    if(lenItems!=0){
 		 		    	if(area!=""&&area!=0){
 		 		    		  //alert("area")
-	    		 		      Zoom=13;
+	    		 		      Zoom=14;
 	    		 		      if(lenCentercity!=0){
 	    		 		    	 //alert("area1")
 	    		 		    	 for(var k3=0;k3<lenCenterarea;k3++){
@@ -1462,7 +1462,7 @@
 	    		 		    }
 		 		    	else if(city!=""&&city!=0){
 		 		    		   //alert("ctiy")
-		 		    		   Zoom=9;
+		 		    		   Zoom=10;
 		 		    		   if(lenCentercity!=0){
 		 		    		   //alert("ctiy1")
 	    		 		       for(var k1=0;k1<lenCentercity;k1++){
@@ -1485,7 +1485,7 @@
 	    		 		    }
 		 		    	else if(nation!=""&&nation!=0){
 		 		    		   //alert("nation")
-		 		    		   Zoom=4;
+		 		    		   Zoom=5;
 		 		    		   if(lenCenternation!=0){
 		 		    			   //alert("nation1")
 		    		 		       for(var n1=0;n1<lenCenternation;n1++){
@@ -1575,7 +1575,7 @@
  	                 		 		var pushpinOptions3;
  	                 		 		var pushpin3;
  	                 		 		//项目名
- 	                 		 		if(lastZoomLevel>12){
+ 	                 		 		if(lastZoomLevel>3){
  	                 		 		map.entities.clear();
  	                 		 		for(var p=0;p<lenItems;p++){
  	                 		 	        arr3=items[p].gps.split(",");
@@ -1600,7 +1600,7 @@
  	    			 	 	 		    }
  	                 		 		}	
  	                 		 		}
- 	                 		 	    //区域
+ 	                 		 	    /*//区域
  	                 		 		else if(lastZoomLevel>8){
  	                 		 		map.entities.clear();
  	                 		 		for(var a=0;a<lenArea;a++){
@@ -1682,7 +1682,7 @@
 		       		 	                  	        map.entities.push(pushpin3);
  	 	                    		 		}
  		                    		 		}
- 	                 		 		}
+ 	                 		 		}*/
  	                 		 	 // 国家
  	                 		 		else{
  	                 		 			map.entities.clear();
@@ -1722,7 +1722,7 @@
  	                 		 		var pushpinOptions3;
  	                 		 		var pushpin3;
  	                 		 		//项目名
- 	                 		 		if(lastZoomLevel>12){
+ 	                 		 		if(lastZoomLevel>3){
  	                 		 		map.entities.clear();
  	                 		 		for(var p=0;p<lenItems;p++){
  	                 		 	        arr3=items[p].gps.split(",");
@@ -1739,7 +1739,7 @@
  	    		 	                  	map.entities.push(pushpin3);    	    			 	 	 		    
  	                 		 		}	
  	                 		 		}
- 	                 		 	    //区域
+ 	                 		 	   /* //区域
  	                 		 		else if(lastZoomLevel>8){
  	                 		 		map.entities.clear();
  	                 		 		for(var a=0;a<lenArea;a++){
@@ -1789,7 +1789,7 @@
  		       		 	            	            add3(lastZoomLevel,pushpin3,LA3);
  		       		 	                  	        map.entities.push(pushpin3);                   		 		
  		                    		 		}
- 	                 		 		}
+ 	                 		 		}*/
  	                 		 	 // 国家
  	                 		 		else{
  	                 		 			map.entities.clear();
@@ -1809,7 +1809,7 @@
  	 	                    		 		}
  	                 		 		}
  		 	             		})
-			 	               if(lastZoomLevel>12){
+			 	               if(lastZoomLevel>3){
 			 	            	  map.entities.clear();
 			 	            	  for(var i=0;i<items.length;i++){
 			 	 	 		        var arr=new Array();
@@ -1820,19 +1820,18 @@
 			 	 	 		        var image=items[i].project_img;
 			 	 	 		        var img=imgdir+"/"+image;
 			 	 	 		        
-			 	 	 		       /* var minprice=items[i].project_min_price;
-			 	 	 		        var maxprice=items[i].project_high_price;*/
-			 	 	 		        var city=items[i].project_city;
+			 	 	 		        var minprice=items[i].project_min_price;
+			 	 	 		        var maxprice=items[i].project_high_price;
 			 	 	 		        //var price=items[i].project_price_int_qi;
 			 	 	 		        var price=items[i].project_min_price;
 			 	 	 		        var type=items[i].project_type;
 			 	 	 		        var pushpinOptions = {width: 30, height: 30,textOffset:new Microsoft.Maps.Point(0,8),icon:'/images/pushpin2.png'}; 
 			 	 	 		        var pushpin= new Microsoft.Maps.Pushpin(LA, pushpinOptions);
-			 	 	 		        /*var pushpin= new Microsoft.Maps.Pushpin(LA,null);*/
 			 	 				    add(name,type,img,price,num,pushpin,LA);
 			 	 				    map.entities.push(pushpin);	
 			 	 	 		    }	 	            	   
-			 	               }else if(lastZoomLevel>8){
+			 	               }
+			 	              /* else if(lastZoomLevel>8){
 			 	            	    map.entities.clear();
 			 	            	    var lenArea=itemsArea1.length;
 			 	            	    for(var j=0;j<lenArea;j++){
@@ -1890,7 +1889,8 @@
 			 	            	        add3(lastZoomLevel,pushpin2,LA2);
 			 	                  	    map.entities.push(pushpin2);
 			 	            	    }
-			 	               }else{
+			 	               }*/
+			 	               else{
 			 	            	    map.entities.clear();
 			 	            	    var lenNation=itemsNation1.length;
 			 	            	    for(var j=0;j<lenNation;j++){
