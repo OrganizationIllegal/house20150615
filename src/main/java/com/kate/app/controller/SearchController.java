@@ -320,7 +320,7 @@ public class SearchController {
 			String maximumprice = req.getParameter("maximumprice");
 			String searchcity = req.getParameter("searchcity");//城市
 			String country = req.getParameter("country");//国家
-			if("澳洲".equals(country)){
+			if("澳洲".equals(country)||"".equals(country)){
 				country="澳大利亚";
 			}
 			String city2 = req.getParameter("city2");//城市
