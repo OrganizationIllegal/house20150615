@@ -165,7 +165,7 @@ public class BingMapController {
 		/*flag1 = SearchController.flag;
 		flagSearch1 = SearchListController.flagSearch;*/
 
-		if(searchListIndex!=null && searchListIndex.size()>0 && flagInformation.equals("Index")){
+		if(searchListIndex!=null && searchListIndex.size()>=0 && flagInformation.equals("Index")){
 			liandong = 1;
 			for(SearchList s:searchListIndex){
 	        	BingMapVo bingMapVo=new BingMapVo();
@@ -1735,6 +1735,8 @@ public class BingMapController {
 		String nation1 = req.getParameter("nation");
 		String city1 = req.getParameter("city");
 		String area1 = req.getParameter("area");
+		String type = req.getParameter("type");
+		String jiage = req.getParameter("jiage");
 		
 		
 		/*BingMapController.nation=nation1;
@@ -1746,16 +1748,36 @@ public class BingMapController {
 		req.getSession().setAttribute("nation", nation1);
 		req.getSession().setAttribute("city", city1);
 		req.getSession().setAttribute("area", area1);
-		
+		String jiage1 = "";
+		String jiage2 = "";
 		if(nation1.equals("0")){
 			nation1 = null;
-		}
-		if(city1.equals("0")){
 			city1 = null;
-		}
-		if(area1.equals("0")){
 			area1 = null;
 		}
+		else if(city1.equals("0")){
+			city1 = null;
+			area1 = null;
+		}
+		else if(area1.equals("0")){
+			area1 = null;
+		}
+		
+		
+		if(type.equals("0")){
+			type = null;
+		}
+		if(jiage.equals("0")){
+			jiage = null;
+		}
+		else{
+			if(jiage.contains("-")){
+				String[] strs = jiage.split("-");
+				jiage1 = strs[0];
+				jiage2 = strs[1];
+			}
+		}
+		
 		
 		List<String> citys=searchListDao.findCityByNation(nation1);
 		for(String item : citys){
@@ -1764,25 +1786,32 @@ public class BingMapController {
 			arrayCity.add(obj);
 		}
 		json.put("cityArray", arrayCity);
-		
-		List<String> areas=searchListDao.findAreaByCity(city1);
-		for(String item : areas){
-			JSONObject obj=new JSONObject();
-			obj.put("area", item);
-			arrayArea.add(obj);
+		List<String> areas=null;
+		if(city1==null){
+			areas = null;
 		}
+		else{
+			areas=searchListDao.findAreaByCity(city1);
+			for(String item : areas){
+				JSONObject obj=new JSONObject();
+				obj.put("area", item);
+				arrayArea.add(obj);
+			}
+		}
+		
+		
 		json.put("areaArray", arrayArea);
 		
 	
 	
 		
-		List<HouseProject> list = bingMapDao.filterByLiandong(nation1,city1,area1);  //根据类型查找项目列表
+		List<HouseProject> list = bingMapDao.filterByLiandong(nation1,city1,area1,type,jiage1,jiage2);  //根据类型查找项目列表
 		
 		lianDongResult = list;
 		listResult=list;
 		req.getSession().setAttribute("listResult", listResult);
 		
-		array = bingMapService.filterByLiandong(nation1,city1,area1);
+		array = bingMapService.filterByLiandong(nation1,city1,area1,type,jiage1,jiage2);
 		
 		arrayCenternation=bingMapService.jsonMapCenterNation();
 		arrayCentercity=bingMapService.jsonMapCenterCity();

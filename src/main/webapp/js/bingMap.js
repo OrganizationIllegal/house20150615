@@ -785,6 +785,7 @@
     			 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
     			 	            	        var area2=itemsArea2[j].project_area;
     			 	            	        var total=String(itemsArea1[j].area);
+    			 	            	        //alert("leibiao"+LA2);
     			 	            	        //alert(typeof(total))
     			 	            	        /*var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; */
     			 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea.png'};
@@ -864,8 +865,8 @@
 
       //生成地图消息框
       function add(name,type,img,price,num,pushpin,LA){
-    	  Microsoft.Maps.Events.addHandler(pushpin, 'click', function(){
-		        var infoboxOptions = {width :400, height :100,offset:new Microsoft.Maps.Point(-15,20)}; 
+    	  Microsoft.Maps.Events.addHandler(pushpin, 'mouseover', function(){
+		        var infoboxOptions = {width :400, height :100,offset:new Microsoft.Maps.Point(10,20)}; 
 		        var num1=num;
 		        var img1=img;
 		        var price1=price;
@@ -882,7 +883,7 @@
       }
       function add2(name,pushpin,LA){
     	  Microsoft.Maps.Events.addHandler(pushpin, 'mouseover', function(){
-		        var infoboxOptions = {description:name,width :150, height :50,showPointer:false,offset:new Microsoft.Maps.Point(0,15)}; 
+		        var infoboxOptions = {description:name,width :150, height :50,showPointer:false,offset:new Microsoft.Maps.Point(10,35)}; 
 		        if(defaultInfobox){
 		        	defaultInfobox.setOptions({ visible: false });
 		        }
@@ -1368,23 +1369,25 @@
 	   
 	   
 	   /* 增加搜索pushpin*/
-	   function addPushpinNation(nation, city, area,item)
+	   function addPushpinNation(nation, city, area,item,type,jiage)
       {
 		 //alert(nation+city+area)
 		 map.entities.clear(); 
 		 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
 		 var xuanze = 0;
+		 
 		 $.ajax({
 		 	    type: "POST",
 		 		dateType: "json",
 		 		url: "/BingMap/Liandong",	
-		 		data:{nation:nation, city:city, area:area},
+		 		data:{nation:nation, city:city, area:area, type:type, jiage:jiage},
 		 		success:function(data){
 		        //alert(data)
 		 		data=$.parseJSON(data);
 		 		//alert(data.List+"返回数据")
 		 		var cityArray=data.cityArray;
 		 		var areaArray=data.areaArray;
+		 		
 		 		if(item == 1){
 		 			$('#city').empty();
 		        	   $('#city').append($('<option></option>').val("0").text("城市"));
@@ -1397,6 +1400,7 @@
 		 		else if(item == 2){
 		 			$('#area').empty();
 		        	   $('#area').append($('<option></option>').val("0").text("区域"));
+		        	   alert(areaArray.length)
 		        	   for(var i=0; i<areaArray.length; i++)  
 		        	   {  
 		        		/*    jQuery("#city").append("<option value='"+cityArray[i].cityname+"'>"+cityArray[i].cityname+"</option>");  */
@@ -1433,9 +1437,9 @@
 		 		    //alert(city)
 		 		    //alert(area)
 		 		    if(lenItems!=0){
-		 		    	if(area!=0){
-		 		    		//alert("area")
-	    		 		      Zoom=10;
+		 		    	if(area!=""){
+		 		    		  //alert("area")
+	    		 		      Zoom=13;
 	    		 		      if(lenCentercity!=0){
 	    		 		    	 //alert("area1")
 	    		 		    	 for(var k3=0;k3<lenCenterarea;k3++){
@@ -1446,7 +1450,7 @@
 	  	   		 		          }
 	    		 		      }    		 		     
 	    		 		     if(a.length==0){
-	    		 		    	//alert("area1")
+	    		 		    	//alert("area2")
 		    		 		    	for(var k4=0;k4<lenItems;k4++){
 		    		 		    	   if(area==items[k4].project_area){
 		    		 		    		   a=items[k4].gps.split(",");
@@ -1456,9 +1460,9 @@
 		    		 		          }
 		    		 		       }
 	    		 		    }
-		 		    	else if(city!=0){
+		 		    	else if(city!=""){
 		 		    		   //alert("ctiy")
-		 		    		   Zoom=8;
+		 		    		   Zoom=9;
 		 		    		   if(lenCentercity!=0){
 		 		    		   //alert("ctiy1")
 	    		 		       for(var k1=0;k1<lenCentercity;k1++){
@@ -1479,7 +1483,7 @@
 	 	    		 		          }
 	  	    		 		       }
 	    		 		    }
-		 		    	else if(nation!=0){
+		 		    	else if(nation!=""){
 		 		    		   //alert("nation")
 		 		    		   Zoom=4;
 		 		    		   if(lenCenternation!=0){
@@ -1501,7 +1505,11 @@
 	 	    		 		          }
 	  	    		 		       }
 	    		 		    }
-		 		    	
+		 		    	else{
+		 		    		a[0]="-25.585241";
+				 		    a[1]="134.504120";
+				 		    Zoom=5;
+		 		    	}	
 		 		    }		 		
 		 		    else{
 		 		    	a[0]="-25.585241";
@@ -1509,6 +1517,8 @@
 			 		    Zoom=5;
 		 		    } 
 		 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
+		 		    //alert(Center);
+		 		    //alert(Zoom);
 		 		    map.setView({ zoom: Zoom, center: Center });
 		 		    lastZoomLevel = map.getZoom();
 		 	        Microsoft.Maps.Events.addHandler(map, 'viewchangeend', function(){
@@ -1565,7 +1575,7 @@
  	                 		 		var pushpinOptions3;
  	                 		 		var pushpin3;
  	                 		 		//项目名
- 	                 		 		if(lastZoomLevel>10){
+ 	                 		 		if(lastZoomLevel>12){
  	                 		 		map.entities.clear();
  	                 		 		for(var p=0;p<lenItems;p++){
  	                 		 	        arr3=items[p].gps.split(",");
@@ -1595,7 +1605,8 @@
  	                 		 		map.entities.clear();
  	                 		 		for(var a=0;a<lenArea;a++){
  			 	            	        arr3=itemsArea2[a].gps.split(",");
- 			 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+ 			 	            	        //LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]);
+ 			 	            	        LA3=Center;
  			 	            	        var area3=itemsArea2[a].project_area;
  			 	            	        total2=String(itemsArea1[a].area);
  	                 		 			if(area==area3){
@@ -1621,7 +1632,8 @@
  	                 		 			map.entities.clear();
  	                 		 			for(var c=0;c<lenCity;c++){
  	 	   		 	            	        arr3=itemsCity2[c].gps.split(",");
- 	 	   		 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+ 	 	   		 	            	        //LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]);
+ 	 	   		 	            	        LA3=Center;
  	 	   		 	            	        var city3=itemsCity2[c].project_city;
  	 	   		 	            	        total2=String(itemsCity1[c].city);
  	 	                    		 			if(city==city3){
@@ -1648,7 +1660,8 @@
  	                 		 			map.entities.clear();
  	                 		 			for(var z=0;z<lenZhou;z++){
  		   		 	            	            arr3=itemsZhou2[z].gps.split(",");
- 		   		 	            	            LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+ 		   		 	            	            //LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]);
+ 		   		 	            	            LA3=Center;
  		   		 	            	            var zhou3=itemsZhou2[z].project_zhou;
  		   		 	            	            total2=String(itemsZhou1[z].zhou);
  		                    		 			if(zhou==zhou3){
@@ -1675,7 +1688,8 @@
  	                 		 			map.entities.clear();
  	                 		 			for(var n=0;n<lenNation;n++){
  	 	   		 	            	        arr3=itemsNation2[n].gps.split(",");
- 	 	   		 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+ 	 	   		 	            	        //LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]);
+ 	 	   		 	            	        LA3=Center;
  	 	   		 	            	        var nation3=itemsNation2[n].project_nation;
  	 	   		 	            	        var pronum=itemsNation2[n].project_num;
  	 	   		 	            	        total2=String(itemsNation1[n].nation);
@@ -1708,7 +1722,7 @@
  	                 		 		var pushpinOptions3;
  	                 		 		var pushpin3;
  	                 		 		//项目名
- 	                 		 		if(lastZoomLevel>10){
+ 	                 		 		if(lastZoomLevel>12){
  	                 		 		map.entities.clear();
  	                 		 		for(var p=0;p<lenItems;p++){
  	                 		 	        arr3=items[p].gps.split(",");
@@ -1730,7 +1744,8 @@
  	                 		 		map.entities.clear();
  	                 		 		for(var a=0;a<lenArea;a++){
  			 	            	        arr3=itemsArea2[a].gps.split(",");
- 			 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+ 			 	            	        //LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]);
+ 			 	            	        LA3=Center;
  			 	            	        var area3=itemsArea2[a].project_area;
  			 	            	        total2=String(itemsArea1[a].area);	
  	                 		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea.png'};
@@ -1746,7 +1761,8 @@
  	                 		 			map.entities.clear();
  	                 		 			for(var c=0;c<lenCity;c++){
  	 	   		 	            	        arr3=itemsCity2[c].gps.split(",");
- 	 	   		 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+ 	 	   		 	            	        //LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+ 	 	   		 	            	        LA3=Center;
  	 	   		 	            	        var city3=itemsCity2[c].project_city;
  	 	   		 	            	        total2=String(itemsCity1[c].city);
  	 	                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinCity.png'};
@@ -1762,7 +1778,8 @@
  	                 		 			map.entities.clear();
  	                 		 			for(var z=0;z<lenZhou;z++){
  		   		 	            	            arr3=itemsZhou2[z].gps.split(",");
- 		   		 	            	            LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+ 		   		 	            	            //LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]);
+ 		   		 	            	            LA3=Center;
  		   		 	            	            var zhou3=itemsZhou2[z].project_zhou;
  		   		 	            	            total2=String(itemsZhou1[z].zhou);
  		                    		 				pushpinOptions3={text:total2,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinZhou.png'};
@@ -1778,7 +1795,8 @@
  	                 		 			map.entities.clear();
  	                 		 			for(var n=0;n<lenNation;n++){
  	 	   		 	            	        arr3=itemsNation2[n].gps.split(",");
- 	 	   		 	            	        LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]); 
+ 	 	   		 	            	        //LA3=new Microsoft.Maps.Location(arr3[0],arr3[1]);
+ 	 	   		 	            	        LA3=Center;
  	 	   		 	            	        var nation3=itemsNation2[n].project_nation;
  	 	   		 	            	        var pronum=itemsNation2[n].project_num;
  	 	   		 	            	        total2=String(itemsNation1[n].nation);
@@ -1791,7 +1809,7 @@
  	 	                    		 		}
  	                 		 		}
  		 	             		})
-			 	               if(lastZoomLevel>10){
+			 	               if(lastZoomLevel>12){
 			 	            	  map.entities.clear();
 			 	            	  for(var i=0;i<items.length;i++){
 			 	 	 		        var arr=new Array();
@@ -1800,7 +1818,8 @@
 			 	 	 		        var num=items[i].project_num;
 			 	 	 		        var name=items[i].project_name;
 			 	 	 		        var image=items[i].project_img;
-			 	 	 		        var img=imgdir+"/"+image;	 		        
+			 	 	 		        var img=imgdir+"/"+image;
+			 	 	 		        
 			 	 	 		       /* var minprice=items[i].project_min_price;
 			 	 	 		        var maxprice=items[i].project_high_price;*/
 			 	 	 		        var city=items[i].project_city;
@@ -1813,15 +1832,17 @@
 			 	 				    add(name,type,img,price,num,pushpin,LA);
 			 	 				    map.entities.push(pushpin);	
 			 	 	 		    }	 	            	   
-			 	               }else if(lastZoomLevel>8){		 	            	  
+			 	               }else if(lastZoomLevel>8){
 			 	            	    map.entities.clear();
 			 	            	    var lenArea=itemsArea1.length;
 			 	            	    for(var j=0;j<lenArea;j++){
 			 	            	        var arr2=new Array();
 			 	            	        arr2=itemsArea2[j].gps.split(",");
-			 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
+			 	            	        //var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]);
+			 	            	        var LA2=Center;
 			 	            	        var area2=itemsArea2[j].project_area;
 			 	            	        var total=String(itemsArea1[j].area);
+			 	            	        //alert("sousuo"+LA2);
 			 	            	        //alert(typeof(total))
 			 	            	        /*var pushpinOptions2 = {width:null, height:null,htmlContent: "<div style='width:100px;height:100px;text-align:center;'><div style='width:40px;height:40px;position:relative;top:65px;left:30px;font-size:15px;color:black;font-weight:bold;'>"+total+"</div><img src='/images/pushpin.png' style='width:100px;'/></div>"}; */
 			 	            	        var pushpinOptions2={text:total,width: 41, height: 41,textOffset:new Microsoft.Maps.Point(0,15),icon:'/images/pushpinArea.png'};
@@ -1837,7 +1858,8 @@
 			 	            	    for(var j=0;j<lenCity;j++){
 			 	            	        var arr2=new Array();
 			 	            	        arr2=itemsCity2[j].gps.split(",");
-			 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
+			 	            	        //var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]);
+			 	            	        var LA2=Center;
 			 	            	        var city2=itemsCity2[j].project_city;
 			 	            	        var total=String(itemsCity1[j].city);
 			 	            	        //alert(typeof(total))
@@ -1855,7 +1877,8 @@
 			 	            	    for(var j=0;j<lenZhou;j++){
 			 	            	        var arr2=new Array();
 			 	            	        arr2=itemsZhou2[j].gps.split(",");
-			 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
+			 	            	        //var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
+			 	            	        var LA2=Center;
 			 	            	        var zhou2=itemsZhou2[j].project_zhou;
 			 	            	        var total=String(itemsZhou1[j].zhou);
 			 	            	        //alert(typeof(total))
@@ -1873,7 +1896,8 @@
 			 	            	    for(var j=0;j<lenNation;j++){
 			 	            	        var arr2=new Array();
 			 	            	        arr2=itemsNation2[j].gps.split(",");
-			 	            	        var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]); 
+			 	            	        //var LA2=new Microsoft.Maps.Location(arr2[0],arr2[1]);
+			 	            	        var LA2=Center;
 			 	            	        var nation2=itemsNation2[j].project_nation;
 			 	            	        var total=String(itemsNation1[j].nation);
 			 	            	        //var shownation=nation2+'\r\n'+total;

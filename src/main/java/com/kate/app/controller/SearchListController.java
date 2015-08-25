@@ -93,8 +93,15 @@ public class SearchListController {
 			List<String>cities=searchListDao.findCityByNation(nation);
 			req.setAttribute("cities", cities);
 			req.setAttribute("city", city);
-			List<String>areas=searchListDao.findAreaByCity(city);
-			req.setAttribute("areas", areas);
+			if(city==null){
+				req.setAttribute("areas", "");
+			}
+			else{
+				List<String>areas=searchListDao.findAreaByCity(city);
+				req.setAttribute("areas", areas);
+			}
+			
+			
 			req.setAttribute("area", area);
 			//从session中拿到标签参数
 			String xinkaipan=(String)req.getSession().getAttribute("xinkaipan1");

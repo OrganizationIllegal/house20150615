@@ -155,12 +155,16 @@ body{
 	  
 
 	   var nation = $(' #nation  option:selected').val();
-	   var city = $(' #city  option:selected').val();
-	   var area = $(' #area  option:selected').val();
+
+	   var city = (Number(item)>=2)?$(' #city  option:selected').val():"";
+	   var area = (Number(item)>=3)?$(' #area  option:selected').val():"";
+	   var type = $(' #house1  option:selected').val();
+	   var jiage = $(' #Price  option:selected').val();
+
 	   //alert(city+"chengshi")
 	   //var nation = $(' #nation  option:selected').val();
 	  
-	   addPushpinNation(nation, city, area, item);
+	   addPushpinNation(nation, city, area, item,type,jiage);
 	  
 	   
 	   }
@@ -513,8 +517,10 @@ body{
 					
 				
 				</select>
+				
 				<select id="city" name="city" onchange="nation1(2)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px;margin-top: 11px;" >
 
+<<<<<<< HEAD
 					<option value="0">城市</option>
 					<%--  <c:forEach var="item" items="${cities}" varStatus="stat">
 					  <c:choose>
@@ -537,49 +543,109 @@ body{
 					   </c:choose>
 					</c:forEach> 
 				</select>
-				<select id="area" name="area" onchange="nation1(3)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px;margin-bottom: 5px;margin-top: 11px;">
+=======
+							<option value="0">城市</option>
+							
+							 <c:forEach var="item" items="${cities}" varStatus="stat">
+							
+							  <c:choose>
+							   <c:when test="${city==item}">
+							   		 <option value="${city}" selected="selected">${city}</option> 
+							   </c:when>
+							   <c:otherwise>
+							         
+								     <option value="${item}">${item}</option>
+							   </c:otherwise>
+							   </c:choose>
+							</c:forEach> 
+						</select>
+						
+						
+				
+				<%-- <c:choose>
+					<c:when test="${ empty cities}">
+						<select id="city" name="city" onchange="nation1(2)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px;margin-top: 11px;" >
+		
+							<option value="0">城市</option>
+						</select>
+					</c:when>
+					
+					<c:otherwise>
+						<select id="city" name="city" onchange="nation1(2)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px;margin-top: 11px;" >
 
-					<option value="0">区域</option>
-					 <c:forEach var="item" items="${areas}" varStatus="stat">
+							<option value="0">全部城市</option>
+							
+							 <c:forEach var="item" items="${cities}" varStatus="stat">
+							
+							  <c:choose>
+							   <c:when test="${city==item}">
+							   		 <option value="${city}" selected="selected">${city}</option> 
+							   </c:when>
+							   <c:otherwise>
+							         
+								     <option value="${item}">${item}</option>
+							   </c:otherwise>
+							   </c:choose>
+							</c:forEach> 
+						</select>
+					</c:otherwise>
+				</c:choose> --%>
+				
+>>>>>>> af1bc4388b98b195bc052a72e9374dd71f95d4c5
+				<select id="area" name="area" onchange="nation1(3)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px;margin-bottom: 5px;margin-top: 11px;">
+					<%-- <c:choose>
+					<c:when test="${ empty areas}"> --%>
+						<option value="0">区域</option>
+					<%-- </c:when>
+					<c:otherwise> --%>
+						<c:forEach var="item" items="${areas}" varStatus="stat">
 						 <c:choose>
 					   <c:when test="${area==item}">
 					   		 <option value="${area}" selected="selected">${area}</option> 
 					   </c:when>
 					   <c:otherwise>
+					         <option value="0">全部区域</option>
 						     <option value="${item}">${item}</option>
 					   </c:otherwise>
 					   </c:choose>
 					</c:forEach>
+					<%-- </c:otherwise>
+					</c:choose> --%>
+					 
 				</select>
 				
 
-				<select id="house1" onchange="housetype1(this)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" style="background:none;border:none;font-family:微软雅黑;padding-left:25px">
+				<select id="house1" name="type" onchange="nation1(3)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" style="background:none;border:none;font-family:微软雅黑;padding-left:25px">
 
 					<option value="0">物业类型</option>
-					<option value="1">公寓</option>
-					<option value="2">别墅</option>
-				    <option value="3">联排别墅</option>
+					<option value="公寓">公寓</option>
+					<option value="别墅">别墅</option>
+				    <option value="联排别墅">联排别墅</option>
 				</select>
 
 				
-				<select id="Price" onchange="housePrice(this)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" style="background:none;border:none;font-family:微软雅黑;padding-left:25px">
+				<select id="Price" name="jiage" onchange="nation1(3)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" style="background:none;border:none;font-family:微软雅黑;padding-left:25px">
 
 					<option value="0">价格区间</option>
-					<option value="1">30,000以下</option>
-					<option value="2">30,000-40,000</option>
-					<option value="2">40,000-50,000</option>
-					<option value="2">50,000-60,000</option>
-					<option value="2">60,000-70,000</option>
-					<option value="2">70,000-80,000</option>
-					<option value="2">80,000-90,000</option>
-					<option value="2">90,000-100,000</option>
-					<option value="2">100,000-120,000</option>
-					<option value="2">120,000-150,000</option>
-					<option value="2">150,000-200,000</option>
-					<option value="2">200,000以上</option>
+
+					<option value="0-300000">300,000以下</option>
+					<option value="300000-400000">300,000-400,000</option>
+					<option value="400000-500000">400,000-500,000</option>
+					<option value="500000-600000">500,000-600,000</option>
+					<option value="600000-700000">600,000-700,000</option>
+					<option value="700000-800000">700,000-800,000</option>
+					<option value="800000-900000">800,000-900,000</option>
+					<option value="900000-1000000">900,000-1,000,000</option>
+					<option value="1000000-1200000">1,000,000-1,200,000</option>
+					<option value="1200000-1500000">1,200,000-1,500,000</option>
+					<option value="1500000-2000000">1,500,000-2,000,000</option>
+					<option value="2000000-3000000">2,000,000-3,000,000</option>
+					<option value="3000000-4000000">3,000,000-4,000,000</option>
+					<option value="4000000-5000000">4,000,000-5,000,000</option>
+
 				   
 				</select>
-				
+				<button class="allchexiao" style="margin-top: 2px;margin-left: 20px;">全部撤销</button>
 				
 				
 				<!-- <a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" href="/BingMap/OrderByPrice?order=1">价格从低到高</a>
@@ -667,8 +733,18 @@ body{
 		</div>
 		
 	</body>
+	<script type="text/javascript">
+		$(".allchexiao").click(function(){
+			$("#nation").val("0");
+			$("#city").val("0");
+			$("#area").val("0");
+			$("#house1").val("0");
+			$("#Price").val("0");
+			addPushpinNation("", "", "", "","","");
+		});
+	</script>
 </html>
-<<script type="text/javascript">
+<script type="text/javascript">
 		var value = $("#keyWord").val();
   		
    		

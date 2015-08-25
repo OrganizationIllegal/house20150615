@@ -31,6 +31,11 @@
 	  font-family:Microsoft YaHei;
 	  font-size:13px;
    }
+   
+   /* a:link {color: #FF0000!important;} */		/* 未访问的链接 */
+	/* a:visited {color: #00FF00!important;} */	/* 已访问的链接 */
+	a:hover {color: #000000!important;}	/* 鼠标移动到链接上 */
+	/* a:active {color: #0000FF!important;} */
 </style>
 
 <script type="text/javascript">
