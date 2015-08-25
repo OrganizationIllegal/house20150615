@@ -1714,6 +1714,8 @@ public class BingMapController {
 		String nation1 = req.getParameter("nation");
 		String city1 = req.getParameter("city");
 		String area1 = req.getParameter("area");
+		String type = req.getParameter("type");
+		String jiage = req.getParameter("jiage");
 		
 		
 		/*BingMapController.nation=nation1;
@@ -1725,7 +1727,8 @@ public class BingMapController {
 		req.getSession().setAttribute("nation", nation1);
 		req.getSession().setAttribute("city", city1);
 		req.getSession().setAttribute("area", area1);
-		
+		String jiage1 = "";
+		String jiage2 = "";
 		if(nation1.equals("0")){
 			nation1 = null;
 		}
@@ -1735,6 +1738,20 @@ public class BingMapController {
 		if(area1.equals("0")){
 			area1 = null;
 		}
+		if(type.equals("0")){
+			type = null;
+		}
+		if(jiage.equals("0")){
+			jiage = null;
+		}
+		else{
+			if(jiage.contains("-")){
+				String[] strs = jiage.split("-");
+				jiage1 = strs[0];
+				jiage2 = strs[1];
+			}
+		}
+		
 		
 		List<String> citys=searchListDao.findCityByNation(nation1);
 		for(String item : citys){
@@ -1755,13 +1772,13 @@ public class BingMapController {
 	
 	
 		
-		List<HouseProject> list = bingMapDao.filterByLiandong(nation1,city1,area1);  //根据类型查找项目列表
+		List<HouseProject> list = bingMapDao.filterByLiandong(nation1,city1,area1,type,jiage1,jiage2);  //根据类型查找项目列表
 		
 		lianDongResult = list;
 		listResult=list;
 		req.getSession().setAttribute("listResult", listResult);
 		
-		array = bingMapService.filterByLiandong(nation1,city1,area1);
+		array = bingMapService.filterByLiandong(nation1,city1,area1,type,jiage1,jiage2);
 		
 		arrayCenternation=bingMapService.jsonMapCenterNation();
 		arrayCentercity=bingMapService.jsonMapCenterCity();
