@@ -156,7 +156,6 @@ public class BingMapController {
 			catch(Exception e){
 				
 			}
-			
 		}
 		
 		//searchListIndex = SearchController.seachListResult;
