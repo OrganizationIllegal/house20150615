@@ -521,7 +521,6 @@ body{
 				
 				<select id="city" name="city" onchange="nation1(2)" class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px;margin-top: 11px;" >
 
-
 					<option value="0">城市</option>
 				   <option value="0">全部城市</option> 
 					<%--  <c:forEach var="item" items="${cities}" varStatus="stat">
@@ -546,6 +545,7 @@ body{
 					</c:forEach> 
 				</select>
 
+
 				<select id="area" name="area" onchange="nation1(3)" class="f-l f-yahei s-14 cp sel_price"  style="padding-right:0px;margin-bottom: 5px;margin-top: 11px;">
 					<%-- <c:choose>
 					<c:when test="${ empty areas}"> --%>
@@ -559,7 +559,7 @@ body{
 					   		 <option value="${area}" selected="selected">${area}</option> 
 					   </c:when>
 					   <c:otherwise>
-					        <!--  <option value="0">全部区域</option> -->
+
 						     <option value="${item}">${item}</option>
 					   </c:otherwise>
 					   </c:choose>
