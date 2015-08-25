@@ -1824,9 +1824,9 @@ public class SearchListDao extends BaseDao2 {
 		List<String> citys=new ArrayList<String>();
 		try{
 		con = dataSource.getConnection();
-		String sql = "select * from city where pre_num=?";
+		String sql = "select * from city where pre_num like '%"+nation+"%'";
 		pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, nation);
+		/*pstmt.setString(1, nation);*/
 		rs = pstmt.executeQuery();
 		while(rs.next()){
 			String city=rs.getString("city_name");
@@ -1857,9 +1857,9 @@ public class SearchListDao extends BaseDao2 {
 			List<String> areas=new ArrayList<String>();
 			try{
 			con = dataSource.getConnection();
-			String sql = "select * from area where pre_num=?";
+			String sql = "select * from area where pre_num like '%"+city+"%'";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, city);
+			/*pstmt.setString(1, city);*/
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				String area_name=rs.getString("area_name");

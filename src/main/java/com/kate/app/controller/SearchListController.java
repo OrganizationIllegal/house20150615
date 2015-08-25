@@ -18,11 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kate.app.dao.AjaxDao;
+import com.kate.app.dao.BingMapDao;
 import com.kate.app.dao.HouseProjectDao;
 import com.kate.app.dao.ProjectInputDao;
 import com.kate.app.dao.SearchListDao;
 import com.kate.app.dao.UserDao;
 import com.kate.app.model.HouseProject;
+import com.kate.app.model.Nation;
 import com.kate.app.model.ProjectDescImage;
 import com.kate.app.model.SearchList;
 
@@ -34,6 +36,8 @@ public class SearchListController {
 	private AjaxDao ajaxDao;
 	@Autowired
 	private UserDao userDao;
+	@Autowired
+	private BingMapDao bingMapDao;
 	@Autowired
 	private ProjectInputDao projectInputDao;
 	@Autowired
@@ -55,42 +59,37 @@ public class SearchListController {
 	 */
 	@RequestMapping({"/SearchList"})
 	public String search_controller(HttpServletRequest req, HttpServletResponse resp){
-		//List<SearchList> searchList=searchListDao.listSearchList().subList(0, 5);
-		//req.setAttribute("searchList",searchList);
-		//flag==1表示显示全部的列表
-		
-		//Object obj = req.getSession().getAttribute("Information");
-		/*if(obj!=null){
-			String newInfo = obj.toString();*/
 			req.getSession().setAttribute("Information", "List");
-			
-		//}
 	    String flag=req.getParameter("flag");
 		if("1".equals(flag)){
 			Object o = req.getSession().getAttribute("listResult");
 			o = null;
 		    req.getSession().setAttribute("listResult", null);
-			//BingMapController.listResult=new ArrayList<HouseProject>();
-			/*searchList_final=null;*/
 			req.getSession().setAttribute("searchList_final", null);
-			req.getSession().setAttribute("nation", "");
-			req.getSession().setAttribute("city", "");
-			req.getSession().setAttribute("area", "");
+			req.getSession().setAttribute("nation", "国家");
+			req.getSession().setAttribute("city", "城市");
+			req.getSession().setAttribute("area", "区域");
+			req.setAttribute("xinkaipan1", "0");
+			req.setAttribute("huaren1", "0");
+			req.setAttribute("remen1", "0");
+			req.setAttribute("xuequ1", "0");
+			req.setAttribute("baozu1", "0");
+			req.setAttribute("daxue1", "0");
+			req.setAttribute("center1", "0");
+			req.setAttribute("traffic1", "0");
+			req.setAttribute("xianfang1", "0");
+			req.setAttribute("maidi1", "0");
+			
 		}
 		//得到所有的国家名称
 		List<String> nations=searchListDao.findAllNation();
 		req.setAttribute("nations", nations);
 		//SearchController.Information = "List";
 		if("0".equals(flag)){
-			/*String nation=BingMapController.nation;
-			String city=BingMapController.city;
-			String area=BingMapController.area;*/
 			String nation=(String)req.getSession().getAttribute("nation");
 			String city=(String)req.getSession().getAttribute("city");
 			String area=(String)req.getSession().getAttribute("area");
-			
 	        req.setAttribute("nation", nation);
-			
 			List<String>cities=searchListDao.findCityByNation(nation);
 			req.setAttribute("cities", cities);
 			req.setAttribute("city", city);
@@ -104,6 +103,27 @@ public class SearchListController {
 			
 			
 			req.setAttribute("area", area);
+			//从session中拿到标签参数
+			String xinkaipan=(String)req.getSession().getAttribute("xinkaipan1");
+			String huaren=(String)req.getSession().getAttribute("huaren1");
+			String remen=(String)req.getSession().getAttribute("remen1");
+			String xuequ=(String)req.getSession().getAttribute("xuequ1");
+			String baozu=(String)req.getSession().getAttribute("baozu1");
+			String daxue=(String)req.getSession().getAttribute("daxue1");
+			String center=(String)req.getSession().getAttribute("center1");
+			String traffic=(String)req.getSession().getAttribute("traffic1");
+			String xianfang=(String)req.getSession().getAttribute("xianfang1");
+			String maidi=(String)req.getSession().getAttribute("maidi1");
+			req.setAttribute("xinkaipan1", xinkaipan);
+			req.setAttribute("huaren1", huaren);
+			req.setAttribute("remen1", remen);
+			req.setAttribute("xuequ1", xuequ);
+			req.setAttribute("baozu1", baozu);
+			req.setAttribute("daxue1", daxue);
+			req.setAttribute("center1", center);
+			req.setAttribute("traffic1", traffic);
+			req.setAttribute("xianfang1", xianfang);
+			req.setAttribute("maidi1", maidi);
 			
 		}
 		

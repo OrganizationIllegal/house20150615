@@ -314,12 +314,26 @@ public class SearchController {
 			
 			flagInfo = 1;     //搜索结果页面
 			NumberFormat nf = new DecimalFormat("#,###,###");
-			String searchcity = req.getParameter("searchcity");
+			
 			String type = req.getParameter("type");
 			String minimumprice = req.getParameter("minimumprice");
 			String maximumprice = req.getParameter("maximumprice");
-			String country = req.getParameter("country");
-			String city2 = req.getParameter("city2");
+			String searchcity = req.getParameter("searchcity");//城市
+			String country = req.getParameter("country");//国家
+			if("澳洲".equals(country)||"".equals(country)){
+				country="澳大利亚";
+			}
+			String city2 = req.getParameter("city2");//城市
+		    if(!"".equals(country)){
+		    	req.getSession().setAttribute("nation", country);
+		    }
+		    if( city2!=null && !"".equals(city2) ){
+				req.getSession().setAttribute("city", city2);
+		    }
+		    if( searchcity!=null && !"".equals(searchcity) ){
+		    	req.getSession().setAttribute("city", searchcity);
+		    }
+		    //标签
 			String xinkaipan = req.getParameter("xinkaipan");
 			String huaren = req.getParameter("huaren");
 			String remen = req.getParameter("remen");
@@ -330,6 +344,57 @@ public class SearchController {
 			String traffic = req.getParameter("traffic");
 			String xianfang = req.getParameter("xianfang");
 			String maidi = req.getParameter("maidi");
+			if(xinkaipan!=null){
+				req.getSession().setAttribute("xinkaipan1", "1");
+			}else{
+				req.getSession().setAttribute("xinkaipan1", "0");
+			}
+			if(huaren!=null){
+				req.getSession().setAttribute("huaren1", "1");
+			}else{
+				req.getSession().setAttribute("huaren1", "0");
+			}
+			if(remen!=null){
+				req.getSession().setAttribute("remen1", "1");
+			}else{
+				req.getSession().setAttribute("remen1", "0");
+			}
+			if(xuequ!=null){
+				req.getSession().setAttribute("xuequ1", "1");
+			}else{
+				req.getSession().setAttribute("xuequ1", "0");
+			}
+			if(baozu!=null){
+				req.getSession().setAttribute("baozu1", "1");
+			}else{
+				req.getSession().setAttribute("baozu1", "0");
+			}
+			if(daxue!=null){
+				req.getSession().setAttribute("daxue1", "1");
+			}else{
+				req.getSession().setAttribute("daxue1", "0");
+			}
+			if(center!=null){
+				req.getSession().setAttribute("center1", "1");
+			}else{
+				req.getSession().setAttribute("center1", "0");
+			}
+			if(traffic!=null){
+				req.getSession().setAttribute("traffic1", "1");
+			}else{
+				req.getSession().setAttribute("traffic1", "0");
+			}
+			if(xianfang!=null){
+				req.getSession().setAttribute("xianfang1", "1");
+			}else{
+				req.getSession().setAttribute("xianfang1", "0");
+			}
+			if(maidi!=null){
+				req.getSession().setAttribute("maidi1", "1");
+			}else{
+				req.getSession().setAttribute("maidi1", "0");
+			}
+			
 			String city = null;
 			List<HouseProject> list1 = new ArrayList<HouseProject>();
 			List<HouseProject> resultList = new ArrayList<HouseProject>();
@@ -505,6 +570,7 @@ public class SearchController {
 			//req.setAttribute("searchList",searchList);
 			//Information = "Index";
 			seachListResult = searchList;
+			req.getSession().setAttribute("listResult", resultList);
 			session.setAttribute("seachListResult", searchList);
 			session.setAttribute("Information", "Index");
 			
