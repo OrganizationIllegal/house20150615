@@ -311,6 +311,9 @@ public class SearchController {
 		public String IndexSearch(HttpServletRequest req, HttpServletResponse resp){
 			HttpSession session = req.getSession();
 			session.setMaxInactiveInterval(60 * 60);
+			/*req.getSession().setAttribute("nation", "");
+			req.getSession().setAttribute("city", "");
+			req.getSession().setAttribute("area", "");*/
 			
 			flagInfo = 1;     //搜索结果页面
 			NumberFormat nf = new DecimalFormat("#,###,###");
@@ -332,6 +335,10 @@ public class SearchController {
 		    }
 		    if( searchcity!=null && !"".equals(searchcity) ){
 		    	req.getSession().setAttribute("city", searchcity);
+		    }
+		    
+		    if((city2==null || city2.equals(""))  &&  (searchcity==null || searchcity.equals(""))){
+		    	req.getSession().setAttribute("city", "");
 		    }
 		    //标签
 			String xinkaipan = req.getParameter("xinkaipan");

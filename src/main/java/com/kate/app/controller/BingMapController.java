@@ -1748,6 +1748,7 @@ public class BingMapController {
 		req.getSession().setAttribute("nation", nation1);
 		req.getSession().setAttribute("city", city1);
 		req.getSession().setAttribute("area", area1);
+		
 		String jiage1 = "";
 		String jiage2 = "";
 		if(nation1.equals("0")){
@@ -1777,6 +1778,11 @@ public class BingMapController {
 				jiage2 = strs[1];
 			}
 		}
+		
+		
+		req.getSession().setAttribute("minPrice", jiage1);
+		req.getSession().setAttribute("highPrice", jiage2);
+		
 		
 		
 		List<String> citys=searchListDao.findCityByNation(nation1);
