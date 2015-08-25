@@ -565,7 +565,7 @@ body{
 
 				   
 				</select>
-				<button class="allchexiao">全部撤销</button>
+				<button class="allchexiao" style="margin-top: 2px;margin-left: 20px;">全部撤销</button>
 				
 				
 				<!-- <a class="f-l f-yahei s-14 cp sel_price" style="padding-right:0px" href="/BingMap/OrderByPrice?order=1">价格从低到高</a>
