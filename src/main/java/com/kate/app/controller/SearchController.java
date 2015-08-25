@@ -311,6 +311,9 @@ public class SearchController {
 		public String IndexSearch(HttpServletRequest req, HttpServletResponse resp){
 			HttpSession session = req.getSession();
 			session.setMaxInactiveInterval(60 * 60);
+			req.setAttribute("nation", "");
+			req.setAttribute("city", "");
+			req.setAttribute("area", "");
 			
 			flagInfo = 1;     //搜索结果页面
 			NumberFormat nf = new DecimalFormat("#,###,###");
