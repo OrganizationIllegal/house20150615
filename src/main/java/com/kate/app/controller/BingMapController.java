@@ -1823,7 +1823,33 @@ public class BingMapController {
 		listResult=list;
 		req.getSession().setAttribute("listResult", listResult);
 		
-		array = bingMapService.filterByLiandong(nation1,city1,area1,type,jiage1,jiage2);
+		//array = bingMapService.filterByLiandong(nation1,city1,area1,type,jiage1,jiage2);
+		
+		for(HouseProject data : list){
+			JSONObject obj = new JSONObject();
+			obj.put("id", data.getId());
+			obj.put("gps", data.getGps()==null?"":data.getGps());
+			obj.put("project_name", data.getProject_name()==null?"":data.getProject_name());
+			obj.put("project_name_short", data.getProject_name_short());
+			obj.put("project_img", data.getProject_img()==null?"":data.getProject_img());
+			obj.put("project_price", data.getProject_price()==null?"":data.getProject_price());
+			obj.put("project_num", data.getProject_num()==null?"":data.getProject_num());
+			obj.put("project_min_price", data.getProject_min_price());
+			obj.put("project_high_price", data.getProject_high_price());
+			obj.put("project_zhou", data.getProject_zhou()==null?"":data.getProject_zhou());
+			obj.put("project_city", data.getProject_city()==null?"":data.getProject_city());
+			obj.put("project_nation", data.getProject_nation()==null?"":data.getProject_nation());
+			obj.put("project_address", data.getProject_address()==null?"":data.getProject_address());
+			obj.put("project_address_short", data.getProject_address_short());			
+			obj.put("minArea", data.getMin_area()==0?0:data.getMin_area());
+			obj.put("maxArea", data.getMax_area()==0?0:data.getMax_area());
+			obj.put("return_money", data.getReturn_money()==null?"":data.getReturn_money());
+			obj.put("project_price_int_qi", data.getProject_price_int_qi_str());
+			obj.put("project_area", data.getProject_area()==null?"":data.getProject_area());
+			obj.put("project_type", data.getProject_type()==null?"":data.getProject_type());
+			obj.put("project_key", data.getProject_key()==null?"":data.getProject_key());
+			array.add(obj);
+		}
 		
 		arrayCenternation=bingMapService.jsonMapCenterNation();
 		arrayCentercity=bingMapService.jsonMapCenterCity();
@@ -2352,7 +2378,7 @@ public class BingMapController {
 		
 		List<SearchList> resultList =  new ArrayList<SearchList>();
 		
-		List<HouseProject> list = bingMapService.filterByGPS(gpsLeftX,gpsLeftY,gpsRightX,gpsRightY);
+		//List<HouseProject> list = bingMapService.filterByGPS(gpsLeftX,gpsLeftY,gpsRightX,gpsRightY);
 		List<HouseProject> resultTypeList = new ArrayList<HouseProject>();
 		List<HouseProject> resultLianDongList = new ArrayList<HouseProject>();
 		
