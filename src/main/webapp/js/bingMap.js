@@ -1147,9 +1147,9 @@
 	   /* 增加搜索pushpin*/
 	   function addPushpinNation(nation, city, area,item,type,jiage)
       {
-		 //alert(nation+city+area)
+		 //alert(nation+city+area+item+type+jiage)		 
+		 //map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
 		 map.entities.clear(); 
-		 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
 		 var xuanze = 0;
 		 
 		 $.ajax({
@@ -1731,7 +1731,7 @@
         	 //alert(area);
         	 //alert(address);
     		 map.entities.clear(); 
-    		 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
+    		 //map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
     		 $.ajax({
     		 	    type: "POST",
     		 		dateType: "json",
