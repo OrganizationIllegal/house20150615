@@ -1147,6 +1147,7 @@
 	   /* 增加搜索pushpin*/
 	   function addPushpinNation(nation, city, area,item,type,jiage)
       {
+		 alert("haha");
 		 //alert(nation+city+area+item+type+jiage)		 
 		 //map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
 		 map.entities.clear(); 
@@ -1209,9 +1210,13 @@
 		 		    var lenCenterarea=itemsCenterarea.length;
 		 		    var a=new Array();
 		 		    var Zoom;
-		 		    //alert(nation)
-		 		    //alert(city)
-		 		    //alert(area)
+		 		    
+		 		    //alert("bbb"+lenItems);
+		 		   //alert("aaa"+items);
+		 		    /*alert(nation)
+		 		    alert(city)
+		 		    alert(area)
+		 		    alert(type)*/
 		 		    if(lenItems!=0){
 		 		    	if(area!=""&&area!=0){
 		 		    		  //alert("area")
@@ -1329,10 +1334,10 @@
 	 		     		 		}
 	 		     	        });
 	                     }
-	                		 
+		 	       }); 
 		                 
-		                 if(lastZoomLevel != map.getZoom()){
-			 	               lastZoomLevel = map.getZoom();
+		                 //if(lastZoomLevel != map.getZoom()){
+			 	               //lastZoomLevel = map.getZoom();
 			 	            //注册鼠标上移事件
  			 	              $(document).on("mouseenter","#left >.div_node",function(){
  		 	             			$(this).css("background-color","rgb(223,223,223)");
@@ -1587,6 +1592,7 @@
  		 	             		})
 			 	               if(lastZoomLevel>3){
 			 	            	  map.entities.clear();
+			 	            	  alert("ccc"+items.length);
 			 	            	  for(var i=0;i<items.length;i++){
 			 	 	 		        var arr=new Array();
 			 	 	 		        arr=items[i].gps.split(",");
@@ -1695,8 +1701,8 @@
 			 	                  	    map.entities.push(pushpin2);
 			 	            	    }
 			 	               }
-			 	        	}
-		 	        });
+			 	        	//}
+		 	        //});
 		 		   
 		 		   
 		 		},
