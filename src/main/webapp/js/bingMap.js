@@ -1147,7 +1147,7 @@
 	   /* 增加搜索pushpin*/
 	   function addPushpinNation(nation, city, area,item,type,jiage)
       {
-		 alert("haha");
+		 //alert("haha");
 		 //alert(nation+city+area+item+type+jiage)		 
 		 //map = new Microsoft.Maps.Map(document.getElementById('myMap'), {credentials: 'AkRLgOcOmMs4A-3UjBRPWc_LmVGmdSTsP2xmGtzaP_1Ixhg6kL2kwoMlQl-qyojL',showMapTypeSelector:false,enableSearchLogo: false,showScalebar: false, disableZooming: false });
 		 map.entities.clear(); 
@@ -1592,7 +1592,7 @@
  		 	             		})
 			 	               if(lastZoomLevel>3){
 			 	            	  map.entities.clear();
-			 	            	  alert("ccc"+items.length);
+			 	            	 // alert("ccc"+items.length);
 			 	            	  for(var i=0;i<items.length;i++){
 			 	 	 		        var arr=new Array();
 			 	 	 		        arr=items[i].gps.split(",");
@@ -1774,37 +1774,7 @@
     		 		    var Center=new Microsoft.Maps.Location(a[0],a[1]);
     		 		    map.setView({ zoom: Zoom, center: Center });	
     		 		    lastZoomLevel = map.getZoom();
-    		 	        Microsoft.Maps.Events.addHandler(map, 'viewchangeend', function(){
-    		 	        	//联动
-   		 	        	/* var bounds=map.getBounds();
-   		            	 var zuoshang=bounds.getNorthwest();
-   		                 var youxia=bounds.getSoutheast();
-   		                 var zs1=zuoshang.latitude;
-   		                 var zs2=zuoshang.longitude;
-   		                 var yx1=youxia.latitude;
-   	                     var yx2=youxia.longitude;
-   		                 $.ajax({
-   		     		 	    type: "POST",
-   		     		 		dateType: "json",
-   		     		 		url: "/BingMap1/filterByGPS1",	
-   		     		 		data:{gpsLeftX:zs1,gpsLeftY:zs2,gpsRightX:yx1,gpsRightY:yx2},
-   		     		 		success:function(data){
-   		     		       
-   		     		 		data=$.parseJSON(data);
-   		     		 		
-   		     		 		
-   		     		 		 var html = getHtml1(data.List);
-   		     		 		 
-   		     		 		 $("#left").html(html);  
-   		     		 		  
-   		     		 	    },
-   		     		 
-   		     		 		error:function(){
-   		     		 			//alert("addDefaultPushpin error")
-   		     		 		}
-   		     	        });*/
-   		              if(lastZoomLevel != map.getZoom()){
-		 	               lastZoomLevel = map.getZoom();
+    		 	       		 	               
 		 	            //注册鼠标上移事件
 			 	              $(document).on("mouseenter","#left >.div_node",function(){
 		 	             			$(this).css("background-color","rgb(223,223,223)");
@@ -2146,8 +2116,7 @@
 		 	                  	    map.entities.push(pushpin2);
 		 	            	    }
 		 	               }*/
-		 	        	}
-    		 	        });
+		 	        	
     		 		   
     		 		   
     		 		},
