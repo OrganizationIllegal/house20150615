@@ -1869,13 +1869,14 @@ public class SearchListDao extends BaseDao2 {
 		}catch (Exception e) {
 			 e.printStackTrace();
 	    }
+			
 		finally{
 			 try { if (rs != null) rs.close(); } catch(Exception e) { }
 			 try { if (stmt != null) stmt.close(); } catch(Exception e) { }
 			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
 			 try { if (con != null) con.close(); } catch(Exception e) { }
 	    }
-		Collections.sort(areas);
+		//Collections.sort(areas);
 	  return areas;
 	}
 	
