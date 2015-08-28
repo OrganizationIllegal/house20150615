@@ -691,7 +691,11 @@ body{
 	<script type="text/javascript">
 		$(".allchexiao").click(function(){
 			$("#nation").val("0");
-			$("#city").val("0");
+			$('#city').empty();
+     	    $('#city').append($('<option></option>').val("0").text("城市"));
+     	   	$("#city").val("0");
+     	   	$('#area').empty();
+    	   	$('#area').append($('<option></option>').val("0").text("区域"));
 			$("#area").val("0");
 			$("#house1").val("0");
 			$("#Price").val("0");
