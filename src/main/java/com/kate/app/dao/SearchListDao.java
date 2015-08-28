@@ -3,11 +3,11 @@ package com.kate.app.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -1875,6 +1875,7 @@ public class SearchListDao extends BaseDao2 {
 			 try { if (pstmt != null) pstmt.close(); } catch(Exception e) { }
 			 try { if (con != null) con.close(); } catch(Exception e) { }
 	    }
+		Collections.sort(areas);
 	  return areas;
 	}
 	
